@@ -10,19 +10,17 @@
       --wrap: 900px;
       --pad: 16px;
       --border: #e5e7eb;
-      --accent: #f0c44c;           /* Dal gold */
-      --text: #ffffff;             /* white text */
-      --bg: #0c2d5a;               /* Dal navy */
-      --bg-page: #0c2d5a;          /* page background same navy */
+      --accent: #f0c44c;
+      --text: #ffffff;
+      --bg: #0c2d5a;
+      --bg-page: #0c2d5a;
       --muted: #dbe7ff;
-
-      /* dedicated link colours (light blue) */
       --link: #9cc9ff;
       --link-visited: #c8e0ff;
     }
 
     html,body{
-      margin:0; padding:0;
+      margin:0;padding:0;
       background:var(--bg-page);
       color:var(--text);
       font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -30,162 +28,215 @@
     }
     .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
 
-    /* Links: light blue */
     a{word-break:break-word;text-decoration:underline;color:var(--link)}
     a:visited{color:var(--link-visited)}
-    a:hover, a:focus{opacity:.95}
+    a:hover,a:focus{opacity:.95}
 
-    /* Force content colors inside #out */
-    #out, #out *:not(a) { color: var(--text) !important; }
-    #out a { color: var(--link) !important; }
-    #out a:visited { color: var(--link-visited) !important; }
-    #out, #out * { background: transparent !important; }
-    #out blockquote { color: #eef2ff !important; }
-    #out table th, #out table td { border-color: var(--border) !important; }
+    #out,#out *:not(a){color:var(--text)!important;}
+    #out a{color:var(--link)!important;}
+    #out a:visited{color:var(--link-visited)!important;}
+    #out,#out *{background:transparent!important;}
+    #out blockquote{color:#eef2ff!important;}
+    #out table th,#out table td{border-color:var(--border)!important;}
 
     pre,code{white-space:pre-wrap;word-break:break-word}
-    blockquote{
-      margin:0 0 1em 0;padding-left:12px;
-      border-left:4px solid var(--border);color:#eef2ff
-    }
+    blockquote{margin:0 0 1em 0;padding-left:12px;
+      border-left:4px solid var(--border);color:#eef2ff}
     table{border-collapse:collapse;width:100%;margin:.5em 0}
     th,td{border:1px solid var(--border);padding:8px;vertical-align:top}
     h1,h2,h3{margin-top:1.2em}
     .muted{opacity:.9;color:var(--muted)}
-    .debug{
-      font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      white-space:pre-wrap;margin-top:8px;color:#bfe1ff; display:none;
+    .debug{font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      white-space:pre-wrap;margin-top:8px;color:#bfe1ff;display:none;}
+
+    /* 🔹 Follow-up UI */
+    #followup-box{
+      margin-top:18px;padding:12px;background:#102f60;border-radius:8px;
+      border:1px solid var(--accent);
     }
+#followup-text {
+  width: 100%;
+  min-height: 90px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  resize: none;
+  margin: 0;              /* removes offset causing misalignment */
+  box-sizing: border-box; /* ensures perfect alignment */
+}
+    #followup-btn,#copy-btn{
+      margin-top:8px;width:100%;padding:10px;font-weight:600;
+      border:none;border-radius:6px;cursor:pointer;
+      background:var(--accent);color:#000;
+    }
+    #copy-btn{background:#1e3a8a;color:#fff}
+    #copy-btn:hover{opacity:.9}
+
+    /* 🔹 Animated dots */
+    #loading{
+      display:none;text-align:center;margin-top:10px;font-weight:600;
+    }
+    #loading span{animation:blink 1.4s infinite both}
+    #loading span:nth-child(2){animation-delay:.2s}
+    #loading span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
   </style>
 
-  <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <!-- Sanitizer -->
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
-  <!-- Auto-link bare URLs/emails AFTER markdown -->
   <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
-
-  <!-- Thunkable WebViewer bridge -->
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
 </head>
 
 <body>
   <div class="wrap">
     <div id="out">Waiting for content…</div>
+
+    <div id="followup-box">
+      <textarea id="followup-text" placeholder="Type a follow-up question or add more information..."></textarea>
+      <button id="followup-btn">Submit Follow-Up</button>
+      <button id="copy-btn">Copy All</button>
+      <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
     <div id="dbg" class="debug"></div>
   </div>
 
   <script>
-    marked.setOptions({ gfm:true, breaks:true, mangle:false, headerIds:false });
+    marked.setOptions({gfm:true,breaks:true,mangle:false,headerIds:false});
+    const outEl=document.getElementById('out');
+    const dbgEl=document.getElementById('dbg');
+    const showDebug=/[?&]debug=1\b/.test(location.search);
+    const followupBtn=document.getElementById('followup-btn');
+    const followupText=document.getElementById('followup-text');
+    const copyBtn=document.getElementById('copy-btn');
+    const loading=document.getElementById('loading');
+    let linkHandlerAttached=false;
+    let lastAnswer="";
 
-    const outEl   = document.getElementById('out');
-    const dbgEl   = document.getElementById('dbg');
-    const showDebug = /[?&]debug=1\b/.test(location.search);
-    let linkHandlerAttached = false; // PATCH: ensure click handler added only once
-
-    function debug(msg){
-      if(!showDebug) return;
-      dbgEl.style.display = 'block';
-      dbgEl.textContent += (dbgEl.textContent ? '\n' : '') + msg;
-    }
+    function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
     function stripControlTags(md){
-      return String(md || '')
-        .replace(/<<START ANSWER>>/g,'')
-        .replace(/<<END ANSWER>>/g,'')
-        .replace(/\s*\[COMPLETED\]\s*$/,'')
-        .trim();
+      return String(md||'').replace(/<<START ANSWER>>/g,'').replace(/<<END ANSWER>>/g,'').replace(/\s*\[COMPLETED\]\s*$/,'').trim();
     }
 
     function safeRender(md){
-      const raw = stripControlTags(md);
-      const html = marked.parse(raw || '');
-      debug('marked html length=' + html.length);
-
-      const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
-
-      let linked = clean1;
-      try {
-        if (typeof linkifyHtml === 'function') {
-          linked = linkifyHtml(clean1, {
-            defaultProtocol: 'https',
-            nl2br: false,
-            validate: { url: (v) => /^https?:\/\//i.test(v) },
-            attributes: { rel: 'noopener', target: '_blank' }
-          });
-        }
-      } catch(e){
-        debug('linkify error: ' + e);
-      }
-
-      const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target','rel'] });
-
-      outEl.innerHTML = clean2 || '<span class="muted">[empty]</span>';
-      outEl.querySelectorAll('a').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
-
-      // ✅ PATCH: single-click opens URL in external browser (not WebViewer)
-      if (!linkHandlerAttached) {
-        outEl.addEventListener('click', (e) => {
-          const a = e.target.closest && e.target.closest('a[href]');
-          if (!a) return;
-          const url = a.href;
-          if (/^https?:/i.test(url)) {
+      const raw=stripControlTags(md);
+      const html=marked.parse(raw||'');
+      const clean1=DOMPurify.sanitize(html,{ADD_ATTR:['target','rel']});
+      let linked=clean1;
+      try{if(typeof linkifyHtml==='function'){
+        linked=linkifyHtml(clean1,{defaultProtocol:'https',nl2br:false,
+          validate:{url:(v)=>/^https?:\/\//i.test(v)},
+          attributes:{rel:'noopener',target:'_blank'}});
+      }}catch(e){debug('linkify error:'+e);}
+      const clean2=DOMPurify.sanitize(linked,{ADD_ATTR:['target','rel']});
+      // ✅ clear placeholder on first render
+      if(outEl.textContent.includes('Waiting for content')) outEl.innerHTML='';
+      outEl.innerHTML+=(outEl.innerHTML?'<hr>':'')+clean2;
+      lastAnswer=outEl.innerText;
+      outEl.querySelectorAll('a').forEach(a=>{a.target='_blank';a.rel='noopener';});
+      if(!linkHandlerAttached){
+        outEl.addEventListener('click',e=>{
+          const a=e.target.closest&&e.target.closest('a[href]');
+          if(!a)return;
+          const url=a.href;
+          if(/^https?:/i.test(url)){
             e.preventDefault();
-            try {
-              // tell Thunkable to open externally
-              ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
-            } catch (err) {
-              // fallback for desktop testing
-              window.location.assign(url);
-            }
+            try{ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::'+url);}
+            catch(err){window.location.assign(url);}
           }
         });
-        linkHandlerAttached = true;
+        linkHandlerAttached=true;
       }
     }
 
-    let firstMessageReceived = false;
-    let readyPingerId = null;
+    let firstMessageReceived=false;let readyPingerId=null;
 
-    ThunkableWebviewerExtension.receiveMessage(function (msg) {
-      try {
-        firstMessageReceived = true;
-        if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
-        const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
-        debug('received message; type=' + (typeof payload) + ' length=' + (String(payload||'').length));
+    ThunkableWebviewerExtension.receiveMessage(function(msg){
+      try{
+        firstMessageReceived=true;
+        if(readyPingerId){clearInterval(readyPingerId);readyPingerId=null;}
+        const payload=(msg&&typeof msg==='object'&&'payload'in msg)?msg.payload:msg;
         safeRender(payload);
-      } catch(err){
-        outEl.textContent = 'Render error: ' + err;
-        debug('Render error: ' + (err && err.stack || err));
+      }catch(err){
+        outEl.textContent='Render error:'+err;debug('Render error:'+(err&&err.stack||err));
       }
     });
 
     function pingReady(){
-      try {
-        ThunkableWebviewerExtension.postMessage('ready');
-        debug('posted "ready" via Thunkable extension');
-      } catch(e){ debug('postMessage error: ' + e); }
+      try{ThunkableWebviewerExtension.postMessage('ready');}
+      catch(e){debug('postMessage error:'+e);}
     }
-
-    function hashTest(){
-      if (location.hash && location.hash.length > 1){
-        const md = decodeURIComponent(location.hash.slice(1));
-        debug('hash test length=' + md.length);
-        safeRender(md);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      debug('DOMContentLoaded');
-      hashTest();
+    window.addEventListener('DOMContentLoaded',()=>{
       pingReady();
-      let tries = 0;
-      readyPingerId = setInterval(() => {
-        if (firstMessageReceived || tries >= 10){ clearInterval(readyPingerId); readyPingerId = null; return; }
-        pingReady(); tries++;
-      }, 600);
+      let tries=0;
+      readyPingerId=setInterval(()=>{
+        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
+        pingReady();tries++;
+      },600);
     });
+
+// ✅ Universal Copy-All handler (works in Thunkable & all browsers)
+copyBtn.onclick = () => {
+  const content = document.getElementById("out").innerText.trim();
+  if (!content) {
+    alert("No response yet to copy.");
+    return;
+  }
+
+  try {
+    // Try the secure Clipboard API first
+    navigator.clipboard.writeText(content)
+      .then(() => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+      })
+      .catch(() => {
+        // 🔹 Fallback for WebViewer / iOS sandbox
+        const temp = document.createElement("textarea");
+        temp.value = content;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand("copy");
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+        } catch (e2) {
+          alert("Clipboard not supported in this environment.");
+        }
+        document.body.removeChild(temp);
+      });
+  } catch (err) {
+    console.log("Copy error:", err);
+    alert("Clipboard not supported in this environment.");
+  }
+};
+
+    followupBtn.onclick=async()=>{
+      const q=followupText.value.trim();
+      if(!q)return;
+      loading.style.display='block';
+      followupBtn.disabled=true;
+      try{
+        const res=await fetch('https://web-production-43cb.up.railway.app/ask',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({question:q})
+        });
+        const data=await res.json();
+        safeRender(data.answer||'(no response)');
+      }catch(err){
+        safeRender('⚠️ Error sending follow-up: '+err.message);
+      }
+      loading.style.display='none';
+      followupBtn.disabled=false;
+      followupText.value='';
+    };
   </script>
 </body>
 </html>
