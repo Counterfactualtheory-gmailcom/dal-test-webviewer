@@ -153,8 +153,8 @@
       }, duration);
     }
 
-    /* ---------- Main send function ---------- */
-// 🔹 NEW sendInput() for external browser deep-link strategy
+/* ---------- Main send function ---------- */
+// ✨ Updated sendInput() — shows animated dots, then deep-links back to app
 function sendInput() {
   const message = inputBox.value.trim();
   if (!message) {
@@ -162,14 +162,18 @@ function sendInput() {
     return;
   }
 
-  // Encode user input safely for URL
+  // Encode safely for URL
   const encoded = encodeURIComponent(message);
 
-  // Launch deep link back to the Thunkable app
-  window.location.href = `compaiss://ask?q=${encoded}`;
+  // Show animated "Answer Coming..." message with moving dots
+  showToast("💬 Answer Coming<span class='dots'><span>.</span><span>.</span><span>.</span></span>", 999999, true);
 
-  // Optional visual feedback
-  showToast("✅ Sending to COMPAiSS...", 2000);
+  // After short pause, return automatically to the Thunkable app
+  setTimeout(() => {
+    window.location.href = `thunkable:///deep-link?q=${encoded}`;
+  }, 1800);
+
+  // Clear text box
   inputBox.value = "";
 }
     /* ---------- Event listeners ---------- */
