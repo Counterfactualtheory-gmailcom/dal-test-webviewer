@@ -144,14 +144,15 @@
       }
     }
 
-    function showToast(text, duration = 2000, asHTML = false) {
-      if (asHTML) toast.innerHTML = text;
-      else toast.textContent = text;
-      toast.className = "show";
-if (duration < 999999) {
-  setTimeout(() => {
-    toast.className = toast.className.replace("show", "");
-  }, duration);
+function showToast(text, duration = 2000, asHTML = false) {
+  if (asHTML) toast.innerHTML = text;
+  else toast.textContent = text;
+  toast.className = "show";
+  if (duration < 999999) {
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, duration);
+  }
 }
 
 /* ---------- Main send function ---------- */
