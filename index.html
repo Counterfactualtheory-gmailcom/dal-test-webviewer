@@ -119,10 +119,6 @@
 
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
-    function stripControlTags(md){
-      return String(md||'').replace(/<<START ANSWER>>/g,'').replace(/<<END ANSWER>>/g,'').replace(/\s*\[COMPLETED\]\s*$/,'').trim();
-    }
-
     function safeRender(md){
       const raw=stripControlTags(md);
       const html=marked.parse(raw||'');
