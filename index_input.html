@@ -148,10 +148,11 @@
       if (asHTML) toast.innerHTML = text;
       else toast.textContent = text;
       toast.className = "show";
-      setTimeout(() => {
-        toast.className = toast.className.replace("show", "");
-      }, duration);
-    }
+if (duration < 999999) {
+  setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+  }, duration);
+}
 
 /* ---------- Main send function ---------- */
 // ✨ Updated sendInput() — shows animated dots, then deep-links back to app
