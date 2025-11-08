@@ -218,44 +218,25 @@ copyBtn.onclick = () => {
   }
 };
 
-followupBtn.onclick = async () => {
-  const q = followupText.value.trim();
-  if (!q) return;
-
-  loading.style.display = 'block';
-  followupBtn.disabled = true;
-
-  try {
-    const res = await fetch('https://web-production-43cb.up.railway.app/ask', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q })
-    });
-
-    const data = await res.json();
-    const answerText = data.answer || "(no response)";
-    safeRender(answerText);
-
-    // ✅ Detect any model clarification cue
-    const needsClarification = /clarify|more information|please specify|not enough detail|could you|elaborate/i.test(answerText);
-
-    // ✅ If clarification requested, re-populate text box after render
-    if (needsClarification) {
-      setTimeout(() => {
-        followupText.value = q;
-        followupText.focus();
-      }, 100);
-    } else {
-      followupText.value = '';
-    }
-
-  } catch (err) {
-    safeRender('⚠️ Error sending follow-up: ' + err.message);
-  }
-
-  loading.style.display = 'none';
-  followupBtn.disabled = false;
-};
+    followupBtn.onclick=async()=>{
+      const q=followupText.value.trim();
+      if(!q)return;
+      loading.style.display='block';
+      followupBtn.disabled=true;
+      try{
+        const res=await fetch('https://web-production-43cb.up.railway.app/ask',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({question:q})
+        });
+        const data=await res.json();
+        safeRender(data.answer||'(no response)');
+      }catch(err){
+        safeRender('⚠️ Error sending follow-up: '+err.message);
+      }
+      loading.style.display='none';
+      followupBtn.disabled=false;
+      followupText.value='';
+    };
   </script>
 </body>
 </html>
