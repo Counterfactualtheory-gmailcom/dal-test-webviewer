@@ -228,8 +228,33 @@ copyBtn.onclick = () => {
           method:'POST',headers:{'Content-Type':'application/json'},
           body:JSON.stringify({question:q})
         });
-        const data=await res.json();
-        safeRender(data.answer||'(no response)');
+const data = await res.json();
+const answerText = data.answer || "(no response)";
+safeRender(answerText);
+
+// ✅ Detect clarification phrases and auto-fill follow-up box
+const clarificationPhrases = [
+  "please provide",
+  "could you clarify",
+  "more information",
+  "need additional",
+  "tell me more",
+  "can you elaborate",
+  "elaborate further",
+  "unclear",
+  "missing information",
+  "not enough detail"
+];
+
+const needsClarification = clarificationPhrases.some(p =>
+  answerText.toLowerCase().includes(p)
+);
+
+// ✅ If clarification detected, repopulate the follow-up text box
+if (needsClarification && followupText) {
+  followupText.value = q;  // restore last question
+  followupText.focus();    // place cursor for user to refine
+}
       }catch(err){
         safeRender('⚠️ Error sending follow-up: '+err.message);
       }
