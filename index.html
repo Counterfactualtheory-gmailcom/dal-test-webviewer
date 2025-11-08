@@ -255,10 +255,12 @@ followupBtn.onclick = async () => {
     );
 
     // ✅ Re-populate textbox only when clarification requested
-    if (needsClarification && followupText) {
-      followupText.value = q;    // restore question
-      followupText.focus();      // place cursor for refinement
-    }
+if (needsClarification && followupText) {
+  setTimeout(() => {
+    followupText.value = q;   // restore previous question
+    followupText.focus();     // place cursor for refinement
+  }, 100); // small delay ensures it sticks after render
+}
 
   } catch (err) {
     safeRender('⚠️ Error sending follow-up: ' + err.message);
