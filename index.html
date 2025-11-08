@@ -221,6 +221,7 @@ copyBtn.onclick = () => {
 followupBtn.onclick = async () => {
   const q = followupText.value.trim();
   if (!q) return;
+
   loading.style.display = 'block';
   followupBtn.disabled = true;
 
@@ -235,7 +236,7 @@ followupBtn.onclick = async () => {
     const answerText = data.answer || "(no response)";
     safeRender(answerText);
 
-    // ✅ Detect clarification phrases and auto-fill follow-up box
+    // ✅ Detect clarification phrases
     const clarificationPhrases = [
       "please provide",
       "could you clarify",
@@ -253,10 +254,10 @@ followupBtn.onclick = async () => {
       answerText.toLowerCase().includes(p)
     );
 
-    // ✅ If clarification detected, repopulate the follow-up text box
+    // ✅ Re-populate textbox only when clarification requested
     if (needsClarification && followupText) {
-      followupText.value = q;   // restore last question
-      followupText.focus();     // place cursor for user to refine
+      followupText.value = q;    // restore question
+      followupText.focus();      // place cursor for refinement
     }
 
   } catch (err) {
@@ -265,7 +266,11 @@ followupBtn.onclick = async () => {
 
   loading.style.display = 'none';
   followupBtn.disabled = false;
-  followupText.value = '';
+
+  // ✅ Only clear box when clarification not needed
+  if (!needsClarification) {
+    followupText.value = '';
+  }
 };
   </script>
 </body>
