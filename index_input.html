@@ -154,40 +154,24 @@
     }
 
     /* ---------- Main send function ---------- */
-    function sendInput() {
-      const message = inputBox.value.trim();
-      if (!message) {
-        alert("Please enter a question or issue.");
-        return;
-      }
+// 🔹 NEW sendInput() for external browser deep-link strategy
+function sendInput() {
+  const message = inputBox.value.trim();
+  if (!message) {
+    alert("Please enter a question or issue.");
+    return;
+  }
 
-      let sent = false;
+  // Encode user input safely for URL
+  const encoded = encodeURIComponent(message);
 
-      const trySend = () => {
-        if (!isBridgeReady() || sent) return;
-        try {
-          window.ThunkableWebviewerExtension.postMessage(message);
-          sent = true;
-          showToast("✅ Sent", 1200);
-          setTimeout(() => {
-            showToast("💬 Answer Coming<span class='dots'><span>.</span><span>.</span><span>.</span></span>", 999999, true);
-          }, 1300);
-        } catch (err) {
-          console.error("Bridge error:", err);
-          showToast("⚠️ Bridge Error", 2000);
-        }
-      };
+  // Launch deep link back to the Thunkable app
+  window.location.href = `compaiss://ask?q=${encoded}`;
 
-      whenBridgeReady(trySend);
-
-      // Fallback retry if the bridge event never fires
-      setTimeout(() => {
-        if (!sent && isBridgeReady()) trySend();
-      }, 1800);
-
-      inputBox.value = "";
-    }
-
+  // Optional visual feedback
+  showToast("✅ Sending to COMPAiSS...", 2000);
+  inputBox.value = "";
+}
     /* ---------- Event listeners ---------- */
     inputBox.addEventListener("keypress", (e) => {
       if (e.key === "Enter" && !e.shiftKey) {
