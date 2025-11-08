@@ -236,31 +236,18 @@ followupBtn.onclick = async () => {
     const answerText = data.answer || "(no response)";
     safeRender(answerText);
 
-    // ✅ Detect clarification phrases
-    const clarificationPhrases = [
-      "please provide",
-      "could you clarify",
-      "more information",
-      "need additional",
-      "tell me more",
-      "can you elaborate",
-      "elaborate further",
-      "unclear",
-      "missing information",
-      "not enough detail"
-    ];
+    // ✅ Detect any model clarification cue
+    const needsClarification = /clarify|more information|please specify|not enough detail|could you|elaborate/i.test(answerText);
 
-    const needsClarification = clarificationPhrases.some(p =>
-      answerText.toLowerCase().includes(p)
-    );
-
-    // ✅ Re-populate textbox only when clarification requested
-if (needsClarification && followupText) {
-  setTimeout(() => {
-    followupText.value = q;   // restore previous question
-    followupText.focus();     // place cursor for refinement
-  }, 100); // small delay ensures it sticks after render
-}
+    // ✅ If clarification requested, re-populate text box after render
+    if (needsClarification) {
+      setTimeout(() => {
+        followupText.value = q;
+        followupText.focus();
+      }, 100);
+    } else {
+      followupText.value = '';
+    }
 
   } catch (err) {
     safeRender('⚠️ Error sending follow-up: ' + err.message);
@@ -268,11 +255,6 @@ if (needsClarification && followupText) {
 
   loading.style.display = 'none';
   followupBtn.disabled = false;
-
-  // ✅ Only clear box when clarification not needed
-  if (!needsClarification) {
-    followupText.value = '';
-  }
 };
   </script>
 </body>
