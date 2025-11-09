@@ -32,9 +32,10 @@
     a:visited{color:var(--link-visited)}
     a:hover,a:focus{opacity:.95}
 
-    #out,#out *:not(a){color:var(--text)!important;}
-    #out a{color:var(--link)!important;}
-    #out a:visited{color:var(--link-visited)!important;}
+#out, #out *:not(a) { color: var(--text) !important; }
+/* keep link color standard blue */
+#out a { color: #0645AD !important; }
+#out a:visited { color: #0B0080 !important; }
     #out,#out *{background:transparent!important;}
     #out blockquote{color:#eef2ff!important;}
     #out table th,#out table td{border-color:var(--border)!important;}
