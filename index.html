@@ -119,37 +119,51 @@
 
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
-    function safeRender(md){
-      const raw=String(md||'');
-      const html=marked.parse(raw||'');
-      const clean1=DOMPurify.sanitize(html,{ADD_ATTR:['target','rel']});
-      let linked=clean1;
-      try{if(typeof linkifyHtml==='function'){
-        linked=linkifyHtml(clean1,{defaultProtocol:'https',nl2br:false,
-          validate:{url:(v)=>/^https?:\/\//i.test(v)},
-          attributes:{rel:'noopener',target:'_blank'}});
-      }}catch(e){debug('linkify error:'+e);}
-      const clean2=DOMPurify.sanitize(linked,{ADD_ATTR:['target','rel']});
-      // ✅ clear placeholder on first render
-      if(outEl.textContent.includes('Waiting for content')) outEl.innerHTML='';
-      outEl.innerHTML+=(outEl.innerHTML?'<hr>':'')+clean2;
-      lastAnswer=outEl.innerText;
-      outEl.querySelectorAll('a').forEach(a=>{a.target='_blank';a.rel='noopener';});
-      if(!linkHandlerAttached){
-        outEl.addEventListener('click',e=>{
-          const a=e.target.closest&&e.target.closest('a[href]');
-          if(!a)return;
-          const url=a.href;
-          if(/^https?:/i.test(url)){
-            e.preventDefault();
-            try{ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::'+url);}
-            catch(err){window.location.assign(url);}
-          }
-        });
-        linkHandlerAttached=true;
-      }
+function safeRender(md) {
+  const raw = String(md || '');
+  const html = marked.parse(raw || '');
+  const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
+  let linked = clean1;
+  try {
+    if (typeof linkifyHtml === 'function') {
+      linked = linkifyHtml(clean1, {
+        defaultProtocol: 'https', nl2br: false,
+        validate: { url: (v) => /^https?:\/\//i.test(v) },
+        attributes: { rel: 'noopener', target: '_blank' }
+      });
     }
+  } catch (e) { debug('linkify error:' + e); }
 
+  const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
+
+  // ✅ identical to Dalhousie – clear placeholder only once
+  if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+
+  // ✅ append new answers instead of replacing
+  outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+
+  lastAnswer = outEl.innerText;
+
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+
+  // ✅ attach link handler once
+  if (!linkHandlerAttached) {
+    outEl.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      const url = a.href;
+      if (/^https?:/i.test(url)) {
+        e.preventDefault();
+        try { ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url); }
+        catch (err) { window.location.assign(url); }
+      }
+    });
+    linkHandlerAttached = true;
+  }
+}
     let firstMessageReceived=false;let readyPingerId=null;
 
     ThunkableWebviewerExtension.receiveMessage(function(msg){
