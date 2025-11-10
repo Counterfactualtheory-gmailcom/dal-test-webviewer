@@ -41,18 +41,20 @@
     font-style: italic;
   }
 
-  .input-box {
+.input-box {
     background-color: #000000;
     border: 2px solid #f8c600;
     border-radius: 12px;
     padding: 20px;
     width: 90%;
     max-width: 480px;
+    height: 320px; /* 👈 Added: makes the entire black box taller */
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    justify-content: space-between;
     box-shadow: 0 0 8px rgba(248,198,0,0.3);
-  }
+}
 
   textarea {
     padding: 14px;
