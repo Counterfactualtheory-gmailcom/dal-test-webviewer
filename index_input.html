@@ -49,11 +49,11 @@ html, body {
   border: 2px solid #f8c600;
   border-radius: 12px;
   padding: 18px;
-  width: 84%;
+  width: 85%;           /* ✅ perfect width for symmetry */
   max-width: 480px;
   height: 65vh;
-  margin: 0 auto;       /* ✅ keeps horizontal centering */
-  margin-left: -3px;    /* ✅ fine-tunes optical centering toward gold border */
+  margin: 0 auto;
+  margin-left: -2px;    /* ✅ gentle optical nudge toward left */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -69,24 +69,23 @@ html, body {
   transform: none;
 }
 
+/* ✅ Ensure inner textarea fills the box correctly */
 textarea {
   flex: 1;
-  width: 100%;
+  width: 100%;          /* ✅ re-expand fully inside black box */
+  height: 100%;         /* ✅ make sure it doesn't collapse vertically */
   margin-top: 8px;
   margin-bottom: 14px;
   border-radius: 8px;
   border: none;
   outline: none;
   resize: none;
-  padding: 14px;                        /* ✅ slightly more padding */
-  font-size: 19px;                      /* ✅ larger font, improves hint too */
-  line-height: 1.45;                     /* ✅ prevents clipping descenders */
+  padding: 12px;
+  font-size: 18px;      /* ✅ darker, larger font (improves hint too) */
   font-family: "Roboto", sans-serif;
   background-color: #fff;
-  color: #666666;
+  color: #000;
   box-sizing: border-box;
-  overflow-wrap: break-word;            /* ✅ ensures full words visible */
-  word-break: break-word;               /* ✅ handles long URLs or unbroken text */
 }
 
   button {
