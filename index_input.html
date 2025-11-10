@@ -44,24 +44,27 @@ html, body {
     margin-bottom: 10px;
   }
 
-  .input-box {
-    background-color: #111;
-    border: 2px solid #f8c600;
-    border-radius: 12px;
-    padding: 18px;
-    width: 85%;               /* full centered width */
-    max-width: 480px;
-    height: 65vh;             /* ✅ stretch to 75% of screen height */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-    box-shadow: 0 0 8px rgba(248,198,0,0.3);
-    position: relative;  
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.input-box {
+  background-color: #111;
+  border: 2px solid #f8c600;
+  border-radius: 12px;
+  padding: 18px;
+  width: 85%;
+  max-width: 480px;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 0 8px rgba(248,198,0,0.3);
+
+  /* ✅ TRUE WebViewer-safe centering */
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 0;
+  transform: none;
+}
 
   textarea {
     flex: 1;
