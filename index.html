@@ -73,6 +73,14 @@ a:visited {
   transform: translateX(-50%);
 }
 
+/* ✅ Hint text styling for the output area */
+#out:empty::before {
+  content: "Waiting for content…";
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  color: #555;
+}
+    
 /* ✅ Follow-up section: styled to match Input screen */
 #followup-box {
   margin-top: 18px;
