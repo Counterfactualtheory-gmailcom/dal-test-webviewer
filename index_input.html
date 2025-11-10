@@ -1,8 +1,18 @@
+  This is the current inout file
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="frame-ancestors *;">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dalhousie COMPAiSS Input</title>
+<style>
   html, body {
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    background-color: #555555;           /* ✅ medium-dark grey background */
+    background-color: #f2f2f2;
     color: #000000;
     display: flex;
     flex-direction: column;
@@ -22,32 +32,31 @@
     font-size: 20px;
     font-weight: 700;
     margin: 0;
-    color: #FFD400;                      /* ✅ Dalhousie Gold */
+    color: #000;
   }
 
   .subtitle {
     font-size: 15px;
     font-weight: 600;
-    color: #0055cc;                      /* Dalhousie blue */
+    color: #0055cc; /* Dalhousie blue */
     margin-top: 2px;
     margin-bottom: 10px;
   }
 
   .input-box {
-    background-color: #111111;           /* ✅ solid black frame */
+    background-color: #111;
     border: 2px solid #f8c600;
     border-radius: 12px;
     padding: 18px;
-    width: 90%;
+    width: 90%;               /* full centered width */
     max-width: 480px;
-    height: 70vh;                        /* ✅ slightly shorter height */
+    height: 75vh;             /* ✅ stretch to 75% of screen height */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
     box-shadow: 0 0 8px rgba(248,198,0,0.3);
-    box-sizing: border-box;
   }
 
   textarea {
@@ -61,10 +70,9 @@
     resize: none;
     padding: 12px;
     font-size: 16px;
-    background-color: #dcdcdc;           /* ✅ light grey text background */
-    color: #000000;
+    background-color: #fff;
+    color: #000;
     box-sizing: border-box;
-    text-align: left;
   }
 
   button {
@@ -113,20 +121,87 @@
   .dots span:nth-child(2){ animation-delay:.2s; }
   .dots span:nth-child(3){ animation-delay:.4s; }
   @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+</style>
+</head>
 
-  /* ✅ Prevent side shifting of the textbox on all screens */
-  * {
-    box-sizing: border-box;
-  }
-  textarea, .input-box {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block;
-  }
+<body>
+  <header>
+    <h1>Dalhousie COMPAiSS</h1>
+    <div class="subtitle">Write in any language</div>
+  </header>
 
-  /* ✅ Responsive tweak for small iPhones */
-  @media (max-height: 700px) {
-    .input-box {
-      height: 65vh;
+  <div class="input-box">
+    <textarea id="inputBox" placeholder="Tap & Type your question, issue or concern here…"></textarea>
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <div id="toast">✅ Sent</div>
+
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+
+  <script>
+    const inputBox = document.getElementById("inputBox");
+    const toast = document.getElementById("toast");
+    const submitBtn = document.getElementById("submitBtn");
+
+    /* ---------- Bridge helpers ---------- */
+    function isBridgeReady() {
+      return typeof window.ThunkableWebviewerExtension !== "undefined";
     }
+
+    function whenBridgeReady(fn) {
+      if (isBridgeReady()) {
+        fn();
+      } else {
+        document.addEventListener("ThunkableWebviewerExtensionReady", fn, { once: true });
+      }
+    }
+
+function showToast(text, duration = 2000, asHTML = false) {
+  if (asHTML) toast.innerHTML = text;
+  else toast.textContent = text;
+  toast.className = "show";
+  if (duration < 999999) {
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, duration);
   }
+}
+
+/* ---------- Main send function ---------- */
+// ✨ Updated sendInput() — shows animated dots, then deep-links back to app
+function sendInput() {
+  const message = inputBox.value.trim();
+  if (!message) {
+    alert("Please enter a question or issue.");
+    return;
+  }
+
+  try {
+    // ✅ Send directly to Thunkable via bridge
+    ThunkableWebviewerExtension.postMessage(message);
+  } catch (e) {
+    console.error("Bridge error:", e);
+    alert("Unable to send message back to the app.");
+    return;
+  }
+
+  // Optional visual feedback
+showToast("💬 Answer Coming<span class='dots'><span>.</span><span>.</span><span>.</span></span>", 999999, true);
+
+  inputBox.value = "";
+}
+    /* ---------- Event listeners ---------- */
+    inputBox.addEventListener("keypress", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendInput();
+      }
+    });
+
+    submitBtn.addEventListener("click", sendInput);
+
+    console.log("Bridge script loaded:", isBridgeReady());
+  </script>
+</body>
+</html>
