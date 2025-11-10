@@ -32,81 +32,92 @@
     a:visited{color:var(--link-visited)}
     a:hover,a:focus{opacity:.95}
 
-/* ✅ Improved output styling for readability */
+/* Main layout container */
+.wrap {
+  max-width: 480px;
+  margin: 20px auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Output content box */
 #out {
-  background-color: #ffffff !important;  /* white background for answers */
-  color: #000000 !important;             /* black readable text */
+  background-color: #ffffff !important;   /* white answer area */
+  color: #000000 !important;              /* black readable text */
+  border: 2px solid #f8c600;              /* Dal gold border */
   border-radius: 12px;
   padding: 18px;
-  min-height: 420px;                     /* makes output box taller */
+  min-height: 420px;
   width: 95%;
   margin: 10px auto;
   overflow-y: auto;
   box-sizing: border-box;
+  box-shadow: 0 0 8px rgba(248,198,0,0.25);
 }
 
-/* links stay standard blue */
-#out a {
-  color: #0645AD !important;
-  text-decoration: underline;
-}
-#out a:visited {
-  color: #0B0080 !important;
-}
-#out blockquote {
-  color: #333333 !important;
-  border-left: 4px solid #ccc !important;
-  background-color: #f8f8f8 !important;
-  padding: 6px 12px;
-  border-radius: 4px;
-}
-#out table th,
-#out table td {
-  border-color: #ddd !important;
-}
-
-    pre,code{white-space:pre-wrap;word-break:break-word}
-    blockquote{margin:0 0 1em 0;padding-left:12px;
-      border-left:4px solid var(--border);color:#eef2ff}
-    table{border-collapse:collapse;width:100%;margin:.5em 0}
-    th,td{border:1px solid var(--border);padding:8px;vertical-align:top}
-    h1,h2,h3{margin-top:1.2em}
-    .muted{opacity:.9;color:var(--muted)}
-    .debug{font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-      white-space:pre-wrap;margin-top:8px;color:#bfe1ff;display:none;}
-
-    /* 🔹 Follow-up UI */
+/* ✅ Follow-up section: styled to match Input screen */
 #followup-box {
-  margin-top: 20px;
-  padding: 12px;
-  background: #102f60;
-  border-radius: 8px;
-  border: 1px solid #f8c600;
-  width: 92%;             /* ✅ fits within frame */
+  margin-top: 18px;
+  background-color: #000000;              /* black like input box */
+  border: 2px solid #f8c600;              /* Dal gold border */
+  border-radius: 12px;
+  padding: 16px;
+  width: 95%;
   max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 0 0 8px rgba(248,198,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
+
+/* Follow-up text area */
 #followup-text {
   width: 100%;
-  min-height: 90px;
-  padding: 10px;
-  font-size: 15px;
-  border-radius: 6px;
+  min-height: 100px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
   border: none;
   outline: none;
   resize: none;
-  margin: 0;              /* removes offset causing misalignment */
-  box-sizing: border-box; /* ensures perfect alignment */
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 12px;
+  box-sizing: border-box;
 }
-    #followup-btn,#copy-btn{
-      margin-top:8px;width:100%;padding:10px;font-weight:600;
-      border:none;border-radius:6px;cursor:pointer;
-      background:var(--accent);color:#000;
-    }
-    #copy-btn{background:#1e3a8a;color:#fff}
-    #copy-btn:hover{opacity:.9}
 
+/* Buttons */
+#followup-btn, #copy-btn {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Submit Follow-Up: Dal gold */
+#followup-btn {
+  background-color: #f8c600;
+  color: #000;
+}
+#followup-btn:hover {
+  background-color: #ffd500;
+}
+
+/* Copy All: Dal blue */
+#copy-btn {
+  background-color: #102f60;
+  color: #ffffff;
+}
+#copy-btn:hover {
+  opacity: 0.9;
+}
     /* 🔹 Animated dots */
     #loading{
       display:none;text-align:center;margin-top:10px;font-weight:600;
