@@ -63,15 +63,16 @@ a:visited {
   border-radius: 12px;
   padding: 18px;
   min-height: 420px;
-  width: 85%;              /* 🔹 slightly narrower for visual centering */
+  width: 85%;
+  max-width: 95%;           /* ✅ balanced horizontal margins */
+  margin: 10px auto;        /* ✅ centers horizontally */
+  display: block;           /* ✅ ensures consistent layout */
   overflow-y: auto;
-  box-sizing: border-box;
+  box-sizing: border-box;   /* ✅ prevents overflow */
   box-shadow: 0 0 8px rgba(248,198,0,0.25);
-  left: auto;              /* 🔹 clear old centering override */
-  transform: none;         /* 🔹 disable manual translation */
-  margin: 10px auto;
-  margin-left: -1.5px;   /* ✅ subtle optical centering left */
   position: relative;
+  left: 0;                  /* ✅ remove old offset */
+  transform: none;          /* ✅ no manual translation */
 }
 
 /* ✅ Hint text styling for the output area */
