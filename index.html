@@ -64,15 +64,15 @@ a:visited {
   padding: 18px;
   min-height: 420px;
   width: 90%;
-  max-width: 480px;          /* ✅ consistent width like SC output */
-  margin-left: auto;         /* ✅ perfectly centers horizontally */
-  margin-right: auto;        /* ✅ perfectly centers horizontally */
+  max-width: 480px;
+  margin-left: calc(auto - 3px);   /* ✅ slight optical shift left */
+  margin-right: auto;
   display: block;
   overflow-y: auto;
   box-sizing: border-box;
   box-shadow: 0 0 8px rgba(248,198,0,0.25);
   position: relative;
-  left: 0;
+  left: -3px;                     /* ✅ tiny nudge for perfect center */
   transform: none;
   text-align: left;
 }
