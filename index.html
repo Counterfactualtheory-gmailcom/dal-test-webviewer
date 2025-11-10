@@ -57,20 +57,20 @@ a:visited {
 
 /* Output content box */
 #out {
-  background-color: #ffffff !important;   /* white answer area */
-  color: #000000 !important;              /* black readable text */
-  border: 2px solid #f8c600;              /* Dal gold border */
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #f8c600;
   border-radius: 12px;
   padding: 18px;
   min-height: 420px;
-  width: 95%;
-  margin: 10px auto;
+  width: 90%;              /* 🔹 slightly narrower for visual centering */
+  margin: 10px auto;       /* 🔹 centers automatically */
   overflow-y: auto;
   box-sizing: border-box;
   box-shadow: 0 0 8px rgba(248,198,0,0.25);
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  position: static;        /* 🔹 remove forced offset */
+  left: auto;              /* 🔹 clear old centering override */
+  transform: none;         /* 🔹 disable manual translation */
 }
 
 /* ✅ Hint text styling for the output area */
