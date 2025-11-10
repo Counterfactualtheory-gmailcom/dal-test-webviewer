@@ -52,11 +52,14 @@ html, body {
   width: 88%;
   max-width: 480px;
   height: 65vh;
+  margin: 0 auto;       /* ✅ keeps horizontal centering */
+  margin-left: -3px;    /* ✅ fine-tunes optical centering toward gold border */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
   box-shadow: 0 0 8px rgba(248,198,0,0.3);
+}
 
   /* ✅ TRUE WebViewer-safe centering */
   margin-left: auto;
