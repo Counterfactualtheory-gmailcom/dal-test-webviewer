@@ -32,9 +32,17 @@ html,body{
 }
     .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
 
-    a{word-break:break-word;text-decoration:underline;color:var(--link)}
-    a:visited{color:var(--link-visited)}
-    a:hover,a:focus{opacity:.95}
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: #0055cc; /* ✅ Single deep Dalhousie blue for all links */
+}
+a:hover,
+a:focus,
+a:visited {
+  color: #0055cc; /* ✅ same color always */
+  opacity: 0.9;   /* optional subtle hover fade */
+}
 
 /* Main layout container */
 .wrap {
