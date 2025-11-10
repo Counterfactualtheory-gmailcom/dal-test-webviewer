@@ -10,12 +10,12 @@
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    background-color: #f2f2f2; /* ✅ Neutral light gray background */
-    color: #000000;
+    background-color: #ffffff; /* white background */
+    color: #000000; /* black text */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
@@ -23,28 +23,31 @@
 
   header {
     text-align: center;
+    margin-top: 40px; /* ~1cm below gold border */
     margin-bottom: 20px;
   }
 
   h1 {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
     margin: 0;
   }
 
   .subtitle {
     font-size: 14px;
-    color: #6EC1FF;
+    color: #555555;
     margin-top: 4px;
+    font-style: italic;
   }
 
   .input-box {
-    background-color: #111;
+    background-color: #000000;
     border: 2px solid #f8c600;
     border-radius: 12px;
-    padding: 16px;
-    width: 85%;
-    max-width: 420px;
+    padding: 20px;
+    width: 90%;
+    max-width: 480px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -52,37 +55,39 @@
   }
 
   textarea {
-    padding: 12px;
+    padding: 14px;
     font-size: 16px;
     border-radius: 8px;
     border: none;
     outline: none;
     resize: none;
-    height: 160px;
-    background-color: #fff;
-    color: #000;
-    margin-bottom: 12px;
+    height: 180px;
+    background-color: #ffffff;
+    color: #000000;
+    margin-bottom: 14px;
   }
 
   button {
     background-color: #f8c600;
-    color: #000;
+    color: #000000;
     font-weight: 600;
     border: none;
     border-radius: 8px;
-    padding: 12px;
+    padding: 14px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }
 
-  button:hover { background-color: #ffd500; }
+  button:hover {
+    background-color: #ffd500;
+  }
 
   #toast {
     visibility: hidden;
     min-width: 220px;
     background-color: #f8c600;
-    color: #000;
+    color: #000000;
     text-align: center;
     border-radius: 6px;
     padding: 12px;
