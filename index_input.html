@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dalhousie COMPAiSS Input</title>
 <style>
-  html, body {
+html, body {
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
@@ -18,7 +18,10 @@
     justify-content: flex-start;
     min-height: 100vh;
     overflow-y: auto;
-  }
+    overflow-x: hidden;    /* ✅ Stops horizontal movement */
+    width: 100%;           /* ✅ Locks full width */
+    max-width: 100%;       /* ✅ Prevents side scrolling */
+}
 
   header {
     text-align: center;
