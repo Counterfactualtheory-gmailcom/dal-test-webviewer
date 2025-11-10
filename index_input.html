@@ -6,75 +6,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dalhousie COMPAiSS Input</title>
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-  background-color: #808080; /* ✅ medium gray background */
-  color: #000000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    background-color: #f2f2f2; /* clean neutral */
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
   header {
     text-align: center;
-    margin-top: 40px; /* ~1cm below gold border */
-    margin-bottom: 20px;
+    margin-top: 12px; /* ✅ bring title close to top */
+    margin-bottom: 8px;
   }
 
   h1 {
     font-size: 20px;
     font-weight: 700;
-    color: #000000;
     margin: 0;
+    color: #000;
   }
 
   .subtitle {
-    font-size: 14px;
-    color: #555555;
-    margin-top: 4px;
-    font-style: italic;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0055cc; /* ✅ Dalhousie blue */
+    margin-top: 2px;
+    margin-bottom: 10px;
   }
 
-.input-box {
-  background-color: #111;
-  border: 2px solid #f8c600;
-  border-radius: 12px;
-  padding: 18px;
-  width: 90%;             /* ✅ slightly wider */
-  max-width: 480px;       /* ✅ more space horizontally */
-  height: auto;           /* ✅ adjusts dynamically */
-  margin: 0 auto;         /* ✅ centered perfectly */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  box-shadow: 0 0 8px rgba(248,198,0,0.3);
-}
+  .input-box {
+    background-color: #111;
+    border: 2px solid #f8c600;
+    border-radius: 12px;
+    padding: 16px;
+    width: 94%;            /* ✅ fills nearly full width of gold frame */
+    max-width: 460px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-shadow: 0 0 8px rgba(248,198,0,0.25);
+  }
 
-textarea {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  resize: none;
-  height: 180px;          /* ✅ taller text area */
-  background-color: #fff;
-  color: #000;
-  margin-bottom: 12px;
-}
+  textarea {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    resize: none;
+    height: 160px;
+    background-color: #ffffff;
+    color: #000;
+    margin-bottom: 12px;
+  }
 
   button {
     background-color: #f8c600;
-    color: #000000;
+    color: #000;
     font-weight: 600;
     border: none;
     border-radius: 8px;
-    padding: 14px;
+    padding: 12px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
@@ -88,7 +88,7 @@ textarea {
     visibility: hidden;
     min-width: 220px;
     background-color: #f8c600;
-    color: #000000;
+    color: #000;
     text-align: center;
     border-radius: 6px;
     padding: 12px;
