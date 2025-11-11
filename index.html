@@ -247,16 +247,29 @@ function safeRender(md) {
 }
     let firstMessageReceived=false;let readyPingerId=null;
 
-    ThunkableWebviewerExtension.receiveMessage(function(msg){
-      try{
-        firstMessageReceived=true;
-        if(readyPingerId){clearInterval(readyPingerId);readyPingerId=null;}
-        const payload=(msg&&typeof msg==='object'&&'payload'in msg)?msg.payload:msg;
-        safeRender(payload);
-      }catch(err){
-        outEl.textContent='Render error:'+err;debug('Render error:'+(err&&err.stack||err));
-      }
-    });
+// ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
+ThunkableWebviewerExtension.receiveMessage(function(msg){
+  try {
+    firstMessageReceived = true;
+    if (readyPingerId) {
+      clearInterval(readyPingerId);
+      readyPingerId = null;
+    }
+
+    // ⏳ Delay rendering slightly so DOMPurify/marked are ready
+    setTimeout(() => {
+      const payload =
+        msg && typeof msg === 'object' && 'payload' in msg
+          ? msg.payload
+          : msg;
+      safeRender(payload);
+    }, 50); // ~50 ms replicates McGill’s “Answer coming…” timing
+
+  } catch (err) {
+    outEl.textContent = 'Render error:' + err;
+    debug('Render error:' + (err && err.stack || err));
+  }
+});
 
     function pingReady(){
       try{ThunkableWebviewerExtension.postMessage('ready');}
