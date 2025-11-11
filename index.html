@@ -193,9 +193,19 @@ a:visited {
 
 function safeRender(md) {
   const raw = String(md || '');
-  const html = marked.parse(raw || '');
+
+  // ✅ Strip control tags (e.g., <<START ANSWER>>, [COMPLETED], etc.)
+  const cleaned = raw
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
+    .replace(/\[+COMPLETED+\]/gi, '')
+    .replace(/\[+DONE+\]/gi, '')
+    .trim();
+
+  const html = marked.parse(cleaned || '');
   const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
   let linked = clean1;
+
   try {
     if (typeof linkifyHtml === 'function') {
       linked = linkifyHtml(clean1, {
@@ -208,12 +218,11 @@ function safeRender(md) {
 
   const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
 
-  // ✅ identical to Dalhousie – clear placeholder only once
+  // ✅ Clear placeholder only once
   if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
 
-  // ✅ append new answers instead of replacing
+  // ✅ Append new answers instead of replacing
   outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
-
   lastAnswer = outEl.innerText;
 
   outEl.querySelectorAll('a').forEach(a => {
@@ -221,7 +230,7 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
 
-  // ✅ attach link handler once
+  // ✅ Attach link handler once
   if (!linkHandlerAttached) {
     outEl.addEventListener('click', e => {
       const a = e.target.closest && e.target.closest('a[href]');
