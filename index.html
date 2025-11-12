@@ -337,6 +337,7 @@ copyBtn.onclick = () => {
         safeRender(data.answer||'(no response)');
       }catch(err){
         safeRender('⚠️ Error sending follow-up: '+err.message);
+        limitVerifiedSources(); // ✅ NEW: clean and shorten verified links
       }
       loading.style.display='none';
       followupBtn.disabled=false;
