@@ -77,6 +77,18 @@
       line-height: 1.35;
     }
 
+/* 🚫 Remove visible bullet dots (including empty bullet lists) */
+#out ul,
+#out ol {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+#out li::before {
+  content: none !important;
+}
+
     #out:empty::before {
       content: "Waiting for content…";
       font-family: "Roboto", sans-serif;
