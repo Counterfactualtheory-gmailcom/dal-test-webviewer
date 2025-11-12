@@ -232,7 +232,8 @@
 
       const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
       if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
-      outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
+ outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
+removeEmptyBullets();   // 🚫 NEW — remove empty <li> and empty <ul>/<ol>
 
       outEl.querySelectorAll("a").forEach((a) => {
         a.target = "_blank";
