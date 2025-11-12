@@ -352,6 +352,19 @@ limitVerifiedSources(); // ✅ clean and shorten verified links
       }
     });
 
+/* 🚫 Remove empty bullet list items and empty lists */
+function removeEmptyBullets() {
+  // delete <li> that are empty or contain only spaces
+  outEl.querySelectorAll("li").forEach(li => {
+    if (!li.textContent.trim()) li.remove();
+  });
+
+  // delete <ul> or <ol> that contain nothing after cleanup
+  outEl.querySelectorAll("ul, ol").forEach(list => {
+    if (!list.textContent.trim()) list.remove();
+  });
+}
+   
 /* ✅ Trim and rename verified source links */
 function limitVerifiedSources() {
   const links = outEl.querySelectorAll('#out a[href]');
