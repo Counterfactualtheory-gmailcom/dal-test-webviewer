@@ -360,10 +360,20 @@ document.addEventListener("click", (e) => {
 window.addEventListener("message", function (event) {
   try {
     const data = event.data;
+
+    // Thunkable standard
     if (typeof data === "string" && data.startsWith("OPEN_IN_BROWSER::")) {
       const url = data.replace("OPEN_IN_BROWSER::", "");
       window.open(url, "_blank");
+      return;
     }
+
+    // Thunkable structured message format
+    if (data?.payload?.startsWith?.("OPEN_IN_BROWSER::")) {
+      const url = data.payload.replace("OPEN_IN_BROWSER::", "");
+      window.open(url, "_blank");
+    }
+
   } catch (e) {
     console.log("Android link-open error:", e);
   }
