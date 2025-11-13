@@ -348,7 +348,21 @@ limitVerifiedSources(); // ✅ clean and shorten verified links
         }
       }
     });
+/* ✅ Android WebView link-opening bridge */
+window.addEventListener("message", function (event) {
+  try {
+    const data = event.data;
+    if (typeof data === "string" && data.startsWith("OPEN_IN_BROWSER::")) {
+      const url = data.replace("OPEN_IN_BROWSER::", "");
+      window.open(url, "_blank");
+    }
+  } catch (e) {
+    console.log("Android link-open error:", e);
+  }
+});
 
+function limitVerifiedSources() {
+    
 /* ✅ Trim and rename verified source links */
 function limitVerifiedSources() {
   const links = outEl.querySelectorAll('#out a[href]');
