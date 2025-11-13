@@ -182,9 +182,19 @@
     let firstMessageReceived = false;
     let readyPingerId = null;
 
-    function cleanMarkdown(md) {
-      return String(md || "").replace(/\n{3,}/g, "\n\n");
-    }
+function cleanMarkdown(md) {
+  md = String(md || "");
+
+  // Remove empty bullets like "-", "*", "•"
+  md = md.replace(/^\s*[-•]\s*$/gm, "");
+  md = md.replace(/^\s*\*\s*$/gm, "");
+
+  // Remove entire "Sources:" section
+  md = md.replace(/(?:^|\n)Sources:\s*[\s\S]*$/i, "");
+
+  // Collapse excessive blank lines
+  return md.replace(/\n{3,}/g, "\n\n");
+}
 
     function normalizeDalLocales(html) {
       return html.replace(
