@@ -335,19 +335,27 @@ limitVerifiedSources(); // ✅ clean and shorten verified links
     };
 
     /* ✅ Open external links safely */
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("a[href]");
-      if (!a) return;
-      const url = a.href;
-      if (/^https?:/i.test(url)) {
-        e.preventDefault();
-        try {
-          ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-        } catch {
-          window.open(url, "_blank");
-        }
-      }
-    });
+document.addEventListener("click", (e) => {
+  const a = e.target.closest("a[href]");
+  if (!a) return;
+
+  const url = a.href;
+  if (!/^https?:/i.test(url)) return;
+  e.preventDefault();
+
+  try {
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+  } catch {}
+
+  try {
+    window.ReactNativeWebView?.postMessage("OPEN_IN_BROWSER::" + url);
+  } catch {}
+
+  try {
+    window.open(url, "_blank");
+  } catch {}
+});
+    
 /* ✅ Android WebView link-opening bridge */
 window.addEventListener("message", function (event) {
   try {
