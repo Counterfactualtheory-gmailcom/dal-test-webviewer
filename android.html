@@ -164,7 +164,15 @@
   <div class="wrap">
     <div id="out">Waiting for content…</div>
     <div id="followup-box">
-      <textarea id="followup-text" placeholder="Type a follow-up question or add more information..."></textarea>
+<textarea
+  id="followup-text"
+  placeholder="Type a follow-up question or add more information..."
+  inputmode="text"
+  enterkeyhint="done"
+  autocomplete="off"
+  autocorrect="off"
+  autocapitalize="sentences"
+></textarea>
       <button id="followup-btn">Submit Follow-Up</button>
       <button id="copy-btn">Copy All</button>
       <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
