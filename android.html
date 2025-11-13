@@ -190,6 +190,15 @@
     let firstMessageReceived = false;
     let readyPingerId = null;
 
+// ✅ Close keyboard on DONE + optionally auto-submit
+followupText.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    followupText.blur();    // closes Android keyboard
+    // followupBtn.click(); // optional auto-submit
+  }
+});
+    
 function cleanMarkdown(md) {
   md = String(md || "");
 
