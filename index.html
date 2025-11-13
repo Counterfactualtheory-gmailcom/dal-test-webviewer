@@ -221,6 +221,7 @@ function safeRender(md) {
 
   if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
   outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+  removeEmptyBullets();
   lastAnswer = outEl.innerText;
 
   outEl.querySelectorAll('a').forEach(a => {
