@@ -180,6 +180,43 @@
   </div>
 
   <script>
+
+// 🔥 ANDROID FIX — FORCE WEBVIEW TO PASS CLICKS
+document.addEventListener('touchstart', function(e) {
+  try {
+    if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
+      window.ReactNativeWebView.postMessage("ANDROID_TOUCH_EVENT");
+    }
+  } catch (err) {}
+}, {passive: true});
+
+// 🔥 Fix link clicks inside Android WebView
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+
+  const url = link.href;
+  if (!/^https?:\/\//i.test(url)) return;
+  e.preventDefault();
+
+  // Thunkable bridge
+  try {
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+    return;
+  } catch (err) {}
+
+  // ReactNative WebView bridge fallback
+  try {
+    if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
+      window.ReactNativeWebView.postMessage("OPEN_IN_BROWSER::" + url);
+      return;
+    }
+  } catch (err) {}
+
+  // Basic fallback
+  window.open(url, "_blank");
+});
+    
     marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
     const outEl = document.getElementById("out");
     const followupBtn = document.getElementById("followup-btn");
