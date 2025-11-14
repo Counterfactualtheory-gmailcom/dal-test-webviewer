@@ -360,17 +360,18 @@ document.addEventListener("click", (e) => {
   if (!/^https?:/i.test(url)) return;
   e.preventDefault();
 
-  try {
+try {
     ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch {}
+} catch {}
 
-  try {
-    window.ReactNativeWebView?.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch {}
+// 🔥 FIX: FORCE Android WebView bridge to fire
+if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
+    window.ReactNativeWebView.postMessage("OPEN_IN_BROWSER::" + url);
+}
 
-  try {
+try {
     window.open(url, "_blank");
-  } catch {}
+} catch {}
 });
     
 /* ✅ Android WebView link-opening bridge */
