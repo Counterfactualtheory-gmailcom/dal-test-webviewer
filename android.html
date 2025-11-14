@@ -45,11 +45,16 @@
       align-items: center;
     }
 
-    a {
-      word-break: break-word;
-      text-decoration: underline;
-      color: #0055cc;
-    }
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: #0055cc;
+
+  /* 👇 Android link tap fix */
+  padding: 4px 2px;
+  display: inline-block;
+}
+    
     a:hover,
     a:focus,
     a:visited {
