@@ -178,6 +178,14 @@ a {
 
   <script>
     marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
+
+/* 👇 Android: release scroll lock when textarea focuses */
+followupText.addEventListener('focus', () => {
+  try {
+    followupText.scrollIntoView({ behavior: "smooth", block: "center" });
+  } catch (e) {}
+});
+    
     const outEl = document.getElementById("out");
     const followupBtn = document.getElementById("followup-btn");
     const followupText = document.getElementById("followup-text");
