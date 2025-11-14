@@ -164,15 +164,7 @@
   <div class="wrap">
     <div id="out">Waiting for content…</div>
     <div id="followup-box">
-<textarea
-  id="followup-text"
-  placeholder="Type a follow-up question or add more information..."
-  inputmode="text"
-  enterkeyhint="done"
-  autocomplete="off"
-  autocorrect="off"
-  autocapitalize="sentences"
-></textarea>
+      <textarea id="followup-text" placeholder="Type a follow-up question or add more information..."></textarea>
       <button id="followup-btn">Submit Follow-Up</button>
       <button id="copy-btn">Copy All</button>
       <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
@@ -180,43 +172,6 @@
   </div>
 
   <script>
-
-// 🔥 ANDROID FIX — FORCE WEBVIEW TO PASS CLICKS
-document.addEventListener('touchstart', function(e) {
-  try {
-    if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
-      window.ReactNativeWebView.postMessage("ANDROID_TOUCH_EVENT");
-    }
-  } catch (err) {}
-}, {passive: true});
-
-// 🔥 Fix link clicks inside Android WebView
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[href]');
-  if (!link) return;
-
-  const url = link.href;
-  if (!/^https?:\/\//i.test(url)) return;
-  e.preventDefault();
-
-  // Thunkable bridge
-  try {
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-    return;
-  } catch (err) {}
-
-  // ReactNative WebView bridge fallback
-  try {
-    if (window.ReactNativeWebView && typeof window.ReactNativeWebView.postMessage === "function") {
-      window.ReactNativeWebView.postMessage("OPEN_IN_BROWSER::" + url);
-      return;
-    }
-  } catch (err) {}
-
-  // Basic fallback
-  window.open(url, "_blank");
-});
-    
     marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
     const outEl = document.getElementById("out");
     const followupBtn = document.getElementById("followup-btn");
@@ -227,15 +182,6 @@ document.addEventListener('click', function(e) {
     let firstMessageReceived = false;
     let readyPingerId = null;
 
-// ✅ Close keyboard on DONE + optionally auto-submit
-followupText.addEventListener("keydown", function (e) {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    followupText.blur();    // closes Android keyboard
-    // followupBtn.click(); // optional auto-submit
-  }
-});
-    
 function cleanMarkdown(md) {
   md = String(md || "");
 
@@ -389,22 +335,20 @@ limitVerifiedSources(); // ✅ clean and shorten verified links
     };
 
     /* ✅ Open external links safely */
-document.addEventListener("click", (e) => {
-  const a = e.target.closest("a[href]");
-  if (!a) return;
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      const url = a.href;
+      if (/^https?:/i.test(url)) {
+        e.preventDefault();
+        try {
+          ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+        } catch {
+          window.open(url, "_blank");
+        }
+      }
+    });
 
-  const url = a.href;
-  if (!/^https?:\/\//i.test(url)) return;
-
-  e.preventDefault();
-
-  try {
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch {
-    window.open(url, "_blank");
-  }
-});
-    
 /* ✅ Trim and rename verified source links */
 function limitVerifiedSources() {
   const links = outEl.querySelectorAll('#out a[href]');
