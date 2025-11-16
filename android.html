@@ -45,11 +45,11 @@
       align-items: center;
     }
 
-    a {
-      word-break: break-word;
-      text-decoration: underline;
-      color: #0055cc;
-    }
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: #0055cc;
+}
 
     a:hover,
     a:focus,
@@ -107,7 +107,7 @@
       border-radius: 8px;
       border: none;
       outline: none;
-      resize: vertical;
+      resize: vertical; /* Android WebView tapping fix */
       background-color: #ffffff;
       color: #000000;
       margin-bottom: 12px;
@@ -172,174 +172,179 @@
     </div>
   </div>
 
-  <script>
-    marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
+<script>
+  // ✅ Same setup as your 167-line working file
+  marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
 
-    const outEl = document.getElementById("out");
-    const followupBtn = document.getElementById("followup-btn");
-    const followupText = document.getElementById("followup-text");
-    const copyBtn = document.getElementById("copy-btn");
-    const loading = document.getElementById("loading");
+  const outEl = document.getElementById("out");
+  const followupBtn = document.getElementById("followup-btn");
+  const followupText = document.getElementById("followup-text");
+  const copyBtn = document.getElementById("copy-btn");
+  const loading = document.getElementById("loading");
 
-    let firstMessageReceived = false;
-    let readyPingerId = null;
+  let firstMessageReceived = false;
+  let readyPingerId = null;
 
-    // 🔹 SAME CLEANER BEHAVIOUR AS 167-LINE WORKING FILE
-    function cleanMarkdown(md) {
-      return String(md || "").replace(/\n{3,}/g, "\n\n");
-    }
+  // Simple markdown cleaner (same spirit as 167 file)
+function cleanMarkdown(md) {
+  return String(md || "")
+    // FIX: convert <https://...> → https://...
+    .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
+    .replace(/\n{3,}/g, "\n\n");
+}
 
-    function normalizeDalLocales(html) {
-      return html.replace(
-        /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
-        "https://www.dal.ca/"
-      );
-    }
+  function normalizeDalLocales(html) {
+    return html.replace(
+      /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
+      "https://www.dal.ca/"
+    );
+  }
 
-    function safeRender(md) {
-      const raw = cleanMarkdown(md);
-      const cleaned = String(raw)
-        .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
-        .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
-        .replace(/$begin:math:display$+COMPLETED+$end:math:display$/gi, "")
-        .replace(/$begin:math:display$+DONE+$end:math:display$/gi, "")
-        .trim();
+  function safeRender(md) {
+    const raw = cleanMarkdown(md);
+    const cleaned = String(raw)
+      .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
+      .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
+      .replace(/\[+COMPLETED+\]/gi, "")
+      .replace(/\[+DONE+\]/gi, "")
+      .trim();
 
-      const html = marked.parse(cleaned || "");
-      let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
-      purified = normalizeDalLocales(purified);
+    const html = marked.parse(cleaned || "");
+    let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
+    purified = normalizeDalLocales(purified);
 
-      let linked = purified;
-      try {
-        if (typeof linkifyHtml === "function") {
-          linked = linkifyHtml(purified, {
-            defaultProtocol: "https",
-            nl2br: false,
-            validate: { url: (v) => /^https?:\/\//i.test(v) },
-            attributes: { rel: "noopener", target: "_blank" },
-          });
-        }
-      } catch (e) {}
-
-      const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
-      if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
-      outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
-
-      outEl.querySelectorAll("a").forEach((a) => {
-        a.target = "_blank";
-        a.rel = "noopener";
-      });
-    }
-
-    /* ✅ Android and Web handshake (same pattern as working file) */
-    function pingReady() {
-      try {
-        ThunkableWebviewerExtension.postMessage("ready");
-        ThunkableWebviewerExtension.postMessage("ready-android");
-      } catch (e) {
-        console.log("Handshake error", e);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      pingReady();
-      let tries = 0;
-      readyPingerId = setInterval(() => {
-        if (firstMessageReceived || tries >= 10) {
-          clearInterval(readyPingerId);
-          readyPingerId = null;
-          return;
-        }
-        pingReady();
-        tries++;
-      }, 600);
-    });
-
-    /* ✅ Receive message and render safely */
-    ThunkableWebviewerExtension.receiveMessage(function (msg) {
-      try {
-        firstMessageReceived = true;
-        if (readyPingerId) {
-          clearInterval(readyPingerId);
-          readyPingerId = null;
-        }
-        setTimeout(() => {
-          const payload =
-            msg && typeof msg === "object" && "payload" in msg ? msg.payload : msg;
-          safeRender(payload);
-        }, 50);
-      } catch (err) {
-        outEl.textContent = "Render error: " + err;
-      }
-    });
-
-    /* ✅ Submit follow-up (DAL backend) */
-    followupBtn.onclick = async () => {
-      const q = followupText.value.trim();
-      if (!q) return;
-      loading.style.display = "block";
-      followupBtn.disabled = true;
-      try {
-        const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: q }),
+    let linked = purified;
+    try {
+      if (typeof linkifyHtml === "function") {
+        linked = linkifyHtml(purified, {
+          defaultProtocol: "https",
+          nl2br: false,
+          validate: { url: (v) => /^https?:\/\//i.test(v) },
+          attributes: { rel: "noopener", target: "_blank" },
         });
-        const data = await res.json();
-        safeRender(data.answer || "(no response)");
-      } catch (err) {
-        safeRender("⚠️ Error sending follow-up: " + err.message);
       }
-      loading.style.display = "none";
-      followupBtn.disabled = false;
-      followupText.value = "";
-    };
+    } catch (e) {}
 
-    /* ✅ Copy all output */
-    copyBtn.onclick = () => {
-      const content = outEl.innerText.trim();
-      if (!content) {
-        alert("No response yet to copy.");
+    const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
+    if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
+    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
+
+    outEl.querySelectorAll("a").forEach((a) => {
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+  }
+
+  /* ✅ Android and Web handshake */
+  function pingReady() {
+    try {
+      ThunkableWebviewerExtension.postMessage("ready");
+      ThunkableWebviewerExtension.postMessage("ready-android");
+    } catch (e) {
+      console.log("Handshake error", e);
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    pingReady();
+    let tries = 0;
+    readyPingerId = setInterval(() => {
+      if (firstMessageReceived || tries >= 10) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
         return;
       }
-      navigator.clipboard.writeText(content).then(
-        () => {
+      pingReady();
+      tries++;
+    }, 600);
+  });
+
+  /* ✅ Receive message and render safely */
+  ThunkableWebviewerExtension.receiveMessage(function (msg) {
+    try {
+      firstMessageReceived = true;
+      if (readyPingerId) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
+      }
+      setTimeout(() => {
+        const payload =
+          msg && typeof msg === "object" && "payload" in msg ? msg.payload : msg;
+        safeRender(payload);
+      }, 50);
+    } catch (err) {
+      outEl.textContent = "Render error: " + err;
+    }
+  });
+
+  /* ✅ Submit follow-up */
+  followupBtn.onclick = async () => {
+    const q = followupText.value.trim();
+    if (!q) return;
+    loading.style.display = "block";
+    followupBtn.disabled = true;
+    try {
+      const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q }),
+      });
+      const data = await res.json();
+      safeRender(data.answer || "(no response)");
+    } catch (err) {
+      safeRender("⚠️ Error sending follow-up: " + err.message);
+    }
+    loading.style.display = "none";
+    followupBtn.disabled = false;
+    followupText.value = "";
+  };
+
+  /* ✅ Copy all output */
+  copyBtn.onclick = () => {
+    const content = outEl.innerText.trim();
+    if (!content) {
+      alert("No response yet to copy.");
+      return;
+    }
+    navigator.clipboard.writeText(content).then(
+      () => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+      },
+      () => {
+        const temp = document.createElement("textarea");
+        temp.value = content;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand("copy");
           copyBtn.textContent = "Copied!";
           setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
-        },
-        () => {
-          const temp = document.createElement("textarea");
-          temp.value = content;
-          temp.style.position = "fixed";
-          temp.style.opacity = "0";
-          document.body.appendChild(temp);
-          temp.select();
-          try {
-            document.execCommand("copy");
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
-          } catch {
-            alert("Clipboard not supported.");
-          }
-          document.body.removeChild(temp);
-        }
-      );
-    };
-
-    /* ✅ Ensure external links open properly (this is what makes them clickable) */
-    document.addEventListener("click", (e) => {
-      const a = e.target.closest("a[href]");
-      if (!a) return;
-      const url = a.href;
-      if (/^https?:/i.test(url)) {
-        e.preventDefault();
-        try {
-          ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
         } catch {
-          window.open(url, "_blank");
+          alert("Clipboard not supported.");
         }
+        document.body.removeChild(temp);
       }
-    });
-  </script>
+    );
+  };
+
+  /* ✅ Ensure external links open properly (this is what makes them clickable
+       in Thunkable’s WebViewer) */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const url = a.href;
+    if (/^https?:/i.test(url)) {
+      e.preventDefault();
+      try {
+        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      } catch {
+        window.open(url, "_blank");
+      }
+    }
+  });
+</script>
 </body>
 </html>
