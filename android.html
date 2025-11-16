@@ -330,40 +330,22 @@ function cleanMarkdown(md) {
     );
   };
 
-/* ✅ Ensure external links open properly (this is what makes them clickable
-     in Thunkable’s WebViewer) */
+/* ✅ Ensure external links open properly (Android-safe version from 167 file) */
 document.addEventListener("click", (e) => {
-
-  /* --- DEBUG: Anchor detection test --- */
-  console.log("CLICK EVENT FIRED:", e.target);
-
-  let el = e.target;
-  while (el && el !== document && el.tagName !== "A") {
-    el = el.parentNode;
-  }
-
-  console.log("NEAREST <A>:", el ? el.outerHTML : null);
-  /* --- END DEBUG --- */
-
-  const a = el && el.tagName === "A" && el.href ? el : null;
+  const a = e.target.closest("a[href]");
   if (!a) return;
 
-  const url = a.href;        // <<<<<< FIXED (this was missing)
+  const url = a.href;
   if (!/^https?:/i.test(url)) return;
 
   e.preventDefault();
 
-  // 1. Try window.open FIRST (required for Android WebView)
-  const win = window.open(url, "_blank");
-  if (win) return;  // success → stop here
-
-  // 2. If window.open blocked, try Thunkable extension
   try {
-    if (typeof ThunkableWebviewerExtension !== "undefined") {
-      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-    }
+    // Try Thunkable bridge first (Live App & APK hook)
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
   } catch (err) {
-    console.log("Thunkable postMessage failed:", err);
+    // Fallback for installed APK
+    window.open(url, "_blank");
   }
 });
 </script>
