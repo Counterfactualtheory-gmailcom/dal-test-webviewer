@@ -172,228 +172,176 @@ a {
     </div>
   </div>
 
-  <script>
-    marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
+<script>
+  // ✅ Same setup as your 167-line working file
+  marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
 
-    const outEl = document.getElementById("out");
-    const followupBtn = document.getElementById("followup-btn");
-    const followupText = document.getElementById("followup-text");
-    const copyBtn = document.getElementById("copy-btn");
-    const loading = document.getElementById("loading");
+  const outEl = document.getElementById("out");
+  const followupBtn = document.getElementById("followup-btn");
+  const followupText = document.getElementById("followup-text");
+  const copyBtn = document.getElementById("copy-btn");
+  const loading = document.getElementById("loading");
 
-    let firstMessageReceived = false;
-    let readyPingerId = null;
+  let firstMessageReceived = false;
+  let readyPingerId = null;
 
-    /* 👇 Android: release scroll lock when textarea focuses */
-    followupText.addEventListener("focus", () => {
-      try {
-        followupText.scrollIntoView({ behavior: "smooth", block: "center" });
-      } catch (e) {}
-    });
+  // Simple markdown cleaner (same spirit as 167 file)
+  function cleanMarkdown(md) {
+    return String(md || "").replace(/\n{3,}/g, "\n\n");
+  }
 
-    function cleanMarkdown(md) {
-      md = String(md || "");
+  function normalizeDalLocales(html) {
+    return html.replace(
+      /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
+      "https://www.dal.ca/"
+    );
+  }
 
-      // Remove empty bullets like "-", "*", "•"
-      md = md.replace(/^\s*[-•]\s*$/gm, "");
-      md = md.replace(/^\s*\*\s*$/gm, "");
+  function safeRender(md) {
+    const raw = cleanMarkdown(md);
+    const cleaned = String(raw)
+      .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
+      .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
+      .replace(/\[+COMPLETED+\]/gi, "")
+      .replace(/\[+DONE+\]/gi, "")
+      .trim();
 
-      // Remove entire "Sources:" section
-      md = md.replace(/(?:^|\n)Sources:\s*[\s\S]*$/i, "");
+    const html = marked.parse(cleaned || "");
+    let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
+    purified = normalizeDalLocales(purified);
 
-      // Collapse excessive blank lines
-      return md.replace(/\n{3,}/g, "\n\n");
-    }
-
-    function normalizeDalLocales(html) {
-      return html.replace(
-        /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
-        "https://www.dal.ca/"
-      );
-    }
-
-    function safeRender(md) {
-      const raw = cleanMarkdown(md);
-      const cleaned = String(raw)
-        .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
-        .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
-        .replace(/\[+COMPLETED+\]/gi, "")
-        .replace(/\[+DONE+\]/gi, "")
-        .trim();
-
-      const html = marked.parse(cleaned || "");
-      let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
-      purified = normalizeDalLocales(purified);
-
-      let linked = purified;
-      try {
-        if (typeof linkifyHtml === "function") {
-          linked = linkifyHtml(purified, {
-            defaultProtocol: "https",
-            nl2br: false,
-            validate: { url: (v) => /^https?:\/\//i.test(v) },
-            attributes: { rel: "noopener", target: "_blank" },
-          });
-        }
-      } catch (e) {}
-
-      const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
-      if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
-      outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
-
-      outEl.querySelectorAll("a").forEach((a) => {
-        a.target = "_blank";
-        a.rel = "noopener";
-      });
-
-      limitVerifiedSources(); // ✅ clean and shorten verified links
-    }
-
-    /* ✅ Android handshake: include both signals */
-    function pingReady() {
-      try {
-        ThunkableWebviewerExtension.postMessage("ready");
-        ThunkableWebviewerExtension.postMessage("ready-android");
-      } catch (e) {
-        console.log("Handshake error", e);
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      pingReady();
-      let tries = 0;
-      readyPingerId = setInterval(() => {
-        if (firstMessageReceived || tries >= 10) {
-          clearInterval(readyPingerId);
-          readyPingerId = null;
-          return;
-        }
-        pingReady();
-        tries++;
-      }, 600);
-    });
-
-    /* ✅ Message receive */
-    ThunkableWebviewerExtension.receiveMessage(function (msg) {
-      try {
-        firstMessageReceived = true;
-        if (readyPingerId) {
-          clearInterval(readyPingerId);
-          readyPingerId = null;
-        }
-        setTimeout(() => {
-          const payload = msg && typeof msg === "object" && "payload" in msg ? msg.payload : msg;
-          safeRender(payload);
-        }, 50);
-      } catch (err) {
-        outEl.textContent = "Render error: " + err;
-      }
-    });
-
-    /* ✅ Submit follow-up */
-    followupBtn.onclick = async () => {
-      const q = followupText.value.trim();
-      if (!q) return;
-      loading.style.display = "block";
-      followupBtn.disabled = true;
-      try {
-        const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: q }),
+    let linked = purified;
+    try {
+      if (typeof linkifyHtml === "function") {
+        linked = linkifyHtml(purified, {
+          defaultProtocol: "https",
+          nl2br: false,
+          validate: { url: (v) => /^https?:\/\//i.test(v) },
+          attributes: { rel: "noopener", target: "_blank" },
         });
-        const data = await res.json();
-        safeRender(data.answer || "(no response)");
-      } catch (err) {
-        safeRender("⚠️ Error sending follow-up: " + err.message);
       }
-      loading.style.display = "none";
-      followupBtn.disabled = false;
-      followupText.value = "";
-    };
+    } catch (e) {}
 
-    /* ✅ Copy all output */
-    copyBtn.onclick = () => {
-      const content = outEl.innerText.trim();
-      if (!content) {
-        alert("No response yet to copy.");
+    const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
+    if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
+    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
+
+    outEl.querySelectorAll("a").forEach((a) => {
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+  }
+
+  /* ✅ Android and Web handshake */
+  function pingReady() {
+    try {
+      ThunkableWebviewerExtension.postMessage("ready");
+      ThunkableWebviewerExtension.postMessage("ready-android");
+    } catch (e) {
+      console.log("Handshake error", e);
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    pingReady();
+    let tries = 0;
+    readyPingerId = setInterval(() => {
+      if (firstMessageReceived || tries >= 10) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
         return;
       }
-      navigator.clipboard.writeText(content).then(
-        () => {
-          copyBtn.textContent = "Copied!";
-          setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
-        },
-        () => {
-          const temp = document.createElement("textarea");
-          temp.value = content;
-          temp.style.position = "fixed";
-          temp.style.opacity = "0";
-          document.body.appendChild(temp);
-          temp.select();
-          try {
-            document.execCommand("copy");
-            copyBtn.textContent = "Copied!";
-            setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
-          } catch {
-            alert("Clipboard not supported.");
-          }
-          document.body.removeChild(temp);
-        }
-      );
-    };
+      pingReady();
+      tries++;
+    }, 600);
+  });
 
-/* 🚀 FIXED: Simple, reliable hyperlink handling for Android */
-document.addEventListener("click", function (e) {
-  const a = e.target.closest("a[href]");
-  if (!a) return;
-
-  const url = a.getAttribute("href");
-  if (!url || !/^https?:/i.test(url)) return;
-
-  e.preventDefault();
-  try {
-    // Thunkable external browser trigger
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch (err) {
-    // Web fallback
-    window.open(url, "_blank");
-  }
-});
-
-    /* ✅ Trim and rename verified source links */
-function limitVerifiedSources() {
-  const links = outEl.querySelectorAll("#out a[href]");
-
-  // Replace "Verified Greenlist Source" with readable host/path
-  links.forEach((a) => {
-    if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
-      try {
-        const url = new URL(a.href);
-        const host = url.hostname.replace(/^www\./, "");
-        const path = url.pathname.replace(/\/$/, "");
-        const parts = path.split("/").filter(Boolean);
-        const lastSegment = parts.length ? parts[parts.length - 1] : "";
-        a.textContent = host + (lastSegment ? " — " + lastSegment : "");
-      } catch {
-        // IMPORTANT FIX: don't rewrite a.textContent or a.href
-        // Leave it untouched to preserve clickable anchor
+  /* ✅ Receive message and render safely */
+  ThunkableWebviewerExtension.receiveMessage(function (msg) {
+    try {
+      firstMessageReceived = true;
+      if (readyPingerId) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
       }
+      setTimeout(() => {
+        const payload =
+          msg && typeof msg === "object" && "payload" in msg ? msg.payload : msg;
+        safeRender(payload);
+      }, 50);
+    } catch (err) {
+      outEl.textContent = "Render error: " + err;
     }
   });
 
-  // Limit to top 8 visible links
-  if (links.length > 8) {
-    for (let i = 8; i < links.length; i++) links[i].style.display = "none";
-    const note = document.createElement("div");
-    note.textContent = "(showing top 8 verified sources)";
-    note.style.textAlign = "center";
-    note.style.marginTop = "10px";
-    note.style.fontSize = "14px";
-    note.style.color = "#555";
-    outEl.appendChild(note);
-  }
-}
-  </script>
+  /* ✅ Submit follow-up */
+  followupBtn.onclick = async () => {
+    const q = followupText.value.trim();
+    if (!q) return;
+    loading.style.display = "block";
+    followupBtn.disabled = true;
+    try {
+      const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q }),
+      });
+      const data = await res.json();
+      safeRender(data.answer || "(no response)");
+    } catch (err) {
+      safeRender("⚠️ Error sending follow-up: " + err.message);
+    }
+    loading.style.display = "none";
+    followupBtn.disabled = false;
+    followupText.value = "";
+  };
+
+  /* ✅ Copy all output */
+  copyBtn.onclick = () => {
+    const content = outEl.innerText.trim();
+    if (!content) {
+      alert("No response yet to copy.");
+      return;
+    }
+    navigator.clipboard.writeText(content).then(
+      () => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+      },
+      () => {
+        const temp = document.createElement("textarea");
+        temp.value = content;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand("copy");
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+        } catch {
+          alert("Clipboard not supported.");
+        }
+        document.body.removeChild(temp);
+      }
+    );
+  };
+
+  /* ✅ Ensure external links open properly (this is what makes them clickable
+       in Thunkable’s WebViewer) */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    const url = a.href;
+    if (/^https?:/i.test(url)) {
+      e.preventDefault();
+      try {
+        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      } catch {
+        window.open(url, "_blank");
+      }
+    }
+  });
+</script>
 </body>
 </html>
