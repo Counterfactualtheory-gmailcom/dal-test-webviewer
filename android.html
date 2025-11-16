@@ -186,9 +186,12 @@ a {
   let readyPingerId = null;
 
   // Simple markdown cleaner (same spirit as 167 file)
-  function cleanMarkdown(md) {
-    return String(md || "").replace(/\n{3,}/g, "\n\n");
-  }
+function cleanMarkdown(md) {
+  return String(md || "")
+    // FIX: convert <https://...> → https://...
+    .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
+    .replace(/\n{3,}/g, "\n\n");
+}
 
   function normalizeDalLocales(html) {
     return html.replace(
