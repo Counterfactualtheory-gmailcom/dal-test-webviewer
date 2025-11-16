@@ -333,10 +333,18 @@ function cleanMarkdown(md) {
   /* ✅ Ensure external links open properly (this is what makes them clickable
        in Thunkable’s WebViewer) */
 document.addEventListener("click", (e) => {
+
+/* --- DEBUG: Anchor detection test --- */
+console.log("CLICK EVENT FIRED:", e.target);
+  
   let el = e.target;
   while (el && el !== document && el.tagName !== "A") {
     el = el.parentNode;
   }
+
+  console.log("NEAREST <A>:", el ? el.outerHTML : null);
+/* --- END DEBUG --- */
+  
   const a = el && el.tagName === "A" && el.href ? el : null;
   if (!a) return;
 
