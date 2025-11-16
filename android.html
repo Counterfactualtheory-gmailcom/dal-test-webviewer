@@ -332,19 +332,24 @@ function cleanMarkdown(md) {
 
   /* ✅ Ensure external links open properly (this is what makes them clickable
        in Thunkable’s WebViewer) */
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("a[href]");
-    if (!a) return;
-    const url = a.href;
-    if (/^https?:/i.test(url)) {
-      e.preventDefault();
-      try {
-        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-      } catch {
-        window.open(url, "_blank");
-      }
+document.addEventListener("click", (e) => {
+  let el = e.target;
+  while (el && el !== document && el.tagName !== "A") {
+    el = el.parentNode;
+  }
+  const a = el && el.tagName === "A" && el.href ? el : null;
+  if (!a) return;
+
+  const url = a.href;
+  if (/^https?:/i.test(url)) {
+    e.preventDefault();
+    try {
+      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+    } catch {
+      window.open(url, "_blank");
     }
-  });
+  }
+});
 </script>
 </body>
 </html>
