@@ -340,15 +340,22 @@ document.addEventListener("click", (e) => {
   const a = el && el.tagName === "A" && el.href ? el : null;
   if (!a) return;
 
-  const url = a.href;
-  if (/^https?:/i.test(url)) {
-    e.preventDefault();
-    try {
-      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-    } catch {
-      window.open(url, "_blank");
-    }
+if (/^https?:/i.test(url)) {
+  e.preventDefault();
+
+  try {
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+  } catch (err) {
+    console.log("Thunkable postMessage failed:", err);
   }
+
+  // Always attempt to open the link via window.open as well
+  try {
+    window.open(url, "_blank");
+  } catch (err2) {
+    console.log("window.open failed:", err2);
+  }
+}
 });
 </script>
 </body>
