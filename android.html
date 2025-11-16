@@ -362,37 +362,38 @@ document.addEventListener("click", function (e) {
 });
 
     /* ✅ Trim and rename verified source links */
-    function limitVerifiedSources() {
-      const links = outEl.querySelectorAll("#out a[href]");
+function limitVerifiedSources() {
+  const links = outEl.querySelectorAll("#out a[href]");
 
-      // Replace "Verified Greenlist Source" with readable host/path
-      links.forEach((a) => {
-        if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
-          try {
-            const url = new URL(a.href);
-            const host = url.hostname.replace(/^www\./, "");
-            const path = url.pathname.replace(/\/$/, "");
-            const parts = path.split("/").filter(Boolean);
-            const lastSegment = parts.length ? parts[parts.length - 1] : "";
-            a.textContent = host + (lastSegment ? " — " + lastSegment : "");
-          } catch {
-            a.textContent = a.href;
-          }
-        }
-      });
-
-      // ✅ Limit to top 8 visible links
-      if (links.length > 8) {
-        for (let i = 8; i < links.length; i++) links[i].style.display = "none";
-        const note = document.createElement("div");
-        note.textContent = "(showing top 8 verified sources)";
-        note.style.textAlign = "center";
-        note.style.marginTop = "10px";
-        note.style.fontSize = "14px";
-        note.style.color = "#555";
-        outEl.appendChild(note);
+  // Replace "Verified Greenlist Source" with readable host/path
+  links.forEach((a) => {
+    if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
+      try {
+        const url = new URL(a.href);
+        const host = url.hostname.replace(/^www\./, "");
+        const path = url.pathname.replace(/\/$/, "");
+        const parts = path.split("/").filter(Boolean);
+        const lastSegment = parts.length ? parts[parts.length - 1] : "";
+        a.textContent = host + (lastSegment ? " — " + lastSegment : "");
+      } catch {
+        // IMPORTANT FIX: don't rewrite a.textContent or a.href
+        // Leave it untouched to preserve clickable anchor
       }
     }
+  });
+
+  // Limit to top 8 visible links
+  if (links.length > 8) {
+    for (let i = 8; i < links.length; i++) links[i].style.display = "none";
+    const note = document.createElement("div");
+    note.textContent = "(showing top 8 verified sources)";
+    note.style.textAlign = "center";
+    note.style.marginTop = "10px";
+    note.style.fontSize = "14px";
+    note.style.color = "#555";
+    outEl.appendChild(note);
+  }
+}
   </script>
 </body>
 </html>
