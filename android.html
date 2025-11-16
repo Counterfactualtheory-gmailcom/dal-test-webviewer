@@ -330,40 +330,41 @@ function cleanMarkdown(md) {
     );
   };
 
-  /* ✅ Ensure external links open properly (this is what makes them clickable
-       in Thunkable’s WebViewer) */
+/* ✅ Ensure external links open properly (this is what makes them clickable
+     in Thunkable’s WebViewer) */
 document.addEventListener("click", (e) => {
 
-/* --- DEBUG: Anchor detection test --- */
-console.log("CLICK EVENT FIRED:", e.target);
-  
+  /* --- DEBUG: Anchor detection test --- */
+  console.log("CLICK EVENT FIRED:", e.target);
+
   let el = e.target;
   while (el && el !== document && el.tagName !== "A") {
     el = el.parentNode;
   }
 
   console.log("NEAREST <A>:", el ? el.outerHTML : null);
-/* --- END DEBUG --- */
-  
+  /* --- END DEBUG --- */
+
   const a = el && el.tagName === "A" && el.href ? el : null;
   if (!a) return;
 
-if (/^https?:/i.test(url)) {
+  const url = a.href;        // <<<<<< FIXED (this was missing)
+  if (!/^https?:/i.test(url)) return;
+
   e.preventDefault();
 
+  // 1. Try window.open FIRST (required for Android WebView)
+  const win = window.open(url, "_blank");
+  if (win) return;  // success → stop here
+
+  // 2. If window.open blocked, try Thunkable extension
   try {
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+    if (typeof ThunkableWebviewerExtension !== "undefined") {
+      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+    }
   } catch (err) {
     console.log("Thunkable postMessage failed:", err);
   }
-
-  // Always attempt to open the link via window.open as well
-  try {
-    window.open(url, "_blank");
-  } catch (err2) {
-    console.log("window.open failed:", err2);
-  }
-}
 });
 </script>
 </body>
