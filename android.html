@@ -45,15 +45,11 @@
       align-items: center;
     }
 
-    a {
-      word-break: break-word;
-      text-decoration: underline;
-      color: #0055cc;
-
-      /* 👇 Android link tap fix */
-      padding: 4px 2px;
-      display: inline-block;
-    }
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: #0055cc;
+}
 
     a:hover,
     a:focus,
@@ -347,44 +343,23 @@
       );
     };
 
-    // 🔎 Robust anchor finder (no .closest dependency)
-    function findAnchor(el) {
-      let node = el;
-      while (node && node !== document.body) {
-        if (node.tagName && node.tagName.toLowerCase() === "a" && node.href) {
-          return node;
-        }
-        node = node.parentNode;
-      }
-      return null;
-    }
+/* 🚀 FIXED: Simple, reliable hyperlink handling for Android */
+document.addEventListener("click", function (e) {
+  const a = e.target.closest("a[href]");
+  if (!a) return;
 
-    /* ✅ Open external links safely (with solid fallbacks) */
-    document.addEventListener("click", (e) => {
-      const a = findAnchor(e.target);
-      if (!a) return;
+  const url = a.getAttribute("href");
+  if (!url || !/^https?:/i.test(url)) return;
 
-      const url = a.href;
-      if (!/^https?:/i.test(url)) return;
-
-      e.preventDefault();
-
-      try {
-        if (window.ThunkableWebviewerExtension && typeof ThunkableWebviewerExtension.postMessage === "function") {
-          ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-        } else {
-          // Fallback: open in same WebView if extension is unavailable
-          window.location.href = url;
-        }
-      } catch (err) {
-        // Last-resort fallback
-        try {
-          window.location.href = url;
-        } catch (e2) {
-          console.log("Link navigation failed:", err, e2);
-        }
-      }
-    });
+  e.preventDefault();
+  try {
+    // Thunkable external browser trigger
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+  } catch (err) {
+    // Web fallback
+    window.open(url, "_blank");
+  }
+});
 
     /* ✅ Trim and rename verified source links */
     function limitVerifiedSources() {
