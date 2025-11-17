@@ -173,7 +173,7 @@
   </div>
 
 <script>
-  // ✅ Same setup as your 167-line working file
+  // ✅ Same markdown setup as desktop DAL
   marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
 
   const outEl = document.getElementById("out");
@@ -181,19 +181,13 @@
   const followupText = document.getElementById("followup-text");
   const copyBtn = document.getElementById("copy-btn");
   const loading = document.getElementById("loading");
-// 🔥 Disable Samsung long-press preview (blocks click events)
-outEl.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
-  return false;
-});
-  
+
   let firstMessageReceived = false;
   let readyPingerId = null;
 
-  // Simple markdown cleaner (same spirit as 167 file)
   function cleanMarkdown(md) {
     return String(md || "")
-      // FIX: convert <https://...> → https://...
+      // <https://...> → https://...
       .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
       .replace(/\n{3,}/g, "\n\n");
   }
@@ -214,15 +208,16 @@ outEl.addEventListener("contextmenu", function (e) {
       .replace(/\[+DONE+\]/gi, "")
       .trim();
 
-const html = marked.parse(cleaned || "");
+    const html = marked.parse(cleaned || "");
 
-// 🔥 Force DOMPurify to return a STRING, not a DOM Fragment
-let purified = DOMPurify.sanitize(html, {
-  ADD_ATTR: ["target", "rel"],
-  RETURN_DOM: false     // REQUIRED for Android to click anchors properly
-});
+    // 1️⃣ Sanitize markdown output
+    let purified = DOMPurify.sanitize(html, {
+      ADD_ATTR: ["target", "rel"]
+    });
 
-purified = normalizeDalLocales(purified);
+    purified = normalizeDalLocales(purified);
+
+    // 2️⃣ Optionally convert bare URLs → anchors
     let linked = purified;
     try {
       if (typeof linkifyHtml === "function") {
@@ -230,25 +225,25 @@ purified = normalizeDalLocales(purified);
           defaultProtocol: "https",
           nl2br: false,
           validate: { url: (v) => /^https?:\/\//i.test(v) },
-          attributes: { rel: "noopener", target: "_blank" },
+          attributes: { rel: "noopener noreferrer", target: "_blank" }
         });
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log("linkify error", e);
+    }
 
-const clean2 = DOMPurify.sanitize(linked, {
-  ADD_ATTR: ["href", "target", "rel"],
-  RETURN_DOM: false    // 🔥 REQUIRED for Android to open links
-});
+    if (outEl.textContent.includes("Waiting for content")) {
+      outEl.innerHTML = "";
+    }
 
-if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
-outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
-    
-// Ensure all rendered anchors open externally (Android requirement)
-outEl.querySelectorAll("a").forEach((a) => {
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";   // 🔥 REQUIRED for Android external navigation
-});
-}
+    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + linked;
+
+    // 3️⃣ Ensure anchors are external/openable
+    outEl.querySelectorAll("a").forEach((a) => {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    });
+  }
 
   /* ✅ Android and Web handshake */
   function pingReady() {
@@ -292,7 +287,7 @@ outEl.querySelectorAll("a").forEach((a) => {
     }
   });
 
-  /* ✅ Submit follow-up */
+  /* ✅ Submit follow-up via backend */
   followupBtn.onclick = async () => {
     const q = followupText.value.trim();
     if (!q) return;
@@ -302,7 +297,7 @@ outEl.querySelectorAll("a").forEach((a) => {
       const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: q }),
+        body: JSON.stringify({ question: q })
       });
       const data = await res.json();
       safeRender(data.answer || "(no response)");
@@ -344,42 +339,6 @@ outEl.querySelectorAll("a").forEach((a) => {
       }
     );
   };
-
-/* Ensure external links open in browser on Android (dual path) */
-document.addEventListener("click", (e) => {
-  const a = e.target.closest && e.target.closest("a[href]");
-  if (!a) return;
-
-  const url = a.href;
-  if (!/^https?:/i.test(url)) return;
-
-  // Always normalise anchor attributes
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";
-
-  // Stop default in-WebView navigation
-  e.preventDefault();
-
-  // 1️⃣ Try to notify Thunkable (for your OPEN_IN_BROWSER block)
-  try {
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch (err1) {
-    console.log("Thunkable postMessage error:", err1);
-  }
-
-  // 2️⃣ Always also try to open directly from the WebView
-  try {
-    window.open(url, "_blank");
-  } catch (err2) {
-    console.log("window.open failed, falling back to location.href", err2);
-    try {
-      // Last-ditch fallback: open inside the WebView
-      window.location.href = url;
-    } catch (err3) {
-      console.log("location.href fallback failed:", err3);
-    }
-  }
-});
 </script>
 </body>
 </html>
