@@ -339,6 +339,40 @@
       }
     );
   };
+
+  /* ✅ Restore 167-style external link behavior */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+
+    const url = a.href;
+    if (!/^https?:\/\//i.test(url)) return;
+
+    // Stop internal WebView navigation
+    e.preventDefault();
+
+    // 1️⃣ Tell Thunkable to open browser
+    try {
+      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      return;
+    } catch (err1) {
+      console.log("Thunkable postMessage failed:", err1);
+    }
+
+    // 2️⃣ Fallback
+    try {
+      window.open(url, "_blank");
+    } catch (err2) {
+      console.log("window.open failed:", err2);
+    }
+  });
+
+</script>
+</body>
+</html>
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>
