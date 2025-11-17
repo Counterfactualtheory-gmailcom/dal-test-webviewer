@@ -199,8 +199,8 @@
       const cleaned = String(raw)
         .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
         .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
-        .replace(/$begin:math:display$+COMPLETED+$end:math:display$/gi, "")
-        .replace(/$begin:math:display$+DONE+$end:math:display$/gi, "")
+        .replace(/\[+COMPLETED+\]/gi, "")
+        .replace(/\[+DONE+\]/gi, "")
         .trim();
 
       const html = marked.parse(cleaned || "");
