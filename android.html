@@ -181,7 +181,12 @@
   const followupText = document.getElementById("followup-text");
   const copyBtn = document.getElementById("copy-btn");
   const loading = document.getElementById("loading");
-
+// 🔥 Disable Samsung long-press preview (blocks click events)
+outEl.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  return false;
+});
+  
   let firstMessageReceived = false;
   let readyPingerId = null;
 
