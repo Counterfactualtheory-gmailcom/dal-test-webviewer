@@ -15,8 +15,7 @@
       --bg: #f2f2f2;
       --bg-page: #808080;
       --muted: #dbe7ff;
-      --link: #9cc9ff;
-      --link-visited: #c8e0ff;
+      --link: #0055cc;
     }
 
     /* ✅ Android scrolling and rendering stability */
@@ -45,16 +44,16 @@
       align-items: center;
     }
 
+    /* Generic link look (for any leftover a) */
     a {
       word-break: break-word;
       text-decoration: underline;
-      color: #0055cc;
+      color: var(--link);
     }
-
     a:hover,
     a:focus,
     a:visited {
-      color: #0055cc;
+      color: var(--link);
       opacity: 0.9;
     }
 
@@ -152,6 +151,20 @@
     #loading span:nth-child(2){animation-delay:.2s}
     #loading span:nth-child(3){animation-delay:.4s}
     @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+
+    /* 🔒 Nuclear fix: tap-wrapper blocks for links (Option 1B spacing) */
+    .tap-wrapper {
+      display: block;
+      margin-top: 4px;
+      margin-bottom: 14px; /* extra spacing between links */
+      cursor: pointer;
+    }
+
+    .tap-link-text {
+      text-decoration: underline;
+      color: var(--link);
+      word-break: break-word;
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -199,6 +212,31 @@
     );
   }
 
+  // 🔒 Nuclear step: convert all <a href> into .tap-wrapper blocks (no <a> left)
+  function wrapLinksIntoTapBlocks(html) {
+    const container = document.createElement("div");
+    container.innerHTML = html;
+
+    const anchors = Array.from(container.querySelectorAll("a[href]"));
+    anchors.forEach((a) => {
+      const url = a.href;
+      const wrapper = document.createElement("div");
+      wrapper.className = "tap-wrapper";
+      wrapper.dataset.url = url;
+
+      const span = document.createElement("span");
+      span.className = "tap-link-text";
+      span.innerHTML = a.innerHTML || a.textContent || url;
+
+      wrapper.appendChild(span);
+
+      // Replace <a> with wrapper
+      a.replaceWith(wrapper);
+    });
+
+    return container.innerHTML;
+  }
+
   function safeRender(md) {
     const raw = cleanMarkdown(md);
     const cleaned = String(raw)
@@ -217,7 +255,7 @@
 
     purified = normalizeDalLocales(purified);
 
-    // 2️⃣ Optionally convert bare URLs → anchors
+    // 2️⃣ Convert bare URLs → <a> (temporarily)
     let linked = purified;
     try {
       if (typeof linkifyHtml === "function") {
@@ -232,17 +270,15 @@
       console.log("linkify error", e);
     }
 
+    // 3️⃣ Nuclear transform: replace <a> with .tap-wrapper blocks
+    const wrapped = wrapLinksIntoTapBlocks(linked);
+
     if (outEl.textContent.includes("Waiting for content")) {
       outEl.innerHTML = "";
     }
 
-    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + linked;
-
-    // 3️⃣ Ensure anchors are external/openable
-    outEl.querySelectorAll("a").forEach((a) => {
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-    });
+    // Append new content, preserving previous Q&A
+    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + wrapped;
   }
 
   /* ✅ Android and Web handshake */
@@ -340,12 +376,12 @@
     );
   };
 
-  /* 🚫 Disable long-press context menu / preview (Samsung grey bubble) */
+  /* 🚫 Disable default long-press / context menu (Samsung grey bubble) */
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
   });
 
-  // 🔍 Custom tap detection for Samsung A21s (bypass broken click events)
+  // 🔒 Nuclear tap handler: taps on .tap-wrapper, not on text/anchors
   let touchStartX = 0;
   let touchStartY = 0;
   let touchStartTime = 0;
@@ -374,13 +410,12 @@
     const elem = document.elementFromPoint(t.clientX, t.clientY);
     if (!elem) return;
 
-    const a = elem.closest && elem.closest("a[href]");
-    if (!a) return;
+    const wrapper = elem.closest && elem.closest(".tap-wrapper");
+    if (!wrapper) return;
 
-    const url = a.href;
-    if (!/^https?:\/\//i.test(url)) return;
+    const url = wrapper.dataset.url;
+    if (!url || !/^https?:\/\//i.test(url)) return;
 
-    // stop Samsung's default handling for this tap
     e.preventDefault();
 
     try {
@@ -397,13 +432,13 @@
     }
   }, { passive: false });
 
-  /* ✅ Keep original click-based behavior as a fallback for non-Samsung devices */
+  // ✅ Fallback: click handler for non-Samsung / emulator / web preview
   document.addEventListener("click", (e) => {
-    const a = e.target.closest && e.target.closest("a[href]");
-    if (!a) return;
+    const wrapper = e.target.closest && e.target.closest(".tap-wrapper");
+    if (!wrapper) return;
 
-    const url = a.href;
-    if (!/^https?:\/\//i.test(url)) return;
+    const url = wrapper.dataset.url;
+    if (!url || !/^https?:\/\//i.test(url)) return;
 
     e.preventDefault();
 
