@@ -338,8 +338,6 @@ document.addEventListener("click", (e) => {
   const url = a.href;
   if (!/^https?:/i.test(url)) return;
 
-  e.preventDefault();
-
   try {
     // Try Thunkable bridge first (Live App & APK hook)
     ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
