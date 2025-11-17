@@ -340,7 +340,7 @@ outEl.querySelectorAll("a").forEach((a) => {
     );
   };
 
-/* Ensure external links open in browser via Thunkable (167 model, corrected) */
+/* Ensure external links open in browser on Android (dual path) */
 document.addEventListener("click", (e) => {
   const a = e.target.closest && e.target.closest("a[href]");
   if (!a) return;
@@ -348,21 +348,30 @@ document.addEventListener("click", (e) => {
   const url = a.href;
   if (!/^https?:/i.test(url)) return;
 
-  // Required for Android security sandbox
+  // Always normalise anchor attributes
   a.target = "_blank";
   a.rel = "noopener noreferrer";
 
+  // Stop default in-WebView navigation
   e.preventDefault();
-  e.stopImmediatePropagation();   // ⭐ REQUIRED ON SAMSUNG DEVICES
 
+  // 1️⃣ Try to notify Thunkable (for your OPEN_IN_BROWSER block)
   try {
-    // Thunkable → block receives OPEN_IN_BROWSER::<url>
     ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
   } catch (err1) {
+    console.log("Thunkable postMessage error:", err1);
+  }
+
+  // 2️⃣ Always also try to open directly from the WebView
+  try {
+    window.open(url, "_blank");
+  } catch (err2) {
+    console.log("window.open failed, falling back to location.href", err2);
     try {
-      window.open(url, "_blank");
-    } catch (err2) {
-      console.log("External open failed", err2);
+      // Last-ditch fallback: open inside the WebView
+      window.location.href = url;
+    } catch (err3) {
+      console.log("location.href fallback failed:", err3);
     }
   }
 });
