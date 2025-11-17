@@ -173,7 +173,7 @@
   </div>
 
 <script>
-  // ✅ Same markdown setup as desktop DAL
+  // ✅ Markdown setup
   marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
 
   const outEl = document.getElementById("out");
@@ -340,18 +340,49 @@
     );
   };
 
-  /* ✅ Restore 167-style external link behavior */
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("a[href]");
+  /* 🚫 Disable long-press context menu / preview (Samsung grey bubble) */
+  document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
+
+  // 🔍 Custom tap detection for Samsung A21s (bypass broken click events)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  document.addEventListener("touchstart", (e) => {
+    if (!e.touches || e.touches.length !== 1) return;
+    const t = e.touches[0];
+    touchStartX = t.clientX;
+    touchStartY = t.clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  document.addEventListener("touchend", (e) => {
+    if (!e.changedTouches || e.changedTouches.length !== 1) return;
+
+    const t = e.changedTouches[0];
+    const dt = Date.now() - touchStartTime;
+    const dx = Math.abs(t.clientX - touchStartX);
+    const dy = Math.abs(t.clientY - touchStartY);
+
+    // treat as a tap (not scroll, not long-press)
+    if (dt > 250 || dx > 10 || dy > 10) {
+      return;
+    }
+
+    const elem = document.elementFromPoint(t.clientX, t.clientY);
+    if (!elem) return;
+
+    const a = elem.closest && elem.closest("a[href]");
     if (!a) return;
 
     const url = a.href;
     if (!/^https?:\/\//i.test(url)) return;
 
-    // Stop internal WebView navigation
+    // stop Samsung's default handling for this tap
     e.preventDefault();
 
-    // 1️⃣ Tell Thunkable to open browser
     try {
       ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
       return;
@@ -359,14 +390,36 @@
       console.log("Thunkable postMessage failed:", err1);
     }
 
-    // 2️⃣ Fallback
+    try {
+      window.open(url, "_blank");
+    } catch (err2) {
+      console.log("window.open failed:", err2);
+    }
+  }, { passive: false });
+
+  /* ✅ Keep original click-based behavior as a fallback for non-Samsung devices */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+
+    const url = a.href;
+    if (!/^https?:\/\//i.test(url)) return;
+
+    e.preventDefault();
+
+    try {
+      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      return;
+    } catch (err1) {
+      console.log("Thunkable postMessage failed:", err1);
+    }
+
     try {
       window.open(url, "_blank");
     } catch (err2) {
       console.log("window.open failed:", err2);
     }
   });
-
 </script>
 </body>
 </html>
