@@ -228,11 +228,6 @@ function cleanMarkdown(md) {
     const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["href", "target", "rel"] });
     if (outEl.textContent.includes("Waiting for content")) outEl.innerHTML = "";
     outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
-
-    outEl.querySelectorAll("a").forEach((a) => {
-      a.target = "_blank";
-      a.rel = "noopener";
-    });
   }
 
   /* ✅ Android and Web handshake */
