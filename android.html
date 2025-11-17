@@ -331,22 +331,32 @@ outEl.querySelectorAll("a").forEach((a) => {
     );
   };
 
-  /* ✅ Ensure external links open in browser via Thunkable (167 model) */
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest && e.target.closest("a[href]");
-    if (!a) return;
-    const url = a.href;
-    if (/^https?:/i.test(url)) {
-      e.preventDefault();
-      try {
-        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-      } catch (e) {
-        try {
-          window.open(url, "_blank");
-        } catch (e2) {}
-      }
+/* Ensure external links open in browser via Thunkable (167 model, corrected) */
+document.addEventListener("click", (e) => {
+  const a = e.target.closest && e.target.closest("a[href]");
+  if (!a) return;
+
+  const url = a.href;
+  if (!/^https?:/i.test(url)) return;
+
+  // Required for Android security sandbox
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+
+  e.preventDefault();
+
+  try {
+    // Thunkable → block receives OPEN_IN_BROWSER::<url>
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+  } catch (err1) {
+    // Fallback to native WebView open
+    try {
+      window.open(url, "_blank");
+    } catch (err2) {
+      console.log("External open failed", err2);
     }
-  });
+  }
+});
 </script>
 </body>
 </html>
