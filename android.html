@@ -330,21 +330,18 @@ function cleanMarkdown(md) {
     );
   };
 
-/* ✅ Ensure external links open properly (Android-safe version from 167 file) */
+/* ============================================
+   ✅ FIXED CLICK HANDLER — LET WEBVIEW HANDLE LINKS
+   ============================================ */
 document.addEventListener("click", (e) => {
-  const a = e.target.closest("a[href]");
+  const a = e.target.closest && e.target.closest("a[href]");
   if (!a) return;
 
-  const url = a.href;
-  if (!/^https?:/i.test(url)) return;
+  // DO NOT preventDefault()
+  // DO NOT window.open()
+  // DO NOT postMessage()
 
-  try {
-    // Try Thunkable bridge first (Live App & APK hook)
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-  } catch (err) {
-    // Fallback for installed APK
-    window.open(url, "_blank");
-  }
+  // ✔ Let Android WebView handle the link natively
 });
 </script>
 </body>
