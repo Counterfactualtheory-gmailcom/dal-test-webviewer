@@ -45,11 +45,11 @@
       align-items: center;
     }
 
-a {
-  word-break: break-word;
-  text-decoration: underline;
-  color: #0055cc;
-}
+    a {
+      word-break: break-word;
+      text-decoration: underline;
+      color: #0055cc;
+    }
 
     a:hover,
     a:focus,
@@ -186,12 +186,12 @@ a {
   let readyPingerId = null;
 
   // Simple markdown cleaner (same spirit as 167 file)
-function cleanMarkdown(md) {
-  return String(md || "")
-    // FIX: convert <https://...> → https://...
-    .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
-    .replace(/\n{3,}/g, "\n\n");
-}
+  function cleanMarkdown(md) {
+    return String(md || "")
+      // FIX: convert <https://...> → https://...
+      .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
+      .replace(/\n{3,}/g, "\n\n");
+  }
 
   function normalizeDalLocales(html) {
     return html.replace(
@@ -325,19 +325,22 @@ function cleanMarkdown(md) {
     );
   };
 
-/* ============================================
-   ✅ FIXED CLICK HANDLER — LET WEBVIEW HANDLE LINKS
-   ============================================ */
-document.addEventListener("click", (e) => {
-  const a = e.target.closest && e.target.closest("a[href]");
-  if (!a) return;
-
-  // DO NOT preventDefault()
-  // DO NOT window.open()
-  // DO NOT postMessage()
-
-  // ✔ Let Android WebView handle the link natively
-});
+  /* ✅ Ensure external links open in browser via Thunkable (167 model) */
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    const url = a.href;
+    if (/^https?:/i.test(url)) {
+      e.preventDefault();
+      try {
+        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      } catch (e) {
+        try {
+          window.open(url, "_blank");
+        } catch (e2) {}
+      }
+    }
+  });
 </script>
 </body>
 </html>
