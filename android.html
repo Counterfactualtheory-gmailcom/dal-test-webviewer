@@ -209,10 +209,15 @@
       .replace(/\[+DONE+\]/gi, "")
       .trim();
 
-    const html = marked.parse(cleaned || "");
-    let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
-    purified = normalizeDalLocales(purified);
+const html = marked.parse(cleaned || "");
 
+// 🔥 Force DOMPurify to return a STRING, not a DOM Fragment
+let purified = DOMPurify.sanitize(html, {
+  ADD_ATTR: ["target", "rel"],
+  RETURN_DOM: false     // REQUIRED for Android to click anchors properly
+});
+
+purified = normalizeDalLocales(purified);
     let linked = purified;
     try {
       if (typeof linkifyHtml === "function") {
