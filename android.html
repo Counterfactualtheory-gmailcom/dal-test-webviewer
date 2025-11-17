@@ -353,12 +353,12 @@ document.addEventListener("click", (e) => {
   a.rel = "noopener noreferrer";
 
   e.preventDefault();
+  e.stopImmediatePropagation();   // ⭐ REQUIRED ON SAMSUNG DEVICES
 
   try {
     // Thunkable → block receives OPEN_IN_BROWSER::<url>
     ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
   } catch (err1) {
-    // Fallback to native WebView open
     try {
       window.open(url, "_blank");
     } catch (err2) {
