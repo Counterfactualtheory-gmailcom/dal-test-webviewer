@@ -376,85 +376,50 @@
     );
   };
 
-  /* 🚫 Disable default long-press / context menu (Samsung grey bubble) */
-  document.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-  });
+/* ✔ Unified Samsung-safe tap handler for .tap-wrapper */
 
-  // 🔒 Nuclear tap handler: taps on .tap-wrapper, not on text/anchors
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartTime = 0;
+function openExternal(url) {
+  if (!url || !/^https?:\/\//i.test(url)) return;
 
-  document.addEventListener("touchstart", (e) => {
-    if (!e.touches || e.touches.length !== 1) return;
-    const t = e.touches[0];
-    touchStartX = t.clientX;
-    touchStartY = t.clientY;
-    touchStartTime = Date.now();
-  }, { passive: true });
+  try {
+    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+    return;
+  } catch (err) {
+    console.log("postMessage failed", err);
+  }
 
-  document.addEventListener("touchend", (e) => {
-    if (!e.changedTouches || e.changedTouches.length !== 1) return;
+  try {
+    window.open(url, "_blank");
+  } catch (err2) {
+    console.log("window.open failed", err2);
+  }
+}
 
-    const t = e.changedTouches[0];
-    const dt = Date.now() - touchStartTime;
-    const dx = Math.abs(t.clientX - touchStartX);
-    const dy = Math.abs(t.clientY - touchStartY);
+// 1️⃣ CLICK handler (works on most Android devices)
+document.addEventListener("click", (e) => {
+  const wrapper = e.target.closest(".tap-wrapper");
+  if (!wrapper) return;
 
-    // treat as a tap (not scroll, not long-press)
-    if (dt > 250 || dx > 10 || dy > 10) {
-      return;
-    }
+  const url = wrapper.dataset.url;
+  e.preventDefault();
+  openExternal(url);
+});
 
-    const elem = document.elementFromPoint(t.clientX, t.clientY);
-    if (!elem) return;
+// 2️⃣ TOUCH handler (Samsung devices with blocked click events)
+document.addEventListener("touchend", (e) => {
+  const t = e.changedTouches && e.changedTouches[0];
+  if (!t) return;
 
-    const wrapper = elem.closest && elem.closest(".tap-wrapper");
-    if (!wrapper) return;
+  const elem = document.elementFromPoint(t.clientX, t.clientY);
+  if (!elem) return;
 
-    const url = wrapper.dataset.url;
-    if (!url || !/^https?:\/\//i.test(url)) return;
+  const wrapper = elem.closest(".tap-wrapper");
+  if (!wrapper) return;
 
-    e.preventDefault();
-
-    try {
-      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-      return;
-    } catch (err1) {
-      console.log("Thunkable postMessage failed:", err1);
-    }
-
-    try {
-      window.open(url, "_blank");
-    } catch (err2) {
-      console.log("window.open failed:", err2);
-    }
-  }, { passive: false });
-
-  // ✅ Fallback: click handler for non-Samsung / emulator / web preview
-  document.addEventListener("click", (e) => {
-    const wrapper = e.target.closest && e.target.closest(".tap-wrapper");
-    if (!wrapper) return;
-
-    const url = wrapper.dataset.url;
-    if (!url || !/^https?:\/\//i.test(url)) return;
-
-    e.preventDefault();
-
-    try {
-      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-      return;
-    } catch (err1) {
-      console.log("Thunkable postMessage failed:", err1);
-    }
-
-    try {
-      window.open(url, "_blank");
-    } catch (err2) {
-      console.log("window.open failed:", err2);
-    }
-  });
+  const url = wrapper.dataset.url;
+  e.preventDefault();
+  openExternal(url);
+}, { passive: false });
 </script>
 </body>
 </html>
