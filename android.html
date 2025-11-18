@@ -18,7 +18,7 @@
       --link: #0055cc;
     }
 
-    /* scrolling stability */
+    /* ✅ Android scrolling and rendering stability */
     html, body {
       margin: 0;
       padding: 0;
@@ -44,10 +44,17 @@
       align-items: center;
     }
 
+    /* Generic link look */
     a {
       word-break: break-word;
       text-decoration: underline;
       color: var(--link);
+    }
+    a:hover,
+    a:focus,
+    a:visited {
+      color: var(--link);
+      opacity: 0.9;
     }
 
     #out {
@@ -59,27 +66,36 @@
       min-height: 420px;
       width: 90%;
       max-width: 480px;
+      margin: 0 auto;
+      display: block;
       overflow-y: auto;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px rgba(248,198,0,0.25);
+      position: relative;
+      text-align: left;
       white-space: normal;
       line-height: 1.35;
     }
 
     #out:empty::before {
       content: "Waiting for content…";
+      font-family: "Roboto", sans-serif;
       font-style: italic;
       color: #555;
     }
 
     #followup-box {
       margin-top: 18px;
-      background-color: #000;
+      background-color: #000000;
       border: 2px solid #f8c600;
       border-radius: 12px;
       padding: 16px;
       width: 90%;
       max-width: 480px;
+      box-shadow: 0 0 8px rgba(248,198,0,0.25);
       display: flex;
       flex-direction: column;
+      align-items: stretch;
     }
 
     #followup-text {
@@ -89,10 +105,12 @@
       font-size: 16px;
       border-radius: 8px;
       border: none;
+      outline: none;
+      resize: vertical; /* Android WebView tapping fix */
       background-color: #ffffff;
       color: #000000;
       margin-bottom: 12px;
-      resize: vertical;
+      box-sizing: border-box;
     }
 
     #followup-btn, #copy-btn {
@@ -104,30 +122,35 @@
       border-radius: 8px;
       cursor: pointer;
       margin-top: 6px;
+      transition: background-color 0.2s ease-in-out;
     }
 
-    #followup-btn { background-color: #f8c600; color: #000; }
-    #copy-btn { background-color: #102f60; color: #ffffff; }
-
-    #loading { display: none; text-align: center; margin-top: 10px; font-weight: 600; }
-
-    /* clickable link wrapper */
-    .tap-wrapper {
-      display: block;
-      margin: 14px 0;
-      padding: 10px 6px;
-      border-left: 4px solid #0055cc;
-      background: #eef3ff;
-      border-radius: 6px;
-      cursor: pointer;
-      user-select: none;
+    #followup-btn {
+      background-color: #f8c600;
+      color: #000;
+    }
+    #followup-btn:hover {
+      background-color: #ffd500;
     }
 
-    .tap-link-text {
-      text-decoration: underline;
-      color: #0055cc;
-      word-break: break-word;
+    #copy-btn {
+      background-color: #102f60;
+      color: #ffffff;
     }
+    #copy-btn:hover {
+      opacity: 0.9;
+    }
+
+    #loading {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    #loading span { animation: blink 1.4s infinite both; }
+    #loading span:nth-child(2){animation-delay:.2s}
+    #loading span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -140,201 +163,226 @@
 <body>
   <div class="wrap">
     <div id="out">Waiting for content…</div>
-
     <div id="followup-box">
-      <textarea id="followup-text" placeholder="Type a follow-up question..."></textarea>
+      <textarea id="followup-text" placeholder="Type a follow-up question or add more information..."></textarea>
       <button id="followup-btn">Submit Follow-Up</button>
       <button id="copy-btn">Copy All</button>
-      <div id="loading">Answer coming...</div>
+      <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
     </div>
   </div>
 
 <script>
-marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
+  // ✅ Markdown setup
+  marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
 
-const outEl = document.getElementById("out");
-const followupBtn = document.getElementById("followup-btn");
-const followupText = document.getElementById("followup-text");
-const copyBtn = document.getElementById("copy-btn");
-const loading = document.getElementById("loading");
+  const outEl = document.getElementById("out");
+  const followupBtn = document.getElementById("followup-btn");
+  const followupText = document.getElementById("followup-text");
+  const copyBtn = document.getElementById("copy-btn");
+  const loading = document.getElementById("loading");
 
-let firstMessageReceived = false;
-let readyPingerId = null;
+  let firstMessageReceived = false;
+  let readyPingerId = null;
 
-function cleanMarkdown(md) {
-  return String(md || "")
-    .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
-    .replace(/\n{3,}/g, "\n\n");
-}
+  function cleanMarkdown(md) {
+    return String(md || "")
+      // <https://...> → https://...
+      .replace(/<\s*(https?:\/\/[^>]+)\s*>/gi, "$1")
+      .replace(/\n{3,}/g, "\n\n");
+  }
 
-function normalizeDalLocales(html) {
-  return html.replace(
-    /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
-    "https://www.dal.ca/"
-  );
-}
+  function normalizeDalLocales(html) {
+    return html.replace(
+      /https:\/\/(?:www\.)?dal\.ca\/(?:es|fr|zh|ar|de|pt|it|ja|ko)\//gi,
+      "https://www.dal.ca/"
+    );
+  }
 
-/* Replace anchor tags → .tap-wrapper */
-function wrapLinks(html) {
-  const container = document.createElement("div");
-  container.innerHTML = html;
+  function safeRender(md) {
+    const raw = cleanMarkdown(md);
+    const cleaned = String(raw)
+      .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
+      .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
+      .replace(/\[+COMPLETED+\]/gi, "")
+      .replace(/\[+DONE+\]/gi, "")
+      .trim();
 
-  const anchors = container.querySelectorAll("a[href]");
-  anchors.forEach(a => {
-    const url = a.href;
+    const html = marked.parse(cleaned || "");
 
-    const div = document.createElement("div");
-    div.className = "tap-wrapper";
-    div.dataset.url = url;
+    // 1️⃣ Sanitize markdown output
+    let purified = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
+    purified = normalizeDalLocales(purified);
 
-    const inner = document.createElement("span");
-    inner.className = "tap-link-text";
-    inner.innerHTML = a.innerHTML || url;
+    // 2️⃣ Convert bare URLs → <a>
+    let linked = purified;
+    try {
+      if (typeof linkifyHtml === "function") {
+        linked = linkifyHtml(purified, {
+          defaultProtocol: "https",
+          nl2br: false,
+          validate: { url: (v) => /^https?:\/\//i.test(v) },
+          attributes: { rel: "noopener", target: "_blank" }
+        });
+      }
+    } catch (e) {
+      console.log("linkify error", e);
+    }
 
-    div.appendChild(inner);
-    a.replaceWith(div);
+    const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ["target", "rel"] });
+
+    if (outEl.textContent.includes("Waiting for content")) {
+      outEl.innerHTML = "";
+    }
+
+    outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
+
+    // 🔗 Attach per-anchor handlers (no document-level guessing)
+    bindLinkHandlers();
+  }
+
+  // ========= LINK HANDLING: per-anchor click & touchend =========
+
+  function openExternal(url) {
+    if (!url || !/^https?:\/\//i.test(url)) return;
+
+    try {
+      ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
+      return;
+    } catch (err) {
+      console.log("postMessage failed", err);
+    }
+
+    try {
+      window.open(url, "_blank");
+    } catch (err2) {
+      console.log("window.open failed", err2);
+    }
+  }
+
+  function anchorClickHandler(e) {
+    e.preventDefault();
+    openExternal(this.href);
+  }
+
+  function anchorTouchEndHandler(e) {
+    // treat as tap; prevent long-press text UI
+    e.preventDefault();
+    openExternal(this.href);
+  }
+
+  function bindLinkHandlers() {
+    const anchors = outEl.querySelectorAll("a[href]");
+    anchors.forEach((a) => {
+      if (a.dataset.bound === "1") return;
+      a.dataset.bound = "1";
+
+      a.target = "_blank";
+      a.rel = "noopener";
+
+      a.addEventListener("click", anchorClickHandler, false);
+      a.addEventListener("touchend", anchorTouchEndHandler, { passive: false });
+    });
+  }
+
+  // Optional: kill long-press context menu
+  document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
   });
 
-  return container.innerHTML;
-}
+  /* ✅ Android and Web handshake */
+  function pingReady() {
+    try {
+      ThunkableWebviewerExtension.postMessage("ready");
+      ThunkableWebviewerExtension.postMessage("ready-android");
+    } catch (e) {
+      console.log("Handshake error", e);
+    }
+  }
 
-function safeRender(md) {
-  const raw = cleanMarkdown(md);
-  const cleaned = String(raw)
-    .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
-    .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
-    .replace(/\[+COMPLETED+\]/gi, "")
-    .replace(/\[+DONE+\]/gi, "")
-    .trim();
+  window.addEventListener("DOMContentLoaded", () => {
+    pingReady();
+    let tries = 0;
+    readyPingerId = setInterval(() => {
+      if (firstMessageReceived || tries >= 10) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
+        return;
+      }
+      pingReady();
+      tries++;
+    }, 600);
+  });
 
-  let html = marked.parse(cleaned || "");
-  html = DOMPurify.sanitize(html, { ADD_ATTR: ["target", "rel"] });
-  html = normalizeDalLocales(html);
+  /* ✅ Receive message and render safely */
+  ThunkableWebviewerExtension.receiveMessage(function (msg) {
+    try {
+      firstMessageReceived = true;
+      if (readyPingerId) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
+      }
+      setTimeout(() => {
+        const payload =
+          msg && typeof msg === "object" && "payload" in msg ? msg.payload : msg;
+        safeRender(payload);
+      }, 50);
+    } catch (err) {
+      outEl.textContent = "Render error: " + err;
+    }
+  });
 
-  let linked = html;
-  try {
-    linked = linkifyHtml(html, {
-      defaultProtocol: "https",
-      validate: v => /^https?:\/\//i.test(v)
-    });
-  } catch(e){}
+  /* ✅ Submit follow-up via backend */
+  followupBtn.onclick = async () => {
+    const q = followupText.value.trim();
+    if (!q) return;
+    loading.style.display = "block";
+    followupBtn.disabled = true;
+    try {
+      const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: q })
+      });
+      const data = await res.json();
+      safeRender(data.answer || "(no response)");
+    } catch (err) {
+      safeRender("⚠️ Error sending follow-up: " + err.message);
+    }
+    loading.style.display = "none";
+    followupBtn.disabled = false;
+    followupText.value = "";
+  };
 
-  const wrapped = wrapLinks(linked);
-
-  if (outEl.textContent.includes("Waiting for content"))
-    outEl.innerHTML = "";
-
-  outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + wrapped;
-}
-
-/* ------------------------------------------------------------------
-   ✔ RESTORED 167 WORKING SAMSUNG-LINK LOGIC
----------------------------------------------------------------------*/
-function openExternal(url) {
-  if (!url) return;
-
-  try {
-    ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
-    return;
-  } catch(e){}
-
-  try { window.open(url, "_blank"); } catch(e2){}
-}
-
-/* CLICK (old Samsung sometimes blocks this but we keep it) */
-document.addEventListener("click", e => {
-  const w = e.target.closest(".tap-wrapper");
-  if (!w) return;
-  e.preventDefault();
-  openExternal(w.dataset.url);
-});
-
-/* TOUCHEND (the part that fixed 167) */
-document.addEventListener("touchend", e => {
-  const t = e.changedTouches && e.changedTouches[0];
-  if (!t) return;
-
-  const elem = document.elementFromPoint(t.clientX, t.clientY);
-  if (!elem) return;
-
-  const w = elem.closest(".tap-wrapper");
-  if (!w) return;
-
-  e.preventDefault();
-  openExternal(w.dataset.url);
-}, { passive:false });
-
-
-/* handshake */
-function pingReady() {
-  try {
-    ThunkableWebviewerExtension.postMessage("ready");
-    ThunkableWebviewerExtension.postMessage("ready-android");
-  } catch(e){}
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  pingReady();
-  let tries = 0;
-  readyPingerId = setInterval(() => {
-    if (firstMessageReceived || tries >= 10) {
-      clearInterval(readyPingerId);
+  /* ✅ Copy all output */
+  copyBtn.onclick = () => {
+    const content = outEl.innerText.trim();
+    if (!content) {
+      alert("No response yet to copy.");
       return;
     }
-    pingReady();
-    tries++;
-  }, 600);
-});
-
-ThunkableWebviewerExtension.receiveMessage(msg => {
-  try {
-    firstMessageReceived = true;
-    clearInterval(readyPingerId);
-
-    setTimeout(() => {
-      const payload = msg?.payload || msg;
-      safeRender(payload);
-    }, 40);
-  } catch(e){
-    outEl.textContent = "Render error: " + e;
-  }
-});
-
-followupBtn.onclick = async () => {
-  const q = followupText.value.trim();
-  if (!q) return;
-
-  loading.style.display = "block";
-  followupBtn.disabled = true;
-
-  try {
-    const res = await fetch("https://web-production-43cb.up.railway.app/ask", {
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify({ question:q })
-    });
-
-    const data = await res.json();
-    safeRender(data.answer || "(no response)");
-  } catch(err){
-    safeRender("⚠️ Error: " + err.message);
-  }
-
-  loading.style.display = "none";
-  followupBtn.disabled = false;
-  followupText.value = "";
-};
-
-copyBtn.onclick = () => {
-  const text = outEl.innerText.trim();
-  if (!text) return alert("Nothing to copy.");
-
-  navigator.clipboard.writeText(text).then(() => {
-    copyBtn.textContent = "Copied!";
-    setTimeout(()=>copyBtn.textContent="Copy All",1500);
-  });
-};
+    navigator.clipboard.writeText(content).then(
+      () => {
+        copyBtn.textContent = "Copied!";
+        setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+      },
+      () => {
+        const temp = document.createElement("textarea");
+        temp.value = content;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand("copy");
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+        } catch {
+          alert("Clipboard not supported.");
+        }
+        document.body.removeChild(temp);
+      }
+    );
+  };
 </script>
-
 </body>
 </html>
