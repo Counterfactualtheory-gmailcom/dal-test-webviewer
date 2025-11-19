@@ -257,6 +257,22 @@ if (/Android/i.test(navigator.userAgent)) {
     }, { passive: false });
   });
 }
+
+// Samsung BACK button fix — restore COMPASS output instead of leaving WebView
+if (/Android/i.test(navigator.userAgent)) {
+  // Create a shadow history level so back-button returns to COMPASS
+  try {
+    history.pushState({ webviewLayer: true }, "");
+  } catch(e){}
+
+  // When user presses BACK → reload COMPASS output page
+  window.onpopstate = function(event) {
+    // Only intercept if this is our shadow history entry
+    if (event && event.state && event.state.webviewLayer) {
+      location.reload();   // returns user to COMPASS output
+    }
+  };
+}
   
 if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
   outEl.addEventListener('click', e => {
