@@ -270,19 +270,32 @@
     openExternal(this.href);
   }
 
-  function bindLinkHandlers() {
+function bindLinkHandlers() {
+  // 🔥 Delay is CRITICAL for Android WebView.
+  // Without this, Samsung binds the events BEFORE linkify/html exists.
+  setTimeout(() => {
     const anchors = outEl.querySelectorAll("a[href]");
-    anchors.forEach((a) => {
+    anchors.forEach(a => {
       if (a.dataset.bound === "1") return;
       a.dataset.bound = "1";
 
       a.target = "_blank";
       a.rel = "noopener";
 
-      a.addEventListener("click", anchorClickHandler, false);
-      a.addEventListener("touchend", anchorTouchEndHandler, { passive: false });
+      // CLICK handler
+      a.addEventListener("click", function(e) {
+        e.preventDefault();
+        openExternal(a.href);
+      }, false);
+
+      // TOUCHEND handler — required for Samsung Galaxy
+      a.addEventListener("touchend", function(e) {
+        e.preventDefault();
+        openExternal(a.href);
+      }, { passive: false });
     });
-  }
+  }, 75);  // <= the key to beating Samsung’s render race
+}
 
   // Optional: kill long-press context menu
   document.addEventListener("contextmenu", (e) => {
