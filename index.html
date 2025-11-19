@@ -240,29 +240,20 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
 
-// 🔥 Samsung / Android WebView exclusive link handler
+// Samsung fix — open links INSIDE the WebView (forced)
 if (/Android/i.test(navigator.userAgent)) {
   outEl.querySelectorAll("a[href]").forEach(a => {
     if (a.dataset.bound === "1") return;
     a.dataset.bound = "1";
 
-    // Prevent normal WebView navigation (Samsung blocks it silently)
     a.addEventListener("click", function(e) {
       e.preventDefault();
-      try {
-        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + a.href);
-      } catch (err) {
-        window.open(a.href, "_blank");
-      }
+      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
     });
 
     a.addEventListener("touchend", function(e) {
       e.preventDefault();
-      try {
-        ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + a.href);
-      } catch (err) {
-        window.open(a.href, "_blank");
-      }
+      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
     }, { passive: false });
   });
 }
