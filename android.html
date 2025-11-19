@@ -150,7 +150,10 @@
     #loading span { animation: blink 1.4s infinite both; }
     #loading span:nth-child(2){animation-delay:.2s}
     #loading span:nth-child(3){animation-delay:.4s}
-    @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}
+    @keyframes blink {
+      0%,80%,100% { opacity:0; }
+      40% { opacity:1; }
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -236,16 +239,17 @@
 
     outEl.innerHTML += (outEl.innerHTML ? "<hr>" : "") + clean2;
 
-    // 🔗 Attach per-anchor handlers (no document-level guessing)
-    bindLinkHandlers();
+    // ⛔️ IMPORTANT CHANGE: no per-anchor bind here.
+    // Global delegated handlers (below) handle all links, including Samsung.
   }
 
-  // ========= LINK HANDLING: per-anchor click & touchend =========
+  // ========= LINK HANDLING: shared for click + touchend =========
 
   function openExternal(url) {
     if (!url || !/^https?:\/\//i.test(url)) return;
 
     try {
+      // Let Thunkable block open in native browser
       ThunkableWebviewerExtension.postMessage("OPEN_IN_BROWSER::" + url);
       return;
     } catch (err) {
@@ -259,45 +263,36 @@
     }
   }
 
-  function anchorClickHandler(e) {
-    e.preventDefault();
-    openExternal(this.href);
+  // 🔥 Unified delegated handler (pattern borrowed from working index.html)
+  function handleTapOrClick(evt) {
+    let targetNode;
+
+    if (evt.type === "touchend") {
+      const t = evt.changedTouches && evt.changedTouches[0];
+      if (!t) return;
+      const el = document.elementFromPoint(t.clientX, t.clientY);
+      if (!el) return;
+      targetNode = el;
+    } else {
+      targetNode = evt.target;
+    }
+
+    if (!targetNode || !targetNode.closest) return;
+    const a = targetNode.closest("a[href]");
+    if (!a) return;
+
+    const url = a.href;
+    if (!/^https?:\/\//i.test(url)) return;
+
+    evt.preventDefault();
+    openExternal(url);
   }
 
-  function anchorTouchEndHandler(e) {
-    // treat as tap; prevent long-press text UI
-    e.preventDefault();
-    openExternal(this.href);
-  }
+  // Attach once at document level — safest for WebView + Samsung
+  document.addEventListener("click", handleTapOrClick, false);
+  document.addEventListener("touchend", handleTapOrClick, { passive: false });
 
-function bindLinkHandlers() {
-  // 🔥 Delay is CRITICAL for Android WebView.
-  // Without this, Samsung binds the events BEFORE linkify/html exists.
-  setTimeout(() => {
-    const anchors = outEl.querySelectorAll("a[href]");
-    anchors.forEach(a => {
-      if (a.dataset.bound === "1") return;
-      a.dataset.bound = "1";
-
-      a.target = "_blank";
-      a.rel = "noopener";
-
-      // CLICK handler
-      a.addEventListener("click", function(e) {
-        e.preventDefault();
-        openExternal(a.href);
-      }, false);
-
-      // TOUCHEND handler — required for Samsung Galaxy
-      a.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        openExternal(a.href);
-      }, { passive: false });
-    });
-  }, 75);  // <= the key to beating Samsung’s render race
-}
-
-  // Optional: kill long-press context menu
+  // Optional: kill long-press context menu (prevents text preview overlays)
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
   });
@@ -399,4 +394,3 @@ function bindLinkHandlers() {
 </script>
 </body>
 </html>
-
