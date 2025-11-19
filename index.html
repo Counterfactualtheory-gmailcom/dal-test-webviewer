@@ -267,8 +267,8 @@ if (/Android/i.test(navigator.userAgent)) {
   });
 }
   
-  if (!linkHandlerAttached) {
-    outEl.addEventListener('click', e => {
+if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
+  outEl.addEventListener('click', e => {
       const a = e.target.closest && e.target.closest('a[href]');
       if (!a) return;
       const url = a.href;
