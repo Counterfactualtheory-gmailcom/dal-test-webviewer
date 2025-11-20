@@ -240,7 +240,7 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
 
-// Samsung fix — open links INSIDE the WebView (forced)
+// Android fix — open links EXTERNALLY so the COMPAiSS UI stays in place
 if (/Android/i.test(navigator.userAgent)) {
   outEl.querySelectorAll("a[href]").forEach(a => {
     if (a.dataset.bound === "1") return;
@@ -248,12 +248,14 @@ if (/Android/i.test(navigator.userAgent)) {
 
     a.addEventListener("click", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
+      e.stopPropagation();
+      window.open(a.href, "_system");   // ← open externally, seamless
     });
 
     a.addEventListener("touchend", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
+      e.stopPropagation();
+      window.open(a.href, "_system");   // ← same for touch
     }, { passive: false });
   });
 }
