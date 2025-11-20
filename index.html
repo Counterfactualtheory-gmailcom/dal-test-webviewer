@@ -240,10 +240,6 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
 
-  // Always show Android back button after every render
-  injectAndroidBackButton();
-}
-
 // Samsung fix — open links INSIDE the WebView (forced)
 if (/Android/i.test(navigator.userAgent)) {
   outEl.querySelectorAll("a[href]").forEach(a => {
@@ -252,47 +248,38 @@ if (/Android/i.test(navigator.userAgent)) {
 
     a.addEventListener("click", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // OPEN INSIDE WEBVIEW
+      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
     });
 
     a.addEventListener("touchend", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // OPEN INSIDE WEBVIEW
+      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
     }, { passive: false });
   });
 }
-  
+
 // Android-only: Add a top-right "Back to COMPAiSS" button
-function injectAndroidBackButton() {
-  if (!/Android/i.test(navigator.userAgent)) return;
+if (/Android/i.test(navigator.userAgent)) {
 
-  // Delete old existing button if any
-  const old = document.getElementById("compass-back-btn");
-  if (old) old.remove();
-
-  const btn = document.createElement("button");
-  btn.id = "compass-back-btn";
+  const btn = document.createElement('button');
   btn.textContent = "← Back to COMPAiSS";
-
-  Object.assign(btn.style, {
-    position: "fixed",
-    top: "10px",
-    right: "10px",
-    zIndex: "999999",
-    padding: "8px 12px",
-    background: "#f8c600",
-    color: "#000",
-    border: "2px solid #000",
-    borderRadius: "8px",
-    fontSize: "14px",
-    fontWeight: "600",
-    cursor: "pointer",
-    boxShadow: "0 2px 4px rgba(0,0,0,0.3)"
-  });
+  btn.style.position = "fixed";
+  btn.style.top = "10px";
+  btn.style.right = "10px";
+  btn.style.zIndex = "9999";
+  btn.style.padding = "8px 12px";
+  btn.style.background = "#f8c600";
+  btn.style.color = "#000";
+  btn.style.border = "2px solid #000";
+  btn.style.borderRadius = "8px";
+  btn.style.fontSize = "14px";
+  btn.style.fontWeight = "600";
+  btn.style.cursor = "pointer";
+  btn.style.boxShadow = "0 2px 4px rgba(0,0,0,0.3)";
 
   btn.onclick = () => {
-    // Return to the original output screen
-    window.history.back();
+    // Reload original COMPASS output screen
+  window.location.reload();
   };
 
   document.body.appendChild(btn);
