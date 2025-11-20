@@ -19,16 +19,21 @@
       --link-visited: #c8e0ff;
     }
 
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;              /* ✅ added */
-  max-width:100%;          /* ✅ added */
-  overflow-x:hidden;       /* ✅ added — stops side scroll */
-  background:var(--bg-page);
-  color:var(--text);
-  font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  -webkit-text-size-adjust:100%;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  
+  height: 100% !important;             /* 🔥 Required for Android keyboard resizing */
+  overflow-y: scroll !important;       /* 🔥 Allows scrolling when keyboard appears */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;   /* 🔥 Smooth scrolling on Android/iOS */
+
+  background: var(--bg-page);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
     .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
 
