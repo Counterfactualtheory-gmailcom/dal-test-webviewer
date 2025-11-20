@@ -258,6 +258,19 @@ if (/Android/i.test(navigator.userAgent)) {
   });
 }
   
+// Samsung BACK button fix — add a shadow history layer
+if (/Android/i.test(navigator.userAgent)) {
+  try {
+    history.pushState({ compassPage: true }, "");
+  } catch(e){}
+
+  window.onpopstate = function(event) {
+    if (event && event.state && event.state.compassPage) {
+      location.reload();
+    }
+  };
+}
+  
 if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
   outEl.addEventListener('click', e => {
       const a = e.target.closest && e.target.closest('a[href]');
