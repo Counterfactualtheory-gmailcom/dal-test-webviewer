@@ -239,10 +239,11 @@ function safeRender(md) {
     a.target = '_blank';
     a.rel = 'noopener';
   });
-// ← add this here
+
+  // Always show Android back button after every render
   injectAndroidBackButton();
 }
-    
+
 // Samsung fix — open links INSIDE the WebView (forced)
 if (/Android/i.test(navigator.userAgent)) {
   outEl.querySelectorAll("a[href]").forEach(a => {
@@ -251,12 +252,12 @@ if (/Android/i.test(navigator.userAgent)) {
 
     a.addEventListener("click", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
+      window.location.href = a.href;   // OPEN INSIDE WEBVIEW
     });
 
     a.addEventListener("touchend", function(e) {
       e.preventDefault();
-      window.location.href = a.href;   // ← OPEN INSIDE WEBVIEW
+      window.location.href = a.href;   // OPEN INSIDE WEBVIEW
     }, { passive: false });
   });
 }
