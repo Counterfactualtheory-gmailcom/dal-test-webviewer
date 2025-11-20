@@ -154,6 +154,11 @@ a:visited {
     #loading span:nth-child(2){animation-delay:.2s}
     #loading span:nth-child(3){animation-delay:.4s}
     @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+
+  /* Ensures Samsung keyboard does not cover input + buttons */
+#followup-box {
+  margin-bottom: 260px;  /* enough lift so everything stays visible */
+} 
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
