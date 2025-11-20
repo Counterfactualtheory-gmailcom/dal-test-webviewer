@@ -194,6 +194,19 @@ a:visited {
     let linkHandlerAttached=false;
     let lastAnswer="";
 
+// 🔥 Android keyboard fix — ensure follow-up input scrolls into view
+if (/Android/i.test(navigator.userAgent)) {
+  const followInput = document.getElementById('followup-text');
+
+  followInput.addEventListener('focus', () => {
+    setTimeout(() => {
+      followInput.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }, 300);  // allow keyboard to fully open
+  });
+}   
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
 function removeEmptyBullets() {
