@@ -257,37 +257,6 @@ if (/Android/i.test(navigator.userAgent)) {
     }, { passive: false });
   });
 }
-
-/* Samsung BACK button fix — return to COMPASS inside WebView */
-if (/Android/i.test(navigator.userAgent)) {
-
-  // Track if the user is inside an external page opened within WebView
-  let inExternalPage = false;
-
-  // When any link is clicked inside WebView
-  outEl.addEventListener("click", function(e) {
-    const a = e.target.closest("a[href]");
-    if (!a) return;
-    inExternalPage = true;   // user navigated away from COMPASS output
-  });
-
-  // Handle Samsung hardware BACK button
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Backspace" || e.key === "Escape") {
-      if (inExternalPage) {
-        e.preventDefault();
-        location.href = "index.html";   // return to COMPASS output
-      }
-    }
-  });
-
-  // Handle Android BACK navigation event
-  window.addEventListener("popstate", function() {
-    if (inExternalPage) {
-      location.href = "index.html";     // reload COMPASS output
-    }
-  });
-}
   
 if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
   outEl.addEventListener('click', e => {
