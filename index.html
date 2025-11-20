@@ -431,7 +431,12 @@ function limitVerifiedSources() {
     outEl.appendChild(note);
   }
 }
-    
+// Always inject back button on page load (Android only)
+window.addEventListener("load", () => {
+  if (/Android/i.test(navigator.userAgent)) {
+    injectAndroidBackButton();
+  }
+});    
   </script>
 </body>
 </html>
