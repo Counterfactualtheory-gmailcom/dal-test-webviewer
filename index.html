@@ -239,7 +239,10 @@ function safeRender(md) {
     a.target = '_blank';
     a.rel = 'noopener';
   });
-
+// ← add this here
+  injectAndroidBackButton();
+}
+    
 // Samsung fix — open links INSIDE the WebView (forced)
 if (/Android/i.test(navigator.userAgent)) {
   outEl.querySelectorAll("a[href]").forEach(a => {
