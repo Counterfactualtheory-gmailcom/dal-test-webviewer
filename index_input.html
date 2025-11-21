@@ -45,10 +45,10 @@ html, body {
   }
 
 .input-box {
-  background-color: #ffffff !important;   /* ← White, not black */
-  border: 2px solid #f8c600;              /* Gold border */
+  background-color: transparent;     /* 🔥 NO BLACK BACKGROUND */
+  border: 2px solid #f8c600;         /* Gold border stays */
   border-radius: 12px;
-  padding: 0 !important;                  /* ← REMOVE internal spacing */
+  padding: 0;                         /* 🔥 Remove internal padding */
   width: 85%;
   max-width: 480px;
   height: 65vh;
@@ -57,24 +57,22 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
   box-shadow: 0 0 8px rgba(248,198,0,0.3);
 }
 
 /* ✅ Ensure inner textarea fills the box correctly */
 textarea {
   flex: 1;
-  width: 100%;
+  width: 100%;               /* 🔥 Fills entire border interior */
   height: 100%;
-  margin: 0;                            /* ← remove margins */
-  border-radius: 10px;                  /* matches curvature inside border */
+  margin: 0;                 /* 🔥 Removes top/bottom whitespace */
+  border-radius: 10px;       /* Optional: match gold border radius */
   border: none;
   outline: none;
   resize: none;
-  padding: 14px;                        /* inner padding stays */
+  padding: 14px;
   font-size: 19px;
-  font-family: "Roboto", sans-serif;
-  background-color: #ffffff;
+  background-color: #ffffff; /* White fill — now flush to edges */
   color: #666666;
   box-sizing: border-box;
 }
