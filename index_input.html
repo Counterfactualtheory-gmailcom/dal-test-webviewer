@@ -45,15 +45,14 @@ html, body {
   }
 
 .input-box {
-  background-color: transparent;     /* 🔥 NO BLACK BACKGROUND */
-  border: 2px solid #f8c600;         /* Gold border stays */
+  background-color: transparent;
+  border: 2px solid #f8c600;
   border-radius: 12px;
-  padding: 0;                         /* 🔥 Remove internal padding */
+  padding: 0;
   width: 85%;
   max-width: 480px;
   height: 65vh;
-  margin: 0 auto;
-  margin-left: -3.5px;
+  margin: 0 auto;        /* ← centers flawlessly */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -75,6 +74,7 @@ textarea {
   background-color: #ffffff; /* White fill — now flush to edges */
   color: #666666;
   box-sizing: border-box;
+  border-radius: 0 0 10px 10px;   /* optional – matches lower rounded corners */;
 }
 
   button {
