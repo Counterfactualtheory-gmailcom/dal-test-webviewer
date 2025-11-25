@@ -76,7 +76,7 @@ textarea {
   border-radius: 0;   /* ← PERFECT rectangular edge-to-edge */
 }
 
-  button {
+button {
     background-color: #f8c600;
     color: #000;
     font-weight: 600;
@@ -86,7 +86,12 @@ textarea {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-  }
+
+    /* NEW — minimal change */
+    width: 85%;
+    margin: 10px auto 14px auto;   /* centers horizontally */
+    display: block;
+}
 
   button:hover {
     background-color: #ffd500;
