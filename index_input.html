@@ -60,20 +60,28 @@ html, body {
 }
 
 /* ✅ Ensure inner textarea fills the box correctly */
-textarea {
-  flex: 1;
-  width: 100%;            /* fill the gold box interior */
-  height: 100%;
-  margin: 0;              /* alignment handled by .input-box */
-  padding: 14px;
-  border: none;
-  outline: none;
-  resize: none;
-  background-color: #ffffff;
-  color: #666;
-  font-size: 19px;
-  box-sizing: border-box;
-  border-radius: 4px;     /* slight rounding inside, optional */
+/* NEW: Center + narrow the actual input area */
+#input-wrapper {
+    width: 90%;
+    max-width: 460px;      /* controls final width */
+    margin: 0 auto;
+    display: block;
+}
+
+/* NEW: textarea styling (inside wrapper) */
+#input-wrapper textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    padding: 14px;
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: #ffffff;
+    color: #666;
+    font-size: 19px;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 button {
