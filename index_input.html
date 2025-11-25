@@ -62,9 +62,9 @@ html, body {
 /* ✅ Ensure inner textarea fills the box correctly */
 textarea {
   flex: 1;
-  width: 100%;
+  width: 90%;             /*  ⭐ New: Textbox uses only 90% width */
   height: 100%;
-  margin: 0;
+  margin: 0 auto;         /*  ⭐ Centers the textbox */
   padding: 14px;
   border: none;
   outline: none;
@@ -73,7 +73,7 @@ textarea {
   color: #666;
   font-size: 19px;
   box-sizing: border-box;
-  border-radius: 0;   /* ← PERFECT rectangular edge-to-edge */
+  border-radius: 0;
 }
 
 button {
