@@ -48,11 +48,11 @@ html, body {
   background-color: transparent;       /* No black background */
   border: 2px solid #f8c600;           /* Dalhousie gold border */
   border-radius: 12px;
-  padding: 0 14px;                           /* No internal spacing */
-  width: 100%;                          /* Stretch to full width */
-  max-width: 480px;                     /* Keeps proportions clean */
+  padding: 12px;                       /* even padding all around */
+  width: 92%;                          /* inset from the gold frame */
+  max-width: 480px;
   height: 65vh;
-  margin: 0 auto;                       /* Center perfectly */
+  margin: 0 auto;                      /* centers inside screen */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -62,9 +62,9 @@ html, body {
 /* ✅ Ensure inner textarea fills the box correctly */
 textarea {
   flex: 1;
-  width: 90%;             /*  ⭐ New: Textbox uses only 90% width */
+  width: 100%;            /* fill the gold box interior */
   height: 100%;
-  margin: 0 auto;         /*  ⭐ Centers the textbox */
+  margin: 0;              /* alignment handled by .input-box */
   padding: 14px;
   border: none;
   outline: none;
@@ -73,7 +73,7 @@ textarea {
   color: #666;
   font-size: 19px;
   box-sizing: border-box;
-  border-radius: 0;
+  border-radius: 4px;     /* slight rounding inside, optional */
 }
 
 button {
