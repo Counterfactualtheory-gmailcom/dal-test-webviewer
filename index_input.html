@@ -165,11 +165,29 @@ button {
 
   <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
 
-  <script>
-    const inputBox = document.getElementById("inputBox");
-    const toast = document.getElementById("toast");
-    const submitBtn = document.getElementById("submitBtn");
+<script>
+  const inputBox = document.getElementById("inputBox");
+  const toast = document.getElementById("toast");
+  const submitBtn = document.getElementById("submitBtn");
 
+  /* --- AUTO MOVE TEXTBOX + BUTTON ABOVE KEYBOARD --- */
+
+  const initialHeight = window.innerHeight;
+  const box = document.getElementById("input-wrapper");
+  const btn = document.getElementById("submitBtn");
+
+  /* Enable smooth movement */
+  [box, btn].forEach(el => el.classList.add("keyboard-fix"));
+
+  window.addEventListener("resize", () => {
+    const keyboardOpen = window.innerHeight < initialHeight - 150;
+    const lift = keyboardOpen ? -120 : 0;
+
+    box.style.transform = `translateY(${lift}px)`;
+    btn.style.transform = `translateY(${lift}px)`;
+  });
+
+</script> 
     /* ---------- Bridge helpers ---------- */
     function isBridgeReady() {
       return typeof window.ThunkableWebviewerExtension !== "undefined";
