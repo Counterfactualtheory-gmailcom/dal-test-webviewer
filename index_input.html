@@ -70,9 +70,9 @@ html, body {
 /* ✅ Ensure inner textarea fills the box correctly */
 /* NEW: Center + narrow the actual input area */
 #input-wrapper {
-    width: 100%;
-    max-width: 440px;      /* controls final width */
-    margin: 0 auto;
+    width: 360px;     /* fixed centered width */
+    max-width: 360px; /* ensure no stretching */
+    margin: 0 auto;   /* perfectly centers it */
     display: block;
 }
 
@@ -104,7 +104,7 @@ button {
   transition: background-color 0.2s ease;
 
   width: 70%;         /* optional: makes it nicely centered */
-  max-width: 440px;
+  width: 360px;
   margin: 24px auto 0 auto;
   display: block;
 }
