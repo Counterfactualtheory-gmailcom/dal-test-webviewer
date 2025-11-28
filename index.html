@@ -418,19 +418,25 @@ function goToInput() {
   window.location.replace(url);
 }
 
-/* Return to input anytime the app becomes visible */
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    goToInput();
-  }
-});
+/* 
+  NEW BEHAVIOUR:
+  – Do NOT return to input when opening/closing links
+  – ONLY return to input when the app explicitly requests it
+*/
 
-/* Return to input anytime the WebView restores from OS cache */
-window.addEventListener("pageshow", (e) => {
-  if (e.persisted) {
+function handleAutoReturn() {
+  const allowReturn = localStorage.getItem("forceInputReturn") === "1";
+  if (allowReturn) {
+    localStorage.removeItem("forceInputReturn");
     goToInput();
   }
-});
+}
+
+/* Called when app becomes visible again (but no automatic reset) */
+document.addEventListener("visibilitychange", handleAutoReturn);
+
+/* Called when restored from OS cache (still no automatic reset) */
+window.addEventListener("pageshow", handleAutoReturn);
 </script>
   
 </body>
