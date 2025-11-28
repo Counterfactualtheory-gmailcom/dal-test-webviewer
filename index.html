@@ -418,18 +418,19 @@ function goToInput() {
   window.location.replace(url);
 }
 
-let suppressReturn = false;
-
-function handleAutoReturn() {
-  if (suppressReturn) return; // ← link click detected → DO NOT reset
-  goToInput();                // ← real minimize/return → DO reset
-}
-
+/* Return to input anytime the app becomes visible */
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") handleAutoReturn();
+  if (document.visibilityState === "visible") {
+    goToInput();
+  }
 });
 
-window.addEventListener("pageshow", handleAutoReturn);
+/* Return to input anytime the WebView restores from OS cache */
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) {
+    goToInput();
+  }
+});
 </script>
   
 </body>
