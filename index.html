@@ -411,5 +411,27 @@ function limitVerifiedSources() {
   }
 }
   </script>
+
+<script>
+function goToInput() {
+  const url = window.location.href.replace("index.html", "") + "index_input.html";
+  window.location.replace(url);
+}
+
+/* Return to input anytime the app becomes visible */
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    goToInput();
+  }
+});
+
+/* Return to input anytime the WebView restores from OS cache */
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) {
+    goToInput();
+  }
+});
+</script>
+  
 </body>
 </html>
