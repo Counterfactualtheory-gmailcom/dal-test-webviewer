@@ -51,17 +51,20 @@ html, body {
 
 .input-box {
   background-color: transparent;
-  border: none;                   /* ← REMOVE INNER GOLD BORDER */
-  border-radius: 0;               /* ← OPTIONAL: Remove rounding */
-  padding: 0;                     /* ← Remove inner padding */
+  border: none;
+  border-radius: 0;
+  padding: 0;
   width: 100%;
   max-width: 480px;
   height: 65vh;
   margin: 0 auto;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  box-shadow: none;               /* ← REMOVE SHADOW */
+  align-items: center;   /* ← ADDED: fixes your alignment issue */
+  justify-content: flex-start;
+
+  box-shadow: none;
 }
 
 /* ✅ Ensure inner textarea fills the box correctly */
