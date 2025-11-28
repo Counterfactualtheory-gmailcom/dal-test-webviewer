@@ -418,24 +418,17 @@ function goToInput() {
   window.location.replace(url);
 }
 
-/* 
-  NEW BEHAVIOUR:
-  – Do NOT return to input when opening/closing links
-  – ONLY return to input when the app explicitly requests it
-*/
+let suppressReturn = false;
 
 function handleAutoReturn() {
-  const allowReturn = localStorage.getItem("forceInputReturn") === "1";
-  if (allowReturn) {
-    localStorage.removeItem("forceInputReturn");
-    goToInput();
-  }
+  if (suppressReturn) return; // ← link click detected → DO NOT reset
+  goToInput();                // ← real minimize/return → DO reset
 }
 
-/* Called when app becomes visible again (but no automatic reset) */
-document.addEventListener("visibilitychange", handleAutoReturn);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") handleAutoReturn();
+});
 
-/* Called when restored from OS cache (still no automatic reset) */
 window.addEventListener("pageshow", handleAutoReturn);
 </script>
   
