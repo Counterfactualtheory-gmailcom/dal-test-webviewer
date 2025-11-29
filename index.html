@@ -413,24 +413,32 @@ function limitVerifiedSources() {
   </script>
 
 <script>
+/* -------------------------------------------------------
+   FINAL AUTO-RETURN (3 MINUTES) USING DIRECT INPUT URL
+-------------------------------------------------------- */
+
 const RETURN_DELAY = 3 * 60 * 1000; // 3 minutes
-let timer;
+let timer = null;
+let hasRendered = false;
 
-function goToInput() {
-  const url = window.location.href.replace("index.html", "") + "index_input.html";
-  window.location.replace(url);
-}
+// TRIGGERED after safeRender() injects a real answer
+document.addEventListener("ANSWER_RENDERED", () => {
 
-function resetTimer() {
+  if (!hasRendered) {
+    hasRendered = true;   // ignore early handshake triggers
+  }
+
   clearTimeout(timer);
-  timer = setTimeout(goToInput, RETURN_DELAY);
-}
 
-resetTimer();
-document.addEventListener("touchstart", resetTimer, { passive: true });
-document.addEventListener("click", resetTimer);
-document.addEventListener("scroll", resetTimer);
-document.addEventListener("keydown", resetTimer);
+  timer = setTimeout(() => {
+    try {
+      window.location.href =
+        "https://counterfactualtheory-gmailcom.github.io/mcgill-webviewer/index_input.html";
+    } catch (err) {
+      console.log("Auto-return failed:", err);
+    }
+  }, RETURN_DELAY);
+});
 </script>
   
 </body>
