@@ -414,31 +414,35 @@ function limitVerifiedSources() {
 
 <script>
 /* -------------------------------------------------------
-   FINAL AUTO-RETURN (3 MINUTES) USING DIRECT INPUT URL
+   ABSOLUTE BRIDGE-RECOVERY PATCH
+   (Prevents blank screen after minimize + resume)
 -------------------------------------------------------- */
 
-const RETURN_DELAY = 3 * 60 * 1000; // 3 minutes
-let timer = null;
-let hasRendered = false;
+let bridgeAlive = false;
 
-// TRIGGERED after safeRender() injects a real answer
-document.addEventListener("ANSWER_RENDERED", () => {
-
-  if (!hasRendered) {
-    hasRendered = true;   // ignore early handshake triggers
-  }
-
-  clearTimeout(timer);
-
-  timer = setTimeout(() => {
-    try {
-      window.location.href =
-        "https://counterfactualtheory-gmailcom.github.io/mcgill-webviewer/index_input.html";
-    } catch (err) {
-      console.log("Auto-return failed:", err);
-    }
-  }, RETURN_DELAY);
+// Receive messages from Thunkable
+ThunkableWebviewerExtension.receiveMessage(function(msg) {
+  bridgeAlive = true;
 });
+
+// Re-send READY every time the app returns to foreground
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    try {
+      ThunkableWebviewerExtension.postMessage("ready");
+    } catch (_) {}
+  }
+});
+
+// If no message arrives for 1 second after resume, send READY again
+setInterval(() => {
+  if (!bridgeAlive) {
+    try {
+      ThunkableWebviewerExtension.postMessage("ready");
+    } catch (_) {}
+  }
+  bridgeAlive = false;
+}, 1000);
 </script>
   
 </body>
