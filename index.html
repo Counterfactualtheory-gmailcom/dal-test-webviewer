@@ -165,7 +165,7 @@ a:visited {
 
 <body>
   <div class="wrap">
- <div id="out"></div>
+    <div id="out">Waiting for content…</div>
     
     <div id="followup-box">
       <textarea id="followup-text" placeholder="Type a follow-up question or add more information..."></textarea>
@@ -413,36 +413,24 @@ function limitVerifiedSources() {
   </script>
 
 <script>
-/* -------------------------------------------------------
-   ABSOLUTE BRIDGE-RECOVERY PATCH
-   (Prevents blank screen after minimize + resume)
--------------------------------------------------------- */
+const RETURN_DELAY = 3 * 60 * 1000; // 3 minutes
+let timer;
 
-let bridgeAlive = false;
+function goToInput() {
+  const url = window.location.href.replace("index.html", "") + "index_input.html";
+  window.location.replace(url);
+}
 
-// Receive messages from Thunkable
-ThunkableWebviewerExtension.receiveMessage(function(msg) {
-  bridgeAlive = true;
-});
+function resetTimer() {
+  clearTimeout(timer);
+  timer = setTimeout(goToInput, RETURN_DELAY);
+}
 
-// Re-send READY every time the app returns to foreground
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    try {
-      ThunkableWebviewerExtension.postMessage("ready");
-    } catch (_) {}
-  }
-});
-
-// If no message arrives for 1 second after resume, send READY again
-setInterval(() => {
-  if (!bridgeAlive) {
-    try {
-      ThunkableWebviewerExtension.postMessage("ready");
-    } catch (_) {}
-  }
-  bridgeAlive = false;
-}, 1000);
+resetTimer();
+document.addEventListener("touchstart", resetTimer, { passive: true });
+document.addEventListener("click", resetTimer);
+document.addEventListener("scroll", resetTimer);
+document.addEventListener("keydown", resetTimer);
 </script>
   
 </body>
