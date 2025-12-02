@@ -423,6 +423,33 @@ function limitVerifiedSources() {
   }
 }
   </script>
+
+<script>
+  // Prevent blank screen after app is minimized / dormant
+  document.addEventListener("visibilitychange", () => {
+      // When returning from background
+      if (!document.hidden) {
+          // Force DOM repaint and WebView rehydrate
+          requestAnimationFrame(() => {
+              const out = document.getElementById("out");
+              if (out && out.innerHTML.trim() === "") {
+                  // If WebView purged content, reload last known answer
+                  if (window.lastAnswerBackup) {
+                      out.innerHTML = window.lastAnswerBackup;
+                  }
+              }
+          });
+      }
+  });
+
+  // Every time we render an answer, store a hard backup
+  const originalSafeRender = safeRender;
+  safeRender = function(md) {
+      originalSafeRender(md);
+      const out = document.getElementById("out");
+      if (out) window.lastAnswerBackup = out.innerHTML;
+  };
+</script>
   
 </body>
 </html>
