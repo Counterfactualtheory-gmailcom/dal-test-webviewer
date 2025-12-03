@@ -249,7 +249,7 @@ function safeRender(md) {
   if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
   outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
   removeEmptyBullets();
-  lastAnswer = outEl.innerText;
+  window.lastAnswerBackup = clean2;
 
   outEl.querySelectorAll('a').forEach(a => {
     a.target = '_blank';
