@@ -334,40 +334,39 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
 
     // ✅ Universal Copy handler
 copyBtn.onclick = () => {
-  // Copy ONLY the most recent answer (stored by safeRender backup)
-  const content = (window.lastAnswerBackup || "").trim();
-
-  if (!content) {
-    alert("No response yet to copy.");
-    return;
+  // Get the most recent answer (HTML)
+  const html = (window.lastAnswerBackup || "").trim();
+  if (!html) {
+      alert("No response yet to copy.");
+      return;
   }
 
+  // Convert HTML → clean plain text
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  // Convert line breaks properly
+  let text = tempDiv.innerText
+      .replace(/\n{3,}/g, "\n\n")  // no triple spacing
+      .trim();
+
   try {
-    navigator.clipboard.writeText(content)
-      .then(() => {
-        copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
-      })
-      .catch(() => {
-        // Fallback for older devices
-        const temp = document.createElement("textarea");
-        temp.value = content;
-        temp.style.position = "fixed";
-        temp.style.opacity = "0";
-        document.body.appendChild(temp);
-        temp.select();
-        try {
-          document.execCommand("copy");
+      navigator.clipboard.writeText(text).then(() => {
           copyBtn.textContent = "Copied!";
           setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
-        } catch (e2) {
-          alert("Clipboard not supported.");
-        }
-        document.body.removeChild(temp);
       });
   } catch (err) {
-    console.log("Copy error:", err);
-    alert("Clipboard not supported.");
+      // Older device fallback
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      temp.style.position = "fixed";
+      temp.style.opacity = "0";
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
   }
 }; 
 
