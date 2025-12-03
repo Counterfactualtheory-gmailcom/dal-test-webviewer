@@ -337,7 +337,7 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
     // ✅ Universal Copy handler
 copyBtn.onclick = () => {
   // Get the most recent answer (HTML)
-  const html = (window.lastAnswerBackup || "").trim();
+  const html = (lastSingleAnswer || "").trim();
   if (!html) {
       alert("No response yet to copy.");
       return;
