@@ -221,8 +221,15 @@ function removeEmptyBullets() {
 function safeRender(md) {
   const raw = String(md || '');
 
-  // ✅ Strip control tags (e.g., <<START ANSWER>>, [COMPLETED], etc.)
-  const cleaned = raw
+  // 🚫 Remove backend-injected SOURCES / greenlist dump
+  let cleaned = raw
+    .replace(/^SOURCES:\s*$/gim, '')                        // "SOURCES:" header
+    .replace(/^[ \t]*[-*•]\s*https?:\/\/\S+/gim, '')         // bullet URLs
+    .replace(/Verified Greenlist Source/gi, '')              // placeholder label
+    .replace(/^\s*$/gm, '');                                 // leftover blank lines
+
+  // 🚫 Strip control tags (<<START ANSWER>>, [COMPLETED], etc.)
+  cleaned = cleaned
     .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
     .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
     .replace(/\[+COMPLETED+\]/gi, '')
