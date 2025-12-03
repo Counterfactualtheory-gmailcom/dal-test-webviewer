@@ -332,23 +332,24 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
       },600);
     });
 
-// ✅ Universal Copy-All handler (works in Thunkable & all browsers)
+    // ✅ Universal Copy handler
 copyBtn.onclick = () => {
-  const content = document.getElementById("out").innerText.trim();
+  // Copy ONLY the most recent answer (stored by safeRender backup)
+  const content = (window.lastAnswerBackup || "").trim();
+
   if (!content) {
     alert("No response yet to copy.");
     return;
   }
 
   try {
-    // Try the secure Clipboard API first
     navigator.clipboard.writeText(content)
       .then(() => {
         copyBtn.textContent = "Copied!";
-        setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+        setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
       })
       .catch(() => {
-        // 🔹 Fallback for WebViewer / iOS sandbox
+        // Fallback for older devices
         const temp = document.createElement("textarea");
         temp.value = content;
         temp.style.position = "fixed";
@@ -358,17 +359,17 @@ copyBtn.onclick = () => {
         try {
           document.execCommand("copy");
           copyBtn.textContent = "Copied!";
-          setTimeout(() => (copyBtn.textContent = "Copy All"), 1500);
+          setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
         } catch (e2) {
-          alert("Clipboard not supported in this environment.");
+          alert("Clipboard not supported.");
         }
         document.body.removeChild(temp);
       });
   } catch (err) {
     console.log("Copy error:", err);
-    alert("Clipboard not supported in this environment.");
+    alert("Clipboard not supported.");
   }
-};
+}; 
 
     followupBtn.onclick=async()=>{
       const q=followupText.value.trim();
