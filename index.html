@@ -403,7 +403,7 @@ copyBtn.onclick = () => {
 function limitVerifiedSources() {
   const links = outEl.querySelectorAll('#out a[href]');
 
-  // Replace generic placeholder text with readable host/path
+  // Replace placeholder text only if backend inserted placeholders
   links.forEach(a => {
     if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
       try {
@@ -417,9 +417,16 @@ function limitVerifiedSources() {
     }
   });
 
-  // Limit to top 8 links only
-  if (links.length > 8) {
-    for (let i = 8; i < links.length; i++) links[i].style.display = 'none';
+  // Only limit link count IF placeholder links existed
+  const hadPlaceholders = [...links].some(l =>
+    l.textContent.includes('Verified Greenlist Source')
+  );
+
+  if (hadPlaceholders && links.length > 8) {
+    for (let i = 8; i < links.length; i++) {
+      links[i].style.display = 'none';
+    }
+
     const note = document.createElement('div');
     note.textContent = '(showing top 8 verified sources)';
     note.style.textAlign = 'center';
