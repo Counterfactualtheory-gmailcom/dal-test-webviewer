@@ -221,12 +221,12 @@ function removeEmptyBullets() {
 function safeRender(md) {
   const raw = String(md || '');
 
-  // 🚫 Remove backend-injected SOURCES / greenlist dump
-  let cleaned = raw
+let cleaned = raw
     .replace(/^SOURCES:\s*$/gim, '')                        // "SOURCES:" header
-    .replace(/^[ \t]*[-*•]\s*https?:\/\/\S+/gim, '')         // bullet URLs
-    .replace(/Verified Greenlist Source/gi, '')              // placeholder label
-    .replace(/^\s*$/gm, '');                                 // leftover blank lines
+    .replace(/^[ \t]*[-*•]\s*https?:\/\/\S+/gim, '')        // bullet URLs
+    .replace(/<a\b[^>]*>.*?<\/a>/gim, '')                   // 🔥 remove dumped hyperlink blocks (DAL-only)
+    .replace(/Verified Greenlist Source/gi, '')             // placeholder label
+    .replace(/^\s*$/gm, '');                                // leftover blank lines
 
 // 🚫 Remove accidental list markers (same as McGill)
 cleaned = cleaned
