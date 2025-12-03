@@ -246,6 +246,7 @@ function safeRender(md) {
   } catch (e) { debug('linkify error:' + e); }
 
   const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
+  lastSingleAnswer = clean2;
 
   if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
   outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
