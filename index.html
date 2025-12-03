@@ -228,6 +228,11 @@ function safeRender(md) {
     .replace(/Verified Greenlist Source/gi, '')              // placeholder label
     .replace(/^\s*$/gm, '');                                 // leftover blank lines
 
+// 🚫 Remove accidental list markers (same as McGill)
+cleaned = cleaned
+  .replace(/^[-*]\s+/gm, '')  
+  .replace(/^•\s+/gm, '');
+
   // 🚫 Strip control tags (<<START ANSWER>>, [COMPLETED], etc.)
   cleaned = cleaned
     .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
