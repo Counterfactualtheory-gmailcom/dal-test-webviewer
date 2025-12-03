@@ -221,13 +221,17 @@ function removeEmptyBullets() {
 function safeRender(md) {
   const raw = String(md || '');
 
-let cleaned = raw
-    .replace(/^SOURCES:\s*$/gim, '')                        // "SOURCES:" header
-    .replace(/^[ \t]*[-*•]\s*https?:\/\/\S+/gim, '')        // bullet URLs
-    .replace(/<a\b[^>]*>.*?<\/a>/gim, '')                   // 🔥 remove dumped hyperlink blocks (DAL-only)
-    .replace(/Verified Greenlist Source/gi, '')             // placeholder label
-    .replace(/^\s*$/gm, '');                                // leftover blank lines
-
+let cleaned = String(raw || '');
+cleaned = cleaned
+  // Remove SOURCES header
+  .replace(/^SOURCES:\s*$/gim, '')
+  // Remove entire bullet lines under SOURCES
+  .replace(/^[ \t]*[-*•]\s*.*(Verified Greenlist Source|https?:\/\/\S+).*$/gim, '')
+  // Remove placeholder text
+  .replace(/Verified Greenlist Source/gi, '')
+  // Remove leftover blank lines
+  .replace(/^\s*$/gm, '');
+  
 // 🚫 Remove accidental list markers (same as McGill)
 cleaned = cleaned
   .replace(/^[-*]\s+/gm, '')  
