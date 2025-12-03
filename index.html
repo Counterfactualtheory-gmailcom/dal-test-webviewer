@@ -443,13 +443,20 @@ function limitVerifiedSources() {
       }
   });
 
-  // Every time we render an answer, store a hard backup
-  const originalSafeRender = safeRender;
-  safeRender = function(md) {
-      originalSafeRender(md);
-      const out = document.getElementById("out");
-      if (out) window.lastAnswerBackup = out.innerHTML;
-  };
+// Each new render overwrites previous backup (cleanest SC behavior)
+const originalSafeRender = safeRender;
+safeRender = function(md) {
+    const result = originalSafeRender(md);
+
+    const out = document.getElementById("out");
+    if (out) {
+        // ONLY store the newest clean HTML block added
+        const segments = out.innerHTML.split("<hr>").map(s => s.trim());
+        window.lastAnswerBackup = segments[segments.length - 1];
+    }
+
+    return result;
+};
 </script>
   
 </body>
