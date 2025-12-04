@@ -377,18 +377,18 @@ copyBtn.onclick = () => {
       const q=followupText.value.trim();
       if(!q)return;
   // 🔥 NEW — store previous question for backend conversational continuity
-      lastQuestionBackup = q;
-      loading.style.display='block';
-      followupBtn.disabled=true;
-      try{
-  const res = await fetch('https://web-production-43cb.up.railway.app/ask', {
+    loading.style.display='block';
+    followupBtn.disabled=true;
+
+    try {
+    const res = await fetch('https://web-production-43cb.up.railway.app/ask', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-    question: q,
-    previousQuestion: lastQuestionBackup
-  })
-});
+      question: q,
+      previousQuestion: window.lastAnswerBackup || ""
+    })
+  });
         const data=await res.json();
         safeRender(data.answer||'(no response)');
       }catch(err){
