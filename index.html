@@ -437,23 +437,57 @@ function limitVerifiedSources() {
   </script>
 
 <script>
-  // Prevent blank screen after app is minimized/dormant
-  document.addEventListener("visibilitychange", () => {
-      // When returning from background
-      if (!document.hidden) {
-          // Force DOM repaint and WebView rehydrate
-          requestAnimationFrame(() => {
-              const out = document.getElementById("out");
-              if (out && out.innerHTML.trim() === "") {
-                  // If WebView purged content, reload last known answer
-                  if (window.lastAnswerBackup) {
-                      out.innerHTML = window.lastAnswerBackup;
-                  }
-              }
-          });
-      }
-  });
+/* -----------------------------------------------------------
+   DAL PURGE-COLLAPSE PATCH (McGill Behavior Replication)
+   Only activates when #out is TRULY EMPTY after minimize.
+   Never triggers on any other condition.
+------------------------------------------------------------ */
+
+document.addEventListener("visibilitychange", () => {
+
+    // Only run when returning to foreground
+    if (document.hidden) return;
+
+    requestAnimationFrame(() => {
+        const out = document.getElementById("out");
+        if (!out) return;
+
+        // If output still has content → do nothing (normal state)
+        if (out.innerHTML.trim() !== "") return;
+
+        // ⭐ TRUE PURGE DETECTED — replicate McGill collapse
+        out.style.minHeight = "0px";
+        out.style.padding = "0px";
+        out.style.border = "none";
+        out.style.boxShadow = "none";
+
+        // Try to restore last answer
+        let restored = window.lastAnswerBackup;
+
+        if (!restored) {
+            try { restored = sessionStorage.getItem("lastAnswerBackup"); } catch {}
+        }
+        if (!restored) {
+            try { restored = localStorage.getItem("lastAnswerBackup"); } catch {}
+        }
+
+        if (restored) {
+            // Restore answer and undo collapse formatting
+            out.innerHTML = restored;
+
+            out.style.removeProperty("min-height");
+            out.style.removeProperty("padding");
+            out.style.removeProperty("border");
+            out.style.removeProperty("box-shadow");
+
+            return;
+        }
+
+        // ⭐ No restorable answer → collapsed box persists
+        // Thunkable interprets this as "empty output screen" and returns to input.
+    });
+});
 </script>
-  
+
 </body>
 </html>
