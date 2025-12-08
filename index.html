@@ -449,7 +449,6 @@ function isVisuallyBlank(el) {
   );
 
   // 🔥 Hardening patch — prevents false blank detection
-  if (el.children.length > 0) return false;
   return noText && (collapsed || noVisibleChildren);
 }
 
