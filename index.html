@@ -437,23 +437,22 @@ function limitVerifiedSources() {
 </script>
   
 <script>
-  // Prevent blank screen after app is minimized / dormant
-  document.addEventListener("visibilitychange", () => {
-      // When returning from background
-      if (!document.hidden) {
-          // Force DOM repaint and WebView rehydrate
-          requestAnimationFrame(() => {
-              const out = document.getElementById("out");
-              if (out && out.innerHTML.trim() === "") {
-                  // If WebView purged content, reload last known answer
-                  if (window.lastAnswerBackup) {
-                      out.innerHTML = window.lastAnswerBackup;
-                  }
-              }
-          });
-      }
-  });
-    
-  </script>
+// === RETURN TO INPUT SCREEN ON PURGE (NO RELOAD, NO API CALL) ===
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+
+    // Notify Thunkable BEFORE the WebView bridge dies
+    try {
+      ThunkableWebviewerExtension.postMessage("SET_RETURN_FLAG");
+    } catch (e) {
+      console.log("Bridge not available — fallback still works");
+    }
+
+    // Clear purged HTML so Thunkable detects blank content
+    const out = document.getElementById("out");
+    if (out) out.innerHTML = "";
+  }
+});
+</script>
 </body>
 </html>
