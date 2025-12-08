@@ -435,29 +435,24 @@ function limitVerifiedSources() {
   }
 }
 
-/* === FINAL PURGE DETECTOR — RETURN TO INPUT SCREEN === */
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) return;
-
-  requestAnimationFrame(() => {
-    const out = document.getElementById("out");
-    if (!out) return;
-
-    // iOS purge → container remains but innerHTML is wiped
-    if (out.innerHTML.trim() === "") {
-      try {
-        ThunkableWebviewerExtension.postMessage("NAVIGATE_INPUT");
-        return;
-      } catch (e) {}
-
-      // Generic fallback for McGill / Dal / SC
-      let base = window.location.href;
-      base = base.substring(0, base.lastIndexOf("/") + 1);
-      window.location.replace(base + "index_input.html");
-    }
-  });
-});
-  
+<script>
+  // Prevent blank screen after app is minimized / dormant
+  document.addEventListener("visibilitychange", () => {
+      // When returning from background
+      if (!document.hidden) {
+          // Force DOM repaint and WebView rehydrate
+          requestAnimationFrame(() => {
+              const out = document.getElementById("out");
+              if (out && out.innerHTML.trim() === "") {
+                  // If WebView purged content, reload last known answer
+                  if (window.lastAnswerBackup) {
+                      out.innerHTML = window.lastAnswerBackup;
+                  }
+              }
+          });
+      }
+  });
+    
   </script>
 </body>
 </html>
