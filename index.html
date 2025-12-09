@@ -343,39 +343,31 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
 
     // ✅ Universal Copy handler
 copyBtn.onclick = () => {
-  // Get the most recent answer (HTML)
   const html = (lastSingleAnswer || "").trim();
   if (!html) {
-      alert("No response yet to copy.");
-      return;
+    alert("No response yet to copy.");
+    return;
   }
 
-  // Convert HTML → clean plain text
-  const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = html;
-
-  // Convert line breaks properly
-  let text = tempDiv.innerText
-      .replace(/\n{3,}/g, "\n\n")  // no triple spacing
-      .trim();
-
   try {
-      navigator.clipboard.writeText(text).then(() => {
-          copyBtn.textContent = "Copied!";
-          setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
-      });
-  } catch (err) {
-      // Older device fallback
-      const temp = document.createElement("textarea");
-      temp.value = text;
-      temp.style.position = "fixed";
-      temp.style.opacity = "0";
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
+    // Copy the raw HTML with all hyperlinks preserved
+    navigator.clipboard.writeText(html).then(() => {
       copyBtn.textContent = "Copied!";
       setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    });
+  } catch (err) {
+    // Fallback for iOS WebView
+    const temp = document.createElement("textarea");
+    temp.value = html;
+    temp.style.position = "fixed";
+    temp.style.opacity = "0";
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
   }
 }; 
 
