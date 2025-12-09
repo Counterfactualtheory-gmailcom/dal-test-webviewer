@@ -457,8 +457,8 @@ document.addEventListener("visibilitychange", () => {
 </script>
 
 <script>
-if (document.getElementById("out").textContent.trim() === "")
-  document.getElementById("out").style.display = "none";
+document.getElementById("out").style.minHeight = "1px";
+document.getElementById("out").innerHTML = "";
 </script>
   
 </body>
