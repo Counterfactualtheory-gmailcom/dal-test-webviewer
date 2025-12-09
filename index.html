@@ -77,14 +77,15 @@ a:visited {
   text-align: left;
 }
 
-/*
-#out:empty::before {
-  content: "Waiting for content…";
-  font-family: "Roboto", sans-serif;
-  font-style: italic;
-  color: #555;
+#out:empty:before {
+    content: "Ready to help…";
+    font-family: "Roboto", sans-serif;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    color: #555;
+    padding-top: 4px; /* keeps text visible even when container is 1px */
 }
-*/
     
 /* ✅ Follow-up section: styled to match Input screen */
 #followup-box {
