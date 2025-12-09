@@ -455,5 +455,11 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 </script>
+
+<script>
+if (document.getElementById("out").textContent.trim() === "")
+  document.getElementById("out").style.display = "none";
+</script>
+  
 </body>
 </html>
