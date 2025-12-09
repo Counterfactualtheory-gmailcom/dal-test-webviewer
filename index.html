@@ -432,27 +432,46 @@ function limitVerifiedSources() {
   
 <script>
 // === RETURN TO INPUT SCREEN ON PURGE (NO RELOAD, NO API CALL) ===
+
+// 1) MAIN purge detector — fires when returning from background
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) {
 
-    // Notify Thunkable BEFORE the WebView bridge dies
+    // ⭐ Notify Thunkable BEFORE the WebView bridge dies
     try {
       ThunkableWebviewerExtension.postMessage("SET_RETURN_FLAG");
     } catch (e) {
-      console.log("Bridge not available — fallback still works");
+      console.log("Bridge not available — will resend on boot");
     }
 
-    // Clear purged HTML so Thunkable detects blank content
+    // ⭐ Clear purged HTML so Thunkable sees blank
     const out = document.getElementById("out");
     if (out) out.innerHTML = "";
   }
 });
-</script>
 
-<script>
-document.getElementById("out").style.minHeight = "1px";
-document.getElementById("out").innerHTML = "";
-</script>
+// 2) GUARANTEED DELIVERY AFTER A FULL PURGE
+// When iOS kills WebView → HTML reloads → DOMContentLoaded fires
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Try immediately
+  try {
+    ThunkableWebviewerExtension.postMessage("SET_RETURN_FLAG");
+  } catch (e) {
+    console.log("Bridge not ready on DOMContentLoaded — retrying…");
+  }
+
+  // Retry after 300ms when bridge is definitely ready
+  setTimeout(() => {
+    try {
+      ThunkableWebviewerExtension.postMessage("SET_RETURN_FLAG");
+    } catch (e2) {
+      console.log("Retry failed — visibilitychange will catch next wake");
+    }
+  }, 300);
+
+});
+</script>  
   
 </body>
 </html>
