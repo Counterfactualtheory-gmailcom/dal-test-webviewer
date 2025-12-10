@@ -457,6 +457,28 @@ document.getElementById("sc-browser-overlay").addEventListener("click", async ()
   }
 });
 
+<!-- ========================================= -->
+<!-- IN-APP OVERLAY BROWSER FOR DAL -->
+<!-- ========================================= -->
+<style>
+#sc-browser-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 99999;
+  display: none;
+}
+
+#sc-browser-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+    
 <!-- In-app overlay browser (required for link opening) -->
 <div id="sc-browser-overlay">
   <iframe id="sc-browser-frame"></iframe>
