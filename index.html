@@ -456,7 +456,12 @@ document.getElementById("sc-browser-overlay").addEventListener("click", async ()
       outEl.innerHTML = window.storedAnswerHTML;
   }
 });
-    
+
+<!-- In-app overlay browser (required for link opening) -->
+<div id="sc-browser-overlay">
+  <iframe id="sc-browser-frame"></iframe>
+</div>
+
 </script>
     
 </body>
