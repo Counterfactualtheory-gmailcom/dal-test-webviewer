@@ -444,7 +444,26 @@ function limitVerifiedSources() {
   }
 }
 
-// ⭐ Close overlay on tap anywhere (returns purge safety)
+// ⭐ Handle requests from Thunkable to open links in the overlay
+ThunkableWebviewerExtension.receiveMessage(msg => {
+  if (typeof msg === "string" && msg.startsWith("OPEN_LINK::")) {
+    const url = msg.replace("OPEN_LINK::", "").trim();
+
+    // Store current answer so we can restore after overlay closes
+    window.storedAnswerHTML = outEl.innerHTML;
+
+    // Open overlay browser
+    const overlay = document.getElementById("sc-browser-overlay");
+    const frame = document.getElementById("sc-browser-frame");
+
+    frame.src = url;
+    overlay.style.display = "block";
+    document.body.dataset.overlayOpen = "1";
+  }
+});
+
+    
+    // ⭐ Close overlay on tap anywhere (returns purge safety)
 document.getElementById("sc-browser-overlay").addEventListener("click", async () => {
   // Close overlay
   document.getElementById("sc-browser-overlay").style.display = "none";
