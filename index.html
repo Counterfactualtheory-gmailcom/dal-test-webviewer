@@ -562,6 +562,15 @@ color: #0645AD;   /* standard web blue */
 
 </style>
 <!-- === END PREMIUM FORMATTING === -->
+
+<!-- === DIAGNOSTIC: FORCE TRUE BLANK (SC ONLY) === -->
+<script>
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    document.body.innerHTML = "";
+  }
+});
+</script>
   
 </body>
 </html>
