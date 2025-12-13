@@ -77,17 +77,7 @@ a:visited {
   text-align: left;
 }
 
-#out:empty:before {
-  content: "Ready to help…";
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 600;   /* bold */
-  font-style: normal;
-  display: block;
-  text-align: center;
-  color: #555;
-  padding-top: 4px;
-}
+
     
 /* ✅ Follow-up section: styled to match Input screen */
 #followup-box {
@@ -170,6 +160,22 @@ a:visited {
     #loading span:nth-child(2){animation-delay:.2s}
     #loading span:nth-child(3){animation-delay:.4s}
     @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+  
+  /* =====================================================
+   FINAL TYPOGRAPHY OVERRIDE — SINGLE SOURCE OF TRUTH
+   ===================================================== */
+
+#out:empty::before,
+#followup-text,
+#followup-text::placeholder,
+#followup-btn,
+#copy-btn {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+}
+  
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
