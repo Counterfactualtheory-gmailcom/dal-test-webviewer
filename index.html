@@ -426,7 +426,7 @@ copyBtn.onclick = () => {
     followupBtn.disabled=true;
 
     try {
-    const res = await fetch('/ask', {
+   const res = await fetch('https://web-production-28142.up.railway.app/ask', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
