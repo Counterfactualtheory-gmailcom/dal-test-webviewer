@@ -111,14 +111,14 @@ a:visited {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  transform: translateX(-1px);
 }
 
 /* Follow-up text area */
 #followup-text {
-width: 100%;
-  min-height: 240px;
+  width: 100%;
+  min-height: 220px;
   padding: 12px;
+  font-size: 18px;
   border-radius: 8px;
   border: none;
   outline: none;
@@ -129,11 +129,6 @@ width: 100%;
   box-sizing: border-box;
 }
 
-/* FORCE font size on the actual input */
-  textarea {
-    font-size: 18px !important;
-  }
-    
 /* Buttons */
 #followup-btn, #copy-btn {
   width: 100%;
@@ -173,7 +168,7 @@ width: 100%;
 #followup-btn,
 #copy-btn {
   position: relative;
-  left: -3px;
+  left: -3px;  /* match #out’s -5px optical centering */
 }
     
     /* 🔹 Animated dots */
@@ -431,7 +426,7 @@ copyBtn.onclick = () => {
     followupBtn.disabled=true;
 
     try {
-   const res = await fetch('https://web-production-28142.up.railway.app/ask', {
+    const res = await fetch('https://web-production-43cb.up.railway.app/ask', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
