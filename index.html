@@ -118,7 +118,6 @@ a:visited {
   width: 100%;
   min-height: 240px;
   padding: 12px;
-  font-size: 24px;
   border-radius: 8px;
   border: none;
   outline: none;
@@ -129,6 +128,11 @@ a:visited {
   box-sizing: border-box;
 }
 
+/* FORCE font size on the actual input */
+  textarea {
+    font-size: 24px !important;
+  }
+    
 /* Buttons */
 #followup-btn, #copy-btn {
   width: 100%;
