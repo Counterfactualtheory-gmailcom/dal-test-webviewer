@@ -106,8 +106,14 @@ a:visited {
   border-radius: 12px;
   padding: 16px;
 
-  width: 100%;            /* ✅ THIS is what widens it */
+  width: 90%;                 /* MATCH #out */
   max-width: 480px;
+
+  margin-left: auto;          /* 🔑 force margin centering */
+  margin-right: auto;
+
+  position: relative;
+  left: -5px;                 /* 🔑 same optical correction as #out */
 
   box-shadow: 0 0 8px rgba(248,198,0,0.25);
   display: flex;
