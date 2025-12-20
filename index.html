@@ -101,8 +101,8 @@ a:visited {
 /* ✅ Follow-up section: styled to match Input screen */
 #followup-box {
   margin-top: 4px;
-  background-color: #000000;              /* black like input box */
-  border: 2px solid #f8c600;              /* Dal gold border */
+  background-color: #000000;
+  border: 2px solid #f8c600;
   border-radius: 12px;
   padding: 16px;
   width: 90%;
@@ -112,8 +112,11 @@ a:visited {
   flex-direction: column;
   align-items: stretch;
 
-  position: relative;   /* ← ADD */
-  left: -5px;           /* ← ADD (match #out exactly) */
+  position: relative;
+  left: -5px;
+
+  box-sizing: border-box;        /* 🔑 REQUIRED */
+  padding-right: 18px;           /* 🔑 REVEALS right rounded corners */
 }
 
 /* Follow-up text area */
