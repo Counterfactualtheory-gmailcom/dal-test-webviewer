@@ -99,6 +99,13 @@ a:visited {
 #out:empty { display: none; }
     
 /* ✅ Follow-up section: styled to match Input screen */
+#followup-wrapper {
+  width: 100vw;              /* 🔑 ignore parent padding */
+  display: flex;
+  justify-content: center;   /* 🔑 real centering */
+  box-sizing: border-box;
+}
+
 #followup-box {
   margin-top: 4px;
 
@@ -110,11 +117,6 @@ a:visited {
   max-width: 480px;
 
   padding: 16px;
-
-  /* 🔑 HARD CENTERING RELATIVE TO VIEWPORT */
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
 
   box-shadow: 0 0 8px rgba(248,198,0,0.25);
 
