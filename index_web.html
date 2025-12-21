@@ -225,6 +225,12 @@ a:visited {
     marked.setOptions({gfm:true,breaks:true,mangle:false,headerIds:false});
     const outEl=document.getElementById('out');
     const dbgEl=document.getElementById('dbg');
+
+function updateScrollState() {
+  const hasAnswer = outEl.innerHTML.trim().length > 0;
+  document.body.style.overflowY = hasAnswer ? 'auto' : 'hidden';
+}
+    
     const showDebug=/[?&]debug=1\b/.test(location.search);
     const followupBtn=document.getElementById('followup-btn');
     const followupText=document.getElementById('followup-text');
