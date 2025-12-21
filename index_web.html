@@ -100,19 +100,18 @@ a:visited {
     
 #followup-box {
   margin-top: 4px;
-  background-color: #000000;
-  border: 2px solid #f8c600;
-  border-radius: 12px;
-  padding: 16px;
+  background: transparent;   /* ✅ removes black background */
+  border: none;              /* ✅ removes gold outline */
+  border-radius: 0;          /* ✅ no rounded container */
+  padding: 0;                /* ✅ removes fake spacing */
 
-  width: 93%;              /* ← CHANGE THIS */
+  width: 93%;
   max-width: 480px;
 
-  margin-left: 6px;   /* ← nudge right border left */
+  margin-left: 6px;
   margin-right: auto;
   
   box-sizing: border-box;
-  box-shadow: 0 0 8px rgba(248,198,0,0.25);
 
   display: flex;
   flex-direction: column;
