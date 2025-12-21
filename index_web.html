@@ -285,22 +285,20 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
   
-if (!linkHandlerAttached) {
+// ✅ ONLY intercept links when running inside Thunkable
+if (!linkHandlerAttached && window.ThunkableWebviewerExtension) {
   outEl.addEventListener('click', e => {
-      const a = e.target.closest && e.target.closest('a[href]');
-      if (!a) return;
-      const url = a.href;
-      if (/^https?:/i.test(url)) {
-        e.preventDefault();
-        try {
-          ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
-        } catch (err) {
-          window.location.assign(url);
-        }
-      }
-    });
-    linkHandlerAttached = true;
-  }
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+
+    const url = a.href;
+    if (!/^https?:/i.test(url)) return;
+
+    e.preventDefault();
+    ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+  });
+
+  linkHandlerAttached = true;
 }
     let firstMessageReceived=false;let readyPingerId=null;
 
