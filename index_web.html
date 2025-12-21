@@ -334,20 +334,28 @@ if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
 // ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
 ThunkableWebviewerExtension.receiveMessage(function(msg){
   try {
+
+    // ✅ ADD THIS LINE — ignore Thunkable system messages (iOS only)
+    if (msg?.command) return;
+
     firstMessageReceived = true;
     if (readyPingerId) {
       clearInterval(readyPingerId);
       readyPingerId = null;
     }
 
-    // ⏳ Delay rendering slightly so DOMPurify/marked are ready
     setTimeout(() => {
       const payload =
         msg && typeof msg === 'object' && 'payload' in msg
           ? msg.payload
           : msg;
-  safeRender(typeof payload === "string" ? payload : payload?.answer || JSON.stringify(payload));
-    }, 50); // ~50 ms replicates McGill’s “Answer coming…” timing
+
+      safeRender(
+        typeof payload === "string"
+          ? payload
+          : payload?.answer || ""
+      );
+    }, 50);
 
   } catch (err) {
     outEl.textContent = 'Render error:' + err;
