@@ -285,7 +285,7 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
   
-if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
+if (!linkHandlerAttached) {
   outEl.addEventListener('click', e => {
       const a = e.target.closest && e.target.closest('a[href]');
       if (!a) return;
