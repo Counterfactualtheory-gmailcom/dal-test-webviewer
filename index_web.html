@@ -334,6 +334,7 @@ if (window.ThunkableWebviewerExtension &&
       catch(e){debug('postMessage error:'+e);}
     }
     window.addEventListener('DOMContentLoaded',()=>{
+        updateScrollState();   // ✅ ADD THIS LINE
       pingReady();
       let tries=0;
       readyPingerId=setInterval(()=>{
