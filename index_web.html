@@ -284,26 +284,6 @@ function safeRender(md) {
     a.target = '_blank';
     a.rel = 'noopener';
   });
-
-// Android fix — open links EXTERNALLY so the COMPAiSS UI stays in place
-if (/Android/i.test(navigator.userAgent)) {
-  outEl.querySelectorAll("a[href]").forEach(a => {
-    if (a.dataset.bound === "1") return;
-    a.dataset.bound = "1";
-
-    a.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(a.href, "_system");   // ← open externally, seamless
-    });
-
-    a.addEventListener("touchend", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(a.href, "_system");   // ← same for touch
-    }, { passive: false });
-  });
-}
   
 if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
   outEl.addEventListener('click', e => {
