@@ -293,16 +293,19 @@ if (!linkHandlerAttached) {
     const url = a.href;
     if (!/^https?:/i.test(url)) return;
 
-    // ✅ Thunkable environment → delegate to app
-    if (window.ThunkableWebviewerExtension &&
-        typeof ThunkableWebviewerExtension.postMessage === "function") {
+    // ✅ If running inside Thunkable
+    if (
+      window.ThunkableWebviewerExtension &&
+      typeof ThunkableWebviewerExtension.postMessage === "function" &&
+      navigator.userAgent.includes("Thunkable")
+    ) {
       e.preventDefault();
-      ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+      ThunkableWebviewerExtension.postMessage("OPEN_LINK::" + url);
       return;
     }
 
-    // ✅ Web (Mac / browser) → LET THE BROWSER HANDLE IT
-    // NO preventDefault here
+    // ✅ Otherwise (Web / Mac / Safari) — LET THE BROWSER HANDLE IT
+    // DO NOT preventDefault
   });
 
   linkHandlerAttached = true;
