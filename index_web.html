@@ -48,8 +48,12 @@ a:visited {
 .wrap {
   max-width: 480px;
   width: 100%;
-  margin: 12px auto 0;
+  margin: 0 auto;
   padding: 0;
+
+  /* ✅ THIS IS THE FIX */
+  padding-top: calc(env(safe-area-inset-top) + 12px);
+}
 
   /* ✅ iOS SAFE AREA FIX — DO NOT TOUCH BODY */
   padding-top: env(safe-area-inset-top);
