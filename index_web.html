@@ -24,11 +24,15 @@ html, body {
   padding: 0;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
   background: var(--bg-page);
   color: var(--text);
   font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   -webkit-text-size-adjust: 100%;
+
+  /* 🔴 THE ACTUAL FIX */
+  min-height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
     .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
