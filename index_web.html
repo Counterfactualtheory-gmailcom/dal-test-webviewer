@@ -50,9 +50,14 @@ a:visited {
   width: 100%;
   margin: 12px auto 0;
   padding: 0;
+
+  /* ✅ iOS SAFE AREA FIX — DO NOT TOUCH BODY */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
   display: flex;
   flex-direction: column;
-  align-items: center;   /* ✅ THIS IS THE FIX */
+  align-items: center;
 }
 
 #header {
