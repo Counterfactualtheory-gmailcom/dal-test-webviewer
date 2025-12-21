@@ -375,12 +375,14 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
       },600);
     });
 
-    followupBtn.onclick=async()=>{
-      const q=followupText.value.trim();
-      if(!q)return;
-  // 🔥 NEW — store previous question for backend conversational continuity
-    loading.style.display='block';
-    followupBtn.disabled=true;
+followupBtn.onclick=async()=>{
+  const q=followupText.value.trim();
+  if(!q)return;
+
+  followupText.blur(); // ✅ ADD THIS LINE
+
+  loading.style.display='block';
+  followupBtn.disabled=true;
 
     try {
     const res = await fetch('https://web-production-28142.up.railway.app/ask', {
