@@ -48,8 +48,12 @@ a:visited {
 .wrap {
   max-width: 480px;
   width: 100%;
-  margin: 0 auto;
+  margin: 12px auto 0;
   padding: 0;
+
+  /* IMPORTANT: no flex centering */
+  display: block;
+}
 
   /* ✅ THIS IS THE FIX */
   padding-top: calc(env(safe-area-inset-top) + 12px);
