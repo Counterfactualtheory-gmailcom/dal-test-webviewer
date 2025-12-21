@@ -28,6 +28,9 @@ html, body {
   color: var(--text);
   font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   -webkit-text-size-adjust: 100%;
+
+  height: 100%;
+  overflow: hidden; /* CRITICAL: body must NOT scroll */
 }
 
     .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
