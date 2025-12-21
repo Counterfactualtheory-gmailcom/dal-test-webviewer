@@ -226,7 +226,6 @@ a:visited {
     const showDebug=/[?&]debug=1\b/.test(location.search);
     const followupBtn=document.getElementById('followup-btn');
     const followupText=document.getElementById('followup-text');
-    const copyBtn=document.getElementById('copy-btn');
     const loading=document.getElementById('loading');
     let linkHandlerAttached=false;
     let lastAnswer="";
