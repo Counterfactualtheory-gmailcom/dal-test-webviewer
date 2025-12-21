@@ -284,27 +284,6 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
   
-// ✅ ONLY intercept links when running inside Thunkable
-if (
-  window.ThunkableWebviewerExtension &&
-  typeof ThunkableWebviewerExtension.postMessage === "function"
-) {
-  if (!linkHandlerAttached) {
-    outEl.addEventListener('click', e => {
-      const a = e.target.closest && e.target.closest('a[href]');
-      if (!a) return;
-
-      const url = a.href;
-      if (!/^https?:/i.test(url)) return;
-
-      e.preventDefault();
-      ThunkableWebviewerExtension.postMessage("OPEN_LINK::" + url);
-    });
-
-    linkHandlerAttached = true;
-  }
-}
-} 
     let firstMessageReceived=false;let readyPingerId=null;
 
 // ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
