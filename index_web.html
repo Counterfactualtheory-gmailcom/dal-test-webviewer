@@ -200,7 +200,14 @@ a:visited {
   font-weight: 600;
   font-style: normal;
 }
-  
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+
+  /* iOS ONLY — absorb dead space at bottom */
+  #followup-box {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+  }
+    
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
