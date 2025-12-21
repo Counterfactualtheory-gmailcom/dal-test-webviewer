@@ -285,30 +285,24 @@ function safeRender(md) {
   });
   
 // ✅ ONLY intercept links when running inside Thunkable
-if (!linkHandlerAttached) {
-  outEl.addEventListener('click', e => {
-    const a = e.target.closest && e.target.closest('a[href]');
-    if (!a) return;
+if (
+  window.ThunkableWebviewerExtension &&
+  typeof ThunkableWebviewerExtension.postMessage === "function"
+) {
+  if (!linkHandlerAttached) {
+    outEl.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
 
-    const url = a.href;
-    if (!/^https?:/i.test(url)) return;
+      const url = a.href;
+      if (!/^https?:/i.test(url)) return;
 
-    // ✅ If running inside Thunkable
-    if (
-      window.ThunkableWebviewerExtension &&
-      typeof ThunkableWebviewerExtension.postMessage === "function" &&
-      navigator.userAgent.includes("Thunkable")
-    ) {
       e.preventDefault();
       ThunkableWebviewerExtension.postMessage("OPEN_LINK::" + url);
-      return;
-    }
+    });
 
-    // ✅ Otherwise (Web / Mac / Safari) — LET THE BROWSER HANDLE IT
-    // DO NOT preventDefault
-  });
-
-  linkHandlerAttached = true;
+    linkHandlerAttached = true;
+  }
 }
 } 
     let firstMessageReceived=false;let readyPingerId=null;
