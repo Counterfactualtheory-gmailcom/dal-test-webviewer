@@ -346,7 +346,7 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
         msg && typeof msg === 'object' && 'payload' in msg
           ? msg.payload
           : msg;
-      safeRender(payload);
+  safeRender(typeof payload === "string" ? payload : payload?.answer || JSON.stringify(payload));
     }, 50); // ~50 ms replicates McGill’s “Answer coming…” timing
 
   } catch (err) {
