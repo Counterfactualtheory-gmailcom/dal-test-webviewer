@@ -285,7 +285,7 @@ function safeRender(md) {
   });
   
 // ✅ ONLY intercept links when running inside Thunkable
-if (!linkHandlerAttached && window.ThunkableWebviewerExtension) {
+if (!linkHandlerAttached) {
   outEl.addEventListener('click', e => {
     const a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
@@ -293,8 +293,16 @@ if (!linkHandlerAttached && window.ThunkableWebviewerExtension) {
     const url = a.href;
     if (!/^https?:/i.test(url)) return;
 
-    e.preventDefault();
-    ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+    // ✅ Thunkable environment → delegate to app
+    if (window.ThunkableWebviewerExtension &&
+        typeof ThunkableWebviewerExtension.postMessage === "function") {
+      e.preventDefault();
+      ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+      return;
+    }
+
+    // ✅ Web (Mac / browser) → LET THE BROWSER HANDLE IT
+    // NO preventDefault here
   });
 
   linkHandlerAttached = true;
