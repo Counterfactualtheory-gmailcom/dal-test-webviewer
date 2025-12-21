@@ -231,6 +231,8 @@ a:visited {
     let lastAnswer="";
     let lastSingleAnswer = "";
     let lastQuestionBackup = "";
+    let firstMessageReceived=false;
+    let readyPingerId=null;
 
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
@@ -283,8 +285,6 @@ function safeRender(md) {
     a.target = '_blank';
     a.rel = 'noopener';
   });
-  
-    let firstMessageReceived=false;let readyPingerId=null;
 
 // ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
 if (window.ThunkableWebviewerExtension &&
