@@ -335,7 +335,7 @@ if (!linkHandlerAttached && !/Android/i.test(navigator.userAgent)) {
 ThunkableWebviewerExtension.receiveMessage(function(msg){
   try {
 
-    // ✅ ADD THIS LINE — ignore Thunkable system messages (iOS only)
+    // ✅ IGNORE Thunkable system / handshake messages (iOS only)
     if (msg?.command) return;
 
     firstMessageReceived = true;
@@ -359,10 +359,8 @@ ThunkableWebviewerExtension.receiveMessage(function(msg){
 
   } catch (err) {
     outEl.textContent = 'Render error:' + err;
-    debug('Render error:' + (err && err.stack || err));
   }
 });
-
     function pingReady(){
       try{ThunkableWebviewerExtension.postMessage('ready');}
       catch(e){debug('postMessage error:'+e);}
