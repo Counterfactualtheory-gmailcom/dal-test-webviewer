@@ -29,8 +29,9 @@ html, body {
   font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   -webkit-text-size-adjust: 100%;
 
-  /* 🔴 THE ACTUAL FIX */
-  min-height: 100dvh;
+  /* ✅ CORRECT FIX — iOS SAFARI / WKWEBVIEW */
+  height: 100svh;
+
   overflow-x: hidden;
   overflow-y: auto;
 }
