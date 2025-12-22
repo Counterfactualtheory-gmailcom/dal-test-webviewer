@@ -43,16 +43,16 @@ a:visited {
   opacity: 0.9;   /* optional subtle hover fade */
 }
 
-/* Main layout container */
+/* Main layout container — SAFE FINAL */
 .wrap {
   max-width: 480px;
   width: 100%;
   margin: 12px auto 0;
-  padding-top: 24px;
 
-  min-height: 100svh;      /* ✅ CRITICAL: restores scroll + fixes iOS clipping */
-  box-sizing: border-box; /* ✅ prevents padding from increasing height */
+  padding-top: calc(env(safe-area-inset-top) + 24px);
+  padding-bottom: env(safe-area-inset-bottom);
 
+  box-sizing: border-box;
   display: block;
 }
 
