@@ -364,6 +364,7 @@ if (!linkHandlerAttached) {
     let readyPingerId = null;
 
     ThunkableWebviewerExtension.receiveMessage(function (msg) {
+      if (msg === 'ready' || (msg && msg.payload === 'ready')) return;
       try {
         firstMessageReceived = true;
         if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
