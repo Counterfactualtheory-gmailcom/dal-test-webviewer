@@ -436,7 +436,57 @@ function limitVerifiedSources() {
     outEl.appendChild(note);
   }
 }
-  
+
+// === COPY LAST ANSWER LOGIC ===
+copyBtn.onclick = () => {
+  const html = (lastSingleAnswer || "").trim();
+
+  if (!html) {
+    alert("No answer yet to copy.");
+    return;
+  }
+
+  // Convert rendered HTML into readable text with links preserved
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  // Turn <a> tags into: Label (URL)
+  temp.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    a.replaceWith(document.createTextNode(`${label} (${url})`));
+  });
+
+  const text = temp.innerText
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  // Primary clipboard API (works on modern iOS)
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    }).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+
+  // Fallback for older iOS / WKWebView
+  function fallbackCopy() {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+  }
+};
+    
 </script>
 
 </body>
