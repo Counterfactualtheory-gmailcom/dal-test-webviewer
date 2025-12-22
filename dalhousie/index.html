@@ -254,6 +254,7 @@ function removeEmptyBullets() {
 }
     
 function safeRender(md) {
+  if (String(md).trim() === 'ready') return;
   const raw = String(md || '');
 
   // ✅ Strip control tags (e.g., <<START ANSWER>>, [COMPLETED], etc.)
