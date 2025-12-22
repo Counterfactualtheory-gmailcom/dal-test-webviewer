@@ -19,6 +19,15 @@
       --link-visited: #c8e0ff;
     }
 
+/* === iOS Safari viewport correction (minimal, safe) === */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    height: 100svh;
+    max-height: 100svh;
+    overflow-y: auto;
+  }
+}
+    
 html, body {
   margin: 0;
   padding: 0;
