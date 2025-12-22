@@ -1,1 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAL Answer Viewer</title>
+ 
+  <style>
+    :root{
+      --wrap: 900px;
+      --pad: 16px;
+      --border: #e5e7eb;
+      --accent: #f0c44c;
+      --text: #ffffff;
+      --bg: #f2f2f2;       /* Light neutral gray */
+      --bg-page: #f2f2f2;
+      --muted: #dbe7ff;
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+    }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-page);
+  color: var(--text);
+  font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  -webkit-text-size-adjust: 100%;
+
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: #0055cc; /* ✅ Single deep Dalhousie blue for all links */
+}
+a:hover,
+a:focus,
+a:visited {
+  color: #0055cc; /* ✅ same color always */
+  opacity: 0.9;   /* optional subtle hover fade */
+}
+
+/* Main layout container — SAFE FINAL */
+.wrap {
+  max-width: 480px;
+  width: 100%;
+  margin: 12px auto 0;
+  padding: 0;
+  display: block;
+}
+
+#header {
+  width: 93%;
+  max-width: 480px;
+  margin: 36px auto 24px; /* ⬅️ THIS is the correct vertical control */
+  text-align: center;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0055cc;
+  margin-top: 2px;
+}
+    
+/* Output content box */
+#out {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #f8c600;
+  border-radius: 12px;
+  padding: 18px;
+  width: 93%;
+  max-width: 480px;
+  margin-left: auto;      /* ✅ ALIGN WITH INPUT BOX */
+  margin-right: auto;
+  display: block;
+  overflow-y: auto;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px rgba(248,198,0,0.25);
+  position: relative;
+  transform: none;
+  text-align: left;
+}
+
+#out:empty { display: none; }
+    
+#followup-box {
+  margin-top: 16px;
+  background: transparent;   /* ✅ removes black background */
+  border: none;              /* ✅ removes gold outline */
+  border-radius: 0;          /* ✅ no rounded container */
+  padding: 0;                /* ✅ removes fake spacing */
+
+  width: 93%;
+  max-width: 480px;
+
+  margin-left: auto;     /* ✅ */
+  margin-right: auto;    /* ✅ */
+  
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Follow-up text area */
+#followup-text {
+  width: 100%;
+  min-height: 260px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  resize: none;
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+#followup-btn, #copy-btn {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Submit Follow-Up: Dal gold */
+#followup-btn {
+  background-color: #f8c600;
+  color: #000;
+}
+#followup-btn:hover {
+  background-color: #ffd500;
+}
+
+/* Copy All: Dal blue */
+#copy-btn {
+  background-color: #102f60;
+  color: #ffffff;
+}
+#copy-btn:hover {
+  opacity: 0.9;
+}
+
+/* -----------------------------------------------------
+   FIX: Perfectly center follow-up box + buttons with #out
+------------------------------------------------------ */
+    
+    /* 🔹 Animated dots */
+    #loading{
+      display:none;text-align:center;margin-top:10px;font-weight:600;
+      color: #000000;   /* black text */
+    }
+    #loading span{animation:blink 1.4s infinite both}
+    #loading span:nth-child(2){animation-delay:.2s}
+    #loading span:nth-child(3){animation-delay:.4s}
+    @keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+  
+  /* =====================================================
+   FINAL TYPOGRAPHY OVERRIDE — SINGLE SOURCE OF TRUTH
+   ===================================================== */
+
+#out:empty::before,
+#followup-text,
+#followup-text::placeholder,
+#followup-btn,
+#copy-btn {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+}
+    
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+<div id="header">
+  <div class="app-title">Dalhousie COMPAiSS</div>
+  <div class="app-subtitle">Write in any language</div>
+</div>
+
+<div id="out"></div>
+    
+    <div id="followup-box">
+      <textarea id="followup-text" placeholder="Tap & type your Dalhousie question, issue, or concern here..."></textarea>
+      <button id="followup-btn">Submit</button>
+      <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <div id="dbg" class="debug"></div>
+  </div>
+
+  <script>
+    marked.setOptions({gfm:true,breaks:true,mangle:false,headerIds:false});
+    const outEl=document.getElementById('out');
+    const dbgEl=document.getElementById('dbg');
+    const showDebug=/[?&]debug=1\b/.test(location.search);
+    const followupBtn=document.getElementById('followup-btn');
+    const followupText=document.getElementById('followup-text');
+    const loading=document.getElementById('loading');
+    let linkHandlerAttached=false;
+    let lastAnswer="";
+    let lastSingleAnswer = "";
+    let lastQuestionBackup = "";
+    let firstMessageReceived=false;
+    let readyPingerId=null;
+
+    function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
+
+function removeEmptyBullets() {
+  const lists = document.querySelectorAll("ul, ol");
+  lists.forEach(list => {
+    const items = list.querySelectorAll("li");
+    items.forEach(li => {
+      if (!li.textContent.trim()) li.remove();
+    });
+    if (!list.textContent.trim()) list.remove();
+  });
+}
+    
+function safeRender(md) {
+  const raw = String(md || '');
+
+  // ✅ Strip control tags (e.g., <<START ANSWER>>, [COMPLETED], etc.)
+  const cleaned = raw
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
+    .replace(/\[+COMPLETED+\]/gi, '')
+    .replace(/\[+DONE+\]/gi, '')
+    .trim();
+
+  const html = marked.parse(cleaned);
+  const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
+  let linked = clean1;
+
+  try {
+    if (typeof linkifyHtml === 'function') {
+      linked = linkifyHtml(clean1, {
+        defaultProtocol: 'https',
+        nl2br: false,
+        validate: { url: (v) => /^https?:\/\//i.test(v) },
+        attributes: { rel: 'noopener', target: '_blank' }
+      });
+    }
+  } catch (e) { debug('linkify error:' + e); }
+
+  const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
+  lastSingleAnswer = clean2;
+
+  if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+  outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+  removeEmptyBullets();
+  window.lastAnswerBackup = clean2;
+
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+}
+// ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
+if (window.ThunkableWebviewerExtension &&
+    typeof ThunkableWebviewerExtension.receiveMessage === "function") {
+
+  ThunkableWebviewerExtension.receiveMessage(function(msg){
+    try {
+
+      // IGNORE Thunkable system / handshake messages (iOS only)
+      if (msg?.command) return;
+
+      firstMessageReceived = true;
+      if (readyPingerId) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
+      }
+
+      setTimeout(() => {
+        const payload =
+          msg && typeof msg === 'object' && 'payload' in msg
+            ? msg.payload
+            : msg;
+
+        safeRender(
+          typeof payload === "string"
+            ? payload
+            : payload?.answer || ""
+        );
+      }, 50);
+
+    } catch (err) {
+      outEl.textContent = 'Render error:' + err;
+    }
+  });
+
+}
+    function pingReady(){
+      try{ThunkableWebviewerExtension.postMessage('ready');}
+      catch(e){debug('postMessage error:'+e);}
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      pingReady();
+      let tries=0;
+      readyPingerId=setInterval(()=>{
+        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
+        pingReady();tries++;
+      },600);
+    });
+
+followupBtn.onclick=async()=>{
+  const q=followupText.value.trim();
+  if(!q)return;
+
+  followupText.blur(); // ✅ ADD THIS LINE
+
+  loading.style.display='block';
+  followupBtn.disabled=true;
+
+    try {
+    const res = await fetch('https://web-production-28142.up.railway.app/ask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      question: q,
+      previousQuestion: window.lastAnswerBackup || ""
+    })
+  });
+        const data=await res.json();
+        safeRender(data.answer||'(no response)');
+      }catch(err){
+        safeRender('⚠️ Error sending follow-up: '+err.message);
+        limitVerifiedSources(); // ✅ NEW: clean and shorten verified links
+      }
+      loading.style.display='none';
+      followupBtn.disabled=false;
+      followupText.value='';
+    };
+
+// ✅ Trim and rename verified source links like McGill
+function limitVerifiedSources() {
+  const links = outEl.querySelectorAll('#out a[href]');
+
+  // Replace generic placeholder text with readable host/path
+  links.forEach(a => {
+    if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
+      try {
+        const url = new URL(a.href);
+        const host = url.hostname.replace(/^www\./, '');
+        const path = url.pathname.replace(/\/$/, '');
+        a.textContent = host + path;
+      } catch {
+        a.textContent = a.href;
+      }
+    }
+  });
+
+  // Limit to top 8 links only
+  if (links.length > 8) {
+    for (let i = 8; i < links.length; i++) links[i].style.display = 'none';
+    const note = document.createElement('div');
+    note.textContent = '(showing top 8 verified sources)';
+    note.style.textAlign = 'center';
+    note.style.marginTop = '10px';
+    note.style.fontSize = '14px';
+    note.style.color = '#555';
+    outEl.appendChild(note);
+  }
+}
+  
+</script>
+
+</body>
+</html>
