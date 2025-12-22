@@ -49,6 +49,10 @@ a:visited {
   width: 100%;
   margin: 12px auto 0;
   padding-top: 24px;
+
+  min-height: 100svh;      /* ✅ CRITICAL: restores scroll + fixes iOS clipping */
+  box-sizing: border-box; /* ✅ prevents padding from increasing height */
+
   display: block;
 }
 
