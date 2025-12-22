@@ -240,6 +240,9 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
+// ✅ iOS detection (Safari + WKWebView safe)
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
 
 // ✅ Show Copy button ONLY on iOS
 if (!isIOS) {
