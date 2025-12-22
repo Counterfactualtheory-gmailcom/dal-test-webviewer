@@ -27,7 +27,14 @@
     overflow-y: auto;
   }
 }
-    
+
+/* iOS keyboard: push input above keyboard */
+@supports (-webkit-touch-callout: none) {
+  #followup-text {
+    scroll-margin-bottom: 260px;
+  }
+}
+ 
 html, body {
   margin: 0;
   padding: 0;
