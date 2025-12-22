@@ -240,6 +240,14 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
+
+// ✅ Show Copy button ONLY on iOS
+if (!isIOS) {
+  copyBtn.style.display = 'none';
+} else {
+  copyBtn.style.display = 'block';
+}
+    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
