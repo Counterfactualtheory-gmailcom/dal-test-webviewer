@@ -1,1 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>McGill COMPAiSS Viewer</title>
 
+  <style>
+    /* ✅ Remove unwanted bullet dots and emoji markers in the output */
+    #out ul,
+    #out ol {
+      list-style-type: none !important;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    #out li::before {
+      content: none !important;
+    }
+
+#header {
+  width: 90%;
+  max-width: 480px;
+  margin: 12px auto 8px;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0055cc;   /* blue, exactly like Dal */
+  margin-top: 2px;
+}
+    
+  :root {
+    --wrap: 900px;
+    --pad: 16px;
+    --border: #e5e7eb;
+    --accent: #ED1B2F;   /* ✅ McGill Red */
+    --text: #000000;
+    --bg: #696969;       /* Light neutral gray */
+    --bg-page: #f2f2f2;
+    --muted: #ffccd0;    /* Muted light red/pink for blockquotes */
+  }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg-page);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: var(--pad); }
+
+/* 🔹 Standard blue hyperlinks for accessibility */
+a { 
+  word-break: break-word; 
+  text-decoration: underline; 
+  color: #0645AD;        /* Standard web blue */
+}
+a:visited { color: #0B0080; }  /* Standard visited purple */
+a:hover, a:focus { color: #3366CC; opacity: 1; }
+    
+/* 🚫 Prevent horizontal shifting, lock layout — FINAL FIX */
+#out {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Clean, safe, container-only layout rules */
+#out {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* ⭐ Fix clipped first line in WebViewer */
+#out {
+  padding-top: 8px !important;
+  line-height: 1.4 !important;
+}
+
+#out p:first-child {
+  margin-top: 8px !important;
+}
+   
+/* 🔗 Standard accessible hyperlinks */
+#out a { color: #0645AD !important; }
+#out a:visited { color: #0B0080 !important; }
+#out a:hover, #out a:focus { color: #3366CC !important; opacity: 1; }
+
+/* 📝 Blockquotes + tables */
+#out blockquote { 
+  color: #000000 !important;    /* Black text */
+}
+
+#out table th, 
+#out table td { 
+  border-color: var(--border) !important; 
+}
+
+pre, code { 
+  white-space: pre-wrap; 
+  word-break: break-word; 
+}
+
+blockquote { 
+  margin: 0 0 1em 0; 
+  padding-left: 12px;
+  border-left: 4px solid var(--border);
+  color: #000000 !important;    /* Black text */
+}
+
+table { 
+  border-collapse: collapse; 
+  width: 100%; 
+  margin: .5em 0; 
+}
+
+th, td { 
+  border: 1px solid var(--border); 
+  padding: 8px; 
+  vertical-align: top; 
+}
+
+#followup-box {
+  margin-top: -18px;
+  padding: 12px;
+  background: #5a0000;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  min-height: 260px;   /* ⭐ THIS is the structural expansion */
+
+  /* ⭐ Move entire container slightly left (adjustable) */
+  margin-left: -6px;    
+  margin-right: 6px;
+}
+
+#followup-text {
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  resize: none;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#followup-btn,
+#copy-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  transition: opacity .2s;
+  font-size: 17px;   /* ← increased font size */
+}
+
+    #followup-btn:hover, #copy-btn:hover { opacity: .9; }
+
+    #copy-btn {
+      background: #730000;
+    }
+
+#loading {
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
+  background-color: #B5121B;   /* McGill red */
+  color: #FFFFFF;              /* White text */
+  padding: 12px 16px;
+  border-radius: 8px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+    #loading span { animation: blink 1.4s infinite both; }
+    #loading span:nth-child(2) { animation-delay: .2s; }
+    #loading span:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink { 0%,80%,100%{opacity:0;} 40%{opacity:1;} }
+    
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ✅ HEADER (MATCHES DAL EXACTLY) -->
+    <div id="header">
+      <div class="app-title">McGill COMPAiSS</div>
+      <div class="app-subtitle">Write in any language</div>
+    </div>
+
+    <!-- ANSWER OUTPUT -->
+    <div id="out"></div>    
+
+    <div id="followup-box">
+      <textarea id="followup-text" placeholder="Tap & type your McGill question, issue, or concern..."></textarea>
+      <button id="followup-btn">Submit</button>
+      <button id="copy-btn">Copy Last Answer</button>
+      <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <div id="dbg" class="debug"></div>
+  </div>
+
+  <script>
+    marked.setOptions({ gfm: true, breaks: true, mangle: false, headerIds: false });
+    const outEl = document.getElementById('out');
+    const dbgEl = document.getElementById('dbg');
+    const showDebug = /[?&]debug=1\b/.test(location.search);
+    const followupBtn = document.getElementById('followup-btn');
+    const followupText = document.getElementById('followup-text');
+    const copyBtn = document.getElementById('copy-btn');
+    const loading = document.getElementById('loading');
+    let linkHandlerAttached = false;
+    let lastAnswer = "";
+    let lastSingleAnswer = "";
+
+    function debug(m) {
+      if (!showDebug) return;
+      dbgEl.style.display = 'block';
+      dbgEl.textContent += (dbgEl.textContent ? '\n' : '') + m;
+    }
+
+function safeRender(md) {
+  let cleaned = String(md || '');
+
+// 🚫 Remove backend-injected McGill source dumps (all variants)
+cleaned = cleaned
+  // Remove SOURCES: header
+  .replace(/^SOURCES:\s*$/gim, '')
+
+  // Remove full lines containing McGill placeholder
+  .replace(/^.*Verified McGill Source.*$/gim, '')
+
+  // Remove bulleted variations
+  .replace(/^[ \t]*[-*•]\s*Verified McGill Source.*$/gim, '')
+
+  // Remove inline occurrences
+  .replace(/Verified McGill Source/gi, '')
+
+  // Remove generic fallback patterns
+  .replace(/^.*Verified Source.*$/gim, '')
+  .replace(/Verified Source/gi, '')
+
+  // Remove empty leftover lines after stripping
+  .replace(/^\s*$/gm, '');
+  
+  // 🚫 Remove accidental list markers (general safety)
+  cleaned = cleaned
+    .replace(/^[-*]\s+/gm, '')
+    .replace(/^•\s+/gm, '');
+
+  // 🚫 Strip control tags
+  cleaned = cleaned
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
+    .replace(/\[+COMPLETED+\]/gi, '')
+    .replace(/\[+DONE+\]/gi, '')
+    .trim();
+
+  // ⭐ Render cleaned Markdown → HTML
+  const html = marked.parse(cleaned || '');
+  const step1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
+
+  let linked = step1;
+  try {
+    linked = linkifyHtml(step1, {
+      defaultProtocol: 'https',
+      validate: { url: v => /^https?:\/\//i.test(v) },
+      attributes: { rel: 'noopener', target: '_blank' }
+    });
+  } catch (_) {}
+
+  const final = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
+  lastSingleAnswer = final;
+
+// ⭐ Insert into output
+if (outEl.textContent.includes('Waiting for content')) {
+  outEl.innerHTML = '';
+}
+outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + final;
+
+/* -----------------------------------------------------------
+   DAL-STYLE BULLET CLEANUP — major DOM mutation (testable)
+----------------------------------------------------------- */
+function removeEmptyBullets() {
+  const lists = document.querySelectorAll("ul, ol");
+  lists.forEach(list => {
+    const items = list.querySelectorAll("li");
+    items.forEach(li => {
+      if (!li.textContent.trim()) li.remove();
+    });
+    if (!list.textContent.trim()) list.remove();
+  });
+}
+removeEmptyBullets();
+
+/* ----------------------------------------------------------- */
+  
+// ⭐ Store the most recent clean HTML block (required for Copy + Restore)
+window.lastAnswerBackup = final;
+  
+  // Ensure link safety
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+
+// === OPEN LINKS EXTERNALLY (RESTORED ORIGINAL BEHAVIOR) ===
+if (!linkHandlerAttached) {
+  outEl.addEventListener("click", e => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+
+    const url = a.href;
+    if (/^https?:/i.test(url)) {
+      e.preventDefault();
+
+      // Open externally — preserves COMPAiSS state
+      try {
+        ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+      } catch (err) {
+        // Fallback if extension isn't available
+        window.location.assign(url);
+      }
+    }
+  });
+
+  linkHandlerAttached = true;
+}
+}
+    
+    let firstMessageReceived = false;
+    let readyPingerId = null;
+
+    ThunkableWebviewerExtension.receiveMessage(function (msg) {
+      try {
+        firstMessageReceived = true;
+        if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
+        const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
+        setTimeout(() => {
+        safeRender(payload);
+        }, 50);    
+      } catch (err) {
+        outEl.textContent = 'Render error:' + err;
+        debug('Render error:' + (err && err.stack || err));
+      }
+    });
+
+    function pingReady() {
+      try { ThunkableWebviewerExtension.postMessage('ready'); }
+      catch (e) { debug('postMessage error:' + e); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      pingReady();
+      let tries = 0;
+      readyPingerId = setInterval(() => {
+        if (firstMessageReceived || tries >= 10) {
+          clearInterval(readyPingerId);
+          readyPingerId = null;
+          return;
+        }
+        pingReady(); tries++;
+      }, 600);
+    });
+
+    // ✅ Universal Copy handler
+// === UNIVERSAL COPY HANDLER (Markdown-style hyperlinks) ===
+copyBtn.onclick = () => {
+  const html = (lastSingleAnswer || "").trim();
+  if (!html) {
+    alert("No response yet to copy.");
+    return;
+  }
+
+  // Create temporary DOM parser
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  // Convert <a> tags → Markdown [label](url)
+  tempDiv.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    const md = `[${label}](${url})`;
+    a.replaceWith(document.createTextNode(md));
+  });
+
+  // Extract readable text without any HTML tags
+  const text = tempDiv.innerText
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  try {
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    });
+  } catch (err) {
+    // iOS fallback
+    const t = document.createElement("textarea");
+    t.value = text;
+    t.style.position = "fixed";
+    t.style.opacity = "0";
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+  }
+};
+    
+followupBtn.onclick = async () => {
+  const q = followupText.value.trim();
+  if (!q) return;
+
+  loading.style.display = 'block';
+  followupBtn.disabled = true;
+
+  try {
+    const res = await fetch('https://mcgillcombinedacrabackend-production.up.railway.app/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        question: q,
+        previousQuestion: window.lastAnswerBackup || ""
+      })
+  });
+
+    const data = await res.json();
+
+    // ✅ Remove temporary loading indicator before rendering
+    const oldLoading = document.getElementById("loading-active");
+    if (oldLoading) oldLoading.remove();
+
+    // ✅ Append new answer below previous ones
+    safeRender(data.answer || '(no response)');
+
+  // ❌ Disable all post-answer injections (sources, bullets, extras)
+ // limitVerifiedSources();
+
+  } catch (err) {
+    const oldLoading = document.getElementById("loading-active");
+    if (oldLoading) oldLoading.remove();
+    safeRender('⚠️ Error sending follow-up: ' + err.message);
+    console.error('Fetch error:', err);
+  }
+
+  loading.style.display = 'none';
+  followupBtn.disabled = false;
+  followupText.value = '';
+};
+
+// ✅ Trim excess “Verified Greenlist Source” links & replace placeholder text
+/*
+function limitVerifiedSources() {
+  const links = outEl.querySelectorAll('#out a[href]');
+  links.forEach(a => {
+    if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
+      try {
+        const url = new URL(a.href);
+        const host = url.hostname.replace(/^www\./, '');
+        const path = url.pathname.replace(/\/$/, '');
+        a.textContent = host + path;
+      } catch {
+        a.textContent = a.href;
+      }
+    }
+  });
+
+  if (links.length > 8) {
+    for (let i = 8; i < links.length; i++) {
+      links[i].style.display = 'none';
+    }
+    const note = document.createElement('div');
+    note.textContent = '(showing top 8 verified sources)';
+    note.style.textAlign = 'center';
+    note.style.marginTop = '10px';
+    note.style.fontSize = '14px';
+    note.style.color = '#555';
+    outEl.appendChild(note);
+  }
+}
+*/
+    
+ </script>
+
+<!-- === COMPAiSS PREMIUM FORMATTING — CSS ONLY (SAFE FOR ALL APPS) === -->
+<style>
+
+/* --- FIX: Prevent iOS clipping of numbered lists and bullets --- */
+#out {
+  padding-left: 8px !important;     /* Ensures list markers are never clipped */
+}
+
+/* Lists (merged fix + spacing rules) */
+#out ol,
+#out ul {
+  padding-left: 1.4em !important;   /* Enough space for iOS list markers */
+  margin-left: 0 !important;        /* Prevent negative browser margin */
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out li {
+  padding-left: 2px;                /* Micro-indent for safety */
+  margin-bottom: 0.25em;
+  line-height: 1.4;
+}
+
+/* Paragraph spacing & readability */
+#out p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.45;
+}
+
+/* Clean branded hyperlinks */
+#out a {
+color: #0645AD;   /* standard web blue */
+  text-decoration: underline;
+  font-weight: 500;
+}
+#out a:hover {
+  opacity: 0.85;
+}
+
+/* Elegant blockquotes for policy quotations */
+#out blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-left: 0;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  color: #555;
+  font-style: italic;
+}
+  
+</style>
+
+</body>
+</html>
