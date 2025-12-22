@@ -236,6 +236,11 @@ a:visited {
     const loading=document.getElementById('loading');
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; 
     const copyBtn = document.getElementById('copy-btn');
+
+  if (isIOS && copyBtn) {
+  copyBtn.style.display = 'block';
+}
+    
     let linkHandlerAttached=false;
     let lastAnswer="";
     let lastSingleAnswer = "";
