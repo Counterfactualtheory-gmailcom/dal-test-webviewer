@@ -402,7 +402,11 @@ if (!linkHandlerAttached) {
         }
         pingReady(); tries++;
       }, 600);
-    });
+   // ✅ iOS-only: show Copy button once DOM is stable
+  if (isIOS() && copyBtn) {
+    copyBtn.style.display = 'block';
+  }
+});
 
     // ✅ Universal Copy handler
 // === UNIVERSAL COPY HANDLER (Markdown-style hyperlinks) ===
