@@ -362,21 +362,19 @@ if (!linkHandlerAttached) {
     if (!a) return;
 
     const url = a.href;
-    if (/^https?:/i.test(url)) {
-      e.preventDefault();
 
-      // Open externally — preserves COMPAiSS state
-      try {
-        ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
-      } catch (err) {
-        // Fallback if extension isn't available
-        window.location.assign(url);
-      }
+    // ✅ ONLY intercept links INSIDE Thunkable app
+    if (
+      typeof window.ThunkableWebviewerExtension !== "undefined" &&
+      typeof ThunkableWebviewerExtension.postMessage === "function"
+    ) {
+      e.preventDefault();
+      ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
     }
+    // ✅ Otherwise: DO NOTHING → browser handles link normally
   });
 
   linkHandlerAttached = true;
-}
 }
     
     let firstMessageReceived = false;
