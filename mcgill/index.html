@@ -245,17 +245,6 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn'); 
-
-// Show Copy button ONLY on:
-// - Thunkable app
-// - Mobile browsers (iOS / Android)
-if (
-  typeof window.ThunkableWebviewerExtension === "object" ||
-  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-) {
-  copyBtn.style.display = "block";
-}
-    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
