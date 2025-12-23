@@ -351,20 +351,28 @@ window.lastAnswerBackup = final;
     let firstMessageReceived = false;
     let readyPingerId = null;
 
-    ThunkableWebviewerExtension.receiveMessage(function (msg) {
-      if (msg === 'ready' || (msg && msg.payload === 'ready')) return;
-      try {
-        firstMessageReceived = true;
-        if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
-        const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
-        setTimeout(() => {
+if (
+  typeof ThunkableWebviewerExtension !== "undefined" &&
+  typeof ThunkableWebviewerExtension.receiveMessage === "function"
+) {
+  ThunkableWebviewerExtension.receiveMessage(function (msg) {
+    if (msg === 'ready' || (msg && msg.payload === 'ready')) return;
+    try {
+      firstMessageReceived = true;
+      if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
+      const payload =
+        (msg && typeof msg === 'object' && 'payload' in msg)
+          ? msg.payload
+          : msg;
+      setTimeout(() => {
         safeRender(payload);
-        }, 50);    
-      } catch (err) {
-        outEl.textContent = 'Render error:' + err;
-        debug('Render error:' + (err && err.stack || err));
-      }
-    });
+      }, 50);
+    } catch (err) {
+      outEl.textContent = 'Render error:' + err;
+      debug('Render error:' + (err && err.stack || err));
+    }
+  });
+}
 
     function pingReady() {
       try { ThunkableWebviewerExtension.postMessage('ready'); }
