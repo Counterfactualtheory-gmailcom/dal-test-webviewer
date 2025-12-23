@@ -244,7 +244,15 @@ th, td {
     const showDebug = /[?&]debug=1\b/.test(location.search);
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
-    const copyBtn = document.getElementById('copy-btn'); 
+    const copyBtn = document.getElementById('copy-btn');
+
+// ✅ Show Copy button ONLY on iOS (Safari web + Thunkable app)
+if (isIOS()) {
+  copyBtn.style.display = "block";
+} else {
+  copyBtn.style.display = "none";
+}
+    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
