@@ -284,6 +284,7 @@ function isIOS() {
 }
     
 function safeRender(md) {
+  if (String(md).trim() === 'ready') return;
   let cleaned = String(md || '');
 
 // 🚫 Remove backend-injected McGill source dumps (all variants)
