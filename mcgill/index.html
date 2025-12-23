@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>McGill COMPAiSS</title>
+  <title>McGill COMPAiSS Viewer</title>
 
   <style>
     /* ✅ Remove unwanted bullet dots and emoji markers in the output */
@@ -36,11 +36,10 @@
   font-weight: 500;
   color: #0055cc;   /* blue, exactly like Dal */
   margin-top: 2px;
-  margin-bottom: 16px; /* ← add this */
 }
     
   :root {
-    --wrap: 540px;
+    --wrap: 900px;
     --pad: 16px;
     --border: #e5e7eb;
     --accent: #ED1B2F;   /* ✅ McGill Red */
@@ -90,7 +89,6 @@ a:hover, a:focus { color: #3366CC; opacity: 1; }
 #out {
   padding-top: 8px !important;
   line-height: 1.4 !important;
-  margin-bottom: 24px;   /* ✅ ADD THIS */
 }
 
 #out p:first-child {
@@ -138,15 +136,15 @@ th, td {
 
 #followup-box {
   margin-top: -18px;
-  padding: 24px;
+  padding: 12px;
   background: #5a0000;
   border-radius: 8px;
   border: 1px solid var(--accent);
   min-height: 260px;   /* ⭐ THIS is the structural expansion */
 
   /* ⭐ Move entire container slightly left (adjustable) */
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: -6px;    
+  margin-right: 6px;
 }
 
 #followup-text {
@@ -162,10 +160,6 @@ th, td {
   box-sizing: border-box;
 }
 
-#followup-text::placeholder {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-    
 #followup-btn,
 #copy-btn {
   margin-top: 8px;
@@ -229,7 +223,7 @@ th, td {
     <div id="out"></div>    
 
     <div id="followup-box">
-      <textarea id="followup-text" placeholder="Tap & type your McGill question, issue, or concern here..."></textarea>
+      <textarea id="followup-text" placeholder="Tap & type your McGill question, issue, or concern..."></textarea>
       <button id="followup-btn">Submit</button>
       <button id="copy-btn">Copy Last Answer</button>
       <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
@@ -246,10 +240,6 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
-
-   // 🔒 Hide Copy button by default everywhere
-    copyBtn.style.display = "none";
-    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
@@ -261,6 +251,11 @@ th, td {
       dbgEl.textContent += (dbgEl.textContent ? '\n' : '') + m;
     }
 
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+    
 function safeRender(md) {
   let cleaned = String(md || '');
 
@@ -298,9 +293,7 @@ cleaned = cleaned
     .replace(/\[+DONE+\]/gi, '')
     .trim();
 
-// ✅ ADD THIS LINE
-cleaned = cleaned.replace(/OPEN_IN_BROWSER::/gi, '');
-
+  // ⭐ Render cleaned Markdown → HTML
   const html = marked.parse(cleaned || '');
   const step1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
 
@@ -347,32 +340,47 @@ window.lastAnswerBackup = final;
     a.target = '_blank';
     a.rel = 'noopener';
   });
+
+// === OPEN LINKS EXTERNALLY (RESTORED ORIGINAL BEHAVIOR) ===
+if (!linkHandlerAttached) {
+  outEl.addEventListener("click", e => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+
+    const url = a.href;
+    if (/^https?:/i.test(url)) {
+      e.preventDefault();
+
+      // Open externally — preserves COMPAiSS state
+      try {
+        ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+      } catch (err) {
+        // Fallback if extension isn't available
+        window.location.assign(url);
+      }
+    }
+  });
+
+  linkHandlerAttached = true;
+}
+}
     
     let firstMessageReceived = false;
     let readyPingerId = null;
 
-if (
-  typeof ThunkableWebviewerExtension !== "undefined" &&
-  typeof ThunkableWebviewerExtension.receiveMessage === "function"
-) {
-  ThunkableWebviewerExtension.receiveMessage(function (msg) {
-    if (msg === 'ready' || (msg && msg.payload === 'ready')) return;
-    try {
-      firstMessageReceived = true;
-      if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
-      const payload =
-        (msg && typeof msg === 'object' && 'payload' in msg)
-          ? msg.payload
-          : msg;
-      setTimeout(() => {
+    ThunkableWebviewerExtension.receiveMessage(function (msg) {
+      try {
+        firstMessageReceived = true;
+        if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
+        const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
+        setTimeout(() => {
         safeRender(payload);
-      }, 50);
-    } catch (err) {
-      outEl.textContent = 'Render error:' + err;
-      debug('Render error:' + (err && err.stack || err));
-    }
-  });
-}
+        }, 50);    
+      } catch (err) {
+        outEl.textContent = 'Render error:' + err;
+        debug('Render error:' + (err && err.stack || err));
+      }
+    });
 
     function pingReady() {
       try { ThunkableWebviewerExtension.postMessage('ready'); }
