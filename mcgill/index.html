@@ -244,9 +244,11 @@ th, td {
     const copyBtn = document.getElementById('copy-btn');
 
 // ✅ iOS detection (Safari + WKWebView safe)
-const isIOS =
-  (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) ||
-  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const isRealIOS =
+  /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+  navigator.platform !== 'MacIntel';
+
+copyBtn.style.display = isRealIOS ? 'block' : 'none';
     
 // ✅ Show Copy button ONLY on iOS
 if (!isIOS) {
