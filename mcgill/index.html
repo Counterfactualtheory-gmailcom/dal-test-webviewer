@@ -247,12 +247,12 @@ th, td {
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
 
-// ✅ iOS detection (Safari + WKWebView safe)
-const isRealIOS =
-  /iPad|iPhone|iPod/.test(navigator.userAgent) &&
-  navigator.platform !== 'MacIntel';
+// ✅ Show Copy button ONLY inside Thunkable WebViewer
+const isThunkable =
+  typeof ThunkableWebviewerExtension !== "undefined" &&
+  typeof ThunkableWebviewerExtension.postMessage === "function";
 
-copyBtn.style.display = isRealIOS ? 'block' : 'none';
+copyBtn.style.display = isThunkable ? "block" : "none";
     
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
