@@ -355,16 +355,16 @@ if (!linkHandlerAttached) {
 
     const url = a.href;
 
-    // ✅ ONLY intercept links INSIDE Thunkable app
-if (
-  window.ReactNativeWebView &&
-  typeof ThunkableWebviewerExtension !== "undefined" &&
-  typeof ThunkableWebviewerExtension.postMessage === "function"
-) {
+    // ✅ Intercept ONLY inside Thunkable app
+    if (
+      window.ReactNativeWebView &&
+      typeof window.ThunkableWebviewerExtension !== "undefined" &&
+      typeof ThunkableWebviewerExtension.postMessage === "function"
+    ) {
       e.preventDefault();
       ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
     }
-    // ✅ Otherwise: DO NOTHING → browser handles link normally
+    // ✅ Otherwise: browser handles link normally
   });
 
   linkHandlerAttached = true;
