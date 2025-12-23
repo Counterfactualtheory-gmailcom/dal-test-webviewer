@@ -244,32 +244,16 @@ th, td {
     const showDebug = /[?&]debug=1\b/.test(location.search);
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
-    const copyBtn = document.getElementById('copy-btn');
+    const copyBtn = document.getElementById('copy-btn'); 
 
-function isMobileBrowser() {
-  return (
-    /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-  );
-}
-
-function isThunkableApp() {
-  return (
-    typeof window.ThunkableWebviewerExtension !== "undefined" &&
-    typeof window.ThunkableWebviewerExtension.postMessage === "function"
-  );
-}
-
-// ✅ SHOW copy button on:
+// Show Copy button ONLY on:
 // - Thunkable app
-// - Mobile browsers (phone/tablet)
-//
-// ❌ HIDE on:
-// - Mac / Windows browsers
-if (isThunkableApp() || isMobileBrowser()) {
+// - Mobile browsers (iOS / Android)
+if (
+  typeof window.ThunkableWebviewerExtension === "object" ||
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+) {
   copyBtn.style.display = "block";
-} else {
-  copyBtn.style.display = "none";
 }
     
     const loading = document.getElementById('loading');
