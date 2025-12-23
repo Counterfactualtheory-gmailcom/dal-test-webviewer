@@ -404,6 +404,12 @@ if (!linkHandlerAttached) {
       }, 600);
     });
 
+  // ✅ SAFELY show Copy button on iOS ONLY (runs after Safari settles)
+  if (isIOS()) {
+    copyBtn.style.display = "block";
+  }
+});
+
     // ✅ Universal Copy handler
 // === UNIVERSAL COPY HANDLER (Markdown-style hyperlinks) ===
 copyBtn.onclick = () => {
