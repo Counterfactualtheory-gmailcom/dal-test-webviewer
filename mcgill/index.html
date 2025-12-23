@@ -135,16 +135,20 @@ th, td {
 }
 
 #followup-box {
-  margin-top: -18px;
-  padding: 12px;
-  background: #5a0000;
-  border-radius: 8px;
-  border: 1px solid var(--accent);
-  min-height: 260px;   /* ⭐ THIS is the structural expansion */
+  width: 93%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
 
-  /* ⭐ Move entire container slightly left (adjustable) */
-  margin-left: -6px;    
-  margin-right: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 #followup-text {
