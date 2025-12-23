@@ -246,14 +246,6 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
-
-// ✅ Show Copy button ONLY inside Thunkable WebViewer
-const isThunkable =
-  typeof ThunkableWebviewerExtension !== "undefined" &&
-  typeof ThunkableWebviewerExtension.postMessage === "function";
-
-copyBtn.style.display = isThunkable ? "block" : "none";
-    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
