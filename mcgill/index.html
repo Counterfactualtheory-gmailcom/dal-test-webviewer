@@ -246,6 +246,10 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
+
+   // 🔒 Hide Copy button by default everywhere
+    copyBtn.style.display = "none";
+    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
