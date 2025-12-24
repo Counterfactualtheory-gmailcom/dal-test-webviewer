@@ -244,6 +244,21 @@
     const followupBtn=document.getElementById('followup-btn');
     const followupText=document.getElementById('followup-text');
     const copyBtn=document.getElementById('copy-btn');
+
+function isIOSWeb() {
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+}
+
+// ✅ DAL-style behavior:
+// - iOS Safari + iOS WKWebView → SHOW
+// - Mac / Windows browsers → HIDE
+if (copyBtn) {
+  copyBtn.style.display = isIOSWeb() ? 'block' : 'none';
+}
+    
     const loading=document.getElementById('loading');
     let linkHandlerAttached=false;
     let lastAnswer="";
