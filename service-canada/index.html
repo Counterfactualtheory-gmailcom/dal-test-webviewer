@@ -496,33 +496,6 @@ const res = await fetch('https://servicecanbackendproduction-production.up.railw
 }
 </style>
 
-<div id="sc-browser-overlay">
-  <iframe id="sc-browser-frame"></iframe>
-</div>
-
-<script>
-
-// Handle requests from Thunkable to open links in the overlay
-ThunkableWebviewerExtension.receiveMessage(msg => {
-  if (typeof msg === "string" && msg.startsWith("OPEN_LINK::")) {
-    const url = msg.replace("OPEN_LINK::", "").trim();
-
-    const overlay = document.getElementById("sc-browser-overlay");
-    const frame = document.getElementById("sc-browser-frame");
-
-    frame.src = url;
-    overlay.style.display = "block";
-  }
-});
-
-// Close overlay on tap (NO state restoration, NO purge logic)
-document.getElementById("sc-browser-overlay").addEventListener("click", () => {
-  document.getElementById("sc-browser-overlay").style.display = "none";
-  document.getElementById("sc-browser-frame").src = "about:blank";
-});
-  
-</script>
-
 <!-- === COMPAiSS PREMIUM FORMATTING — CSS ONLY (SAFE FOR ALL APPS) === -->
 <style>
 
