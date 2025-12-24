@@ -446,7 +446,7 @@ const res = await fetch('https://servicecanbackendproduction-production.up.railw
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     question: q,
-    previousQuestion: window.lastAnswerBackup || ""
+    previousQuestion: window.lastUserQuestion || ""
   })
 });
         const data = await res.json();
