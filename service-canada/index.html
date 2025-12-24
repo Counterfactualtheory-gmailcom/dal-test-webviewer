@@ -344,24 +344,6 @@ outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
     a.target = '_blank';
     a.rel = 'noopener';
   });
-
-  // ✅ Attach WebViewer link handler once
-  if (!linkHandlerAttached) {
-    outEl.addEventListener('click', e => {
-      const a = e.target.closest && e.target.closest('a[href]');
-      if (!a) return;
-      const url = a.href;
-      if (/^https?:/i.test(url)) {
-        e.preventDefault();
-        try {
-          ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
-        } catch (err) {
-          window.location.assign(url);
-        }
-      }
-    });
-    linkHandlerAttached = true;
-  }
 }
     let firstMessageReceived=false;let readyPingerId=null;
 
