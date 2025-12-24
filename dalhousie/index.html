@@ -281,6 +281,11 @@ a:visited {
     let linkHandlerAttached=false;
     let lastAnswer="";
     let lastSingleAnswer = "";
+
+// ✅ Question-only memory (cheap + stable)
+window.lastQuestion = "";
+window.lastUserQuestion = "";
+    
     let lastQuestionBackup = "";
     let firstMessageReceived=false;
     let readyPingerId=null;
