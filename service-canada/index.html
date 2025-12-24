@@ -253,6 +253,7 @@
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
 function safeRender(md){
+  if (String(md).trim() === 'ready') return;
   const raw = String(md || '');
 
   // ✅ Strip control tags from scaffolded answers
