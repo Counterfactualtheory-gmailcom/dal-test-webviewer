@@ -287,6 +287,11 @@ function safeRender(md){
 
   // ✅ Strip control tags from scaffolded answers
   const cleaned = raw
+
+ // 🔥 REMOVE internal link-control directives (SC-only bug)
+  .replace(/^OPEN_IN_BROWSER::.*$/gmi, '')
+  .replace(/^OPEN_LINK::.*$/gmi, '')
+    
     .replace(/<+START\s*ANSWER[^>]*>+/gi, '')   // <<START ANSWER>> and variants
     .replace(/<+END\s*ANSWER[^>]*>+/gi, '')     // <<END ANSWER>> and variants
     .replace(/\[+COMPLETED+\]/gi, '')           // [COMPLETED]
