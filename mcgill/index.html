@@ -70,28 +70,19 @@ a:hover, a:focus { color: #3366CC; opacity: 1; }
     
 /* 🚫 Prevent horizontal shifting, lock layout — FINAL FIX */
 #out {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
+  width: 96%;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 
-/* Clean, safe, container-only layout rules */
-#out {
-  width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
   word-wrap: break-word;
   box-sizing: border-box;
-}
 
-/* ⭐ Fix clipped first line in WebViewer */
-#out {
-  padding-top: 8px !important;
-  line-height: 1.4 !important;
+  padding-top: 8px;   /* iOS first-line clip fix */
+  line-height: 1.4;
 }
-
+    
 #out p:first-child {
   margin-top: 8px !important;
 }
