@@ -397,6 +397,10 @@ followupBtn.onclick=async()=>{
 
   followupText.blur(); // ✅ ADD THIS LINE
 
+  // ✅ Question-only memory rotation (REQUIRED)
+  window.lastUserQuestion = window.lastQuestion || "";
+  window.lastQuestion = q;
+  
   loading.style.display='block';
   followupBtn.disabled=true;
 
