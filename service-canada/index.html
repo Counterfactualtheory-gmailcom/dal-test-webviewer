@@ -56,18 +56,26 @@
 
 /* --- Center answer output box (same as McGill) --- */
 #out {
-  width: auto;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 
-  /* same padding-cancel technique */
-  margin-left: calc(-1 * var(--pad));
-  margin-right: calc(-1 * var(--pad));
+  border: 2px solid #ff0000;          /* 🇨🇦 Service Canada red */
+  border-radius: 12px;
+  padding: 18px;
 
-  padding-left: var(--pad);
-  padding-right: var(--pad);
+  width: 93%;
+  max-width: 540px;                   /* same as DAL */
+  margin-left: auto;
+  margin-right: auto;
 
+  display: block;
+  overflow-y: auto;
   box-sizing: border-box;
-  overflow-x: auto;
-  word-wrap: break-word;
+
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.25); /* red glow */
+  position: relative;
+  transform: none;
+  text-align: left;
 }
     
     a {
