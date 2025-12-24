@@ -356,10 +356,11 @@ if (!linkHandlerAttached) {
     const url = a.href;
 
     // ✅ ONLY intercept links INSIDE Thunkable app
-    if (
-      typeof window.ThunkableWebviewerExtension !== "undefined" &&
-      typeof ThunkableWebviewerExtension.postMessage === "function"
-    ) {
+  if (
+    window.ReactNativeWebView &&
+    typeof ThunkableWebviewerExtension !== "undefined" &&
+    typeof ThunkableWebviewerExtension.postMessage === "function"
+  ) {
       e.preventDefault();
       ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
     }
