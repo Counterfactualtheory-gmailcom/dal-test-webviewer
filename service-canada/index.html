@@ -437,7 +437,8 @@ copyBtn.onclick = () => {
     followupBtn.onclick = async () => {
       const q = followupText.value.trim();
       if (!q) return;
-      window.lastQuestion = q;
+window.lastUserQuestion = window.lastQuestion || "";
+window.lastQuestion = q;
       loading.style.display = 'block';
       followupBtn.disabled = true;
       try {
