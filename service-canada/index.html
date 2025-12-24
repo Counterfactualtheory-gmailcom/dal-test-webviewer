@@ -1,1 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Canada AI Assistant — Answer Viewer</title>
 
+  <style>
+
+/* === Service Canada header (matches DAL / McGill) === */
+#header {
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;     /* ↓ adjust THIS to move header down */
+  margin-bottom: 8px;  /* space before the input box */
+}
+
+#header .app-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+}
+
+#header .app-subtitle {
+  font-size: 14px;
+  color: #0f4079;
+  margin: 2px 0 0 0;
+}
+
+    :root {
+      --wrap: 900px;
+      --pad: 16px;
+      --border: #cccccc;
+      --accent: #ff0000;           /* ✅ Service Canada red */
+      --text: #000000;
+      --bg: #f2f2f2;               /* ✅ Light grey background */
+      --bg-page: #f2f2f2;
+      --muted: #555555;
+      --link: #0f4079;             /* ✅ Matching “Write in any language” blue */
+      --link-visited: #002f5c;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
+    }
+
+/* --- Center answer output box (same as McGill) --- */
+#out {
+  width: auto;
+
+  /* same padding-cancel technique */
+  margin-left: calc(-1 * var(--pad));
+  margin-right: calc(-1 * var(--pad));
+
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+
+  box-sizing: border-box;
+  overflow-x: auto;
+  word-wrap: break-word;
+}
+    
+    a {
+      word-break: break-word;
+      text-decoration: underline;
+      color: var(--link);
+    }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: 0.9; }
+
+    #out, #out *:not(a) { color: var(--text) !important; }
+    #out a { color: var(--link) !important; }
+    #out a:visited { color: var(--link-visited) !important; }
+    #out, #out * { background: transparent !important; }
+    #out blockquote { color: var(--muted) !important; }
+    #out table th, #out table td { border-color: var(--border) !important; }
+
+/* 🔥 FIX FOR iOS CUT-OFF DESCENDERS (g, y, p, j, q, emoji, bullets) */
+#out * {
+  line-height: 1.4 !important;
+  padding-bottom: 2px !important;
+}
+    
+    pre, code { white-space: pre-wrap; word-break: break-word; }
+    blockquote {
+      margin: 0 0 1em 0;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.5em 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      vertical-align: top;
+    }
+    h1, h2, h3 {
+      margin-top: 1.2em;
+      color: var(--accent);
+    }
+    .muted { opacity: 0.9; color: var(--muted); }
+    .debug {
+      font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      margin-top: 8px;
+      color: var(--accent);
+      display: none;
+    }
+
+#followup-box {
+  position: relative;
+
+  width: 100%;              /* keep full width */
+  margin-top: 12px;
+
+  margin-left: -4px;        /* ← move LEFT edge only */
+  margin-right: 0;          /* ← lock RIGHT edge */
+
+  padding: 12px;
+
+  background: #ffffff;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.2);
+
+  box-sizing: border-box;
+}
+    
+/* --- Larger textarea (cleanest, safest) --- */
+#followup-text {
+  width: 100%;                /* fills followup-box width */
+  min-height: 170px;
+  padding: 14px;              /* ← increased from 10px */
+  font-size: 16px;            /* ← slightly larger */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: none;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #000;
+}
+    
+#followup-btn, #copy-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    position: relative;    /* ensure no floating */
+    left: 0;               /* FIX: reset accidental shifting */
+    margin-left: 0;        /* FIX: ensure full centering */
+}
+
+    #copy-btn {
+      background: #0f4079;  /* ✅ Blue for bilingual “Write in any language” continuity */
+      color: #fff;
+    }
+    #copy-btn:hover, #followup-btn:hover { opacity: 0.9; }
+
+    /* 🔹 Animated dots */
+    #loading {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    #loading span { animation: blink 1.4s infinite both; }
+    #loading span:nth-child(2) { animation-delay: 0.2s; }
+    #loading span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink { 0%,80%,100% { opacity: 0; } 40% { opacity: 1; } }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- App header (matches DAL / McGill) -->
+  <div id="header" style="text-align:center; margin: 12px auto 14px;">
+    <div class="app-title" style="font-weight:700; font-size:18px;">
+      Service Canada AI Assistant
+    </div>
+    <div class="app-subtitle" style="font-size:14px; color:#0f4079;">
+      Write in any language
+    </div>
+  </div>
+
+  <!-- Answer output -->
+ <div id="out"></div>
+
+  <!-- Follow-up input -->
+  <div id="followup-box" style="margin-top: 12px;">
+    <textarea
+      id="followup-text"
+      placeholder="Tap & type your Service Canada question, issue, or concern..."
+    ></textarea>
+
+    <button id="followup-btn">Submit</button>
+    <button id="copy-btn">Copy Last Answer</button>
+
+    <div id="loading">
+      Answer coming<span>.</span><span>.</span><span>.</span>
+    </div>
+  </div>
+
+  <!-- Debug (optional) -->
+  <div id="dbg" class="debug"></div>
+
+</div>
+
+  <script>
+    marked.setOptions({ gfm:true, breaks:true, mangle:false, headerIds:false });
+    const outEl=document.getElementById('out');
+    const dbgEl=document.getElementById('dbg');
+    const showDebug=/[?&]debug=1\b/.test(location.search);
+    const followupBtn=document.getElementById('followup-btn');
+    const followupText=document.getElementById('followup-text');
+    const copyBtn=document.getElementById('copy-btn');
+    const loading=document.getElementById('loading');
+    let linkHandlerAttached=false;
+    let lastAnswer="";
+    let lastSingleAnswer = "";
+    window.lastQuestion = "";
+
+    function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
+
+function safeRender(md){
+  const raw = String(md || '');
+
+  // ✅ Strip control tags from scaffolded answers
+  const cleaned = raw
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')   // <<START ANSWER>> and variants
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')     // <<END ANSWER>> and variants
+    .replace(/\[+COMPLETED+\]/gi, '')           // [COMPLETED]
+    .replace(/\[+DONE+\]/gi, '')                // [DONE]
+    .trim();
+
+  // ✅ Render cleaned Markdown
+  const html = marked.parse(cleaned || '');
+  const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+
+  let linked = clean1;
+  try {
+    if (typeof linkifyHtml === 'function') {
+      linked = linkifyHtml(clean1, {
+        defaultProtocol: 'https',
+        nl2br: false,
+        validate: { url: (v) => /^https?:\/\//i.test(v) },
+        attributes: { rel: 'noopener', target: '_blank' }
+      });
+    }
+  } catch (e) {
+    debug('linkify error:' + e);
+  }
+
+const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target','rel'] });
+lastSingleAnswer = clean2;
+
+// Append into the output box
+if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+  
+  /* -----------------------------------------------------------
+     DAL–McGill DOM REFRESH BLOCK — triggers reflow & wake-up
+  ----------------------------------------------------------- */
+  function removeEmptyBullets() {
+    const lists = document.querySelectorAll("ul, ol");
+    lists.forEach(list => {
+      const items = list.querySelectorAll("li");
+      items.forEach(li => {
+        if (!li.textContent.trim()) li.remove();
+      });
+      if (!list.textContent.trim()) list.remove();
+    });
+  }
+  removeEmptyBullets();
+  /* ----------------------------------------------------------- */
+  
+  // ✅ Normalize all links
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+
+  // ✅ Attach WebViewer link handler once
+  if (!linkHandlerAttached) {
+    outEl.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      const url = a.href;
+      if (/^https?:/i.test(url)) {
+        e.preventDefault();
+        try {
+          ThunkableWebviewerExtension.postMessage('OPEN_IN_BROWSER::' + url);
+        } catch (err) {
+          window.location.assign(url);
+        }
+      }
+    });
+    linkHandlerAttached = true;
+  }
+}
+    let firstMessageReceived=false;let readyPingerId=null;
+
+// ✅ FIX: Align Service Canada render timing with McGill/DAL (prevents tag bleed)
+ThunkableWebviewerExtension.receiveMessage(function (msg) {
+  try {
+    firstMessageReceived = true;
+    if (readyPingerId) {
+      clearInterval(readyPingerId);
+      readyPingerId = null;
+    }
+
+    // ⏳ Add brief delay so DOM & libraries are ready before cleaning
+    setTimeout(() => {
+      const payload =
+        msg && typeof msg === "object" && "payload" in msg
+          ? msg.payload
+          : msg;
+      safeRender(payload);
+    }, 50); // 50 ms ≈ McGill’s natural “Answer coming…” delay
+
+  } catch (err) {
+    outEl.textContent = "Render error:" + err;
+    debug("Render error:" + (err && err.stack || err));
+  }
+});
+
+    function pingReady(){
+      try{ThunkableWebviewerExtension.postMessage('ready');}
+      catch(e){debug('postMessage error:'+e);}
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      pingReady();
+      let tries=0;
+      readyPingerId=setInterval(()=>{
+        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
+        pingReady();tries++;
+      },600);
+    });
+
+    // ✅ Universal Copy handler
+copyBtn.onclick = () => {
+  const html = (lastSingleAnswer || "").trim();
+  if (!html) {
+    alert("No response yet to copy.");
+    return;
+  }
+
+  // Create temporary DOM parser
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  // Convert <a> tags → Markdown [label](url)
+  tempDiv.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    const md = `[${label}](${url})`;
+    a.replaceWith(document.createTextNode(md));
+  });
+
+  // Extract readable text without any HTML tags
+  const text = tempDiv.innerText
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  try {
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    });
+  } catch (err) {
+    // iOS fallback
+    const t = document.createElement("textarea");
+    t.value = text;
+    t.style.position = "fixed";
+    t.style.opacity = "0";
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+  }
+};
+    
+    followupBtn.onclick = async () => {
+      const q = followupText.value.trim();
+      if (!q) return;
+      window.lastQuestion = q;
+      loading.style.display = 'block';
+      followupBtn.disabled = true;
+      try {
+const res = await fetch('https://servicecanbackendproduction-production.up.railway.app/ask', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    question: q,
+    previousQuestion: window.lastAnswerBackup || ""
+  })
+});
+        const data = await res.json();
+        safeRender(data.answer || '(no response)');
+      } catch (err) {
+        safeRender('⚠️ Error sending follow-up: ' + err.message);
+      }
+      loading.style.display = 'none';
+      followupBtn.disabled = false;
+      followupText.value = '';
+    };
+
+</script>
+
+<!-- ===========================================
+     IN-APP OVERLAY BROWSER FOR SERVICE CANADA
+     =========================================== -->
+<style>
+#sc-browser-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 99999;
+  display: none;
+}
+
+#sc-browser-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+
+<div id="sc-browser-overlay">
+  <iframe id="sc-browser-frame"></iframe>
+</div>
+
+<script>
+
+// Handle requests from Thunkable to open links in the overlay
+ThunkableWebviewerExtension.receiveMessage(msg => {
+  if (typeof msg === "string" && msg.startsWith("OPEN_LINK::")) {
+    const url = msg.replace("OPEN_LINK::", "").trim();
+
+    const overlay = document.getElementById("sc-browser-overlay");
+    const frame = document.getElementById("sc-browser-frame");
+
+    frame.src = url;
+    overlay.style.display = "block";
+  }
+});
+
+// Close overlay on tap (NO state restoration, NO purge logic)
+document.getElementById("sc-browser-overlay").addEventListener("click", () => {
+  document.getElementById("sc-browser-overlay").style.display = "none";
+  document.getElementById("sc-browser-frame").src = "about:blank";
+});
+  
+</script>
+
+<!-- === COMPAiSS PREMIUM FORMATTING — CSS ONLY (SAFE FOR ALL APPS) === -->
+<style>
+
+/* --- FIX: Prevent iOS clipping of numbered lists and bullets --- */
+#out {
+  padding-left: 8px !important;     /* Ensures list markers are never clipped */
+}
+
+/* Lists (merged fix + spacing rules) */
+#out ol,
+#out ul {
+  padding-left: 1.4em !important;   /* Enough space for iOS list markers */
+  margin-left: 0 !important;        /* Prevent negative browser margin */
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out li {
+  padding-left: 2px;                /* Micro-indent for safety */
+  margin-bottom: 0.25em;
+  line-height: 1.4;
+}
+
+/* Paragraph spacing & readability */
+#out p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.45;
+}
+
+/* Clean branded hyperlinks */
+#out a {
+color: #0645AD;   /* standard web blue */
+  text-decoration: underline;
+  font-weight: 500;
+}
+#out a:hover {
+  opacity: 0.85;
+}
+
+/* Elegant blockquotes for policy quotations */
+#out blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-left: 0;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  color: #555;
+  font-style: italic;
+}
+  
+</style>
+
+</body>
+</html>
