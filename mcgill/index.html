@@ -95,6 +95,11 @@ a:hover, a:focus { color: #3366CC; opacity: 1; }
   background-color: #ffffff;         /* clean contrast */
   box-shadow: 0 0 6px rgba(237,27,47,0.15); /* subtle McGill glow */
 }
+
+/* ✅ Hide answer container completely when empty */
+#out:empty {
+  display: none;
+}   
     
 /* 🔗 Standard accessible hyperlinks */
 #out a { color: #0645AD !important; }
