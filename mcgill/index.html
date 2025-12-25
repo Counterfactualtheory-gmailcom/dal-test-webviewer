@@ -244,6 +244,14 @@ th, td {
     const followupBtn = document.getElementById('followup-btn');
     const followupText = document.getElementById('followup-text');
     const copyBtn = document.getElementById('copy-btn');
+
+const isMobile =
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (isMobile && copyBtn) {
+  copyBtn.style.display = 'block';
+}
+    
     const loading = document.getElementById('loading');
     let linkHandlerAttached = false;
     let lastAnswer = "";
@@ -254,11 +262,6 @@ th, td {
       dbgEl.style.display = 'block';
       dbgEl.textContent += (dbgEl.textContent ? '\n' : '') + m;
     }
-
-function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent)
-    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
     
 function safeRender(md) {
   if (String(md).trim() === 'ready') return;
