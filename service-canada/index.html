@@ -259,18 +259,11 @@
     const followupText=document.getElementById('followup-text');
     const copyBtn=document.getElementById('copy-btn');
 
-function isIOSWeb() {
-  return (
-    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-  );
-}
+const isMobile =
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// ✅ DAL-style behavior:
-// - iOS Safari + iOS WKWebView → SHOW
-// - Mac / Windows browsers → HIDE
 if (copyBtn) {
-  copyBtn.style.display = isIOSWeb() ? 'block' : 'none';
+  copyBtn.style.display = isMobile ? 'block' : 'none';
 }
     
     const loading=document.getElementById('loading');
