@@ -86,7 +86,16 @@ a:hover, a:focus { color: #3366CC; opacity: 1; }
 #out p:first-child {
   margin-top: 8px !important;
 }
-   
+
+/* ✅ McGill-branded answer container border */
+#out {
+  border: 2px solid var(--accent);   /* McGill red */
+  border-radius: 12px;
+  padding: 14px 16px;                /* breathing room inside border */
+  background-color: #ffffff;         /* clean contrast */
+  box-shadow: 0 0 6px rgba(237,27,47,0.15); /* subtle McGill glow */
+}
+    
 /* 🔗 Standard accessible hyperlinks */
 #out a { color: #0645AD !important; }
 #out a:visited { color: #0B0080 !important; }
