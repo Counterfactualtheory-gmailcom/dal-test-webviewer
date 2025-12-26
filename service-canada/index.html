@@ -7,6 +7,83 @@
 
   <style>
 
+/* ===============================
+   SERVICE CANADA INTRO OVERLAY
+=============================== */
+
+#sc-intro {
+  position: fixed;
+  inset: 0;
+  background: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+#sc-intro.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sc-intro-card {
+  max-width: 520px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.sc-intro-card h1 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 22px;
+  color: #d60000;
+}
+
+.sc-intro-text {
+  font-size: 15px;
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.sc-intro-sub {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 22px;
+}
+
+#sc-intro-continue {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: #d60000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#sc-intro-continue:hover {
+  opacity: 0.9;
+}
+
+/* App hidden until intro is dismissed */
+#app-root {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#app-root.visible {
+  display: block;
+  opacity: 1;
+}
+
 /* === Service Canada header (matches DAL / McGill) === */
 #header {
   width: 100%;
