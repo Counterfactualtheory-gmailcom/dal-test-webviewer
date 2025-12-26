@@ -318,7 +318,7 @@
 
 <!-- ⬇️ EXISTING APP STARTS HERE ⬇️ -->
   
-<div class="wrap">
+<div id="app-root" class="wrap">
 
   <!-- App header (matches DAL / McGill) -->
   <div id="header" style="text-align:center; margin: 12px auto 14px;">
@@ -633,5 +633,33 @@ color: #0645AD;   /* standard web blue */
   
 </style>
 
+<script>
+/* ===============================
+   SERVICE CANADA INTRO CONTROL
+   Step 1: Show intro → fade → reveal app
+=============================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const intro = document.getElementById("sc-intro");
+  const continueBtn = document.getElementById("sc-intro-continue");
+  const app = document.getElementById("app-root");
+
+  if (!intro || !continueBtn || !app) return;
+
+  // Ensure intro is visible and app is hidden on load
+  intro.classList.remove("hidden");
+  app.classList.remove("visible");
+
+  continueBtn.addEventListener("click", () => {
+    intro.classList.add("hidden");
+
+    setTimeout(() => {
+      intro.style.display = "none";
+      app.classList.add("visible");
+    }, 400); // must match CSS transition
+  });
+});
+</script>
+  
 </body>
 </html>
