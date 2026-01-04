@@ -347,6 +347,32 @@ function safeRender(md) {
     a.rel = 'noopener';
   });
 }
+
+// ✅ FORCE external browser navigation for all real links (Thunkable fix)
+outEl.addEventListener("click", function (e) {
+  const a = e.target.closest("a[href]");
+  if (!a) return;
+
+  const href = a.getAttribute("href");
+
+  // Only act on real http(s) links
+  if (!/^https?:\/\//i.test(href)) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  // Thunkable-specific external open
+  if (
+    window.ThunkableWebviewerExtension &&
+    typeof ThunkableWebviewerExtension.openBrowser === "function"
+  ) {
+    ThunkableWebviewerExtension.openBrowser(href);
+  } else {
+    // Web fallback (desktop / browser testing)
+    window.open(href, "_blank", "noopener");
+  }
+});    
+    
 // ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
 if (window.ThunkableWebviewerExtension &&
     typeof ThunkableWebviewerExtension.receiveMessage === "function") {
