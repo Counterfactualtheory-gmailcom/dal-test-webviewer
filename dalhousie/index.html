@@ -348,10 +348,15 @@ function safeRender(md) {
   const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
   lastSingleAnswer = clean2;
 
-  if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
-  outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
-  removeEmptyBullets();
-  window.lastAnswerBackup = clean2;
+if (outEl.textContent.includes('Waiting for content')) {
+  outEl.innerHTML = '';
+}
+
+outEl.innerHTML +=
+  (outEl.innerHTML ? insertFiveBoldLines() : '') + clean2;
+
+removeEmptyBullets();
+window.lastAnswerBackup = clean2;
 
   outEl.querySelectorAll('a').forEach(a => {
     a.target = '_blank';
