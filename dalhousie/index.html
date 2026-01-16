@@ -319,7 +319,13 @@ function safeRender(md) {
     .replace(/\[+DONE+\]/gi, '')
     .trim();
 
-  const html = marked.parse(cleaned);
+// 🔹 ENFORCE VISUAL ANSWER SEPARATION (UI LAYER)
+const enhanced = cleaned.replace(
+  /\n[-─]{5,}\n\s*NEXT ANSWER\s*\n[-─]{5,}\n/gi,
+  '\n\n<hr class="answer-divider">\n<div class="next-answer-label">NEXT ANSWER</div>\n<hr class="answer-divider">\n\n'
+);
+
+  const html = marked.parse(enhanced);
   const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
   let linked = clean1;
 
