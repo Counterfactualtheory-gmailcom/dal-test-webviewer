@@ -297,17 +297,6 @@ window.lastUserQuestion = "";
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
 function removeEmptyBullets() {
-
-function insertFiveBoldLines() {
-  return `
-<strong>────────────────────────────</strong><br>
-<strong>────────────────────────────</strong><br>
-<strong>────────────────────────────</strong><br>
-<strong>────────────────────────────</strong><br>
-<strong>────────────────────────────</strong>
-`;
-}
-  
   const lists = document.querySelectorAll("ul, ol");
   lists.forEach(list => {
     const items = list.querySelectorAll("li");
@@ -348,22 +337,16 @@ function safeRender(md) {
   const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
   lastSingleAnswer = clean2;
 
-if (outEl.textContent.includes('Waiting for content')) {
-  outEl.innerHTML = '';
-}
-
-outEl.innerHTML +=
-  (outEl.innerHTML ? insertFiveBoldLines() : '') + clean2;
-
-removeEmptyBullets();
-window.lastAnswerBackup = clean2;
+  if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+  outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+  removeEmptyBullets();
+  window.lastAnswerBackup = clean2;
 
   outEl.querySelectorAll('a').forEach(a => {
     a.target = '_blank';
     a.rel = 'noopener';
   });
 }
-    
 // ✅ FIX: Replicate McGill’s timing to ensure clean tag removal
 if (window.ThunkableWebviewerExtension &&
     typeof ThunkableWebviewerExtension.receiveMessage === "function") {
