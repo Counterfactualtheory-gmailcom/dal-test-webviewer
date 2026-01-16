@@ -297,6 +297,17 @@ window.lastUserQuestion = "";
     function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
 
 function removeEmptyBullets() {
+
+function insertFiveBoldLines() {
+  return `
+<strong>────────────────────────────</strong><br>
+<strong>────────────────────────────</strong><br>
+<strong>───────-NEXT  ANSWER────────</strong><br>
+<strong>────────────────────────────</strong><br>
+<strong>────────────────────────────</strong>
+`;
+}
+  
   const lists = document.querySelectorAll("ul, ol");
   lists.forEach(list => {
     const items = list.querySelectorAll("li");
