@@ -363,7 +363,10 @@ function safeRender(md) {
   lastSingleAnswer = clean2;
 
   if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
-  outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + clean2;
+outEl.innerHTML +=
+  (outEl.innerHTML ? '<div class="answer-divider"></div>' : '') +
+  clean2;
+  
   removeEmptyBullets();
   window.lastAnswerBackup = clean2;
 
