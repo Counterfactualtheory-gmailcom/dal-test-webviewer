@@ -80,23 +80,26 @@
 
 /* === Conversation answer divider === */
 .answer-divider {
-  margin: 36px 0;
-  padding-top: 18px;
-  border-top: 3px solid #d0d0d0;
+  margin: 40px 0;
+  padding-top: 20px;
+  border-top: 4px solid #c4c4c4;   /* ⬅ thicker line */
   position: relative;
 }
 
 .answer-divider::after {
-  content: "New answer";
+  content: "NEW ANSWER";
   position: absolute;
-  top: -11px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
-  padding: 0 10px;
-  font-size: 13px;
-  color: #777;
-  letter-spacing: 0.04em;
+  padding: 0 14px;
+
+  font-size: 14px;                /* ⬅ slightly larger */
+  font-weight: 700;               /* ⬅ bolder */
+  color: #666;
+
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
     
