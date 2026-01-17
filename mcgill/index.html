@@ -360,7 +360,9 @@ cleaned = cleaned
 if (outEl.textContent.includes('Waiting for content')) {
   outEl.innerHTML = '';
 }
-outEl.innerHTML += (outEl.innerHTML ? '<hr>' : '') + final;
+outEl.innerHTML +=
+  (outEl.innerHTML ? '<div class="answer-divider"></div>' : '') +
+  final;
 
 /* -----------------------------------------------------------
    DAL-STYLE BULLET CLEANUP — major DOM mutation (testable)
