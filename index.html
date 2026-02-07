@@ -402,20 +402,13 @@ By controlling whether AI reasoning happens at all, COMPAiSS enforces institutio
 
 ## Keeping Meaning Consistent Across Languages
 
-In multilingual environments, many RAG-based AI systems retrieve content in one language and generate answers in another. During this process, meaning is often reshaped - not because the source is wrong, but because translation happens inside retrieval and generation.
+Consumer-based AI systems often translate a question (typically into English) as part of how they search for information, and then translate the answer back into the user’s language. In RAG-based systems, this translation step is intertwined with retrieval and reasoning, meaning that small differences in phrasing can change which sources are selected and what the system emphasizes in its response. Over time, this can lead to inconsistent answers across languages — even when the same question is asked, and even when the same documents are informing the answers
 
-When translation and retrieval are intertwined, subtle changes in phrasing can alter which documents are selected, how they are interpreted, and what the system ultimately says. Over time, this leads to inconsistency across languages, even when the same question is asked.
+COMPAiSS is designed to avoid this RAG problem.
 
-COMPAiSS avoids this problem by separating **meaning** from **language**.
+COMPAiSS determines what can be answered before language translation comes into play. Institutional scope, authority, and source eligibility are established first using a single, stable meaning of the question, and the authorized answer is then expressed in the user’s chosen language.
 
-Questions are first normalized to a single, stable meaning before any retrieval or reasoning occurs. Translation is treated purely as a language step - not a discovery step, not an interpretive step, and not a source-selection step.
-
-As a result, changing the language does not change:
-- what information is considered relevant
-- which institutional materials are used
-- or how the answer is determined
-
-This architectural separation prevents interpretive drift and ensures that institutional meaning remains consistent - regardless of the language used.
+As a result, changing the language does not change the authorized answer.
 
 ---
 
