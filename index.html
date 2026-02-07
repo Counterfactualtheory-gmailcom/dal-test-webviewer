@@ -307,15 +307,11 @@ In regulated institutional environments, this model introduces risk that cannot 
 
 ## How COMPAiSS Works Differently
 
-COMPAiSS evaluates every question *before* answering.
+COMPAiSS evaluates each question before any response is generated.
 
-An answer is produced only when:
-- The question falls within an institution’s scope of responsibility  
-- Authoritative sources are available  
-- The response can be grounded in approved, verified material  
+Rather than producing an answer and attempting to correct or constrain it afterward, the system first determines whether the question falls within an institution’s defined scope and whether authoritative material exists to support a response.
 
-When those conditions are not met, COMPAiSS does not guess.  
-Instead, it guides users toward questions that can be answered responsibly or toward the appropriate official channel.
+This pre-generation evaluation establishes whether an answer can be produced responsibly, before language generation is permitted to occur.
 
 ---
 
