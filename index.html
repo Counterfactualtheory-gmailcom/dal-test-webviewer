@@ -374,6 +374,33 @@ By preventing unsupported or unanswerable questions from triggering generation i
 
 ---
 
+## Architecture
+
+COMPAiSS uses an **execution-gated inference architecture**.
+
+This means the AI does not exist, reason, or allocate compute resources unless authorization is explicitly granted.  
+If authorization fails, **no inference runtime is instantiated at all**.
+
+This design eliminates hallucinations structurally, rather than attempting to filter or correct output after generation.
+
+---
+
+### How COMPAiSS Differs from Conventional AI Systems
+
+![Table 1 – How Different AI Systems Work](/assets/compaiss-table_1-architecture.png)
+
+---
+
+### Detailed System Characteristics
+
+![Table 2 – Detailed System Characteristics](/assets/compaiss-table_2-architecture.png)
+
+---
+
+**These architectural differences are what allow COMPAiSS to operate safely in regulated environments where accuracy is non-negotiable.**
+
+---
+
 ## Where Accuracy Is Not Optional
 
 The consequences of incorrect information vary by context.  
