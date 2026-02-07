@@ -1,168 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>COMPAiSS — Governed Institutional AI</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COMPAiSS</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #1a1a1a;
-      background: #ffffff;
-      line-height: 1.6;
+    :root{
+      --wrap: 900px;
+      --pad: 16px;
+      --border: #e5e7eb;
+      --accent: #f0c44c;
+      --text: #ffffff;
+      --bg: #0c2d5a;
+      --bg-page: #0c2d5a;
+      --muted: #dbe7ff;
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
+    html,body{
+      margin:0; padding:0;
+      background:var(--bg-page);
+      color:var(--text);
+      font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      -webkit-text-size-adjust:100%;
+    }
+    .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
+
+    a{word-break:break-word;text-decoration:underline;color:var(--link)}
+    a:visited{color:var(--link-visited)}
+    a:hover, a:focus{opacity:.95}
+
+    #out, #out *:not(a) { color: var(--text) !important; }
+    #out a { color: var(--link) !important; }
+    #out a:visited { color: var(--link-visited) !important; }
+    #out, #out * { background: transparent !important; }
+
+    blockquote{
+      margin:0.6em 0;
+      padding-left:12px;
+      border-left:4px solid var(--border);
+      color:#eef2ff;
     }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
+    h1,h2,h3{margin-top:1.1em;margin-bottom:0.4em}
+    p{margin:0.35em 0}
+    ul{margin:0.35em 0 0.6em 1.2em}
+    li{margin:0.25em 0}
 
-    h2 {
-      font-size: 1.6rem;
-      margin-top: 64px;
-      margin-bottom: 16px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    .hero {
-      margin-bottom: 80px;
-    }
-
-    .tagline {
-      font-size: 1.4rem;
-      color: #444;
-      max-width: 720px;
-    }
-
-    .divider {
-      height: 1px;
-      background: #e5e5e5;
-      margin: 64px 0;
-    }
-
-    .highlight {
-      background: #f6f7f9;
-      padding: 32px;
-      border-left: 4px solid #000;
-      margin: 40px 0;
-    }
-
-    footer {
-      margin-top: 100px;
-      padding-top: 32px;
-      border-top: 1px solid #e5e5e5;
-      font-size: 0.95rem;
-      color: #555;
-    }
+    .muted{opacity:.9;color:var(--muted)}
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
 
 <body>
-  <main class="container">
+  <div class="wrap">
+    <div id="out"></div>
+  </div>
 
-    <section class="hero">
-      <h1>COMPAiSS</h1>
-      <p class="tagline">
-        The AI that knows when <strong>not</strong> to answer.
-      </p>
-    </section>
+  <script>
+    marked.setOptions({ gfm:true, breaks:true, mangle:false, headerIds:false });
 
-    <p>
-      COMPAiSS is a new class of institutional AI designed for environments where
-      accuracy, authority, and trust matter more than speed or spectacle.
-    </p>
+    const outEl = document.getElementById('out');
 
-    <p>
-      Most AI systems start by generating answers and try to control risk afterward.
-      COMPAiSS reverses that logic.
-    </p>
+    function safeRender(md){
+      const html = marked.parse(md || '');
+      const clean = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+      outEl.innerHTML = clean;
+      outEl.querySelectorAll('a').forEach(a => {
+        a.target = '_blank';
+        a.rel = 'noopener';
+      });
+    }
 
-    <div class="highlight">
-      <p>
-        <strong>COMPAiSS asks first:</strong><br/>
-        Is AI allowed to answer this question at all?
-      </p>
-    </div>
+    const LANDING_MD = `
+# COMPAiSS
 
-    <h2>What COMPAiSS Is</h2>
+### An AI system engineered to eliminate hallucinations
 
-    <p>
-      COMPAiSS is an <strong>execution-gated AI architecture</strong> built for large,
-      regulated knowledge ecosystems such as universities, public institutions,
-      and complex organizations.
-    </p>
+**Authoritative answers without hallucinations.**  
+**Verified answers for regulated environments.**  
+**Where AI stops guessing.**
 
-    <p>
-      It helps users navigate official policies, procedures, and institutional
-      services — but only when answers can be verified against trusted,
-      authoritative sources.
-    </p>
+---
 
-    <p>
-      If authority cannot be established, COMPAiSS does not guess, hallucinate,
-      or improvise.
-    </p>
+### What COMPAiSS Does
 
-    <h2>Why COMPAiSS Is Different</h2>
+COMPAiSS replaces time-consuming navigation through hundreds of webpages, PDFs, policies, and institutional documents with **one authoritative answer** to any institution-related question — **only when that answer can be verified**.
 
-    <p>
-      Most AI systems rely on probabilities and sound confident even when wrong.
-      COMPAiSS operates inside institution-defined truth boundaries.
-    </p>
+Unlike conventional AI systems that generate answers first and attempt to control risk afterward, COMPAiSS **reverses that logic**.
 
-    <p>
-      This is not moderation and it is not filtering.
-      It is <strong>architectural control</strong>.
-    </p>
+It checks *before* answering.
 
-    <h2>What Problem It Solves</h2>
+---
 
-    <p>
-      Organizations want AI — but not hallucinated answers, unofficial policy
-      interpretations, or governance risk.
-    </p>
+### The Problem with Most AI Systems
 
-    <p>
-      COMPAiSS enables AI use without surrendering institutional control.
-      AI is allowed to operate only when it is safe, accurate, and defensible.
-    </p>
+Most AI tools:
+- Generate responses based on probability, not authority  
+- Guess when information is incomplete  
+- Hallucinate policies, procedures, links, or interpretations  
+- Create institutional risk in regulated environments  
 
-    <h2>What COMPAiSS Is Not</h2>
+Traditional chatbots and search tools surface information.  
+COMPAiSS delivers **institutional truth**.
 
-    <p>
-      COMPAiSS is not a chatbot.<br/>
-      It is not a FAQ bot.<br/>
-      It is not RAG by another name.<br/>
-      It is not always-on AI.
-    </p>
+---
 
-    <div class="highlight">
-      <p>
-        <strong>COMPAiSS is AI with permission.</strong>
-      </p>
-    </div>
+### How COMPAiSS Is Different
 
-    <footer>
-      <p>
-        AI doesn’t need to answer everything.<br/>
-        It needs to answer the right things, the right way.
-      </p>
-    </footer>
+COMPAiSS is built specifically for **regulated knowledge environments**.
 
-  </main>
+Before any answer is produced, COMPAiSS verifies that:
+- The question is institutionally valid  
+- Authoritative sources exist  
+- The answer can be grounded in approved, verified material  
+
+If those conditions are not met, COMPAiSS **does not guess**.
+
+---
+
+### Why COMPAiSS Is Not a FAQ Bot or Scripted Chatbot
+
+FAQ bots and scripted chatbots respond to predefined questions using prewritten answers. They break down when questions become contextual, cross-departmental, or policy-dependent.
+
+COMPAiSS does not rely on scripts or templates.
+
+Each question is evaluated in real time, sources are assessed dynamically, and responses are generated **only when they can be verified**.
+
+---
+
+### Why COMPAiSS Is Not RAG (and Not a Cleaner Layer)
+
+Many AI systems rely on Retrieval-Augmented Generation (RAG) or post-generation filters to *reduce* hallucinations.
+
+COMPAiSS operates **before generation**.
+
+If authoritative sources do not exist, **no answer is produced**.  
+If institutional rules prohibit an answer, **generation does not occur**.  
+If verification fails, **the system stops**.
+
+This execution-gated architecture is why COMPAiSS can credibly eliminate hallucinations — not merely reduce them.
+
+---
+
+### Why This Matters for Regulated Institutions
+
+Any regulated institution with an obligation to share information — with students, patients, clients, or the public — also has an obligation to ensure that information is **accurate, authoritative, and trustworthy**.
+
+When institutions publish information, they implicitly promise that it:
+- Reflects official policy  
+- Can be relied upon  
+- Will not mislead  
+
+COMPAiSS extends that same standard of trust into AI-mediated answers.
+
+Because when information is regulated, **guessing is not acceptable**.
+
+---
+
+### Built for Regulated Environments
+
+COMPAiSS is designed for environments where accuracy, governance, and trust matter more than speed or spectacle, including:
+- Universities and colleges  
+- Government departments and agencies  
+- Research-intensive organizations  
+- Policy-driven institutions  
+
+It is not a chatbot.  
+It is not a FAQ system.  
+It is an **execution-gated institutional AI**.
+
+---
+
+**Regulated institutions deserve AI systems that respect their obligations — not ones that bypass them.**
+
+*COMPAiSS — guided by deep knowledge.*
+    `;
+
+    safeRender(LANDING_MD);
+  </script>
 </body>
 </html>
