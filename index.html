@@ -7,49 +7,121 @@
 
   <style>
     :root{
-      --wrap: 900px;
-      --pad: 16px;
-      --border: #e5e7eb;
-      --accent: #f0c44c;
-      --text: #ffffff;
-      --bg: #0c2d5a;
+      --wrap: 920px;
+      --pad: 22px;
+
       --bg-page: #0c2d5a;
-      --muted: #dbe7ff;
+      --bg-panel: #10386e;
+
+      --text-main: #e9eef6;
+      --text-muted: #b8c7e6;
+      --text-heading: #ffffff;
+
+      --accent: #f0c44c;
+      --border-soft: rgba(255,255,255,0.08);
+
       --link: #9cc9ff;
       --link-visited: #c8e0ff;
     }
 
     html,body{
-      margin:0; padding:0;
+      margin:0;
+      padding:0;
       background:var(--bg-page);
-      color:var(--text);
-      font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text-main);
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       -webkit-text-size-adjust:100%;
     }
-    .wrap{max-width:var(--wrap);margin:0 auto;padding:var(--pad)}
 
-    a{word-break:break-word;text-decoration:underline;color:var(--link)}
+    .wrap{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:var(--pad);
+    }
+
+    a{
+      word-break:break-word;
+      text-decoration:underline;
+      color:var(--link);
+    }
     a:visited{color:var(--link-visited)}
-    a:hover, a:focus{opacity:.95}
+    a:hover,a:focus{opacity:.95}
 
-    #out, #out *:not(a) { color: var(--text) !important; }
+    /* Markdown output safety */
+    #out, #out *:not(a) { 
+      color: var(--text-main) !important; 
+      background: transparent !important;
+    }
     #out a { color: var(--link) !important; }
     #out a:visited { color: var(--link-visited) !important; }
-    #out, #out * { background: transparent !important; }
+
+    /* Typography */
+    h1{
+      color:var(--text-heading);
+      font-size:2.1rem;
+      letter-spacing:0.02em;
+      margin:0.2em 0 0.4em 0;
+    }
+
+    h2{
+      color:var(--text-heading);
+      font-size:1.45rem;
+      margin-top:2.4em;
+      margin-bottom:0.6em;
+    }
+
+    h3{
+      color:var(--accent);
+      font-size:1rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-top:1.8em;
+      margin-bottom:0.4em;
+    }
+
+    p{
+      margin:0.45em 0;
+      max-width:65ch;
+    }
+
+    ul{
+      margin:0.5em 0 0.8em 1.2em;
+    }
+
+    li{
+      margin:0.3em 0;
+    }
 
     blockquote{
-      margin:0.6em 0;
-      padding-left:12px;
-      border-left:4px solid var(--border);
+      margin:0.8em 0;
+      padding-left:14px;
+      border-left:4px solid var(--border-soft);
       color:#eef2ff;
     }
 
-    h1,h2,h3{margin-top:1.1em;margin-bottom:0.4em}
-    p{margin:0.35em 0}
-    ul{margin:0.35em 0 0.6em 1.2em}
-    li{margin:0.25em 0}
+    /* Section rhythm */
+    hr{
+      border:none;
+      border-top:1px solid var(--border-soft);
+      margin:2.2em 0;
+    }
 
-    .muted{opacity:.9;color:var(--muted)}
+    /* Soft panels for conceptual anchors */
+    .panel{
+      background:linear-gradient(
+        180deg,
+        rgba(255,255,255,0.035),
+        rgba(255,255,255,0.015)
+      );
+      border:1px solid var(--border-soft);
+      border-radius:10px;
+      padding:22px 24px;
+      margin:1.8em 0;
+    }
+
+    .muted{
+      color:var(--text-muted);
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
