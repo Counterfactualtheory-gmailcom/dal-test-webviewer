@@ -317,23 +317,19 @@ When a question cannot be answered responsibly, COMPAiSS does not speculate. Ins
 
 ## The Problem with Most AI Systems
 
-Most AI systems are designed to produce an answer whenever possible.
+Consumer-based AI systems generate responses by default using probability and pattern recognition. In this model, inaccuracies are addressed primarily through post-generation controls, often at significant operational and financial cost.
 
-They generate responses based on probability and pattern recognition and attempt to manage inaccuracies only after a response has already been generated. As a result, incorrect or unsupported answers are an expected outcome rather than an exception.
+Incorrect or unsupported answers are treated as expected outcomes to be managed rather than failures to be prevented. This trade-off is widely accepted as the cost of maintaining broad, open-ended access to general knowledge about everything.
 
-Across much of the AI industry, this risk is accepted as the cost of broad access to open-ended knowledge. Errors are addressed through post-generation controls, monitoring, review, and remediation systems - often at significant operational and financial cost.
+In regulated institutional environments, however, this approach introduces risk that cannot always be mitigated after the fact. As a result, vendors typically recommend layering controls and liability protections on top of generative systems:
 
-This is why enterprises typically layer additional controls and liability protections on top of generative systems:
+•	Confidence scoring
+•	Answer disclaimers and user warnings
+•	Human-in-the-loop review processes
+•	Extensive logging and audit trails
+•	Legal and compliance language surrounding AI output
 
-- Confidence scoring  
-- Answer disclaimers and user warnings  
-- Human-in-the-loop review processes  
-- Extensive logging and audit trails  
-- Legal and compliance language surrounding AI output  
-
-These measures exist because, until recently, there was no architectural alternative.
-
-In regulated institutional environments, this model introduces risk that cannot be mitigated after the fact.
+These measures reduce exposure, but they do not change the underlying generation-first architecture, or the ongoing challenges related to hallucinations. They exist because, until recently, there was no alternative way to prevent unsupported answers from being generated in the first place.
 
 ---
 
