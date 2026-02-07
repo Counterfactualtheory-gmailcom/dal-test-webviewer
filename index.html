@@ -27,6 +27,34 @@
       --radius: 10px;
     }
 
+/* -------------------------------
+   Section card styling (CONTENT)
+-------------------------------- */
+
+#out h2{
+  background: rgba(255,255,255,0.06);
+  padding: 0.9rem 1.2rem;
+  border-radius: 8px 8px 0 0;
+  margin: 4rem 0 0;
+}
+
+/* Everything after h2 until the next h2 */
+#out h2 + p,
+#out h2 + ul,
+#out h2 + p ~ p,
+#out h2 + p ~ ul,
+#out h2 + ul ~ p,
+#out h2 + ul ~ ul{
+  background: rgba(255,255,255,0.04);
+  padding: 1.2rem;
+}
+
+/* Bottom rounding on last element in a section */
+#out h2 + p:last-of-type,
+#out h2 + ul:last-of-type{
+  border-radius: 0 0 8px 8px;
+}
+
     html,body{
       margin:0;
       padding:0;
