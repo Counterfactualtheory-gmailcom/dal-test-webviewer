@@ -27,8 +27,6 @@
       --radius: 10px;
     }
 
-    /* Base */
-
     html,body{
       margin:0;
       padding:0;
@@ -51,8 +49,6 @@
       outline-offset:3px;
     }
 
-    /* Skip link */
-
     .skip-link{
       position:absolute;
       left:-999px;
@@ -71,8 +67,6 @@
       padding:8px 12px;
       z-index:1000;
     }
-
-    /* Layout */
 
     header{
       border-bottom:1px solid var(--border-soft);
@@ -130,8 +124,6 @@
       color:var(--text-muted);
     }
 
-    /* Brand */
-
     .brand{
       text-align:center;
       margin:3.5rem 0 4.5rem 0;
@@ -143,8 +135,6 @@
       height:auto;
       display:inline-block;
     }
-
-    /* Content framing */
 
     .content-frame{
       background:var(--bg-panel-soft);
@@ -158,14 +148,10 @@
       }
     }
 
-    /* Markdown safety */
-
     #out, #out *:not(a){
       color:var(--text-main)!important;
       background:transparent!important;
     }
-
-    /* Typography */
 
     h1{
       color:var(--text-heading);
@@ -200,14 +186,6 @@
 
     li{
       margin:0.55em 0;
-    }
-
-    blockquote{
-      margin:1.8em 0;
-      padding-left:22px;
-      border-left:4px solid var(--border-soft);
-      color:#eef2ff;
-      max-width:70ch;
     }
 
     hr{
@@ -263,7 +241,7 @@
   <footer>
     <div class="footer-inner">
       <p class="muted">
-        COMPAiSS is designed for regulated institutional environments where accuracy,
+        COMPAiSS is designed for institutional environments where accuracy,
         authority, and governance are non-negotiable.
       </p>
     </div>
@@ -294,102 +272,130 @@
 
 ### An AI system engineered to eliminate hallucinations
 
-**Verified answers for regulated environments.**  
-
+**Verified answers for environments where accuracy is mandatory.**  
 **Where AI stops guessing.**
 
 ---
 
-### What COMPAiSS Does
+## What COMPAiSS Does
 
-COMPAiSS replaces time-consuming navigation through hundreds of webpages, PDFs, policies, and institutional documents with **one authoritative answer** to any institution-related question — **only when that answer can be verified**.
+COMPAiSS replaces time-consuming navigation across webpages, policies, procedures, and official documents with **a single authoritative answer** — **and only when that answer can be verified**.
 
-Unlike conventional AI systems that generate answers first and attempt to control errors and risk afterward, COMPAiSS **reverses that logic**.
+Consumer-oriented AI systems typically address inaccuracies and related risk after a response has already been generated, relying on additional tools, infrastructure, and controls often bundled into very costly enterprise contracts.
 
-It checks *before* answering.
+COMPAiSS prevents unsupported answers and hallucinations from being generated in the first place. Accuracy and authority are established before the AI is permitted to answer, using authorized information only, without the need for post-generation cleanup.
 
 ---
 
-### The Problem with Most AI Systems
+## The Problem with Most AI Systems
 
 Most AI tools:
-- Generate responses based on probability, not authority  
-- Guess when information is incomplete  
-- Hallucinate policies, procedures, links, or interpretations  
-- Create institutional risk in regulated environments  
+- Generate responses based on probability rather than authority  
+- Attempt to fill gaps when information is incomplete  
+- Confidently present incorrect or unsupported answers  
+- Shift risk onto the institution  
 
-Traditional chatbots and search tools surface information.  
-COMPAiSS delivers **deep and tailored institutional knowledge**.
-
----
-
-### Why COMPAiSS Is Different
-
-COMPAiSS is built specifically for **regulated knowledge environments**.
-
-Before any answer is produced, COMPAiSS verifies that:
-- The question is institutionally relevant and valid  
-- Authoritative institutional sources exist  
-- The answer can be grounded in approved, verified information, policies, webpages, and documents 
-
-If those conditions are not met, COMPAiSS does not guess. Instead, it guides users toward questions that are clearly connected to the institution’s services, policies, and responsibilities.  
+Search tools surface information.  
+Chatbots summarize it.  
+COMPAiSS delivers answers **only when the institution can stand behind them**.
 
 ---
 
-### Why COMPAiSS Is Not a FAQ Bot or Scripted Chatbot
+## How COMPAiSS Works Differently
 
-FAQ bots and scripted chatbots respond to predefined questions using prewritten answers. They break down when questions become contextual, cross-departmental, or policy-dependent.
+COMPAiSS evaluates every question *before* answering.
 
-COMPAiSS does not rely on scripts or templates.
+An answer is produced only when:
+- The question falls within an institution’s scope of responsibility  
+- Authoritative sources are available  
+- The response can be grounded in approved, verified material  
 
-Each question is evaluated in real time, sources are assessed dynamically, and responses are generated **only when they can be verified**.
-
----
-
-### Why COMPAiSS Is Not RAG (and Not a Cleaner Layer)
-
-Many AI systems rely on Retrieval-Augmented Generation (RAG) or post-generation filters to *reduce* hallucinations.
-
-COMPAiSS operates before generation, guiding users toward questions that are meaningfully connected to an institution’s services, policies, and responsibilities — eliminating one of the most common sources of AI hallucinations.
-
-When a question falls outside what an institution can authoritatively support, COMPAiSS does not guess or invent an answer. Instead, it helps users reframe their question, directs them to relevant institutional information, or guides them toward the appropriate official channel.
-
-The result is an experience that remains useful, responsible, and aligned with the institution’s mandate — without fabricating information or overstepping authority.
-
-This execution-gated architecture is why COMPAiSS can eliminate hallucinations by design, rather than attempting to control them after the fact.
+When those conditions are not met, COMPAiSS does not guess.  
+Instead, it guides users toward questions that can be answered responsibly or toward the appropriate official channel.
 
 ---
 
-### Why This Matters for Regulated Institutions
+## Why COMPAiSS Is Not a FAQ Bot or Scripted Chatbot
 
-Any regulated institution with an obligation to share information — with students, patients, clients, or the public — also has an obligation to ensure that information is **accurate, authoritative, and trustworthy**.
+FAQ systems are built around predefined questions and fixed answers, requiring users to frame their questions within those limits.
 
-When institutions publish information, they implicitly promise that it:
-- Reflects official policy  
-- Can be relied upon  
-- Will not mislead  
+They break down when questions exceed those limits or require context or judgment.
 
-COMPAiSS extends that same standard of trust into AI-mediated answers.
-
-Because when accurate information is essential, **guessing is not acceptable**.
+COMPAiSS does not rely on scripts. Each question is evaluated on its own terms, drawing from relevant institutional information to provide clear, detailed, and nuanced answers aligned with what users are actually seeking.
 
 ---
 
-### Built for Regulated Environments
+## Why COMPAiSS Is Not RAG
 
-COMPAiSS is designed for environments where accuracy, governance, and trust matter more than speed or spectacle, including:
-- Universities and colleges
-- Hospitals and health care industries
-- Government departments and public service agencies   
-- Policy-driven institutions  
+Many AI systems use retrieval-augmented generation (RAG) or post-processing filters to *reduce* hallucinations.
 
-It is not a chatbot.  
-It is not a FAQ system.  
-It is an **execution-gated institutional AI**.
+COMPAiSS operates earlier.
+
+It prevents unanswerable or unsupported questions from triggering generation in the first place.  
+This execution-gated architecture eliminates hallucinations **by design**, not by cleanup.
 
 ---
 
-**Regulated institutions deserve AI systems that respect their obligations — not ones that bypass them.**
+## Where Accuracy Is Not Optional
+
+The consequences of incorrect information vary by context.  
+In the environments below, they are not theoretical.
+
+---
+
+## Universities
+
+Universities publish policies governing admissions, academic standing, accommodations, financial aid, degree requirements, and student rights.
+
+An incorrect answer can:
+- Misrepresent official policy  
+- Lead to improper decisions or appeals  
+- Create equity and compliance issues  
+
+COMPAiSS ensures that answers reflect **what the institution actually authorizes**, not what an AI model infers.
+
+---
+
+## Hospitals and Health Care Systems
+
+Hospitals operate under strict clinical, administrative, and regulatory constraints.
+
+Inaccurate information can:
+- Misstate patient rights or procedures  
+- Create compliance exposure  
+- Undermine trust in care delivery  
+
+COMPAiSS limits answers to what the organization can verify and support, preventing speculative or generalized responses.
+
+---
+
+## Government Services
+
+Public agencies provide information that affects benefits, eligibility, obligations, and access to services.
+
+Incorrect guidance can:
+- Delay or deny services  
+- Create legal exposure  
+- Erode public trust  
+
+COMPAiSS ensures that AI-mediated answers remain aligned with official rules, policies, and mandates.
+
+---
+
+## Why This Matters
+
+When institutions provide information, they implicitly promise that it is:
+- Accurate  
+- Authoritative  
+- Reliable  
+
+COMPAiSS extends that same standard into AI-generated answers.
+
+Because in these environments, **guessing is not acceptable**.
+
+---
+
+**Regulated institutions deserve AI systems that respect their obligations — not ones that bypass them.**  
 
 *COMPAiSS — guided by deep knowledge.*
     `;
