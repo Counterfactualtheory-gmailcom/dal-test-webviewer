@@ -1,1 +1,344 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COMPAiSS</title>
 
+  <style>
+    :root{
+      --wrap: 980px;
+      --pad: 32px;
+
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+
+      --accent: #f0c44c;
+      --border-soft: rgba(255,255,255,0.08);
+
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+
+      --radius: 10px;
+    }
+
+/* -------------------------------
+   Section heading highlight ONLY
+-------------------------------- */
+
+#out h2{
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  margin: 1.6rem 0 0.8rem -0.4rem;
+}
+
+#out h2 + p,
+#out h2 + ul{
+  margin-top: 0.4rem;
+}
+    
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg-page);
+      color:var(--text-main);
+      font:18px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      -webkit-text-size-adjust:100%;
+    }
+
+#out img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2.5rem auto;
+  border-radius: 8px;
+}
+    
+    a{
+      color:var(--link);
+      text-decoration:underline;
+      text-underline-offset:0.15em;
+    }
+    a:visited{color:var(--link-visited)}
+    a:hover,a:focus{opacity:.95}
+
+    :focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:3px;
+    }
+
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px;
+      top:16px;
+      width:auto;
+      height:auto;
+      background:#000;
+      color:#fff;
+      padding:8px 12px;
+      z-index:1000;
+    }
+
+    header{
+      border-bottom:1px solid var(--border-soft);
+    }
+
+    .nav{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:18px var(--pad);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .nav .brand-text{
+      font-weight:600;
+      letter-spacing:0.04em;
+      color:var(--text-heading);
+    }
+
+    .nav ul{
+      list-style:none;
+      display:flex;
+      gap:1.4rem;
+      margin:0;
+      padding:0;
+      font-size:0.9rem;
+    }
+
+    .nav a{
+      text-decoration:none;
+      color:var(--text-muted);
+    }
+
+    .nav a:hover{
+      color:var(--text-heading);
+    }
+
+    main{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:var(--pad);
+    }
+
+    footer{
+      border-top:1px solid var(--border-soft);
+      margin-top:5rem;
+    }
+
+    footer .footer-inner{
+      max-width:var(--wrap);
+      margin:0 auto;
+      padding:2.5rem var(--pad);
+      font-size:0.85rem;
+      color:var(--text-muted);
+    }
+
+    .brand{
+      text-align:center;
+      margin:2.2rem 0 2.4rem 0;
+    }
+
+    .brand img{
+      max-width:520px;
+      width:100%;
+      height:auto;
+      display:inline-block;
+    }
+
+    .content-frame{
+      background:var(--bg-panel-soft);
+      border-radius:var(--radius);
+      padding:2.6rem 3rem 3.5rem;
+    }
+
+    @media (max-width: 700px){
+      .content-frame{
+        padding:2.2rem 1.6rem;
+      }
+    }
+
+    #out, #out *:not(a){
+      color:var(--text-main)!important;
+      background:transparent!important;
+    }
+
+    h1{
+      color:var(--text-heading);
+      font-size:3rem;
+      letter-spacing:0.04em;
+      margin:0 0 1.1em -0.4rem;
+    }
+
+    h2{
+      color:var(--text-heading);
+      font-size:2rem;
+      margin:3.4em 0 1em -0.4rem;
+    }
+
+    h3{
+      color:var(--accent);
+      font-size:1.05rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      margin:2.6em 0 0.8em -0.4rem;
+    }
+
+    p{
+      margin:1.1em 0;
+      max-width:70ch;
+    }
+
+    ul{
+      margin:1em 0 1.6em 1.4em;
+      max-width:70ch;
+    }
+
+    li{
+      margin:0.55em 0;
+    }
+
+    hr{
+      border:none;
+      border-top:1px solid var(--border-soft);
+      margin:4em 0;
+    }
+
+#out hr{
+  margin: 1.2rem 0;
+}   
+    .muted{
+      color:var(--text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        animation:none!important;
+        transition:none!important;
+      }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Aller au contenu</a>
+
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <div class="brand-text">COMPAiSS</div>
+      <ul>
+        <li><a href="#" aria-disabled="true">Gouvernance de l’IA</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="brand">
+      <img
+        src="/assets/compaiss-logo-v2.png"
+        alt="COMPAiSS - Guidé par une connaissance approfondie"
+      >
+    </div>
+
+    <div class="content-frame">
+      <div id="out"></div>
+    </div>
+  </main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="muted" style="margin-top: 0.8rem;">
+      Contact :
+      <a href="mailto:counterfactualtheory@gmail.com">
+        counterfactualtheory@gmail.com
+      </a>
+    </p>
+  </div>
+</footer>
+
+  <script>
+    marked.setOptions({
+      gfm:true,
+      breaks:true,
+      mangle:false,
+      headerIds:false
+    });
+
+    const outEl = document.getElementById('out');
+
+    function safeRender(md){
+      const html = marked.parse(md || '');
+      const clean = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+      outEl.innerHTML = clean;
+      outEl.querySelectorAll('a').forEach(a=>{
+        a.target='_blank';
+        a.rel='noopener';
+      });
+    }
+
+    const LANDING_MD = `
+### Un système d’IA conçu pour prévenir les hallucinations par conception
+
+**Là où l’IA cesse de deviner.**
+
+---
+
+## Ce que fait COMPAiSS
+
+Les sites Web des institutions réglementées contiennent des milliers de pages d’information — politiques, procédures, règles et ressources de soutien — généralement réparties entre plusieurs départements, bureaux administratifs et unités de service. Pour la plupart des utilisateurs, naviguer dans ces sites complexes afin de trouver rapidement la bonne réponse représente un défi considérable.
+
+Les universités illustrent clairement cette réalité.
+
+L’écosystème Web d’une université couvre les politiques académiques, les exigences des programmes, les règles d’admission, les règlements financiers, les services d’accessibilité, les directives en matière d’immigration, le logement, les services de santé et les droits des étudiants — chacun relevant d’instances différentes et mis à jour selon des calendriers distincts.
+
+Les étudiants qui cherchent à comprendre le fonctionnement réel d’une université commencent souvent au même endroit : le site Web de l’université.
+
+Un étudiant canadien peut chercher des précisions sur le statut académique, les mesures d’adaptation, les exigences de cours, les équivalences, les prêts étudiants ou les politiques financières. Un étudiant international peut tenter de comprendre les règles relatives aux visas, au droit au travail, à la couverture médicale ou aux exigences en matière d’immigration. Les étudiants potentiels peuvent comparer les programmes, les critères d’admission, les échéances ou les services offerts.
+
+Dans tous les cas, l’information existe généralement — mais elle est dispersée sur des centaines, voire des milliers de pages Web et de documents de politique.
+
+COMPAiSS répond à ce défi pour les universités et d’autres institutions hautement réglementées (telles que les hôpitaux et les organismes de services gouvernementaux) qui ont l’obligation de fournir une information claire, exacte et faisant autorité — le tout *dans la langue de préférence de l’utilisateur*.
+
+---
+
+## Le problème structurel des systèmes d’IA actuels
+
+En raison de la complexité des écosystèmes Web institutionnels, de nombreux utilisateurs se tournent vers des systèmes d’IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) pour obtenir rapidement des réponses claires à des questions propres à une institution.
+
+Or, les modèles d’IA grand public sont conçus pour générer des réponses par défaut. Ils optimisent leur utilité générale à partir d’une base d’entraînement extrêmement vaste, que l’on peut raisonnablement qualifier d’univers de connaissances. Lorsqu’ils sont appliqués à des questions institutionnelles précises, les erreurs, hallucinations et références à des sources non autorisées ou externes deviennent un effet prévisible de cette conception.
+
+L’industrie de l’IA reconnaît largement ces limites : les réponses incorrectes ou non étayées sont généralement considérées comme des résultats attendus à gérer, plutôt que comme des échecs à prévenir. Ce compromis est largement accepté comme le prix à payer pour maintenir un accès large et ouvert à des connaissances générales.
+
+En pratique, la plupart des utilisateurs n’ont ni le temps, ni l’expertise, ni le contexte institutionnel nécessaires pour vérifier de manière indépendante les réponses générées par l’IA — même lorsque des avertissements ou des clauses de non-responsabilité sont fournis. Il en résulte que des informations inexactes sont souvent utilisées avant d’être remises en question, amplifiant les risques en aval plutôt que de les contenir.
+
+Il existe également de fortes incitations économiques à préserver ce modèle axé sur la génération initiale. La gestion des risques après la production des réponses alimente des écosystèmes entiers de fonctionnalités d’entreprise — outils de surveillance, tableaux de bord de conformité, couches de modération, flux de révision humaine et modules de gouvernance — coûteux à développer, coûteux à exploiter et très rentables à commercialiser.
+
+Dans les environnements institutionnels réglementés, toutefois, cette approche introduit des risques difficiles — voire impossibles — à atténuer pleinement une fois qu’une réponse a déjà été fournie. Pour compenser, les fournisseurs recommandent généralement d’ajouter des contrôles et des protections juridiques supplémentaires, tels que des avertissements et des cadres de conformité légale.
+
+Ces mesures (lorsqu’une institution peut se les permettre) peuvent réduire l’exposition, mais elles ne modifient pas l’architecture sous-jacente axée sur la génération initiale ni n’éliminent les causes profondes des hallucinations. Elles continuent de se produire.
+
+Dans les environnements institutionnels réglementés, cela crée une lacune fondamentale — que COMPAiSS est conçu pour combler en introduisant une innovation architecturale qui empêche la génération de réponses non étayées dès le départ.
+    `;
+
+    safeRender(LANDING_MD);
+  </script>
+</body>
+</html>
