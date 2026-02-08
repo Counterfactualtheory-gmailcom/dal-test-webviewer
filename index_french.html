@@ -27,10 +27,6 @@
       --radius: 10px;
     }
 
-/* -------------------------------
-   Section heading highlight ONLY
--------------------------------- */
-
 #out h2{
   display: inline-block;
   background: rgba(255,255,255,0.08);
@@ -242,7 +238,7 @@
   <a href="#main" class="skip-link">Aller au contenu</a>
 
   <header>
-    <nav class="nav" aria-label="Primary">
+    <nav class="nav" aria-label="Navigation principale">
       <div class="brand-text">COMPAiSS</div>
       <ul>
         <li><a href="#" aria-disabled="true">Gouvernance de l’IA</a></li>
@@ -254,7 +250,7 @@
     <div class="brand">
       <img
         src="/assets/compaiss-logo-v2.png"
-        alt="COMPAiSS - Guidé par une connaissance approfondie"
+        alt="COMPAiSS – Guidé par une connaissance institutionnelle approfondie"
       >
     </div>
 
@@ -303,39 +299,219 @@
 
 ## Ce que fait COMPAiSS
 
-Les sites Web des institutions réglementées contiennent des milliers de pages d’information — politiques, procédures, règles et ressources de soutien — généralement réparties entre plusieurs départements, bureaux administratifs et unités de service. Pour la plupart des utilisateurs, naviguer dans ces sites complexes afin de trouver rapidement la bonne réponse représente un défi considérable.
+Les sites Web des institutions réglementées contiennent des milliers de pages d’information — politiques, procédures, règles et ressources de soutien — généralement réparties entre plusieurs départements, bureaux administratifs et unités de service. Pour la majorité des utilisateurs, naviguer dans ces environnements complexes afin d’obtenir rapidement une réponse fiable représente un défi considérable.
 
 Les universités illustrent clairement cette réalité.
 
-L’écosystème Web d’une université couvre les politiques académiques, les exigences des programmes, les règles d’admission, les règlements financiers, les services d’accessibilité, les directives en matière d’immigration, le logement, les services de santé et les droits des étudiants — chacun relevant d’instances différentes et mis à jour selon des calendriers distincts.
+L’écosystème Web d’une université couvre notamment les politiques académiques, les exigences des programmes, les règles d’admission, les règlements financiers, les services d’accessibilité, les directives en matière d’immigration, le logement, les services de santé et les droits des étudiants — chacun relevant d’unités distinctes et mis à jour selon des calendriers différents.
 
-Les étudiants qui cherchent à comprendre le fonctionnement réel d’une université commencent souvent au même endroit : le site Web de l’université.
+Les étudiants qui cherchent à comprendre le fonctionnement réel d’une université commencent presque toujours au même endroit : le site Web institutionnel.
 
-Un étudiant canadien peut chercher des précisions sur le statut académique, les mesures d’adaptation, les exigences de cours, les équivalences, les prêts étudiants ou les politiques financières. Un étudiant international peut tenter de comprendre les règles relatives aux visas, au droit au travail, à la couverture médicale ou aux exigences en matière d’immigration. Les étudiants potentiels peuvent comparer les programmes, les critères d’admission, les échéances ou les services offerts.
+Un étudiant canadien peut chercher des précisions concernant le statut académique, les mesures d’adaptation, les exigences de cours, les équivalences, les prêts étudiants ou les politiques financières. Un étudiant international peut tenter de comprendre les règles liées aux visas, au droit au travail, à la couverture médicale ou aux obligations en matière d’immigration. Les futurs étudiants peuvent comparer les programmes, les critères d’admission, les échéances ou les services offerts.
 
-Dans tous les cas, l’information existe généralement — mais elle est dispersée sur des centaines, voire des milliers de pages Web et de documents de politique.
+Dans tous les cas, l’information existe généralement — mais elle est fragmentée à travers des centaines, voire des milliers de pages Web et de documents normatifs.
 
-COMPAiSS répond à ce défi pour les universités et d’autres institutions hautement réglementées (telles que les hôpitaux et les organismes de services gouvernementaux) qui ont l’obligation de fournir une information claire, exacte et faisant autorité — le tout *dans la langue de préférence de l’utilisateur*.
+COMPAiSS répond à ce défi pour les universités et d’autres institutions fortement réglementées (notamment les hôpitaux et les organismes de services gouvernementaux) qui ont l’obligation de fournir une information claire, exacte et faisant autorité — le tout *dans la langue de préférence de l’utilisateur*.
 
 ---
 
 ## Le problème structurel des systèmes d’IA actuels
 
-En raison de la complexité des écosystèmes Web institutionnels, de nombreux utilisateurs se tournent vers des systèmes d’IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) pour obtenir rapidement des réponses claires à des questions propres à une institution.
+En raison de la complexité des écosystèmes Web institutionnels, de nombreux utilisateurs se tournent vers des systèmes d’IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) afin d’obtenir rapidement des réponses à des questions propres à une institution donnée.
 
-Or, les modèles d’IA grand public sont conçus pour générer des réponses par défaut. Ils optimisent leur utilité générale à partir d’une base d’entraînement extrêmement vaste, que l’on peut raisonnablement qualifier d’univers de connaissances. Lorsqu’ils sont appliqués à des questions institutionnelles précises, les erreurs, hallucinations et références à des sources non autorisées ou externes deviennent un effet prévisible de cette conception.
+Or, les modèles d’IA grand public sont conçus pour générer des réponses par défaut. Ils optimisent leur utilité générale à partir d’une base d’entraînement extrêmement vaste, que l’on peut raisonnablement qualifier d’univers de connaissances. Lorsqu’ils sont appliqués à des questions institutionnelles précises, les erreurs, hallucinations et références à des sources non autorisées ou externes deviennent une conséquence prévisible de cette architecture.
 
-L’industrie de l’IA reconnaît largement ces limites : les réponses incorrectes ou non étayées sont généralement considérées comme des résultats attendus à gérer, plutôt que comme des échecs à prévenir. Ce compromis est largement accepté comme le prix à payer pour maintenir un accès large et ouvert à des connaissances générales.
+L’industrie de l’IA reconnaît largement cette réalité : les réponses incorrectes ou non étayées sont généralement traitées comme des résultats attendus à gérer, plutôt que comme des défaillances à prévenir. Ce compromis est largement accepté comme le coût inhérent au maintien d’un accès large et ouvert à des connaissances générales.
 
-En pratique, la plupart des utilisateurs n’ont ni le temps, ni l’expertise, ni le contexte institutionnel nécessaires pour vérifier de manière indépendante les réponses générées par l’IA — même lorsque des avertissements ou des clauses de non-responsabilité sont fournis. Il en résulte que des informations inexactes sont souvent utilisées avant d’être remises en question, amplifiant les risques en aval plutôt que de les contenir.
+En pratique, la majorité des utilisateurs ne disposent ni du temps, ni de l’expertise, ni du contexte institutionnel nécessaires pour vérifier de façon indépendante les réponses générées par l’IA — même lorsque des avertissements ou des clauses de non-responsabilité sont affichés. Il en résulte que des informations inexactes sont souvent utilisées avant d’être remises en question, ce qui amplifie les risques plutôt que de les contenir.
 
-Il existe également de fortes incitations économiques à préserver ce modèle axé sur la génération initiale. La gestion des risques après la production des réponses alimente des écosystèmes entiers de fonctionnalités d’entreprise — outils de surveillance, tableaux de bord de conformité, couches de modération, flux de révision humaine et modules de gouvernance — coûteux à développer, coûteux à exploiter et très rentables à commercialiser.
+De fortes incitations économiques contribuent également au maintien de ce modèle axé sur la génération initiale. La gestion des risques après coup soutient des écosystèmes complets de fonctionnalités d’entreprise — outils de surveillance, tableaux de bord de conformité, couches de modération, processus de révision humaine et modules de gouvernance — coûteux à développer, coûteux à exploiter et très rentables à commercialiser.
 
-Dans les environnements institutionnels réglementés, toutefois, cette approche introduit des risques difficiles — voire impossibles — à atténuer pleinement une fois qu’une réponse a déjà été fournie. Pour compenser, les fournisseurs recommandent généralement d’ajouter des contrôles et des protections juridiques supplémentaires, tels que des avertissements et des cadres de conformité légale.
+Dans les environnements institutionnels réglementés, toutefois, cette approche introduit des risques difficiles — voire impossibles — à atténuer pleinement une fois qu’une réponse a déjà été communiquée. Pour y pallier, les fournisseurs recommandent habituellement l’ajout de contrôles et de protections juridiques supplémentaires, tels que des avertissements et des cadres de conformité juridique.
 
-Ces mesures (lorsqu’une institution peut se les permettre) peuvent réduire l’exposition, mais elles ne modifient pas l’architecture sous-jacente axée sur la génération initiale ni n’éliminent les causes profondes des hallucinations. Elles continuent de se produire.
+Ces mesures, lorsqu’une institution peut se les permettre, peuvent réduire l’exposition, mais elles ne modifient pas l’architecture fondamentale axée sur la génération initiale ni n’éliminent les causes profondes des hallucinations. Celles-ci continuent de se produire.
 
-Dans les environnements institutionnels réglementés, cela crée une lacune fondamentale — que COMPAiSS est conçu pour combler en introduisant une innovation architecturale qui empêche la génération de réponses non étayées dès le départ.
+Dans les environnements institutionnels réglementés, cette situation crée une lacune structurelle — que COMPAiSS est précisément conçu pour combler en introduisant une innovation architecturale qui empêche la génération de réponses non étayées par des sources institutionnelles autorisées dès l’origine.
+
+---
+
+## COMPAiSS : la solution structurelle à une défaillance systémique de l’IA
+
+Plutôt que de générer une réponse par défaut puis de tenter de gérer les risques après coup, COMPAiSS évalue chaque question avant qu’une réponse ne puisse être produite.
+
+Lorsqu’une question est soumise, le système détermine d’abord :
+
+- si la question relève du périmètre institutionnel défini ;
+- si des sources institutionnelles autorisées existent pour appuyer une réponse ;
+- et si la production d’une réponse serait responsable et défendable.
+
+Le modèle d’IA n’est autorisé à produire une réponse que lorsque ces conditions sont réunies.
+
+Ainsi, COMPAiSS ne repose pas sur des avertissements, des scores de confiance, des filtres post-réponse ou une révision humaine pour tenter de rendre conforme une réponse déjà produite. Les questions non étayées ou hors périmètre sont empêchées de déclencher l’IA dès le départ.
+
+Ce mécanisme de contrôle préalable élimine à lui seul une catégorie importante d’erreurs propres aux systèmes d’IA grand public, où des réponses plausibles et bien référencées s’appuient néanmoins sur des sources externes ou non autorisées qui ne font qu’imiter une pertinence institutionnelle.
+
+Lorsqu’une question est clairement institutionnelle et que des sources autorisées existent, COMPAiSS produit une réponse claire, fondée exclusivement sur les documents et positions officiellement approuvés par l’institution — et non sur des inférences tirées d’organisations ou de juridictions externes. Lorsqu’une question ne peut être appuyée, le système ne devine pas, ne généralise pas et n’improvise pas simplement pour paraître « utile ».
+
+En déplaçant la prise de décision en amont de la génération, COMPAiSS élimine le besoin de nombreux mécanismes correctifs coûteux propres aux systèmes axés sur la génération initiale et supprime par conception une classe entière d’hallucinations.
+
+---
+
+## Pourquoi COMPAiSS n’est pas un système d’IA à usage général
+
+Les différences décrites ci-dessus ne relèvent pas de simples choix d’implémentation ; elles traduisent un objectif de conception fondamentalement différent.
+
+Les systèmes d’IA à usage général sont conçus pour répondre à des questions sur à peu près n’importe quel sujet. Leur valeur réside dans leur étendue : la capacité de naviguer librement entre domaines, institutions, juridictions et thématiques en inférant le contexte à partir d’un corpus d’entraînement vaste et en constante expansion — sans frontières institutionnelles ou normatives définies *avant* la génération initiale de la réponse.
+
+COMPAiSS n’est pas conçu pour cette étendue. Il est intentionnellement conçu pour la spécificité institutionnelle. Ce choix réduit à lui seul les erreurs et les risques en opérant à l’intérieur d’un cadre organisationnel clairement défini, où l’autorité, la responsabilité et la reddition de comptes priment sur la couverture générale — particulièrement dans les environnements réglementés ou normatifs.
+
+Son objectif n’est pas d’approximer une réponse à partir de connaissances générales, mais de refléter **uniquement** ce qu’une institution a officiellement autorisé comme position, politique ou directive, et **uniquement ensuite** de permettre à l’IA de formuler une réponse.
+
+En résumé, l’IA à usage général optimise la quantité de réponses qu’elle peut fournir.
+
+COMPAiSS optimise le moment où il est approprié de fournir des réponses au nom d’une institution — et le moment où il ne l’est pas.
+
+---
+
+## Pourquoi COMPAiSS n’est pas un robot FAQ ni un agent conversationnel scripté
+
+Les systèmes de FAQ reposent sur des questions prédéfinies et des réponses fixes, obligeant les utilisateurs à formuler leurs demandes selon des cadres rigides.
+
+Ils échouent dès que les questions dépassent ces limites ou nécessitent une interprétation contextuelle, un jugement ou une compréhension des responsabilités institutionnelles.
+
+COMPAiSS ne repose pas sur des scripts. Chaque question est évaluée selon ses propres caractéristiques et en fonction des informations institutionnelles pertinentes, afin de produire des réponses claires, détaillées et nuancées, alignées sur ce que les utilisateurs cherchent réellement à comprendre.
+
+---
+
+## Pourquoi COMPAiSS n’est pas fondé sur la génération augmentée par récupération (RAG)
+![Comparison of Standard RAG AI vs Execution-Gated Institutional AI](/assets/compaiss-funnel-v2.png)
+
+Les systèmes fondés sur la génération augmentée par récupération (RAG) relient l’IA aux documents ou bases de données d’une institution afin de lui permettre de « consulter » de l’information pendant la génération d’une réponse.
+
+De nombreux systèmes d’IA s’appuient sur le RAG et des mécanismes de contrôle post-générationnels similaires pour réduire les hallucinations après qu’une réponse a déjà été produite.
+
+Ces approches nécessitent souvent des couches d’infrastructure supplémentaires — pipelines de récupération, bases de données vectorielles, systèmes de surveillance, outils de validation et supervision continue. Elles accroissent la complexité et les coûts et sont généralement intégrées à des contrats d’entreprise onéreux.
+
+À l’inverse, COMPAiSS intervient plus tôt.
+
+En empêchant les questions non étayées ou non admissibles de déclencher le modèle d’IA, COMPAiSS empêche toute génération de réponses non autorisées, éliminant ainsi le besoin de mécanismes correctifs post-générationnels coûteux. L’exactitude et l’autorité sont établies avant toute production de réponse, ce qui réduit à la fois les risques opérationnels et les coûts liés aux corrections ultérieures.
+
+Cette différence ne relève pas d’un simple réglage technique ; elle reflète une approche architecturale fondamentalement distincte.
+
+---
+
+## Architecture de COMPAiSS
+
+Au cœur de COMPAiSS se trouve une architecture d’*inférence à exécution conditionnelle* : en pratique, l’IA ne peut répondre à une question que si elle y est explicitement autorisée.
+
+Si l’autorisation échoue, le système ne s’exécute pas, ne raisonne pas et n’alloue aucune ressource de calcul.
+
+En contrôlant le fait même que le raisonnement de l’IA puisse avoir lieu, COMPAiSS impose l’autorité institutionnelle de manière structurelle, plutôt que de s’appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
+
+---
+
+![Table 1 – How Different AI Systems Work](/assets/compaiss-table_1-architecture.png)
+
+---
+
+![Table 2 – Detailed System Characteristics](/assets/compaiss-table_2-architecture.png)
+
+---
+
+**Ces différences architecturales sont précisément ce qui permet à COMPAiSS de fonctionner de façon sécuritaire dans des environnements réglementés où l’exactitude n’est pas négociable.**
+
+---
+
+## Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG
+
+Les systèmes d’IA grand public traduisent souvent une question (généralement vers l’anglais) dans le cadre de leur recherche d’information, puis retraduisent la réponse dans la langue de l’utilisateur. Dans de nombreux systèmes fondés sur le RAG, cette étape de traduction est étroitement liée aux processus de récupération et de raisonnement.
+
+Il en résulte que de légères différences de formulation peuvent influencer les documents récupérés, l’interprétation des passages et l’accent mis dans la réponse finale.
+
+Avec le temps, cette dynamique peut mener à des réponses incohérentes d’une langue à l’autre — même lorsque la même question est posée et que les mêmes documents servent de référence.
+
+COMPAiSS est conçu pour éviter ce problème en séparant la langue du sens au niveau architectural.
+
+Lorsqu’une question est soumise dans une langue autre que l’anglais, elle est d’abord traduite vers l’anglais à l’aide de GPT-4o-mini, un modèle de traduction de haute précision. Cette étape sert uniquement à normaliser la question dans une langue de travail unique. Elle ne déclenche aucune récupération de documents, n’interprète aucune politique et ne génère aucune réponse.
+
+Une fois traduite, la question est évaluée quant à son admissibilité institutionnelle et à l’existence de sources autorisées avant que tout raisonnement de l’IA n’ait lieu. Ce n’est que lorsque ces conditions sont remplies que le modèle principal — ChatGPT-5.2-latest — produit une réponse, en s’appuyant exclusivement sur les sources institutionnelles autorisées.
+
+La réponse est ensuite traduite dans la langue choisie par l’utilisateur pour l’affichage.
+
+Cette séparation est intentionnelle. La traduction est traitée strictement comme une opération linguistique, et non comme une étape de découverte, de récupération ou de raisonnement. Ainsi, le changement de langue n’altère ni les informations jugées pertinentes, ni les sources institutionnelles utilisées, ni la logique de détermination de la réponse — seule son expression linguistique varie.
+
+En fixant le sens, le périmètre et l’autorisation avant la génération, COMPAiSS évite la dérive interprétative et les incohérences multilingues propres aux systèmes fondés sur le RAG, assurant des réponses institutionnelles exactes, faisant autorité et cohérentes, quelle que soit la langue.
+
+---
+
+## Là où l’exactitude n’est pas facultative
+
+Les conséquences d’une information inexacte varient selon le contexte. Dans les environnements fortement réglementés ci-dessous, elles ne sont pas théoriques.
+
+### *Universités*
+
+Les universités publient des politiques encadrant l’admission, le cheminement académique, les mesures d’adaptation, l’aide financière, les exigences de diplomation et les droits des étudiants.
+
+Une réponse incorrecte peut :
+- déformer une politique officielle ;
+- mener à des décisions ou à des recours inappropriés ;
+- créer des enjeux d’équité et de conformité.
+
+COMPAiSS veille à ce que les réponses reflètent ce que l’institution autorise réellement, et non ce qu’un modèle d’IA infère.
+
+---
+
+### *Hôpitaux et réseaux de soins de santé*
+
+Les hôpitaux fonctionnent dans des cadres cliniques, administratifs et réglementaires stricts.
+
+Une information inexacte peut :
+- mal représenter les droits des patients ou les procédures ;
+- créer des risques de non-conformité ;
+- miner la confiance envers la prestation des soins.
+
+COMPAiSS limite les réponses à ce que l’organisation peut vérifier et appuyer, en empêchant les réponses spéculatives ou généralisées.
+
+---
+
+### *Services gouvernementaux et services publics*
+
+Les organismes publics fournissent de l’information ayant une incidence directe sur les prestations, l’admissibilité, les obligations et l’accès aux services.
+
+Des indications erronées peuvent :
+- retarder ou empêcher l’accès aux services ;
+- créer une exposition juridique ;
+- éroder la confiance du public.
+
+COMPAiSS veille à ce que les réponses générées par l’IA demeurent conformes aux règles, politiques et mandats officiels.
+
+---
+
+## Pourquoi cela importe
+
+Lorsqu’une institution communique de l’information, elle s’engage implicitement à ce qu’elle soit :
+
+- exacte ;
+- faisant autorité ;
+- fiable.
+
+COMPAiSS étend cette exigence aux réponses générées par l’IA, car **deviner** n’est pas acceptable.
+
+---
+
+**Les institutions réglementées méritent des systèmes d’IA qui respectent leurs obligations — et non des systèmes qui les contournent pour paraître « utiles ».**
+
+**COMPAiSS est conçu pour des environnements institutionnels où l’exactitude, l’autorité et la gouvernance ne sont pas négociables.**
+
+---
+
+## Pour aller plus loin
+
+Pour une analyse plus approfondie, non technique, de cette approche, veuillez consulter :
+
+**[The Road Less Travelled – Repenser les coûts, la sécurité et la confiance liés à l’IA générative dans les environnements réglementés](/assets/compaiss-the_road_less_travelled.pdf)**
+
+Ce document approfondit les arguments structurels qui sous-tendent COMPAiSS ainsi que les limites et les coûts associés aux mécanismes de contrôle post-générationnels dans les contextes réglementés.
     `;
 
     safeRender(LANDING_MD);
