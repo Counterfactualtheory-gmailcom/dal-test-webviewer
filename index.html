@@ -428,7 +428,7 @@ By controlling whether AI reasoning happens at all, COMPAiSS enforces institutio
 
 ---
 
-## Keeping Meaning Consistent Across Languages
+## Keeping Meaning Consistent Across Languages: COMPAiSS vs. RAG
 
 Consumer-based AI systems often translate a user’s question (typically into English) as part of how they search for information, and then translate the answer back into the user’s language. In many RAG-based systems, this translation step is intertwined with retrieval and reasoning. As a result, small differences in phrasing can influence which documents are retrieved, how passages are interpreted, and what the system ultimately emphasizes in its response. 
 
@@ -438,7 +438,7 @@ COMPAiSS is designed to avoid this problem by separating language from meaning a
 
 When a question is submitted in a non-English language, it is first translated into English using GPT-4o-mini, a high-accuracy translation model. This step exists solely to normalize the question into a single working language. It does not retrieve documents, interpret policy, apply institutional rules, or generate answers.
 
-Once translated, the question is evaluated for institutional scope and authorization. Only if authoritative, institution-approved sources are confirmed does the primary AI model - ChatGPT-5.2-latest - generate an answer, drawing exclusively from those authorized materials.
+Once translated, the question is evaluated for institutional scope and authorization before any AI reasoning occurs. Only if authoritative, institution-approved sources are confirmed does the primary AI model - ChatGPT-5.2-latest - generate an answer, drawing exclusively from those authorized materials.
 
 After the answer is determined, it is translated back into the user’s chosen language for presentation.
 
