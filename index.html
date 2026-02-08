@@ -406,11 +406,11 @@ This difference is not a tuning choice or configuration detail - it reflects a f
 
 ---
 
-## Architecture
+## COMPAiSS Architecture
 
-The architectural difference underpinning COMPAiSS is implemented through execution-gated inference.
+At its core, COMPAiSS is built on an *execution-gated inference* architecture - in essence, the AI will not answer questions it is not authorized to answer.
 
-This means the AI is designed not to operate unless permission is explicitly granted. If authorization fails, the system does not run, reason, or allocate computing resources.
+If authorization fails, the system does not run, reason, or allocate computing resources.
 
 By controlling whether AI reasoning happens at all, COMPAiSS enforces institutional authority structurally, rather than relying on post-generation filtering or correction.
 
