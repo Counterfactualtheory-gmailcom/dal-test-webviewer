@@ -343,11 +343,23 @@ These measures can reduce exposure, but they do not change the underlying genera
 
 ## How COMPAiSS Works Differently
 
-COMPAiSS evaluates each question before any response is generated.
+Instead of generating an answer by default and attempting to manage risk afterward, COMPAiSS evaluates each question before any response is permitted to occur.
 
-Rather than producing an answer and attempting to correct or constrain it afterward, the system first determines whether the question falls within an institution’s defined scope and whether authoritative material exists to support a response.
+When a question is asked, the system first determines:
 
-This pre-generation evaluation establishes whether an answer can be produced responsibly, before language generation is permitted to occur.
+- whether the question falls within an institution’s defined scope
+- whether authoritative, institution-approved material exists to support an answer
+- and whether producing an answer would be responsible and defensible
+
+The AI model is only allowed to provide an answer when those conditions are met.
+
+This means COMPAiSS does not rely on disclaimers, confidence scores, post-answer filtering, or human review to retrofit compliance after an answer has already been produced. Unsupported or out-of-scope questions are prevented from triggering the AI in the first place.
+
+This pre-generation gating alone eliminates a significant class of errors common to consumer AI systems, where answers appear plausible and well-linked but are drawn from non-authoritative or external sources that only seem institutionally relevant.
+
+When a question is clearly institution-specific and authoritative information exists within approved sources, COMPAiSS produces a clear answer grounded exclusively in that institution’s authorized materials - not inferred from the broader universe of unrelated organizations or jurisdictions. When a question cannot be supported, the system does not guess, generalize, fill gaps, or improvise simply to be helpful.
+
+By shifting decision-making ahead of AI generation, COMPAiSS removes the need for many of the costly corrective controls required by generation-first AI systems and eliminates a major source of hallucinations by design.
 
 ---
 
