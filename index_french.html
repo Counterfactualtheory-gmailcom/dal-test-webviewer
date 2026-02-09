@@ -200,12 +200,19 @@
       max-width:70ch;
     }
 
-/* Balance hero headline lines (fixes French wrapping) */
+/* Balance + center hero headline */
 #out > h3:first-of-type {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   text-wrap: balance;
+}
+
+/* Center hero byline */
+#out > h3:first-of-type + p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
     
     ul{
