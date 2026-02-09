@@ -415,16 +415,6 @@ Cette différence ne relève pas d’un simple réglage technique ; elle reflèt
 
 ---
 
-## Architecture de COMPAiSS
-
-Au cœur de COMPAiSS se trouve une architecture d’*inférence à exécution conditionnelle* : en pratique, l’IA ne peut répondre à une question que si elle y est explicitement autorisée.
-
-Si l’autorisation échoue, le système ne s’exécute pas, ne raisonne pas et n’alloue aucune ressource de calcul.
-
-En contrôlant le fait même que le raisonnement de l’IA puisse avoir lieu, COMPAiSS impose l’autorité institutionnelle de manière structurelle, plutôt que de s’appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
-
----
-
 ### Figure 1 — Architecture IA standard à génération d’abord / RAG
 
 Ce schéma illustre le fonctionnement des systèmes d’IA conventionnels et fondés sur le RAG, dans lesquels **l’inférence du modèle est active dès le départ**, et où la gestion des risques repose sur la récupération de contenu et des mécanismes de contrôle *après* la génération de la réponse.
@@ -438,6 +428,20 @@ Ce schéma illustre le fonctionnement des systèmes d’IA conventionnels et fon
 Ce schéma présente l’architecture à inférence verrouillée de COMPAiSS, dans laquelle **l’autorisation et la validation du périmètre interviennent avant toute inférence du modèle**, et où les questions non prises en charge empêchent complètement l’exécution de l’IA.
 
 ➡️ **[Voir la figure 2 (PDF)](/assets/compaiss_figure_2.pdf)**
+
+---
+
+## Architecture de COMPAiSS
+
+Au cœur de COMPAiSS se trouve une architecture d’*inférence à exécution conditionnelle* : en pratique, l’IA ne peut répondre à une question que si elle y est explicitement autorisée.
+
+Si l’autorisation échoue, le système ne s’exécute pas, ne raisonne pas et n’alloue aucune ressource de calcul.
+
+En contrôlant le fait même que le raisonnement de l’IA puisse avoir lieu, COMPAiSS impose l’autorité institutionnelle de manière structurelle, plutôt que de s’appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
+
+---
+
+➡️ **[Voir les tableaux (PDF)](/assets/compaiss_vs_rag_tables_1_2-v2.pdf)**
 
 ---
 
