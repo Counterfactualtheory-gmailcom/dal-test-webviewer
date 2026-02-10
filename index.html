@@ -425,7 +425,7 @@ This difference is not a tuning choice or configuration detail - it reflects a f
 
 This diagram illustrates how conventional AI and RAG systems operate with **model inference active from the start**, relying on retrieval and post-generation controls to manage risk after an answer has already been produced.
 
-➡️ **[View Figure 1 (PDF)](/assets/rag_figure_1.pdf)**
+➡️ **[View Standard RAG Architecture - Figure 1 (PDF)](/assets/rag_figure_1.pdf)**
 
 ---
 
@@ -433,7 +433,7 @@ This diagram illustrates how conventional AI and RAG systems operate with **mode
 
 This diagram shows COMPAiSS’s execution-gated design, where **authorization and scope validation occur before any model inference**, and unsupported questions prevent the AI from running at all.
 
-➡️ **[View Figure 2 (PDF)](/assets/compaiss_figure_2.pdf)**
+➡️ **[View COMPAiSS Architecture - Figure 2 (PDF)](/assets/compaiss_figure_2.pdf)**
 
 ---
 
@@ -445,9 +445,7 @@ If authorization fails, the system does not run, reason, or allocate computing r
 
 By controlling whether AI reasoning happens at all, COMPAiSS enforces institutional authority structurally, rather than relying on post-generation filtering or correction.
 
----
-
-➡️ **[View Tables (PDF)](/assets/compaiss_vs_rag_tables_1_2-v2.pdf)**
+➡️ **[View Comparison Table (PDF)](/assets/compaiss_vs_rag_tables_1_2-v2.pdf)**
 
 ---
 
@@ -455,7 +453,7 @@ By controlling whether AI reasoning happens at all, COMPAiSS enforces institutio
 
 ---
 
-For readers interested in the financial implications of adopting this execution-gated architecture, a detailed, side-by-side comparison of operating costs, token usage assumptions, and governance overhead is provided here:
+For readers interested in the financial implications of adopting RAG vs. execution-gated architecture, a detailed, side-by-side comparison of operating costs, token usage assumptions, and governance overhead is provided here:
 
 ➡️ **[Cost Savings by Design - Comparative Cost Analysis (PDF)](/assets/cost_savings_by_design.pdf)**
 
