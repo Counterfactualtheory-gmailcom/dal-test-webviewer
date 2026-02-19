@@ -325,7 +325,7 @@ cleaned = cleaned
   .replace(/Verified Source/gi, '')
 
   // Remove empty leftover lines after stripping
-  .replace(/^\s*$/gm, '');
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
   
   // 🚫 Remove accidental list markers (general safety)
   cleaned = cleaned
