@@ -437,7 +437,7 @@ followupBtn.onclick=async()=>{
   followupBtn.disabled=true;
 
     try {
-    const res = await fetch('https://compaiss-engine-v2-production.up.railway.app/ask', {
+    const res = await fetch('https://web-production-28142.up.railway.app/ask', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -500,29 +500,12 @@ copyBtn.onclick = () => {
   const temp = document.createElement("div");
   temp.innerHTML = html;
 
-// Turn <a> tags into: Label (URL) — CLEANED (no hash / no scroll fragments)
-temp.querySelectorAll("a[href]").forEach(a => {
-  const label = a.textContent.trim();
-
-  try {
-    const urlObj = new URL(a.href);
-
-    // Remove ALL hash fragments (including #:~:text=)
-    urlObj.hash = "";
-
-    const cleanUrl = urlObj.toString();
-
-    a.replaceWith(
-      document.createTextNode(`${label} (${cleanUrl})`)
-    );
-
-  } catch (err) {
-    // Fallback if URL parsing fails
-    a.replaceWith(
-      document.createTextNode(`${label}`)
-    );
-  }
-});
+  // Turn <a> tags into: Label (URL)
+  temp.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    a.replaceWith(document.createTextNode(`${label} (${url})`));
+  });
 
   const text = temp.innerText
     .replace(/\n{3,}/g, "\n\n")
