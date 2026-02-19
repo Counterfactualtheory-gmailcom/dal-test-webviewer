@@ -312,8 +312,7 @@ cleaned = cleaned
   .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
   .replace(/\[+COMPLETED+\]/gi, '')
   .replace(/\[+DONE+\]/gi, '')
-  .trim();
-  
+  .trim();  
   // 🚫 Remove accidental list markers (general safety)
   cleaned = cleaned
     .replace(/^[-*]\s+/gm, '')
@@ -494,7 +493,7 @@ followupBtn.onclick = async () => {
   followupBtn.disabled = true;
 
   try {
-    const res = await fetch('https://compaiss-engine-v2-production.up.railway.app/ask', {
+    const res = await fetch('https://mcgillcombinedacrabackend-production.up.railway.app/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({
