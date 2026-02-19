@@ -306,26 +306,13 @@ function safeRender(md) {
   if (String(md).trim() === 'ready') return;
   let cleaned = String(md || '');
 
-// 🚫 Remove backend-injected McGill source dumps (all variants)
+// Only strip control tags — do NOT strip sources
 cleaned = cleaned
-  // Remove SOURCES: header
-  .replace(/^SOURCES:\s*$/gim, '')
-
-  // Remove full lines containing McGill placeholder
-  .replace(/^.*Verified McGill Source.*$/gim, '')
-
-  // Remove bulleted variations
-  .replace(/^[ \t]*[-*•]\s*Verified McGill Source.*$/gim, '')
-
-  // Remove inline occurrences
-  .replace(/Verified McGill Source/gi, '')
-
-  // Remove generic fallback patterns
-  .replace(/^.*Verified Source.*$/gim, '')
-  .replace(/Verified Source/gi, '')
-
-  // Remove empty leftover lines after stripping
-  .replace(/^\s*$/gm, '');
+  .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
+  .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
+  .replace(/\[+COMPLETED+\]/gi, '')
+  .replace(/\[+DONE+\]/gi, '')
+  .trim();
   
   // 🚫 Remove accidental list markers (general safety)
   cleaned = cleaned
