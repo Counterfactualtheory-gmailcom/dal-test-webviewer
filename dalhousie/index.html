@@ -437,7 +437,8 @@ followupBtn.onclick=async()=>{
   followupBtn.disabled=true;
 
     try {
-    const res = await fetch('https://web-production-28142.up.railway.app/ask', {
+    //const res = await fetch('https://web-production-28142.up.railway.app/ask', {
+    const res = await fetch('https://compaiss-engine-v2-production.up.railway.app/ask', {  
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
