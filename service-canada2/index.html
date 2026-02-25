@@ -339,10 +339,16 @@ lastSingleAnswer = clean2;
 
 // Append into the output box
 if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+
+const questionBlock = window.lastQuestion
+  ? `<div style="font-weight:700;margin-bottom:8px;">❓ ${window.lastQuestion}</div>`
+  : '';
+
 outEl.innerHTML +=
   (outEl.innerHTML
     ? '<div class="answer-divider"></div>'
     : '') +
+  questionBlock +
   clean2;
   
   /* -----------------------------------------------------------
