@@ -341,7 +341,9 @@ lastSingleAnswer = clean2;
 if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
 
 const questionBlock = window.lastQuestion
-  ? `<div style="font-weight:700;margin-bottom:8px;">❓ ${window.lastQuestion}</div>`
+  ? `<div style="font-weight:700;margin-bottom:8px;">
+       <span style="color:#ff0000;">❓</span> ${window.lastQuestion}
+     </div>`
   : '';
 
 outEl.innerHTML +=
