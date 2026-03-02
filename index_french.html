@@ -412,14 +412,16 @@ function safeRender(md){
   });
 
   // H2 ID generator (for executive navigation)
-  outEl.querySelectorAll('h2').forEach(h2=>{
-    const id = h2.textContent
-      .toLowerCase()
-      .replace(/[^\w\s-]/g,'')
-      .trim()
-      .replace(/\s+/g,'-');
-    h2.id = id;
-  });
+outEl.querySelectorAll('h2').forEach(h2=>{
+  const id = h2.textContent
+    .normalize('NFD')                     // break accents
+    .replace(/[\u0300-\u036f]/g,'')       // remove accent marks
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')          // allow only safe chars
+    .trim()
+    .replace(/\s+/g,'-');
+  h2.id = id;
+});
 }
 
 const LANDING_MD = `
