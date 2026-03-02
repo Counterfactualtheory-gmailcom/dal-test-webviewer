@@ -370,15 +370,30 @@
 
     const outEl = document.getElementById('out');
 
-    function safeRender(md){
-      const html = marked.parse(md || '');
-      const clean = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
-      outEl.innerHTML = clean;
-      outEl.querySelectorAll('a').forEach(a=>{
-        a.target='_blank';
-        a.rel='noopener';
-      });
+function safeRender(md){
+  const html = marked.parse(md || '');
+  const clean = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+  outEl.innerHTML = clean;
+
+  // External link handling
+  outEl.querySelectorAll('a').forEach(a=>{
+    const href = a.getAttribute('href');
+    if (href && href.startsWith('http')) {
+      a.target = '_blank';
+      a.rel = 'noopener';
     }
+  });
+
+  // H2 ID generator (for executive navigation)
+  outEl.querySelectorAll('h2').forEach(h2=>{
+    const id = h2.textContent
+      .toLowerCase()
+      .replace(/[^\w\s-]/g,'')
+      .trim()
+      .replace(/\s+/g,'-');
+    h2.id = id;
+  });
+}
 
 const LANDING_MD = `
 ### Un système d’IA conçu pour prévenir les hallucinations institutionnelles non autorisées par conception
