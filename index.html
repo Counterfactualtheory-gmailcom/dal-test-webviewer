@@ -789,7 +789,8 @@ window.addEventListener('scroll', () => {
 });
 
 backBtn.addEventListener('click', () => {
-window.scrollTo(0, 0);
+  const nav = document.querySelector('.section-nav');
+  nav.scrollIntoView({ block: 'start' });
 });
     
   </script>
