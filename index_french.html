@@ -779,6 +779,25 @@ Les déploiements pilotes actuels continuent d'alimenter le perfectionnement arc
       `;
 
     safeRender(LANDING_MD);
+
+// Back To Top Logic
+const backBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backBtn.style.display = 'block';
+  } else {
+    backBtn.style.display = 'none';
+  }
+});
+
+backBtn.addEventListener('click', () => {
+  const nav = document.querySelector('.section-nav');
+  nav.scrollIntoView({ block: 'start' });
+
+  history.replaceState(null, null, window.location.pathname);
+});
+    
   </script>
 </body>
 </html>
