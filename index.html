@@ -791,6 +791,9 @@ window.addEventListener('scroll', () => {
 backBtn.addEventListener('click', () => {
   const nav = document.querySelector('.section-nav');
   nav.scrollIntoView({ block: 'start' });
+
+  // 🔥 Clear URL hash without reloading
+  history.replaceState(null, null, window.location.pathname);
 });
     
   </script>
