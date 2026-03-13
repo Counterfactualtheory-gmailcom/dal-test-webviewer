@@ -422,7 +422,7 @@ if (!linkHandlerAttached) {
         if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
         const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
         setTimeout(() => {
-        safeRender(payload);
+        safeRender(typeof payload === "string" ? payload : (payload.answer || payload));
         }, 50);    
       } catch (err) {
         outEl.textContent = 'Render error:' + err;
