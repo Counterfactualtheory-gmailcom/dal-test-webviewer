@@ -390,7 +390,11 @@ outEl.innerHTML +=
     let firstMessageReceived=false;let readyPingerId=null;
 
 // ✅ FIX: Align Service Canada render timing with McGill/DAL (prevents tag bleed)
-ThunkableWebviewerExtension.receiveMessage(function (msg) {
+
+if (window.ThunkableWebviewerExtension &&
+    typeof ThunkableWebviewerExtension.receiveMessage === "function") {
+  ThunkableWebviewerExtension.receiveMessage(function (msg) {
+  
   try {
     // 🚫 IGNORE handshake / system messages
     if (msg && typeof msg === "object" && !("payload" in msg)) return;
