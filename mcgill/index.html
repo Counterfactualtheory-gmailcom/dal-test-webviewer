@@ -416,20 +416,6 @@ if (!linkHandlerAttached) {
     let firstMessageReceived = false;
     let readyPingerId = null;
 
-    ThunkableWebviewerExtension.receiveMessage(function (msg) {
-      try {
-        firstMessageReceived = true;
-        if (readyPingerId) { clearInterval(readyPingerId); readyPingerId = null; }
-        const payload = (msg && typeof msg === 'object' && 'payload' in msg) ? msg.payload : msg;
-        setTimeout(() => {
-        safeRender(typeof payload === "string" ? payload : (payload.answer || payload));
-        }, 50);    
-      } catch (err) {
-        outEl.textContent = 'Render error:' + err;
-        debug('Render error:' + (err && err.stack || err));
-      }
-    });
-
     function pingReady() {
       try { ThunkableWebviewerExtension.postMessage('ready'); }
       catch (e) { debug('postMessage error:' + e); }
