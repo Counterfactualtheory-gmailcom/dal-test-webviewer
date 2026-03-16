@@ -388,21 +388,6 @@ outEl.innerHTML +=
 }
     let firstMessageReceived=false;let readyPingerId=null;
 
-// ✅ FIX: Align Service Canada render timing with McGill/DAL (prevents tag bleed)
-
-    function pingReady(){
-      try{ThunkableWebviewerExtension.postMessage('ready');}
-      catch(e){debug('postMessage error:'+e);}
-    }
-    window.addEventListener('DOMContentLoaded',()=>{
-      pingReady();
-      let tries=0;
-      readyPingerId=setInterval(()=>{
-        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
-        pingReady();tries++;
-      },600);
-    });
-
     // ✅ Universal Copy handler
 copyBtn.onclick = () => {
   const html = (lastSingleAnswer || "").trim();
