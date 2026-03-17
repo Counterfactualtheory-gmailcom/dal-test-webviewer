@@ -447,8 +447,9 @@ followupBtn.onclick=async()=>{
   window.lastUserQuestion = window.lastQuestion || "";
   window.lastQuestion = q;
   
-  loading.style.display='block';
-  followupBtn.disabled=true;
+loading.style.display='block';
+loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+followupBtn.disabled=true;
 
     try {
     //const res = await fetch('https://web-production-28142.up.railway.app/ask', {
