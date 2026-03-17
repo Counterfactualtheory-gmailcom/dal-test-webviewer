@@ -489,8 +489,9 @@ followupBtn.onclick = async () => {
   const q = followupText.value.trim();
   if (!q) return;
 
-  loading.style.display = 'block';
-  followupBtn.disabled = true;
+loading.style.display='block';
+loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+followupBtn.disabled=true;
 
   try {
   //  const res = await fetch('https://mcgillcombinedacrabackend-production.up.railway.app/ask', {
