@@ -309,7 +309,26 @@ a:visited {
     const loading=document.getElementById('loading');
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     const copyBtn = document.getElementById('copy-btn');
+    const wordCounter = document.getElementById('word-counter');
+    const MAX_WORDS = 400;
 
+function countWords(text) {
+  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+}
+
+followupText.addEventListener('input', () => {
+  const words = countWords(followupText.value);
+  if (words >= MAX_WORDS) {
+    const trimmed = followupText.value.trim().split(/\s+/).slice(0, MAX_WORDS).join(' ');
+    followupText.value = trimmed;
+    wordCounter.textContent = `${MAX_WORDS} / ${MAX_WORDS} words`;
+    wordCounter.classList.add('warning');
+  } else {
+    wordCounter.textContent = `${words} / ${MAX_WORDS} words`;
+    wordCounter.classList.remove('warning');
+  }
+});
+    
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 if (isMobile && copyBtn) {
   copyBtn.style.display = 'block';
