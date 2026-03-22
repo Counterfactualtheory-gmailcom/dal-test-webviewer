@@ -290,7 +290,7 @@ a:visited {
 
     <div id="followup-box">
  <textarea id="followup-text" placeholder="Tap & type your UCW question, issue, or concern here..."></textarea>
-<div id="word-counter">0 / 400 words</div>
+<div id="word-counter">0 / 300 words</div>
       <button id="followup-btn">Submit</button>
       <button id="copy-btn" style="display:none;">Copy Last Answer</button>
       <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
@@ -310,7 +310,7 @@ a:visited {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     const copyBtn = document.getElementById('copy-btn');
     const wordCounter = document.getElementById('word-counter');
-    const MAX_WORDS = 400;
+    const MAX_WORDS = 300;
 
 function countWords(text) {
   return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
