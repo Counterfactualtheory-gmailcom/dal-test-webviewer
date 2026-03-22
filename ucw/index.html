@@ -463,10 +463,11 @@ followupBtn.disabled=true;
     const res = await fetch('https://compaiss-engine-v2-ucw-production.up.railway.app/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        question: q,
-        previousQuestion: window.lastAnswerBackup || ""
-      })
+body: JSON.stringify({
+  question: q,
+  previousQuestion: window.lastAnswerBackup || "",
+  isMobile: isMobile
+})
     });
     const data=await res.json();
     safeRender(data.answer||'(no response)');
