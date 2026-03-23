@@ -96,27 +96,21 @@ gtag('config', 'G-JR7LJGK5PK', {
 
 /* === Conversation answer divider === */
 .answer-divider {
-  margin: 40px 0;
-  padding-top: 20px;
-  border-top: 4px solid #c4c4c4;   /* ⬅ thicker line */
+  margin: 60px 0 40px;
   position: relative;
 }
 
 .answer-divider::after {
   content: "NEW ANSWER";
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  padding: 0 14px;
-
-  font-size: 14px;                /* ⬅ slightly larger */
-  font-weight: 700;               /* ⬅ bolder */
-  color: #666;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  background: #0f4079;   /* Service Canada blue */
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
 }
     
 /* ✅ DAL / McGill parity — hide output until real content exists */
