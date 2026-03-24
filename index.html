@@ -383,6 +383,9 @@ Why COMPAiSS Is Not Retrieval-Augmented Generation (RAG)</a></li>
 <li><a href="#compaiss-architecture">
 COMPAiSS Architecture</a></li>
 
+<li><a href="#cost-savings-by-design">
+Cost Savings by Design</a></li>    
+
 <li><a href="#for-consulting-firms-and-system-integrators">
 For Consulting Firms and System Integrators</a></li>
 
@@ -603,11 +606,15 @@ COMPAiSS employs defense-in-depth controls: authorization gating prevents unauth
 
 ---
 
-For readers evaluating the financial implications of retrieval-augmented generation (RAG) versus execution-gated architecture, the following tables provide a structured comparison of core AI operating costs only — specifically token inference usage, infrastructure, and governance overhead directly associated with model operation.
+## Cost Savings by Design
 
-These figures do not represent total institutional AI program costs. Rather, they isolate the compute-layer and architecture-layer expenses that materially differ between conventional RAG systems and execution-gated systems such as COMPAiSS.
+For institutions managing approximately 100,000 AI-assisted queries annually, the cost difference between conventional enterprise AI and COMPAiSS is not marginal - it is structural. Conventional RAG deployments typically incur total annual operating costs between $90,000 and $200,000, driven by three compounding cost drivers: inference waste (the model runs on every query, including irrelevant and refused ones), persistent RAG infrastructure (document ingestion, embedding computation, and vector database operations regardless of usage), and compensatory governance (moderation, safety tooling, and review processes required because the model is permitted to speculate). A COMPAiSS deployment addressing the same workload operates at approximately $15,000 to $30,000 per year - because all three of those cost drivers are eliminated by architecture, not managed after the fact.
 
-Enterprise licensing, procurement terms, integration services, internal staffing, change management, and institution-specific contractual arrangements are outside the scope of these tables and vary by deployment size and environment.
+Approximately 40% of queries in a typical institutional deployment are denied inference entirely. Those users receive a high-value safe failure response - direct links to authoritative institutional policies - at zero marginal compute cost. The remaining 60% of authorized queries consume materially fewer tokens than equivalent RAG queries because COMPAiSS does not insert retrieved documents into the model context; documents are used exclusively for authorization and scope control.
+
+Lower cost does not imply lower accuracy. Hallucinations require active inference. By preventing inference for unauthorized queries, COMPAiSS removes the structural conditions under which fabrication occurs - not as a downstream filter, but as an architectural property.
+
+The following analysis isolates the compute-layer and architecture-layer expenses that materially differ between conventional RAG systems and execution-gated systems such as COMPAiSS. It does not represent total institutional AI program costs. Enterprise licensing, procurement terms, integration services, internal staffing, change management, and institution-specific contractual arrangements are outside the scope of this analysis and vary by deployment size and environment.
 
 ➡️ **[Cost Savings by Design - Comparative Cost Analysis (PDF)](/assets/cost_savings_by_design.pdf)**
 
