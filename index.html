@@ -394,6 +394,9 @@ Keeping Meaning Consistent Across Translations</a></li>
 
 <li><a href="#the-contrast-with-enterprise-ai-assistants">
 The Contrast with Enterprise AI Assistants</a></li>
+
+<li><a href="#built-for-institutional-procurement-and-governance-review">
+Built for Institutional Procurement and Governance Review</a></li>    
     
 <li><a href="#where-accuracy-is-not-optional">
 Where Accuracy Is Not Optional</a></li>
@@ -665,6 +668,18 @@ This is not a configuration failure. It is an architectural consequence of desig
 COMPAiSS separates these functions entirely. Translation normalizes the question into a working language. Authorization determines whether the institution has approved materials to support an answer. Inference occurs only if both conditions are satisfied, drawing exclusively from institution-approved sources. The language of the question does not alter what is retrieved, what is considered authoritative, or what the institution is permitted to say. It only determines how the answer is expressed.
 
 This means a student asking about academic standing in Mandarin, French, or Arabic receives the same institutionally authorized answer as a student asking in English - not an approximation shaped by translation artifacts or corpus noise. For institutions with obligations to serve multilingual populations equitably, this distinction is not incidental. It is the difference between a system that is consistent by architecture and one that is consistent only when conditions happen to align.
+
+---
+
+## Built for Institutional Procurement and Governance Review
+
+Regulated institutions do not only need AI systems that perform well - they need AI systems they can document, defend, and submit for formal review. Procurement officers, audit committees, legal counsel, and government review panels increasingly require institutions to demonstrate not just that an AI system produces good outputs, but that its governance architecture is auditable, bounded, and aligned with fiduciary obligations.
+
+COMPAiSS is designed with this requirement in mind. Because authorization decisions are deterministic and occur before inference, every interaction follows a documented, reproducible governance path. The institution controls which sources are authoritative. The institution defines the scope boundary. The system enforces both structurally, not probabilistically. There are no confidence thresholds to calibrate, no moderation layers to audit after the fact, and no reliance on model behavior that cannot be formally described.
+
+This makes COMPAiSS directly compatible with the documentation requirements of AI governance panels, institutional ethics review processes, and government procurement frameworks - including those that require institutions to demonstrate how unauthorized or out-of-scope AI responses are prevented, not merely managed.
+
+For institutions currently navigating AI review and approval processes, this architectural transparency is not a secondary feature. It is a primary governance requirement that generation-first systems are structurally unable to satisfy in the same way.
 
 ---
 
