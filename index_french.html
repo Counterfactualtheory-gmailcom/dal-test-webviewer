@@ -363,6 +363,7 @@ gtag('config', 'G-JR7LJGK5PK');
 <li><a href="#pourquoi-compaiss-nest-pas-un-robot-faq-ni-un-agent-conversationnel-scripte">Pourquoi COMPAiSS n’est pas un robot FAQ ni un agent conversationnel scripté</a></li>
 <li><a href="#pourquoi-compaiss-nest-pas-fonde-sur-la-generation-augmentee-par-recuperation-rag">Pourquoi COMPAiSS n’est pas fondé sur la génération augmentée par récupération (RAG)</a></li>
 <li><a href="#architecture-de-compaiss">Architecture de COMPAiSS</a></li>
+<li><a href="#economies-par-conception">Économies par conception</a></li>
 <li><a href="#pour-les-cabinets-de-conseil-et-les-integrateurs-de-systemes">Pour les cabinets de conseil et les intégrateurs de systèmes</a></li>
 <li><a href="#maintenir-la-coherence-du-sens-entre-les-traductions-compaiss-et-le-rag">Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG</a></li>
 <li><a href="#le-contraste-avec-les-assistants-ia-dentreprise">Le contraste avec les assistants IA d'entreprise</a></li>      
@@ -572,13 +573,17 @@ En contrôlant le fait même que le raisonnement de l’IA puisse avoir lieu, CO
 
 ---
 
-Pour les lecteurs qui évaluent les implications financières de la génération augmentée par récupération (RAG) par rapport à une architecture à exécution conditionnelle (execution-gated), les tableaux suivants présentent une comparaison structurée des coûts d’exploitation de base liés à l’IA uniquement — plus précisément l’utilisation des jetons d’inférence, l’infrastructure et les charges de gouvernance directement associées au fonctionnement du modèle.
+## Économies par conception
 
-Ces chiffres ne représentent pas le coût total d’un programme institutionnel d’IA. Ils isolent plutôt les dépenses liées à la couche de calcul et à la couche d’architecture qui diffèrent de façon significative entre les systèmes RAG conventionnels et les systèmes à exécution conditionnelle tels que COMPAiSS.
+Pour les institutions gérant environ 100 000 requêtes assistées par IA annuellement, la différence de coût entre l'IA d'entreprise conventionnelle et COMPAiSS n'est pas marginale - elle est structurelle. Les déploiements RAG conventionnels engendrent généralement des coûts d'exploitation annuels totaux entre 90 000 $ et 200 000 $, entraînés par trois facteurs de coût cumulatifs : le gaspillage d'inférence (le modèle s'exécute sur chaque requête, y compris les requêtes non pertinentes et refusées), l'infrastructure RAG persistante (ingestion de documents, calcul d'incorporation et opérations de base de données vectorielle indépendamment du volume d'utilisation), et la gouvernance compensatoire (modération, outils de sécurité et processus de révision requis parce que le modèle est autorisé à spéculer). Un déploiement COMPAiSS traitant la même charge de travail fonctionne à environ 15 000 $ à 30 000 $ par année - parce que ces trois facteurs de coût sont éliminés par l'architecture, et non gérés après coup.
 
-Les licences d’entreprise, les modalités d’approvisionnement, les services d’intégration, les ressources internes, la gestion du changement ainsi que les ententes contractuelles propres à chaque établissement ne sont pas inclus dans ces tableaux et varient selon la taille et l’environnement de déploiement.
+Environ 40 % des requêtes dans un déploiement institutionnel typique se voient refuser l'inférence entièrement. Ces utilisateurs reçoivent une réponse d'échec sécurisé à haute valeur ajoutée - des liens directs vers les politiques institutionnelles faisant autorité - à un coût de calcul marginal nul. Les 60 % restants des requêtes autorisées consomment matériellement moins de jetons que les requêtes RAG équivalentes, car COMPAiSS n'insère pas les documents récupérés dans le contexte du modèle ; les documents sont utilisés exclusivement à des fins d'autorisation et de contrôle de portée.
 
-➡️ **[Voir les implications financières (PDF)](/assets/economies_de_couts_par_conception-v2.pdf)**
+Un coût inférieur n'implique pas une précision inférieure. Les hallucinations nécessitent une inférence active. En empêchant l'inférence pour les requêtes non autorisées, COMPAiSS supprime les conditions structurelles dans lesquelles la fabrication se produit - non pas comme un filtre en aval, mais comme une propriété architecturale.
+
+L'analyse suivante isole les dépenses au niveau de la couche de calcul et de la couche d'architecture qui diffèrent matériellement entre les systèmes RAG conventionnels et les systèmes à inférence contrôlée tels que COMPAiSS. Elle ne représente pas les coûts totaux du programme d'IA institutionnel. Les licences d'entreprise, les conditions d'approvisionnement, les services d'intégration, le personnel interne, la gestion du changement et les arrangements contractuels propres à chaque institution sont hors de la portée de cette analyse et varient selon la taille et la portée du déploiement.
+
+➡️ **[Économies par conception - Analyse comparative des coûts (PDF)](/assets/cost_savings_by_design.pdf)**
 
 ---
 
