@@ -365,6 +365,7 @@ gtag('config', 'G-JR7LJGK5PK');
 <li><a href="#architecture-de-compaiss">Architecture de COMPAiSS</a></li>
 <li><a href="#pour-les-cabinets-de-conseil-et-les-integrateurs-de-systemes">Pour les cabinets de conseil et les intégrateurs de systèmes</a></li>
 <li><a href="#maintenir-la-coherence-du-sens-entre-les-traductions-compaiss-et-le-rag">Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG</a></li>
+<li><a href="#le-contraste-avec-les-assistants-ia-dentreprise">Le contraste avec les assistants IA d'entreprise</a></li>      
 <li><a href="#la-ou-lexactitude-nest-pas-facultative">Là où l’exactitude n’est pas facultative</a></li>
 <li><a href="#responsabilite-institutionnelle-et-controle">Responsabilité institutionnelle et contrôle</a></li>
 <li><a href="#documentation-technique-et-lectures-complementaires">Documentation technique et lectures complémentaires</a></li>
@@ -614,6 +615,20 @@ La réponse est ensuite traduite dans la langue choisie par l’utilisateur pour
 Cette séparation est intentionnelle. La traduction est traitée strictement comme une opération linguistique, et non comme une étape de découverte, de récupération ou de raisonnement. Ainsi, le changement de langue n’altère ni les informations jugées pertinentes, ni les sources institutionnelles utilisées, ni la logique de détermination de la réponse - seule son expression linguistique varie.
 
 En fixant le sens, le périmètre et l’autorisation avant la génération, COMPAiSS évite la dérive interprétative et les incohérences multilingues propres aux systèmes fondés sur le RAG, assurant des réponses institutionnelles exactes, faisant autorité et cohérentes, quelle que soit la langue.
+
+---
+
+##Le contraste avec les assistants IA d'entreprise
+
+*Le contraste avec les assistants IA d'entreprise — y compris ceux intégrés aux suites de productivité institutionnelles — est structurel, et non superficiel.*
+
+Les systèmes comme Microsoft 365 Copilot sont conçus pour fonctionner dans l'ensemble de l'environnement numérique d'une organisation : courriels, documents, conversations Teams, référentiels SharePoint et données de calendrier. Lorsqu'un utilisateur multilingue soumet une question, le système traduit cette requête, puis effectue une recherche dans l'ensemble du contenu indexé — ce qui peut inclure des ébauches de politiques périmées, des communications informelles ou des documents provenant de départements non concernés mais contenant des mots-clés correspondants. La traduction et la récupération sont couplées : la formulation de la requête traduite détermine directement ce qui est trouvé, ce qui détermine à son tour ce qui est répondu. Deux utilisateurs posant la même question dans des langues différentes peuvent recevoir des réponses substantiellement différentes — non pas parce que la politique de l'établissement diffère, mais parce que la traduction a produit des signaux de récupération différents.
+
+Il ne s'agit pas d'un défaut de configuration. C'est une conséquence architecturale de la conception d'un système axé sur l'étendue de l'ensemble du corpus organisationnel plutôt que sur l'autorité à l'intérieur d'un périmètre institutionnel défini.
+
+COMPAiSS sépare ces fonctions entièrement. La traduction normalise la question dans une langue de travail. L'autorisation détermine si l'établissement dispose de documents approuvés pour étayer une réponse. L'inférence n'a lieu que si ces deux conditions sont satisfaites, en s'appuyant exclusivement sur les sources approuvées par l'établissement. La langue de la question ne modifie pas ce qui est récupéré, ce qui est considéré comme faisant autorité, ni ce que l'établissement est autorisé à affirmer. Elle détermine uniquement la façon dont la réponse est formulée.
+
+Cela signifie qu'un étudiant posant une question sur son dossier académique en mandarin, en français ou en arabe reçoit la même réponse institutionnellement autorisée qu'un étudiant posant la question en anglais — et non une approximation façonnée par des artefacts de traduction ou du bruit de corpus. Pour les établissements ayant l'obligation de servir équitablement des populations multilingues, cette distinction n'est pas accessoire. C'est la différence entre un système cohérent par architecture et un système cohérent uniquement lorsque les conditions s'alignent favorablement.
 
 ---
 
