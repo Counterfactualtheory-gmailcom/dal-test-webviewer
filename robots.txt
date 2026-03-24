@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /dalhousie/
+Disallow: /dalhousie2/
+Disallow: /mcgill/
+Disallow: /mcgill2/
+Disallow: /service-canada/
+Disallow: /service-canada2/
+Disallow: /ucw/
