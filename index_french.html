@@ -366,7 +366,8 @@ gtag('config', 'G-JR7LJGK5PK');
 <li><a href="#economies-par-conception">Économies par conception</a></li>
 <li><a href="#pour-les-cabinets-de-conseil-et-les-integrateurs-de-systemes">Pour les cabinets de conseil et les intégrateurs de systèmes</a></li>
 <li><a href="#maintenir-la-coherence-du-sens-entre-les-traductions-compaiss-et-le-rag">Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG</a></li>
-<li><a href="#le-contraste-avec-les-assistants-ia-dentreprise">Le contraste avec les assistants IA d'entreprise</a></li>      
+<li><a href="#le-contraste-avec-les-assistants-ia-dentreprise">Le contraste avec les assistants IA d'entreprise</a></li> 
+<li><a href="#concu-pour-les-processus-dapprovisionnement-institutionnel-et-dexamen-de-gouvernance">Conçu pour les processus d'approvisionnement institutionnel et d'examen de gouvernance</a></li>      
 <li><a href="#la-ou-lexactitude-nest-pas-facultative">Là où l’exactitude n’est pas facultative</a></li>
 <li><a href="#responsabilite-institutionnelle-et-controle">Responsabilité institutionnelle et contrôle</a></li>
 <li><a href="#documentation-technique-et-lectures-complementaires">Documentation technique et lectures complémentaires</a></li>
@@ -634,6 +635,18 @@ Il ne s'agit pas d'un défaut de configuration. C'est une conséquence architect
 COMPAiSS sépare ces fonctions entièrement. La traduction normalise la question dans une langue de travail. L'autorisation détermine si l'établissement dispose de documents approuvés pour étayer une réponse. L'inférence n'a lieu que si ces deux conditions sont satisfaites, en s'appuyant exclusivement sur les sources approuvées par l'établissement. La langue de la question ne modifie pas ce qui est récupéré, ce qui est considéré comme faisant autorité, ni ce que l'établissement est autorisé à affirmer. Elle détermine uniquement la façon dont la réponse est formulée.
 
 Cela signifie qu'un étudiant posant une question sur son dossier académique en mandarin, en français ou en arabe reçoit la même réponse institutionnellement autorisée qu'un étudiant posant la question en anglais - et non une approximation façonnée par des artefacts de traduction ou du bruit de corpus. Pour les établissements ayant l'obligation de servir équitablement des populations multilingues, cette distinction n'est pas accessoire. C'est la différence entre un système cohérent par architecture et un système cohérent uniquement lorsque les conditions s'alignent favorablement.
+
+---
+
+## Conçu pour les processus d'approvisionnement institutionnel et d'examen de gouvernance
+
+Les institutions réglementées n'ont pas seulement besoin de systèmes d'IA performants - elles ont besoin de systèmes d'IA qu'elles peuvent documenter, défendre et soumettre à un examen formel. Les responsables de l'approvisionnement, les comités d'audit, les conseillers juridiques et les panels d'examen gouvernementaux exigent de plus en plus que les institutions démontrent non seulement qu'un système d'IA produit de bons résultats, mais que son architecture de gouvernance est vérifiable, délimitée et alignée avec les obligations fiduciaires.
+
+COMPAiSS est conçu en tenant compte de cette exigence. Étant donné que les décisions d'autorisation sont déterministes et se produisent avant l'inférence, chaque interaction suit un chemin de gouvernance documenté et reproductible. L'institution contrôle quelles sources font autorité. L'institution définit la limite de portée. Le système applique les deux de manière structurelle, et non probabiliste. Il n'y a pas de seuils de confiance à calibrer, pas de couches de modération à auditer après coup, et pas de dépendance à un comportement de modèle qui ne peut pas être formellement décrit.
+
+Cela rend COMPAiSS directement compatible avec les exigences de documentation des panels de gouvernance de l'IA, des processus d'examen éthique institutionnel et des cadres d'approvisionnement gouvernementaux - y compris ceux qui exigent que les institutions démontrent comment les réponses d'IA non autorisées ou hors périmètre sont prévenues, et non simplement gérées.
+
+Pour les institutions qui naviguent actuellement dans les processus d'examen et d'approbation de l'IA, cette transparence architecturale n'est pas une fonctionnalité secondaire. C'est une exigence de gouvernance primaire que les systèmes à génération prioritaire sont structurellement incapables de satisfaire de la même manière.
 
 ---
 
