@@ -647,6 +647,20 @@ By fixing meaning, scope, and authorization before generation occurs, COMPAiSS p
 
 ---
 
+## The Contrast with Enterprise AI Assistants
+
+*The contrast with enterprise AI assistants - including those bundled into institutional productivity suites - is structural, not superficial.*
+
+Systems like Microsoft 365 Copilot are designed to operate across an organization's entire digital environment: emails, documents, Teams conversations, SharePoint repositories, and calendar data. When a multilingual user submits a question, the system translates that query and then retrieves across whatever content happens to be indexed — which may include outdated policy drafts, informal communications, or documents from unrelated departments that happen to contain matching keywords. Translation and retrieval are coupled: the phrasing of the translated query directly shapes what gets found, which shapes what gets answered. Two users asking the same question in different languages may receive materially different answers, not because the institution's policy differs, but because the translation produced different retrieval signals.
+
+This is not a configuration failure. It is an architectural consequence of designing a system for breadth across an entire organizational corpus rather than for authority within a defined institutional scope.
+
+COMPAiSS separates these functions entirely. Translation normalizes the question into a working language. Authorization determines whether the institution has approved materials to support an answer. Inference occurs only if both conditions are satisfied, drawing exclusively from institution-approved sources. The language of the question does not alter what is retrieved, what is considered authoritative, or what the institution is permitted to say. It only determines how the answer is expressed.
+
+This means a student asking about academic standing in Mandarin, French, or Arabic receives the same institutionally authorized answer as a student asking in English — not an approximation shaped by translation artifacts or corpus noise. For institutions with obligations to serve multilingual populations equitably, this distinction is not incidental. It is the difference between a system that is consistent by architecture and one that is consistent only when conditions happen to align.
+
+---
+
 ## Where Accuracy Is Not Optional
 
 The consequences of incorrect information vary by context. In the highly regulated environments below, they are not theoretical.
