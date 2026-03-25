@@ -558,11 +558,23 @@ Ce schéma présente l’architecture à inférence verrouillée de COMPAiSS, da
 
 ## Architecture de COMPAiSS
 
-Au cœur de COMPAiSS se trouve une architecture d’*inférence à exécution conditionnelle* : en pratique, l’IA ne peut répondre à une question que si elle y est explicitement autorisée.
+Au cœur de COMPAiSS se trouve une architecture d'inférence à exécution conditionnelle : en pratique, l'IA ne peut répondre à une question que si elle y est explicitement autorisée.
 
-Si l’autorisation échoue, le modèle institutionnel principal ne s’exécute pas et n’alloue aucune ressource d’inférence principale.
+Si l'autorisation échoue, le modèle institutionnel principal ne s'exécute pas et n'alloue aucune ressource d'inférence principale.
 
-En contrôlant le fait même que le raisonnement de l’IA puisse avoir lieu, COMPAiSS impose l’autorité institutionnelle de manière structurelle, plutôt que de s’appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
+En contrôlant le fait même que le raisonnement de l'IA puisse avoir lieu, COMPAiSS impose l'autorité institutionnelle de manière structurelle, plutôt que de s'appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
+
+COMPAiSS applique des contrôles de défense en profondeur : le filtrage des autorisations empêche l'exécution non autorisée du modèle principal, des contraintes d'instruction orientent le comportement lors des inférences autorisées, et une validation postérieure à la génération garantit la conformité des URL avec les sources institutionnelles.
+
+L'architecture de la liste verte et des règles d'analyse ne se limite pas au contrôle de la portée - elle détermine ce que le modèle reçoit comme environnement épistémique, ce qui a des implications directes sur la qualité des réponses générées dans le périmètre autorisé.
+
+Lorsque le modèle ne reçoit que des contenus provenant de pages et de documents institutionnellement autorisés et préalablement analysés, la surface d'interprétation erronée est considérablement réduite par rapport à un système RAG qui raisonne sur un corpus étendu et non structuré. Une analyse structurée qui préserve la hiérarchie documentaire - titres, sections, formulations de qualification et mentions de risque - fournit au modèle des signaux lui permettant de distinguer une conclusion d'une réserve. Le découpage arbitraire efface cette structure. COMPAiSS ne procède pas à un découpage arbitraire.
+
+La liste verte elle-même constitue une décision de gouvernance : elle détermine sur quels contenus le modèle est autorisé à raisonner, et comment ces contenus sont structurés au moment de l'inférence. Parce que le contexte d'inférence est défini précisément par ce que le pipeline de découverte et d'analyse fournit, le modèle n'explore pas librement un corpus de récupération étendu. L'ensemble des autorisations constitue la frontière du raisonnement.
+
+Ces protections sont réelles mais partielles. Elles réduisent sensiblement les risques liés à la qualité de génération dans le périmètre autorisé - elles ne les éliminent pas. Le modèle continue de générer, de synthétiser, et de faire des choix d'emphase dans le contenu qu'il reçoit.
+
+La formulation précise est la suivante : COMPAiSS élimine par conception les hallucinations liées aux violations de périmètre, et réduit sensiblement - sans les éliminer - les risques liés à la qualité de génération dans le périmètre autorisé, grâce à une analyse structurée et à des contextes d'inférence strictement délimités.
 
 ➡️ **[Comparaison architecturale - RAG vs COMPAiSS (PDF)](/assets/tableaux_comparaison_fr-v2.pdf)**
 
