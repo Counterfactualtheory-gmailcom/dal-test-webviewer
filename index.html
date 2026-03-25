@@ -591,13 +591,23 @@ This diagram shows COMPAiSS’s execution-gated design, where **authorization an
 
 ## COMPAiSS Architecture
 
-At its core, COMPAiSS is built on an *execution-gated inference* architecture - in essence, the AI will not answer questions it is not authorized to answer.
+At its core, COMPAiSS is built on an execution-gated inference architecture - in essence, the AI will not answer questions it is not authorized to answer.
 
 If authorization fails, the primary institutional reasoning model does not execute or allocate primary inference resources.
 
 By controlling whether AI reasoning happens at all, COMPAiSS enforces institutional authority structurally, rather than relying on post-generation filtering or correction.
 
 COMPAiSS employs defense-in-depth controls: authorization gating prevents unauthorized primary model execution, instruction-based constraints guide behavior during authorized inference, and post-generation validation ensures URL compliance with institutional sources.
+
+The greenlist and parsing architecture do more than control scope - they control what the model receives as its epistemic environment, which has direct implications for generation quality within authorized scope.
+
+When the model receives content only from pre-parsed, institutionally authorized pages and documents, the surface area for misinterpretation is dramatically smaller than in a RAG system reasoning over a broad, unstructured corpus. Structured parsing that preserves document hierarchy - headings, sections, qualification language, and risk disclosures - gives the model signals about what is a conclusion versus what is a caveat. Arbitrary chunking loses that structure. COMPAiSS does not chunk arbitrarily.
+
+The greenlist itself is a governance decision: determining what the model is permitted to reason over, and how that content is structured at inference time. Because the inference context is defined precisely by what the discovery and parsing pipeline delivers, the model is not free-ranging across a broad retrieval corpus. The authorization set is the reasoning boundary.
+
+These protections are real but partial. They materially reduce generation-quality risks within authorized scope - they do not eliminate them. The model still generates, still compresses, and still makes emphasis choices within the content it receives.
+
+The precise claim is this: COMPAiSS eliminates scope-violation hallucinations by design, and materially reduces - though does not eliminate - generation-quality risks within authorized scope through structured parsing and tightly bounded inference contexts.
 
 ➡️ **[View Comparison Table (PDF)](/assets/compaiss_vs_rag_tables_1_2-v2.pdf)**
 
