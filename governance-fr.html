@@ -574,42 +574,43 @@
 
   <hr>
 
-  <!-- SITUATIONS A RISQUE ELEVE -->
+  <!-- SITUATIONS A RISQUE ELEVE — REVISED -->
   <div class="gov-section" id="risk">
     <h2>Situations a risque eleve</h2>
-    <p class="section-intro">Ce qui se passe lorsqu'un utilisateur souleve quelque chose de grave.</p>
+    <p class="section-intro">Pourquoi le non-engagement architectural est la propriete de securite la plus importante de COMPAiSS.</p>
 
-    <p>Il s'agit de l'une des questions de gouvernance les plus importantes pour toute institution qui deploie l'IA dans des contextes publics ou institutionnels - et des evenements recents survenus au Canada en font une priorite urgente.</p>
+    <p>La question de gouvernance la plus importante pour toute institution qui deploie l'IA dans des contextes publics n'est pas de savoir si le systeme peut detecter un risque - c'est de savoir si le systeme peut etre entraine dans un engagement soutenu et dangereux. Des evenements recents survenus au Canada rendent cette distinction urgente.</p>
 
     <div class="case-block">
-      <div class="case-label">Pourquoi c'est important - Tumbler Ridge, C.-B., 2026</div>
-      <p>Le 10 fevrier 2026, un tireur a tue huit personnes a l'ecole secondaire de Tumbler Ridge en Colombie-Britannique, dans l'une des fusillades scolaires les plus meurTrieres de l'histoire canadienne. Les propres employes d'OpenAI avaient signale l'activite ChatGPT du tireur des mois auparavant comme indiquant un risque imminent de grave prejudice. Douze membres du personnel avaient recommande de contacter les forces de l'ordre canadiennes. Cette recommandation a ete transmise a la direction et rejetee. Le compte a simplement ete banni. Le tireur a ouvert un deuxieme compte et a continue a planifier. Personne n'a contacte la police.</p>
-      <p>Une poursuite deposee devant la Cour supreme de la C.-B. en mars 2026 (Gebala c. OpenAI) allegue qu'OpenAI avait une connaissance specifique de la planification du tireur et n'a pris aucune mesure pour y donner suite. OpenAI a depuis reconnu que ses mesures de protection etaient insuffisantes a l'epoque.</p>
-      <p>Cette affaire met en evidence la responsabilite fondamentale qui decoule du deploiement d'une IA generique dans des contextes institutionnels sans architecture de gouvernance - aucune voie d'escalade, aucune responsabilite institutionnelle, et aucun mecanisme pour diriger une personne en crise vers l'aide appropriee.</p>
+      <div class="case-label">L'affaire Tumbler Ridge - Gebala c. OpenAI, Cour supreme de la C.-B., 2026</div>
+      <p>Le 10 fevrier 2026, un tireur a tue huit personnes a l'ecole secondaire de Tumbler Ridge en Colombie-Britannique, dans l'une des fusillades scolaires les plus meurtrieres de l'histoire canadienne. Le tireur utilisait ChatGPT depuis des mois avant l'attaque - decrivant des scenarios de violence planifiee de facon repetee, sur deux comptes distincts apres que le premier eut ete banni. Les propres employes d'OpenAI avaient signale l'activite comme indiquant un risque imminent de prejudice grave et avaient recommande de contacter les forces de l'ordre canadiennes. Cette recommandation a ete transmise a la direction et rejetee.</p>
+      <p>La poursuite deposee devant la Cour supreme de la C.-B. (Gebala c. OpenAI, mars 2026) allegue qu'OpenAI avait une connaissance specifique de la planification a long terme du tireur et n'a pris aucune mesure pour y donner suite. OpenAI a depuis reconnu que ses mesures de protection etaient insuffisantes a l'epoque.</p>
+      <p>Il ne s'agissait pas d'un echec de moderation de contenu. Le systeme avait detecte le risque. L'echec residait dans le fait que ChatGPT a engage - de facon repetee, pendant des mois, sur deux iterations de compte - devenant ce que la poursuite decrit comme un "confident de confiance" qui fournissait des informations, construisait une relation et validait des conversations de planification comme des questions legitimes meritant des reponses.</p>
     </div>
 
-    <p>COMPAiSS regle ce probleme directement par une couche de signalement des risques configurable. Lorsque la question d'un utilisateur contient un langage associe a la detresse, a une crise ou a un prejudice potentiel, le systeme ne procede pas a une reponse standard generee par l'IA.</p>
+    <p>COMPAiSS est structurellement incapable de reproduire cet echec. La raison est architecturale, et non basee sur une politique.</p>
 
     <ul class="verified-list">
       <li>
-        <strong>Les requetes de crise sont interceptees a la barriere</strong>
-        <span>Les requetes declenchant des categories de risque definies n'atteignent pas le modele IA. La barriere de gouvernance les traite avant toute generation.</span>
+        <strong>Le non-engagement comme protection primaire</strong>
+        <span>Une question sur la planification de violence ne correspond a aucune liste de sources approuvees d'une institution. La barriere de gouvernance la rejette avant que l'IA ne s'execute. Le systeme renvoie une reponse standard hors perimetre et s'arrete. Aucun engagement, aucun rapport, aucune relation soutenue - par architecture, et non par politique de moderation.</span>
       </li>
       <li>
-        <strong>Une reponse institutionnelle preetablie est renvoyee</strong>
-        <span>L'utilisateur est dirige vers la ressource de soutien appropriee - services de counseling, securite, contacts d'urgence ou un membre du personnel designe - telle que definie par l'institution, et non par l'IA.</span>
+        <strong>La barriere ne peut pas etre contournee par la persistence</strong>
+        <span>Contrairement a une IA a usage general qui peut etre incitee, recadree ou manipulee pour s'engager au fil du temps, la barriere COMPAiSS est deterministe. Les requetes hors perimetre sont rejetees a la premiere tentative et a chaque tentative subsequente. Il n'y a pas de relation a construire parce qu'il n'y a pas d'engagement a soutenir.</span>
       </li>
       <li>
-        <strong>L'evenement est consigne pour examen institutionnel</strong>
-        <span>Chaque interaction signalee est enregistree, donnant a l'institution un dossier de gouvernance documente et defensible.</span>
+        <strong>Les requetes de crise personnelle sont traitees separement</strong>
+        <span>Lorsque la question d'un utilisateur contient un langage associe a une detresse personnelle ou a des idees suicidaires, le systeme renvoie une reponse institutionnelle preetablie dirigeant l'utilisateur vers les ressources de soutien appropriees - services de counseling, securite du campus ou contacts d'urgence - tels que configures par l'institution conformement a ses propres politiques de diligence.</span>
       </li>
       <li>
-        <strong>L'institution definit les regles</strong>
-        <span>COMPAiSS fournit l'architecture. L'institution decide ce qui declenche un signal d'alerte, ce que dit la reponse et vers qui elle dirige l'utilisateur - en conformite avec ses propres politiques et obligations de diligence.</span>
+        <strong>Options de gouvernance institutionnelle</strong>
+        <span>La facon dont les institutions configurent les protocoles de reponse aux crises - notamment ce qui declenche une reponse, quelles ressources de soutien sont proposees et comment le systeme gere les requetes de crise repetees - est une conversation de gouvernance que COMPAiSS mene avec chaque institution lors du deploiement. Differentes institutions ont des obligations politiques differentes, et COMPAiSS est concu pour soutenir ces differences plutot que d'imposer un modele unique.</span>
       </li>
     </ul>
 
-    <p>Si une institution devait un jour demontrer qu'un protocole specifique etait en place, qu'il a ete declenche et qu'il a dirige une personne vers la bonne ressource - ce dossier existe. Un outil a usage general ne peut pas offrir cela.</p>
+    <p>La reproduction d'un scenario similaire a Tumbler Ridge est architecturalement impossible dans COMPAiSS. Non pas parce que le systeme detecte mieux la violence - mais parce que le systeme ne peut structurellement pas devenir l'outil de planification soutenu que l'IA a usage general peut devenir. Cette protection ne depend pas d'une politique, d'une moderation ou d'une revision humaine. C'est une propriete de la barriere.</p>
+
   </div>
 
   <hr>
