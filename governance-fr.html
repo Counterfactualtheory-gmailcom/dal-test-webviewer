@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gouvernance de l'IA - COMPAiSS</title>
+
+  <style>
+    :root {
+      --wrap: 980px;
+      --pad: 32px;
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+      --bg-card: rgba(255,255,255,0.05);
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+      --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
+      --border-soft: rgba(255,255,255,0.08);
+      --border-accent: rgba(240,196,76,0.3);
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+      --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 16px; top: 16px; width: auto; height: auto;
+      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+    }
+
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-decoration: none;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.4rem;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .nav a { text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+
+    main {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
+    }
+
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      color: var(--text-heading);
+      margin: 0 0 1rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 60ch;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .section-nav ul { grid-template-columns: 1fr; }
+    }
+
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .gov-section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    .gov-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .gov-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .gov-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .card .card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    .verified-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .verified-list li {
+      padding: 0.85rem 1rem 0.85rem 3rem;
+      margin-bottom: 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .verified-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 1rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .verified-list li strong {
+      color: var(--text-heading);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.92rem;
+    }
+
+    .verified-list li span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .case-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .case-block .case-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .case-block p {
+      margin: 0 0 0.6rem;
+      font-size: 0.93rem;
+      color: var(--text-main);
+      max-width: none;
+    }
+
+    .case-block p:last-child { margin-bottom: 0; }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .privacy-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-item .pi-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-item p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+      line-height: 1.55;
+    }
+
+    .residency-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.8rem;
+      margin: 1.5rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      gap: 1.4rem;
+      align-items: flex-start;
+    }
+
+    .residency-block .res-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    .residency-block h3 {
+      color: var(--text-heading);
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .residency-block p {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+      line-height: 1.6;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 3rem 0;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header h1 { font-size: 1.9rem; }
+      .residency-block { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header>
+  <nav class="nav" aria-label="Principal">
+    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/governance-FR.html" class="active">Gouvernance IA</a></li>
+      <li><a href="/governance.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Confiance, Securite et Responsabilite</div>
+    <h1>Gouvernance de l'IA</h1>
+    <p class="subtitle">Comment COMPAiSS est concu pour proteger les institutions et les personnes qui dependent d'une information exacte et faisant autorite.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Sur cette page</strong>
+    <ul>
+      <li><a href="#privacy">Confidentialite et anonymat</a></li>
+      <li><a href="#data-residency">Residence des donnees</a></li>
+      <li><a href="#security">Securite</a></li>
+      <li><a href="#access">Acces et authentification</a></li>
+      <li><a href="#model">Modele IA et mises a jour</a></li>
+      <li><a href="#risk">Situations a risque eleve</a></li>
+      <li><a href="#knowledge">Maintenir l'information a jour</a></li>
+      <li><a href="#accountability">Responsabilite institutionnelle</a></li>
+    </ul>
+  </div>
+
+  <!-- CONFIDENTIALITE -->
+  <div class="gov-section" id="privacy">
+    <h2>Confidentialite et anonymat</h2>
+    <p class="section-intro">Ce que COMPAiSS recueille - et ce qu'il ne recueille deliberement pas.</p>
+
+    <p>COMPAiSS est concu de A a Z pour recueillir le minimum d'information possible. Chaque interaction est sans etat - ce qui signifie que rien n'est conserve une fois que le systeme a fourni une reponse. Il n'y a pas de comptes utilisateurs, pas d'historiques de session, et aucun lien entre une question et la suivante.</p>
+
+    <div class="privacy-grid">
+      <div class="privacy-item">
+        <div class="pi-label">Aucune donnee personnelle</div>
+        <p>Aucun nom, numero d'employe, numero d'etudiant, numero de compte ou information identificatrice n'est recueilli, a quelque moment que ce soit.</p>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">Aucune conservation des questions</div>
+        <p>Les questions sont traitees puis supprimees. Rien n'est conserve une fois la reponse fournie.</p>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">Aucune connexion requise</div>
+        <p>Le systeme est accessible a toute personne disposant du lien - sans compte, sans inscription, sans suivi.</p>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">Anonymat par conception</div>
+        <p>Le systeme n'a aucun moyen de relier une question a la personne qui l'a posee - par choix architectural, et pas uniquement par politique.</p>
+      </div>
+    </div>
+
+    <p>Des donnees d'utilisation agregees et anonymisees - par exemple, quels sujets suscitent le plus de questions - peuvent etre mises a la disposition de l'institution pour la planification des services. Ces rapports ne contiennent aucune donnee individuelle et ne peuvent etre retracees jusqu'a une personne.</p>
+  </div>
+
+  <hr>
+
+  <!-- RESIDENCE DES DONNEES -->
+  <div class="gov-section" id="data-residency">
+    <h2>Residence des donnees</h2>
+    <p class="section-intro">Ou vos donnees sont conservees - et ou elles ne le sont pas.</p>
+
+    <p>Pour les institutions canadiennes, la residence des donnees est une exigence juridique et de gouvernance, et non une simple preference. COMPAiSS est concu pour repondre directement a cette exigence.</p>
+
+    <div class="residency-block">
+      <div class="res-icon">🍁</div>
+      <div>
+        <h3>Heberge au Canada - Region canadienne de Fly.io</h3>
+        <p>COMPAiSS est deploye sur l'infrastructure Fly.io avec un hebergement dans la region canadienne. Tout le traitement et la conservation des journaux s'effectuent sur le sol canadien. Aucune donnee ne transite par des serveurs situes a l'exterieur du Canada ni n'y est conservee. Cela satisfait directement aux exigences de la LPRPDE et des lois provinciales sur la protection de la vie privee applicables aux etablissements postsecondaires canadiens.</p>
+      </div>
+    </div>
+
+    <p>Le systeme ne se connecte pas aux bases de donnees internes, aux plateformes de gestion des documents ou aux systemes de gestion des dossiers d'une institution. Il fonctionne comme une couche independante et securisee - fournissant des reponses verifiees et conformes aux politiques, sans toucher a l'infrastructure interne.</p>
+  </div>
+
+  <hr>
+
+  <!-- SECURITE -->
+  <div class="gov-section" id="security">
+    <h2>Securite</h2>
+    <p class="section-intro">Comment COMPAiSS gere les menaces les plus souvent soulevees par les equipes TI.</p>
+
+    <p>COMPAiSS applique des pratiques standard de securite Web et est protege par l'infrastructure de Cloudflare. Les protections suivantes sont actives par defaut.</p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="card-icon">🛡</div>
+        <h3>Scripts intersites (XSS)</h3>
+        <p>Toutes les reponses sont nettoyees et mises en forme de facon securisee avant d'apparaitre a l'ecran. Les saisies des utilisateurs sont traitees uniquement comme du langage naturel - elles sont transmises a l'IA sous forme de texte et ne peuvent pas declencher de commandes systeme, executer des scripts ni acceder a quelque infrastructure sous-jacente que ce soit.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🚦</div>
+        <h3>Deni de service (DoS)</h3>
+        <p>La limitation du debit plafonne le nombre de requetes pouvant provenir d'une meme source dans un intervalle de temps donne. La barriere de gouvernance agit comme un filtre naturel - les requetes non valides sont rejetees avant d'atteindre l'IA, de sorte qu'un afflux de requetes malveillantes consomme beaucoup moins de ressources que sur un systeme non protege.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Injection de commandes</h3>
+        <p>Puisque la barriere de gouvernance s'execute avant l'IA, les utilisateurs ne peuvent pas tromper le systeme pour qu'il reponde en dehors de son perimetre autorise. Les tentatives de manipulation des instructions de l'IA sont bloquees a la barriere avant d'atteindre le modele.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📏</div>
+        <h3>Limitation de la longueur des requetes</h3>
+        <p>Les questions sont limitees a 300 mots. Cela previent toute utilisation abusive du systeme a des fins exterieures a son perimetre prevu et maintient les reponses centrees sur la question posee.</p>
+      </div>
+
+    </div>
+
+    <p>Ce resultat n'est pas un parametre de configuration - c'est une propriete de l'architecture. La barriere s'execute en premier. L'IA ne s'active que si la barriere valide la requete.</p>
+  </div>
+
+  <hr>
+
+  <!-- ACCES ET AUTHENTIFICATION -->
+  <div class="gov-section" id="access">
+    <h2>Acces et authentification</h2>
+    <p class="section-intro">Ouvert par defaut, controle par choix.</p>
+
+    <p>COMPAiSS est actuellement offert comme outil integre au Web - accessible a toute personne disposant du lien, sur n'importe quel appareil, y compris les telephones intelligents, les tablettes, les ordinateurs portables et les ordinateurs de bureau. Aucune connexion n'est requise et aucun logiciel n'a besoin d'etre installe.</p>
+
+    <p>Ce modele d'acces libre est intentionnel pour les deployements publics. Par exemple, des etudiants prospectifs qui se renseignent sur les programmes, des citoyens qui cherchent des informations sur les services, ou des patients qui cherchent des conseils peuvent interagir directement avec l'assistant IA de l'institution sans obstacle - en recevant des reponses exactes et verifiees, tirees exclusivement du contenu approuve par cette institution.</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Authentification unique (SSO)</strong>
+        <span>L'integration SSO selon des protocoles standard compatibles avec Microsoft Azure Active Directory peut etre prevue comme element d'implementation defini pour tout deploiement institutionnel. Cela permet de limiter l'acces aux utilisateurs authentifies et d'afficher un contenu different a differents groupes d'utilisateurs - par exemple, acces du personnel par rapport a l'acces public.</span>
+      </li>
+      <li>
+        <strong>Microsoft Teams</strong>
+        <span>L'integration a Teams - permettant aux utilisateurs d'interagir avec COMPAiSS directement dans Teams sans naviguer vers une page separee - est disponible comme element de developpement a portee definie. Si une institution le juge prioritaire, il peut etre defini et chiffre dans le cadre de l'entente de licence.</span>
+      </li>
+      <li>
+        <strong>Acces base sur les roles</strong>
+        <span>Differents groupes d'utilisateurs peuvent avoir acces a differentes versions de l'assistant avec acces a differents contenus approuves - par exemple, en donnant au personnel ou aux equipes cliniques acces a des documents de politique interne qui ne sont pas accessibles dans le deploiement public.</span>
+      </li>
+    </ul>
+
+    <p>L'integration SSO et Teams sont des options de developpement qui peuvent etre integrees a un projet pilote des le depart - il ne s'agit pas de fonctionnalites necessitant un appel d'offres distinct ou une nouvelle plateforme.</p>
+  </div>
+
+  <hr>
+
+  <!-- MODELE IA -->
+  <div class="gov-section" id="model">
+    <h2>Modele IA et mises a jour</h2>
+    <p class="section-intro">Quel IA propulse COMPAiSS et comment les decisions de modele sont prises.</p>
+
+    <p>COMPAiSS est agnostique par rapport aux modeles, mais s'appuie actuellement - et deliberement - sur un modele ferme. L'architecture de gouvernance - les regles, la barriere, la liste des sources approuvees - se situe entierement a l'exterieur du modele IA. Cela signifie que les institutions ne dependent jamais d'un seul fournisseur.</p>
+
+    <p>COMPAiSS utilise actuellement <strong>GPT-5.2-latest d'OpenAI</strong> comme moteur IA. Ce modele a ete selectionne sur la base de tests comparatifs directs effectues par rapport aux autres options disponibles. Il obtient constamment les meilleurs resultats selon les criteres les plus importants pour les deployements institutionnels reglementes : exactitude, utilite, ton et fiabilite des liens sources dans les reponses.</p>
+
+    <p>La designation "latest" signifie qu'OpenAI ameliore continuellement ce modele en arriere-plan. Le deploiement COMPAiSS d'une institution beneficie automatiquement de ces ameliorations - sans mises a jour, sans interruption de service et sans intervention requise.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Selection axee sur la performance</h3>
+        <p>Les mises a jour de modele sont testees selon cinq criteres : exactitude, utilite, ton, fidelite des liens et qualite globale des reponses. Un changement n'est effectue que lorsqu'un nouveau modele s'ameliore demonstrablement selon ces dimensions.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Aucun verrouillage</h3>
+        <p>Les modeles fermes comme GPT offrent le plafond de performance actuel le plus eleve, avec des mises a jour automatiques integrees. Si un modele a code ouvert fonctionnant sur une infrastructure canadienne atteint un jour le meme niveau, COMPAiSS peut basculer sans modifier une seule regle de gouvernance.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SITUATIONS A RISQUE ELEVE -->
+  <div class="gov-section" id="risk">
+    <h2>Situations a risque eleve</h2>
+    <p class="section-intro">Ce qui se passe lorsqu'un utilisateur souleve quelque chose de grave.</p>
+
+    <p>Il s'agit de l'une des questions de gouvernance les plus importantes pour toute institution qui deploie l'IA dans des contextes publics ou institutionnels - et des evenements recents survenus au Canada en font une priorite urgente.</p>
+
+    <div class="case-block">
+      <div class="case-label">Pourquoi c'est important - Tumbler Ridge, C.-B., 2026</div>
+      <p>Le 10 fevrier 2026, un tireur a tue huit personnes a l'ecole secondaire de Tumbler Ridge en Colombie-Britannique, dans l'une des fusillades scolaires les plus meurTrieres de l'histoire canadienne. Les propres employes d'OpenAI avaient signale l'activite ChatGPT du tireur des mois auparavant comme indiquant un risque imminent de grave prejudice. Douze membres du personnel avaient recommande de contacter les forces de l'ordre canadiennes. Cette recommandation a ete transmise a la direction et rejetee. Le compte a simplement ete banni. Le tireur a ouvert un deuxieme compte et a continue a planifier. Personne n'a contacte la police.</p>
+      <p>Une poursuite deposee devant la Cour supreme de la C.-B. en mars 2026 (Gebala c. OpenAI) allegue qu'OpenAI avait une connaissance specifique de la planification du tireur et n'a pris aucune mesure pour y donner suite. OpenAI a depuis reconnu que ses mesures de protection etaient insuffisantes a l'epoque.</p>
+      <p>Cette affaire met en evidence la responsabilite fondamentale qui decoule du deploiement d'une IA generique dans des contextes institutionnels sans architecture de gouvernance - aucune voie d'escalade, aucune responsabilite institutionnelle, et aucun mecanisme pour diriger une personne en crise vers l'aide appropriee.</p>
+    </div>
+
+    <p>COMPAiSS regle ce probleme directement par une couche de signalement des risques configurable. Lorsque la question d'un utilisateur contient un langage associe a la detresse, a une crise ou a un prejudice potentiel, le systeme ne procede pas a une reponse standard generee par l'IA.</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Les requetes de crise sont interceptees a la barriere</strong>
+        <span>Les requetes declenchant des categories de risque definies n'atteignent pas le modele IA. La barriere de gouvernance les traite avant toute generation.</span>
+      </li>
+      <li>
+        <strong>Une reponse institutionnelle preetablie est renvoyee</strong>
+        <span>L'utilisateur est dirige vers la ressource de soutien appropriee - services de counseling, securite, contacts d'urgence ou un membre du personnel designe - telle que definie par l'institution, et non par l'IA.</span>
+      </li>
+      <li>
+        <strong>L'evenement est consigne pour examen institutionnel</strong>
+        <span>Chaque interaction signalee est enregistree, donnant a l'institution un dossier de gouvernance documente et defensible.</span>
+      </li>
+      <li>
+        <strong>L'institution definit les regles</strong>
+        <span>COMPAiSS fournit l'architecture. L'institution decide ce qui declenche un signal d'alerte, ce que dit la reponse et vers qui elle dirige l'utilisateur - en conformite avec ses propres politiques et obligations de diligence.</span>
+      </li>
+    </ul>
+
+    <p>Si une institution devait un jour demontrer qu'un protocole specifique etait en place, qu'il a ete declenche et qu'il a dirige une personne vers la bonne ressource - ce dossier existe. Un outil a usage general ne peut pas offrir cela.</p>
+  </div>
+
+  <hr>
+
+  <!-- MAINTENIR L'INFORMATION A JOUR -->
+  <div class="gov-section" id="knowledge">
+    <h2>Maintenir l'information a jour</h2>
+    <p class="section-intro">Comment les changements de politiques et de contenu se repercutent sur les reponses aux utilisateurs.</p>
+
+    <p>COMPAiSS ne conserve pas une copie fixe de l'information institutionnelle. Il recupere le contenu a partir d'une liste controlee de sources approuvees au moment de chaque requete - ce qui signifie que les mises a jour des pages institutionnelles se repercutent automatiquement sur les reponses aux utilisateurs, sans reentainement, sans delai d'attente et sans decalage.</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Les mises a jour basees sur l'URL sont automatiques</strong>
+        <span>Si une page de politique est mise a jour mais que l'adresse Web reste la meme, COMPAiSS integre le changement a la prochaine requete - aucune action n'est requise.</span>
+      </li>
+      <li>
+        <strong>Les nouvelles pages sont ajoutees a la liste approuvee sur demande</strong>
+        <span>Si une adresse Web change ou qu'une nouvelle source doit etre ajoutee, COMPAiSS met a jour la liste approuvee immediatement. Le changement prend effet a la prochaine requete.</span>
+      </li>
+      <li>
+        <strong>L'institution controle la liste approuvee</strong>
+        <span>L'institution conserve le plein pouvoir d'ajouter, de supprimer ou de mettre a jour des sources en tout temps. COMPAiSS ne peut acceder a aucune page qui ne figure pas sur la liste approuvee.</span>
+      </li>
+    </ul>
+
+    <p>Il s'agit d'un avantage important par rapport aux outils IA formes sur des instantanes statiques de l'information - ces systemes necessitent des cycles de reentainement couteux pouvant prendre des semaines ou des mois pour reflechir les changements de politique.</p>
+  </div>
+
+  <hr>
+
+  <!-- RESPONSABILITE INSTITUTIONNELLE -->
+  <div class="gov-section" id="accountability">
+    <h2>Responsabilite institutionnelle</h2>
+    <p class="section-intro">Ce que COMPAiSS signifie pour la gouvernance, la verification et l'examen des achats.</p>
+
+    <p>Les institutions reglementees n'ont pas seulement besoin de systemes IA qui fonctionnent bien. Elles ont besoin de systemes IA qu'elles peuvent documenter, defendre et soumettre a un examen formel. Les responsables des achats, les conseillers juridiques et les comites de gouvernance exigent de plus en plus que les institutions demontrent non seulement qu'un systeme IA produit de bons resultats, mais que son architecture de gouvernance est verifiable, delimitee et conforme aux obligations de l'institution.</p>
+
+    <p>COMPAiSS est concu en tenant compte de cette exigence. Parce que les decisions d'autorisation surviennent avant l'inference, chaque interaction suit un chemin de gouvernance documente et reproductible. L'institution controle quelles sources font autorite. L'institution definit la limite du perimetre. Le systeme les applique toutes deux par architecture - non pas par probabilite, non pas par politique seule.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Verifiable par conception</h3>
+        <p>Chaque reponse est tracable jusqu'a une source specifique approuvee par l'institution. Il n'y a pas de scores de confiance a calibrer ni de couches de moderation a verifier apres coup.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖</div>
+        <h3>Architecture en attente de brevet</h3>
+        <p>La barriere d'execution pre-inference fait l'objet de demandes de brevet au Canada (OPIC 3 299 174) et aux Etats-Unis (USPTO 19/455 963). La distinction architecturale est formellement documentee et defensible.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛</div>
+        <h3>Pret pour l'approvisionnement</h3>
+        <p>COMPAiSS est compatible avec les exigences de documentation des comites de gouvernance IA, des processus d'examen ethique institutionnel et des cadres d'approvisionnement gouvernementaux - notamment la Directive du gouvernement du Canada sur la prise de decisions automatisee.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Limites transparentes</h3>
+        <p>COMPAiSS reflete les documents autorises qu'il est autorise a utiliser. Si une source approuvee est perimee, le systeme met cette lacune en evidence plutot que de la combler avec un contenu generalise ou invente - rendant les problemes de contenu visibles et corrigibles.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 2rem; font-style: italic; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem;">Pour toute demande d'evaluation institutionnelle, d'approvisionnement ou d'examen de gouvernance : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p style="margin-top: 0.8rem;">
+      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Retour en haut">↑</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
