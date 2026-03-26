@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -610,42 +610,43 @@
 
   <hr>
 
-  <!-- HIGH-RISK SITUATIONS -->
+  <!-- HIGH-RISK SITUATIONS — REVISED -->
   <div class="gov-section" id="risk">
     <h2>High-Risk Situations</h2>
-    <p class="section-intro">What happens when a user raises something serious.</p>
+    <p class="section-intro">Why architectural non-engagement is the most important safety property of COMPAiSS.</p>
 
-    <p>This is one of the most important governance questions for any institution deploying AI in public-facing or institutional contexts - and recent events in Canada make it urgent.</p>
+    <p>The most significant safety question for any institution deploying AI in public-facing contexts is not whether the system can detect risk — it is whether the system can be drawn into a sustained, harmful engagement in the first place. Recent events in Canada make this distinction urgent.</p>
 
     <div class="case-block">
-      <div class="case-label">Why This Matters - Tumbler Ridge, B.C., 2026</div>
-      <p>On February 10, 2026, a shooter killed eight people at Tumbler Ridge Secondary School in British Columbia, in one of the deadliest school shootings in Canadian history. OpenAI's own employees had flagged the shooter's ChatGPT activity months earlier as indicating imminent risk of serious harm. Twelve staff members recommended that Canadian law enforcement be contacted. That recommendation was escalated to leadership and rejected. The account was simply banned. The shooter opened a second account and continued planning. No one contacted police.</p>
-      <p>A lawsuit filed in B.C. Supreme Court in March 2026 (Gebala v. OpenAI) alleges OpenAI had specific knowledge of the shooter's planning and took no steps to act on it. OpenAI has since acknowledged its safeguards at the time were insufficient.</p>
-      <p>The case exposes the core liability of deploying general-purpose AI in institutional settings without a governance architecture - no escalation pathway, no institutional accountability, and no mechanism to direct someone in crisis to appropriate help.</p>
+      <div class="case-label">The Tumbler Ridge Case - Gebala v. OpenAI, B.C. Supreme Court, 2026</div>
+      <p>On February 10, 2026, a shooter killed eight people at Tumbler Ridge Secondary School in British Columbia, in one of the deadliest school shootings in Canadian history. The shooter had been using ChatGPT for months leading up to the attack - describing violent planning scenarios repeatedly, across two separate accounts after the first was banned. OpenAI's own employees flagged the activity as indicating imminent risk of serious harm and recommended that Canadian law enforcement be contacted. That recommendation was escalated to leadership and rejected.</p>
+      <p>The lawsuit filed in B.C. Supreme Court (Gebala v. OpenAI, March 2026) alleges OpenAI had specific knowledge of the shooter's long-range planning and took no steps to act on it. OpenAI has since acknowledged its safeguards at the time were insufficient.</p>
+      <p>The failure was not a content moderation failure. The system detected the risk. The failure was that ChatGPT engaged - repeatedly, over months, across two account iterations - becoming what the lawsuit describes as a "trusted confidante" that provided information, built rapport, and validated planning conversations as legitimate questions deserving answers.</p>
     </div>
 
-    <p>COMPAiSS addresses this directly through a configurable risk-flagging layer. When a user's query contains language associated with distress, crisis, or potential harm, the system does not proceed to a standard AI-generated response.</p>
+    <p>COMPAiSS is structurally incapable of replicating this failure. The reason is architectural, not policy-based.</p>
 
     <ul class="verified-list">
       <li>
-        <strong>Crisis queries are intercepted at the gate</strong>
-        <span>Queries triggering defined risk categories do not reach the AI model. The governance gate handles them before any generation occurs.</span>
+        <strong>Non-engagement as primary protection</strong>
+        <span>A query about planning violence does not match any institution's approved source list. The governance gate rejects it before the AI runs. The system returns a standard out-of-scope response and stops. No engagement, no rapport, no sustained relationship - by architecture, not by moderation policy.</span>
       </li>
       <li>
-        <strong>A pre-approved institutional response is returned</strong>
-        <span>The user is directed to the appropriate support resource - counselling services, security, emergency contacts, or a named staff member - as defined by the institution, not by the AI.</span>
+        <strong>The gate cannot be bypassed by persistence</strong>
+        <span>Unlike a general-purpose AI that can be prompted, reframed, or manipulated into engagement over time, the COMPAiSS gate is deterministic. Out-of-scope queries are rejected on the first attempt and every subsequent attempt. There is no relationship to build because there is no engagement to sustain.</span>
       </li>
       <li>
-        <strong>The event is logged for institutional review</strong>
-        <span>Every flagged interaction is recorded, giving the institution a documented, defensible governance record.</span>
+        <strong>Personal crisis queries are handled separately</strong>
+        <span>When a user's query contains language associated with personal distress or suicidal ideation, the system returns a pre-approved institutional response directing the user to the appropriate support resources - counselling services, campus security, or emergency contacts - as configured by the institution in alignment with its own duty-of-care policies.</span>
       </li>
       <li>
-        <strong>The institution defines the rules</strong>
-        <span>COMPAiSS provides the architecture. The institution decides what triggers a flag, what the response says, and where it directs the user - aligned with the institution's own policies and duty-of-care obligations.</span>
+        <strong>Institutional governance options</strong>
+        <span>How institutions configure crisis response protocols - including what triggers a response, what support resources are surfaced, and how the system handles repeated crisis queries - is a governance conversation COMPAiSS has with each institution during deployment. Different institutions have different policy obligations, and COMPAiSS is designed to support those differences rather than impose a single model.</span>
       </li>
     </ul>
 
-    <p>If an institution ever needed to demonstrate that a specific protocol was in place, was triggered, and directed a person to the right resource - that record exists. A general-purpose tool cannot provide that.</p>
+    <p>The replication of a Tumbler Ridge scenario is architecturally impossible in COMPAiSS. Not because the system detects violence better - but because the system structurally cannot become the sustained planning tool that general-purpose AI can become. That protection does not depend on policy, moderation, or human review. It is a property of the gate.</p>
+
   </div>
 
   <hr>
@@ -709,7 +710,7 @@
       </div>
     </div>
 
-    <p style="margin-top: 2rem; font-style: italic; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem;">For institutional evaluation, procurement, or governance review inquiries: <a href="/cdn-cgi/l/email-protection#61020e140f1504130700021514000d1509040e131821060c00080d4f020e0c"><span class="__cf_email__" data-cfemail="e5868a908b91809783848691908489918d808a979ca58288848c89cb868a88">[email&#160;protected]</span></a></p>
+    <p style="margin-top: 2rem; font-style: italic; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem;">For institutional evaluation, procurement, or governance review inquiries: <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
   </div>
 
 </main>
@@ -721,6 +722,7 @@
     </p>
   </div>
 </footer>
+
 <button id="backToTop" aria-label="Back to top">↑</button>
 
 <script>
