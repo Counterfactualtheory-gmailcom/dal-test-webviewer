@@ -690,11 +690,18 @@
 
 <script>
   const backBtn = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
+
+  function checkScroll() {
     backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-  });
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+
   backBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const nav = document.querySelector('.section-nav');
+    nav.scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
   });
 </script>
 
