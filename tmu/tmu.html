@@ -1,1 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
 
+<!-- Google Analytics — FIRST -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK', {
+  page_path: '/tmu'
+});
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TMU COMPAiSS</title>
+
+<meta name="robots" content="noindex, nofollow">
+  
+  <style>
+:root{
+  --wrap: 900px;
+  --pad: 16px;
+
+  /* TMU brand colors */
+  --tmu-blue: #004c9b;
+  --tmu-gold: #ffdc00;
+  --tmu-dark: #1a1a1a;
+  --tmu-white: #ffffff;
+  --tmu-light: #f5f7fa;
+
+  --border: #e5e7eb;
+  --text: #1a1a1a;
+  --bg: #f5f7fa;
+  --bg-page: #f5f7fa;
+
+  --link: #004c9b;
+  --link-visited: #004c9b;
+
+  --accent: #004c9b;
+}
+
+/* === iOS Safari viewport correction === */
+@supports (-webkit-touch-callout: none) {
+  html, body {
+    height: 100svh;
+    max-height: 100svh;
+    overflow-y: auto;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  #followup-text {
+    scroll-margin-bottom: 260px;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-page);
+  color: var(--text);
+  font: 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  word-break: break-word;
+  text-decoration: underline;
+  color: var(--tmu-blue);
+}
+a:hover,
+a:focus,
+a:visited {
+  color: var(--tmu-blue);
+  opacity: 0.9;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  width: 100%;
+  margin: 12px auto 0;
+  padding: 0;
+  display: block;
+}
+
+#header {
+  width: 93%;
+  max-width: 480px;
+  margin: 36px auto 24px;
+  text-align: center;
+}
+
+/* Gold bar accent above title */
+#header::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 6px;
+  background: var(--tmu-gold);
+  margin: 0 auto 12px;
+  border-radius: 3px;
+}
+
+.app-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tmu-blue);
+  letter-spacing: 0.02em;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-top: 4px;
+}
+
+.answer-divider {
+  margin: 60px 0 40px;
+  padding-top: 0;
+  border-top: none;
+  position: relative;
+}
+
+.answer-divider::after {
+  content: "NEW ANSWER";
+  display: block;
+  text-align: center;
+  background: var(--tmu-blue);
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
+
+#out {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid var(--tmu-blue);
+  border-radius: 12px;
+  padding: 18px;
+  width: 93%;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  overflow-y: auto;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px rgba(0,76,155,0.2);
+  position: relative;
+  transform: none;
+  text-align: left;
+}
+
+#out:empty { display: none; }
+
+#followup-box {
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  width: 93%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 24px;
+}
+
+#followup-text {
+  width: 100%;
+  min-height: 180px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid var(--tmu-blue);
+  outline: none;
+  resize: none;
+  background-color: #ffffff;
+  color: #000000;
+  margin-bottom: 4px;
+  box-sizing: border-box;
+}
+
+#followup-text:focus {
+  border-color: var(--tmu-gold);
+  box-shadow: 0 0 0 3px rgba(255,220,0,0.3);
+}
+
+#word-counter {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+#word-counter.warning {
+  color: #cc0000;
+  font-weight: 700;
+}
+
+#followup-btn, #copy-btn {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Submit: TMU Blue */
+#followup-btn {
+  background-color: var(--tmu-blue);
+  color: #ffffff;
+}
+#followup-btn:hover {
+  background-color: #003a7a;
+}
+
+/* Copy: TMU Gold */
+#copy-btn {
+  background-color: var(--tmu-gold);
+  color: #1a1a1a;
+  font-weight: 700;
+}
+#copy-btn:hover {
+  background-color: #e6c800;
+}
+
+#loading {
+  display:none;
+  text-align:center;
+  margin-top:10px;
+  font-weight:600;
+  color: var(--tmu-blue);
+}
+#loading span{animation:blink 1.4s infinite both}
+#loading span:nth-child(2){animation-delay:.2s}
+#loading span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+
+#out:empty::before,
+#followup-text,
+#followup-text::placeholder,
+#followup-btn,
+#copy-btn {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
+  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div id="header">
+      <div class="app-title">TMU COMPAiSS</div>
+      <div class="app-subtitle">Write in any language</div>
+    </div>
+
+    <div id="out"></div>
+
+    <div id="followup-box">
+      <textarea id="followup-text" placeholder="Tap & type your TMU graduate studies question here..."></textarea>
+      <div id="word-counter">0 / 300 words</div>
+      <button id="followup-btn">Submit</button>
+      <button id="copy-btn" style="display:none;">Copy Last Answer</button>
+      <div id="loading">Answer coming<span>.</span><span>.</span><span>.</span></div>
+    </div>
+
+    <div id="dbg" class="debug"></div>
+  </div>
+
+  <script>
+    marked.setOptions({gfm:true,breaks:true,mangle:false,headerIds:false});
+    const outEl=document.getElementById('out');
+    const dbgEl=document.getElementById('dbg');
+    const showDebug=/[?&]debug=1\b/.test(location.search);
+    const followupBtn=document.getElementById('followup-btn');
+    const followupText=document.getElementById('followup-text');
+    const loading=document.getElementById('loading');
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const copyBtn = document.getElementById('copy-btn');
+    const wordCounter = document.getElementById('word-counter');
+    const MAX_WORDS = 300;
+
+function countWords(text) {
+  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+}
+
+followupText.addEventListener('input', () => {
+  const words = countWords(followupText.value);
+  if (words >= MAX_WORDS) {
+    const trimmed = followupText.value.trim().split(/\s+/).slice(0, MAX_WORDS).join(' ');
+    followupText.value = trimmed;
+    wordCounter.textContent = `${MAX_WORDS} / ${MAX_WORDS} words`;
+    wordCounter.classList.add('warning');
+  } else {
+    wordCounter.textContent = `${words} / ${MAX_WORDS} words`;
+    wordCounter.classList.remove('warning');
+  }
+});
+    
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (isMobile && copyBtn) {
+  copyBtn.style.display = 'block';
+}
+
+    let linkHandlerAttached=false;
+    let lastAnswer="";
+    let lastSingleAnswer = "";
+
+window.lastQuestion = "";
+window.lastUserQuestion = "";
+
+    let lastQuestionBackup = "";
+    let firstMessageReceived=false;
+    let readyPingerId=null;
+
+    function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
+
+function removeEmptyBullets() {
+  const lists = document.querySelectorAll("ul, ol");
+  lists.forEach(list => {
+    const items = list.querySelectorAll("li");
+    items.forEach(li => {
+      if (!li.textContent.trim()) li.remove();
+    });
+    if (!list.textContent.trim()) list.remove();
+  });
+}
+
+function safeRender(md) {
+  if (String(md).trim() === 'ready') return;
+  const raw = String(md || '');
+
+  const cleaned = raw
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
+    .replace(/\[+COMPLETED+\]/gi, '')
+    .replace(/\[+DONE+\]/gi, '')
+    .trim();
+
+  const html = marked.parse(cleaned);
+  const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target', 'rel'] });
+  let linked = clean1;
+
+  try {
+    if (typeof linkifyHtml === 'function') {
+      linked = linkifyHtml(clean1, {
+        defaultProtocol: 'https',
+        nl2br: false,
+        validate: { url: (v) => /^https?:\/\//i.test(v) },
+        attributes: { rel: 'noopener', target: '_blank' }
+      });
+    }
+  } catch (e) { debug('linkify error:' + e); }
+
+  const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target', 'rel'] });
+  lastSingleAnswer = clean2;
+
+  if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+  outEl.innerHTML +=
+    (outEl.innerHTML ? '<div class="answer-divider"></div>' : '') +
+    clean2;
+
+  removeEmptyBullets();
+  window.lastAnswerBackup = clean2;
+
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+}
+
+if (window.ThunkableWebviewerExtension &&
+    typeof ThunkableWebviewerExtension.receiveMessage === "function") {
+
+  ThunkableWebviewerExtension.receiveMessage(function(msg){
+    try {
+      if (msg?.command) return;
+
+      firstMessageReceived = true;
+      if (readyPingerId) {
+        clearInterval(readyPingerId);
+        readyPingerId = null;
+      }
+
+      setTimeout(() => {
+        const payload =
+          msg && typeof msg === 'object' && 'payload' in msg
+            ? msg.payload
+            : msg;
+
+        safeRender(
+          typeof payload === "string"
+            ? payload
+            : payload?.answer || ""
+        );
+      }, 50);
+
+    } catch (err) {
+      outEl.textContent = 'Render error:' + err;
+    }
+  });
+}
+
+    function pingReady(){
+      try{ThunkableWebviewerExtension.postMessage('ready');}
+      catch(e){debug('postMessage error:'+e);}
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      pingReady();
+      let tries=0;
+      readyPingerId=setInterval(()=>{
+        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
+        pingReady();tries++;
+      },600);
+    });
+
+followupBtn.onclick=async()=>{
+  const q=followupText.value.trim();
+  if(!q)return;
+
+  followupText.blur();
+
+  window.lastUserQuestion = window.lastQuestion || "";
+  window.lastQuestion = q;
+
+  loading.style.display='block';
+  loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  followupBtn.disabled=true;
+
+  try {
+    const res = await fetch('https://compaiss-engine-v2-production-ae74.up.railway.app/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        question: q,
+        previousQuestion: window.lastAnswerBackup || "",
+        isMobile: isMobile
+      })
+    });
+    const data=await res.json();
+    safeRender(data.answer||'(no response)');
+  } catch(err) {
+    safeRender('⚠️ Error sending question: '+err.message);
+    limitVerifiedSources();
+  }
+  loading.style.display='none';
+  followupBtn.disabled=false;
+  followupText.value='';
+  wordCounter.textContent = '0 / 300 words';
+  wordCounter.classList.remove('warning');
+};
+
+function limitVerifiedSources() {
+  const links = outEl.querySelectorAll('#out a[href]');
+
+  links.forEach(a => {
+    if (a.textContent.trim().match(/Verified Greenlist Source/i)) {
+      try {
+        const url = new URL(a.href);
+        const host = url.hostname.replace(/^www\./, '');
+        const path = url.pathname.replace(/\/$/, '');
+        a.textContent = host + path;
+      } catch {
+        a.textContent = a.href;
+      }
+    }
+  });
+
+  if (links.length > 8) {
+    for (let i = 8; i < links.length; i++) links[i].style.display = 'none';
+    const note = document.createElement('div');
+    note.textContent = '(showing top 8 verified sources)';
+    note.style.textAlign = 'center';
+    note.style.marginTop = '10px';
+    note.style.fontSize = '14px';
+    note.style.color = '#555';
+    outEl.appendChild(note);
+  }
+}
+
+copyBtn.onclick = () => {
+  const html = (lastSingleAnswer || "").trim();
+
+  if (!html) {
+    alert("No answer yet to copy.");
+    return;
+  }
+
+  const temp = document.createElement("div");
+  temp.innerHTML = html;
+
+  temp.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    a.replaceWith(document.createTextNode(`${label} (${url})`));
+  });
+
+  const text = temp.innerText
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    }).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+
+  function fallbackCopy() {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+  }
+};
+
+  </script>
+
+</body>
+</html>
