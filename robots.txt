@@ -13,3 +13,5 @@ Disallow: /service-canada2
 Disallow: /service-canada2/
 Disallow: /ucw
 Disallow: /ucw/
+Disallow: /tmu
+Disallow: /tmu/
