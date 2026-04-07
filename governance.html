@@ -679,6 +679,44 @@
 
   <hr>
 
+<hr>
+
+<div class="gov-section" id="greenlist-maintenance">
+  <h2>Greenlist Integrity and Maintenance</h2>
+  <p class="section-intro">How COMPAiSS keeps its approved source list authoritative and current.</p>
+
+  <p>The greenlist - the institution-specific list of approved URLs that defines the epistemic boundary of each COMPAiSS deployment - is not a static configuration file. It is a living governance asset that requires regular verification to remain authoritative.</p>
+
+  <p>COMPAiSS includes a purpose-built audit server that checks every URL in an institution's greenlist against the live web, classifying each entry as confirmed active, redirected, broken, or unreachable. Audits can be run per institution or across all deployments simultaneously. Results are returned as structured JSON, enabling systematic triage and targeted remediation.</p>
+
+  <ul class="verified-list">
+    <li>
+      <strong>Broken URL detection</strong>
+      <span>URLs returning 404 or DNS errors are identified and removed, ensuring the system never attempts to authorize queries against pages that no longer exist.</span>
+    </li>
+    <li>
+      <strong>Redirect classification</strong>
+      <span>Redirected URLs are categorized by type - permanent infrastructure redirects that are safe to retain versus content restructuring redirects that reflect renamed or moved pages. The latter are updated to their canonical destinations.</span>
+    </li>
+    <li>
+      <strong>Canonical URL normalization</strong>
+      <span>Where institutions have migrated to canonical domain structures, greenlist entries are updated to reflect the authoritative address - eliminating redirect hops and ensuring the greenlist matches what the institution itself designates as the correct URL.</span>
+    </li>
+    <li>
+      <strong>GitHub-integrated deployment</strong>
+      <span>Greenlist updates are committed directly to the institution's deployment repository. Railway auto-deploys on commit, meaning a corrected greenlist is live within minutes of the patch being applied - with no downtime and a full version history preserved in Git.</span>
+    </li>
+  </ul>
+
+  <p>Greenlist audits are conducted on a regular maintenance cycle and whenever institutional web infrastructure changes are known to have occurred - for example, following a website redesign or unit restructuring. The audit result is the authority: URLs confirmed active are retained, and URLs confirmed dead are removed or replaced with verified successors.</p>
+
+  <div class="test-result">
+    <div class="test-label">Governance Implication</div>
+    <p>A greenlist that contains dead or redirected URLs does not break COMPAiSS - but it degrades its precision. Regular audit and remediation ensures the approved source boundary remains tight, current, and defensible under institutional governance review.</p>
+  </div>
+
+</div>
+ 
   <!-- INSTITUTIONAL ACCOUNTABILITY -->
   <div class="gov-section" id="accountability">
     <h2>Institutional Accountability</h2>
