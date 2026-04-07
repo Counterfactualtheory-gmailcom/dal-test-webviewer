@@ -674,8 +674,30 @@
   </div>
 </div>
 
-  <hr>
+<hr>
 
+<div class="gov-section" id="common-questions">
+  <h2>Questions fréquentes en matière de gouvernance</h2>
+  <p class="section-intro">Les questions que posent le plus souvent les responsables des marchés publics, les conseillers juridiques et les équipes informatiques.</p>
+
+  <ul class="verified-list">
+    <li>
+      <strong>Que se passe-t-il si une URL source devient inaccessible en cours de requête?</strong>
+      <span>COMPAiSS récupère le contenu au moment de la requête. Si une source est inaccessible, le système s'appuie sur les autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécurisée. Il ne peut pas fabriquer du contenu à partir d'une source qu'il ne peut pas atteindre - ce qui constitue un avantage de gouvernance par rapport aux systèmes RAG qui mettent en cache le contenu récupéré et peuvent servir du matériel périmé sans le signaler.</span>
+    </li>
+    <li>
+      <strong>Comment cela interagit-il avec notre politique d'utilisation acceptable existante?</strong>
+      <span>COMPAiSS applique une frontière épistémique plus stricte que ce que la plupart des politiques d'utilisation acceptable institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres standard de politique d'utilisation acceptable. Pour les institutions disposant de dispositions spécifiques à l'IA dans leur politique d'utilisation acceptable, l'architecture à portail d'exécution fournit un chemin de conformité documenté et vérifiable que les systèmes à génération prioritaire ne peuvent pas égaler.</span>
+    </li>
+    <li>
+      <strong>Qui est responsable si la réponse est incorrecte?</strong>
+      <span>COMPAiSS ne répond qu'à partir de sources que l'institution elle-même a désignées comme faisant autorité. Si ces sources contiennent une erreur, l'exposition à la responsabilité de l'institution n'est pas plus grande que si un membre du personnel avait lu la même page. Plus important encore, COMPAiSS élimine la catégorie des orientations institutionnelles fabriquées - là où une IA invente une politique qui n'existe pas - qui crée l'exposition à la responsabilité la plus sérieuse pour les institutions déployant une IA à génération prioritaire. Cette classe d'erreur est architecturalement impossible dans COMPAiSS.</span>
+    </li>
+  </ul>
+</div>
+  
+  <hr>
+  
   <!-- RESPONSABILITE INSTITUTIONNELLE -->
   <div class="gov-section" id="accountability">
     <h2>Responsabilite institutionnelle</h2>
