@@ -840,10 +840,10 @@ Architecture and development were led by Harvey. Backend engineering, API integr
 COMPAiSS is actively seeking institutional evaluation partners and technology collaborators.
     `;
 
-    safeRender(LANDING_MD);
+safeRender(LANDING_MD);
+
 // Back To Top Logic
 const backBtn = document.getElementById('backToTop');
-
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
     backBtn.style.display = 'block';
@@ -851,15 +851,62 @@ window.addEventListener('scroll', () => {
     backBtn.style.display = 'none';
   }
 });
-
 backBtn.addEventListener('click', () => {
   const nav = document.querySelector('.section-nav');
   nav.scrollIntoView({ block: 'start' });
-
-  // 🔥 Clear URL hash without reloading
   history.replaceState(null, null, window.location.pathname);
 });
     
   </script>
+
+    <div style="
+      margin-top: 2.5rem;
+      padding: 2rem 2.2rem;
+      background: rgba(240,196,76,0.08);
+      border: 1px solid rgba(240,196,76,0.25);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
+    ">
+      <div style="
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #f0c44c;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      ">Request an Evaluation</div>
+      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
+        COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation for procurement review:
+      </p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=COMPAiSS%20Evaluation%20Request"
+         style="
+           display: inline-block;
+           padding: 0.7rem 1.6rem;
+           background: #f0c44c;
+           color: #000;
+           font-weight: 600;
+           font-size: 0.92rem;
+           border-radius: 6px;
+           text-decoration: none;
+           letter-spacing: 0.04em;
+         ">
+        Request a Demonstration -&gt;
+      </a>
+    </div>
+
+  </div><!-- end .content-frame -->
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="muted" style="margin-top: 0.8rem;">
+      Contact:
+      <a href="mailto:counterfactualtheory@gmail.com">
+        counterfactualtheory@gmail.com
+      </a>
+    </p>
+  </div>
+</footer>
+<button id="backToTop" aria-label="Back to top">↑</button>
 </body>
 </html>
