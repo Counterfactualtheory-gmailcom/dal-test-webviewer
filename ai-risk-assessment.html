@@ -1,1 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Risk and Accountability Assessment - COMPAiSS</title>
+
+  <style>
+    :root {
+      --wrap: 980px;
+      --pad: 32px;
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+      --bg-card: rgba(255,255,255,0.05);
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+      --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
+      --border-soft: rgba(255,255,255,0.08);
+      --border-accent: rgba(240,196,76,0.3);
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+      --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
+      --red-soft: rgba(220,80,80,0.10);
+      --red-border: rgba(220,80,80,0.25);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 16px; top: 16px; width: auto; height: auto;
+      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+    }
+
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-decoration: none;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.4rem;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .nav a { text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+
+    main {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
+    }
+
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      color: var(--text-heading);
+      margin: 0 0 1rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 60ch;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .section-nav ul { grid-template-columns: 1fr; }
+    }
+
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .gov-section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    .gov-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .gov-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .gov-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+
+    .card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    .verified-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .verified-list li {
+      padding: 0.85rem 1rem 0.85rem 3rem;
+      margin-bottom: 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .verified-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 1rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .verified-list li strong {
+      color: var(--text-heading);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.92rem;
+    }
+
+    .verified-list li span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .risk-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .risk-list li {
+      padding: 0.85rem 1rem 0.85rem 3rem;
+      margin-bottom: 0.6rem;
+      background: var(--red-soft);
+      border: 1px solid var(--red-border);
+      border-radius: 8px;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .risk-list li::before {
+      content: "!";
+      position: absolute;
+      left: 1.1rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .risk-list li strong {
+      color: var(--text-heading);
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.92rem;
+    }
+
+    .risk-list li span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .test-result {
+      background: var(--green-soft);
+      border: 1px solid rgba(76,175,130,0.3);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .test-result .test-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .test-result p {
+      margin: 0;
+      font-size: 0.93rem;
+      color: var(--text-main);
+      max-width: none;
+    }
+
+    .finding-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .finding-block .finding-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .finding-block p {
+      margin: 0 0 0.6rem;
+      font-size: 0.93rem;
+      color: var(--text-main);
+      max-width: none;
+    }
+
+    .finding-block p:last-child { margin-bottom: 0; }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .data-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .data-item .di-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .data-item p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+      line-height: 1.55;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 3rem 0;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <nav class="nav" aria-label="Primary">
+    <a href="/index.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/governance.html">AI Governance</a></li>
+      <li><a href="/ai-risk-assessment.html" class="active">AI Risk Assessment</a></li>
+      <li><a href="/index_french.html">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Procurement, Compliance and Regulatory Review</div>
+    <h1>AI Risk and Accountability Assessment</h1>
+    <p class="subtitle">A structured assessment of COMPAiSS against recognized AI accountability frameworks for institutional procurement and regulatory review.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>On This Page</strong>
+    <ul>
+      <li><a href="#system-id">System Identification</a></li>
+      <li><a href="#risk-classification">Risk Classification</a></li>
+      <li><a href="#data-governance">Data Governance</a></li>
+      <li><a href="#architecture-accountability">Architecture Accountability</a></li>
+      <li><a href="#risk-register">Risk Register</a></li>
+      <li><a href="#human-oversight">Human Oversight and Recourse</a></li>
+      <li><a href="#procurement-readiness">Procurement Readiness</a></li>
+      <li><a href="#request-documentation">Request Documentation</a></li>
+    </ul>
+  </div>
+
+  <!-- SYSTEM IDENTIFICATION -->
+  <div class="gov-section" id="system-id">
+    <h2>System Identification</h2>
+    <p class="section-intro">Core identifying information for procurement and regulatory review.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏛</div>
+        <h3>System Name</h3>
+        <p>COMPAiSS - Compliance-Oriented Multi-Platform AI Institutional Scope System</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏗</div>
+        <h3>System Type</h3>
+        <p>Execution-gated institutional AI information system. Not a general-purpose AI. Not a decision-making system.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👤</div>
+        <h3>Developer and Accountable Party</h3>
+        <p>Frank Harvey, Professor of Political Science and Senior Advisor, Dalhousie University. COMPAiSS Inc. holds the intellectual property and patent applications.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖</div>
+        <h3>Patent Status</h3>
+        <p>Canadian patent application CIPO 3,299,174 and US patent application USPTO 19/455,963 - both under examination, describing the pre-inference execution gate mechanism.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Deployment Status</h3>
+        <p>Active deployment across four Canadian institutional environments, including research-intensive universities and a federal public service context. Two additional pilots under institutional review.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>AI Engine</h3>
+        <p>OpenAI inference API - standard API without fine-tuning. No institutional data enters any training pipeline at any stage.</p>
+      </div>
+    </div>
+
+    <div class="finding-block" style="margin-top: 2rem;">
+      <div class="finding-label">Assessment Scope</div>
+      <p>This assessment covers the COMPAiSS platform architecture and governance framework as deployed across regulated institutional environments. Institution-specific deployment configurations - including authorized source lists, scope boundaries, and crisis response protocols - are documented separately for each institutional deployment and are available on request.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- RISK CLASSIFICATION -->
+  <div class="gov-section" id="risk-classification">
+    <h2>Risk Classification</h2>
+    <p class="section-intro">Assessment against Canada's Directive on Automated Decision-Making and equivalent institutional AI governance frameworks.</p>
+
+    <div class="test-result">
+      <div class="test-label">Classification Finding</div>
+      <p><strong>Level I - Little to No Impact</strong> under Canada's Directive on Automated Decision-Making. COMPAiSS scores at the lowest risk level on every relevant assessment dimension. This classification applies to all current institutional deployments.</p>
+    </div>
+
+    <p>The Level I classification is supported by four independent findings, each of which independently places the system at the lowest impact level:</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>No administrative decisions are made or supported</strong>
+        <span>COMPAiSS is an information navigation tool. It directs users to verified institutional sources. No eligibility determination, ranking, scoring, prioritization, or decision affecting rights, benefits, or entitlements is made by the system at any point. All decision authority remains with the institution and the user.</span>
+      </li>
+      <li>
+        <strong>No personal information is collected, stored, or processed</strong>
+        <span>Queries are stateless. The system receives text input only. No names, identification numbers, account information, or any personally identifiable information is collected or retained. Nothing persists after the transaction completes. A Privacy Impact Assessment is not required.</span>
+      </li>
+      <li>
+        <strong>All impacts are immediately and fully reversible</strong>
+        <span>The system provides information only. No action is taken on the user's behalf. A user who receives an unhelpful or incorrect response retains full ability to contact institutional staff directly through existing channels at any time. No rights, benefits, or entitlements are affected by the system's output.</span>
+      </li>
+      <li>
+        <strong>The pre-inference execution gate eliminates the primary hallucination risk category</strong>
+        <span>Source validation and scope enforcement occur before the AI generates any response. The system cannot hallucinate, cite unauthorized sources, or produce content outside the authorized institutional source set. This is an architectural constraint - not a post-generation filter - and directly addresses the AIA's core concerns about accuracy, bias, and unauthorized content.</span>
+      </li>
+    </ul>
+
+    <div class="finding-block">
+      <div class="finding-label">Framework Applicability</div>
+      <p>While the Directive on Automated Decision-Making is a Government of Canada instrument, the risk dimensions it assesses - decision authority, personal data handling, reversibility, and accuracy controls - are directly applicable to institutional AI governance review in higher education, healthcare, and public sector contexts. COMPAiSS scores at the lowest risk level on all dimensions regardless of which institutional framework is applied.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- DATA GOVERNANCE -->
+  <div class="gov-section" id="data-governance">
+    <h2>Data Governance</h2>
+    <p class="section-intro">What the system collects, processes, and retains - and what it does not.</p>
+
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="di-label">Personal Data Collected</div>
+        <p>None. No names, IDs, account numbers, or any identifying information at any stage.</p>
+      </div>
+      <div class="data-item">
+        <div class="di-label">Query Retention</div>
+        <p>None. Queries are processed transiently and discarded. Nothing is retained after the response is delivered.</p>
+      </div>
+      <div class="data-item">
+        <div class="di-label">Security Classification</div>
+        <p>Unclassified. All source content consists of publicly available institutional web pages.</p>
+      </div>
+      <div class="data-item">
+        <div class="di-label">PIA Requirement</div>
+        <p>Not required. No personal information is collected or processed at any stage.</p>
+      </div>
+      <div class="data-item">
+        <div class="di-label">Training Data</div>
+        <p>Not applicable. Standard inference API without fine-tuning. No institutional data enters any model training pipeline.</p>
+      </div>
+      <div class="data-item">
+        <div class="di-label">Data Residency</div>
+        <p>Configurable to Canadian-region hosting upon institutional agreement, satisfying PIPEDA and provincial privacy law requirements.</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 2rem;">Aggregated, anonymized usage patterns - for example, topic areas generating high query volume - can be made available to the institution for service planning. This analytics function operates exclusively on de-identified aggregate data and cannot be traced back to any individual user.</p>
+
+    <div class="test-result">
+      <div class="test-label">Data Governance Finding</div>
+      <p>COMPAiSS operates entirely outside the personal data space by architectural design. There is no personal data pipeline to govern, no data retention policy to administer, and no risk of data breach exposing user information - because no user information is collected.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ARCHITECTURE ACCOUNTABILITY -->
+  <div class="gov-section" id="architecture-accountability">
+    <h2>Architecture Accountability</h2>
+    <p class="section-intro">How the system enforces scope, maintains audit trails, and supports institutional oversight.</p>
+
+    <p>COMPAiSS is built on an execution-gated inference architecture. Authorization and scope validation occur before any AI generation takes place. If no authorized institutional source exists for a query, the AI model does not execute. This is the core architectural accountability property - and it is not a configuration setting that can be overridden at the user level.</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Pre-inference execution gate</strong>
+        <span>Every query is validated against the institution's authorized source list before any AI generation occurs. Out-of-scope queries are rejected at the gate. The AI model only runs when authorization conditions are satisfied. This constraint is architectural - it cannot be prompted, reframed, or manipulated away.</span>
+      </li>
+      <li>
+        <strong>Authorized source list (greenlist) governance</strong>
+        <span>The institution retains full authority to review, approve, and modify the authorized source list at any time. COMPAiSS cannot access any page, document, or source that is not on the approved list. Every response is traceable to specific authorized sources.</span>
+      </li>
+      <li>
+        <strong>Audit trail and logging</strong>
+        <span>System logs capture every query received, the gate authorization result, and the sources parsed for each transaction. Each response is traceable to specific authorized source pages. Logs identify the platform version, governance configuration version, and AI model version used for each transaction.</span>
+      </li>
+      <li>
+        <strong>Version control and change management</strong>
+        <span>All changes to the governance configuration, authorized source list, prompt architecture, and platform infrastructure are committed to a version-controlled repository with timestamps and change records. The institution maintains a complete history of all governance configuration changes.</span>
+      </li>
+      <li>
+        <strong>Greenlist integrity auditing</strong>
+        <span>A purpose-built audit server checks every URL in an institution's authorized source list against the live web on a regular maintenance cycle, classifying each entry as active, redirected, broken, or unreachable. Broken or moved URLs are remediated and the corrected list is deployed automatically through the version-controlled repository.</span>
+      </li>
+      <li>
+        <strong>No continuous learning from user interactions</strong>
+        <span>The system does not learn from individual user queries. No interaction data is fed back into any model. The AI model improves only as OpenAI updates its underlying models - a process that is entirely external to institutional data and interactions.</span>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- RISK REGISTER -->
+  <div class="gov-section" id="risk-register">
+    <h2>Risk Register</h2>
+    <p class="section-intro">Identified risks by category with architectural and operational mitigations.</p>
+
+    <p>No ethical, financial, privacy, or legal risks have been identified that would impede institutional deployment. The following risks have been identified and mitigated:</p>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Technical Risks</h3>
+    <ul class="risk-list">
+      <li>
+        <strong>AI inference API availability</strong>
+        <span>Mitigation: Standard error handling and fallback messaging direct users to institutional staff when the inference layer is unavailable. The system degrades gracefully - it does not produce unreliable outputs when the API is degraded.</span>
+      </li>
+      <li>
+        <strong>Authorized source content becoming outdated</strong>
+        <span>Mitigation: Active greenlist maintenance on a regular audit cycle. The institution flags when source content changes. Outdated or removed pages are removed from the authorized list, preventing the system from citing content that no longer reflects current policy.</span>
+      </li>
+      <li>
+        <strong>Source URL unavailable at query time</strong>
+        <span>Mitigation: If a source is unreachable at the moment of a query, the system draws from other authorized sources that did respond, or returns a safe failure response directing the user to institutional staff. It cannot fabricate content from a source it cannot reach.</span>
+      </li>
+    </ul>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Governance Risks</h3>
+    <ul class="risk-list">
+      <li>
+        <strong>Scope creep beyond authorized content</strong>
+        <span>Mitigation: Architectural - the pre-inference execution gate cannot be overridden at the user level. Out-of-scope queries are rejected on the first attempt and every subsequent attempt regardless of how they are phrased or reframed.</span>
+      </li>
+      <li>
+        <strong>Adversarial prompt manipulation</strong>
+        <span>Mitigation: Input filtering blocks excessively long inputs, garbage text, and adversarial prompt attempts before they reach the gate. The gate itself enforces scope boundaries deterministically. Attempts to manipulate the AI's instructions are blocked before they reach the model.</span>
+      </li>
+    </ul>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Equity Risks</h3>
+    <ul class="risk-list">
+      <li>
+        <strong>Digital accessibility barriers</strong>
+        <span>Mitigation: Web-embedded design accessible from any browser-enabled device without specialized software or installation. Users who cannot use or prefer not to use the system retain full access to all the same information through existing institutional channels.</span>
+      </li>
+      <li>
+        <strong>Language barriers</strong>
+        <span>Mitigation: Multilingual query support - users can submit queries in any language. Translation is treated as a preprocessing step outside the authorization framework, ensuring that the language of the query does not affect what institutional content is considered authoritative.</span>
+      </li>
+    </ul>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Reputational Risks</h3>
+    <ul class="risk-list">
+      <li>
+        <strong>Public or institutional concerns about AI deployment</strong>
+        <span>Mitigation: The governance-first architecture, full auditability, stateless privacy-by-design approach, and pre-inference execution gate that structurally eliminates all standard hallucination sources directly address the concerns that generate institutional scrutiny. The system is designed to be auditable and defensible from the concept stage.</span>
+      </li>
+    </ul>
+
+    <div class="test-result">
+      <div class="test-label">Risk Assessment Finding</div>
+      <p>All identified risks are mitigated at the architectural level - not through post-deployment monitoring or policy controls alone. This means mitigations are structural properties of the system that cannot be accidentally disabled or configured away.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- HUMAN OVERSIGHT AND RECOURSE -->
+  <div class="gov-section" id="human-oversight">
+    <h2>Human Oversight and Recourse</h2>
+    <p class="section-intro">How institutional authority is preserved and how users escalate when the system does not meet their needs.</p>
+
+    <p>Human oversight and intervention operate at multiple levels within every COMPAiSS deployment. The system is designed from the concept stage to preserve institutional authority and user recourse at every point.</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Immediate user recourse</strong>
+        <span>Every system response includes links to official institutional pages and directs users to contact institutional staff directly for further assistance. A user who receives an incorrect or unhelpful response can contact staff through existing channels at any time. No action is taken on their behalf and no rights or entitlements are affected.</span>
+      </li>
+      <li>
+        <strong>Institutional override authority</strong>
+        <span>The deploying institution retains full authority to modify the authorized source list, update governance configuration, or disable the system at any time. All such changes take effect immediately and are logged with timestamps in the version-controlled repository.</span>
+      </li>
+      <li>
+        <strong>Crisis query handling</strong>
+        <span>When a query contains language associated with personal distress or crisis, the system returns a pre-approved institutional response directing the user to appropriate support resources - counselling services, campus security, or emergency contacts - as configured by the institution in alignment with its own duty-of-care policies. The AI model does not engage with crisis content.</span>
+      </li>
+      <li>
+        <strong>Developer accountability</strong>
+        <span>Frank Harvey holds direct technical accountability for all design, development, maintenance, and governance configuration. COMPAiSS Inc. is the incorporated entity that holds the intellectual property and platform operating rights. Service levels and accountability obligations are defined in each institutional licensing agreement.</span>
+      </li>
+      <li>
+        <strong>Non-automated alternative always available</strong>
+        <span>COMPAiSS is a supplementary channel. All existing institutional information channels, staff resources, and service options remain available at all times. The system's unavailability does not affect access to institutional services or information.</span>
+      </li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- PROCUREMENT READINESS -->
+  <div class="gov-section" id="procurement-readiness">
+    <h2>Procurement Readiness</h2>
+    <p class="section-intro">Documentation and compliance status for institutional procurement and governance review processes.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Algorithmic Impact Assessment</h3>
+        <p>A complete AIA has been prepared and submitted for federal review. Institution-specific AIA documentation is available for any regulated institutional deployment on request.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Privacy by Design</h3>
+        <p>Stateless queries, no personal data collection, no session storage, no user profiling. The system operates entirely outside the personal data space by architectural design.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖</div>
+        <h3>Patent-Protected Architecture</h3>
+        <p>The pre-inference execution gate is the subject of patent applications in Canada (CIPO 3,299,174) and the United States (USPTO 19/455,963). The architectural distinction is formally documented and defensible.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍁</div>
+        <h3>Canadian Data Residency</h3>
+        <p>Hosting can be configured to any Canadian-region infrastructure upon signing, satisfying PIPEDA and provincial privacy law requirements for Canadian institutions.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Accessibility</h3>
+        <p>Web-embedded interface accessible from any browser-enabled device. No specialized software, download, or installation required. Formal accessibility compliance review is conducted prior to each institutional deployment.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>Real-Time Governance Tools</h3>
+        <p>Compliance receipts, governance delta comparisons, and governance reports are available to authorized institutional administrators without external software or AI assistance. See the AI Governance page for full details.</p>
+      </div>
+    </div>
+
+    <div class="finding-block" style="margin-top: 2.5rem;">
+      <div class="finding-label">Acceptable Use Policy Compatibility</div>
+      <p>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path that generation-first systems cannot match.</p>
+    </div>
+
+    <div class="finding-block">
+      <div class="finding-label">Liability Framework</div>
+      <p>COMPAiSS answers only from sources the institution itself has designated as authoritative. If those sources contain an error, the institution's liability exposure is no greater than if a staff member read from the same page. More importantly, COMPAiSS eliminates the category of fabricated institutional guidance - where an AI invents policy that does not exist - that creates the most serious liability exposure for institutions deploying generation-first AI. That class of error is architecturally impossible in COMPAiSS.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- REQUEST DOCUMENTATION -->
+  <div class="gov-section" id="request-documentation">
+    <h2>Request Documentation</h2>
+    <p class="section-intro">How to obtain formal governance documentation for procurement or regulatory review.</p>
+
+    <p>The following documentation is available on request for any institution conducting a formal procurement or governance review:</p>
+
+    <ul class="verified-list">
+      <li>
+        <strong>Complete Algorithmic Impact Assessment</strong>
+        <span>Full AIA responses across all sections, including risk classification rationale, data handling assessment, procedural fairness analysis, and system accountability documentation.</span>
+      </li>
+      <li>
+        <strong>Technical architecture documentation</strong>
+        <span>Detailed description of the pre-inference execution gate, greenlist governance model, audit trail architecture, and defense-in-depth security controls.</span>
+      </li>
+      <li>
+        <strong>Pilot deployment results</strong>
+        <span>Governance configuration documentation, query volume and gate pass/fail rate analysis, and institutional feedback from active deployments.</span>
+      </li>
+      <li>
+        <strong>Institution-specific governance package</strong>
+        <span>A tailored governance documentation package scoped to your institution's specific procurement framework, AUP requirements, and review process - prepared in advance of formal submission.</span>
+      </li>
+    </ul>
+
+    <div style="
+      margin-top: 2.5rem;
+      padding: 2rem 2.2rem;
+      background: rgba(240,196,76,0.08);
+      border: 1px solid rgba(240,196,76,0.25);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
+    ">
+      <div style="
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #f0c44c;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      ">Request Governance Documentation</div>
+      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
+        To request formal governance documentation, schedule a procurement review presentation, or discuss an institutional pilot deployment:
+      </p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=COMPAiSS%20Governance%20Documentation%20Request"
+         style="
+           display: inline-block;
+           padding: 0.7rem 1.6rem;
+           background: #f0c44c;
+           color: #000;
+           font-weight: 600;
+           font-size: 0.92rem;
+           border-radius: 6px;
+           text-decoration: none;
+           letter-spacing: 0.04em;
+         ">
+        Request Documentation -&gt;
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p style="margin-top: 0.8rem;">
+      Contact: <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+
+  function checkScroll() {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+
+  backBtn.addEventListener('click', () => {
+    const nav = document.querySelector('.section-nav');
+    nav.scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
+</body>
+</html>
