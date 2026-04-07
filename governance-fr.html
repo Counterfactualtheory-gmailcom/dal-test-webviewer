@@ -641,6 +641,38 @@
     <p>Il s'agit d'un avantage important par rapport aux outils IA formes sur des instantanes statiques de l'information - ces systemes necessitent des cycles de reentainement couteux pouvant prendre des semaines ou des mois pour reflechir les changements de politique.</p>
   </div>
 
+<hr>
+  
+<div class="gov-section" id="greenlist-maintenance">
+  <h2>Intégrité et maintenance de la liste verte</h2>
+  <p class="section-intro">Comment COMPAiSS maintient sa liste de sources approuvées à jour et faisant autorité.</p>
+  <p>La liste verte - la liste propre à chaque institution des URL approuvées qui définit la frontière épistémique de chaque déploiement COMPAiSS - n'est pas un fichier de configuration statique. C'est un actif de gouvernance vivant qui nécessite une vérification régulière pour demeurer autoritatif.</p>
+  <p>COMPAiSS comprend un serveur d'audit conçu à cet effet qui vérifie chaque URL de la liste verte d'une institution par rapport au web en temps réel, en classifiant chaque entrée comme active confirmée, redirigée, brisée ou inaccessible. Les audits peuvent être exécutés par institution ou sur l'ensemble des déploiements simultanément. Les résultats sont retournés en JSON structuré, permettant un triage systématique et une remédiation ciblée.</p>
+  <ul class="verified-list">
+    <li>
+      <strong>Détection des URL brisées</strong>
+      <span>Les URL retournant des erreurs 404 ou DNS sont identifiées et supprimées, garantissant que le système ne tente jamais d'autoriser des requêtes vers des pages qui n'existent plus.</span>
+    </li>
+    <li>
+      <strong>Classification des redirections</strong>
+      <span>Les URL redirigées sont catégorisées par type - les redirections d'infrastructure permanentes qu'il est sécuritaire de conserver, par opposition aux redirections de restructuration de contenu qui reflètent des pages renommées ou déplacées. Ces dernières sont mises à jour vers leurs destinations canoniques.</span>
+    </li>
+    <li>
+      <strong>Normalisation des URL canoniques</strong>
+      <span>Lorsque des institutions ont migré vers des structures de domaine canoniques, les entrées de la liste verte sont mises à jour pour refléter l'adresse faisant autorité - éliminant les sauts de redirection et garantissant que la liste verte correspond à ce que l'institution elle-même désigne comme l'URL correcte.</span>
+    </li>
+    <li>
+      <strong>Déploiement intégré à GitHub</strong>
+      <span>Les mises à jour de la liste verte sont soumises directement au dépôt de déploiement de l'institution. Railway effectue un déploiement automatique à chaque soumission, ce qui signifie qu'une liste verte corrigée est en ligne en quelques minutes après l'application du correctif - sans interruption de service et avec un historique de versions complet conservé dans Git.</span>
+    </li>
+  </ul>
+  <p>Les audits de la liste verte sont effectués selon un cycle de maintenance régulier et chaque fois que des modifications connues de l'infrastructure web institutionnelle se sont produites - par exemple, à la suite d'une refonte du site web ou d'une restructuration d'unité. Le résultat de l'audit fait autorité : les URL confirmées actives sont conservées, et les URL confirmées inactives sont supprimées ou remplacées par des successeurs vérifiés.</p>
+  <div class="test-result">
+    <div class="test-label">Implication pour la gouvernance</div>
+    <p>Une liste verte contenant des URL inactives ou redirigées ne brise pas COMPAiSS - mais elle dégrade sa précision. Un audit et une remédiation réguliers garantissent que la frontière des sources approuvées demeure stricte, à jour et défendable dans le cadre d'un examen de gouvernance institutionnelle.</p>
+  </div>
+</div>
+
   <hr>
 
   <!-- RESPONSABILITE INSTITUTIONNELLE -->
