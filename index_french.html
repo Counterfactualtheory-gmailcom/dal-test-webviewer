@@ -786,13 +786,13 @@ Le rapport qui suit présente une analyse structurée fondée sur un consensus i
 
 ## Explorer cette architecture
 
-COMPAiSS est actuellement en phase de tests bêta contrôlés dans six environnements institutionnels canadiens, dont des universités de recherche intensive. Ces essais évaluent l’inférence à exécution conditionnelle (execution-gated inference) dans des contextes opérationnels desservant des populations multilingues allant de 20 000 à plus de 40 000 étudiants.
+COMPAiSS est actuellement en déploiement actif dans quatre environnements institutionnels canadiens, dont des universités de recherche intensive et un contexte de service public fédéral, avec deux pilots institutionnels supplémentaires actuellement en cours d'examen.
 
-Un environnement de démonstration à l’échelle fédérale a également été développé afin de valider l’inférence à exécution contrôlée dans des contextes de services aux citoyens à fort volume, reflétant des organisations qui gèrent des dizaines de millions d’interactions annuelles avec la population par téléphone, en personne et par voie numérique.
+Un environnement de démonstration à l'échelle fédérale a également été développé afin de valider l'inférence à exécution contrôlée dans des contextes de services aux citoyens à fort volume, reflétant des organisations qui gèrent des dizaines de millions d'interactions annuelles avec la population par téléphone, en personne et par voie numérique.
 
-Le système a été façonné par une expérience directe en gouvernance institutionnelle et est actuellement évalué dans des contextes de registrariat et de services aux étudiants, où l’exactitude des politiques et l’autorité institutionnelle sont essentielles.
+Le système a été façonné par une expérience directe en gouvernance institutionnelle et est actuellement évalué dans des contextes de registrariat et de services aux étudiants, où l'exactitude des politiques et l'autorité institutionnelle sont essentielles.
 
-**Pour toute demande d’évaluation institutionnelle ou de partenariat technologique :**
+**Pour toute demande d'évaluation institutionnelle ou de partenariat technologique :**
 
 **Contact :** counterfactualtheory@gmail.com
 
@@ -808,12 +808,10 @@ L'architecture et le développement ont été dirigés par Harvey. L'ingénierie
 
 COMPAiSS recherche activement des partenaires institutionnels pour l'évaluation du système ainsi que des collaborateurs technologiques.
       `;
-
     safeRender(LANDING_MD);
 
 // Back To Top Logic
 const backBtn = document.getElementById('backToTop');
-
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
     backBtn.style.display = 'block';
@@ -821,14 +819,62 @@ window.addEventListener('scroll', () => {
     backBtn.style.display = 'none';
   }
 });
-
 backBtn.addEventListener('click', () => {
   const nav = document.querySelector('.section-nav');
   nav.scrollIntoView({ block: 'start' });
-
   history.replaceState(null, null, window.location.pathname);
 });
     
   </script>
+
+    <div style="
+      margin-top: 2.5rem;
+      padding: 2rem 2.2rem;
+      background: rgba(240,196,76,0.08);
+      border: 1px solid rgba(240,196,76,0.25);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
+    ">
+      <div style="
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #f0c44c;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      ">Demander une evaluation</div>
+      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
+        COMPAiSS est disponible pour evaluation institutionnelle. Pour planifier une demonstration, discuter d'un deploiement pilote, ou obtenir la documentation de gouvernance pour un examen d'approvisionnement :
+      </p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20d%27evaluation%20COMPAiSS"
+         style="
+           display: inline-block;
+           padding: 0.7rem 1.6rem;
+           background: #f0c44c;
+           color: #000;
+           font-weight: 600;
+           font-size: 0.92rem;
+           border-radius: 6px;
+           text-decoration: none;
+           letter-spacing: 0.04em;
+         ">
+        Demander une demonstration -&gt;
+      </a>
+    </div>
+
+  </div><!-- end .content-frame -->
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p class="muted" style="margin-top: 0.8rem;">
+      Contact :
+      <a href="mailto:counterfactualtheory@gmail.com">
+        counterfactualtheory@gmail.com
+      </a>
+    </p>
+  </div>
+</footer>
+<button id="backToTop" aria-label="Retour en haut">↑</button>
 </body>
 </html>
