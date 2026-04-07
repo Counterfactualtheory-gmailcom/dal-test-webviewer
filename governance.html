@@ -716,8 +716,30 @@
 
 </div>
 
- <hr>
- 
+<hr>
+
+<div class="gov-section" id="common-questions">
+  <h2>Common Governance Questions</h2>
+  <p class="section-intro">The questions procurement officers, legal counsel, and IT teams ask most often.</p>
+
+  <ul class="verified-list">
+    <li>
+      <strong>What happens when a source URL goes down mid-query?</strong>
+      <span>COMPAiSS fetches content at query time. If a source is unreachable, the system draws from other authorized sources that did respond, or returns a safe failure response. It cannot fabricate content from a source it cannot reach - which is a governance advantage over RAG systems that cache retrieved content and can serve stale material without flagging it.</span>
+    </li>
+    <li>
+      <strong>How does this interact with our existing Acceptable Use Policy?</strong>
+      <span>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path that generation-first systems cannot match.</span>
+    </li>
+    <li>
+      <strong>Who is liable if the answer is wrong?</strong>
+      <span>COMPAiSS answers only from sources the institution itself has designated as authoritative. If those sources contain an error, the institution's liability exposure is no greater than if a staff member read from the same page. More importantly, COMPAiSS eliminates the category of fabricated institutional guidance - where an AI invents policy that does not exist - that creates the most serious liability exposure for institutions deploying generation-first AI. That class of error is architecturally impossible in COMPAiSS.</span>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
   <!-- INSTITUTIONAL ACCOUNTABILITY -->
   <div class="gov-section" id="accountability">
     <h2>Institutional Accountability</h2>
