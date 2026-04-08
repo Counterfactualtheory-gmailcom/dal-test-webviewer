@@ -10,823 +10,682 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-JR7LJGK5PK');
 </script>
-  
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMPAiSS</title>
 
   <style>
-    :root{
+    :root {
       --wrap: 980px;
       --pad: 32px;
-
       --bg-page: #0c2d5a;
       --bg-panel: #10386e;
       --bg-panel-soft: rgba(16,56,110,0.55);
-
+      --bg-card: rgba(255,255,255,0.05);
       --text-main: #c6cfdd;
       --text-muted: #aeb9cc;
       --text-heading: #ffffff;
-
       --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
       --border-soft: rgba(255,255,255,0.08);
-
+      --border-accent: rgba(240,196,76,0.3);
       --link: #9cc9ff;
       --link-visited: #c8e0ff;
-
       --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
     }
 
-#out h2{
-  display: inline-block;
-  background: rgba(255,255,255,0.08);
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  margin: 1.6rem 0 0.8rem -0.4rem;
-}
-
-#out h2 + p,
-#out h2 + ul{
-  margin-top: 0.4rem;
-}
-    
-    html,body{
-      margin:0;
-      padding:0;
-      background:var(--bg-page);
-      color:var(--text-main);
-      font:18px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      -webkit-text-size-adjust:100%;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+      -webkit-text-size-adjust: 100%;
     }
 
-#out img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 2.5rem auto;
-  border-radius: 8px;
-}
-    
-    a{
-      color:var(--link);
-      text-decoration:underline;
-      text-underline-offset:0.15em;
-    }
-    a:visited{color:var(--link-visited)}
-    a:hover,a:focus{opacity:.95}
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: .95; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-    :focus-visible{
-      outline:2px solid var(--accent);
-      outline-offset:3px;
+    .skip-link {
+      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 16px; top: 16px; width: auto; height: auto;
+      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
     }
 
-    .skip-link{
-      position:absolute;
-      left:-999px;
-      top:auto;
-      width:1px;
-      height:1px;
-      overflow:hidden;
-    }
-    .skip-link:focus{
-      left:16px;
-      top:16px;
-      width:auto;
-      height:auto;
-      background:#000;
-      color:#fff;
-      padding:8px 12px;
-      z-index:1000;
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    header{
-      border-bottom:1px solid var(--border-soft);
+    .nav .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-decoration: none;
     }
 
-    .nav{
-      max-width:var(--wrap);
-      margin:0 auto;
-      padding:18px var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.4rem;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .nav .brand-text{
-      font-weight:600;
-      letter-spacing:0.04em;
-      color:var(--text-heading);
+    .nav a { text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+
+    main {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
     }
 
-    .nav ul{
-      list-style:none;
-      display:flex;
-      gap:1.4rem;
-      margin:0;
-      padding:0;
-      font-size:0.9rem;
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .nav a{
-      text-decoration:none;
-      color:var(--text-muted);
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
     }
 
-    .nav a:hover{
-      color:var(--text-heading);
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
     }
 
-    main{
-      max-width:var(--wrap);
-      margin:0 auto;
-      padding:var(--pad);
+    .page-header .logo-wrap {
+      margin-bottom: 1.6rem;
     }
 
-    footer{
-      border-top:1px solid var(--border-soft);
-      margin-top:5rem;
+    .page-header .logo-wrap img {
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      display: inline-block;
     }
 
-    footer .footer-inner{
-      max-width:var(--wrap);
-      margin:0 auto;
-      padding:2.5rem var(--pad);
-      font-size:0.85rem;
-      color:var(--text-muted);
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 60ch;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .brand{
-      text-align:center;
-      margin:2.2rem 0 2.4rem 0;
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .brand img{
-      max-width:520px;
-      width:100%;
-      height:auto;
-      display:inline-block;
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
-    .content-frame{
-      background:var(--bg-panel-soft);
-      border-radius:var(--radius);
-      padding:2.6rem 3rem 3.5rem;
+    .section-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
     }
 
-    @media (max-width: 700px){
-      .content-frame{
-        padding:2.2rem 1.6rem;
-      }
+    @media (max-width: 600px) {
+      .section-nav ul { grid-template-columns: 1fr; }
     }
 
-    #out, #out *:not(a){
-      color:var(--text-main)!important;
-      background:transparent!important;
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .content-section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
     }
 
-    h1{
-      color:var(--text-heading);
-      font-size:3rem;
-      letter-spacing:0.04em;
-      margin:0 0 1.1em -0.4rem;
+    .content-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
     }
 
-    h2{
-      color:var(--text-heading);
-      font-size:2rem;
-      margin:3.4em 0 1em -0.4rem;
+    .content-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
     }
 
-    h3{
-      color:var(--accent);
-      font-size:1.05rem;
-      letter-spacing:0.16em;
-      text-transform:uppercase;
-      margin:2.6em 0 0.8em -0.4rem;
-    }
-    
-#out h3 em{
-  color: #ffffff !important;
-} 
-    
-    p{
-      margin:1.1em 0;
-      max-width:70ch;
+    .content-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
     }
 
-/* Balance + center hero headline */
-#out > h3:first-of-type {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  text-wrap: balance;
-}
-
-/* Center hero byline */
-#out > h3:first-of-type + p {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-    
-    ul{
-      margin:1em 0 1.6em 1.4em;
-      max-width:70ch;
+    .content-section ul {
+      max-width: 70ch;
+      margin: 1em 0 1.6em 1.4em;
     }
 
-    li{
-      margin:0.55em 0;
+    .content-section li {
+      margin: 0.55em 0;
+      font-size: 1rem;
+      line-height: 1.65;
     }
 
-    hr{
-      border:none;
-      border-top:1px solid var(--border-soft);
-      margin:4em 0;
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
     }
 
-#out hr{
-  margin: 1.2rem 0;
-}   
-    .muted{
-      color:var(--text-muted);
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
     }
 
-/* Executive Navigation */
+    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
 
-.section-nav {
-  margin-bottom: 2.8rem;
-  padding: 1.4rem 1.6rem;
-  background: rgba(255,255,255,0.06);
-  border-radius: 8px;
-}
-
-.section-nav strong {
-  display: block;
-  margin-bottom: 0.9rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.section-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.55rem;
-}
-
-.section-nav li {
-  margin: 0;
-}
-
-.section-nav a {
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.95rem;
-}
-
-.section-nav a:hover {
-  color: var(--text-heading);
-}
-
-    @media (prefers-reduced-motion: reduce){
-      *{
-        animation:none!important;
-        transition:none!important;
-      }
+    .card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
     }
 
-  /* Back To Top Button */
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+      max-width: none;
+    }
 
-#backToTop {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: var(--accent);
-  color: #000;
-  font-size: 20px;
-  cursor: pointer;
-  display: none;
-  z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  transition: opacity 0.2s ease;
-}
+    .highlight-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
 
-#backToTop:hover {
-  opacity: 0.9;
-}
-    
+    .highlight-block p {
+      margin: 0 0 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      max-width: none;
+      line-height: 1.65;
+    }
+
+    .highlight-block p:last-child { margin-bottom: 0; }
+
+    .doc-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .doc-list li {
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .doc-list li a {
+      color: var(--link);
+      font-weight: 500;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 3rem 0;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header .logo-wrap img { max-width: 320px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
   </style>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 
 </head>
 
 <body>
-  
-  <a href="#main" class="skip-link">Aller au contenu</a>
+
+<a href="#main" class="skip-link">Aller au contenu</a>
 
 <header>
   <nav class="nav" aria-label="Navigation principale">
-    <div class="brand-text">COMPAiSS</div>
+    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
     <ul>
-      <li><a href="/governance-fr.html">Gouvernance de l'IA</a></li>
-      <li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
+      <li><a href="/governance-fr.html">Gouvernance IA</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">Evaluation des risques IA</a></li>
       <li><a href="/index.html">EN</a></li>
     </ul>
   </nav>
 </header>
 
-  <main id="main">
-  <div class="brand">
-  <img
-    src="/assets/compaiss_logo-fr.png"
-    alt="COMPAiSS – Conçu pour les environnements où l’exactitude est obligatoire. Là où l’IA cesse de deviner."
-  >
-  </div>
+<main id="main">
 
-<div class="content-frame">
+  <div class="page-header">
+    <div class="eyebrow">Gouvernance institutionnelle de l'IA</div>
+    <div class="logo-wrap">
+      <img
+        src="/assets/compaiss_logo-fr.png"
+        alt="COMPAiSS - Concu pour les environnements ou l'exactitude est obligatoire. La ou l'IA cesse de deviner."
+      >
+    </div>
+    <p class="subtitle">Un systeme d'IA concu pour prevenir les hallucinations institutionnelles non autorisees par conception - concu pour les environnements reglementes ou l'exactitude, l'autorite et la gouvernance ne sont pas negociables.</p>
+  </div>
 
   <div class="section-nav">
     <strong>Navigation</strong>
     <ul>
-<li><a href="#ce-que-fait-compaiss">Ce que fait COMPAiSS</a></li>
-<li><a href="#le-probleme-structurel-des-systemes-dia-actuels">Le problème structurel des systèmes d’IA actuels</a></li>
-<li><a href="#compaiss-la-solution-structurelle-a-une-defaillance-systemique-de-lia">COMPAiSS : la solution structurelle à une défaillance systémique de l’IA</a></li>
-<li><a href="#pourquoi-compaiss-nest-pas-un-systeme-dia-a-usage-general">Pourquoi COMPAiSS n’est pas un système d’IA à usage général</a></li>
-<li><a href="#pourquoi-compaiss-nest-pas-un-robot-faq-ni-un-agent-conversationnel-scripte">Pourquoi COMPAiSS n’est pas un robot FAQ ni un agent conversationnel scripté</a></li>
-<li><a href="#pourquoi-compaiss-nest-pas-fonde-sur-la-generation-augmentee-par-recuperation-rag">Pourquoi COMPAiSS n’est pas fondé sur la génération augmentée par récupération (RAG)</a></li>
-<li><a href="#architecture-de-compaiss">Architecture de COMPAiSS</a></li>
-<li><a href="#economies-par-conception">Économies par conception</a></li>
-<li><a href="#pour-les-cabinets-de-conseil-et-les-integrateurs-de-systemes">Pour les cabinets de conseil et les intégrateurs de systèmes</a></li>
-<li><a href="#maintenir-la-coherence-du-sens-entre-les-traductions-compaiss-et-le-rag">Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG</a></li>
-<li><a href="#le-contraste-avec-les-assistants-ia-dentreprise">Le contraste avec les assistants IA d'entreprise</a></li> 
-<li><a href="#concu-pour-les-processus-dapprovisionnement-institutionnel-et-dexamen-de-gouvernance">Conçu pour les processus d'approvisionnement institutionnel et d'examen de gouvernance</a></li>      
-<li><a href="#la-ou-lexactitude-nest-pas-facultative">Là où l’exactitude n’est pas facultative</a></li>
-<li><a href="#responsabilite-institutionnelle-et-controle">Responsabilité institutionnelle et contrôle</a></li>
-<li><a href="#documentation-technique-et-lectures-complementaires">Documentation technique et lectures complémentaires</a></li>
-<li><a href="#explorer-cette-architecture">Explorer cette architecture</a></li>
-<li><a href="#a-propos-de-compaiss">À propos de COMPAiSS</a></li>
+      <li><a href="#ce-que-fait-compaiss">Ce que fait COMPAiSS</a></li>
+      <li><a href="#le-probleme-structurel">Le probleme structurel des systemes d'IA actuels</a></li>
+      <li><a href="#la-solution-structurelle">COMPAiSS : la solution structurelle</a></li>
+      <li><a href="#pas-usage-general">Pas un systeme d'IA a usage general</a></li>
+      <li><a href="#pas-faq-bot">Pas un robot FAQ ni un agent scripte</a></li>
+      <li><a href="#pas-rag">Pas fonde sur la generation augmentee par recuperation (RAG)</a></li>
+      <li><a href="#architecture">Architecture de COMPAiSS</a></li>
+      <li><a href="#economies">Economies par conception</a></li>
+      <li><a href="#cabinets-conseil">Pour les cabinets de conseil et les integrateurs</a></li>
+      <li><a href="#traductions">Coherence du sens entre les traductions</a></li>
+      <li><a href="#contraste-entreprise">Le contraste avec les assistants IA d'entreprise</a></li>
+      <li><a href="#approvisionnement">Concu pour l'approvisionnement et la gouvernance</a></li>
+      <li><a href="#exactitude">La ou l'exactitude n'est pas facultative</a></li>
+      <li><a href="#responsabilite">Responsabilite institutionnelle et controle</a></li>
+      <li><a href="#documentation">Documentation technique et lectures complementaires</a></li>
+      <li><a href="#explorer">Explorer cette architecture</a></li>
+      <li><a href="#a-propos">A propos de COMPAiSS</a></li>
     </ul>
   </div>
 
-  <div id="out"></div>
-</div>
+  <!-- CE QUE FAIT COMPAISS -->
+  <div class="content-section" id="ce-que-fait-compaiss">
+    <h2>Ce que fait COMPAiSS</h2>
+    <p class="section-intro">Transformer des ecosystemes Web institutionnels complexes en reponses IA exactes, officielles et multilingues.</p>
 
-  </main>
+    <p>Les sites Web des institutions reglementees contiennent des milliers de pages d'information - politiques, procedures, regles et ressources de soutien - generalement reparties entre plusieurs departements, bureaux administratifs et unites de service. Pour la majorite des utilisateurs, naviguer dans ces environnements complexes afin d'obtenir rapidement une reponse fiable represente un defi considerable.</p>
 
-<footer>
-  <div class="footer-inner">
-    <p class="muted" style="margin-top: 0.8rem;">
-      Contact :
-      <a href="mailto:counterfactualtheory@gmail.com">
-        counterfactualtheory@gmail.com
-      </a>
-    </p>
+    <p>Les universites illustrent clairement cette realite. L'ecosysteme Web d'une universite couvre notamment les politiques academiques, les exigences des programmes, les regles d'admission, les reglements financiers, les services d'accessibilite, les directives en matiere d'immigration, le logement, les services de sante et les droits des etudiants - chacun relevant d'unites distinctes et mis a jour selon des calendriers differents.</p>
+
+    <p>Les etudiants qui cherchent a comprendre le fonctionnement reel d'une universite commencent presque toujours au meme endroit : le site Web institutionnel. Un etudiant canadien peut chercher des precisions concernant le statut academique, les mesures d'adaptation, les exigences de cours, les equivalences, les prets etudiants ou les politiques financieres. Un etudiant international peut tenter de comprendre les regles liees aux visas, au droit au travail, a la couverture medicale ou aux obligations en matiere d'immigration. Les futurs etudiants peuvent comparer les programmes, les criteres d'admission, les echeances ou les services offerts.</p>
+
+    <p>Dans tous les cas, l'information existe generalement - mais elle est fragmentee a travers des centaines, voire des milliers de pages Web et de documents normatifs.</p>
+
+    <p>COMPAiSS repond a ce defi pour les universites et d'autres institutions fortement reglementees (notamment les hopitaux et les organismes de services gouvernementaux) qui ont l'obligation de fournir une information claire, exacte et faisant autorite - le tout <em>dans la langue de preference de l'utilisateur</em>.</p>
   </div>
-</footer>
 
-<button id="backToTop" aria-label="Retour en haut">↑</button>
-  
-  <script>
-    marked.setOptions({
-      gfm:true,
-      breaks:true,
-      mangle:false,
-      headerIds:false
-    });
+  <hr>
 
-    const outEl = document.getElementById('out');
+  <!-- PROBLEME STRUCTUREL -->
+  <div class="content-section" id="le-probleme-structurel">
+    <h2>Le probleme structurel des systemes d'IA actuels</h2>
+    <p class="section-intro">Pourquoi l'IA a generation d'abord cree des risques que les avertissements ne peuvent pas corriger.</p>
 
-function safeRender(md){
-  const html = marked.parse(md || '');
-  const clean = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
-  outEl.innerHTML = clean;
+    <p>En raison de la complexite des ecosystemes Web institutionnels, de nombreux utilisateurs se tournent vers des systemes d'IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) afin d'obtenir rapidement des reponses a des questions propres a une institution donnee.</p>
 
-  // External link handling
-  outEl.querySelectorAll('a').forEach(a=>{
-    const href = a.getAttribute('href');
-    if (href && href.startsWith('http')) {
-      a.target = '_blank';
-      a.rel = 'noopener';
-    }
-  });
+    <p>Or, les modeles d'IA grand public sont concus pour generer des reponses par defaut. Ils optimisent leur utilite generale a partir d'une base d'entrainement extremement vaste. Lorsqu'ils sont appliques a des questions institutionnelles precises, les erreurs, hallucinations et references a des sources non autorisees ou externes deviennent une consequence previsible de cette architecture.</p>
 
-  // H2 ID generator (for executive navigation)
-outEl.querySelectorAll('h2').forEach(h2=>{
-  const id = h2.textContent
-    .normalize('NFD')                     // break accents
-    .replace(/[\u0300-\u036f]/g,'')       // remove accent marks
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g,'')          // allow only safe chars
-    .trim()
-    .replace(/\s+/g,'-');
-  h2.id = id;
-});
-}
+    <p>L'industrie de l'IA reconnait largement cette realite : les reponses incorrectes ou non etayees sont generalement traitees comme des resultats attendus a gerer, plutot que comme des defaillances a prevenir. Ce compromis est largement accepte comme le cout inherent au maintien d'un acces large et ouvert a des connaissances generales.</p>
 
-const LANDING_MD = `
-### Un système d’IA conçu pour prévenir les hallucinations institutionnelles non autorisées par conception
+    <p>En pratique, la majorite des utilisateurs ne disposent ni du temps, ni de l'expertise, ni du contexte institutionnel necessaires pour verifier de facon independante les reponses generees par l'IA - meme lorsque des avertissements ou des clauses de non-responsabilite sont affiches. Il en resulte que des informations inexactes sont souvent utilisees avant d'etre remises en question, ce qui amplifie les risques plutot que de les contenir.</p>
 
----
+    <p>De fortes incitations economiques contribuent egalement au maintien de ce modele axe sur la generation initiale. La gestion des risques apres coup soutient des ecosystemes complets de fonctionnalites d'entreprise - outils de surveillance, tableaux de bord de conformite, couches de moderation, processus de revision humaine et modules de gouvernance - couteux a developper, couteux a exploiter et tres rentables a commercialiser.</p>
 
-## Ce que fait COMPAiSS
+    <p>Dans les environnements institutionnels reglementes, toutefois, cette approche introduit des risques difficiles - voire impossibles - a attenuer pleinement une fois qu'une reponse a deja ete communiquee. Ces mesures peuvent reduire l'exposition, mais elles ne modifient pas l'architecture fondamentale axee sur la generation initiale ni n'eliminent les causes profondes des hallucinations. Celles-ci continuent de se produire.</p>
 
-Les sites Web des institutions réglementées contiennent des milliers de pages d’information - politiques, procédures, règles et ressources de soutien - généralement réparties entre plusieurs départements, bureaux administratifs et unités de service. Pour la majorité des utilisateurs, naviguer dans ces environnements complexes afin d’obtenir rapidement une réponse fiable représente un défi considérable.
+    <div class="highlight-block">
+      <p><strong><a href="/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025-fr.pdf">Voir les taux empiriques d'hallucination des principaux modeles d'IA (2023-2025) (PDF)</a></strong></p>
+    </div>
+  </div>
 
-Les universités illustrent clairement cette réalité.
+  <hr>
 
-L’écosystème Web d’une université couvre notamment les politiques académiques, les exigences des programmes, les règles d’admission, les règlements financiers, les services d’accessibilité, les directives en matière d’immigration, le logement, les services de santé et les droits des étudiants - chacun relevant d’unités distinctes et mis à jour selon des calendriers différents.
+  <!-- SOLUTION STRUCTURELLE -->
+  <div class="content-section" id="la-solution-structurelle">
+    <h2>COMPAiSS : la solution structurelle a une defaillance systemique de l'IA</h2>
+    <p class="section-intro">Autorisation avant inference - et non filtrage apres.</p>
 
-Les étudiants qui cherchent à comprendre le fonctionnement réel d’une université commencent presque toujours au même endroit : le site Web institutionnel.
+    <p>Plutot que de generer une reponse par defaut puis de tenter de gerer les risques apres coup, COMPAiSS evalue chaque question quant a son autorisation institutionnelle avant que toute inference du modele principal ne puisse etre effectuee.</p>
 
-Un étudiant canadien peut chercher des précisions concernant le statut académique, les mesures d’adaptation, les exigences de cours, les équivalences, les prêts étudiants ou les politiques financières. Un étudiant international peut tenter de comprendre les règles liées aux visas, au droit au travail, à la couverture médicale ou aux obligations en matière d’immigration. Les futurs étudiants peuvent comparer les programmes, les critères d’admission, les échéances ou les services offerts.
+    <p>Lorsqu'une question est soumise, le systeme determine d'abord si la question releve du perimetre institutionnel defini, si des sources institutionnelles autorisees existent pour appuyer une reponse, et si la production d'une reponse serait responsable et defensable. Le modele d'IA n'est autorise a produire une reponse que lorsque ces conditions sont reunies.</p>
 
-Dans tous les cas, l’information existe généralement - mais elle est fragmentée à travers des centaines, voire des milliers de pages Web et de documents normatifs.
+    <p>Ainsi, COMPAiSS ne repose pas sur des avertissements, des scores de confiance, des filtres post-reponse ou une revision humaine pour tenter de rendre conforme une reponse deja produite. Les questions non etayees ou hors perimetre sont empechees de declencher l'execution du modele institutionnel principal des le depart.</p>
 
-COMPAiSS répond à ce défi pour les universités et d’autres institutions fortement réglementées (notamment les hôpitaux et les organismes de services gouvernementaux) qui ont l’obligation de fournir une information claire, exacte et faisant autorité - le tout *dans la langue de préférence de l’utilisateur*.
+    <p>Lorsqu'une question est clairement institutionnelle et que des sources autorisees existent, COMPAiSS produit une reponse claire, fondee exclusivement sur les documents et positions officiellement approuves par l'institution - et non sur des inferences tirees d'organisations ou de juridictions externes. Lorsqu'une question ne peut etre appuyee, le systeme ne devine pas, ne generalise pas et n'improvise pas simplement pour paraitre "utile".</p>
 
----
+    <p>En deplacant la prise de decision en amont de la generation, COMPAiSS elimine le besoin de nombreux mecanismes correctifs couteux propres aux systemes axes sur la generation initiale et supprime par conception une classe entiere d'hallucinations.</p>
+  </div>
 
-## Le problème structurel des systèmes d’IA actuels
+  <hr>
 
-En raison de la complexité des écosystèmes Web institutionnels, de nombreux utilisateurs se tournent vers des systèmes d’IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) afin d’obtenir rapidement des réponses à des questions propres à une institution donnée.
+  <!-- PAS USAGE GENERAL -->
+  <div class="content-section" id="pas-usage-general">
+    <h2>Pourquoi COMPAiSS n'est pas un systeme d'IA a usage general</h2>
+    <p class="section-intro">Specificite institutionnelle plutot qu'etendue - par conception, et non par limitation.</p>
 
-Or, les modèles d’IA grand public sont conçus pour générer des réponses par défaut. Ils optimisent leur utilité générale à partir d’une base d’entraînement extrêmement vaste, que l’on peut raisonnablement qualifier d’univers de connaissances. Lorsqu’ils sont appliqués à des questions institutionnelles précises, les erreurs, hallucinations et références à des sources non autorisées ou externes deviennent une conséquence prévisible de cette architecture.
+    <p>Les systemes d'IA a usage general sont concus pour repondre a des questions sur a peu pres n'importe quel sujet. Leur valeur reside dans leur etendue : la capacite de naviguer librement entre domaines, institutions, juridictions et thematiques en inferant le contexte a partir d'un corpus d'entrainement vaste et en constante expansion - sans frontieres institutionnelles ou normatives definies avant la generation initiale de la reponse.</p>
 
-L’industrie de l’IA reconnaît largement cette réalité : les réponses incorrectes ou non étayées sont généralement traitées comme des résultats attendus à gérer, plutôt que comme des défaillances à prévenir. Ce compromis est largement accepté comme le coût inhérent au maintien d’un accès large et ouvert à des connaissances générales.
+    <p>COMPAiSS n'est pas concu pour cette etendue. Il est intentionnellement concu pour la specificite institutionnelle. Ce choix reduit a lui seul les erreurs et les risques en operant a l'interieur d'un cadre organisationnel clairement defini, ou l'autorite, la responsabilite et la reddition de comptes priment sur la couverture generale - particulierement dans les environnements reglementes ou normatifs.</p>
 
-En pratique, la majorité des utilisateurs ne disposent ni du temps, ni de l’expertise, ni du contexte institutionnel nécessaires pour vérifier de façon indépendante les réponses générées par l’IA - même lorsque des avertissements ou des clauses de non-responsabilité sont affichés. Il en résulte que des informations inexactes sont souvent utilisées avant d’être remises en question, ce qui amplifie les risques plutôt que de les contenir.
+    <p>Son objectif n'est pas d'approximer une reponse a partir de connaissances generales, mais de reflecter <strong>uniquement</strong> ce qu'une institution a officiellement autorise comme position, politique ou directive, et <strong>uniquement ensuite</strong> de permettre a l'IA de formuler une reponse.</p>
 
-De fortes incitations économiques contribuent également au maintien de ce modèle axé sur la génération initiale. La gestion des risques après coup soutient des écosystèmes complets de fonctionnalités d’entreprise - outils de surveillance, tableaux de bord de conformité, couches de modération, processus de révision humaine et modules de gouvernance - coûteux à développer, coûteux à exploiter et très rentables à commercialiser.
+    <p>En resume, l'IA a usage general optimise la quantite de reponses qu'elle peut fournir. COMPAiSS optimise le moment ou il est appropriate de fournir des reponses au nom d'une institution - et le moment ou il ne l'est pas.</p>
+  </div>
 
-Dans les environnements institutionnels réglementés, toutefois, cette approche introduit des risques difficiles - voire impossibles - à atténuer pleinement une fois qu’une réponse a déjà été communiquée. Pour y pallier, les fournisseurs recommandent habituellement l’ajout de contrôles et de protections juridiques supplémentaires, tels que des avertissements et des cadres de conformité juridique.
+  <hr>
 
-Ces mesures, lorsqu’une institution peut se les permettre, peuvent réduire l’exposition, mais elles ne modifient pas l’architecture fondamentale axée sur la génération initiale ni n’éliminent les causes profondes des hallucinations. Celles-ci continuent de se produire.
+  <!-- PAS FAQ BOT -->
+  <div class="content-section" id="pas-faq-bot">
+    <h2>Pourquoi COMPAiSS n'est pas un robot FAQ ni un agent conversationnel scripte</h2>
+    <p class="section-intro">Intelligence en langage naturel dans les limites institutionnelles.</p>
 
-➡️ **[Voir les taux empiriques d’hallucination des principaux modèles d’IA (2023–2025) (PDF)](/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025-fr.pdf)**
+    <p>Les systemes de FAQ reposent sur des questions predefinies et des reponses fixes, obligeant les utilisateurs a formuler leurs demandes selon des cadres rigides. Ils echouent des que les questions depassent ces limites ou necessitent une interpretation contextuelle, un jugement ou une comprehension des responsabilites institutionnelles.</p>
 
-Dans les environnements institutionnels réglementés, cette situation crée une lacune structurelle - que COMPAiSS est précisément conçu pour combler en introduisant une innovation architecturale qui empêche la génération de réponses non étayées par des sources institutionnelles autorisées dès l’origine.
+    <p>COMPAiSS ne repose pas sur des scripts. Chaque question est evaluee selon ses propres caracteristiques et en fonction des informations institutionnelles pertinentes, afin de produire des reponses claires, detaillees et nuancees, alignees sur ce que les utilisateurs cherchent reellement a comprendre.</p>
+  </div>
 
----
+  <hr>
 
-## COMPAiSS : la solution structurelle à une défaillance systémique de l’IA
+  <!-- PAS RAG -->
+  <div class="content-section" id="pas-rag">
+    <h2>Pourquoi COMPAiSS n'est pas fonde sur la generation augmentee par recuperation (RAG)</h2>
+    <p class="section-intro">La difference entre filtrer apres la generation et autoriser avant.</p>
 
-Plutôt que de générer une réponse par défaut puis de tenter de gérer les risques après coup, COMPAiSS évalue chaque question quant à son autorisation institutionnelle avant que toute inférence du modèle principal ne puisse être effectuée.
+    <p>Les systemes fondes sur la generation augmentee par recuperation (RAG) relient l'IA aux documents ou bases de donnees d'une institution afin de lui permettre de "consulter" de l'information pendant la generation d'une reponse. De nombreux systemes d'IA s'appuient sur le RAG et des mecanismes de controle post-generationnels similaires pour reduire les hallucinations apres qu'une reponse a deja ete produite.</p>
 
-Lorsqu’une question est soumise, le système détermine d’abord :
+    <p>Ces approches necessitent souvent des couches d'infrastructure supplementaires - pipelines de recuperation, bases de donnees vectorielles, systemes de surveillance, outils de validation et supervision continue. Elles accroissent la complexite et les couts et sont generalement integrees a des contrats d'entreprise onereux.</p>
 
-- si la question relève du périmètre institutionnel défini ;
-- si des sources institutionnelles autorisées existent pour appuyer une réponse ;
-- et si la production d’une réponse serait responsable et défendable.
+    <p>A l'inverse, COMPAiSS intervient plus tot. En empechant les questions non etayees ou non admissibles de declencher le modele d'IA, COMPAiSS empeche toute generation de reponses non autorisees, reduisant de facon significative le recours aux mecanismes correctifs post-generationnels couteux.</p>
 
-Le modèle d’IA n’est autorisé à produire une réponse que lorsque ces conditions sont réunies.
+    <p>Cette difference ne releve pas d'un simple reglage technique ; elle reflete une approche architecturale fondamentalement distincte.</p>
 
-Ainsi, COMPAiSS ne repose pas sur des avertissements, des scores de confiance, des filtres post-réponse ou une révision humaine pour tenter de rendre conforme une réponse déjà produite. Les questions non étayées ou hors périmètre sont empêchées de déclencher l’exécution du modèle institutionnel principal dès le départ.
+    <div class="card-grid" style="margin-top: 1.8rem;">
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Figure 1 - Architecture RAG standard</h3>
+        <p>Illustre le fonctionnement des systemes d'IA conventionnels et fondes sur le RAG, dans lesquels l'inference du modele est active des le depart, et ou la gestion des risques repose sur des mecanismes de controle apres la generation de la reponse.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/figure1_rag_standard_fr-v2.pdf">Voir la Figure 1 (PDF)</a></p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Figure 2 - Architecture COMPAiSS</h3>
+        <p>Presente l'architecture a inference verrouilee de COMPAiSS, dans laquelle l'autorisation et la validation du perimetre interviennent avant toute inference du modele, et ou les questions non prises en charge empechent completement l'execution de l'IA.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/figure2_compass_controlee_fr-v2.pdf">Voir la Figure 2 (PDF)</a></p>
+      </div>
+    </div>
+  </div>
 
-Ce mécanisme de contrôle préalable élimine à lui seul une catégorie importante d’erreurs propres aux systèmes d’IA grand public, où des réponses plausibles et bien référencées s’appuient néanmoins sur des sources externes ou non autorisées qui ne font qu’imiter une pertinence institutionnelle.
+  <hr>
 
-Lorsqu’une question est clairement institutionnelle et que des sources autorisées existent, COMPAiSS produit une réponse claire, fondée exclusivement sur les documents et positions officiellement approuvés par l’institution - et non sur des inférences tirées d’organisations ou de juridictions externes. Lorsqu’une question ne peut être appuyée, le système ne devine pas, ne généralise pas et n’improvise pas simplement pour paraître « utile ».
+  <!-- ARCHITECTURE -->
+  <div class="content-section" id="architecture">
+    <h2>Architecture de COMPAiSS</h2>
+    <p class="section-intro">Inference a execution conditionnelle - l'IA ne peut repondre qu'aux questions pour lesquelles elle est autorisee.</p>
 
-En déplaçant la prise de décision en amont de la génération, COMPAiSS élimine le besoin de nombreux mécanismes correctifs coûteux propres aux systèmes axés sur la génération initiale et supprime par conception une classe entière d’hallucinations.
+    <p>Au coeur de COMPAiSS se trouve une architecture d'inference a execution conditionnelle. Si l'autorisation echoue, le modele institutionnel principal ne s'execute pas et n'alloue aucune ressource d'inference principale.</p>
 
----
+    <p>En controlant le fait meme que le raisonnement de l'IA puisse avoir lieu, COMPAiSS impose l'autorite institutionnelle de maniere structurelle, plutot que de s'appuyer sur des mecanismes de filtrage ou de correction posterieurs a la generation.</p>
 
-## Pourquoi COMPAiSS n’est pas un système d’IA à usage général
+    <p>COMPAiSS applique des controles de defense en profondeur : le filtrage des autorisations empeche l'execution non autorisee du modele principal, des contraintes d'instruction orientent le comportement lors des inferences autorisees, et une validation posterieure a la generation garantit la conformite des URL avec les sources institutionnelles.</p>
 
-Les différences décrites ci-dessus ne relèvent pas de simples choix d’implémentation ; elles traduisent un objectif de conception fondamentalement différent.
+    <p>L'architecture de la liste verte et des regles d'analyse ne se limite pas au controle de la portee - elle determine ce que le modele recoit comme environnement epistemique. Lorsque le modele ne recoit que des contenus provenant de pages et de documents institutionnellement autorises et prealablement analyses, la surface d'interpretation erronee est considerablement reduite par rapport a un systeme RAG qui raisonne sur un corpus etendu et non structure.</p>
 
-Les systèmes d’IA à usage général sont conçus pour répondre à des questions sur à peu près n’importe quel sujet. Leur valeur réside dans leur étendue : la capacité de naviguer librement entre domaines, institutions, juridictions et thématiques en inférant le contexte à partir d’un corpus d’entraînement vaste et en constante expansion - sans frontières institutionnelles ou normatives définies *avant* la génération initiale de la réponse.
+    <div class="highlight-block">
+      <p>La formulation precise : COMPAiSS elimine par conception les hallucinations liees aux violations de perimetre, et reduit sensiblement - sans les eliminer - les risques lies a la qualite de generation dans le perimetre autorise, grace a une analyse structuree et a des contextes d'inference strictement delimites.</p>
+      <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf">Comparaison architecturale - RAG vs COMPAiSS (PDF)</a></p>
+    </div>
 
-COMPAiSS n’est pas conçu pour cette étendue. Il est intentionnellement conçu pour la spécificité institutionnelle. Ce choix réduit à lui seul les erreurs et les risques en opérant à l’intérieur d’un cadre organisationnel clairement défini, où l’autorité, la responsabilité et la reddition de comptes priment sur la couverture générale - particulièrement dans les environnements réglementés ou normatifs.
+    <img src="/assets/compaiss_executive_comparison_fr.png" alt="" role="presentation" style="max-width: 100%; height: auto; display: block; margin: 2.5rem auto; border-radius: 8px;">
+  </div>
 
-Son objectif n’est pas d’approximer une réponse à partir de connaissances générales, mais de refléter **uniquement** ce qu’une institution a officiellement autorisé comme position, politique ou directive, et **uniquement ensuite** de permettre à l’IA de formuler une réponse.
+  <hr>
 
-En résumé, l’IA à usage général optimise la quantité de réponses qu’elle peut fournir.
+  <!-- ECONOMIES -->
+  <div class="content-section" id="economies">
+    <h2>Economies par conception</h2>
+    <p class="section-intro">La difference de cout entre COMPAiSS et l'IA d'entreprise conventionnelle est structurelle, et non marginale.</p>
 
-COMPAiSS optimise le moment où il est approprié de fournir des réponses au nom d’une institution - et le moment où il ne l’est pas.
+    <p>Pour les institutions gerant environ 100 000 requetes assistees par IA annuellement, les deploiements RAG conventionnels engendrent generalement des couts d'exploitation annuels totaux entre 90 000 $ et 200 000 $, entraines par trois facteurs de cout cumulatifs : le gaspillage d'inference, l'infrastructure RAG persistante, et la gouvernance compensatoire. Un deploiement COMPAiSS traitant la meme charge de travail fonctionne a environ 15 000 $ a 30 000 $ par annee - parce que ces trois facteurs de cout sont elimines par l'architecture, et non geres apres coup.</p>
 
----
+    <p>Environ 40 % des requetes dans un deploiement institutionnel typique se voient refuser l'inference entierement. Ces utilisateurs recoivent une reponse d'echec securise a haute valeur ajoutee - des liens directs vers les politiques institutionnelles faisant autorite - a un cout de calcul marginal nul.</p>
 
-## Pourquoi COMPAiSS n’est pas un robot FAQ ni un agent conversationnel scripté
+    <p>Un cout inferieur n'implique pas une precision inferieure. Les hallucinations necessitent une inference active. En empechant l'inference pour les requetes non autorisees, COMPAiSS supprime les conditions structurelles dans lesquelles la fabrication se produit - non pas comme un filtre en aval, mais comme une propriete architecturale.</p>
 
-Les systèmes de FAQ reposent sur des questions prédéfinies et des réponses fixes, obligeant les utilisateurs à formuler leurs demandes selon des cadres rigides.
+    <div class="highlight-block">
+      <p><strong><a href="/assets/economies_de_couts_par_conception-v2.pdf">Economies par conception - Analyse comparative des couts (PDF)</a></strong></p>
+    </div>
+  </div>
 
-Ils échouent dès que les questions dépassent ces limites ou nécessitent une interprétation contextuelle, un jugement ou une compréhension des responsabilités institutionnelles.
+  <hr>
 
-COMPAiSS ne repose pas sur des scripts. Chaque question est évaluée selon ses propres caractéristiques et en fonction des informations institutionnelles pertinentes, afin de produire des réponses claires, détaillées et nuancées, alignées sur ce que les utilisateurs cherchent réellement à comprendre.
+  <!-- CABINETS CONSEIL -->
+  <div class="content-section" id="cabinets-conseil">
+    <h2>Pour les cabinets de conseil et les integrateurs de systemes</h2>
+    <p class="section-intro">Deux points d'entree naturels pour les organisations qui conseillent des institutions reglementees.</p>
 
----
+    <p>Pour les clients disposant d'une infrastructure RAG existante, COMPAiSS fonctionne comme une couche de gouvernance pre-inference qui corrige les taux d'hallucination residuels que le RAG seul ne peut pas resoudre - renforcant les investissements existants sans les remplacer. Des recherches evaluees par des pairs documentent des taux d'hallucination residuels d'environ 6 % meme dans les conditions RAG optimales, et des tests empiriques independants de la plateforme juridique phare de Thomson Reuters ont revele des taux d'hallucination de 17 a 33 % en conditions reelles. COMPAiSS s'attaque a la cause architecturale profonde que ces systemes ne peuvent pas eliminer.</p>
 
-## Pourquoi COMPAiSS n’est pas fondé sur la génération augmentée par récupération (RAG)
+    <p>Pour les clients sans investissement RAG - qu'ils soient limites par les couts ou preoccupes par les taux d'echec documentes - COMPAiSS offre une solution complete de gouvernance de l'inference qui impose la portee, l'autorite des sources et la politique institutionnelle, sans les frais generaux d'une infrastructure d'entreprise.</p>
 
-Les systèmes fondés sur la génération augmentée par récupération (RAG) relient l’IA aux documents ou bases de données d’une institution afin de lui permettre de « consulter » de l’information pendant la génération d’une réponse.
+    <p>Dans les deux cas, le deploiement est simple et la demarche de gouvernance est verifiable, defensable et alignee sur les exigences reglementaires dans l'enseignement superieur, les soins de sante, le secteur public et les services juridiques.</p>
 
-De nombreux systèmes d’IA s’appuient sur le RAG et des mécanismes de contrôle post-générationnels similaires pour réduire les hallucinations après qu’une réponse a déjà été produite.
+    <p><em>L'architecture COMPAiSS fait l'objet de demandes de brevet actuellement en cours d'examen au Canada et aux Etats-Unis.</em></p>
+  </div>
 
-Ces approches nécessitent souvent des couches d’infrastructure supplémentaires - pipelines de récupération, bases de données vectorielles, systèmes de surveillance, outils de validation et supervision continue. Elles accroissent la complexité et les coûts et sont généralement intégrées à des contrats d’entreprise onéreux.
+  <hr>
 
-À l’inverse, COMPAiSS intervient plus tôt.
+  <!-- TRADUCTIONS -->
+  <div class="content-section" id="traductions">
+    <h2>Maintenir la coherence du sens entre les traductions</h2>
+    <p class="section-intro">Separer la langue du sens au niveau architectural.</p>
 
-En empêchant les questions non étayées ou non admissibles de déclencher le modèle d’IA, COMPAiSS empêche toute génération de réponses non autorisées, réduisant de façon significative le recours aux mécanismes correctifs post-générationnels coûteux. L’exactitude et l’autorité sont établies avant toute production de réponse, ce qui réduit à la fois les risques opérationnels et les coûts liés aux corrections ultérieures.
+    <p>Les systemes d'IA grand public traduisent souvent une question dans le cadre de leur recherche d'information. Dans de nombreux systemes fondes sur le RAG, cette etape de traduction est etroitement liee aux processus de recuperation et de raisonnement. Il en resulte que de legeres differences de formulation peuvent influencer les documents recuperes, l'interpretation des passages et l'accent mis dans la reponse finale.</p>
 
-Cette différence ne relève pas d’un simple réglage technique ; elle reflète une approche architecturale fondamentalement distincte.
+    <p>COMPAiSS evite ce probleme en separant la langue du sens au niveau architectural. Lorsqu'une question est soumise dans une langue autre que l'anglais, elle est d'abord traduite vers l'anglais comme etape de pretraitement externe au cadre d'autorisation institutionnel. La traduction ne declenche aucune recuperation de documents, n'interprete aucune politique et ne genere aucune reponse.</p>
 
----
+    <p>Une fois traduite, la question est evaluee quant a son admissibilite institutionnelle et a l'existence de sources autorisees avant que toute inference institutionnelle principale n'ait lieu. La reponse est ensuite traduite dans la langue choisie par l'utilisateur pour l'affichage.</p>
 
-### Figure 1 - Architecture IA standard à génération d’abord / RAG
+    <p>En fixant le sens, le perimetre et l'autorisation avant la generation, COMPAiSS evite la derive interpretative et les incoherences multilingues propres aux systemes fondes sur le RAG - assurant des reponses institutionnelles exactes, faisant autorite et coherentes, quelle que soit la langue.</p>
+  </div>
 
-Ce schéma illustre le fonctionnement des systèmes d’IA conventionnels et fondés sur le RAG, dans lesquels **l’inférence du modèle est active dès le départ**, et où la gestion des risques repose sur la récupération de contenu et des mécanismes de contrôle *après* la génération de la réponse.
+  <hr>
 
-➡️ **[Architecture RAG - génération avant contrôle (PDF)](/assets/figure1_rag_standard_fr-v2.pdf)**
+  <!-- CONTRASTE ENTREPRISE -->
+  <div class="content-section" id="contraste-entreprise">
+    <h2>Le contraste avec les assistants IA d'entreprise</h2>
+    <p class="section-intro">Une difference structurelle, et non superficielle.</p>
 
----
+    <p>Les systemes comme Microsoft 365 Copilot sont concus pour fonctionner dans l'ensemble de l'environnement numerique d'une organisation : courriels, documents, conversations Teams, referentiels SharePoint et donnees de calendrier. Lorsqu'un utilisateur multilingue soumet une question, le systeme traduit cette requete, puis effectue une recherche dans l'ensemble du contenu indexe - ce qui peut inclure des ebauches de politiques perimees, des communications informelles ou des documents provenant de departements non concernes mais contenant des mots-cles correspondants.</p>
 
-### Figure 2 - Architecture COMPAiSS à inférence verrouillée par autorisation
+    <p>Il ne s'agit pas d'un defaut de configuration. C'est une consequence architecturale de la conception d'un systeme axe sur l'etendue de l'ensemble du corpus organisationnel plutot que sur l'autorite a l'interieur d'un perimetre institutionnel defini.</p>
 
-Ce schéma présente l’architecture à inférence verrouillée de COMPAiSS, dans laquelle **l’autorisation et la validation du périmètre interviennent avant toute inférence du modèle**, et où les questions non prises en charge empêchent complètement l’exécution de l’IA.
+    <p>COMPAiSS separe ces fonctions entierement. La traduction normalise la question dans une langue de travail. L'autorisation determine si l'etablissement dispose de documents approuves pour etayer une reponse. L'inference n'a lieu que si ces deux conditions sont satisfaites, en s'appuyant exclusivement sur les sources approuvees par l'etablissement.</p>
 
-➡️ **[Architecture COMPAiSS - inférence verrouillée par autorisation (PDF)](/assets/figure2_compass_controlee_fr-v2.pdf)**
+    <p>Cela signifie qu'un etudiant posant une question sur son dossier academique en mandarin, en francais ou en arabe recoit la meme reponse institutionnellement autorisee qu'un etudiant posant la question en anglais - et non une approximation facon par des artefacts de traduction ou du bruit de corpus. Pour les etablissements ayant l'obligation de servir equitablement des populations multilingues, cette distinction n'est pas accessoire. C'est la difference entre un systeme coherent par architecture et un systeme coherent uniquement lorsque les conditions s'alignent favorablement.</p>
+  </div>
 
----
+  <hr>
 
-## Architecture de COMPAiSS
+  <!-- APPROVISIONNEMENT -->
+  <div class="content-section" id="approvisionnement">
+    <h2>Concu pour les processus d'approvisionnement institutionnel et d'examen de gouvernance</h2>
+    <p class="section-intro">Verifiable, delimite et aligne avec les obligations fiduciaires.</p>
 
-Au cœur de COMPAiSS se trouve une architecture d'inférence à exécution conditionnelle : en pratique, l'IA ne peut répondre à une question que si elle y est explicitement autorisée.
+    <p>Les institutions reglementees n'ont pas seulement besoin de systemes d'IA performants - elles ont besoin de systemes d'IA qu'elles peuvent documenter, defendre et soumettre a un examen formel. Les responsables de l'approvisionnement, les comites d'audit, les conseillers juridiques et les panels d'examen gouvernementaux exigent de plus en plus que les institutions demontrent non seulement qu'un systeme d'IA produit de bons resultats, mais que son architecture de gouvernance est verifiable, delimitee et alignee avec les obligations fiduciaires.</p>
 
-Si l'autorisation échoue, le modèle institutionnel principal ne s'exécute pas et n'alloue aucune ressource d'inférence principale.
+    <p>COMPAiSS est concu en tenant compte de cette exigence. Etant donne que les decisions d'autorisation sont deterministes et se produisent avant l'inference, chaque interaction suit un chemin de gouvernance documente et reproductible. L'institution controle quelles sources font autorite. L'institution definit la limite de portee. Le systeme applique les deux de maniere structurelle, et non probabiliste.</p>
 
-En contrôlant le fait même que le raisonnement de l'IA puisse avoir lieu, COMPAiSS impose l'autorité institutionnelle de manière structurelle, plutôt que de s'appuyer sur des mécanismes de filtrage ou de correction postérieurs à la génération.
+    <p>Cela rend COMPAiSS directement compatible avec les exigences de documentation des panels de gouvernance de l'IA, des processus d'examen ethique institutionnel et des cadres d'approvisionnement gouvernementaux - y compris ceux qui exigent que les institutions demontrent comment les reponses d'IA non autorisees ou hors perimetre sont prevenues, et non simplement gerees.</p>
+  </div>
 
-COMPAiSS applique des contrôles de défense en profondeur : le filtrage des autorisations empêche l'exécution non autorisée du modèle principal, des contraintes d'instruction orientent le comportement lors des inférences autorisées, et une validation postérieure à la génération garantit la conformité des URL avec les sources institutionnelles.
+  <hr>
 
-L'architecture de la liste verte et des règles d'analyse ne se limite pas au contrôle de la portée - elle détermine ce que le modèle reçoit comme environnement épistémique, ce qui a des implications directes sur la qualité des réponses générées dans le périmètre autorisé.
+  <!-- EXACTITUDE -->
+  <div class="content-section" id="exactitude">
+    <h2>La ou l'exactitude n'est pas facultative</h2>
+    <p class="section-intro">Les consequences d'une information inexacte ne sont pas theoriques dans ces environnements.</p>
 
-Lorsque le modèle ne reçoit que des contenus provenant de pages et de documents institutionnellement autorisés et préalablement analysés, la surface d'interprétation erronée est considérablement réduite par rapport à un système RAG qui raisonne sur un corpus étendu et non structuré. Une analyse structurée qui préserve la hiérarchie documentaire - titres, sections, formulations de qualification et mentions de risque - fournit au modèle des signaux lui permettant de distinguer une conclusion d'une réserve. Le découpage arbitraire efface cette structure. COMPAiSS ne procède pas à un découpage arbitraire.
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3>Universites</h3>
+        <p>Les universites publient des politiques encadrant l'admission, le cheminement academique, les mesures d'adaptation, l'aide financiere, les exigences de diplomation et les droits des etudiants. Une reponse incorrecte peut deformer une politique officielle, mener a des decisions inappropriees et creer des enjeux d'equite et de conformite.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏥</div>
+        <h3>Hopitaux et soins de sante</h3>
+        <p>Les hopitaux fonctionnent dans des cadres cliniques, administratifs et reglementaires stricts. Une information inexacte peut mal representer les droits des patients ou les procedures, creer des risques de non-conformite, et miner la confiance envers la prestation des soins.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛</div>
+        <h3>Services gouvernementaux</h3>
+        <p>Les organismes publics fournissent de l'information ayant une incidence directe sur les prestations, l'admissibilite, les obligations et l'acces aux services. Des indications erronees peuvent retarder ou empecher l'acces aux services, creer une exposition juridique et eroder la confiance du public.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖</div>
+        <h3>Ordres professionnels</h3>
+        <p>Les organismes de reglementation publient des exigences en matiere de delivrance de permis, des procedures disciplinaires et des normes professionnelles. Des informations inexactes peuvent mal representer les exigences legales et exposer l'organisme a des contestations juridiques.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏫</div>
+        <h3>Colleges et etablissements polytechniques</h3>
+        <p>Les colleges publient des exigences structurees de programme, des parcours menant a l'obtention de diplomes et des criteres d'admission. Des informations inexactes peuvent induire en erreur les etudiants potentiels et declencher des plaintes ou des appels formels.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙</div>
+        <h3>Gouvernements municipaux</h3>
+        <p>Les municipalites publient des procedures relatives aux permis, des reglements de zonage et des regles de delivrance de licences. Des informations inexactes peuvent engager la responsabilite juridique, retarder des projets ou des services publics et creer des enjeux de reddition de comptes politique.</p>
+      </div>
+    </div>
+  </div>
 
-La liste verte elle-même constitue une décision de gouvernance : elle détermine sur quels contenus le modèle est autorisé à raisonner, et comment ces contenus sont structurés au moment de l'inférence. Parce que le contexte d'inférence est défini précisément par ce que le pipeline de découverte et d'analyse fournit, le modèle n'explore pas librement un corpus de récupération étendu. L'ensemble des autorisations constitue la frontière du raisonnement.
+  <hr>
 
-Ces protections sont réelles mais partielles. Elles réduisent sensiblement les risques liés à la qualité de génération dans le périmètre autorisé - elles ne les éliminent pas. Le modèle continue de générer, de synthétiser, et de faire des choix d'emphase dans le contenu qu'il reçoit.
+  <!-- RESPONSABILITE -->
+  <div class="content-section" id="responsabilite">
+    <h2>Responsabilite institutionnelle et controle</h2>
+    <p class="section-intro">Visibilite et controle sur chaque reponse mediee par l'IA.</p>
 
-La formulation précise est la suivante : COMPAiSS élimine par conception les hallucinations liées aux violations de périmètre, et réduit sensiblement - sans les éliminer - les risques liés à la qualité de génération dans le périmètre autorisé, grâce à une analyse structurée et à des contextes d'inférence strictement délimités.
+    <p>Au-dela de la prevention des erreurs generees par l'IA, COMPAiSS a des implications directes pour la reddition de comptes institutionnelle et la gouvernance du contenu. Lorsqu'une institution diffuse de l'information, elle promet implicitement que celle-ci est exacte, officielle et fiable. COMPAiSS applique cette meme exigence aux reponses mediees par l'IA en veillant a ce que celles-ci soient appuyees par des sources approuvees par l'institution.</p>
 
-➡️ **[Comparaison architecturale - RAG vs COMPAiSS (PDF)](/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf)**
+    <p>Il importe toutefois de preciser que COMPAiSS, comme tout systeme d'information, reflete les documents faisant autorite qu'il est autorise a utiliser. Si un lien institutionnel approuve, une page Web, un document de politique ou une directive officielle est perime ou necessite une mise a jour, cette limite s'applique de la meme maniere a tout systeme d'IA, moteur de recherche ou processus humain reposant sur la meme source. COMPAiSS ne reinterprete ni ne complete le contenu institutionnel ; il reflete ce que l'institution a elle-meme autorise.</p>
 
----
+    <p>La difference reside dans la visibilite et le controle. En limitant les reponses aux sources approuvees par l'institution et en empechant toute inference non etayee, COMPAiSS rend les lacunes ou incoherences explicites et corrigeables, plutot que de les masquer par des reponses generalisees ou speculatives.</p>
 
-**Ces différences architecturales sont précisément ce qui permet à COMPAiSS de fonctionner de façon sécuritaire dans des environnements réglementés où l’exactitude n’est pas négociable.**
+    <div class="highlight-block">
+      <p><strong>Les institutions reglementees meritent des systemes d'IA qui respectent leurs obligations - et non des systemes qui les contournent pour paraitre "utiles". COMPAiSS est concu pour des environnements institutionnels ou l'exactitude, l'autorite et la gouvernance ne sont pas negociables.</strong></p>
+    </div>
+  </div>
 
-![Comparaison exécutive RAG vs COMPAiSS](/assets/compaiss_executive_comparison_fr.png)
+  <hr>
 
----
+  <!-- DOCUMENTATION -->
+  <div class="content-section" id="documentation">
+    <h2>Documentation technique et lectures complementaires</h2>
+    <p class="section-intro">Documents de positionnement, analyses de couts et evaluations comparatives pour l'evaluation institutionnelle.</p>
 
-## Économies par conception
+    <ul class="doc-list">
+      <li><a href="/assets/compaiss_positionnement_institutionnel.pdf">IA institutionnelle a autorisation controlee dans les environnements reglementes</a> - Expose l'argument structurel sous-tendant COMPAiSS ainsi que les limites des systemes d'IA a generation d'abord.</li>
+      <li><a href="/assets/la_voie_moins_empruntee.pdf">La voie moins empruntee - Repenser les couts, la securite et la confiance lies a l'IA generative dans les environnements reglementes</a> - Approfondit les arguments structurels et les couts associes aux mecanismes de controle post-generationnels.</li>
+      <li><a href="/assets/rapport_final-hallucinations_par_conception-fr.pdf">Hallucinations par conception - Une evaluation intermodeles de la maniere dont les grands cabinets de conseil en IA conseillent leurs clients pour gerer les erreurs de l'IA generative</a> - Analyse structuree fondee sur un consensus intermodeles des approches des cabinets de conseil.</li>
+    </ul>
+  </div>
 
-Pour les institutions gérant environ 100 000 requêtes assistées par IA annuellement, la différence de coût entre l'IA d'entreprise conventionnelle et COMPAiSS n'est pas marginale - elle est structurelle. Les déploiements RAG conventionnels engendrent généralement des coûts d'exploitation annuels totaux entre 90 000 $ et 200 000 $, entraînés par trois facteurs de coût cumulatifs : le gaspillage d'inférence (le modèle s'exécute sur chaque requête, y compris les requêtes non pertinentes et refusées), l'infrastructure RAG persistante (ingestion de documents, calcul d'incorporation et opérations de base de données vectorielle indépendamment du volume d'utilisation), et la gouvernance compensatoire (modération, outils de sécurité et processus de révision requis parce que le modèle est autorisé à spéculer). Un déploiement COMPAiSS traitant la même charge de travail fonctionne à environ 15 000 $ à 30 000 $ par année - parce que ces trois facteurs de coût sont éliminés par l'architecture, et non gérés après coup.
+  <hr>
 
-Environ 40 % des requêtes dans un déploiement institutionnel typique se voient refuser l'inférence entièrement. Ces utilisateurs reçoivent une réponse d'échec sécurisé à haute valeur ajoutée - des liens directs vers les politiques institutionnelles faisant autorité - à un coût de calcul marginal nul. Les 60 % restants des requêtes autorisées consomment matériellement moins de jetons que les requêtes RAG équivalentes, car COMPAiSS n'insère pas les documents récupérés dans le contexte du modèle ; les documents sont utilisés exclusivement à des fins d'autorisation et de contrôle de portée.
+  <!-- EXPLORER -->
+  <div class="content-section" id="explorer">
+    <h2>Explorer cette architecture</h2>
+    <p class="section-intro">Deploiements actifs dans des environnements institutionnels canadiens.</p>
 
-Un coût inférieur n'implique pas une précision inférieure. Les hallucinations nécessitent une inférence active. En empêchant l'inférence pour les requêtes non autorisées, COMPAiSS supprime les conditions structurelles dans lesquelles la fabrication se produit - non pas comme un filtre en aval, mais comme une propriété architecturale.
+    <p>COMPAiSS est actuellement en deploiement actif dans quatre environnements institutionnels canadiens, dont des universites de recherche intensive et un contexte de service public federal, avec deux pilots institutionnels supplementaires actuellement en cours d'examen.</p>
 
-L'analyse suivante isole les dépenses au niveau de la couche de calcul et de la couche d'architecture qui diffèrent matériellement entre les systèmes RAG conventionnels et les systèmes à inférence contrôlée tels que COMPAiSS. Elle ne représente pas les coûts totaux du programme d'IA institutionnel. Les licences d'entreprise, les conditions d'approvisionnement, les services d'intégration, le personnel interne, la gestion du changement et les arrangements contractuels propres à chaque institution sont hors de la portée de cette analyse et varient selon la taille et la portée du déploiement.
+    <p>Un environnement de demonstration a l'echelle federale a egalement ete developpe afin de valider l'inference a execution controlee dans des contextes de services aux citoyens a fort volume, refletant des organisations qui gerent des dizaines de millions d'interactions annuelles avec la population par telephone, en personne et par voie numerique.</p>
 
-➡️ **[Économies par conception - Analyse comparative des coûts (PDF)](/assets/economies_de_couts_par_conception-v2.pdf)**
+    <p>Le systeme a ete faconne par une experience directe en gouvernance institutionnelle et est actuellement evalue dans des contextes de registrariat et de services aux etudiants, ou l'exactitude des politiques et l'autorite institutionnelle sont essentielles.</p>
 
----
-
-## Pour les cabinets de conseil et les intégrateurs de systèmes
-
-COMPAiSS offre deux points d'entrée naturels pour les organisations qui conseillent des institutions réglementées en matière de gouvernance de l'IA.
-
-Pour les clients disposant d'une infrastructure RAG existante, COMPAiSS fonctionne comme une couche de gouvernance pré-inférence qui corrige les taux d'hallucination résiduels que le RAG seul ne peut pas résoudre - renforçant les investissements existants sans les remplacer. Des recherches évaluées par des pairs documentent des taux d'hallucination résiduels d'environ 6 % même dans les conditions RAG optimales, et des tests empiriques indépendants de la plateforme juridique phare de Thomson Reuters ont révélé des taux d'hallucination de 17 à 33 % en conditions réelles. COMPAiSS s'attaque à la cause architecturale profonde que ces systèmes ne peuvent pas éliminer.
-
-Pour les clients sans investissement RAG - qu'ils soient limités par les coûts ou préoccupés par les taux d'échec documentés - COMPAiSS offre une solution complète de gouvernance de l'inférence qui impose la portée, l'autorité des sources et la politique institutionnelle, sans les frais généraux d'une infrastructure d'entreprise.
-
-Dans les deux cas, le déploiement est simple et la démarche de gouvernance est vérifiable, défendable et alignée sur les exigences réglementaires dans l'enseignement supérieur, les soins de santé, le secteur public et les services juridiques.
-
-*L'architecture COMPAiSS fait l'objet de demandes de brevet actuellement en cours d'examen au Canada et aux États-Unis.*
-
----
-
-## Maintenir la cohérence du sens entre les traductions : COMPAiSS et le RAG
-
-Les systèmes d’IA grand public traduisent souvent une question (généralement vers l’anglais) dans le cadre de leur recherche d’information, puis retraduisent la réponse dans la langue de l’utilisateur. Dans de nombreux systèmes fondés sur le RAG, cette étape de traduction est étroitement liée aux processus de récupération et de raisonnement.
-
-Il en résulte que de légères différences de formulation peuvent influencer les documents récupérés, l’interprétation des passages et l’accent mis dans la réponse finale.
-
-Avec le temps, cette dynamique peut mener à des réponses incohérentes d’une langue à l’autre - même lorsque la même question est posée et que les mêmes documents servent de référence.
-
-COMPAiSS est conçu pour éviter ce problème en séparant la langue du sens au niveau architectural.
-
-Lorsqu’une question est soumise dans une langue autre que l’anglais, elle est d'abord traduite vers l'anglais à l'aide d'un modèle de traduction de haute précision.. Cette étape sert uniquement à normaliser la question dans une langue de travail unique et fonctionne comme une couche de prétraitement externe au cadre d'autorisation institutionnel. Elle ne déclenche aucune récupération de documents, n’interprète aucune politique et ne génère aucune réponse.
-
-Une fois traduite, la question est évaluée quant à son admissibilité institutionnelle et à l’existence de sources autorisées avant que toute inférence institutionnelle principale n’ait lieu. Ce n'est que lorsque ces conditions sont remplies que le modèle de raisonnement principal produit une réponse, en s'appuyant exclusivement sur les sources institutionnelles autorisées.
-
-La réponse est ensuite traduite dans la langue choisie par l’utilisateur pour l’affichage.
-
-Cette séparation est intentionnelle. La traduction est traitée strictement comme une opération linguistique, et non comme une étape de découverte, de récupération ou de raisonnement. Ainsi, le changement de langue n’altère ni les informations jugées pertinentes, ni les sources institutionnelles utilisées, ni la logique de détermination de la réponse - seule son expression linguistique varie.
-
-En fixant le sens, le périmètre et l’autorisation avant la génération, COMPAiSS évite la dérive interprétative et les incohérences multilingues propres aux systèmes fondés sur le RAG, assurant des réponses institutionnelles exactes, faisant autorité et cohérentes, quelle que soit la langue.
-
----
-
-## Le contraste avec les assistants IA d'entreprise
-
-*Le contraste avec les assistants IA d'entreprise - y compris ceux intégrés aux suites de productivité institutionnelles - est structurel, et non superficiel.*
-
-Les systèmes comme Microsoft 365 Copilot sont conçus pour fonctionner dans l'ensemble de l'environnement numérique d'une organisation : courriels, documents, conversations Teams, référentiels SharePoint et données de calendrier. Lorsqu'un utilisateur multilingue soumet une question, le système traduit cette requête, puis effectue une recherche dans l'ensemble du contenu indexé - ce qui peut inclure des ébauches de politiques périmées, des communications informelles ou des documents provenant de départements non concernés mais contenant des mots-clés correspondants. La traduction et la récupération sont couplées : la formulation de la requête traduite détermine directement ce qui est trouvé, ce qui détermine à son tour ce qui est répondu. Deux utilisateurs posant la même question dans des langues différentes peuvent recevoir des réponses substantiellement différentes - non pas parce que la politique de l'établissement diffère, mais parce que la traduction a produit des signaux de récupération différents.
-
-Il ne s'agit pas d'un défaut de configuration. C'est une conséquence architecturale de la conception d'un système axé sur l'étendue de l'ensemble du corpus organisationnel plutôt que sur l'autorité à l'intérieur d'un périmètre institutionnel défini.
-
-COMPAiSS sépare ces fonctions entièrement. La traduction normalise la question dans une langue de travail. L'autorisation détermine si l'établissement dispose de documents approuvés pour étayer une réponse. L'inférence n'a lieu que si ces deux conditions sont satisfaites, en s'appuyant exclusivement sur les sources approuvées par l'établissement. La langue de la question ne modifie pas ce qui est récupéré, ce qui est considéré comme faisant autorité, ni ce que l'établissement est autorisé à affirmer. Elle détermine uniquement la façon dont la réponse est formulée.
-
-Cela signifie qu'un étudiant posant une question sur son dossier académique en mandarin, en français ou en arabe reçoit la même réponse institutionnellement autorisée qu'un étudiant posant la question en anglais - et non une approximation façonnée par des artefacts de traduction ou du bruit de corpus. Pour les établissements ayant l'obligation de servir équitablement des populations multilingues, cette distinction n'est pas accessoire. C'est la différence entre un système cohérent par architecture et un système cohérent uniquement lorsque les conditions s'alignent favorablement.
-
----
-
-## Conçu pour les processus d'approvisionnement institutionnel et d'examen de gouvernance
-
-Les institutions réglementées n'ont pas seulement besoin de systèmes d'IA performants - elles ont besoin de systèmes d'IA qu'elles peuvent documenter, défendre et soumettre à un examen formel. Les responsables de l'approvisionnement, les comités d'audit, les conseillers juridiques et les panels d'examen gouvernementaux exigent de plus en plus que les institutions démontrent non seulement qu'un système d'IA produit de bons résultats, mais que son architecture de gouvernance est vérifiable, délimitée et alignée avec les obligations fiduciaires.
-
-COMPAiSS est conçu en tenant compte de cette exigence. Étant donné que les décisions d'autorisation sont déterministes et se produisent avant l'inférence, chaque interaction suit un chemin de gouvernance documenté et reproductible. L'institution contrôle quelles sources font autorité. L'institution définit la limite de portée. Le système applique les deux de manière structurelle, et non probabiliste. Il n'y a pas de seuils de confiance à calibrer, pas de couches de modération à auditer après coup, et pas de dépendance à un comportement de modèle qui ne peut pas être formellement décrit.
-
-Cela rend COMPAiSS directement compatible avec les exigences de documentation des panels de gouvernance de l'IA, des processus d'examen éthique institutionnel et des cadres d'approvisionnement gouvernementaux - y compris ceux qui exigent que les institutions démontrent comment les réponses d'IA non autorisées ou hors périmètre sont prévenues, et non simplement gérées.
-
-Pour les institutions qui naviguent actuellement dans les processus d'examen et d'approbation de l'IA, cette transparence architecturale n'est pas une fonctionnalité secondaire. C'est une exigence de gouvernance primaire que les systèmes à génération prioritaire sont structurellement incapables de satisfaire de la même manière.
-
----
-
-## Là où l’exactitude n’est pas facultative
-
-Les conséquences d’une information inexacte varient selon le contexte. Dans les environnements fortement réglementés ci-dessous, elles ne sont pas théoriques.
-
-### *Universités*
-
-Les universités publient des politiques encadrant l’admission, le cheminement académique, les mesures d’adaptation, l’aide financière, les exigences de diplomation et les droits des étudiants.
-
-Une réponse incorrecte peut :
-- déformer une politique officielle ;
-- mener à des décisions ou à des recours inappropriés ;
-- créer des enjeux d’équité et de conformité.
-
-COMPAiSS veille à ce que les réponses reflètent ce que l’institution autorise réellement, et non ce qu’un modèle d’IA infère.
-
----
-
-### *Hôpitaux et réseaux de soins de santé*
-
-Les hôpitaux fonctionnent dans des cadres cliniques, administratifs et réglementaires stricts.
-
-Une information inexacte peut :
-- mal représenter les droits des patients ou les procédures ;
-- créer des risques de non-conformité ;
-- miner la confiance envers la prestation des soins.
-
-COMPAiSS limite les réponses à ce que l’organisation peut vérifier et appuyer, en empêchant les réponses spéculatives ou généralisées.
-
----
-
-### *Services gouvernementaux et services publics*
-
-Les organismes publics fournissent de l’information ayant une incidence directe sur les prestations, l’admissibilité, les obligations et l’accès aux services.
-
-Des indications erronées peuvent :
-- retarder ou empêcher l’accès aux services ;
-- créer une exposition juridique ;
-- éroder la confiance du public.
-
-COMPAiSS veille à ce que les réponses générées par l’IA demeurent conformes aux règles, politiques et mandats officiels.
-
----
-
-### *Ordres professionnels et organismes de réglementation*
-
-Les organismes de réglementation publient des exigences en matière de délivrance de permis, des procédures disciplinaires, des critères d’admissibilité et des normes professionnelles.
-
-Des informations inexactes peuvent :
-- Mal représenter les exigences légales ou réglementaires ;
-- Exposer l’organisme à des contestations juridiques ;
-- Causer un préjudice professionnel direct.
-
-COMPAiSS empêche les réponses d’IA interprétatives dans les domaines où la délivrance de permis, la conformité ou la discipline sont régies par des règles formellement publiées. Si une réponse n’est pas autorisée par les documents officiels de l’organisme, aucune inférence n’est effectuée.
-
-⸻
-
-### *Collèges et établissements polytechniques*
-
-Les collèges publient des exigences structurées de programme, des parcours menant à l’obtention de diplômes ou d’attestations, ainsi que des critères d’admission.
-
-Des informations inexactes peuvent :
-- Induire en erreur les étudiants potentiels ;
-- Déclencher des plaintes ou des appels formels ;
-- Causer un préjudice réputationnel dans des environnements concurrentiels d’inscription.
-
-COMPAiSS veille à ce que l’IA destinée aux étudiants reflète les calendriers académiques officiels et les documents de politique institutionnelle, sans extrapoler au-delà de l’intention institutionnelle.
-
-⸻
-
-### *Gouvernements municipaux*
-
-Les municipalités publient des procédures relatives aux permis, des règlements de zonage, des règles de délivrance de licences et des critères d’admissibilité aux services.
-
-Des informations inexactes peuvent :
-- Engager la responsabilité juridique ;
-- Retarder des projets ou des services publics ;
-- Créer des enjeux de reddition de comptes politique.
-
-COMPAiSS empêche l’IA de générer des orientations procédurales non fondées dans des domaines régis par des règlements municipaux publiés et des cadres réglementaires formels.
-
----
-
-## Responsabilité institutionnelle et contrôle
-
-Au-delà de la prévention des erreurs générées par l’IA, COMPAiSS a des implications directes pour la reddition de comptes institutionnelle et la gouvernance du contenu. Lorsqu’une institution diffuse de l’information, elle promet implicitement que celle-ci est :
-
-- Exacte
-- Officielle
-- Fiable
-
-COMPAiSS applique cette même exigence aux réponses médiées par l’IA en veillant à ce que celles-ci soient appuyées par des sources approuvées par l’institution. Il ne cherche pas à interpréter l’intention institutionnelle ni à combler des lacunes à partir de connaissances généralisées.
-
-Il importe toutefois de préciser que COMPAiSS, comme tout système d’information, reflète les documents faisant autorité qu’il est autorisé à utiliser. Si un lien institutionnel approuvé, une page Web, un document de politique ou une directive officielle est périmé ou nécessite une mise à jour, cette limite s’applique de la même manière à tout système d’IA, moteur de recherche ou processus humain reposant sur la même source. COMPAiSS ne réinterprète ni ne complète le contenu institutionnel ; il reflète ce que l’institution a elle-même autorisé.
-
-La différence réside dans la visibilité et le contrôle. En limitant les réponses aux sources approuvées par l’institution et en empêchant toute inférence non étayée, COMPAiSS rend les lacunes ou incohérences explicites et corrigeables, plutôt que de les masquer par des réponses généralisées ou spéculatives. Cela permet aux institutions d’identifier et de corriger les enjeux de contenu à la source, au lieu de propager involontairement des inexactitudes par l’entremise d’outils d’IA grand public fonctionnant en dehors de la supervision institutionnelle.
-
----
-
-**Les institutions réglementées méritent des systèmes d’IA qui respectent leurs obligations - et non des systèmes qui les contournent pour paraître « utiles ».**
-
-**COMPAiSS est conçu pour des environnements institutionnels où l’exactitude, l’autorité et la gouvernance ne sont pas négociables.**
-
----
-
-## Documentation technique et lectures complémentaires
-
-Pour les institutions qui évaluent les implications en matière de gouvernance de l’IA dans des environnements réglementés, le document synthèse suivant expose l’argument structurel sous-tendant COMPAiSS ainsi que les limites des systèmes d’IA à génération d’abord.
-
-➡️ **[IA institutionnelle à autorisation contrôlée dans les environnements réglementés](/assets/compaiss_positionnement_institutionnel.pdf)**
-
-
-Pour une analyse plus approfondie, non technique, de cette approche, ce document approfondit les arguments structurels qui sous-tendent COMPAiSS ainsi que les limites et les coûts associés aux mécanismes de contrôle post-générationnels dans les contextes réglementés.
-
-➡️ **[La voie moins empruntée – Repenser les coûts, la sécurité et la confiance liés à l’IA générative dans les environnements réglementés](/assets/la_voie_moins_empruntee.pdf)**
-
-
-Le rapport qui suit présente une analyse structurée fondée sur un consensus intermodèles, portant sur la manière dont les principaux cabinets de conseil en IA conceptualisent les hallucinations et sur l’étape du cycle de vie de l’IA à laquelle ils estiment que les mécanismes de contrôle peuvent s’exercer.
-
-➡️ **[Hallucinations par conception - Une évaluation intermodèles de la manière dont les grands cabinets de conseil en IA conseillent leurs clients pour gérer les erreurs de l’IA générative](/assets/rapport_final-hallucinations_par_conception-fr.pdf)**
-
----
-
-## Explorer cette architecture
-
-COMPAiSS est actuellement en déploiement actif dans quatre environnements institutionnels canadiens, dont des universités de recherche intensive et un contexte de service public fédéral, avec deux pilots institutionnels supplémentaires actuellement en cours d'examen.
-
-Un environnement de démonstration à l'échelle fédérale a également été développé afin de valider l'inférence à exécution contrôlée dans des contextes de services aux citoyens à fort volume, reflétant des organisations qui gèrent des dizaines de millions d'interactions annuelles avec la population par téléphone, en personne et par voie numérique.
-
-Le système a été façonné par une expérience directe en gouvernance institutionnelle et est actuellement évalué dans des contextes de registrariat et de services aux étudiants, où l'exactitude des politiques et l'autorité institutionnelle sont essentielles.
-
-**Pour toute demande d'évaluation institutionnelle ou de partenariat technologique :**
-
-**Contact :** counterfactualtheory@gmail.com
-
----
-
-## À propos de COMPAiSS
-
-COMPAiSS a été développé par Frank Harvey, professeur titulaire de science politique et conseiller principal à l'Université Dalhousie. Au cours de sa carrière, Harvey a occupé des postes de direction au sein de l'enseignement supérieur canadien (notamment à titre de président, de provost et vice-recteur aux affaires académiques, de doyen et de directeur de département) - ce qui lui confère une expérience directe, à l'échelle institutionnelle, des obligations de gouvernance, de responsabilité et de conformité que les environnements réglementés imposent concrètement aux systèmes d'information.
-
-COMPAiSS a été conçu dans cette perspective. Non pas comme une solution technologique en quête d'un problème, mais comme une réponse architecturale à une défaillance structurelle qu'Harvey a observée directement : des institutions déployant une IA axée sur la génération dans des environnements où cette architecture ne peut répondre à leurs obligations.
-
-L'architecture et le développement ont été dirigés par Harvey. L'ingénierie dorsale, l'intégration des API et l'infrastructure de déploiement ont été réalisées à l'aide d'outils de développement assistés par IA (principalement GPT et Claude) sous la supervision architecturale directe de Harvey. Le système a été validé à travers des milliers de scénarios de test couvrant des contextes étudiants, professoraux et administratifs dans des environnements institutionnels multilingues.
-
-COMPAiSS recherche activement des partenaires institutionnels pour l'évaluation du système ainsi que des collaborateurs technologiques.
-      `;
-    safeRender(LANDING_MD);
-
-// Back To Top Logic
-const backBtn = document.getElementById('backToTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    backBtn.style.display = 'block';
-  } else {
-    backBtn.style.display = 'none';
-  }
-});
-backBtn.addEventListener('click', () => {
-  const nav = document.querySelector('.section-nav');
-  nav.scrollIntoView({ block: 'start' });
-  history.replaceState(null, null, window.location.pathname);
-});
-    
-  </script>
+    <p><strong>Pour toute demande d'evaluation institutionnelle ou de partenariat technologique :</strong> <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
 
     <div style="
       margin-top: 2.5rem;
@@ -862,20 +721,52 @@ backBtn.addEventListener('click', () => {
         Demander une demonstration -&gt;
       </a>
     </div>
+  </div>
 
-  </div><!-- end .content-frame -->
+  <hr>
+
+  <!-- A PROPOS -->
+  <div class="content-section" id="a-propos">
+    <h2>A propos de COMPAiSS</h2>
+    <p class="section-intro">Concu a partir d'une experience directe en gouvernance institutionnelle.</p>
+
+    <p>COMPAiSS a ete developpe par Frank Harvey, professeur titulaire de science politique et conseiller principal a l'Universite Dalhousie. Au cours de sa carriere, Harvey a occupe des postes de direction au sein de l'enseignement superieur canadien (notamment a titre de president, de provost et vice-recteur aux affaires academiques, de doyen et de directeur de departement) - ce qui lui confere une experience directe, a l'echelle institutionnelle, des obligations de gouvernance, de responsabilite et de conformite que les environnements reglementes imposent concretement aux systemes d'information.</p>
+
+    <p>COMPAiSS a ete concu dans cette perspective. Non pas comme une solution technologique en quete d'un probleme, mais comme une reponse architecturale a une defaillance structurelle qu'Harvey a observee directement : des institutions deployant une IA axee sur la generation dans des environnements ou cette architecture ne peut repondre a leurs obligations.</p>
+
+    <p>L'architecture et le developpement ont ete diriges par Harvey. L'ingenierie dorsale, l'integration des API et l'infrastructure de deploiement ont ete realisees a l'aide d'outils de developpement assistes par IA (principalement GPT et Claude) sous la supervision architecturale directe de Harvey. Le systeme a ete valide a travers des milliers de scenarios de test couvrant des contextes etudiants, professoraux et administratifs dans des environnements institutionnels multilingues.</p>
+
+    <p>COMPAiSS recherche activement des partenaires institutionnels pour l'evaluation du systeme ainsi que des collaborateurs technologiques.</p>
+  </div>
+
 </main>
 
 <footer>
   <div class="footer-inner">
-    <p class="muted" style="margin-top: 0.8rem;">
-      Contact :
-      <a href="mailto:counterfactualtheory@gmail.com">
-        counterfactualtheory@gmail.com
-      </a>
+    <p style="margin-top: 0.8rem;">
+      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
     </p>
   </div>
 </footer>
+
 <button id="backToTop" aria-label="Retour en haut">↑</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+
+  function checkScroll() {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+
+  backBtn.addEventListener('click', () => {
+    const nav = document.querySelector('.section-nav');
+    nav.scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
 </body>
 </html>
