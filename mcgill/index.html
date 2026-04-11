@@ -517,7 +517,7 @@ followupBtn.disabled=true;
   } catch (err) {
     const oldLoading = document.getElementById("loading-active");
     if (oldLoading) oldLoading.remove();
-    safeRender('⚠️ Error sending follow-up: ' + err.message);
+    safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nIf this is an urgent matter or personal emergency, please contact:\n\n**McGill Security (24/7):** 514-398-3000\n\n**Crisis line — CPS Montreal (24/7):** 1-866-277-3553\n\n**Info-Santé (24/7):** 811');
     console.error('Fetch error:', err);
   }
 
