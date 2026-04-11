@@ -459,8 +459,7 @@ followupBtn.disabled=true;
         const data=await res.json();
         safeRender(data.answer||'(no response)');
       }catch(err){
-        safeRender('⚠️ Error sending follow-up: '+err.message);
-        limitVerifiedSources(); // ✅ NEW: clean and shorten verified links
+        safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nIf this is an urgent matter or personal emergency, please contact:\n\n**Dalhousie Security (24/7):** 902-494-4109\n\n**Nova Scotia Crisis Line (24/7):** 1-888-429-8167\n\n**Info-Santé / Health Link (24/7):** 811');
       }
       loading.style.display='none';
       followupBtn.disabled=false;
