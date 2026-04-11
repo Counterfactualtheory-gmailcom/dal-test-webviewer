@@ -451,7 +451,7 @@ const res = await fetch('https://servicecanbackendproduction-production.up.railw
         const data = await res.json();
         safeRender(data.answer || '(no response)');
       } catch (err) {
-        safeRender('⚠️ Error sending follow-up: ' + err.message);
+        safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nFor direct assistance, contact Service Canada:\n\n**Telephone:** 1-800-622-6232\n\n**TTY:** 1-800-926-9105\n\n**Hours:** Monday to Friday, 8:30 am to 4:30 pm local time');
       }
       loading.style.display = 'none';
       followupBtn.disabled = false;
