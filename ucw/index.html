@@ -474,8 +474,7 @@ body: JSON.stringify({
     const data=await res.json();
     safeRender(data.answer||'(no response)');
   } catch(err) {
-    safeRender('⚠️ Error sending follow-up: '+err.message);
-    limitVerifiedSources();
+    safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nIf this is an urgent matter or personal emergency, please contact:\n\n**Crisis Centre BC (24/7):** 604-872-3311\n\n**BC Mental Health Support Line (24/7):** 310-6789\n\n**Health Link BC (24/7):** 811');
   }
   loading.style.display='none';
   followupBtn.disabled=false;
