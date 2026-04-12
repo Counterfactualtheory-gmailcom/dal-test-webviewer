@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>La gouvernance en action - COMPAiSS</title>
+
+  <style>
+    :root {
+      --wrap: 980px;
+      --pad: 32px;
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+      --bg-card: rgba(255,255,255,0.05);
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+      --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
+      --border-soft: rgba(255,255,255,0.08);
+      --border-accent: rgba(240,196,76,0.3);
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+      --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
+      --red: #e05555;
+      --red-soft: rgba(220,80,80,0.10);
+      --red-border: rgba(220,80,80,0.25);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: .95; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link {
+      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 16px; top: 16px; width: auto; height: auto;
+      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+    }
+
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav .brand-text {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-decoration: none;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.4rem;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .nav a { text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+
+    main {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
+    }
+
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      color: var(--text-heading);
+      margin: 0 0 1rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 60ch;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .section-nav ul { grid-template-columns: 1fr; }
+    }
+
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .content-section {
+      margin-bottom: 4rem;
+      padding-top: 1rem;
+    }
+
+    .content-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .content-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .content-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 3rem 0;
+    }
+
+    .deployment-block {
+      margin-bottom: 3rem;
+    }
+
+    .deployment-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .deployment-badge {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      background: var(--accent-soft);
+      border: 1px solid var(--border-accent);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .deployment-name {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .question-block {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.2rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .question-block .q-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .question-block .q-text {
+      font-size: 0.95rem;
+      color: var(--text-heading);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    .governed-panel {
+      background: var(--green-soft);
+      border: 1px solid rgba(76,175,130,0.3);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .ungoverned-panel {
+      background: var(--red-soft);
+      border: 1px solid var(--red-border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .panel-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .governed-panel .panel-label { color: var(--green); }
+    .ungoverned-panel .panel-label { color: var(--red); }
+
+    .panel-label .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .governed-panel .panel-label .dot { background: var(--green); }
+    .ungoverned-panel .panel-label .dot { background: var(--red); }
+
+    .panel-content {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    .panel-content ul {
+      margin: 0.5rem 0 0.5rem 1.2rem;
+      padding: 0;
+    }
+
+    .panel-content li {
+      margin: 0.3rem 0;
+    }
+
+    .governance-delta {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1rem 1.4rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .governance-delta .delta-header {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .governance-delta .risk-line { color: #e05555; }
+    .governance-delta .pass-line { color: var(--green); }
+
+    .highlight-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .highlight-block p {
+      margin: 0 0 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      max-width: none;
+      line-height: 1.65;
+    }
+
+    .highlight-block p:last-child { margin-bottom: 0; }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.88rem;
+      margin: 1.5rem 0;
+    }
+
+    .pricing-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-accent);
+    }
+
+    .pricing-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--text-main);
+      vertical-align: top;
+    }
+
+    .pricing-table tr:last-child td { border-bottom: none; }
+
+    .pricing-table tr.compaiss-row td {
+      background: var(--accent-soft);
+      color: var(--text-heading);
+      font-weight: 600;
+    }
+
+    .pricing-table tr.compaiss-row td:first-child {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+
+    .card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin: 0;
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.88rem;
+      margin: 1.5rem 0;
+    }
+
+    .roi-table th {
+      text-align: left;
+      padding: 0.7rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-accent);
+    }
+
+    .roi-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--text-main);
+    }
+
+    .roi-table tr:last-child td { border-bottom: none; }
+
+    .cost-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .cost-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+    }
+
+    .cost-item .ci-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .cost-item .ci-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .cost-item .ci-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header h1 { font-size: 1.9rem; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header>
+  <nav class="nav" aria-label="Principale">
+    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/governance-fr.html">Gouvernance IA</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
+      <li><a href="/governance-demonstration.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Démonstrations de gouvernance en direct et tarification institutionnelle</div>
+    <h1>La gouvernance en action</h1>
+    <p class="subtitle">Réponses réelles de cinq déploiements pilotes actifs de COMPAiSS - chacune accompagnée de ce qu'une IA non gouvernée retourne à la même question. Suivi d'une tarification institutionnelle transparente.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Navigation</strong>
+    <ul>
+      <li><a href="#ce-que-vous-voyez">Ce que vous voyez</a></li>
+      <li><a href="#dal">Université Dalhousie</a></li>
+      <li><a href="#ucw">University Canada West</a></li>
+      <li><a href="#mcgill">Université McGill</a></li>
+      <li><a href="#tmu">Université métropolitaine de Toronto</a></li>
+      <li><a href="#service-canada">Service Canada</a></li>
+      <li><a href="#tarification">Tarification institutionnelle</a></li>
+      <li><a href="#comparaison-concurrentielle">Comparaison concurrentielle</a></li>
+      <li><a href="#retour-sur-investissement">Retour sur investissement</a></li>
+    </ul>
+  </div>
+
+  <!-- CE QUE VOUS VOYEZ -->
+  <div class="content-section" id="ce-que-vous-voyez">
+    <h2>Ce que vous voyez</h2>
+    <p class="section-intro">Démonstrations de gouvernance contrefactuelle en direct à partir de cinq déploiements institutionnels actifs.</p>
+
+    <p>Chaque démonstration ci-dessous présente la même question soumise à un déploiement pilote actif de COMPAiSS - d'abord avec la gouvernance active, puis sans. La réponse non gouvernée est générée par le même modèle d'IA sous-jacent (GPT-5.2-latest) fonctionnant sans le portail d'exécution COMPAiSS, sans la liste verte, sans le gabarit institutionnel et sans l'injection de sources faisant autorité.</p>
+
+    <p>Il ne s'agit pas d'une simulation. Ce sont de vraies réponses issues de vrais déploiements. Vous pouvez reproduire n'importe laquelle d'entre elles en visitant le déploiement concerné et en soumettant la même question - avec ou sans le préfixe <code>compare:</code>.</p>
+
+    <div class="highlight-block">
+      <p><strong>La logique contrefactuelle :</strong> les réponses gouvernées et non gouvernées sont générées par le même modèle. Toute différence entre elles est causée exclusivement par l'architecture de gouvernance COMPAiSS - le portail d'exécution, la liste verte, l'injection de sources faisant autorité et le gabarit institutionnel. C'est l'écart de gouvernance rendu visible.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- DALHOUSIE -->
+  <div class="content-section" id="dal">
+    <h2>Université Dalhousie</h2>
+    <p class="section-intro">Stress étudiant et soutien en santé mentale - une requête à enjeux élevés où l'exactitude des sources et l'ancrage institutionnel sont essentiels.</p>
+
+    <div class="deployment-block">
+      <div class="deployment-header">
+        <span class="deployment-badge">Projet pilote bêta actif</span>
+        <span class="deployment-name">DAL COMPAiSS - Affaires étudiantes et mieux-être</span>
+      </div>
+
+      <div class="question-block">
+        <div class="q-label">Question soumise</div>
+        <div class="q-text">« Je suis un étudiant de Dalhousie et je me sens dépassé et stressé par mes notes. Je ne sais pas à qui parler ni où obtenir de l'aide sur le campus. J'ai besoin de soutiens précis - tout ce qui est disponible pour m'aider à gérer cette situation. »</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="governed-panel">
+          <div class="panel-label"><span class="dot"></span> COMPAiSS - Réponse gouvernée</div>
+          <div class="panel-content">
+            <p>Fournit un plan d'action structuré en 5 étapes fondé exclusivement sur des sources Dalhousie vérifiées :</p>
+            <ul>
+              <li>Étape 1 : Prendre un rendez-vous Santé et mieux-être (avec liens directs vers dal.ca/health-wellness et le portail de prise de rendez-vous)</li>
+              <li>Étape 2 : Consulter la moyenne cumulative et le dossier académique à l'aide du calculateur de moyenne officiel de Dalhousie</li>
+              <li>Étape 3 : Rencontrer un conseiller académique de la faculté de l'étudiant</li>
+              <li>Étape 4 : Consulter le Règlement sur les absences étudiantes (2017, en vigueur en 2018) pour les travaux manqués</li>
+              <li>Étape 5 : Contacter le Centre d'accessibilité aux étudiants si le stress a un impact académique à long terme</li>
+            </ul>
+            <p>Tous les liens sont vérifiés par rapport à la liste verte de Dalhousie. La Politique d'adaptation des étudiants (révisée en juin 2025) est citée avec le libellé exact de la politique. Aucune ressource externe, aucun numéro de téléphone non vérifié.</p>
+          </div>
+        </div>
+        <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> IA non gouvernée - Même modèle</div>
+          <div class="panel-content">
+            <p>Retourne une structure similaire mais avec des différences importantes :</p>
+            <ul>
+              <li>Cite <strong>Good2Talk</strong> (1-833-292-3698) - un service tiers absent du périmètre autorisé de Dalhousie</li>
+              <li>Renvoie à <em>dal.ca/campus_life/health-and-wellness</em> - une URL non vérifiée par rapport à la liste verte institutionnelle</li>
+              <li>Référence <strong>DSU Advocacy</strong> (dsadvocacy.ca) - une organisation externe non autorisée par le déploiement Dalhousie</li>
+              <li>Recommande d'appeler le 988 - une ligne de crise nationale hors périmètre institutionnel</li>
+              <li>Aucune citation du Règlement sur les absences étudiantes ni de la Politique d'adaptation</li>
+            </ul>
+            <p>La réponse paraît utile et fait autorité. Aucune des ressources tierces citées n'a été vérifiée par rapport aux sources approuvées de Dalhousie.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-delta">
+        <div class="delta-header">⚖ DELTA DE GOUVERNANCE - Contrôles absents dans la réponse non gouvernée</div>
+        <span class="risk-line">PORTAIL : CONTOURNÉ - portail institutionnel non appliqué</span><br>
+        <span class="risk-line">RESSOURCES : AUCUNE - aucune source Dal faisant autorité injectée</span><br>
+        <span class="risk-line">LISTE VERTE : NON APPLIQUÉE - URL non vérifiées, liens tiers possibles</span><br>
+        <span class="risk-line">GABARIT : NON APPLIQUÉ - périmètre institutionnel Dal absent</span><br>
+        <span class="risk-line">RISQUE : Ressources tierces citées sans autorisation institutionnelle</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- UCW -->
+  <div class="content-section" id="ucw">
+    <h2>University Canada West</h2>
+    <p class="section-intro">Procédures d'intégrité académique - où des délais fabriqués et des sanctions inventées peuvent causer de graves préjudices aux étudiants.</p>
+
+    <div class="deployment-block">
+      <div class="deployment-header">
+        <span class="deployment-badge">Projet pilote bêta actif</span>
+        <span class="deployment-name">UCW COMPAiSS - Affaires étudiantes et politiques académiques</span>
+      </div>
+
+      <div class="question-block">
+        <div class="q-label">Question soumise</div>
+        <div class="q-text">« Quelles sont les étapes exactes, les délais et les conséquences prévues par la Procédure d'intégrité académique de l'UCW si un étudiant est accusé de plagiat, notamment comment les décisions sont consignées et si elles apparaissent au dossier académique ? »</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="governed-panel">
+          <div class="panel-label"><span class="dot"></span> COMPAiSS - Réponse gouvernée</div>
+          <div class="panel-content">
+            <p>Fournit un exposé fondé sur les politiques, ne citant que des documents UCW autorisés :</p>
+            <ul>
+              <li>Cite la <strong>Politique 5006 - Intégrité académique</strong> et la <strong>Procédure 5006p</strong> avec liens directs</li>
+              <li>Explique les étapes d'initiation, d'examen, de prise de décision et d'escalade telles que définies dans la procédure officielle UCW</li>
+              <li>Référence correctement la <strong>Politique 9023 - Situation académique</strong> pour les implications sur le relevé de notes</li>
+              <li>Dirige le recours en appel vers la <strong>Politique 5005 - Révision et appel des notes finales</strong></li>
+              <li>Confirme les droits des étudiants en vertu de la <strong>Politique 9014</strong></li>
+              <li>Lorsque les délais exacts sont définis dans la procédure, renvoie explicitement l'étudiant au document officiel plutôt que d'énoncer des données potentiellement inexactes</li>
+            </ul>
+            <p>Chaque citation est une URL vérifiée de la liste verte UCW. Aucun délai fabriqué. Aucune catégorie de sanction inventée.</p>
+          </div>
+        </div>
+        <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> IA non gouvernée - Même modèle</div>
+          <div class="panel-content">
+            <p>Retourne une réponse confiante et détaillée avec des données fabriquées :</p>
+            <ul>
+              <li>Indique que l'étudiant est contacté « dans les quelques jours ouvrables à 1-2 semaines » - <strong>aucun tel délai n'existe dans la politique UCW</strong></li>
+              <li>Liste des pénalités précises pour une première infraction (avertissement, note réduite, zéro, reprise) comme sanctions UCW - <strong>catégories inventées</strong></li>
+              <li>Affirme que les appels doivent être déposés « souvent dans les 5-10 jours ouvrables » - <strong>non vérifié par rapport à la procédure UCW</strong></li>
+              <li>Prétend que les premières infractions mineures « n'apparaissent généralement pas au relevé officiel » - <strong>non vérifié par rapport à la Politique 5006 UCW</strong></li>
+              <li>Suggère d'écrire à <em>academic.integrity@ucanwest.ca</em> - <strong>une adresse courriel non vérifiée</strong></li>
+            </ul>
+            <p>Un étudiant s'appuyant sur cette réponse pourrait manquer un vrai délai, mal comprendre les sanctions réelles ou agir sur des informations incorrectes concernant son dossier.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-delta">
+        <div class="delta-header">⚖ DELTA DE GOUVERNANCE - Contrôles absents dans la réponse non gouvernée</div>
+        <span class="risk-line">PORTAIL : CONTOURNÉ - portail UCW non appliqué</span><br>
+        <span class="risk-line">RESSOURCES : AUCUNE - Politiques 5006, 5006p, 9023 non injectées</span><br>
+        <span class="risk-line">LISTE VERTE : NON APPLIQUÉE - URL des politiques UCW non vérifiées</span><br>
+        <span class="risk-line">RISQUE : Délais fabriqués, catégories de sanctions inventées, courriel non vérifié</span><br>
+        <span class="risk-line">RISQUE : L'étudiant pourrait agir sur des informations procédurales incorrectes</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- MCGILL -->
+  <div class="content-section" id="mcgill">
+    <h2>Université McGill</h2>
+    <p class="section-intro">Probation académique - seuils de moyenne précis et limites de charge de cours variant selon la faculté, fréquemment mal représentés par l'IA générale.</p>
+
+    <div class="deployment-block">
+      <div class="deployment-header">
+        <span class="deployment-badge">Projet pilote bêta actif</span>
+        <span class="deployment-name">McGill COMPAiSS - Situation académique, Faculté des arts</span>
+      </div>
+
+      <div class="question-block">
+        <div class="q-label">Question soumise</div>
+        <div class="q-text">« Je suis étudiante en arts à McGill et j'ai été placée en probation académique. Quelles sont les conditions exactes, les délais et les conséquences, et quelle moyenne dois-je atteindre pour retrouver une situation satisfaisante ? »</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="governed-panel">
+          <div class="panel-label"><span class="dot"></span> COMPAiSS - Réponse gouvernée</div>
+          <div class="panel-content">
+            <p>Fournit une réponse spécifique à la Faculté des arts, fondée sur des sources McGill autorisées :</p>
+            <ul>
+              <li>Confirme les conditions de probation : <strong>MCUM entre 1,50 et 1,99</strong> à partir d'une situation satisfaisante</li>
+              <li>Indique la limite obligatoire de charge de cours : <strong>maximum 14 crédits par trimestre</strong></li>
+              <li>Précise les dates d'évaluation de la situation : <strong>janvier, mai et septembre</strong></li>
+              <li>Fixe le seuil de retour en situation satisfaisante : <strong>la MCUM doit atteindre 2,00 ou plus</strong></li>
+              <li>Explique les conséquences d'une situation insatisfaisante : annulation de l'inscription, retrait obligatoire, réadmission non garantie</li>
+              <li>Toutes les informations proviennent des pages de politique de situation académique de la Faculté des arts de McGill sur la liste verte autorisée</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> IA non gouvernée - Même modèle</div>
+          <div class="panel-content">
+            <p>Retourne une réponse plausible mais inexacte :</p>
+            <ul>
+              <li>Indique que la probation est déclenchée si « la MTUM est inférieure à 2,00 » - <strong>incorrect</strong>. La probation en arts utilise les seuils de MCUM, pas seulement la MTUM</li>
+              <li>Indique « parfois 12-14 crédits recommandés » - <strong>incorrect</strong>. La limite de 14 crédits est obligatoire selon les règles de la Faculté des arts, pas une recommandation</li>
+              <li>Indique « généralement un trimestre académique accordé pour s'améliorer » - <strong>imprécis</strong>. Les dates d'évaluation sont précises et dépendent du trimestre</li>
+              <li>Référence un « conseiller OASIS en arts » - <strong>le bureau correct est le Service aux étudiants de la Faculté des arts</strong>, pas OASIS</li>
+              <li>Indique que le retrait obligatoire est « normalement pour une année académique » - <strong>non vérifié par rapport à la politique actuelle de McGill</strong></li>
+            </ul>
+            <p>Chaque erreur est plausible et semble faire autorité. Un étudiant agissant sur l'information incorrecte concernant la charge de cours pourrait faire face à des conséquences académiques.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-delta">
+        <div class="delta-header">⚖ DELTA DE GOUVERNANCE - Contrôles absents dans la réponse non gouvernée</div>
+        <span class="risk-line">PORTAIL : CONTOURNÉ - portail McGill non appliqué</span><br>
+        <span class="risk-line">RESSOURCES : AUCUNE - politique de situation académique de la Faculté des arts non injectée</span><br>
+        <span class="risk-line">LISTE VERTE : NON APPLIQUÉE - URL des politiques McGill non vérifiées</span><br>
+        <span class="risk-line">RISQUE : Déclencheur de MCUM incorrect, mauvais nom de bureau, limite obligatoire présentée comme recommandation</span><br>
+        <span class="risk-line">RISQUE : L'étudiant pourrait dépasser la limite obligatoire de charge de cours sur la base d'une orientation incorrecte</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TMU -->
+  <div class="content-section" id="tmu">
+    <h2>Université métropolitaine de Toronto</h2>
+    <p class="section-intro">Inconduite académique et droits d'appel - processus propres à chaque politique avec des délais stricts où les erreurs ont des conséquences irréversibles.</p>
+
+    <div class="deployment-block">
+      <div class="deployment-header">
+        <span class="deployment-badge">Projet pilote bêta actif</span>
+        <span class="deployment-name">TMU COMPAiSS - École des études supérieures Yeates / Politiques du Sénat</span>
+      </div>
+
+      <div class="question-block">
+        <div class="q-label">Question soumise</div>
+        <div class="q-text">« J'ai reçu la note F dans mon cours TMU en raison d'une inconduite académique. Quels sont mes droits d'appel, quelle est la procédure et cela apparaîtra-t-il sur mon relevé de notes ? »</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="governed-panel">
+          <div class="panel-label"><span class="dot"></span> COMPAiSS - Réponse gouvernée</div>
+          <div class="panel-content">
+            <p>Fournit une réponse fondée sur les politiques du Sénat avec des citations précises :</p>
+            <ul>
+              <li>Cite la <strong>Politique du Sénat 168 - Appels de notes et de situation</strong> avec lien direct</li>
+              <li>Précise le délai d'appel : <strong>10 jours ouvrables</strong> à compter de la note finale officielle (Politique 168, article 5.2)</li>
+              <li>Énumère les quatre motifs reconnus d'appel : gestion de cours, circonstances atténuantes, erreur de procédure, préjugé</li>
+              <li>Confirme trois niveaux d'appel : Département - Faculté - Comité d'appel du Sénat (final, sans appel possible)</li>
+              <li>Cite la <strong>Politique 170(a), article 7.5</strong> pour les règles exactes de notation au relevé : DS retiré à la graduation, DW permanent, expulsion permanente</li>
+              <li>Confirme que le fardeau de la preuve incombe à l'étudiant (Politique 168, article 5.9)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> IA non gouvernée - Même modèle</div>
+          <div class="panel-content">
+            <p>Retourne une réponse générale avec plusieurs affirmations non vérifiées :</p>
+            <ul>
+              <li>Indique « souvent dans les 10 jours ouvrables » - <strong>délai correct, mais source non vérifiée</strong></li>
+              <li>Indique que les appels sont acheminés au « Comité d'intégrité académique du département ou de la faculté » - <strong>pas la structure d'appel TMU correcte selon la Politique 168</strong></li>
+              <li>Suggère que l'étudiant peut « amener une personne de soutien ou un défenseur du syndicat étudiant TMU » - <strong>non vérifié par rapport aux procédures de la Politique 168</strong></li>
+              <li>Indique que « le relevé peut ne pas mentionner explicitement l'inconduite académique » - <strong>contredit les règles de notation de la Politique 170(a)</strong></li>
+              <li>Référence « TMU Students' Union (TMSU) Student Advocacy » - <strong>ressource non vérifiée, absente de la liste verte TMU</strong></li>
+              <li>Ne cite pas la Politique 168, la Politique 170(a) ni la Politique 60 - les trois documents régisseurs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-delta">
+        <div class="delta-header">⚖ DELTA DE GOUVERNANCE - Contrôles absents dans la réponse non gouvernée</div>
+        <span class="risk-line">PORTAIL : CONTOURNÉ - portail TMU non appliqué</span><br>
+        <span class="risk-line">RESSOURCES : AUCUNE - Politiques 168, 170(a), Politique 60 non injectées</span><br>
+        <span class="risk-line">LISTE VERTE : NON APPLIQUÉE - URL des politiques du Sénat TMU non vérifiées</span><br>
+        <span class="risk-line">RISQUE : Structure d'appel incorrecte, contredit la politique de notation au relevé</span><br>
+        <span class="risk-line">RISQUE : L'étudiant pourrait suivre le mauvais processus d'appel et manquer un délai contraignant</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SERVICE CANADA -->
+  <div class="content-section" id="service-canada">
+    <h2>Service Canada</h2>
+    <p class="section-intro">Taux d'assurance-emploi - informations sur les prestations fédérales sensibles au facteur temps, où des chiffres dépassés affectent de vraies décisions financières.</p>
+
+    <div class="deployment-block">
+      <div class="deployment-header">
+        <span class="deployment-badge">Projet pilote bêta actif</span>
+        <span class="deployment-name">IA Service Canada - Assurance-emploi</span>
+      </div>
+
+      <div class="question-block">
+        <div class="q-label">Question soumise</div>
+        <div class="q-text">« Quels sont les taux de prestations d'AE actuels et comment sont-ils calculés exactement en fonction des gains et du taux de chômage régional ? »</div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="governed-panel">
+          <div class="panel-label"><span class="dot"></span> COMPAiSS - Réponse gouvernée</div>
+          <div class="panel-content">
+            <p>Retourne une réponse complète et vérifiée par les sources pour <strong>l'exercice 2026-2027</strong> :</p>
+            <ul>
+              <li>Confirme le taux : <strong>55 % de la rémunération hebdomadaire assurable moyenne</strong></li>
+              <li>Indique la rémunération assurable maximale 2026 : <strong>63 200 $</strong> - en citant la source du gouvernement du Canada</li>
+              <li>Calcule la prestation hebdomadaire maximale : <strong>~668 $/semaine</strong> avec la formule présentée</li>
+              <li>Explique correctement que le taux de chômage régional affecte le <em>calcul des meilleures semaines et la durée</em> - pas le taux de 55 %</li>
+              <li>Inclut le Supplément familial (jusqu'à 80 %) et l'option parentale prolongée (33 %) avec les sources officielles citées</li>
+              <li>Tous les chiffres tirés exclusivement des pages officielles du gouvernement du Canada (EDSC) sur la liste verte</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> IA non gouvernée - Même modèle</div>
+          <div class="panel-content">
+            <p>Retourne une réponse explicitement étiquetée comme <strong>chiffres de 2024</strong> :</p>
+            <ul>
+              <li>Indique « fondé sur les taux les plus récents dont je dispose - <strong>taux de 2024</strong> »</li>
+              <li>Fournit le maximum correct de 2024 (63 200 $, 668 $/semaine) mais sans confirmation pour 2026</li>
+              <li>Décrit correctement la structure de calcul des meilleures semaines</li>
+              <li>Ne cite aucune source du gouvernement du Canada</li>
+              <li>Aucune ressource EDSC injectée - le modèle s'appuie sur ses données d'entraînement</li>
+              <li>Conseille à l'utilisateur de « confirmer les chiffres actuels sur le site Web de Service Canada » - reconnaissant ainsi sa propre incertitude</li>
+            </ul>
+            <p>Les chiffres de 2024 et de 2026 coïncident dans ce cas. Au cours d'années précédentes, la rémunération assurable maximale a changé - un citoyen se fiant aux données d'entraînement lors d'un changement recevrait des informations incorrectes sur ses prestations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-delta">
+        <div class="delta-header">⚖ DELTA DE GOUVERNANCE - Contrôles absents dans la réponse non gouvernée</div>
+        <span class="risk-line">PORTAIL : CONTOURNÉ - SC-GATE-AUTHORIZED-001 non appliqué</span><br>
+        <span class="risk-line">FICHE DE TAUX : NON INJECTÉE - aucune ressource officielle EDSC utilisée</span><br>
+        <span class="risk-line">RESSOURCES : AUCUNE - aucune source faisant autorité du gouvernement du Canada</span><br>
+        <span class="risk-line">LISTE VERTE : NON APPLIQUÉE - URL non vérifiées</span><br>
+        <span class="risk-line">RISQUE : Chiffres tirés des données d'entraînement - exactitude dépendante de l'année non garantie</span>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TARIFICATION -->
+  <div class="content-section" id="tarification">
+    <h2>Tarification institutionnelle</h2>
+    <p class="section-intro">Licences transparentes et tout compris pour les universités de taille moyenne - fondées sur le déploiement pilote à l'University Canada West.</p>
+
+    <p>COMPAiSS est offert sous forme de licence de plateforme institutionnelle. L'infrastructure, le traitement IA, la surveillance de la gouvernance, le suivi et les rapports sont tous inclus dans les frais de licence annuels. Les institutions ne gèrent pas et ne paient pas séparément les composantes sous-jacentes.</p>
+
+    <p>La tarification ci-dessous est fondée sur le déploiement d'une université de taille moyenne (environ 7 000 à 10 000 étudiants) avec une portée initiale ciblant les Affaires étudiantes et services - le point de contact institutionnel le plus fréquemment sollicité par les étudiants nouveaux et en cours d'études. L'année 1 est projetée de manière conservatrice à environ 12 000 sessions annuelles.</p>
+
+    <div class="cost-summary-grid">
+      <div class="cost-item">
+        <div class="ci-label">Frais de mise en oeuvre</div>
+        <div class="ci-value">Renoncés</div>
+        <div class="ci-sub">Année 1 seulement</div>
+      </div>
+      <div class="cost-item">
+        <div class="ci-label">Licence annuelle (A1-A2)</div>
+        <div class="ci-value">22 000 $</div>
+        <div class="ci-sub">Tout compris</div>
+      </div>
+      <div class="cost-item">
+        <div class="ci-label">Licence annuelle (A3)</div>
+        <div class="ci-value">23 000 $</div>
+        <div class="ci-sub">~20 % de croissance d'utilisation</div>
+      </div>
+      <div class="cost-item">
+        <div class="ci-label">Délai de déploiement</div>
+        <div class="ci-value">2-3 sem.</div>
+        <div class="ci-sub">À partir de la signature du contrat</div>
+      </div>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong>Ce que la licence inclut :</strong> capacité de traitement IA, infrastructure d'hébergement sécurisée (disponibilité 24/7, chiffrement, protection du trafic), surveillance de la gouvernance et validation des politiques (maintenance continue de la liste verte, mises à jour des limites de périmètre, révisions trimestrielles des risques), surveillance et analytique (analyses d'engagement anonymisées, tableaux de bord administratifs, diagnostics de performance), et une période pilote du personnel pouvant aller jusqu'à 30 jours avant le déploiement complet aux étudiants.</p>
+    </div>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Cadre d'utilisation et de croissance</h3>
+
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Niveau d'utilisation</th>
+          <th>Plage d'interactions</th>
+          <th>Impact sur les coûts</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dans la plage projetée</strong></td>
+          <td>~12 000/an</td>
+          <td>Entièrement inclus</td>
+          <td>Aucune action requise</td>
+        </tr>
+        <tr>
+          <td>Surutilisation modérée</td>
+          <td>120-150 % de la projection</td>
+          <td>Coût IA incrémentiel seulement</td>
+          <td>Suivi ; absorbé dans la mesure du raisonnable</td>
+        </tr>
+        <tr>
+          <td>Surutilisation importante</td>
+          <td>&gt;150 % de la projection</td>
+          <td>Révision de la mise à l'échelle</td>
+          <td>Discussion d'ajustement tarifaire</td>
+        </tr>
+        <tr>
+          <td>Sous-utilisation importante</td>
+          <td>&lt;50 % de la projection</td>
+          <td>Coût variable réduit</td>
+          <td>Révision de l'année 1 possible</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Rabais de parrainage réseau GUS</h3>
+    <p>Pour les institutions membres du Système universitaire mondial GUS : chaque nouvelle institution membre GUS qui signe une licence de plateforme COMPAiSS fait bénéficier l'institution parraine d'un rabais de 10 % sur son renouvellement annuel - cumulatif, jusqu'à un maximum de 30 % de réduction totale.</p>
+  </div>
+
+  <hr>
+
+  <!-- COMPARAISON CONCURRENTIELLE -->
+  <div class="content-section" id="comparaison-concurrentielle">
+    <h2>Comparaison concurrentielle</h2>
+    <p class="section-intro">Coûts annuels de licence pour des plateformes d'assistance IA comparables déployées dans l'enseignement supérieur. Les chiffres excluent la mise en oeuvre, l'intégration et la configuration de gouvernance - qui ajoutent généralement 15 à 30 % au coût total de possession de la première année pour les solutions concurrentes.</p>
+
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Plateforme</th>
+          <th>Petite université</th>
+          <th>Université moyenne</th>
+          <th>Grande université</th>
+          <th>Modèle tarifaire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bolt AI Assistants</td>
+          <td>30 K$ - 50 K$</td>
+          <td>50 K$ - 80 K$</td>
+          <td>80 K$ - 110 K$</td>
+          <td>Abonnement annuel</td>
+        </tr>
+        <tr>
+          <td>Capacity AI</td>
+          <td>30 K$ - 55 K$</td>
+          <td>55 K$ - 85 K$</td>
+          <td>85 K$ - 120 K$</td>
+          <td>Utilisation + frais de plateforme</td>
+        </tr>
+        <tr>
+          <td>Coveo AI</td>
+          <td>40 K$ - 70 K$</td>
+          <td>70 K$ - 100 K$</td>
+          <td>100 K$ - 140 K$</td>
+          <td>Contrat d'entreprise</td>
+        </tr>
+        <tr>
+          <td>Intercom (Éducation)</td>
+          <td>45 K$ - 75 K$</td>
+          <td>75 K$ - 110 K$</td>
+          <td>110 K$ - 150 K$</td>
+          <td>Utilisation + sièges</td>
+        </tr>
+        <tr>
+          <td>Ivy.ai</td>
+          <td>45 K$ - 75 K$</td>
+          <td>75 K$ - 110 K$</td>
+          <td>110 K$ - 145 K$</td>
+          <td>Abonnement annuel</td>
+        </tr>
+        <tr>
+          <td>Mainstay (AdmitHub)</td>
+          <td>35 K$ - 60 K$</td>
+          <td>60 K$ - 95 K$</td>
+          <td>95 K$ - 135 K$</td>
+          <td>Abonnement annuel</td>
+        </tr>
+        <tr>
+          <td>Ocelot</td>
+          <td>20 K$ - 40 K$</td>
+          <td>40 K$ - 65 K$</td>
+          <td>65 K$ - 90 K$</td>
+          <td>Abonnement annuel</td>
+        </tr>
+        <tr>
+          <td>Verge AI</td>
+          <td>25 K$ - 45 K$</td>
+          <td>45 K$ - 75 K$</td>
+          <td>75 K$ - 120 K$</td>
+          <td>Contrat d'entreprise</td>
+        </tr>
+        <tr>
+          <td>Zendesk Answer Bot</td>
+          <td>25 K$ - 45 K$</td>
+          <td>45 K$ - 75 K$</td>
+          <td>75 K$ - 105 K$</td>
+          <td>Tarification par agent</td>
+        </tr>
+        <tr class="compaiss-row">
+          <td>COMPAiSS (Univ. moyenne - A1)</td>
+          <td> - </td>
+          <td><strong>22 000 $</strong></td>
+          <td> - </td>
+          <td>Projet pilote institutionnel axé sur la gouvernance - frais de mise en oeuvre renoncés, révision à 6 mois, tout compris</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size: 0.88rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic;">COMPAiSS est dimensionné pour le périmètre de déploiement spécifique. Les chiffres des concurrents reflètent les niveaux institutionnels standard. L'avantage tarifaire se réduirait à grande échelle ; cependant, l'architecture de gouvernance pré-inférence de COMPAiSS demeure unique dans l'ensemble concurrentiel, quelle que soit l'échelle.</p>
+
+    <div class="card-grid" style="margin-top: 2rem;">
+      <div class="card">
+        <div class="card-icon">🏗</div>
+        <h3>Gouvernance pré-inférence</h3>
+        <p>La validation des sources et l'application du périmètre se produisent avant la génération IA. Aucun concurrent n'opère à cette couche architecturale. Chaque plateforme ci-dessus applique le filtrage après l'inférence - ce qui signifie que le contenu halluciné est produit en premier et supprimé ensuite.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔌</div>
+        <h3>Intégration TI minimale</h3>
+        <p>S'intègre directement au site Web existant de l'institution. L'authentification unique optionnelle nécessite une seule inscription d'application dans Azure AD - aucune installation de serveur, migration de base de données ou modification d'infrastructure requise.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Prêt pour l'approvisionnement</h3>
+        <p>L'autorisation pré-inférence signifie que chaque interaction suit un chemin de gouvernance documenté et reproductible. Compatible avec les exigences des comités de gouvernance IA, les cadres d'EIA et les normes d'approvisionnement gouvernementales.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- RETOUR SUR INVESTISSEMENT -->
+  <div class="content-section" id="retour-sur-investissement">
+    <h2>Retour sur investissement</h2>
+    <p class="section-intro">Récupération du temps du personnel modélisée pour une équipe des Affaires étudiantes d'une université de taille moyenne - à trois niveaux d'adoption.</p>
+
+    <p>Les équipes des Affaires étudiantes des institutions de cette taille gèrent des volumes élevés de demandes concentrées autour de cycles institutionnels prévisibles : arrivées en début de session, périodes d'inscription, échéances de documents gouvernementaux et remise des diplômes. Une part importante de ces demandes est routinière, fondée sur des politiques et répondable à partir de sources vérifiées - le profil de requête précis que COMPAiSS est conçu pour traiter.</p>
+
+    <div class="highlight-block">
+      <p><strong>Référence : 1 ETP aux Affaires étudiantes (demandes routinières)</strong><br>
+      Coût annuel entièrement chargé (salaire + avantages sociaux) : 70 000 $ - 85 000 $</p>
+    </div>
+
+    <table class="roi-table">
+      <thead>
+        <tr>
+          <th>Niveau d'adoption</th>
+          <th>Détournement des demandes</th>
+          <th>Sessions redirigées</th>
+          <th>Compensation ETP / Temps du personnel récupéré</th>
+          <th>Retour sur le coût COMPAiSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Faible</strong></td>
+          <td>~15 %</td>
+          <td>200-300/an</td>
+          <td>0,1-0,2 ETP | 7 000 $ - 17 000 $ récupérés</td>
+          <td>Environ neutre sur les coûts</td>
+        </tr>
+        <tr>
+          <td><strong>Moyen</strong></td>
+          <td>~35 %</td>
+          <td>500-700/an</td>
+          <td>0,3-0,5 ETP | 21 000 $ - 42 000 $ récupérés</td>
+          <td><strong>Retour de 1,5× à 3×</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Élevé</strong></td>
+          <td>~55 %</td>
+          <td>800-1 200/an</td>
+          <td>0,6-0,9 ETP | 42 000 $ - 76 000 $ récupérés</td>
+          <td><strong>Retour de 3× à 5×</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size: 0.88rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic;">Les chiffres de récupération du temps du personnel sont fondés sur un coût ETP entièrement chargé de 70 000 $ - 85 000 $/an et un calcul de compensation proportionnelle. La récupération réelle variera selon la portée du déploiement et le taux d'adoption.</p>
+
+    <div class="card-grid" style="margin-top: 1.5rem;">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h3>À adoption moyenne</h3>
+        <p>COMPAiSS est autofinancé et compense une part significative d'un poste du personnel - répondant directement aux lacunes de capacité sans ajouter de ressources humaines.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <h3>À adoption élevée</h3>
+        <p>Les économies de temps du personnel approchent le coût total d'un ETP - rendant COMPAiSS effectivement autofinancé tout en améliorant simultanément la qualité du service et la disponibilité 24/7.</p>
+      </div>
+    </div>
+
+    <div style="
+      margin-top: 2.5rem;
+      padding: 2rem 2.2rem;
+      background: rgba(240,196,76,0.08);
+      border: 1px solid rgba(240,196,76,0.25);
+      border-radius: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
+    ">
+      <div style="
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #f0c44c;
+        margin-bottom: 0.7rem;
+        font-weight: 600;
+      ">Demander une évaluation</div>
+      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
+        COMPAiSS est disponible pour évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance et la tarification pour votre institution :
+      </p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20d%27évaluation%20COMPAiSS"
+         style="
+           display: inline-block;
+           padding: 0.7rem 1.6rem;
+           background: #f0c44c;
+           color: #000;
+           font-weight: 600;
+           font-size: 0.92rem;
+           border-radius: 6px;
+           text-decoration: none;
+           letter-spacing: 0.04em;
+         ">
+        Demander une démonstration &rarr;
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p style="margin-top: 0.8rem;">
+      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Retour en haut">↑</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+
+  function checkScroll() {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+
+  backBtn.addEventListener('click', () => {
+    const nav = document.querySelector('.section-nav');
+    nav.scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
+</body>
+</html>
