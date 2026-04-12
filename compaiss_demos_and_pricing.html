@@ -15,7 +15,7 @@ gtag('config', 'G-JR7LJGK5PK');
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Governance in Action</title>
+  <title>Governance in Action - COMPAiSS</title>
 
   <style>
     :root {
@@ -628,7 +628,7 @@ gtag('config', 'G-JR7LJGK5PK');
     <ul>
       <li><a href="/governance.html">AI Governance</a></li>
       <li><a href="/ai-risk-assessment.html">AI Risk Assessment</a></li>
-      <li><a href="/compaiss_demos_and_pricing.html" class="active">COMPAiSS Demos and Pricing</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html" class="active">Governance in Action</a></li>
       <li><a href="/index_french.html">FR</a></li>
     </ul>
   </nav>
@@ -723,19 +723,18 @@ gtag('config', 'G-JR7LJGK5PK');
             </div>
           </div>
         </div>
-        <div class="ungoverned-panel">
-          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+              <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model, No Governance</div>
           <div class="panel-content">
-            <p>Returns similar structure but with critical differences:</p>
+            <p><strong>What to look for when you expand:</strong> The response sounds caring and helpful - but every specific resource it cites is unverified against Dalhousie's approved sources. Look for these errors in the full response:</p>
             <ul>
-              <li>Cites <strong>Good2Talk</strong> (1-833-292-3698) - a third-party service not in Dalhousie's authorized scope</li>
-              <li>Links to dal.ca/campus_life/health-and-wellness - an unverified URL not confirmed against institutional greenlist</li>
-              <li>References <strong>DSU Advocacy</strong> (dsadvocacy.ca) - an external organization not authorized by the Dalhousie deployment</li>
-              <li>Recommends calling 988 - a national crisis line outside institutional scope</li>
-              <li>No citation of Student Absence Regulation or Student Accommodation Policy</li>
+              <li><strong>"Good2Talk (for post-secondary students in NS): 1-833-292-3698"</strong> - this third-party crisis line is not on Dalhousie's authorized greenlist and has not been approved for this deployment.</li>
+              <li><strong>"dal.ca/campus_life/health-and-wellness"</strong> - an unverified URL. The governed version uses the confirmed portal link from the Dalhousie greenlist.</li>
+              <li><strong>"DSU Advocacy... dsadvocacy.ca"</strong> - an external organization outside the Dalhousie deployment scope, cited without institutional authorization.</li>
+              <li>No mention anywhere of the Student Absence Regulation or the Student Accommodation Policy (revised June 2025) - the two most important policy documents for this student's situation.</li>
             </ul>
-            <p>The response sounds helpful and authoritative. None of the third-party resources cited were verified against Dalhousie's approved sources.</p>
-            <div class="full-response-toggle">
+          </div>
+          <div class="full-response-toggle">
               <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
               <div class="full-response-body">
                 <p>I'm really glad you reached out. Feeling overwhelmed about grades is very common at Dal (especially around midterms/finals), and you don't have to handle it alone. There are specific supports on campus that are meant exactly for this.</p>
@@ -818,19 +817,18 @@ gtag('config', 'G-JR7LJGK5PK');
             </div>
           </div>
         </div>
-        <div class="ungoverned-panel">
-          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+              <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model, No Governance</div>
           <div class="panel-content">
-            <p>Returns a confident, detailed response with fabricated specifics:</p>
+            <p><strong>What to look for when you expand:</strong> The response reads like an authoritative procedural guide - but it invents specific details that do not exist in UCW policy. Look for these errors:</p>
             <ul>
-              <li>States student is contacted "within a few business days to 1-2 weeks" - <strong>no such timeline exists in UCW policy</strong></li>
-              <li>Lists specific first-offence penalties as UCW sanctions - <strong>invented categories</strong></li>
-              <li>States appeals must be filed "often within 5-10 business days" - <strong>not verified against UCW procedure</strong></li>
-              <li>Claims minor first offences "usually do not appear on official transcript" - <strong>unverified against UCW Policy 5006</strong></li>
-              <li>Suggests emailing academic.integrity@ucanwest.ca - <strong>an unverified email address</strong></li>
+              <li><strong>"usually within a few business days to 1-2 weeks after detection"</strong> - this timeline was fabricated by the model. No such deadline exists in UCW Policy 5006 or Procedure 5006p.</li>
+              <li><strong>The list of first-offence penalties</strong> (warning, reduced grade, zero, redo) - presented as UCW sanctions but not verified against Policy 5006. These categories may not exist as described in UCW's actual procedure.</li>
+              <li><strong>"often 5-10 business days"</strong> to appeal - a specific deadline invented without reference to UCW's actual appeal procedure.</li>
+              <li><strong>"academic.integrity@ucanwest.ca"</strong> - an unverified email address cited as an official contact. This is a direct greenlist violation.</li>
             </ul>
-            <p>A student relying on this response could miss a real deadline, misunderstand actual sanctions, or act on incorrect transcript information.</p>
-            <div class="full-response-toggle">
+          </div>
+          <div class="full-response-toggle">
               <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
               <div class="full-response-body">
                 <p>I don't have live access to UCW's current Academic Integrity Procedure, and universities periodically update timelines and terminology. For absolute accuracy, you should consult the UCW Academic Calendar (current year), UCW Academic Integrity Policy &amp; Procedure document, or contact Student Affairs / the Registrar's Office. That said, based on UCW's established academic integrity framework, the process generally follows this structure:</p>
@@ -844,7 +842,7 @@ gtag('config', 'G-JR7LJGK5PK');
                 <p>Students typically have a limited timeframe to appeal (often 5-10 business days after receiving the decision). Appeals must usually be based on procedural error, new evidence, or unreasonable penalty.</p>
                 <h4>5. Recording of the Decision</h4>
                 <p>UCW typically records all academic integrity findings internally and maintains records for tracking repeat offences. Whether it appears on the official academic transcript depends on severity. Minor first offences usually do not appear on the official transcript. A failing grade in a course appears as a normal course grade (e.g., "F"). Suspensions or expulsions may appear as "Required to Withdraw" or "Academic Suspension." Internal records are kept even if not visible on the transcript.</p>
-                <p>To get precise timelines and procedural wording: check the current UCW Academic Calendar or email academic.integrity@ucanwest.ca or your Program Advisor.</p>
+                <p>To get precise timelines and procedural wording: check the current UCW Academic Calendar or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caaba9abaeafa7a3a9e4a3a4beafadb8a3beb38abfa9aba4bdafb9bee4a9ab">[email&#160;protected]</a> or your Program Advisor.</p>
               </div>
             </div>
           </div>
@@ -912,18 +910,17 @@ gtag('config', 'G-JR7LJGK5PK');
             </div>
           </div>
         </div>
-        <div class="ungoverned-panel">
-          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+              <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model, No Governance</div>
           <div class="panel-content">
-            <p>Returns a plausible but inaccurate response:</p>
+            <p><strong>What to look for when you expand:</strong> The response sounds authoritative and specific - but it gets the most important facts wrong. These errors could cause a student to violate a mandatory policy. Look for these in the full response:</p>
             <ul>
-              <li>States probation is triggered if "TGPA is below 2.00" - <strong>incorrect</strong>. Arts probation uses CGPA thresholds, not TGPA alone</li>
-              <li>States "sometimes 12-14 credits recommended" - <strong>incorrect</strong>. The 14-credit cap is mandatory, not a recommendation</li>
-              <li>References "Arts OASIS advisor" - <strong>the correct office is Arts Student Affairs</strong>, not OASIS</li>
-              <li>States Required to Withdraw is "normally for one academic year" - <strong>not verified against current McGill policy</strong></li>
+              <li><strong>"You are placed on academic probation if your Term GPA (TGPA) is below 2.00"</strong> - this is incorrect. Faculty of Arts probation is triggered by CGPA falling between 1.50 and 1.99. A student with low TGPA but adequate CGPA is not on probation.</li>
+              <li><strong>"sometimes 12-14 credits recommended"</strong> - this is incorrect. The 14-credit cap is mandatory under Faculty of Arts rules, not a recommendation. Exceeding it is a policy violation.</li>
+              <li><strong>"meet with an Arts OASIS advisor"</strong> - the correct office is Arts Student Affairs. Arts OASIS is a different service. This directs the student to the wrong office at a critical moment.</li>
             </ul>
-            <p>Each error is plausible and sounds authoritative. A student acting on the incorrect course load information could face academic consequences.</p>
-            <div class="full-response-toggle">
+          </div>
+          <div class="full-response-toggle">
               <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
               <div class="full-response-body">
                 <p>I'm sorry you're dealing with this - academic probation can feel stressful, but it's very recoverable. Here's how it works specifically for McGill Faculty of Arts students:</p>
@@ -1002,17 +999,17 @@ gtag('config', 'G-JR7LJGK5PK');
             </div>
           </div>
         </div>
-        <div class="ungoverned-panel">
-          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+              <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model, No Governance</div>
           <div class="panel-content">
-            <p>Returns a general response with several unverified claims:</p>
+            <p><strong>What to look for when you expand:</strong> The response describes a plausible-sounding appeal process - but gets the structure wrong in ways that could cause a student to miss a binding deadline. Look for these errors:</p>
             <ul>
-              <li>States appeals go to "Departmental or Faculty Academic Integrity Committee" - <strong>not the correct TMU appeal structure under Policy 168</strong></li>
-              <li>States "transcript may not explicitly state academic misconduct" - <strong>contradicts Policy 170(a) transcript notation rules</strong></li>
-              <li>References "TMU Students' Union (TMSU) Student Advocacy" - <strong>unverified resource, not in TMU greenlist</strong></li>
-              <li>Does not cite Policy 168, Policy 170(a), or Policy 60</li>
+              <li><strong>"Appeals usually go to the Departmental or Faculty Academic Integrity Committee"</strong> - this is the wrong appeal body. Under Policy 168, grade appeals go to Department (Level 1), Faculty (Level 2), then Senate Appeals Committee (Level 3). The "Academic Integrity Committee" is not the correct pathway.</li>
+              <li><strong>"the transcript may not explicitly state academic misconduct"</strong> - this contradicts Policy 170(a), Section 7.5, which sets specific binding rules for DS, DW, and expulsion notations.</li>
+              <li><strong>"TMU Students' Union (TMSU) Student Advocacy"</strong> - cited as a free resource but not verified against the TMU greenlist and outside the authorized deployment scope.</li>
             </ul>
-            <div class="full-response-toggle">
+          </div>
+          <div class="full-response-toggle">
               <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
               <div class="full-response-body">
                 <p>I'm sorry you're dealing with that - an F for academic misconduct is serious, but you do have rights. At Toronto Metropolitan University (TMU), academic misconduct is handled under Senate Policy 60 (Academic Integrity) and the Student Code of Academic Conduct.</p>
@@ -1100,19 +1097,17 @@ gtag('config', 'G-JR7LJGK5PK');
             </div>
           </div>
         </div>
-        <div class="ungoverned-panel">
-          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+              <div class="ungoverned-panel">
+          <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model, No Governance</div>
           <div class="panel-content">
-            <p>Returns a response explicitly labelled as <strong>2024 figures</strong>:</p>
+            <p><strong>What to look for when you expand:</strong> The response is structurally similar to the governed version - but it draws entirely from training data rather than verified 2026 Government of Canada sources. Look for these differences:</p>
             <ul>
-              <li>States "based on the latest published rates available to me - <strong>2024 rates</strong>"</li>
-              <li>Provides correct 2024 maximum ($63,200, $668/week) but without 2026 confirmation</li>
-              <li>Does not cite any Government of Canada source</li>
-              <li>No ESDC assets injected - model is drawing from training data</li>
-              <li>Advises user to "confirm current numbers on the Service Canada website" - acknowledging its own uncertainty</li>
+              <li><strong>"based on the latest published rates available to me - 2024 rates"</strong> - the model explicitly labels its own figures as 2024 data and advises the user to verify elsewhere. The governed response provides confirmed 2026/2027 figures from official ESDC sources.</li>
+              <li><strong>No Government of Canada sources cited anywhere</strong> - every figure in the ungoverned response is drawn from training data with no link to canada.ca or ESDC.</li>
+              <li><strong>"under about $25,921"</strong> as the Family Supplement income threshold - this specific figure is not verified against current ESDC guidelines and may be outdated or incorrect.</li>
             </ul>
-            <p>The 2024 and 2026 figures happen to match in this case. In prior years, maximum insurable earnings have changed - a citizen relying on training-data figures in a year of change would receive incorrect benefit information.</p>
-            <div class="full-response-toggle">
+          </div>
+          <div class="full-response-toggle">
               <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
               <div class="full-response-body">
                 <p>Here's how Employment Insurance (EI) regular benefits work in Canada (based on the latest published rates available to me - 2024 rates). Because EI figures are updated yearly, you should confirm current numbers on the Service Canada website for 2026.</p>
@@ -1320,7 +1315,7 @@ gtag('config', 'G-JR7LJGK5PK');
     <div style="margin-top: 2.5rem; padding: 2rem 2.2rem; background: rgba(240,196,76,0.08); border: 1px solid rgba(240,196,76,0.25); border-radius: 10px; font-family: system-ui, -apple-system, sans-serif;">
       <div style="font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #f0c44c; margin-bottom: 0.7rem; font-weight: 600;">Request an Evaluation</div>
       <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation and pricing for your institution:</p>
-      <a href="mailto:counterfactualtheory@gmail.com?subject=COMPAiSS%20Evaluation%20Request" style="display: inline-block; padding: 0.7rem 1.6rem; background: #f0c44c; color: #000; font-weight: 600; font-size: 0.92rem; border-radius: 6px; text-decoration: none; letter-spacing: 0.04em;">Request a Demonstration &rarr;</a>
+      <a href="/cdn-cgi/l/email-protection#33505c465d4756415552504746525f475b565c414a73545e525a5f1d505c5e0c404651595650470e707c7e63725a60601601037645525f4652475a5c5d16010361564246564047" style="display: inline-block; padding: 0.7rem 1.6rem; background: #f0c44c; color: #000; font-weight: 600; font-size: 0.92rem; border-radius: 6px; text-decoration: none; letter-spacing: 0.04em;">Request a Demonstration &rarr;</a>
     </div>
   </div>
 
@@ -1328,13 +1323,13 @@ gtag('config', 'G-JR7LJGK5PK');
 
 <footer>
   <div class="footer-inner">
-    <p style="margin-top: 0.8rem;">Contact: <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
+    <p style="margin-top: 0.8rem;">Contact: <a href="/cdn-cgi/l/email-protection#65060a100b11001703040611100409110d000a171c250208040c094b060a08"><span class="__cf_email__" data-cfemail="55363a203b21302733343621203439213d303a272c153238343c397b363a38">[email&#160;protected]</span></a></p>
   </div>
 </footer>
 
 <button id="backToTop" aria-label="Back to top">↑</button>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleResponse(btn) {
     btn.classList.toggle('open');
     const body = btn.nextElementSibling;
@@ -1344,25 +1339,3 @@ gtag('config', 'G-JR7LJGK5PK');
       btn.childNodes[1].textContent = ' Hide full response';
     } else {
       const isGoverned = btn.closest('.governed-panel') !== null;
-      btn.childNodes[1].textContent = isGoverned ? ' View full governed response' : ' View full ungoverned response';
-    }
-  }
-
-  const backBtn = document.getElementById('backToTop');
-
-  function checkScroll() {
-    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-  }
-
-  window.addEventListener('scroll', checkScroll);
-  window.addEventListener('load', checkScroll);
-
-  backBtn.addEventListener('click', () => {
-    const nav = document.querySelector('.section-nav');
-    nav.scrollIntoView({ block: 'start' });
-    history.replaceState(null, null, window.location.pathname);
-  });
-</script>
-
-</body>
-</html>
