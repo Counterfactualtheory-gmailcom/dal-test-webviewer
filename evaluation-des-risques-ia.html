@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="fr">
 <head>
-
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
 <script>
@@ -10,866 +9,749 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-JR7LJGK5PK');
 </script>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Évaluation des risques et de la responsabilité en matière d'IA - COMPAiSS</title>
-
-  <style>
-    :root {
-      --wrap: 980px;
-      --pad: 32px;
-      --bg-page: #0c2d5a;
-      --bg-panel: #10386e;
-      --bg-panel-soft: rgba(16,56,110,0.55);
-      --bg-card: rgba(255,255,255,0.05);
-      --text-main: #c6cfdd;
-      --text-muted: #aeb9cc;
-      --text-heading: #ffffff;
-      --accent: #f0c44c;
-      --accent-soft: rgba(240,196,76,0.12);
-      --border-soft: rgba(255,255,255,0.08);
-      --border-accent: rgba(240,196,76,0.3);
-      --link: #9cc9ff;
-      --link-visited: #c8e0ff;
-      --radius: 10px;
-      --green: #4caf82;
-      --green-soft: rgba(76,175,130,0.12);
-      --red-soft: rgba(220,80,80,0.10);
-      --red-border: rgba(220,80,80,0.25);
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg-page);
-      color: var(--text-main);
-      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
-    a:visited { color: var(--link-visited); }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    .skip-link {
-      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
-    }
-    .skip-link:focus {
-      left: 16px; top: 16px; width: auto; height: auto;
-      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
-    }
-
-    header { border-bottom: 1px solid var(--border-soft); }
-
-    .nav {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 18px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav .brand-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text-heading);
-      font-family: system-ui, -apple-system, sans-serif;
-      text-decoration: none;
-    }
-
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.4rem;
-      margin: 0;
-      padding: 0;
-      font-size: 0.9rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .nav a { text-decoration: none; color: var(--text-muted); }
-    .nav a:hover { color: var(--text-heading); }
-    .nav a.active { color: var(--accent); }
-
-    main {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: var(--pad);
-    }
-
-    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
-    footer .footer-inner {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 2.5rem var(--pad);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 3.5rem 0 2.5rem;
-      border-bottom: 1px solid var(--border-soft);
-      margin-bottom: 3rem;
-    }
-
-    .page-header .eyebrow {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .page-header h1 {
-      font-size: 2.6rem;
-      color: var(--text-heading);
-      margin: 0 0 1rem;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-
-    .page-header .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 60ch;
-      margin: 0 auto;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .section-nav {
-      margin-bottom: 3rem;
-      padding: 1.4rem 1.6rem;
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-soft);
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .section-nav strong {
-      display: block;
-      margin-bottom: 0.9rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .section-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem 2rem;
-    }
-
-    @media (max-width: 600px) {
-      .section-nav ul { grid-template-columns: 1fr; }
-    }
-
-    .section-nav li { margin: 0; }
-    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
-    .section-nav a:hover { color: var(--text-heading); }
-
-    .gov-section {
-      margin-bottom: 4rem;
-      padding-top: 1rem;
-    }
-
-    .gov-section h2 {
-      font-size: 1.7rem;
-      color: var(--text-heading);
-      margin: 0 0 0.5rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border-accent);
-      letter-spacing: 0.01em;
-    }
-
-    .gov-section .section-intro {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin: 0 0 1.8rem;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-style: italic;
-    }
-
-    .gov-section p {
-      max-width: 70ch;
-      margin: 1em 0;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
-
-    .card h3 {
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.6rem;
-    }
-
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-main);
-      margin: 0;
-      line-height: 1.6;
-      max-width: none;
-    }
-
-    .verified-list {
-      list-style: none;
-      margin: 1.5rem 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .verified-list li {
-      padding: 0.85rem 1rem 0.85rem 3rem;
-      margin-bottom: 0.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 8px;
-      position: relative;
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-
-    .verified-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 1rem;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    .verified-list li strong {
-      color: var(--text-heading);
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.92rem;
-    }
-
-    .verified-list li span {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-    }
-
-    .risk-list {
-      list-style: none;
-      margin: 1.5rem 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .risk-list li {
-      padding: 0.85rem 1rem 0.85rem 3rem;
-      margin-bottom: 0.6rem;
-      background: var(--red-soft);
-      border: 1px solid var(--red-border);
-      border-radius: 8px;
-      position: relative;
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-
-    .risk-list li::before {
-      content: "!";
-      position: absolute;
-      left: 1.1rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .risk-list li strong {
-      color: var(--text-heading);
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.92rem;
-    }
-
-    .risk-list li span {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-    }
-
-    .test-result {
-      background: var(--green-soft);
-      border: 1px solid rgba(76,175,130,0.3);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
-      margin: 1.5rem 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .test-result .test-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .test-result p {
-      margin: 0;
-      font-size: 0.93rem;
-      color: var(--text-main);
-      max-width: none;
-    }
-
-    .finding-block {
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1.4rem 1.6rem;
-      margin: 1.8rem 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .finding-block .finding-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .finding-block p {
-      margin: 0 0 0.6rem;
-      font-size: 0.93rem;
-      color: var(--text-main);
-      max-width: none;
-    }
-
-    .finding-block p:last-child { margin-bottom: 0; }
-
-    .data-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .data-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1.2rem 1.4rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .data-item .di-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    .data-item p {
-      font-size: 0.88rem;
-      color: var(--text-main);
-      margin: 0;
-      max-width: none;
-      line-height: 1.55;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-soft);
-      margin: 3rem 0;
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: var(--accent);
-      color: #000;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-
-    #backToTop:hover { opacity: 0.9; }
-
-    @media (max-width: 700px) {
-      .page-header h1 { font-size: 1.9rem; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>La gouvernance en action - COMPAiSS</title>
+<style>
+:root{--wrap:980px;--pad:32px;--bg-page:#0c2d5a;--bg-card:rgba(255,255,255,0.05);--text-main:#c6cfdd;--text-muted:#aeb9cc;--text-heading:#ffffff;--accent:#f0c44c;--accent-soft:rgba(240,196,76,0.12);--border-soft:rgba(255,255,255,0.08);--border-accent:rgba(240,196,76,0.3);--link:#9cc9ff;--link-visited:#c8e0ff;--radius:10px;--green:#4caf82;--green-soft:rgba(76,175,130,0.12);--red:#e05555;--red-soft:rgba(220,80,80,0.10);--red-border:rgba(220,80,80,0.25);}
+html,body{margin:0;padding:0;background:var(--bg-page);color:var(--text-main);font:18px/1.65 'Georgia','Times New Roman',serif;-webkit-text-size-adjust:100%;}
+a{color:var(--link);text-decoration:underline;text-underline-offset:0.15em;}
+a:visited{color:var(--link-visited);}
+a:hover,a:focus{opacity:.95;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;}
+.skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#000;color:#fff;padding:8px 12px;z-index:1000;}
+header{border-bottom:1px solid var(--border-soft);}
+.nav{max-width:var(--wrap);margin:0 auto;padding:18px var(--pad);display:flex;align-items:center;justify-content:space-between;}
+.nav .brand-text{font-weight:600;letter-spacing:0.04em;color:var(--text-heading);font-family:system-ui,-apple-system,sans-serif;text-decoration:none;}
+.nav ul{list-style:none;display:flex;gap:1.4rem;margin:0;padding:0;font-size:0.9rem;font-family:system-ui,-apple-system,sans-serif;}
+.nav a{text-decoration:none;color:var(--text-muted);}
+.nav a:hover{color:var(--text-heading);}
+.nav a.active{color:var(--accent);}
+main{max-width:var(--wrap);margin:0 auto;padding:var(--pad);}
+footer{border-top:1px solid var(--border-soft);margin-top:5rem;}
+footer .footer-inner{max-width:var(--wrap);margin:0 auto;padding:2.5rem var(--pad);font-size:0.85rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;}
+.page-header{text-align:center;padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border-soft);margin-bottom:3rem;}
+.page-header .eyebrow{font-family:system-ui,-apple-system,sans-serif;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.page-header h1{font-size:2.6rem;color:var(--text-heading);margin:0 0 1rem;letter-spacing:0.02em;line-height:1.2;}
+.page-header .subtitle{font-size:1.1rem;color:var(--text-muted);max-width:60ch;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;}
+.section-nav{margin-bottom:3rem;padding:1.4rem 1.6rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-soft);font-family:system-ui,-apple-system,sans-serif;}
+.section-nav strong{display:block;margin-bottom:0.9rem;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);}
+.section-nav ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem;}
+@media(max-width:600px){.section-nav ul{grid-template-columns:1fr;}}
+.section-nav li{margin:0;}
+.section-nav a{text-decoration:none;color:var(--link);font-size:0.92rem;}
+.section-nav a:hover{color:var(--text-heading);}
+.content-section{margin-bottom:4rem;padding-top:1rem;}
+.content-section h2{font-size:1.7rem;color:var(--text-heading);margin:0 0 0.5rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border-accent);letter-spacing:0.01em;}
+.content-section .section-intro{color:var(--text-muted);font-size:0.95rem;margin:0 0 1.8rem;font-family:system-ui,-apple-system,sans-serif;font-style:italic;}
+.content-section p{max-width:70ch;margin:1em 0;font-size:1rem;line-height:1.7;}
+hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
+.deployment-block{margin-bottom:3rem;}
+.deployment-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border-soft);}
+.deployment-badge{font-family:system-ui,-apple-system,sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:4px;background:var(--accent-soft);border:1px solid var(--border-accent);color:var(--accent);white-space:nowrap;}
+.deployment-name{font-family:system-ui,-apple-system,sans-serif;font-size:1.05rem;font-weight:600;color:var(--text-heading);}
+.question-block{background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1rem 1.4rem;margin-bottom:1.2rem;font-family:system-ui,-apple-system,sans-serif;}
+.question-block .q-label{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem;}
+.question-block .q-text{font-size:0.95rem;color:var(--text-heading);font-style:italic;line-height:1.5;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1rem;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.governed-panel{background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);padding:1.4rem;font-family:system-ui,-apple-system,sans-serif;}
+.ungoverned-panel{background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem;font-family:system-ui,-apple-system,sans-serif;}
+.panel-label{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.governed-panel .panel-label{color:var(--green);}
+.ungoverned-panel .panel-label{color:var(--red);}
+.panel-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.governed-panel .panel-label .dot{background:var(--green);}
+.ungoverned-panel .panel-label .dot{background:var(--red);}
+.full-response-toggle{margin-top:0.4rem;}
+.toggle-btn{background:none;border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-size:0.78rem;letter-spacing:0.08em;padding:0.4rem 0.9rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:border-color 0.15s,color 0.15s;}
+.governed-panel .toggle-btn:hover{border-color:var(--green);color:var(--green);}
+.ungoverned-panel .toggle-btn:hover{border-color:var(--red);color:var(--red);}
+.toggle-btn .arrow{font-size:0.65rem;transition:transform 0.2s;}
+.toggle-btn.open .arrow{transform:rotate(180deg);}
+.full-response-body{display:none;margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(255,255,255,0.06);font-size:0.84rem;line-height:1.7;color:var(--text-main);}
+.full-response-body.visible{display:block;}
+.full-response-body h4{font-size:0.82rem;color:var(--text-heading);margin:1rem 0 0.3rem;font-family:system-ui,-apple-system,sans-serif;font-weight:600;}
+.full-response-body ul{margin:0.4rem 0 0.8rem 1.2rem;padding:0;}
+.full-response-body li{margin:0.3rem 0;}
+.full-response-body p{margin:0.6rem 0;max-width:none;font-size:0.84rem;}
+.full-response-body table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:0.8rem 0;}
+.full-response-body table th{text-align:left;padding:0.4rem 0.7rem;font-size:0.75rem;color:var(--accent);border-bottom:1px solid var(--border-accent);font-family:system-ui,-apple-system,sans-serif;}
+.full-response-body table td{padding:0.4rem 0.7rem;border-bottom:1px solid var(--border-soft);vertical-align:top;}
+.receipt-box{background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:1rem 1.4rem;font-family:'Courier New',monospace;font-size:0.77rem;color:var(--text-muted);line-height:1.75;margin-top:1.2rem;}
+.receipt-box .receipt-header{color:var(--accent);font-weight:700;font-size:0.74rem;letter-spacing:0.1em;margin-bottom:0.4rem;}
+.receipt-box .receipt-intro{font-family:system-ui,-apple-system,sans-serif;font-size:0.8rem;color:var(--text-muted);font-style:italic;margin-bottom:0.8rem;display:block;}
+.receipt-box .pass-line{color:var(--green);}
+.receipt-box .risk-line{color:#e05555;}
+.governance-delta{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:1rem 1.4rem;font-family:'Courier New',monospace;font-size:0.78rem;color:var(--text-muted);line-height:1.7;}
+.governance-delta .delta-header{color:var(--accent);font-weight:700;margin-bottom:0.5rem;font-size:0.75rem;letter-spacing:0.1em;}
+.governance-delta .risk-line{color:#e05555;}
+.highlight-block{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.4rem 1.6rem;margin:1.8rem 0;font-family:system-ui,-apple-system,sans-serif;}
+.highlight-block p{margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;}
+.highlight-block p:last-child{margin-bottom:0;}
+.pricing-table,.roi-table{width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.88rem;margin:1.5rem 0;}
+.pricing-table th,.roi-table th{text-align:left;padding:0.7rem 1rem;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--border-accent);}
+.pricing-table td,.roi-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border-soft);color:var(--text-main);vertical-align:top;}
+.pricing-table tr:last-child td,.roi-table tr:last-child td{border-bottom:none;}
+.pricing-table tr.compaiss-row td{background:var(--accent-soft);color:var(--text-heading);font-weight:600;}
+.pricing-table tr.compaiss-row td:first-child{border-left:3px solid var(--accent);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:1.5rem;}
+.card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.6rem;font-family:system-ui,-apple-system,sans-serif;}
+.card .card-icon{font-size:1.4rem;margin-bottom:0.7rem;}
+.card h3{font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin:0 0 0.6rem;}
+.card p{font-size:0.92rem;color:var(--text-main);margin:0;line-height:1.6;max-width:none;}
+.cost-summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;}
+.cost-item{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.2rem 1.4rem;font-family:system-ui,-apple-system,sans-serif;text-align:center;}
+.cost-item .ci-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+.cost-item .ci-value{font-size:1.4rem;font-weight:700;color:var(--accent);line-height:1.2;}
+.cost-item .ci-sub{font-size:0.78rem;color:var(--text-muted);margin-top:0.3rem;}
+#backToTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;border:none;background:var(--accent);color:#000;font-size:20px;cursor:pointer;display:none;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.25);}
+#backToTop:hover{opacity:0.9;}
+@media(max-width:700px){.page-header h1{font-size:1.9rem;}.compare-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
 </head>
-
 <body>
-
 <a href="#main" class="skip-link">Passer au contenu</a>
-
 <header>
-  <nav class="nav" aria-label="Principale">
+  <nav class="nav" aria-label="Primary">
     <a href="/index_french.html" class="brand-text">COMPAiSS</a>
     <ul>
       <li><a href="/governance-fr.html">Gouvernance IA</a></li>
-      <li><a href="/evaluation-des-risques-ia.html" class="active">Évaluation des risques IA</a></li>
-      <li><a href="/gouvernance-en-action.html">Démonstrations et tarification</a></li>
-      <li><a href="/index.html">EN</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
+      <li><a href="/gouvernance-en-action.html" class="active">Gouvernance en action</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">EN</a></li>
     </ul>
   </nav>
 </header>
-
 <main id="main">
-
-  <div class="page-header">
-    <div class="eyebrow">Approvisionnement, conformité et examen réglementaire</div>
-    <h1>Évaluation des risques et de la responsabilité en matière d'IA</h1>
-    <p class="subtitle">Une évaluation structurée de COMPAiSS dans le cadre des référentiels reconnus de responsabilité en matière d'IA, à l'intention des responsables des marchés publics et des examens réglementaires institutionnels.</p>
+<div class="page-header">
+  <div class="eyebrow">Démonstrations de gouvernance en direct &amp; tarification institutionnelle</div>
+  <h1>La gouvernance en action</h1>
+  <p class="subtitle">Réponses réelles de cinq projets pilotes bêta actifs de COMPAiSS — chacune accompagnée de ce qu'une IA non gouvernée retourne à la même question. Suivi d'une tarification institutionnelle transparente.</p>
+</div>
+<div class="section-nav">
+  <strong>Navigation</strong>
+  <ul>
+    <li><a href="#what-you-are-seeing">Ce que vous voyez</a></li>
+    <li><a href="#dal">Université Dalhousie</a></li>
+    <li><a href="#ucw">University Canada West</a></li>
+    <li><a href="#mcgill">Université McGill</a></li>
+    <li><a href="#tmu">Université métropolitaine de Toronto</a></li>
+    <li><a href="#service-canada">Service Canada</a></li>
+    <li><a href="#pricing">Tarification institutionnelle</a></li>
+    <li><a href="#competitor-comparison">Comparaison concurrentielle</a></li>
+    <li><a href="#roi">Retour sur investissement</a></li>
+  </ul>
+</div>
+<div class="content-section" id="what-you-are-seeing">
+  <h2>Ce que vous voyez</h2>
+  <p class="section-intro">Démonstrations de gouvernance contrefactuelle en direct à partir de cinq projets pilotes institutionnels actifs.</p>
+  <p>Chaque démonstration ci-dessous présente la même question soumise à un projet pilote bêta actif de COMPAiSS — d'abord avec la gouvernance active, puis sans. La réponse non gouvernée est générée par le même modèle d'IA sous-jacent (GPT-5.2-latest) fonctionnant sans le portail d'exécution COMPAiSS, sans la liste verte, sans le gabarit institutionnel et sans l'injection de sources faisant autorité.</p>
+  <p>Il ne s'agit pas d'une simulation. Ce sont de vraies réponses issues de vrais déploiements. Vous pouvez reproduire n'importe laquelle d'entre elles en visitant le déploiement concerné et en soumettant la même question — avec ou sans le préfixe <code>compare:</code>.</p>
+  <div class="highlight-block">
+    <p><strong>La logique contrefactuelle :</strong> les réponses gouvernées et non gouvernées sont générées par le même modèle. Toute différence entre elles est causée exclusivement par l'architecture de gouvernance COMPAiSS — le portail d'exécution, la liste verte, l'injection de sources faisant autorité et le gabarit institutionnel. C'est l'écart de gouvernance rendu visible.</p>
+    <p>Cliquez sur <strong>Voir la réponse complète</strong> sous l'un ou l'autre panneau pour lire le texte intégral exactement tel qu'un étudiant le recevrait.</p>
   </div>
+</div>
+<hr>
 
-  <div class="section-nav">
-    <strong>Sur cette page</strong>
-    <ul>
-      <li><a href="#system-id">Identification du système</a></li>
-      <li><a href="#risk-classification">Classification des risques</a></li>
-      <li><a href="#data-governance">Gouvernance des données</a></li>
-      <li><a href="#architecture-accountability">Responsabilité architecturale</a></li>
-      <li><a href="#risk-register">Registre des risques</a></li>
-      <li><a href="#human-oversight">Surveillance humaine et recours</a></li>
-      <li><a href="#procurement-readiness">Préparation à l'approvisionnement</a></li>
-      <li><a href="#request-documentation">Demander la documentation</a></li>
-    </ul>
+<!-- DALHOUSIE -->
+<div class="content-section" id="dal">
+  <h2>Université Dalhousie</h2>
+  <p class="section-intro">Stress étudiant et soutien en santé mentale — une requête à enjeux élevés où l'exactitude des sources et l'ancrage institutionnel sont essentiels.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Projet pilote bêta actif</span>
+      <span class="deployment-name">DAL COMPAiSS — Affaires étudiantes et mieux-être</span>
+    </div>
+    <div class="question-block">
+      <div class="q-label">Question soumise</div>
+      <div class="q-text">« Je suis un étudiant de Dalhousie et je me sens dépassé et stressé par mes notes. Je ne sais pas à qui parler ni où obtenir de l'aide sur le campus. J'ai besoin de soutiens précis — tout ce qui est disponible pour m'aider à gérer cette situation. »</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS — Réponse gouvernée</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis vraiment content que vous ayez contacté le service. Se sentir dépassé par ses notes est très courant — surtout pendant les périodes chargées du trimestre — et Dalhousie dispose de plusieurs soutiens spécifiques et structurés conçus pour vous aider à gérer à la fois les aspects académiques et émotionnels de cette situation. Voici un plan de soutien clair pour que vous sachiez exactement qui contacter et pourquoi.</p>
+            <h4>✅ Étape 1 : Parler à un professionnel de la santé et du mieux-être (soutien en santé mentale et gestion du stress)</h4>
+            <p>Si le stress affecte votre sommeil, votre concentration, votre motivation ou votre humeur, votre premier arrêt devrait être le service Santé et mieux-être des étudiants de Dalhousie.</p>
+            <p>🔗 Santé et mieux-être : <a href="https://dal.ca/life-at-dal/health-and-wellness.html">Health And Wellness</a><br>
+            🔗 Rendez-vous : <a href="https://dal.ca/life-at-dal/health-and-wellness/appointments.html">Appointments</a><br>
+            🔗 Réserver un rendez-vous : <a href="https://dal.ca/life-at-dal/health-and-wellness/appointments/book-your-appointment.html">Book Your Appointment</a></p>
+            <p>📌 Ces rendez-vous sont confidentiels.<br>
+            📌 Vous pouvez voir un conseiller, un médecin, une infirmière ou un autre professionnel de la santé.<br>
+            📌 Un soutien est disponible pour le stress, l'anxiété, la pression académique, l'épuisement et les compétences d'adaptation.</p>
+            <p>Si vous n'êtes pas certain de ce qui se passe lors de votre première visite, cette page l'explique :<br>
+            🔗 Votre premier rendez-vous : <a href="https://dal.ca/life-at-dal/health-and-wellness/appointments/your-first-appointment.html">Your First Appointment</a></p>
+            <h4>✅ Étape 2 : Vérifier votre situation académique et comprendre vos notes</h4>
+            <p>L'anxiété augmente parfois quand les choses semblent floues. Comprendre où vous en êtes académiquement peut réduire l'incertitude.</p>
+            <p>🔗 Notes et dossiers étudiants : <a href="https://dal.ca/campus_life/academic-support/grades-and-student-records.html">Grades And Student Records</a></p>
+            <p>Pour comprendre la moyenne et la notation :<br>
+            🔗 Échelle et définitions des notes : <a href="https://dal.ca/campus_life/academic-support/grades-and-student-records/grade-scale-and-definitions.html">Grade Scale And Definitions</a><br>
+            🔗 Calculateur de moyenne : <a href="https://dal.ca/campus_life/academic-support/grades-and-student-records/gpa-calculator.html">Gpa Calculator</a><br>
+            🔗 Situation académique : <a href="https://dal.ca/campus_life/academic-support/grades-and-student-records/academic-standing.html">Academic Standing</a></p>
+            <ul>
+              <li>Vous vous sentez peut-être plus mal que votre situation académique réelle ne le reflète.</li>
+              <li>Connaître votre moyenne et votre situation vous aide à planifier de façon réaliste.</li>
+              <li>De nombreux étudiants se rétablissent avec succès après un trimestre difficile.</li>
+            </ul>
+            <h4>✅ Étape 3 : Rencontrer un conseiller académique (planification et stratégie de reprise)</h4>
+            <p>Si votre stress est lié au fait de prendre du retard, à la peur d'échouer, à la considération d'abandonner un cours ou à des inquiétudes concernant votre situation académique, prenez rendez-vous avec votre conseiller de faculté ou de programme.</p>
+            <p>Si vous êtes en Agriculture (campus de Truro) :<br>
+            🔗 Soutien et conseil aux étudiants : <a href="https://dal.ca/study/faculties/agriculture/student-experience/student-support-and-advising.html">Student Support And Advising</a></p>
+            <p>Les conseillers peuvent vous aider à : créer un plan de reprise, décider si vous devez vous retirer d'un cours, comprendre les règles de probation, planifier le trimestre suivant de manière stratégique et discuter de l'équilibre de la charge de travail. Ils font face à cette situation chaque trimestre. Vous n'êtes pas seul dans cette situation.</p>
+            <h4>✅ Étape 4 : Si le stress vous a fait manquer des travaux</h4>
+            <p>Si vous avez manqué des devoirs, des examens ou des cours en raison du stress, Dalhousie dispose d'une politique formelle qui peut s'appliquer :<br>
+            🔗 Règlement sur les absences étudiantes (2017, en vigueur en 2018) : <a href="https://dal.ca/content/dam/www/about/leadership-and-governance/university-policies/student-absence-regulation.pdf">Student Absence Regulation</a></p>
+            <ul>
+              <li>Permet l'autodéclaration pour les absences de courte durée (3 jours consécutifs ou moins)</li>
+              <li>Exige de contacter votre instructeur avant la date limite</li>
+              <li>Vous limite à deux déclarations d'étudiant par cours par trimestre</li>
+              <li>Exige une documentation pour les absences de plus de trois jours consécutifs</li>
+            </ul>
+            <p>Si le stress ou les problèmes de santé mentale sont persistants et créent des obstacles à la participation, vous pourriez avoir besoin d'accommodements académiques formels :<br>
+            🔗 Politique d'adaptation des étudiants (révisée en juin 2025) : <a href="https://dal.ca/content/dam/www/about/leadership-and-governance/university-policies/student-accom-policy.pdf">Student Accom Policy</a></p>
+            <p>Cette politique confirme : <em>« Les étudiants qui éprouvent des obstacles à la participation à une activité académique ou non académique en raison d'une caractéristique protégée en vertu de la législation sur les droits de la personne ont droit à un accommodement pour réduire ou éliminer ces obstacles… »</em></p>
+            <p>Le Centre d'accessibilité aux étudiants (CAE) gère ce processus. Se connecter avec le CAE peut fournir : des accommodements pour les examens, une flexibilité pour les devoirs (le cas échéant), des plans d'accommodement formels et une coordination avec les instructeurs.</p>
+            <h4>✅ Étape 5 : Si vous avez besoin d'un soutien émotionnel immédiat</h4>
+            <p>Si vous vous sentez très dépassé et avez besoin de parler à quelqu'un aujourd'hui, Santé et mieux-être est votre meilleur premier pas (voir étape 1). Des rendez-vous le jour même sont souvent disponibles selon les disponibilités. Vous méritez un soutien avant que les choses ne s'aggravent.</p>
+            <h4>🌿 Important : vous n'êtes pas vos notes</h4>
+            <p>Un trimestre difficile ne définit pas votre intelligence, votre avenir ou votre valeur. Les politiques de situation académique existent parce que les étudiants ont parfois des difficultés — et des voies de reprise existent aussi. Le fait que vous demandiez de l'aide est un signe très fort que vous vous souciez de vous améliorer.</p>
+            <h4>📋 Plan d'action sommaire</h4>
+            <p>1️⃣ Prendre un rendez-vous Santé et mieux-être (soutien confidentiel pour le stress)<br>
+            2️⃣ Consulter votre moyenne et votre situation académique à l'aide du <a href="https://dal.ca/campus_life/academic-support/grades-and-student-records/gpa-calculator.html">Gpa Calculator</a><br>
+            3️⃣ Prendre rendez-vous avec votre conseiller académique<br>
+            4️⃣ Si vous avez manqué des travaux, consulter le <a href="https://dal.ca/content/dam/www/about/leadership-and-governance/university-policies/student-absence-regulation.pdf">Student Absence Regulation</a><br>
+            5️⃣ Si le stress est persistant ou a un impact médical, contacter le Centre d'accessibilité aux étudiants</p>
+          </div>
+        </div>
+      </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis vraiment content que vous ayez contacté le service. Se sentir dépassé par ses notes est très courant à Dal (surtout autour des examens de mi-session et finaux), et vous n'avez pas à le gérer seul. Il y a des soutiens spécifiques sur le campus conçus exactement pour cela. Voici quelques options concrètes que vous pouvez utiliser tout de suite :</p>
+            <h4>🧠 1. Santé mentale et counseling (gratuit pour les étudiants)</h4>
+            <p>Centre Santé et mieux-être des étudiants de Dalhousie. Ils offrent : du counseling à court terme, des rendez-vous le jour même ou urgents, des infirmières en santé mentale, des ateliers sur le stress et l'anxiété.</p>
+            <p>📍 Campus de Halifax<br>
+            📞 902-494-2171<br>
+            🌐 <a href="https://dal.ca/campus_life/health-and-wellness.html">dal.ca/campus_life/health-and-wellness</a></p>
+            <p>Si vous vous sentez dépassé et avez besoin de parler à quelqu'un bientôt, appelez et demandez des rendez-vous de counseling le jour même.</p>
+            <h4>📞 2. Soutien immédiat 24/7 (si vous avez besoin de parler ce soir)</h4>
+            <p>Vous n'avez pas à attendre les heures de bureau.</p>
+            <p>Good2Talk (pour les étudiants postsecondaires en N.-É.)<br>
+            📞 1-833-292-3698<br>
+            Texto : 1-866-925-5454<br>
+            Disponible 24/7, gratuit et confidentiel.</p>
+            <p>Si les choses semblent ingérables ou si vous êtes en crise :<br>
+            📞 988 (Ligne d'aide en cas de crise suicidaire – 24/7 partout au Canada)</p>
+            <p>Même si vous êtes « juste vraiment stressé », vous avez absolument le droit d'appeler.</p>
+            <h4>📚 3. Soutien académique (spécifiquement pour le stress lié aux notes)</h4>
+            <p>Parfois, le stress s'atténue quand vous avez un plan académique clair.</p>
+            <p><strong>✅ Conseil académique</strong><br>
+            Le conseiller académique de votre faculté peut vous aider à comprendre votre situation de notes, à discuter des préoccupations de probation (si pertinent), à planifier les prochaines étapes et à expliquer les options comme le retrait de cours ou les prolongations.<br>
+            🌐 <a href="https://www.dal.ca/campus_life/academic-support/academic-advising.html">dal.ca/advising</a></p>
+            <p><strong>✅ Syndicat des étudiants de Dalhousie (DSU) — Défense des droits</strong><br>
+            Si vous vous inquiétez des pénalités académiques, de la communication avec les professeurs, des appels formels ou de vous sentir traité injustement — ils offrent un soutien étudiant gratuit et confidentiel.<br>
+            🌐 <a href="https://dsadvocacy.ca">dsadvocacy.ca</a><br>
+            Ils peuvent même vous aider à rédiger des courriels à vos professeurs.</p>
+            <p><strong>✅ Centre d'écriture / Compétences d'étude</strong><br>
+            Centre d'écriture (soutien à la rédaction), ateliers de compétences d'étude, aide à la gestion du temps. Ces services sont gratuits.</p>
+            <h4>🧘 4. Soutiens à la gestion du stress</h4>
+            <p>Dal Mieux-être organise souvent : des séances de pleine conscience, des ateliers de réduction du stress, des séances de groupe à participation libre. Parfois, il aide simplement de s'asseoir dans une salle avec d'autres étudiants qui sont aussi dépassés.</p>
+            <h4>Si vous ne savez pas par où commencer</h4>
+            <p>Si tout semble « trop », commencez par une petite étape :</p>
+            <ol>
+              <li>Appelez Santé et mieux-être et demandez une prise en charge en counseling.</li>
+              <li>Ou appelez Good2Talk ce soir si vous avez besoin d'un soulagement immédiat.</li>
+              <li>Ensuite, prenez rendez-vous avec un conseiller académique.</li>
+            </ol>
+            <p>Vous n'avez pas à résoudre tout votre semestre en même temps. Dites-moi un peu plus et je peux vous aider à trouver la prochaine étape la plus pratique pour votre situation. Vous n'êtes pas seul dans cette situation. 💛</p>
+          </div>
+        </div>
+<br></div>
   </div>
+</div>
 
-  <!-- IDENTIFICATION DU SYSTEME -->
-  <div class="gov-section" id="system-id">
-    <h2>Identification du système</h2>
-    <p class="section-intro">Informations d'identification essentielles pour l'approvisionnement et l'examen réglementaire.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">🏛</div>
-        <h3>Nom du système</h3>
-        <p>COMPAiSS - Compliance-Oriented Multi-Platform AI Institutional Scope System</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏗</div>
-        <h3>Type de système</h3>
-        <p>Système d'information institutionnel à portail d'exécution conditionnel. Pas une IA à usage général. Pas un système décisionnel.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">👤</div>
-        <h3>Développeur et partie responsable</h3>
-        <p>Frank Harvey, professeur titulaire de science politique et conseiller principal, Université Dalhousie. COMPAiSS Inc. détient la propriété intellectuelle et les demandes de brevet.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚖</div>
-        <h3>Statut des brevets</h3>
-        <p>Demande de brevet canadien CIPO 3,299,174 et demande de brevet américain USPTO 19/455,963 - les deux en cours d'examen, décrivant le mécanisme de portail d'exécution pré-inférence.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🚀</div>
-        <h3>Statut de déploiement</h3>
-        <p>Déploiements pilotes actifs dans quatre environnements institutionnels canadiens, dont des universités de recherche intensive et un contexte de service public fédéral. Deux pilotes supplémentaires en cours d'examen institutionnel.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤖</div>
-        <h3>Moteur d'IA</h3>
-        <p>API d'inférence OpenAI - API standard sans ajustement fin. Aucune donnée institutionnelle n'entre dans un pipeline d'entraînement de modèle, à quelque stade que ce soit.</p>
-      </div>
-    </div>
-
-    <div class="finding-block" style="margin-top: 2rem;">
-      <div class="finding-label">Portée de l'évaluation</div>
-      <p>Cette évaluation porte sur l'architecture de la plateforme COMPAiSS et le cadre de gouvernance tel qu'il est déployé dans les environnements institutionnels réglementés. Les configurations de déploiement spécifiques à chaque institution - notamment les listes de sources autorisées, les périmètres d'application et les protocoles de gestion des crises - sont documentées séparément pour chaque déploiement institutionnel et sont disponibles sur demande.</p>
-    </div>
+  <div style="background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;padding:1.4rem 1.6rem;margin:1.2rem 0;font-family:system-ui,-apple-system,sans-serif;font-size:0.88rem;color:var(--text-main);line-height:1.7;">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem;">Ce qu'il faut chercher en comparant les réponses</div>
+    <p style="margin:0;max-width:none;font-size:0.88rem;">En comparant les réponses, cherchez cinq éléments : si les affirmations renvoient directement à des sources institutionnelles vérifiées ; si la réponse est véritablement propre à l'établissement ou s'il s'agit d'une approximation générique ; si les procédures et les chiffres sont exacts ou estimés à partir de connaissances générales ; si le système reconnaît ce qu'il ne sait pas plutôt que de fabriquer des réponses plausibles ; et si la réponse reste dans le périmètre autorisé de l'établissement tout au long.</p>
   </div>
+<hr>
 
-  <hr>
-
-  <!-- CLASSIFICATION DES RISQUES -->
-  <div class="gov-section" id="risk-classification">
-    <h2>Classification des risques</h2>
-    <p class="section-intro">Évaluation au regard de la Directive sur la prise de décisions automatisée du Canada et des cadres équivalents de gouvernance de l'IA institutionnelle.</p>
-
-    <div class="test-result">
-      <div class="test-label">Constat de classification</div>
-      <p><strong>Niveau I - Peu ou pas d'impact</strong> au titre de la Directive sur la prise de décisions automatisée du Canada. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions d'évaluation pertinentes. Cette classification s'applique à l'ensemble des déploiements institutionnels actuels.</p>
+<!-- UCW -->
+<div class="content-section" id="ucw">
+  <h2>University Canada West</h2>
+  <p class="section-intro">Procédures d'intégrité académique — où des délais fabriqués et des sanctions inventées peuvent causer de graves préjudices aux étudiants.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Projet pilote bêta actif</span>
+      <span class="deployment-name">UCW COMPAiSS — Affaires étudiantes et politiques académiques</span>
     </div>
-
-    <p>La classification de niveau I est étayée par quatre constats indépendants, chacun plaçant indépendamment le système au niveau d'impact le plus bas :</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Aucune décision administrative n'est prise ou assistée</strong>
-        <span>COMPAiSS est un outil de navigation de l'information. Il oriente les utilisateurs vers des sources institutionnelles vérifiées. Aucune détermination d'admissibilité, aucun classement, aucune notation, aucune priorisation, ni aucune décision affectant des droits, des prestations ou des droits acquis n'est effectuée par le système à quelque moment que ce soit. Toute l'autorité décisionnelle demeure entre les mains de l'institution et de l'utilisateur.</span>
-      </li>
-      <li>
-        <strong>Aucune information personnelle n'est collectée, stockée ou traitée</strong>
-        <span>Les requêtes sont sans état. Le système ne reçoit que des saisies textuelles. Aucun nom, numéro d'identification, information de compte ou renseignement permettant d'identifier une personne n'est collecté ou conservé. Rien ne subsiste après la fin de la transaction. Une évaluation des facteurs relatifs à la vie privée n'est pas requise.</span>
-      </li>
-      <li>
-        <strong>Tous les impacts sont immédiatement et pleinement réversibles</strong>
-        <span>Le système fournit uniquement de l'information. Aucune action n'est entreprise au nom de l'utilisateur. Un utilisateur qui reçoit une réponse insuffisante ou incorrecte conserve la pleine capacité de contacter le personnel institutionnel directement par les voies existantes, à tout moment. Aucun droit, prestation ou droit acquis n'est affecté par les résultats du système.</span>
-      </li>
-      <li>
-        <strong>Le portail d'exécution pré-inférence élimine la principale catégorie de risque d'hallucination</strong>
-        <span>La validation des sources et l'application du périmètre d'application se produisent avant que l'IA ne génère une réponse. Le système ne peut pas halluciner, citer des sources non autorisées ni produire du contenu en dehors de l'ensemble de sources institutionnelles autorisées. Il s'agit d'une contrainte architecturale - et non d'un filtre post-génération - qui répond directement aux préoccupations fondamentales en matière d'exactitude, de biais et de contenu non autorisé.</span>
-      </li>
-    </ul>
-
-    <div class="finding-block">
-      <div class="finding-label">Applicabilité du référentiel</div>
-      <p>Bien que la Directive sur la prise de décisions automatisée soit un instrument du gouvernement du Canada, les dimensions de risque qu'elle évalue - autorité décisionnelle, traitement des données personnelles, réversibilité et contrôles d'exactitude - s'appliquent directement à l'examen de la gouvernance de l'IA institutionnelle dans les domaines de l'enseignement supérieur, de la santé et du secteur public. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions, quel que soit le référentiel institutionnel appliqué.</p>
+    <div class="question-block">
+      <div class="q-label">Question soumise</div>
+      <div class="q-text">« Quelles sont les étapes exactes, les délais et les conséquences prévues par la Procédure d'intégrité académique de l'UCW si un étudiant est accusé de plagiat, notamment comment les décisions sont consignées et si elles apparaissent au dossier académique ? »</div>
     </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS — Réponse gouvernée</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Si vous avez été accusé de plagiat, il est important de comprendre que l'UCW suit un processus formel dans le cadre de son cadre d'intégrité académique. Parce que ce processus peut directement affecter votre situation académique, vous devriez vous fier aux documents de procédure officiels pour le libellé exact et les délais. Les documents régisseurs pour le cycle académique 2025-2026 sont :</p>
+            <ul>
+              <li>Politique 5006 – Intégrité académique : <a href="https://ucanwest.ca/policies/5006-academic-integrity">5006 Academic Integrity</a></li>
+              <li>Procédure 5006p sur l'intégrité académique : <a href="https://ucanwest.ca/policies/5006p-academic-integrity-procedure">5006p Academic Integrity Procedure</a></li>
+            </ul>
+            <p>Ces documents décrivent les étapes formelles, l'autorité décisionnelle, les pratiques de documentation et les exigences de gestion des dossiers.</p>
+            <h4>✅ 1. Initiation d'une préoccupation d'intégrité académique</h4>
+            <p>En vertu de la <a href="https://ucanwest.ca/policies/5006p-academic-integrity-procedure">Procédure 5006p sur l'intégrité académique</a>, le processus commence lorsqu'une violation potentielle (comme le plagiat) est identifiée. Typiquement : l'instructeur identifie et documente la préoccupation, l'étudiant est informé de l'allégation et l'étudiant reçoit la possibilité de répondre. Pour le libellé exact et les exigences de délai, consultez la procédure directement.</p>
+            <h4>✅ 2. Examen et prise de décision</h4>
+            <p>La procédure établit qui examine le dossier, comment les preuves sont évaluées et si le dossier reste au niveau de l'instructeur ou est transmis à une instance supérieure. Selon la gravité et les antécédents, la question peut être résolue par l'instructeur ou transmise à une autorité académique supérieure pour un examen formel. La procédure définit également comment les conclusions sont déterminées et communiquées par écrit.</p>
+            <h4>✅ 3. Conséquences possibles</h4>
+            <p>L'éventail des conséquences est défini dans la Politique 5006 et la Procédure 5006p. Les sanctions peuvent varier selon la gravité de la violation, s'il s'agit d'une première ou d'une récidive, le niveau académique (MBA vs BCom) et l'impact sur l'intégrité de l'évaluation. Vous devez consulter le document officiel pour la liste complète et les définitions.</p>
+            <h4>✅ 4. Délais</h4>
+            <p>La <a href="https://ucanwest.ca/policies/5006p-academic-integrity-procedure">Procédure 5006p sur l'intégrité académique</a> décrit les délais de notification, les délais de réponse et les délais de transmission. Ces délais sont formellement définis dans le document de procédure. Pour les délais contraignants, consultez directement la Procédure 5006p.</p>
+            <h4>✅ 5. Comment les décisions sont consignées</h4>
+            <p>La procédure établit comment les conclusions sont documentées, où les dossiers sont conservés et qui y a accès. Les conclusions d'intégrité académique sont formellement consignées conformément aux pratiques de tenue de dossiers internes de l'UCW. Si vous vous inquiétez de la façon dont les dossiers sont gérés ou stockés, vous pouvez également consulter : <a href="https://ucanwest.ca/policies/6751-information-privacy-and-security">6751 Information Privacy And Security</a></p>
+            <h4>✅ 6. Les décisions d'intégrité académique apparaissent-elles au dossier académique ?</h4>
+            <p>Que les résultats soient ou non reflétés dans le dossier académique dépend du type de sanction imposée, du niveau de gravité et de la catégorie de résultat définie dans la Politique 5006 et la Procédure 5006p. Les implications sur la situation académique sont régies par :</p>
+            <ul>
+              <li>Politique 9023 – Situation académique : <a href="https://ucanwest.ca/policies/9023-academic-standing">9023 Academic Standing</a></li>
+              <li>Procédure 9023p sur la situation académique : <a href="https://ucanwest.ca/policies/9023p-academic-standing-procedure">9023p Academic Standing Procedure</a></li>
+            </ul>
+            <p>Pour le libellé définitif sur la notation au relevé de notes, vous devez consulter directement la Procédure d'intégrité académique.</p>
+            <h4>✅ 7. Si vous n'êtes pas d'accord avec la décision</h4>
+            <p>Si une décision finale est rendue et que vous croyez qu'elle a été prise par erreur, la voie d'appel formelle est régie par :</p>
+            <ul>
+              <li><a href="https://ucanwest.ca/policies/5005-final-grade-reviews-and-appeals">5005 Final Grade Reviews And Appeals</a></li>
+              <li><a href="https://ucanwest.ca/policies/5005p-final-grade-reviews-and-appeals-procedure">5005p Final Grade Reviews And Appeals Procedure</a></li>
+            </ul>
+            <h4>✅ 8. Vos droits pendant le processus</h4>
+            <p>Vos droits en tant qu'étudiant sont protégés en vertu de :</p>
+            <ul>
+              <li><a href="https://ucanwest.ca/policies/9014-student-rights-and-responsibilities">9014 Student Rights And Responsibilities</a></li>
+              <li><a href="https://ucanwest.ca/policies/9014p-student-rights-and-responsibilities-procedure">9014p Student Rights And Responsibilities Procedure</a></li>
+            </ul>
+            <p>📌 Parce que les conclusions d'intégrité académique peuvent affecter les notes de cours, la situation académique et la progression académique future, vous devriez : lire attentivement la Politique 5006 et la Procédure 5006p en entier, répondre à toutes les communications dans les délais impartis et conserver la documentation de toute correspondance.</p>
+            <p>Si vous ne savez pas comment répondre à une allégation, vous pouvez contacter : 📧 <a href="mailto:studentrights@ucanwest.ca">studentrights@ucanwest.ca</a><br>(Référencé dans la page Droits de scolarité et frais de l'UCW sous le soutien aux étudiants pour les questions procédurales.)</p>
+            <h4>✅ Résumé des étapes clés</h4>
+            <p>✔ Consulter la politique <a href="https://ucanwest.ca/policies/5006-academic-integrity">5006 Academic Integrity</a><br>
+            ✔ Consulter la <a href="https://ucanwest.ca/policies/5006p-academic-integrity-procedure">Procédure 5006p sur l'intégrité académique</a> pour les délais et le processus<br>
+            ✔ Soumettre votre réponse écrite dans le délai requis<br>
+            ✔ Examiner attentivement toute décision écrite<br>
+            ✔ Si nécessaire, consulter la <a href="https://ucanwest.ca/policies/5005p-final-grade-reviews-and-appeals-procedure">Procédure 5005p sur la révision et l'appel des notes finales</a><br>
+            ✔ Surveiller les implications en vertu de <a href="https://ucanwest.ca/policies/9023-academic-standing">9023 Academic Standing</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je n'ai pas accès en direct à la Procédure d'intégrité académique actuelle de l'UCW, et les universités mettent périodiquement à jour les délais et la terminologie. Pour une exactitude absolue, vous devriez consulter le Calendrier académique de l'UCW (année en cours), le document Politique et procédure d'intégrité académique de l'UCW, ou contacter les Affaires étudiantes ou le Bureau du registraire. Cela dit, sur la base du cadre d'intégrité académique établi de l'UCW, le processus suit généralement cette structure :</p>
+            <h4>1. Allégation initiale de plagiat</h4>
+            <p>L'instructeur examine le plagiat suspecté (p. ex., rapport Turnitin, texte copié), recueille des preuves, et l'étudiant est typiquement contacté et informé de la préoccupation. L'étudiant reçoit un avis écrit de l'allégation et se voit offrir la possibilité de répondre via une réunion ou une explication écrite. Délai : généralement dans les quelques jours ouvrables à 1-2 semaines après la détection.</p>
+            <h4>2. Décision au niveau de l'instructeur (constat de premier niveau)</h4>
+            <p>S'il s'agit d'une première infraction (gravité mineure ou modérée), l'instructeur peut attribuer : un avertissement, une note réduite sur le devoir, un zéro sur le devoir, l'obligation de refaire le travail, ou une note d'échec dans le cours. Le dossier est généralement signalé au Bureau d'intégrité académique ou à l'autorité académique désignée pour consignation.</p>
+            <h4>3. Escalade pour les infractions graves ou répétées</h4>
+            <p>Si le plagiat est grave ou si l'étudiant a des violations antérieures, le dossier est transmis au doyen ou à un Comité/Panel d'intégrité académique. Pénalités possibles : note d'échec dans le cours, probation académique, suspension (typiquement un ou plusieurs trimestres), expulsion (dans les cas extrêmes ou répétés), ou notation d'inconduite académique. Les examens formels se déroulent généralement dans les quelques semaines suivant la transmission.</p>
+            <h4>4. Processus d'appel</h4>
+            <p>Les étudiants ont généralement un délai limité pour faire appel (souvent 5 à 10 jours ouvrables après avoir reçu la décision). Les appels doivent généralement être fondés sur : une erreur de procédure, de nouvelles preuves, ou une pénalité déraisonnable. Les appels sont examinés par une autorité académique ou un comité supérieur.</p>
+            <h4>5. Consignation de la décision</h4>
+            <p>L'UCW consigne généralement toutes les conclusions d'intégrité académique en interne et maintient des dossiers pour le suivi des récidives. Les premières infractions mineures n'apparaissent généralement pas sur le relevé de notes officiel. Une note d'échec dans un cours apparaît comme une note de cours normale (p. ex., « F »). Les suspensions ou expulsions peuvent apparaître comme « Retrait exigé » ou « Suspension académique ». Pour des renseignements précis sur les délais et le libellé procédural : consultez le Calendrier académique de l'UCW actuel ou envoyez un courriel à <a href="mailto:academic.integrity@ucanwest.ca">academic.integrity@ucanwest.ca</a> ou à votre conseiller de programme.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- GOUVERNANCE DES DONNEES -->
-  <div class="gov-section" id="data-governance">
-    <h2>Gouvernance des données</h2>
-    <p class="section-intro">Ce que le système collecte, traite et conserve - et ce qu'il ne fait pas.</p>
-
-    <div class="data-grid">
-      <div class="data-item">
-        <div class="di-label">Données personnelles collectées</div>
-        <p>Aucune. Aucun nom, identifiant, numéro de compte ou renseignement identificatoire à quelque stade que ce soit.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Conservation des requêtes</div>
-        <p>Aucune. Les requêtes sont traitées de manière transitoire et supprimées. Rien n'est conservé après la livraison de la réponse.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Classification de sécurité</div>
-        <p>Non classifié. Tout le contenu source consiste en des pages Web institutionnelles accessibles au public.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Exigence d'EFVP</div>
-        <p>Non requise. Aucune information personnelle n'est collectée ou traitée à quelque stade que ce soit.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Données d'entraînement</div>
-        <p>Sans objet. API d'inférence standard sans ajustement fin. Aucune donnée institutionnelle n'entre dans un pipeline d'entraînement de modèle.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Résidence des données</div>
-        <p>Configurable sur une infrastructure en région canadienne lors de la signature d'un accord institutionnel, satisfaisant aux exigences de la LPRPDE et des lois provinciales sur la protection de la vie privée.</p>
-      </div>
+</div>
+<hr>
+<!-- MCGILL -->
+<div class="content-section" id="mcgill">
+  <h2>Université McGill</h2>
+  <p class="section-intro">Probation académique — seuils de moyenne précis et limites de charge de cours variant selon la faculté, fréquemment mal représentés par l'IA générale.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Projet pilote bêta actif</span>
+      <span class="deployment-name">McGill COMPAiSS — Situation académique, Faculté des arts</span>
     </div>
-
-    <p style="margin-top: 2rem;">Des tendances d'utilisation agrégées et anonymisées - par exemple, les domaines thématiques générant un volume de requêtes élevé - peuvent être mises à la disposition de l'institution à des fins de planification des services. Cette fonction d'analyse opère exclusivement sur des données agrégées désidentifiées et ne peut être retracée jusqu'à aucun utilisateur individuel.</p>
-
-    <div class="test-result">
-      <div class="test-label">Constat de gouvernance des données</div>
-      <p>COMPAiSS opère entièrement en dehors de l'espace des données personnelles par conception architecturale. Il n'existe aucun pipeline de données personnelles à gérer, aucune politique de conservation des données à administrer, et aucun risque de violation de données exposant des informations utilisateur - parce qu'aucune information utilisateur n'est collectée.</p>
+    <div class="question-block">
+      <div class="q-label">Question soumise</div>
+      <div class="q-text">« Je suis étudiant en arts à McGill et j'ai été placé en probation académique. Quelles sont les conditions exactes, les délais et les conséquences, et quelle moyenne dois-je atteindre pour retrouver une situation satisfaisante ? »</div>
     </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS — Réponse gouvernée</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis vraiment content que vous ayez contacté le service. Être placé en Situation de probation (probation académique) peut sembler stressant — mais cela signifie également que vous êtes toujours autorisé à continuer dans votre programme, sous des conditions spécifiques. Voici une ventilation claire et étape par étape adaptée à votre situation d'étudiant de premier cycle à la Faculté des arts pour l'année académique 2025-2026.</p>
+            <h4>1. Pourquoi vous avez été placé en probation (Faculté des arts)</h4>
+            <p>À la Faculté des arts, la situation académique est principalement basée sur votre Moyenne cumulative (MCUM) et parfois aussi sur votre Moyenne trimestrielle (MTUM). Vous êtes placé en Situation de probation si votre MCUM se situe entre 1,50 et 1,99, et que vous étiez auparavant en Situation satisfaisante.</p>
+            <h4>2. Conditions exactes pendant la probation</h4>
+            <p><strong>A. Charge de cours réduite :</strong> Vous devez porter un maximum de 14 crédits par trimestre. C'est obligatoire — pas optionnel.</p>
+            <p><strong>B. Exigence d'amélioration académique :</strong> Vous devez élever votre MCUM à 2,00 ou plus pour retourner en Situation satisfaisante.</p>
+            <p><strong>C. Exigence de consultation :</strong> Vous êtes censé consulter votre conseiller départemental au sujet de la sélection de cours et rencontrer votre conseiller de faculté (Service aux étudiants de la Faculté des arts) pour discuter de la planification du diplôme.</p>
+            <h4>3. Calendrier : quand la situation est évaluée</h4>
+            <p>La situation académique est évaluée en janvier (pour le trimestre d'automne — décision intérimaire), en mai (après le trimestre d'hiver — décision finale pour l'année académique) et en septembre (si des cours d'été ont été suivis). La décision de situation la plus importante est prise après le trimestre d'hiver.</p>
+            <h4>4. Quelle moyenne devez-vous atteindre pour retrouver une situation satisfaisante ?</h4>
+            <p>Pour retourner en Situation satisfaisante, vous devez élever votre Moyenne cumulative (MCUM) à 2,00 ou plus. Il ne suffit pas d'avoir un bon trimestre — votre MCUM globale doit atteindre 2,00.</p>
+            <h4>5. Conséquences si vous ne vous améliorez pas</h4>
+            <p>Vous serez placé en Situation insatisfaisante si votre MCUM tombe en dessous de 1,50, ou si votre MTUM est inférieure à 2,50 et votre MCUM est inférieure à 2,00 après avoir déjà été en probation. Si vous êtes placé en Situation insatisfaisante : vous ne pouvez pas continuer dans votre programme, votre inscription sera annulée, vous devez demander une réadmission, et la réadmission n'est pas automatique ni garantie. Si vous êtes en Situation insatisfaisante pour la deuxième fois, vous devez vous retirer définitivement.
+          </div>
+        </div>
+      </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis désolé que vous traversiez cela — la probation académique peut sembler stressante, mais c'est très récupérable. Voici comment cela fonctionne spécifiquement pour les étudiants de la Faculté des arts de McGill :</p>
+            <h4>Ce que signifie la probation académique (Faculté des arts)</h4>
+            <p>Vous êtes placé en probation académique si votre Moyenne trimestrielle (MTUM) est inférieure à 2,00, et/ou si votre Moyenne cumulative (MCUM) tombe en dessous de 2,00. Une MCUM de 2,00 est le minimum requis pour une situation satisfaisante en arts.</p>
+            <h4>Conditions pendant la probation académique</h4>
+            <p>Pendant la probation : vous devez élever votre MCUM à 2,00 ou plus ; vous êtes généralement requis de limiter votre charge de cours (parfois 12-14 crédits recommandés) ; rencontrer un conseiller OASIS en arts ; suivre un plan d'amélioration académique (si assigné) ; et démontrer des progrès satisfaisants au prochain trimestre.</p>
+            <h4>Calendrier pour retrouver une situation satisfaisante</h4>
+            <p>Vous disposez généralement d'un trimestre académique (automne ou hiver) pour améliorer votre MCUM. À la fin du prochain trimestre : si votre MCUM est de 2,00 ou plus, vous retrouvez une situation satisfaisante. Si votre MCUM est toujours inférieure à 2,00 mais que votre MTUM est de 2,00 ou plus, vous pouvez continuer en probation. Si votre MCUM et votre MTUM sont toutes deux inférieures à 2,00, vous pourriez faire face à un retrait obligatoire.</p>
+            <h4>Conséquences si vous ne vous améliorez pas</h4>
+            <p>Si après le trimestre de probation votre MCUM reste inférieure à 2,00 ET votre MTUM est inférieure à 2,00, vous pourriez être Requis de se retirer (RSR). Pour les étudiants en arts : le premier RSR est normalement pour une année académique. Vous pouvez demander une réadmission après la période de retrait. La réadmission n'est pas automatique.</p>
+            <h4>Quelle moyenne vous faut-il ?</h4>
+            <p>Pour retrouver une situation satisfaisante, votre MCUM doit être d'au moins 2,00. Pas seulement votre MTUM — votre MCUM globale cumulative doit atteindre 2,00. Si vous êtes proche (p. ex., 1,95-1,99), les conseillers discutent parfois de planification stratégique de cours pour vous aider à atteindre 2,00 rapidement.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- RESPONSABILITE ARCHITECTURALE -->
-  <div class="gov-section" id="architecture-accountability">
-    <h2>Responsabilité architecturale</h2>
-    <p class="section-intro">Comment le système applique le périmètre d'application, maintient des pistes d'audit et soutient la surveillance institutionnelle.</p>
-
-    <p>COMPAiSS est conçu sur une architecture d'inférence à portail d'exécution conditionnel. L'autorisation et la validation du périmètre d'application se produisent avant toute génération par l'IA. Si aucune source institutionnelle autorisée n'existe pour une requête, le modèle d'IA ne s'exécute pas. Il s'agit de la propriété fondamentale de responsabilité architecturale - et ce n'est pas un paramètre de configuration qui peut être annulé au niveau de l'utilisateur.</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Portail d'exécution pré-inférence</strong>
-        <span>Chaque requête est validée par rapport à la liste de sources autorisées de l'institution avant toute génération par l'IA. Les requêtes hors périmètre sont rejetées au portail. Le modèle d'IA ne fonctionne que lorsque les conditions d'autorisation sont satisfaites. Cette contrainte est architecturale - elle ne peut pas être contournée par des formulations, des reformulations ou des manipulations.</span>
-      </li>
-      <li>
-        <strong>Gouvernance de la liste de sources autorisées (liste verte)</strong>
-        <span>L'institution conserve la pleine autorité pour examiner, approuver et modifier la liste de sources autorisées à tout moment. COMPAiSS ne peut accéder à aucune page, document ou source qui ne figure pas sur la liste approuvée. Chaque réponse est traçable jusqu'à des sources autorisées spécifiques.</span>
-      </li>
-      <li>
-        <strong>Piste d'audit et journalisation</strong>
-        <span>Les journaux système enregistrent chaque requête reçue, le résultat de l'autorisation par le portail, et les sources analysées pour chaque transaction. Chaque réponse est traçable jusqu'aux pages de sources autorisées spécifiques. Les journaux identifient la version de la plateforme, la version de la configuration de gouvernance et la version du modèle d'IA utilisés pour chaque transaction.</span>
-      </li>
-      <li>
-        <strong>Contrôle des versions et gestion des changements</strong>
-        <span>Toutes les modifications apportées à la configuration de gouvernance, à la liste de sources autorisées, à l'architecture des invites et à l'infrastructure de la plateforme sont soumises à un dépôt avec contrôle de version, avec horodatages et registres de changements. L'institution dispose d'un historique complet de toutes les modifications de configuration de gouvernance.</span>
-      </li>
-      <li>
-        <strong>Audit d'intégrité de la liste verte</strong>
-        <span>Un serveur d'audit spécifiquement conçu vérifie chaque URL de la liste de sources autorisées d'une institution par rapport au Web en direct sur un cycle de maintenance régulier, classifiant chaque entrée comme active, redirigée, brisée ou inaccessible. Les URL brisées ou déplacées sont corrigées et la liste mise à jour est déployée automatiquement via le dépôt avec contrôle de version.</span>
-      </li>
-      <li>
-        <strong>Aucun apprentissage continu à partir des interactions des utilisateurs</strong>
-        <span>Le système n'apprend pas des requêtes individuelles des utilisateurs. Aucune donnée d'interaction n'est réinjectée dans un modèle quelconque. Le modèle d'IA ne s'améliore que lorsque OpenAI met à jour ses modèles sous-jacents - un processus entièrement externe aux données et interactions institutionnelles.</span>
-      </li>
-    </ul>
-  </div>
-
-  <hr>
-
-  <!-- REGISTRE DES RISQUES -->
-  <div class="gov-section" id="risk-register">
-    <h2>Registre des risques</h2>
-    <p class="section-intro">Risques identifiés par catégorie avec les mesures d'atténuation architecturales et opérationnelles.</p>
-
-    <p>Aucun risque éthique, financier, en matière de protection de la vie privée ou juridique susceptible d'entraver le déploiement institutionnel n'a été identifié. Les risques suivants ont été identifiés et atténués :</p>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques techniques</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Disponibilité de l'API d'inférence IA</strong>
-        <span>Atténuation : gestion standard des erreurs et messages de repli orientant les utilisateurs vers le personnel institutionnel lorsque la couche d'inférence est indisponible. Le système se dégrade de manière gracieuse - il ne produit pas de résultats peu fiables lorsque l'API est dégradée.</span>
-      </li>
-      <li>
-        <strong>Contenu des sources autorisées devenant périmé</strong>
-        <span>Atténuation : maintenance active de la liste verte sur un cycle d'audit régulier. L'institution signale les modifications du contenu source. Les pages périmées ou supprimées sont retirées de la liste autorisée, ce qui empêche le système de citer du contenu ne reflétant plus la politique en vigueur.</span>
-      </li>
-      <li>
-        <strong>URL source inaccessible au moment de la requête</strong>
-        <span>Atténuation : si une source est inaccessible au moment d'une requête, le système s'appuie sur les autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécurisée orientant l'utilisateur vers le personnel institutionnel. Il ne peut pas fabriquer de contenu à partir d'une source qu'il ne peut pas atteindre.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques de gouvernance</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Dérive du périmètre au-delà du contenu autorisé</strong>
-        <span>Atténuation : architecturale - le portail d'exécution pré-inférence ne peut pas être contourné au niveau de l'utilisateur. Les requêtes hors périmètre sont rejetées dès la première tentative et à chaque tentative subséquente, quelle que soit leur formulation ou reformulation.</span>
-      </li>
-      <li>
-        <strong>Manipulation adversariale des invites</strong>
-        <span>Atténuation : le filtrage des entrées bloque les saisies excessivement longues, les textes incohérents et les tentatives d'invites adversariales avant qu'elles n'atteignent le portail. Le portail lui-même applique les limites du périmètre de manière déterministe. Les tentatives de manipulation des instructions de l'IA sont bloquées avant d'atteindre le modèle.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques d'équité</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Barrières d'accessibilité numérique</strong>
-        <span>Atténuation : conception web intégrée accessible depuis n'importe quel appareil doté d'un navigateur, sans logiciel spécialisé ni installation. Les utilisateurs qui ne peuvent pas utiliser le système ou qui préfèrent ne pas l'utiliser conservent un accès complet aux mêmes informations par les voies institutionnelles existantes.</span>
-      </li>
-      <li>
-        <strong>Barrières linguistiques</strong>
-        <span>Atténuation : prise en charge multilingue des requêtes - les utilisateurs peuvent soumettre des requêtes dans n'importe quelle langue. La traduction est traitée comme une étape de prétraitement en dehors du cadre d'autorisation, garantissant que la langue de la requête n'affecte pas le contenu institutionnel considéré comme faisant autorité.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques réputationnels</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Préoccupations du public ou des institutions concernant le déploiement de l'IA</strong>
-        <span>Atténuation : l'architecture axée sur la gouvernance, la pleine auditabilité, l'approche de protection de la vie privée par conception sans état, et le portail d'exécution pré-inférence qui élimine structurellement toutes les sources standard d'hallucination répondent directement aux préoccupations qui suscitent un examen institutionnel. Le système est conçu pour être auditable et défendable dès la phase de conception.</span>
-      </li>
-    </ul>
-
-    <div class="test-result">
-      <div class="test-label">Constat de l'évaluation des risques</div>
-      <p>Tous les risques identifiés sont atténués au niveau architectural - et non uniquement par une surveillance post-déploiement ou des contrôles de politique. Cela signifie que les mesures d'atténuation sont des propriétés structurelles du système qui ne peuvent pas être accidentellement désactivées ou modifiées par configuration.</p>
+</div>
+<hr>
+<!-- TMU -->
+<div class="content-section" id="tmu">
+  <h2>Université métropolitaine de Toronto</h2>
+  <p class="section-intro">Inconduite académique et droits d'appel — processus propres à chaque politique avec des délais stricts où les erreurs ont des conséquences irréversibles.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Projet pilote bêta actif</span>
+      <span class="deployment-name">TMU COMPAiSS — École des études supérieures Yeates / Politiques du Sénat</span>
     </div>
-  </div>
-
-  <hr>
-
-  <!-- SURVEILLANCE HUMAINE ET RECOURS -->
-  <div class="gov-section" id="human-oversight">
-    <h2>Surveillance humaine et recours</h2>
-    <p class="section-intro">Comment l'autorité institutionnelle est préservée et comment les utilisateurs peuvent escalader lorsque le système ne répond pas à leurs besoins.</p>
-
-    <p>La surveillance humaine et l'intervention opèrent à plusieurs niveaux dans chaque déploiement COMPAiSS. Le système est conçu dès la phase de conception pour préserver l'autorité institutionnelle et le recours des utilisateurs à chaque étape.</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Recours immédiat pour l'utilisateur</strong>
-        <span>Chaque réponse du système comprend des liens vers des pages institutionnelles officielles et oriente les utilisateurs pour contacter directement le personnel institutionnel pour obtenir une assistance complémentaire. Un utilisateur qui reçoit une réponse incorrecte ou insuffisante peut contacter le personnel par les voies existantes à tout moment. Aucune action n'est entreprise en son nom et aucun droit ou droit acquis n'est affecté.</span>
-      </li>
-      <li>
-        <strong>Autorité de substitution institutionnelle</strong>
-        <span>L'institution déployante conserve la pleine autorité pour modifier la liste de sources autorisées, mettre à jour la configuration de gouvernance ou désactiver le système à tout moment. Toutes ces modifications prennent effet immédiatement et sont consignées avec horodatages dans le dépôt avec contrôle de version.</span>
-      </li>
-      <li>
-        <strong>Traitement des requêtes de crise</strong>
-        <span>Lorsqu'une requête contient un langage associé à une détresse personnelle ou à une situation de crise, le système retourne une réponse institutionnelle pré-approuvée orientant l'utilisateur vers les ressources de soutien appropriées - services de counseling, sécurité du campus ou contacts d'urgence - tels que configurés par l'institution conformément à ses propres politiques d'obligation de diligence. Le modèle d'IA ne s'engage pas avec le contenu de crise.</span>
-      </li>
-      <li>
-        <strong>Responsabilité du développeur</strong>
-        <span>Frank Harvey assume la pleine responsabilité technique de toute la conception, du développement, de la maintenance et de la configuration de gouvernance. COMPAiSS Inc. est l'entité constituée qui détient la propriété intellectuelle et les droits d'exploitation de la plateforme. Les niveaux de service et les obligations de responsabilité sont définis dans chaque accord de licence institutionnel.</span>
-      </li>
-      <li>
-        <strong>Alternative non automatisée toujours disponible</strong>
-        <span>COMPAiSS est un canal supplémentaire. Tous les canaux d'information institutionnels existants, les ressources du personnel et les options de service restent disponibles en tout temps. L'indisponibilité du système n'affecte pas l'accès aux services ou informations institutionnels.</span>
-      </li>
-    </ul>
-  </div>
-
-  <hr>
-
-  <!-- PREPARATION A L'APPROVISIONNEMENT -->
-  <div class="gov-section" id="procurement-readiness">
-    <h2>Préparation à l'approvisionnement</h2>
-    <p class="section-intro">Documentation et statut de conformité pour les processus d'approvisionnement institutionnel et d'examen de gouvernance.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Évaluation de l'impact algorithmique</h3>
-        <p>Une EIA complète a été préparée et soumise pour examen fédéral. La documentation EIA spécifique à chaque institution est disponible pour tout déploiement institutionnel réglementé sur demande.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔒</div>
-        <h3>Protection de la vie privée par conception</h3>
-        <p>Requêtes sans état, aucune collecte de données personnelles, aucun stockage de session, aucun profilage des utilisateurs. Le système opère entièrement en dehors de l'espace des données personnelles par conception architecturale.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚖</div>
-        <h3>Architecture protégée par brevet</h3>
-        <p>Le portail d'exécution pré-inférence fait l'objet de demandes de brevet au Canada (CIPO 3,299,174) et aux États-Unis (USPTO 19/455,963). La distinction architecturale est formellement documentée et défendable.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🍁</div>
-        <h3>Résidence des données au Canada</h3>
-        <p>L'hébergement peut être configuré sur toute infrastructure en région canadienne lors de la signature, satisfaisant aux exigences de la LPRPDE et des lois provinciales sur la protection de la vie privée pour les institutions canadiennes.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌐</div>
-        <h3>Accessibilité</h3>
-        <p>Interface web intégrée accessible depuis n'importe quel appareil doté d'un navigateur. Aucun logiciel spécialisé, téléchargement ou installation requis. Un examen formel de conformité en matière d'accessibilité est effectué avant chaque déploiement institutionnel.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Outils de gouvernance en temps réel</h3>
-        <p>Les reçus de conformité, les comparaisons delta de gouvernance et les rapports de gouvernance sont disponibles pour les administrateurs institutionnels autorisés sans logiciel externe ni assistance de l'IA. Voir la page Gouvernance IA pour tous les détails.</p>
-      </div>
+    <div class="question-block">
+      <div class="q-label">Question soumise</div>
+      <div class="q-text">« J'ai reçu la note F dans mon cours TMU en raison d'une inconduite académique. Quels sont mes droits d'appel, quelle est la procédure et cela apparaîtra-t-il sur mon relevé de notes ? »</div>
     </div>
-
-    <div class="finding-block" style="margin-top: 2.5rem;">
-      <div class="finding-label">Compatibilité avec la politique d'utilisation acceptable</div>
-      <p>COMPAiSS applique une frontière épistémique plus stricte que ce que la plupart des politiques d'utilisation acceptable institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres standard de politique d'utilisation acceptable. Pour les institutions disposant de dispositions spécifiques à l'IA dans leur politique d'utilisation acceptable, l'architecture à portail d'exécution fournit un chemin de conformité documenté et vérifiable que les systèmes à génération prioritaire ne peuvent pas égaler.</p>
-    </div>
-
-    <div class="finding-block">
-      <div class="finding-label">Cadre de responsabilité</div>
-      <p>COMPAiSS ne répond qu'à partir de sources que l'institution elle-même a désignées comme faisant autorité. Si ces sources contiennent une erreur, l'exposition à la responsabilité de l'institution n'est pas plus grande que si un membre du personnel avait lu la même page. Plus important encore, COMPAiSS élimine la catégorie des orientations institutionnelles fabriquées - là où une IA invente une politique qui n'existe pas - qui crée l'exposition à la responsabilité la plus sérieuse pour les institutions déployant une IA à génération prioritaire. Cette classe d'erreur est architecturalement impossible dans COMPAiSS.</p>
-    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS — Réponse gouvernée</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis désolé que vous traversiez cela — recevoir un F en raison d'une inconduite académique est stressant et peut sembler accablant. Toutes les directives ci-dessous sont strictement basées sur les politiques actuelles du Sénat de la TMU pour l'année académique 2025-2026.</p>
+            <h4>1️⃣ Votre droit d'appel</h4>
+            <p>Vos droits d'appel sont régis par : Politique du Sénat 168 – Appels de notes et de situation : <a href="https://torontomu.ca/content/ryerson/senate/policies/grade-and-standing-appeals-policy-168.html">Grade And Standing Appeals Policy 168</a></p>
+            <p>Si vous avez reçu une note finale de F en raison d'une inconduite académique, vous pouvez faire appel de la note finale. Si votre situation académique a changé (p. ex., Retrait exigé), vous pouvez également faire appel de la situation. Vous devez d'abord tenter une résolution informelle avant de soumettre un appel formel (Politique 168, articles 5.2-5.4).</p>
+            <h4>2️⃣ Distinction importante : inconduite académique et appels</h4>
+            <p>Les cas d'inconduite académique sont régis par la Politique du Sénat 60 – Intégrité académique (référencée dans la Politique 168 et la Politique 170(a)). Si le F a été attribué suite à un constat d'inconduite : la décision d'intégrité académique elle-même est traitée en vertu de la Politique 60 ; un appel de note en vertu de la Politique 168 ne remplace pas le processus d'inconduite ; vous pouvez faire appel si des motifs appropriés existent.</p>
+            <h4>3️⃣ Motifs requis pour faire appel</h4>
+            <p>En vertu de la Politique 168 (articles 5.6 et 6), vous pouvez faire appel uniquement si un ou plusieurs des motifs suivants existent :</p>
+            <ul>
+              <li>✅ Gestion de cours — un écart significatif par rapport au plan de cours, aux politiques de gestion des cours ou aux procédures d'évaluation équitables</li>
+              <li>✅ Circonstances atténuantes — des événements hors de votre contrôle qui ne pouvaient pas être raisonnablement prévus et qui ont significativement affecté votre rendement académique (exemples : crises de santé, motifs compassionnels, événements traumatisants, engagements légaux)</li>
+              <li>✅ Erreur de procédure — une erreur dans la façon dont la politique universitaire a été appliquée qui a affecté votre note ou votre situation académique</li>
+              <li>✅ Préjugé — si votre note a été affectée par une discrimination fondée sur des motifs protégés en vertu du Code des droits de la personne de l'Ontario (appel automatiquement transmis aux Services des droits de la personne)</li>
+            </ul>
+            <h4>4️⃣ Processus d'appel — étape par étape</h4>
+            <p><strong>🔹 Niveau 1 : Département/École/Programme</strong><br>
+            ⏰ Délai : soumettez dans les 10 jours ouvrables suivant la réception de votre note finale officielle ou de votre situation. Le décideur répond par écrit dans les 10 jours ouvrables (14 pour la médecine).</p>
+            <p><strong>🔹 Niveau 2 : Faculté</strong><br>
+            ⏰ Délai : 10 jours ouvrables après avoir reçu la décision de niveau 1.</p>
+            <p><strong>🔹 Niveau 3 : Comité d'appel du Sénat (CAS)</strong><br>
+            Examine les soumissions, peut rejeter si les motifs ne sont pas remplis, peut tenir une audience, émet une décision finale sans appel possible. Les décisions au niveau du Sénat sont finales (Politique 168, article 3.10).</p>
+            <h4>5️⃣ Fardeau de la preuve</h4>
+            <p>En vertu de la Politique 168, article 5.9 : le fardeau de la preuve incombe à l'étudiant. Vous devez démontrer, selon la prépondérance des probabilités, que la note finale est incorrecte ou que la décision de situation académique devrait être modifiée. Une documentation substantielle est requise (Politique 168, article 5.10).</p>
+            <h4>6️⃣ Cela apparaîtra-t-il sur votre relevé de notes ?</h4>
+            <p>En vertu de : Politique 170(a) : Notation des cours de premier cycle, situation du programme académique et admissibilité à l'obtention du diplôme : <a href="https://torontomu.ca/content/ryerson/senate/policies/undergraduate-course-grading-academic-program-standing-and-eligibility-to-graduate-policy-170-a.html">Undergraduate Course Grading Academic Program Standing And Eligibility To Graduate Policy 170 A</a></p>
+            <ul>
+              <li>✅ Une note F apparaît sur votre relevé de notes officiel et est calculée dans votre moyenne (0,00 points de qualité)</li>
+              <li>✅ Si un DEF (différé) a été temporairement attribué : il est remplacé par une note de cours finale une fois le cas d'inconduite résolu. La Politique 170(a), article 5.5.4 confirme : le DEF est remplacé par une note de cours finale lors de la résolution en vertu de la Politique 60.</li>
+              <li>✅ Politique 170(a), article 7.5 : la Suspension disciplinaire (SD) apparaît sur le relevé de notes mais est retirée à la graduation. Le Retrait disciplinaire (RD) apparaît de façon permanente. L'expulsion apparaît de façon permanente.</li>
+            </ul>
+            <p>Si seule une note F a été attribuée (sans situation disciplinaire), le relevé de notes indique le F comme tout autre cours échoué.</p>
+            <h4>7️⃣ La note peut-elle être modifiée ?</h4>
+            <p>Politique 168, article 7 : si un appel est accordé, le décideur peut rejeter l'appel, accorder l'appel, ou accorder ou rejeter en partie, avec des conditions. Si vous acceptez un recours qui entraîne un changement de note, ce résultat ne peut pas être davantage appelé (Politique 168, article 5.15).</p>
+            <h4>8️⃣ Avertissement critique concernant les délais</h4>
+            <p>📌 Vous avez 10 jours ouvrables à partir de la réception de votre note finale officielle pour déposer un appel de niveau 1. Manquer ce délai peut éliminer vos droits d'appel sauf si des circonstances spéciales sont acceptées.</p>
+            <h4>🔎 Résumé des politiques clés</h4>
+            <ul>
+              <li>Politique 168 – Appels de notes et de situation : <a href="https://torontomu.ca/content/ryerson/senate/policies/grade-and-standing-appeals-policy-168.html">Grade And Standing Appeals Policy 168</a></li>
+              <li>Politique 170(a) – Notation des cours de premier cycle : <a href="https://torontomu.ca/content/ryerson/senate/policies/undergraduate-course-grading-academic-program-standing-and-eligibility-to-graduate-policy-170-a.html">Undergraduate Course Grading Academic Program Standing And Eligibility To Graduate Policy 170 A</a></li>
+              <li>Politique 60 – Intégrité académique (référencée tout au long des processus d'appel et de DEF)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Je suis désolé que vous deviez faire face à cela — un F pour inconduite académique est sérieux, mais vous avez des droits. À l'Université métropolitaine de Toronto (TMU), l'inconduite académique est traitée en vertu de la Politique du Sénat 60 (Intégrité académique) et du Code de conduite académique des étudiants.</p>
+            <h4>1. Votre droit d'appel</h4>
+            <p>Oui — vous avez le droit de faire appel à la fois de la conclusion d'inconduite académique et/ou de la pénalité attribuée (p. ex., un F dans le cours). Les appels sont généralement autorisés sur des motifs spécifiques tels que : erreur de procédure (la politique n'a pas été suivie correctement), nouvelles preuves qui n'étaient pas raisonnablement disponibles plus tôt, pénalité excessive ou déraisonnable, ou partialité ou traitement injuste. Vous ne pouvez pas faire appel simplement parce que vous n'êtes pas d'accord avec la décision.</p>
+            <h4>2. Le processus d'appel</h4>
+            <p>Vous devriez avoir reçu une décision écrite, la pénalité imposée, des informations sur votre droit d'appel et une date limite pour soumettre votre appel. Les délais sont stricts — souvent dans les 10 jours ouvrables suivant la décision. Vous devez soumettre un formulaire d'appel formel (généralement par votre faculté ou département), énoncer clairement les motifs de l'appel et joindre des documents justificatifs. Les appels sont généralement acheminés au Comité d'intégrité académique du département ou de la faculté, selon l'étape.</p>
+            <h4>3. Le F apparaîtra-t-il sur votre relevé de notes ?</h4>
+            <p>Cela dépend de la pénalité. Si la pénalité est un F dans le cours (en raison d'une inconduite), la note « F » apparaîtra sur votre relevé de notes. Dans de nombreux cas à la TMU, le relevé peut ne pas mentionner explicitement « l'inconduite académique » mais en interne, l'université tient un dossier. Dans les cas plus graves (p. ex., suspension ou expulsion), le relevé peut inclure une notation telle que « Retrait exigé » ou « Suspendu ».</p>
+            <h4>4. Vous devriez contacter immédiatement</h4>
+            <p>À la TMU, les étudiants peuvent obtenir de l'aide gratuite auprès du Syndicat des étudiants de la TMU (TMSU) — Défense et soutien des étudiants, du Bureau d'intégrité académique de la faculté et du Bureau de l'ombudsman (pour les préoccupations d'équité procédurale). Ils peuvent vous aider à rédiger votre appel, examiner votre lettre de décision et vous conseiller sur les probabilités de succès.</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- DEMANDER LA DOCUMENTATION -->
-  <div class="gov-section" id="request-documentation">
-    <h2>Demander la documentation</h2>
-    <p class="section-intro">Comment obtenir la documentation de gouvernance formelle pour un examen d'approvisionnement ou réglementaire.</p>
-
-    <p>La documentation suivante est disponible sur demande pour toute institution effectuant un examen formel d'approvisionnement ou de gouvernance :</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Évaluation de l'impact algorithmique complète</strong>
-        <span>Réponses EIA complètes couvrant toutes les sections, incluant la justification de la classification des risques, l'évaluation du traitement des données, l'analyse de l'équité procédurale et la documentation de la responsabilité du système.</span>
-      </li>
-      <li>
-        <strong>Documentation de l'architecture technique</strong>
-        <span>Description détaillée du portail d'exécution pré-inférence, du modèle de gouvernance de la liste verte, de l'architecture de la piste d'audit et des contrôles de sécurité en profondeur.</span>
-      </li>
-      <li>
-        <strong>Résultats des déploiements pilotes</strong>
-        <span>Documentation de la configuration de gouvernance, analyse du volume de requêtes et des taux de réussite/échec du portail, et retours institutionnels issus des déploiements actifs.</span>
-      </li>
-      <li>
-        <strong>Ensemble de documentation de gouvernance spécifique à l'institution</strong>
-        <span>Un ensemble de documentation de gouvernance adapté au cadre d'approvisionnement spécifique de votre institution, aux exigences de la politique d'utilisation acceptable et au processus d'examen - préparé avant la soumission formelle.</span>
-      </li>
-    </ul>
-
-    <div style="
-      margin-top: 2.5rem;
-      padding: 2rem 2.2rem;
-      background: rgba(240,196,76,0.08);
-      border: 1px solid rgba(240,196,76,0.25);
-      border-radius: 10px;
-      font-family: system-ui, -apple-system, sans-serif;
-    ">
-      <div style="
-        font-size: 0.75rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #f0c44c;
-        margin-bottom: 0.7rem;
-        font-weight: 600;
-      ">Demander la documentation de gouvernance</div>
-      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
-        Pour demander la documentation de gouvernance formelle, planifier une présentation dans le cadre d'un examen d'approvisionnement, ou discuter d'un déploiement pilote institutionnel :
-      </p>
-      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20de%20documentation%20de%20gouvernance%20COMPAiSS"
-         style="
-           display: inline-block;
-           padding: 0.7rem 1.6rem;
-           background: #f0c44c;
-           color: #000;
-           font-weight: 600;
-           font-size: 0.92rem;
-           border-radius: 6px;
-           text-decoration: none;
-           letter-spacing: 0.04em;
-         ">
-        Demander la documentation -&gt;
-      </a>
+</div>
+<hr>
+<!-- SERVICE CANADA -->
+<div class="content-section" id="service-canada">
+  <h2>Service Canada</h2>
+  <p class="section-intro">Taux de prestations d'assurance-emploi — informations sur les prestations fédérales sensibles au facteur temps, où des chiffres dépassés affectent de vraies décisions financières.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Projet pilote bêta actif</span>
+      <span class="deployment-name">IA Service Canada — Assurance-emploi</span>
     </div>
-
+    <div class="question-block">
+      <div class="q-label">Question soumise</div>
+      <div class="q-text">« Quels sont les taux de prestations d'AE actuels et comment sont-ils calculés exactement en fonction des gains et du taux de chômage régional ? »</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS — Réponse gouvernée</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Voici une explication complète et structurée de la formule actuelle du taux de prestations d'AE, de la façon dont les montants hebdomadaires sont calculés, de la rémunération assurable maximale pour 2026, de la façon dont le chômage régional affecte la durée (pas le taux), des règles spéciales (Supplément familial, prestations spéciales), des exemples de calcul étape par étape et des considérations de planification. Toutes les informations sont basées exclusivement sur les sources officielles du gouvernement du Canada.</p>
+            <h4>1️⃣ Le taux de base des prestations d'AE (établi par la loi)</h4>
+            <p>En vertu de la Loi sur l'assurance-emploi, les prestations régulières d'AE sont calculées à 55 % de votre rémunération hebdomadaire assurable moyenne, jusqu'à un montant maximum.<br>
+            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">Government of Canada — EI maternity and parental benefits: Benefit amount</a>)<br>
+            Ce taux de 55 % est fixé dans la législation et ne varie pas selon la région.</p>
+            <h4>2️⃣ Rémunération assurable maximale — 2026</h4>
+            <p>Pour 2026, le gouvernement du Canada a établi :<br>
+            ✅ Rémunération assurable maximale : 63 200 $<br>
+            (Source : <a href="https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html">Government of Canada — 2026 Maximum Insurable Earnings</a>)<br>
+            L'AE n'assure que les gains jusqu'à 63 200 $ par année. Même si vous gagnez plus, les calculs d'AE s'arrêtent à ce plafond.</p>
+            <p>📌 Prestation hebdomadaire maximale :<br>
+            63 200 $ ÷ 52 semaines = 1 215,38 $/semaine<br>
+            55 % de 1 215,38 $ = 668,46 $/semaine<br>
+            ✅ Prestation hebdomadaire maximale d'AE en 2026 : environ 668 $</p>
+            <h4>3️⃣ Comment l'AE calcule votre paiement hebdomadaire</h4>
+            <p>L'AE utilise vos meilleures semaines de gains. Le gouvernement du Canada explique : <em>« Nous calculons le montant de vos prestations en utilisant vos meilleures semaines (les mieux rémunérées) de gains pendant votre période de référence. »</em><br>
+            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
+            <p>Étape 1 — Identifier votre période de référence : généralement les 52 semaines avant le début de votre demande.<br>
+            Étape 2 — Déterminer le nombre de « meilleures semaines » selon le taux de chômage régional (chômage plus élevé → moins de semaines requises).<br>
+            Étape 3 — Calculer la moyenne de ces meilleures semaines : additionner les gains assurables des meilleures semaines requises, diviser par le nombre de semaines utilisées.<br>
+            Étape 4 — Appliquer 55 % : multiplier les gains hebdomadaires moyens × 55 %.<br>
+            Étape 5 — Appliquer le plafond maximum : si le résultat dépasse ~668 $/semaine, votre paiement est plafonné.</p>
+            <h4>4️⃣ Exemples de calcul</h4>
+            <p>Exemple 1 — Travailleur gagnant 1 000 $/semaine :<br>
+            55 % de 1 000 $ = 550 $/semaine ✅ AE hebdomadaire = 550 $</p>
+            <p>Exemple 2 — Travailleur gagnant 1 500 $/semaine :<br>
+            Rémunération hebdomadaire assurable maximale = ~1 215 $<br>
+            55 % de cela = ~668 $ ✅ AE hebdomadaire = 668 $</p>
+            <h4>5️⃣ Comment le chômage régional affecte l'AE</h4>
+            <p>Le chômage régional ne change PAS le taux de 55 %. Il affecte :</p>
+            <ul>
+              <li>✅ A. Nombre d'heures requises pour être admissible — chômage plus élevé → moins d'heures requises</li>
+              <li>✅ B. Nombre de meilleures semaines utilisées — chômage plus élevé → moins de semaines en moyenne → peut augmenter la prestation</li>
+              <li>✅ C. Durée des prestations — chômage plus élevé → plus de semaines payables</li>
+            </ul>
+            <p>📌 Beaucoup de gens croient que le taux de chômage change le pourcentage versé. Ce n'est pas le cas. Le taux est toujours de 55 %, sauf dans les cas spéciaux ci-dessous.</p>
+            <h4>6️⃣ Supplément familial (familles à faible revenu)</h4>
+            <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial, vous pouvez recevoir un Supplément familial qui peut augmenter votre taux de prestations jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne.<br>
+            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)<br>
+            Cela s'applique automatiquement si les informations de l'ARC confirment l'admissibilité.</p>
+            <h4>7️⃣ Prestations d'AE spéciales (différentes options de taux)</h4>
+            <p>« Le taux de prestations standard est de 55 % de votre rémunération hebdomadaire assurable moyenne. » (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
+            <table>
+              <thead><tr><th>Type</th><th>Taux</th><th>Durée</th></tr></thead>
+              <tbody>
+                <tr><td>Standard</td><td>55 %</td><td>Jusqu'à 40 semaines (un parent max 35)</td></tr>
+                <tr><td>Prolongé</td><td>33 %</td><td>Jusqu'à 69 semaines (un parent max 61)</td></tr>
+              </tbody>
+            </table>
+            <p>Si vous choisissez le taux prolongé (33 %), le taux inférieur s'applique pour toute la demande et ne peut pas être modifié ultérieurement.</p>
+            <h4>8️⃣ Où faire une demande ou gérer votre dossier</h4>
+            <ul>
+              <li>✅ Faire une demande : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/apply.html">Apply for EI maternity and parental benefits</a></li>
+              <li>✅ Après avoir fait une demande / gérer votre dossier : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html">After applying</a></li>
+              <li>✅ Demandes d'AE pour proches aidants : <a href="https://www.canada.ca/en/services/benefits/ei/caregiving/after-applying.html">After applying – Caregiving</a></li>
+              <li>Aperçu général du programme d'AE : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html">EI Maternity and Parental Benefits</a></li>
+            </ul>
+            <h4>🔎 Tableau récapitulatif — Taux d'AE 2026</h4>
+            <table>
+              <thead><tr><th>Élément</th><th>Valeur 2026</th></tr></thead>
+              <tbody>
+                <tr><td>Taux de base d'AE</td><td>55 %</td></tr>
+                <tr><td>Taux parental prolongé</td><td>33 %</td></tr>
+                <tr><td>Rémunération assurable maximale</td><td>63 200 $</td></tr>
+                <tr><td>Prestation hebdomadaire maximale</td><td>~668 $</td></tr>
+                <tr><td>Supplément familial à faible revenu</td><td>Jusqu'à 80 %</td></tr>
+              </tbody>
+            </table>
+            <p>📞 Contact Service Canada : 1-800-206-7218 | ATS : 1-800-529-3742 | Du lundi au vendredi, de 8 h 30 à 16 h 30 (heure locale)</p>
+          </div>
+        </div>
+      </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+          <div class="full-response-body">
+            <p>Voici comment fonctionnent les prestations régulières d'assurance-emploi (AE) au Canada (sur la base des taux les plus récents dont je dispose — taux de 2024). Parce que les chiffres d'AE sont mis à jour chaque année, vous devriez confirmer les chiffres actuels sur le site Web de Service Canada pour 2026.</p>
+            <h4>1. Taux de base des prestations d'AE (chiffres 2024)</h4>
+            <p>Taux de prestations : 55 % de votre rémunération hebdomadaire assurable moyenne. Rémunération assurable maximale (2024) : 63 200 $ par an. Prestation hebdomadaire maximale (2024) : 668 $ par semaine. Si la rémunération assurable maximale augmente en 2025-2026, la prestation hebdomadaire maximale augmentera proportionnellement.</p>
+            <h4>2. Comment votre prestation hebdomadaire est calculée</h4>
+            <p>Service Canada utilise vos meilleures semaines de gains pendant votre période de référence (généralement les 52 dernières semaines). Le nombre de meilleures semaines utilisées dépend des taux de chômage régionaux.</p>
+            <table>
+              <thead><tr><th>Taux de chômage régional</th><th>Nombre de meilleures semaines utilisées</th></tr></thead>
+              <tbody>
+                <tr><td>6 % ou moins</td><td>22 semaines</td></tr>
+                <tr><td>6,1 % - 7 %</td><td>21 semaines</td></tr>
+                <tr><td>7,1 % - 8 %</td><td>20 semaines</td></tr>
+                <tr><td>8,1 % - 9 %</td><td>19 semaines</td></tr>
+                <tr><td>Plus de 13 %</td><td>14 semaines</td></tr>
+              </tbody>
+            </table>
+            <p>Chômage plus élevé = moins de semaines utilisées = souvent une moyenne plus élevée. Exemple : rémunération hebdomadaire moyenne 1 000 $ — 55 % de 1 000 $ = 550 $/semaine.</p>
+            <h4>3. Comment le chômage régional affecte l'AE</h4>
+            <p>Le chômage régional affecte (A) le nombre d'heures dont vous avez besoin pour être admissible (chômage plus élevé = moins d'heures requises, allant de 420 à 700 heures) ; (B) le nombre de semaines de prestations que vous pouvez recevoir (entre 14 et 45 semaines).</p>
+            <h4>4. Supplément familial</h4>
+            <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial net (moins d'environ 25 921 $ — sous réserve de mises à jour), votre taux de prestations peut augmenter de 55 % jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne (toujours soumis au plafond maximum).</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
   </div>
+</div>
+<hr>
 
+<!-- PRICING -->
+<div class="content-section" id="pricing">
+  <h2>Tarification institutionnelle</h2>
+  <p class="section-intro">Licences transparentes et tout compris pour les universités de taille moyenne.</p>
+  <p>COMPAiSS est offert sous forme de licence de plateforme institutionnelle. L'infrastructure, le traitement IA, la surveillance de la gouvernance, le suivi et les rapports sont tous inclus dans les frais de licence annuels. Les institutions ne gèrent pas et ne paient pas séparément les composantes sous-jacentes.</p>
+  <p>La tarification ci-dessous est fondée sur le déploiement d'une université de taille moyenne (environ 7 000 à 10 000 étudiants) avec une portée initiale ciblant les Affaires étudiantes et services. L'année 1 est projetée de manière conservatrice à environ 12 000 sessions annuelles.</p>
+  <div class="cost-summary-grid">
+    <div class="cost-item"><div class="ci-label">Frais de développement pilote et de mise en œuvre</div><div class="ci-value">4 000 $</div><div class="ci-sub">Année 1 seulement</div></div>
+    <div class="cost-item"><div class="ci-label">Licence annuelle (A1-A2)</div><div class="ci-value">26 000 $</div><div class="ci-sub">Tout compris</div></div>
+    <div class="cost-item"><div class="ci-label">Licence annuelle (A3)</div><div class="ci-value">23 000 $</div><div class="ci-sub">~20 % de croissance d'utilisation</div></div>
+    <div class="cost-item"><div class="ci-label">Délai de déploiement</div><div class="ci-value">2-3 sem.</div><div class="ci-sub">À partir de la signature du contrat</div></div>
+  </div>
+  <div class="highlight-block">
+    <p><strong>Ce que la licence inclut :</strong> capacité de traitement IA, infrastructure d'hébergement sécurisée (disponibilité 24/7, chiffrement, protection du trafic), surveillance de la gouvernance et validation des politiques (maintenance continue de la liste verte, mises à jour des limites de périmètre, révisions trimestrielles des risques), surveillance et analytique (analyses d'engagement, tableaux de bord administratifs, diagnostics de performance), et une période pilote du personnel pouvant aller jusqu'à 30 jours avant le déploiement complet aux étudiants.</p>
+  </div>
+  <h3 style="color:var(--text-heading);font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 0.8rem;font-family:system-ui,-apple-system,sans-serif;">Cadre d'utilisation et de croissance</h3>
+  <table class="pricing-table">
+    <thead><tr><th>Niveau d'utilisation</th><th>Plage d'interactions</th><th>Impact sur les coûts</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dans la plage projetée</strong></td><td>~12 000/an</td><td>Entièrement inclus</td><td>Aucune action requise</td></tr>
+      <tr><td>Surutilisation modérée</td><td>120-150 % de la projection</td><td>Coût IA incrémentiel seulement</td><td>Suivi ; absorbé dans la mesure du raisonnable</td></tr>
+      <tr><td>Surutilisation importante</td><td>&gt;150 % de la projection</td><td>Révision de la mise à l'échelle</td><td>Discussion d'ajustement tarifaire</td></tr>
+      <tr><td>Sous-utilisation importante</td><td>&lt;50 % de la projection</td><td>Coût variable réduit</td><td>Révision de l'année 1 possible</td></tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<!-- COMPETITOR COMPARISON -->
+<div class="content-section" id="competitor-comparison">
+  <h2>Comparaison concurrentielle</h2>
+  <p class="section-intro">Coûts annuels de licence pour des plateformes d'assistance IA comparables déployées dans l'enseignement supérieur. Les chiffres excluent la mise en œuvre, l'intégration et la configuration de gouvernance — qui ajoutent généralement 15 à 30 % au coût total de possession de la première année pour les solutions concurrentes.</p>
+  <table class="pricing-table">
+    <thead><tr><th>Plateforme</th><th>Petite université</th><th>Université moyenne</th><th>Grande université</th><th>Modèle tarifaire</th></tr></thead>
+    <tbody>
+      <tr><td>Bolt AI Assistants</td><td>$30K-$50K</td><td>$50K-$80K</td><td>$80K-$110K</td><td>Abonnement annuel</td></tr>
+      <tr><td>Capacity AI</td><td>$30K-$55K</td><td>$55K-$85K</td><td>$85K-$120K</td><td>Utilisation + frais de plateforme</td></tr>
+      <tr><td>Coveo AI</td><td>$40K-$70K</td><td>$70K-$100K</td><td>$100K-$140K</td><td>Contrat d'entreprise</td></tr>
+      <tr><td>Intercom (Education)</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$150K</td><td>Utilisation + sièges</td></tr>
+      <tr><td>Ivy.ai</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$145K</td><td>Abonnement annuel</td></tr>
+      <tr><td>Mainstay (AdmitHub)</td><td>$35K-$60K</td><td>$60K-$95K</td><td>$95K-$135K</td><td>Abonnement annuel</td></tr>
+      <tr><td>Ocelot</td><td>$20K-$40K</td><td>$40K-$65K</td><td>$65K-$90K</td><td>Abonnement annuel</td></tr>
+      <tr><td>Verge AI</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$120K</td><td>Contrat d'entreprise</td></tr>
+      <tr><td>Zendesk Answer Bot</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$105K</td><td>Tarification par agent</td></tr>
+      <tr class="compaiss-row"><td>COMPAiSS (Univ. moyenne - A1)</td><td> - </td><td><strong>26 000 $</strong></td><td> - </td><td>Projet pilote institutionnel axé sur la gouvernance — frais de mise en œuvre, révision à 6 mois, tout compris</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">COMPAiSS est dimensionné pour le périmètre de déploiement spécifique. Les chiffres des concurrents reflètent les niveaux institutionnels standard. L'avantage tarifaire se réduirait à grande échelle ; cependant, l'architecture de gouvernance pré-inférence de COMPAiSS demeure unique dans l'ensemble concurrentiel, quelle que soit l'échelle.</p>
+  <div class="card-grid" style="margin-top:2rem;">
+    <div class="card"><div class="card-icon">&#127959;</div><h3>Gouvernance pré-inférence</h3><p>La validation des sources et l'application du périmètre se produisent avant la génération IA. Aucun concurrent n'opère à cette couche architecturale. Chaque plateforme ci-dessus applique le filtrage après l'inférence — ce qui signifie que le contenu halluciné est produit en premier et supprimé ensuite.</p></div>
+    <div class="card"><div class="card-icon">&#128268;</div><h3>Intégration TI minimale</h3><p>S'intègre directement au site Web existant de l'institution. L'authentification unique optionnelle nécessite une seule inscription d'application dans Azure AD — aucune installation de serveur, migration de base de données ou modification d'infrastructure requise.</p></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Prêt pour l'approvisionnement</h3><p>L'autorisation pré-inférence signifie que chaque interaction suit un chemin de gouvernance documenté et reproductible. Compatible avec les exigences des comités de gouvernance IA, les cadres d'EIA et les normes d'approvisionnement gouvernementales.</p></div>
+  </div>
+</div>
+<hr>
+<!-- ROI -->
+<div class="content-section" id="roi">
+  <h2>Retour sur investissement</h2>
+  <p class="section-intro">Récupération du temps du personnel modélisée pour une équipe des Affaires étudiantes d'une université de taille moyenne — à trois niveaux d'adoption.</p>
+  <p>Les équipes des Affaires étudiantes des institutions de cette taille gèrent des volumes élevés de demandes concentrées autour de cycles institutionnels prévisibles : arrivées en début de session, périodes d'inscription, échéances de documents gouvernementaux et remise des diplômes. Une part importante de ces demandes est routinière, fondée sur des politiques et répondable à partir de sources vérifiées — le profil de requête précis que COMPAiSS est conçu pour traiter.</p>
+  <div class="highlight-block">
+    <p><strong>Référence : 1 ETP aux Affaires étudiantes (demandes routinières)</strong><br>Coût annuel entièrement chargé (salaire + avantages sociaux) : 70 000 $ - 85 000 $</p>
+  </div>
+  <table class="roi-table">
+    <thead><tr><th>Niveau d'adoption</th><th>Détournement des demandes</th><th>Sessions redirigées</th><th>Compensation ETP / Temps récupéré</th><th>Retour sur le coût COMPAiSS</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Faible</strong></td><td>~15 %</td><td>200-300/an</td><td>0,1-0,2 ETP | 7 000 $ - 17 000 $ récupérés</td><td>Environ neutre sur les coûts</td></tr>
+      <tr><td><strong>Moyen</strong></td><td>~35 %</td><td>500-700/an</td><td>0,3-0,5 ETP | 21 000 $ - 42 000 $ récupérés</td><td><strong>Retour de 1,5x à 3x</strong></td></tr>
+      <tr><td><strong>Élevé</strong></td><td>~55 %</td><td>800-1 200/an</td><td>0,6-0,9 ETP | 42 000 $ - 76 000 $ récupérés</td><td><strong>Retour de 3x à 5x</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">Les chiffres de récupération du temps du personnel sont fondés sur un coût ETP entièrement chargé de 70 000 $ - 85 000 $/an et un calcul de compensation proportionnelle. La récupération réelle variera selon la portée du déploiement et le taux d'adoption.</p>
+  <div class="card-grid" style="margin-top:1.5rem;">
+    <div class="card"><div class="card-icon">&#128202;</div><h3>À adoption moyenne</h3><p>COMPAiSS est autofinancé et compense une part significative d'un poste du personnel — répondant directement aux lacunes de capacité sans ajouter de ressources humaines.</p></div>
+    <div class="card"><div class="card-icon">&#128176;</div><h3>À adoption élevée</h3><p>Les économies de temps du personnel approchent le coût total d'un ETP — rendant COMPAiSS effectivement autofinancé tout en améliorant simultanément la qualité du service et la disponibilité 24/7.</p></div>
+  </div>
+  <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Demander une évaluation</div>
+    <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">COMPAiSS est disponible pour évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance et la tarification pour votre institution :</p>
+    <a href="/cdn-cgi/l/email-protection#abc8c4dec5dfced9cdcac8dfdecac7dfc3cec4d9d2ebccc6cac2c785c8c4c694d8dec9c1cec8df96e8e4e6fbeac2f8f88e999beeddcac7decadfc2c4c58e999bf9cedadeced8df" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">Demander une démonstration &rarr;</a>
+  </div>
+</div>
 </main>
-
 <footer>
   <div class="footer-inner">
-    <p style="margin-top: 0.8rem;">
-      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
-    </p>
+    <p style="margin-top:0.8rem;">Contact : <a href="/cdn-cgi/l/email-protection#3d5e52485349584f5b5c5e49485c51495558524f447d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="197a766c776d7c6b7f787a6d6c78756d717c766b60597e74787075377a7674">[email&#160;protected]</span></a></p>
   </div>
 </footer>
-
-<button id="backToTop" aria-label="Retour en haut">↑</button>
-
-<script>
-  const backBtn = document.getElementById('backToTop');
-
-  function checkScroll() {
-    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+<button id="backToTop" aria-label="Retour en haut">&#8593;</button>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleResponse(btn) {
+    btn.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('visible');
+    const textNode = Array.from(btn.childNodes).find(n => n.nodeType === 3);
+    if (textNode) {
+      if (body.classList.contains('visible')) {
+        textNode.textContent = ' Masquer la réponse';
+      } else {
+        const isGov = btn.closest('.governed-panel') !== null;
+        textNode.textContent = isGov ? ' Voir la réponse gouvernée complète' : ' Voir la réponse non gouvernée complète';
+      }
+    }
   }
-
+  const backBtn = document.getElementById('backToTop')
+  function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
   window.addEventListener('scroll', checkScroll);
   window.addEventListener('load', checkScroll);
-
   backBtn.addEventListener('click', () => {
-    const nav = document.querySelector('.section-nav');
-    nav.scrollIntoView({ block: 'start' });
+    document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
     history.replaceState(null, null, window.location.pathname);
   });
 </script>
-
 </body>
 </html>
