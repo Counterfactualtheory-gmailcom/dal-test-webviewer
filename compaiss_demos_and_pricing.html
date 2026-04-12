@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
 <script>
@@ -10,1116 +9,587 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-JR7LJGK5PK');
 </script>
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>COMPAiSS Demos and Pricing</title>
-
-  <style>
-    :root {
-      --wrap: 980px;
-      --pad: 32px;
-      --bg-page: #0c2d5a;
-      --bg-panel: #10386e;
-      --bg-panel-soft: rgba(16,56,110,0.55);
-      --bg-card: rgba(255,255,255,0.05);
-      --text-main: #c6cfdd;
-      --text-muted: #aeb9cc;
-      --text-heading: #ffffff;
-      --accent: #f0c44c;
-      --accent-soft: rgba(240,196,76,0.12);
-      --border-soft: rgba(255,255,255,0.08);
-      --border-accent: rgba(240,196,76,0.3);
-      --link: #9cc9ff;
-      --link-visited: #c8e0ff;
-      --radius: 10px;
-      --green: #4caf82;
-      --green-soft: rgba(76,175,130,0.12);
-      --red: #e05555;
-      --red-soft: rgba(220,80,80,0.10);
-      --red-border: rgba(220,80,80,0.25);
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg-page);
-      color: var(--text-main);
-      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
-      -webkit-text-size-adjust: 100%;
-    }
-
-    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
-    a:visited { color: var(--link-visited); }
-    a:hover, a:focus { opacity: .95; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-    .skip-link {
-      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
-    }
-    .skip-link:focus {
-      left: 16px; top: 16px; width: auto; height: auto;
-      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
-    }
-
-    header { border-bottom: 1px solid var(--border-soft); }
-
-    .nav {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 18px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav .brand-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text-heading);
-      font-family: system-ui, -apple-system, sans-serif;
-      text-decoration: none;
-    }
-
-    .nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.4rem;
-      margin: 0;
-      padding: 0;
-      font-size: 0.9rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .nav a { text-decoration: none; color: var(--text-muted); }
-    .nav a:hover { color: var(--text-heading); }
-    .nav a.active { color: var(--accent); }
-
-    main {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: var(--pad);
-    }
-
-    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
-    footer .footer-inner {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 2.5rem var(--pad);
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 3.5rem 0 2.5rem;
-      border-bottom: 1px solid var(--border-soft);
-      margin-bottom: 3rem;
-    }
-
-    .page-header .eyebrow {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .page-header h1 {
-      font-size: 2.6rem;
-      color: var(--text-heading);
-      margin: 0 0 1rem;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-
-    .page-header .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 60ch;
-      margin: 0 auto;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .section-nav {
-      margin-bottom: 3rem;
-      padding: 1.4rem 1.6rem;
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      border: 1px solid var(--border-soft);
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .section-nav strong {
-      display: block;
-      margin-bottom: 0.9rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .section-nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem 2rem;
-    }
-
-    @media (max-width: 600px) {
-      .section-nav ul { grid-template-columns: 1fr; }
-    }
-
-    .section-nav li { margin: 0; }
-    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
-    .section-nav a:hover { color: var(--text-heading); }
-
-    .content-section {
-      margin-bottom: 4rem;
-      padding-top: 1rem;
-    }
-
-    .content-section h2 {
-      font-size: 1.7rem;
-      color: var(--text-heading);
-      margin: 0 0 0.5rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border-accent);
-      letter-spacing: 0.01em;
-    }
-
-    .content-section .section-intro {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin: 0 0 1.8rem;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-style: italic;
-    }
-
-    .content-section p {
-      max-width: 70ch;
-      margin: 1em 0;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-soft);
-      margin: 3rem 0;
-    }
-
-    .deployment-block { margin-bottom: 3rem; }
-
-    .deployment-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .deployment-badge {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      background: var(--accent-soft);
-      border: 1px solid var(--border-accent);
-      color: var(--accent);
-      white-space: nowrap;
-    }
-
-    .deployment-name {
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-heading);
-    }
-
-    .question-block {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1rem 1.4rem;
-      margin-bottom: 1.2rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .question-block .q-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .question-block .q-text {
-      font-size: 0.95rem;
-      color: var(--text-heading);
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 700px) {
-      .compare-grid { grid-template-columns: 1fr; }
-    }
-
-    .governed-panel {
-      background: var(--green-soft);
-      border: 1px solid rgba(76,175,130,0.3);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .ungoverned-panel {
-      background: var(--red-soft);
-      border: 1px solid var(--red-border);
-      border-radius: var(--radius);
-      padding: 1.4rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .panel-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .governed-panel .panel-label { color: var(--green); }
-    .ungoverned-panel .panel-label { color: var(--red); }
-
-    .panel-label .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .governed-panel .panel-label .dot { background: var(--green); }
-    .ungoverned-panel .panel-label .dot { background: var(--red); }
-
-    .panel-content {
-      font-size: 0.88rem;
-      color: var(--text-main);
-      line-height: 1.65;
-    }
-
-    .panel-content ul {
-      margin: 0.5rem 0 0.5rem 1.2rem;
-      padding: 0;
-    }
-
-    .panel-content li { margin: 0.3rem 0; }
-
-    /* Collapsible full response */
-    .full-response-toggle {
-      margin-top: 0.9rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .toggle-btn {
-      background: none;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-      color: var(--text-muted);
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      padding: 0.4rem 0.9rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: border-color 0.15s, color 0.15s;
-    }
-
-    .governed-panel .toggle-btn:hover { border-color: var(--green); color: var(--green); }
-    .ungoverned-panel .toggle-btn:hover { border-color: var(--red); color: var(--red); }
-
-    .toggle-btn .arrow { font-size: 0.65rem; transition: transform 0.2s; }
-    .toggle-btn.open .arrow { transform: rotate(180deg); }
-
-    .full-response-body {
-      display: none;
-      margin-top: 1rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.84rem;
-      line-height: 1.7;
-      color: var(--text-main);
-    }
-
-    .full-response-body.visible { display: block; }
-
-    .full-response-body h4 {
-      font-size: 0.82rem;
-      color: var(--text-heading);
-      margin: 1rem 0 0.3rem;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-weight: 600;
-    }
-
-    .full-response-body ul {
-      margin: 0.4rem 0 0.8rem 1.2rem;
-      padding: 0;
-    }
-
-    .full-response-body li { margin: 0.3rem 0; }
-
-    .full-response-body p { margin: 0.6rem 0; max-width: none; font-size: 0.84rem; }
-
-    .full-response-body table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-      margin: 0.8rem 0;
-    }
-
-    .full-response-body table th {
-      text-align: left;
-      padding: 0.4rem 0.7rem;
-      font-size: 0.75rem;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border-accent);
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .full-response-body table td {
-      padding: 0.4rem 0.7rem;
-      border-bottom: 1px solid var(--border-soft);
-      vertical-align: top;
-    }
-
-    .governance-delta {
-      background: rgba(0,0,0,0.2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      padding: 1rem 1.4rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .governance-delta .delta-header {
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-    }
-
-    .governance-delta .risk-line { color: #e05555; }
-
-    .highlight-block {
-      background: var(--accent-soft);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1.4rem 1.6rem;
-      margin: 1.8rem 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .highlight-block p {
-      margin: 0 0 0.6rem;
-      font-size: 0.95rem;
-      color: var(--text-main);
-      max-width: none;
-      line-height: 1.65;
-    }
-
-    .highlight-block p:last-child { margin-bottom: 0; }
-
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.88rem;
-      margin: 1.5rem 0;
-    }
-
-    .pricing-table th {
-      text-align: left;
-      padding: 0.7rem 1rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border-accent);
-    }
-
-    .pricing-table td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border-soft);
-      color: var(--text-main);
-      vertical-align: top;
-    }
-
-    .pricing-table tr:last-child td { border-bottom: none; }
-
-    .pricing-table tr.compaiss-row td {
-      background: var(--accent-soft);
-      color: var(--text-heading);
-      font-weight: 600;
-    }
-
-    .pricing-table tr.compaiss-row td:first-child { border-left: 3px solid var(--accent); }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
-
-    .card h3 {
-      font-size: 0.9rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.6rem;
-    }
-
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-main);
-      margin: 0;
-      line-height: 1.6;
-      max-width: none;
-    }
-
-    .roi-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 0.88rem;
-      margin: 1.5rem 0;
-    }
-
-    .roi-table th {
-      text-align: left;
-      padding: 0.7rem 1rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border-accent);
-    }
-
-    .roi-table td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid var(--border-soft);
-      color: var(--text-main);
-    }
-
-    .roi-table tr:last-child td { border-bottom: none; }
-
-    .cost-summary-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .cost-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1.2rem 1.4rem;
-      font-family: system-ui, -apple-system, sans-serif;
-      text-align: center;
-    }
-
-    .cost-item .ci-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .cost-item .ci-value {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1.2;
-    }
-
-    .cost-item .ci-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.3rem;
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: var(--accent);
-      color: #000;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-
-    #backToTop:hover { opacity: 0.9; }
-
-    @media (max-width: 700px) {
-      .page-header h1 { font-size: 1.9rem; }
-      .compare-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
-  </style>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>Governance in Action - COMPAiSS</title>
+<style>
+:root{--wrap:980px;--pad:32px;--bg-page:#0c2d5a;--bg-card:rgba(255,255,255,0.05);--text-main:#c6cfdd;--text-muted:#aeb9cc;--text-heading:#ffffff;--accent:#f0c44c;--accent-soft:rgba(240,196,76,0.12);--border-soft:rgba(255,255,255,0.08);--border-accent:rgba(240,196,76,0.3);--link:#9cc9ff;--link-visited:#c8e0ff;--radius:10px;--green:#4caf82;--green-soft:rgba(76,175,130,0.12);--red:#e05555;--red-soft:rgba(220,80,80,0.10);--red-border:rgba(220,80,80,0.25);}
+html,body{margin:0;padding:0;background:var(--bg-page);color:var(--text-main);font:18px/1.65 'Georgia','Times New Roman',serif;-webkit-text-size-adjust:100%;}
+a{color:var(--link);text-decoration:underline;text-underline-offset:0.15em;}
+a:visited{color:var(--link-visited);}
+a:hover,a:focus{opacity:.95;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;}
+.skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:#000;color:#fff;padding:8px 12px;z-index:1000;}
+header{border-bottom:1px solid var(--border-soft);}
+.nav{max-width:var(--wrap);margin:0 auto;padding:18px var(--pad);display:flex;align-items:center;justify-content:space-between;}
+.nav .brand-text{font-weight:600;letter-spacing:0.04em;color:var(--text-heading);font-family:system-ui,-apple-system,sans-serif;text-decoration:none;}
+.nav ul{list-style:none;display:flex;gap:1.4rem;margin:0;padding:0;font-size:0.9rem;font-family:system-ui,-apple-system,sans-serif;}
+.nav a{text-decoration:none;color:var(--text-muted);}
+.nav a:hover{color:var(--text-heading);}
+.nav a.active{color:var(--accent);}
+main{max-width:var(--wrap);margin:0 auto;padding:var(--pad);}
+footer{border-top:1px solid var(--border-soft);margin-top:5rem;}
+footer .footer-inner{max-width:var(--wrap);margin:0 auto;padding:2.5rem var(--pad);font-size:0.85rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;}
+.page-header{text-align:center;padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border-soft);margin-bottom:3rem;}
+.page-header .eyebrow{font-family:system-ui,-apple-system,sans-serif;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.page-header h1{font-size:2.6rem;color:var(--text-heading);margin:0 0 1rem;letter-spacing:0.02em;line-height:1.2;}
+.page-header .subtitle{font-size:1.1rem;color:var(--text-muted);max-width:60ch;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;}
+.section-nav{margin-bottom:3rem;padding:1.4rem 1.6rem;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-soft);font-family:system-ui,-apple-system,sans-serif;}
+.section-nav strong{display:block;margin-bottom:0.9rem;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);}
+.section-nav ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 2rem;}
+@media(max-width:600px){.section-nav ul{grid-template-columns:1fr;}}
+.section-nav li{margin:0;}
+.section-nav a{text-decoration:none;color:var(--link);font-size:0.92rem;}
+.section-nav a:hover{color:var(--text-heading);}
+.content-section{margin-bottom:4rem;padding-top:1rem;}
+.content-section h2{font-size:1.7rem;color:var(--text-heading);margin:0 0 0.5rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border-accent);letter-spacing:0.01em;}
+.content-section .section-intro{color:var(--text-muted);font-size:0.95rem;margin:0 0 1.8rem;font-family:system-ui,-apple-system,sans-serif;font-style:italic;}
+.content-section p{max-width:70ch;margin:1em 0;font-size:1rem;line-height:1.7;}
+hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
+.deployment-block{margin-bottom:3rem;}
+.deployment-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border-soft);}
+.deployment-badge{font-family:system-ui,-apple-system,sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:4px;background:var(--accent-soft);border:1px solid var(--border-accent);color:var(--accent);white-space:nowrap;}
+.deployment-name{font-family:system-ui,-apple-system,sans-serif;font-size:1.05rem;font-weight:600;color:var(--text-heading);}
+.question-block{background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1rem 1.4rem;margin-bottom:1.2rem;font-family:system-ui,-apple-system,sans-serif;}
+.question-block .q-label{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.4rem;}
+.question-block .q-text{font-size:0.95rem;color:var(--text-heading);font-style:italic;line-height:1.5;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1rem;}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr;}}
+.governed-panel{background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);padding:1.4rem;font-family:system-ui,-apple-system,sans-serif;}
+.ungoverned-panel{background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem;font-family:system-ui,-apple-system,sans-serif;}
+.panel-label{font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem;}
+.governed-panel .panel-label{color:var(--green);}
+.ungoverned-panel .panel-label{color:var(--red);}
+.panel-label .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.governed-panel .panel-label .dot{background:var(--green);}
+.ungoverned-panel .panel-label .dot{background:var(--red);}
+.full-response-toggle{margin-top:0.4rem;}
+.toggle-btn{background:none;border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-size:0.78rem;letter-spacing:0.08em;padding:0.4rem 0.9rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:border-color 0.15s,color 0.15s;}
+.governed-panel .toggle-btn:hover{border-color:var(--green);color:var(--green);}
+.ungoverned-panel .toggle-btn:hover{border-color:var(--red);color:var(--red);}
+.toggle-btn .arrow{font-size:0.65rem;transition:transform 0.2s;}
+.toggle-btn.open .arrow{transform:rotate(180deg);}
+.full-response-body{display:none;margin-top:1rem;padding-top:0.8rem;border-top:1px solid rgba(255,255,255,0.06);font-size:0.84rem;line-height:1.7;color:var(--text-main);}
+.full-response-body.visible{display:block;}
+.full-response-body h4{font-size:0.82rem;color:var(--text-heading);margin:1rem 0 0.3rem;font-family:system-ui,-apple-system,sans-serif;font-weight:600;}
+.full-response-body ul{margin:0.4rem 0 0.8rem 1.2rem;padding:0;}
+.full-response-body li{margin:0.3rem 0;}
+.full-response-body p{margin:0.6rem 0;max-width:none;font-size:0.84rem;}
+.full-response-body table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:0.8rem 0;}
+.full-response-body table th{text-align:left;padding:0.4rem 0.7rem;font-size:0.75rem;color:var(--accent);border-bottom:1px solid var(--border-accent);font-family:system-ui,-apple-system,sans-serif;}
+.full-response-body table td{padding:0.4rem 0.7rem;border-bottom:1px solid var(--border-soft);vertical-align:top;}
+.receipt-box{background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:1rem 1.4rem;font-family:'Courier New',monospace;font-size:0.77rem;color:var(--text-muted);line-height:1.75;margin-top:1.2rem;}
+.receipt-box .receipt-header{color:var(--accent);font-weight:700;font-size:0.74rem;letter-spacing:0.1em;margin-bottom:0.4rem;}
+.receipt-box .receipt-intro{font-family:system-ui,-apple-system,sans-serif;font-size:0.8rem;color:var(--text-muted);font-style:italic;margin-bottom:0.8rem;display:block;}
+.receipt-box .pass-line{color:var(--green);}
+.receipt-box .risk-line{color:#e05555;}
+.governance-delta{background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:1rem 1.4rem;font-family:'Courier New',monospace;font-size:0.78rem;color:var(--text-muted);line-height:1.7;}
+.governance-delta .delta-header{color:var(--accent);font-weight:700;margin-bottom:0.5rem;font-size:0.75rem;letter-spacing:0.1em;}
+.governance-delta .risk-line{color:#e05555;}
+.highlight-block{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.4rem 1.6rem;margin:1.8rem 0;font-family:system-ui,-apple-system,sans-serif;}
+.highlight-block p{margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;}
+.highlight-block p:last-child{margin-bottom:0;}
+.pricing-table,.roi-table{width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.88rem;margin:1.5rem 0;}
+.pricing-table th,.roi-table th{text-align:left;padding:0.7rem 1rem;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--border-accent);}
+.pricing-table td,.roi-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border-soft);color:var(--text-main);vertical-align:top;}
+.pricing-table tr:last-child td,.roi-table tr:last-child td{border-bottom:none;}
+.pricing-table tr.compaiss-row td{background:var(--accent-soft);color:var(--text-heading);font-weight:600;}
+.pricing-table tr.compaiss-row td:first-child{border-left:3px solid var(--accent);}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;margin-top:1.5rem;}
+.card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.6rem;font-family:system-ui,-apple-system,sans-serif;}
+.card .card-icon{font-size:1.4rem;margin-bottom:0.7rem;}
+.card h3{font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin:0 0 0.6rem;}
+.card p{font-size:0.92rem;color:var(--text-main);margin:0;line-height:1.6;max-width:none;}
+.cost-summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin:1.5rem 0;}
+.cost-item{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.2rem 1.4rem;font-family:system-ui,-apple-system,sans-serif;text-align:center;}
+.cost-item .ci-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;}
+.cost-item .ci-value{font-size:1.4rem;font-weight:700;color:var(--accent);line-height:1.2;}
+.cost-item .ci-sub{font-size:0.78rem;color:var(--text-muted);margin-top:0.3rem;}
+#backToTop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;border:none;background:var(--accent);color:#000;font-size:20px;cursor:pointer;display:none;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,0.25);}
+#backToTop:hover{opacity:0.9;}
+@media(max-width:700px){.page-header h1{font-size:1.9rem;}.compare-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
 </head>
-
 <body>
-
 <a href="#main" class="skip-link">Skip to content</a>
-
 <header>
   <nav class="nav" aria-label="Primary">
     <a href="/index.html" class="brand-text">COMPAiSS</a>
     <ul>
       <li><a href="/governance.html">AI Governance</a></li>
       <li><a href="/ai-risk-assessment.html">AI Risk Assessment</a></li>
-      <li><a href="/compaiss_demos_and_pricing.html" class="active">COMPAiSS Demos and Pricing</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html" class="active">Governance in Action</a></li>
       <li><a href="/index_french.html">FR</a></li>
     </ul>
   </nav>
 </header>
-
 <main id="main">
-
-  <div class="page-header">
-    <div class="eyebrow">Live Governance Demonstrations &amp; Institutional Pricing</div>
-    <h1>Governance in Action</h1>
-    <p class="subtitle">Real responses from five active COMPAiSS beta pilots - each paired with what an ungoverned AI returns for the same question. Followed by transparent institutional pricing.</p>
+<div class="page-header">
+  <div class="eyebrow">Live Governance Demonstrations &amp; Institutional Pricing</div>
+  <h1>Governance in Action</h1>
+  <p class="subtitle">Real responses from five active COMPAiSS beta pilots - each paired with what an ungoverned AI returns for the same question. Followed by transparent institutional pricing.</p>
+</div>
+<div class="section-nav">
+  <strong>Navigate</strong>
+  <ul>
+    <li><a href="#what-you-are-seeing">What You Are Seeing</a></li>
+    <li><a href="#dal">Dalhousie University</a></li>
+    <li><a href="#ucw">University Canada West</a></li>
+    <li><a href="#mcgill">McGill University</a></li>
+    <li><a href="#tmu">Toronto Metropolitan University</a></li>
+    <li><a href="#service-canada">Service Canada</a></li>
+    <li><a href="#pricing">Institutional Pricing</a></li>
+    <li><a href="#competitor-comparison">Competitive Comparison</a></li>
+    <li><a href="#roi">Return on Investment</a></li>
+  </ul>
+</div>
+<div class="content-section" id="what-you-are-seeing">
+  <h2>What You Are Seeing</h2>
+  <p class="section-intro">Live counterfactual governance demonstrations from five active institutional beta pilots.</p>
+  <p>Each demonstration below shows the same question submitted to a live COMPAiSS beta pilot - first with governance active, then without. The ungoverned response is generated by the same underlying AI model (GPT-5.2-latest) operating without the COMPAiSS execution gate, greenlist, scaffold, or authoritative source injection.</p>
+  <p>This is not a simulation. These are real outputs from real deployments. You can reproduce any of them by visiting the relevant deployment and submitting the same question - with or without the <code>compare:</code> prefix.</p>
+  <div class="highlight-block">
+    <p><strong>The counterfactual logic:</strong> The governed and ungoverned responses are generated by the same model. Any difference between them is caused exclusively by the COMPAiSS governance architecture - the execution gate, the greenlist, the authoritative source injection, and the institutional scaffold. This is the governance gap made visible.</p>
+    <p>Click <strong>View full response</strong> under either panel to read the complete text exactly as a student would receive it.</p>
   </div>
+</div>
+<hr>
 
-  <div class="section-nav">
-    <strong>Navigate</strong>
-    <ul>
-      <li><a href="#what-you-are-seeing">What You Are Seeing</a></li>
-      <li><a href="#dal">Dalhousie University</a></li>
-      <li><a href="#ucw">University Canada West</a></li>
-      <li><a href="#mcgill">McGill University</a></li>
-      <li><a href="#tmu">Toronto Metropolitan University</a></li>
-      <li><a href="#service-canada">Service Canada</a></li>
-      <li><a href="#pricing">Institutional Pricing</a></li>
-      <li><a href="#competitor-comparison">Competitive Comparison</a></li>
-      <li><a href="#roi">Return on Investment</a></li>
-    </ul>
-  </div>
-
-  <!-- WHAT YOU ARE SEEING -->
-  <div class="content-section" id="what-you-are-seeing">
-    <h2>What You Are Seeing</h2>
-    <p class="section-intro">Live counterfactual governance demonstrations from five active institutional beta pilots.</p>
-
-    <p>Each demonstration below shows the same question submitted to a live COMPAiSS beta pilot - first with governance active, then without. The ungoverned response is generated by the same underlying AI model (GPT-5.2-latest) operating without the COMPAiSS execution gate, greenlist, scaffold, or authoritative source injection.</p>
-
-    <p>This is not a simulation. These are real outputs from real deployments. You can reproduce any of them by visiting the relevant deployment and submitting the same question - with or without the <code>compare:</code> prefix.</p>
-
-    <div class="highlight-block">
-      <p><strong>The counterfactual logic:</strong> The governed and ungoverned responses are generated by the same model. Any difference between them is caused exclusively by the COMPAiSS governance architecture - the execution gate, the greenlist, the authoritative source injection, and the institutional scaffold. This is the governance gap made visible.</p>
-      <p>Each comparison shows a summary by default. Click <strong>View full response</strong> under either panel to read the complete text exactly as a student would receive it.</p>
+<!-- DALHOUSIE -->
+<div class="content-section" id="dal">
+  <h2>Dalhousie University</h2>
+  <p class="section-intro">Student stress and mental health support - a high-stakes query where source accuracy and institutional grounding matter.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Active Beta Pilot</span>
+      <span class="deployment-name">DAL COMPAiSS - Student Affairs &amp; Wellness</span>
     </div>
-  </div>
-
-  <hr>
-
-  <!-- DALHOUSIE -->
-  <div class="content-section" id="dal">
-    <h2>Dalhousie University</h2>
-    <p class="section-intro">Student stress and mental health support - a high-stakes query where source accuracy and institutional grounding matter.</p>
-
-    <div class="deployment-block">
-      <div class="deployment-header">
-        <span class="deployment-badge">Active Beta Pilot</span>
-        <span class="deployment-name">DAL COMPAiSS - Student Affairs &amp; Wellness</span>
-      </div>
-
-      <div class="question-block">
-        <div class="q-label">Question submitted</div>
-        <div class="q-text">"I am a Dalhousie student and I am feeling overwhelmed and stressed about my grades and I am not sure who to talk to or where to get help on campus. I need specific supports - whatever is available to help me manage this."</div>
-      </div>
-
-      <div class="compare-grid">
-        <div class="governed-panel">
-          <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
-          <div class="full-response-toggle">
-              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
-              <div class="full-response-body">
-                <p>I'm really glad you reached out. Feeling overwhelmed about grades is very common at Dal (especially around midterms/finals), and you don't have to handle it alone. There are specific supports on campus that are meant exactly for this.</p>
-                <h4>1. Mental Health &amp; Counselling (Free for Students)</h4>
-                <p>Dalhousie Student Health &amp; Wellness Centre offers short-term counselling, same-day or urgent appointments, mental health nurses, and workshops for stress/anxiety. Halifax campuses: 902-494-2171. dal.ca/campus_life/health-and-wellness. If you feel overwhelmed and need to talk to someone soon, call and ask about same-day counselling appointments.</p>
-                <h4>2. 24/7 Immediate Support</h4>
-                <p>Good2Talk (for post-secondary students in NS): 1-833-292-3698. Text: 1-866-925-5454. Available 24/7, free &amp; confidential. If things ever feel unmanageable or you're in crisis: 988 (Suicide Crisis Helpline - 24/7 across Canada). Even if you're "just really stressed," you are absolutely allowed to call.</p>
-                <h4>3. Academic Support</h4>
-                <p>Academic Advising: your faculty's academic advisor can help you understand grade standing, talk about probation concerns (if relevant), help you plan next steps, and explain options like course withdrawal or extensions. You can find your advisor at dal.ca/advising. Dalhousie Student Union (DSU) Advocacy offers free, confidential student advocacy at dsadvocacy.ca - they can even help you draft emails to professors.</p>
-                <h4>4. Stress-Management Supports</h4>
-                <p>Dal Wellness often runs mindfulness sessions, stress reduction workshops, and drop-in group sessions. Sometimes it helps just to sit in a room with other students who are also overwhelmed.</p>
-                <p>If everything feels like "too much," start with one small step: Call Health &amp; Wellness and ask for a counselling intake. Or call Good2Talk tonight if you need immediate relief. Then book an academic advising appointment.</p>
-              </div>
-            </div>
+    <div class="question-block">
+      <div class="q-label">Question submitted</div>
+      <div class="q-text">"I am a Dalhousie student and I am feeling overwhelmed and stressed about my grades and I am not sure who to talk to or where to get help on campus. I need specific supports - whatever is available to help me manage this."</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
+          <div class="full-response-body">
+            <p>I'm really glad you reached out. Feeling overwhelmed about grades is very common - especially during busy points in the term - and Dalhousie has several specific, structured supports designed to help you manage both the academic and emotional side of this.</p>
+            <h4>Step 1: Speak with a Health &amp; Wellness Professional</h4>
+            <p>If stress is affecting your sleep, focus, motivation, or mood, your first stop should be Dalhousie Student Health &amp; Wellness. You can book an appointment at Health And Wellness or directly via Book Your Appointment. These appointments are confidential. You can see a counsellor, doctor, nurse, or other health professional. Support is available for stress, anxiety, academic pressure, burnout, and coping skills.</p>
+            <h4>Step 2: Check Your Academic Standing &amp; Understand Your Grades</h4>
+            <p>Sometimes anxiety increases when things feel unclear. Understanding where you stand academically can reduce uncertainty. Review your Grades And Student Records, use the Grade Scale And Definitions, use the GPA Calculator, and review your Academic Standing. You may feel worse than your actual academic standing reflects. Many students recover successfully from one difficult term.</p>
+            <h4>Step 3: Meet With an Academic Advisor</h4>
+            <p>If your stress is tied to falling behind, fear of failing, considering dropping a course, or concerns about academic standing, book a meeting with your faculty advisor or program advisor. Advisors can help you create a recovery plan, decide whether to withdraw from a course, understand probation rules, plan next term strategically, and discuss workload balance.</p>
+            <h4>Step 4: If Stress Has Caused You to Miss Work</h4>
+            <p>If you have missed assignments, tests, or classes because of stress, Dalhousie's Student Absence Regulation (2017, effective 2018) may apply. This regulation allows self-declaration for short-term absences (3 consecutive days or fewer), requires contacting your instructor before the deadline, and limits you to two Student Declarations per course per term.</p>
+            <p>If stress or mental health challenges are ongoing, the Student Accommodation Policy (Revised June 2025) confirms you are entitled to accommodation. The Student Accessibility Centre (SAC) manages this process.</p>
+            <h4>Step 5: Immediate Emotional Support</h4>
+            <p>If you are feeling very overwhelmed and need to talk to someone today, Health &amp; Wellness is your best first step. Same-day appointments are often available.</p>
+            <p><em>One tough term does not define your intelligence, future, or worth. The fact that you are asking for help is a very strong sign that you care and want to improve.</em></p>
+            <h4>Summary Action Plan</h4>
+            <ol style="margin:0.5rem 0 0 1.3rem;padding:0;font-size:0.84rem;">
+              <li>Book a Health &amp; Wellness appointment (confidential support for stress)</li>
+              <li>Review your GPA and academic standing using the GPA Calculator</li>
+              <li>Book a meeting with your academic advisor</li>
+              <li>If you have missed work, review the Student Absence Regulation</li>
+              <li>If stress is ongoing or medically impacting you, contact the Student Accessibility Centre</li>
+            </ol>
           </div>
         </div>
       </div>
-
-      <div class="governance-delta">
-        <div class="delta-header">⚖ GOVERNANCE DELTA - Controls absent in ungoverned response</div>
-        <span class="risk-line">GATE: BYPASSED - institutional gate not enforced</span><br>
-        <span class="risk-line">ASSETS: NONE - no authoritative Dal sources injected</span><br>
-        <span class="risk-line">GREENLIST: NOT ENFORCED - URLs unverified, third-party links possible</span><br>
-        <span class="risk-line">SCAFFOLD: NOT APPLIED - no Dal institutional scope</span><br>
-        <span class="risk-line">RISK: Third-party resources cited without institutional authorization</span>
-      </div>
-    </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
+          <div class="full-response-body">
+            <p>I'm really glad you reached out. Feeling overwhelmed about grades is very common at Dal (especially around midterms/finals), and you don't have to handle it alone. There are specific supports on campus that are meant exactly for this.</p>
+            <h4>1. Mental Health &amp; Counselling (Free for Students)</h4>
+            <p>Dalhousie Student Health &amp; Wellness Centre offers short-term counselling, same-day or urgent appointments, mental health nurses, and workshops for stress/anxiety. Halifax campuses: 902-494-2171. dal.ca/campus_life/health-and-wellness. If you feel overwhelmed and need to talk to someone soon, call and ask about same-day counselling appointments.</p>
+            <h4>2. 24/7 Immediate Support</h4>
+            <p>Good2Talk (for post-secondary students in NS): 1-833-292-3698. Text: 1-866-925-5454. Available 24/7, free &amp; confidential. If things ever feel unmanageable or you are in crisis: 988 (Suicide Crisis Helpline - 24/7 across Canada). Even if you are just really stressed, you are absolutely allowed to call.</p>
+            <h4>3. Academic Support</h4>
+            <p>Academic Advising: your faculty's academic advisor can help you understand grade standing, talk about probation concerns (if relevant), help you plan next steps, and explain options like course withdrawal or extensions. You can find your advisor at dal.ca/advising. Dalhousie Student Union (DSU) Advocacy offers free, confidential student advocacy at dsadvocacy.ca - they can even help you draft emails to professors.</p>
+            <h4>4. Stress-Management Supports</h4>
+            <p>Dal Wellness often runs mindfulness sessions, stress reduction workshops, and drop-in group sessions. If everything feels like too much, start with one small step: call Health &amp; Wellness and ask for a counselling intake, or call Good2Talk tonight if you need immediate relief.</p>
+          </div>
+        </div>
+<br></div>
   </div>
+</div>
 
-  <hr>
+  <div style="background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;padding:1.4rem 1.6rem;margin:1.2rem 0;font-family:system-ui,-apple-system,sans-serif;font-size:0.88rem;color:var(--text-main);line-height:1.7;">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem;">What to look for when reviewing the comparison</div>
+    <p style="margin:0;max-width:none;font-size:0.88rem;">When reviewing the comparison, look for five things: whether claims link directly to verified institutional sources; whether the response is genuinely institution-specific or a generic approximation; whether procedures and figures are exact or estimated from general knowledge; whether the system acknowledges what it does not know rather than fabricating plausible answers; and whether the response stays within the institution&#39;s authorized scope throughout.</p>
+  </div>
+<hr>
 
-  <!-- UCW -->
-  <div class="content-section" id="ucw">
-    <h2>University Canada West</h2>
-    <p class="section-intro">Academic integrity procedures - where fabricated timelines and invented sanctions can cause serious harm to students.</p>
-
-    <div class="deployment-block">
-      <div class="deployment-header">
-        <span class="deployment-badge">Active Beta Pilot</span>
-        <span class="deployment-name">UCW COMPAiSS - Student Affairs &amp; Academic Policy</span>
-      </div>
-
-      <div class="question-block">
-        <div class="q-label">Question submitted</div>
-        <div class="q-text">"What are the exact steps, timelines, and consequences under UCW's Academic Integrity Procedure if a student is accused of plagiarism, including how decisions are recorded and whether they appear on the academic record?"</div>
-      </div>
-
-      <div class="compare-grid">
-        <div class="governed-panel">
-          <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
-          <div class="full-response-toggle">
-              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
-              <div class="full-response-body">
-                <p>I don't have live access to UCW's current Academic Integrity Procedure, and universities periodically update timelines and terminology. For absolute accuracy, you should consult the UCW Academic Calendar (current year), UCW Academic Integrity Policy &amp; Procedure document, or contact Student Affairs / the Registrar's Office. That said, based on UCW's established academic integrity framework, the process generally follows this structure:</p>
-                <h4>1. Initial Allegation of Plagiarism</h4>
-                <p>The instructor reviews the suspected plagiarism (e.g., Turnitin report, copied text), gathers evidence, and the student is typically contacted and informed of the concern. The student is given written notice of the allegation and offered an opportunity to respond via meeting or written explanation. Timeline: usually within a few business days to 1-2 weeks after detection.</p>
-                <h4>2. Instructor-Level Decision (First-Level Finding)</h4>
-                <p>If it is a first offence (minor or moderate severity), the instructor may assign: warning, reduced grade on the assignment, zero on the assignment, requirement to redo the work, or failing grade in the course. The case is typically reported to the Academic Integrity Office or designated academic authority for recording.</p>
-                <h4>3. Escalation for Serious or Repeat Offences</h4>
-                <p>If the plagiarism is severe or the student has prior violations, the case is escalated to the Dean or an Academic Integrity Committee. Potential penalties at this stage: failing grade in the course, academic probation, suspension (typically one or more terms), expulsion (in extreme or repeated cases), or notation of academic misconduct. Formal reviews typically occur within a few weeks of escalation.</p>
-                <h4>4. Appeal Process</h4>
-                <p>Students typically have a limited timeframe to appeal (often 5-10 business days after receiving the decision). Appeals must usually be based on procedural error, new evidence, or unreasonable penalty.</p>
-                <h4>5. Recording of the Decision</h4>
-                <p>UCW typically records all academic integrity findings internally and maintains records for tracking repeat offences. Whether it appears on the official academic transcript depends on severity. Minor first offences usually do not appear on the official transcript. A failing grade in a course appears as a normal course grade (e.g., "F"). Suspensions or expulsions may appear as "Required to Withdraw" or "Academic Suspension." Internal records are kept even if not visible on the transcript.</p>
-                <p>To get precise timelines and procedural wording: check the current UCW Academic Calendar or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caaba9abaeafa7a3a9e4a3a4beafadb8a3beb38abfa9aba4bdafb9bee4a9ab">[email&#160;protected]</a> or your Program Advisor.</p>
-              </div>
-            </div>
+<!-- UCW -->
+<div class="content-section" id="ucw">
+  <h2>University Canada West</h2>
+  <p class="section-intro">Academic integrity procedures - where fabricated timelines and invented sanctions can cause serious harm to students.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Active Beta Pilot</span>
+      <span class="deployment-name">UCW COMPAiSS - Student Affairs &amp; Academic Policy</span>
+    </div>
+    <div class="question-block">
+      <div class="q-label">Question submitted</div>
+      <div class="q-text">"What are the exact steps, timelines, and consequences under UCW's Academic Integrity Procedure if a student is accused of plagiarism, including how decisions are recorded and whether they appear on the academic record?"</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
+          <div class="full-response-body">
+            <p>If you have been accused of plagiarism, UCW follows a formal process under its Academic Integrity framework. The governing documents for the 2025/2026 academic cycle are Policy 5006 - Academic Integrity and 5006p Academic Integrity Procedure.</p>
+            <h4>1. Initiation of an Academic Integrity Concern</h4>
+            <p>Under 5006p, the process begins when a potential breach is identified. Typically: the instructor identifies and documents the concern, the student is notified of the allegation, and the student is given an opportunity to respond. For exact wording and timing requirements, review the procedure directly.</p>
+            <h4>2. Review and Decision-Making</h4>
+            <p>The procedure establishes who reviews the case, how evidence is evaluated, and whether the case remains at the instructor level or is escalated. Depending on the severity and prior history, the matter may be resolved by the instructor or escalated to a higher academic authority for formal review.</p>
+            <h4>3. Possible Consequences</h4>
+            <p>The range of consequences for plagiarism is defined within Policy 5006 and Procedure 5006p. Sanctions may vary depending on severity of the breach, whether it is a first or repeated offence, academic level (MBA vs BCom), and impact on the integrity of the assessment. Because sanctions are formally categorized in the policy, you must consult the official document for the complete list and definitions.</p>
+            <h4>4. Timelines</h4>
+            <p>The Academic Integrity Procedure (5006p) outlines notification timelines, response timelines, and escalation timelines. These timelines are formally defined in the procedure document. For binding timelines, consult 5006p Academic Integrity Procedure directly.</p>
+            <h4>5. How Decisions Are Recorded</h4>
+            <p>The procedure establishes how findings are documented, where records are maintained, and who has access to the record. Academic integrity findings are formally recorded according to UCW's internal record keeping practices. You may also review Policy 6751 Information Privacy and Security.</p>
+            <h4>6. Do Academic Integrity Decisions Appear on the Academic Record?</h4>
+            <p>Whether and how outcomes are reflected on a student's academic record depends on the type of sanction imposed, the level of severity, and the category of outcome defined in Policy 5006 and Procedure 5006p. Academic standing implications are governed by Policy 9023 - Academic Standing. For definitive wording about transcript notation, you must consult the Academic Integrity Procedure directly.</p>
+            <h4>7. If You Disagree With the Decision</h4>
+            <p>If a final decision is issued and you believe it was made in error, the formal appeal pathway is governed by Policy 5005 - Final Grade Reviews and Appeals and Procedure 5005p. Your rights as a student are protected under Policy 9014 - Student Rights and Responsibilities.</p>
           </div>
         </div>
       </div>
-
-      <div class="governance-delta">
-        <div class="delta-header">⚖ GOVERNANCE DELTA - Controls absent in ungoverned response</div>
-        <span class="risk-line">GATE: BYPASSED - UCW gate not enforced</span><br>
-        <span class="risk-line">ASSETS: NONE - Policy 5006, 5006p, 9023 not injected</span><br>
-        <span class="risk-line">GREENLIST: NOT ENFORCED - UCW policy URLs unverified</span><br>
-        <span class="risk-line">RISK: Fabricated timelines, invented sanction categories, unverified email</span><br>
-        <span class="risk-line">RISK: Student may act on incorrect procedural information</span>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- MCGILL -->
-  <div class="content-section" id="mcgill">
-    <h2>McGill University</h2>
-    <p class="section-intro">Academic probation - specific GPA thresholds and course load limits that vary by faculty and are frequently misrepresented by general AI.</p>
-
-    <div class="deployment-block">
-      <div class="deployment-header">
-        <span class="deployment-badge">Active Beta Pilot</span>
-        <span class="deployment-name">McGill COMPAiSS - Faculty of Arts Academic Standing</span>
-      </div>
-
-      <div class="question-block">
-        <div class="q-label">Question submitted</div>
-        <div class="q-text">"I am a McGill Arts student and I have been placed on academic probation. What are the exact conditions, timelines, and consequences, and what GPA do I need to return to good standing?"</div>
-      </div>
-
-      <div class="compare-grid">
-        <div class="governed-panel">
-          <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
-          <div class="full-response-toggle">
-              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
-              <div class="full-response-body">
-                <p>I'm sorry you're dealing with this - academic probation can feel stressful, but it's very recoverable. Here's how it works specifically for McGill Faculty of Arts students:</p>
-                <h4>What Academic Probation Means (Faculty of Arts)</h4>
-                <p>You are placed on academic probation if your Term GPA (TGPA) is below 2.00, and/or Cumulative GPA (CGPA) falls below 2.00. A 2.00 CGPA is the minimum required for satisfactory standing in Arts.</p>
-                <h4>Conditions While on Academic Probation</h4>
-                <p>While on probation: you must raise your CGPA to 2.00 or higher; you are usually required to limit your course load (sometimes 12-14 credits recommended); meet with an Arts OASIS advisor; follow an academic improvement plan (if assigned); and demonstrate satisfactory progress in the next term.</p>
-                <h4>Timeline to Return to Good Standing</h4>
-                <p>You are typically given one academic term (Fall or Winter) to improve your CGPA. At the end of the next term: if your CGPA is 2.00 or above, you return to satisfactory standing. If your CGPA is still below 2.00 but your term GPA is 2.00 or higher, you may continue on probation. If both your CGPA and term GPA are below 2.00, you may face required withdrawal.</p>
-                <h4>Consequences if You Do Not Improve</h4>
-                <p>If after the probationary term your CGPA remains below 2.00 AND your TGPA is below 2.00, you may be Required to Withdraw (RTW). For Arts students: first RTW is normally for one academic year. You may apply for readmission after the withdrawal period. Readmission is not automatic.</p>
-                <h4>What GPA Do You Need?</h4>
-                <p>To return to good standing your CGPA must be at least 2.00. Not just your term GPA - your overall cumulative GPA must reach 2.00. If you're close (e.g., 1.95-1.99), advisors sometimes discuss strategic course planning to help you reach 2.00 quickly.</p>
-              </div>
-            </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
+          <div class="full-response-body">
+            <p>I don't have live access to UCW's current Academic Integrity Procedure, and universities periodically update timelines and terminology. For absolute accuracy, you should consult the UCW Academic Calendar (current year), UCW Academic Integrity Policy &amp; Procedure document, or contact Student Affairs / the Registrar's Office. That said, based on UCW's established academic integrity framework, the process generally follows this structure:</p>
+            <h4>1. Initial Allegation of Plagiarism</h4>
+            <p>The instructor reviews the suspected plagiarism (e.g., Turnitin report, copied text), gathers evidence, and the student is typically contacted and informed of the concern. The student is given written notice of the allegation and offered an opportunity to respond via meeting or written explanation. Timeline: usually within a few business days to 1-2 weeks after detection.</p>
+            <h4>2. Instructor-Level Decision (First-Level Finding)</h4>
+            <p>If it is a first offence (minor or moderate severity), the instructor may assign: warning, reduced grade on the assignment, zero on the assignment, requirement to redo the work, or failing grade in the course. The case is typically reported to the Academic Integrity Office or designated academic authority for recording.</p>
+            <h4>3. Escalation for Serious or Repeat Offences</h4>
+            <p>If the plagiarism is severe or the student has prior violations, the case is escalated to the Dean or an Academic Integrity Committee. Potential penalties: failing grade in the course, academic probation, suspension (typically one or more terms), expulsion (in extreme or repeated cases), or notation of academic misconduct. Formal reviews typically occur within a few weeks of escalation.</p>
+            <h4>4. Appeal Process</h4>
+            <p>Students typically have a limited timeframe to appeal (often 5-10 business days after receiving the decision). Appeals must usually be based on procedural error, new evidence, or unreasonable penalty.</p>
+            <h4>5. Recording of the Decision</h4>
+            <p>UCW typically records all academic integrity findings internally and maintains records for tracking repeat offences. Minor first offences usually do not appear on the official transcript. A failing grade in a course appears as a normal course grade (e.g., "F"). Suspensions or expulsions may appear as "Required to Withdraw" or "Academic Suspension." To get precise timelines and procedural wording: check the current UCW Academic Calendar or email <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a7b797b7e7f7773793473746e7f7d68736e635a6f797b746d7f696e34797b">[email&#160;protected]</a> or your Program Advisor.</p>
           </div>
         </div>
       </div>
-
-      <div class="governance-delta">
-        <div class="delta-header">⚖ GOVERNANCE DELTA - Controls absent in ungoverned response</div>
-        <span class="risk-line">GATE: BYPASSED - McGill gate not enforced</span><br>
-        <span class="risk-line">ASSETS: NONE - Faculty of Arts standing policy not injected</span><br>
-        <span class="risk-line">GREENLIST: NOT ENFORCED - McGill policy URLs unverified</span><br>
-        <span class="risk-line">RISK: Incorrect GPA trigger, wrong office name, mandatory cap misrepresented as recommendation</span><br>
-        <span class="risk-line">RISK: Student may exceed mandatory course load limit based on incorrect guidance</span>
-      </div>
-    </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- TMU -->
-  <div class="content-section" id="tmu">
-    <h2>Toronto Metropolitan University</h2>
-    <p class="section-intro">Academic misconduct and appeal rights - policy-specific processes with strict deadlines where errors have irreversible consequences.</p>
-
-    <div class="deployment-block">
-      <div class="deployment-header">
-        <span class="deployment-badge">Active Beta Pilot</span>
-        <span class="deployment-name">TMU COMPAiSS - Yeates School of Graduate &amp; Postdoctoral Studies / Senate Policies</span>
-      </div>
-
-      <div class="question-block">
-        <div class="q-label">Question submitted</div>
-        <div class="q-text">"I received a grade of F in my TMU course due to academic misconduct. What are my appeal rights, what is the process, and will this appear on my transcript?"</div>
-      </div>
-
-      <div class="compare-grid">
-        <div class="governed-panel">
-          <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
-          <div class="full-response-toggle">
-              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
-              <div class="full-response-body">
-                <p>I'm sorry you're dealing with that - an F for academic misconduct is serious, but you do have rights. At Toronto Metropolitan University (TMU), academic misconduct is handled under Senate Policy 60 (Academic Integrity) and the Student Code of Academic Conduct.</p>
-                <h4>1. Your Right to Appeal</h4>
-                <p>Yes - you have the right to appeal both the finding of academic misconduct and/or the penalty assigned (e.g., an F in the course). Appeals are usually allowed on specific grounds such as: procedural error (policy wasn't followed properly), new evidence that was not reasonably available earlier, excessive or unreasonable penalty, or bias or unfair treatment. You cannot appeal simply because you disagree with the decision.</p>
-                <h4>2. The Appeal Process</h4>
-                <p>You should have received a written decision, the penalty imposed, information about your right to appeal, and a deadline to submit your appeal. Deadlines are strict - often within 10 working days of the decision. You must submit a formal appeal form (usually through your faculty or department), clearly state the grounds for appeal, and attach supporting documents. Appeals usually go to the Departmental or Faculty Academic Integrity Committee, depending on the stage.</p>
-                <h4>3. Will the F Appear on Your Transcript?</h4>
-                <p>This depends on the penalty. If the penalty is an F in the course (due to misconduct), the grade "F" will appear on your transcript. In many cases at TMU the transcript may not explicitly state "academic misconduct" but internally the university keeps a record. A notation may exist in internal records (especially for repeat offenses). In more serious cases (e.g., suspension or expulsion), the transcript may include a notation such as "Required to Withdraw" or "Suspended."</p>
-                <h4>4. You Should Contact Immediately</h4>
-                <p>At TMU, students can get free help from TMU Students' Union (TMSU) Student Advocacy &amp; Support, Faculty Academic Integrity Office, and the Ombudsperson's Office (for procedural fairness concerns). They can help you draft your appeal, review your decision letter, and advise on likelihood of success.</p>
-              </div>
-            </div>
+</div>
+<hr>
+<!-- MCGILL -->
+<div class="content-section" id="mcgill">
+  <h2>McGill University</h2>
+  <p class="section-intro">Academic probation - specific GPA thresholds and course load limits that vary by faculty and are frequently misrepresented by general AI.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Active Beta Pilot</span>
+      <span class="deployment-name">McGill COMPAiSS - Faculty of Arts Academic Standing</span>
+    </div>
+    <div class="question-block">
+      <div class="q-label">Question submitted</div>
+      <div class="q-text">"I am a McGill Arts student and I have been placed on academic probation. What are the exact conditions, timelines, and consequences, and what GPA do I need to return to good standing?"</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
+          <div class="full-response-body">
+            <p>I'm really glad you reached out. Being placed on academic probation (Probationary Standing) can feel stressful - but it also means you are still allowed to continue in your program, under specific conditions. Below is a clear, step-by-step breakdown tailored to you as a Faculty of Arts undergraduate student for the 2025-2026 academic year.</p>
+            <h4>1. Why You Were Placed on Probation (Faculty of Arts)</h4>
+            <p>In the Faculty of Arts, Academic Standing is based primarily on your Cumulative GPA (CGPA) and sometimes also your Term GPA (TGPA). You are placed in Probationary Standing if your CGPA falls between 1.50 and 1.99, and you were previously in Satisfactory Standing.</p>
+            <h4>2. Exact Conditions While on Probation</h4>
+            <p><strong>A. Reduced Course Load:</strong> You must carry a maximum of 14 credits per term. This is mandatory - not optional.</p>
+            <p><strong>B. Academic Improvement Requirement:</strong> You must raise your CGPA to 2.00 or higher to return to Satisfactory (good) Standing.</p>
+            <p><strong>C. Advising Requirement:</strong> You are expected to consult your departmental advisor about course selection and meet with your Faculty advisor (Arts Student Affairs) to discuss degree planning.</p>
+            <h4>3. Timeline: When Standing Is Assessed</h4>
+            <p>Academic Standing is assessed in January (for Fall term - interim decision), May (after Winter term - final decision for the academic year), and September (if Summer courses were taken). The most important standing decision is made after the Winter term.</p>
+            <h4>4. What GPA Do You Need to Return to Good Standing?</h4>
+            <p>To return to Satisfactory Standing, you must raise your Cumulative GPA (CGPA) to 2.00 or higher. It is not enough to just have one good term - your overall CGPA must reach 2.00.</p>
+            <h4>5. Consequences If You Do Not Improve</h4>
+            <p>You will be placed in Unsatisfactory Standing if your CGPA falls below 1.50, or your TGPA is below 2.50 and your CGPA is below 2.00 after already being on probation. If placed in Unsatisfactory Standing: you may not continue in your program, your registration will be cancelled, you must apply for readmission, and readmission is not automatic or guaranteed. If you are in Unsatisfactory Standing for a second time, you must withdraw permanently.</p>
           </div>
         </div>
       </div>
-
-      <div class="governance-delta">
-        <div class="delta-header">⚖ GOVERNANCE DELTA - Controls absent in ungoverned response</div>
-        <span class="risk-line">GATE: BYPASSED - TMU gate not enforced</span><br>
-        <span class="risk-line">ASSETS: NONE - Policy 168, 170(a), Policy 60 not injected</span><br>
-        <span class="risk-line">GREENLIST: NOT ENFORCED - TMU Senate policy URLs unverified</span><br>
-        <span class="risk-line">RISK: Incorrect appeal structure, contradicts transcript notation policy</span><br>
-        <span class="risk-line">RISK: Student may pursue wrong appeal pathway and miss binding deadline</span>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- SERVICE CANADA -->
-  <div class="content-section" id="service-canada">
-    <h2>Service Canada</h2>
-    <p class="section-intro">Employment Insurance rates - time-sensitive federal benefit information where outdated figures affect real financial decisions.</p>
-
-    <div class="deployment-block">
-      <div class="deployment-header">
-        <span class="deployment-badge">Active Beta Pilot</span>
-        <span class="deployment-name">Service Canada AI - Employment Insurance</span>
-      </div>
-
-      <div class="question-block">
-        <div class="q-label">Question submitted</div>
-        <div class="q-text">"What are the current EI benefit rates, and how exactly are they calculated based on earnings and regional unemployment?"</div>
-      </div>
-
-      <div class="compare-grid">
-        <div class="governed-panel">
-          <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
-          <div class="full-response-toggle">
-              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
-              <div class="full-response-body">
-                <p>Here's how Employment Insurance (EI) regular benefits work in Canada (based on the latest published rates available to me - 2024 rates). Because EI figures are updated yearly, you should confirm current numbers on the Service Canada website for 2026.</p>
-                <h4>1. Current EI Benefit Rate (2024 figures)</h4>
-                <p>Benefit rate: 55% of your average insurable weekly earnings. Maximum insurable earnings (2024): $63,200 per year. Maximum weekly benefit (2024): $668 per week. If maximum insurable earnings increase in 2025-2026, the maximum weekly benefit will increase proportionally.</p>
-                <h4>2. How Your Weekly Benefit Is Calculated</h4>
-                <p>Service Canada uses your best weeks of earnings during your qualifying period (usually the last 52 weeks). The number of best weeks used depends on regional unemployment rates.</p>
-                <table>
-                  <thead><tr><th>Regional Unemployment Rate</th><th>Number of Best Weeks Used</th></tr></thead>
-                  <tbody>
-                    <tr><td>6% or less</td><td>22 weeks</td></tr>
-                    <tr><td>6.1% - 7%</td><td>21 weeks</td></tr>
-                    <tr><td>7.1% - 8%</td><td>20 weeks</td></tr>
-                    <tr><td>8.1% - 9%</td><td>19 weeks</td></tr>
-                    <tr><td>Over 13%</td><td>14 weeks</td></tr>
-                  </tbody>
-                </table>
-                <p>Higher unemployment = fewer weeks used = often a higher average. Example: average weekly earnings $1,000 - 55% of $1,000 = $550/week. If 55% exceeds the maximum weekly benefit, you'll receive the capped amount (e.g., $668 in 2024).</p>
-                <h4>3. How Regional Unemployment Affects EI</h4>
-                <p>Regional unemployment affects (A) how many hours you need to qualify (higher unemployment = fewer hours required, ranging from 420 to 700 hours); (B) how many weeks of benefits you can receive (between 14 and 45 weeks). Higher unemployment = potentially more weeks of benefits.</p>
-                <h4>4. Family Supplement</h4>
-                <p>If you have children, receive the Canada Child Benefit, and have a low net family income (under about $25,921 - subject to updates), your benefit rate can increase from 55% up to 80% of your average insurable earnings (still subject to the maximum cap).</p>
-              </div>
-            </div>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
+          <div class="full-response-body">
+            <p>I'm sorry you're dealing with this - academic probation can feel stressful, but it's very recoverable. Here's how it works specifically for McGill Faculty of Arts students:</p>
+            <h4>What Academic Probation Means (Faculty of Arts)</h4>
+            <p>You are placed on academic probation if your Term GPA (TGPA) is below 2.00, and/or Cumulative GPA (CGPA) falls below 2.00. A 2.00 CGPA is the minimum required for satisfactory standing in Arts.</p>
+            <h4>Conditions While on Academic Probation</h4>
+            <p>While on probation: you must raise your CGPA to 2.00 or higher; you are usually required to limit your course load (sometimes 12-14 credits recommended); meet with an Arts OASIS advisor; follow an academic improvement plan (if assigned); and demonstrate satisfactory progress in the next term.</p>
+            <h4>Timeline to Return to Good Standing</h4>
+            <p>You are typically given one academic term (Fall or Winter) to improve your CGPA. At the end of the next term: if your CGPA is 2.00 or above, you return to satisfactory standing. If your CGPA is still below 2.00 but your term GPA is 2.00 or higher, you may continue on probation. If both your CGPA and term GPA are below 2.00, you may face required withdrawal.</p>
+            <h4>Consequences if You Do Not Improve</h4>
+            <p>If after the probationary term your CGPA remains below 2.00 AND your TGPA is below 2.00, you may be Required to Withdraw (RTW). For Arts students: first RTW is normally for one academic year. You may apply for readmission after the withdrawal period. Readmission is not automatic.</p>
+            <h4>What GPA Do You Need?</h4>
+            <p>To return to good standing your CGPA must be at least 2.00. Not just your term GPA - your overall cumulative GPA must reach 2.00. If you're close (e.g., 1.95-1.99), advisors sometimes discuss strategic course planning to help you reach 2.00 quickly.</p>
           </div>
         </div>
       </div>
-
-      <div class="governance-delta">
-        <div class="delta-header">⚖ GOVERNANCE DELTA - Controls absent in ungoverned response</div>
-        <span class="risk-line">GATE: BYPASSED - SC-GATE-AUTHORIZED-001 not enforced</span><br>
-        <span class="risk-line">RATE CARD: NOT INJECTED - no official ESDC assets used</span><br>
-        <span class="risk-line">ASSETS: NONE - no authoritative Government of Canada sources</span><br>
-        <span class="risk-line">GREENLIST: NOT ENFORCED - URLs unverified</span><br>
-        <span class="risk-line">RISK: Figures drawn from training data - year-dependent accuracy not guaranteed</span>
-      </div>
-    </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- PRICING -->
-  <div class="content-section" id="pricing">
-    <h2>Institutional Pricing</h2>
-    <p class="section-intro">Transparent, all-inclusive licensing for medium-size universities.</p>
-
-    <p>COMPAiSS is offered as an institutional platform license. All infrastructure, AI processing, governance oversight, monitoring, and reporting are included within the annual license fee. Institutions do not manage or pay for underlying components separately.</p>
-
-    <p>The pricing below is modelled on a medium-size university deployment (approximately 7,000-10,000 students) with an initial scope of Student Affairs &amp; Services. Year 1 is conservatively projected at approximately 12,000 annual sessions.</p>
-
-    <div class="cost-summary-grid">
-      <div class="cost-item">
-        <div class="ci-label">Pilot Dev. & Implementation Fee</div>
-        <div class="ci-value">$4,000</div>
-        <div class="ci-sub">Year 1 only</div>
-      </div>
-      <div class="cost-item">
-        <div class="ci-label">Annual License (Y1-Y2)</div>
-        <div class="ci-value">$26,000</div>
-        <div class="ci-sub">All-inclusive</div>
-      </div>
-      <div class="cost-item">
-        <div class="ci-label">Annual License (Y3)</div>
-        <div class="ci-value">$23,000</div>
-        <div class="ci-sub">~20% usage growth</div>
-      </div>
-      <div class="cost-item">
-        <div class="ci-label">Deployment Timeline</div>
-        <div class="ci-value">2-3 wks</div>
-        <div class="ci-sub">From contract execution</div>
-      </div>
+</div>
+<hr>
+<!-- TMU -->
+<div class="content-section" id="tmu">
+  <h2>Toronto Metropolitan University</h2>
+  <p class="section-intro">Academic misconduct and appeal rights - policy-specific processes with strict deadlines where errors have irreversible consequences.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Active Beta Pilot</span>
+      <span class="deployment-name">TMU COMPAiSS - Yeates School of Graduate &amp; Postdoctoral Studies / Senate Policies</span>
     </div>
-
-    <div class="highlight-block">
-      <p><strong>What the license includes:</strong> AI processing capacity, secure hosting infrastructure (24/7 uptime, encryption, traffic protection), governance oversight and policy validation (ongoing greenlist maintenance, scope boundary updates, quarterly risk reviews), monitoring and analytics (engagement analytics, administrative dashboards, performance diagnostics), and a staff pilot period of up to 30 days before full student deployment.</p>
+    <div class="question-block">
+      <div class="q-label">Question submitted</div>
+      <div class="q-text">"I received a grade of F in my TMU course due to academic misconduct. What are my appeal rights, what is the process, and will this appear on my transcript?"</div>
     </div>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Usage &amp; Growth Framework</h3>
-
-    <table class="pricing-table">
-      <thead>
-        <tr>
-          <th>Usage Level</th>
-          <th>Interaction Range</th>
-          <th>Cost Impact</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Within Projected Band</strong></td><td>~12,000/yr</td><td>Fully included</td><td>No action required</td></tr>
-        <tr><td>Moderate Overuse</td><td>120-150% of projection</td><td>Incremental AI cost only</td><td>Monitored; absorbed where reasonable</td></tr>
-        <tr><td>Significant Overuse</td><td>&gt;150% of projection</td><td>Scaling review</td><td>Pricing adjustment discussion</td></tr>
-        <tr><td>Significant Underuse</td><td>&lt;50% of projection</td><td>Lower variable cost</td><td>Year 1 review may be conducted</td></tr>
-      </tbody>
-    </table>
-
-  <hr>
-
-  <!-- COMPETITOR COMPARISON -->
-  <div class="content-section" id="competitor-comparison">
-    <h2>Competitive Comparison</h2>
-    <p class="section-intro">Annual licensing costs for comparable AI assistant platforms deployed in higher education. Figures exclude implementation, onboarding, and governance configuration - which typically add 15-30% to first-year total cost of ownership for competing solutions.</p>
-
-    <table class="pricing-table">
-      <thead>
-        <tr>
-          <th>Platform</th>
-          <th>Small University</th>
-          <th>Medium University</th>
-          <th>Large University</th>
-          <th>Pricing Model</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Bolt AI Assistants</td><td>$30K-$50K</td><td>$50K-$80K</td><td>$80K-$110K</td><td>Annual subscription</td></tr>
-        <tr><td>Capacity AI</td><td>$30K-$55K</td><td>$55K-$85K</td><td>$85K-$120K</td><td>Usage + platform fee</td></tr>
-        <tr><td>Coveo AI</td><td>$40K-$70K</td><td>$70K-$100K</td><td>$100K-$140K</td><td>Enterprise contract</td></tr>
-        <tr><td>Intercom (Education)</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$150K</td><td>Usage + seats</td></tr>
-        <tr><td>Ivy.ai</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$145K</td><td>Annual subscription</td></tr>
-        <tr><td>Mainstay (AdmitHub)</td><td>$35K-$60K</td><td>$60K-$95K</td><td>$95K-$135K</td><td>Annual subscription</td></tr>
-        <tr><td>Ocelot</td><td>$20K-$40K</td><td>$40K-$65K</td><td>$65K-$90K</td><td>Annual subscription</td></tr>
-        <tr><td>Verge AI</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$120K</td><td>Enterprise contract</td></tr>
-        <tr><td>Zendesk Answer Bot</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$105K</td><td>Per-agent pricing</td></tr>
-        <tr class="compaiss-row">
-          <td>COMPAiSS (Medium Univ. - Y1)</td>
-          <td> - </td>
-          <td><strong>$26,000</strong></td>
-          <td> - </td>
-          <td>Governance-first institutional pilot - implementation fee, 6-month review, all-inclusive</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p style="font-size: 0.88rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic;">COMPAiSS is sized for the specific deployment scope. Competitor figures reflect standard institutional tiers. The cost advantage would narrow at enterprise scale; however, COMPAiSS's pre-inference governance architecture remains unique across the competitive set regardless of scale.</p>
-
-    <div class="card-grid" style="margin-top: 2rem;">
-      <div class="card">
-        <div class="card-icon">🏗</div>
-        <h3>Pre-inference governance</h3>
-        <p>Source validation and scope enforcement occur before AI generation. No competitor operates at this architectural layer. Every platform above applies filtering after inference - meaning hallucinated content is produced first and suppressed second.</p>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
+          <div class="full-response-body">
+            <p>I'm sorry you're going through this - receiving an F due to academic misconduct is stressful and can feel overwhelming. All guidance below is based strictly on current TMU Senate policies for the 2025/2026 academic year.</p>
+            <h4>1. Your Right to Appeal</h4>
+            <p>Your appeal rights are governed by Senate Policy 168 - Grade and Standing Appeals. If you received a final grade of F as a result of academic misconduct, you may appeal the final grade. If your academic standing changed (e.g., Required to Withdraw), you may also appeal the standing. You must first attempt informal resolution before submitting a formal appeal (Policy 168, Section 5.2-5.4).</p>
+            <h4>2. Grounds Required to Appeal</h4>
+            <p>Under Policy 168 (Section 5.6 and Section 6), you may appeal only if one or more of the following grounds exist: (1) Course Management - a significant deviation from the course outline, course management policies, or fair grading procedures; (2) Extenuating Circumstances - events outside your control that significantly affected your academic performance; (3) Procedural Error - an error in how University policy was applied that affected your grade or academic standing; (4) Prejudice - if your grade was impacted by discrimination based on protected grounds under the Ontario Human Rights Code.</p>
+            <h4>3. Appeal Process - Step by Step</h4>
+            <p><strong>Level 1 (Department/School/Program):</strong> submit within 10 business days of receiving your official final grade. Decision maker responds in writing within 10 business days.</p>
+            <p><strong>Level 2 (Faculty):</strong> if you disagree with the Level 1 decision, escalate within 10 business days of receiving the Level 1 decision.</p>
+            <p><strong>Level 3 (Senate Appeals Committee):</strong> Senate-level decisions are final and non-appealable (Policy 168, Section 3.10).</p>
+            <h4>4. Will This Appear on Your Transcript?</h4>
+            <p>Under Policy 170(a), Section 7.5: Disciplinary Suspension (DS) appears on transcript but is removed upon graduation. Disciplinary Withdrawal (DW) appears permanently. Expulsion appears permanently. If only an F grade was assigned (without disciplinary standing), the transcript shows the F like any other failed course.</p>
+            <h4>5. Critical Timeline Warning</h4>
+            <p>You have 10 business days from receiving your official final grade to file a Level 1 appeal. Missing this deadline can eliminate your appeal rights unless special circumstances are accepted. The burden of proof is on the student (Policy 168, Section 5.9).</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-icon">🔌</div>
-        <h3>Minimal IT integration</h3>
-        <p>Embeds directly within the institution's existing website. Optional SSO requires a single app registration in Azure AD - no server installations, database migrations, or infrastructure changes required.</p>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
+          <div class="full-response-body">
+            <p>I'm sorry you're dealing with that - an F for academic misconduct is serious, but you do have rights. At Toronto Metropolitan University (TMU), academic misconduct is handled under Senate Policy 60 (Academic Integrity) and the Student Code of Academic Conduct.</p>
+            <h4>1. Your Right to Appeal</h4>
+            <p>Yes - you have the right to appeal both the finding of academic misconduct and/or the penalty assigned (e.g., an F in the course). Appeals are usually allowed on specific grounds such as: procedural error (policy wasn't followed properly), new evidence that was not reasonably available earlier, excessive or unreasonable penalty, or bias or unfair treatment. You cannot appeal simply because you disagree with the decision.</p>
+            <h4>2. The Appeal Process</h4>
+            <p>You should have received a written decision, the penalty imposed, information about your right to appeal, and a deadline to submit your appeal. Deadlines are strict - often within 10 working days of the decision. You must submit a formal appeal form (usually through your faculty or department), clearly state the grounds for appeal, and attach supporting documents. Appeals usually go to the Departmental or Faculty Academic Integrity Committee, depending on the stage.</p>
+            <h4>3. Will the F Appear on Your Transcript?</h4>
+            <p>This depends on the penalty. If the penalty is an F in the course (due to misconduct), the grade "F" will appear on your transcript. In many cases at TMU the transcript may not explicitly state "academic misconduct" but internally the university keeps a record. In more serious cases (e.g., suspension or expulsion), the transcript may include a notation such as "Required to Withdraw" or "Suspended."</p>
+            <h4>4. You Should Contact Immediately</h4>
+            <p>At TMU, students can get free help from TMU Students' Union (TMSU) Student Advocacy &amp; Support, Faculty Academic Integrity Office, and the Ombudsperson's Office (for procedural fairness concerns). They can help you draft your appeal, review your decision letter, and advise on likelihood of success.</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Procurement-ready</h3>
-        <p>Pre-inference authorization means every interaction follows a documented, reproducible governance path. Compatible with AI governance panel requirements, AIA frameworks, and government procurement standards.</p>
-      </div>
-    </div>
+    </div></div>
   </div>
-
-  <hr>
-
-  <!-- ROI -->
-  <div class="content-section" id="roi">
-    <h2>Return on Investment</h2>
-    <p class="section-intro">Staff time recovery modelled against a medium-size university Student Affairs team - at three adoption levels.</p>
-
-    <p>Student Affairs teams at institutions of this scale manage high inquiry volumes concentrated around predictable institutional cycles: intake arrivals, enrolment periods, government document deadlines, and graduation. A significant proportion of these inquiries are routine, policy-grounded, and answerable from verified sources - the precise query profile COMPAiSS is designed to handle.</p>
-
-    <div class="highlight-block">
-      <p><strong>Baseline: 1 FTE in Student Affairs (routine inquiries)</strong><br>
-      Fully loaded annual cost (salary + benefits): $70,000-$85,000</p>
+</div>
+<hr>
+<!-- SERVICE CANADA -->
+<div class="content-section" id="service-canada">
+  <h2>Service Canada</h2>
+  <p class="section-intro">Employment Insurance rates - time-sensitive federal benefit information where outdated figures affect real financial decisions.</p>
+  <div class="deployment-block">
+    <div class="deployment-header">
+      <span class="deployment-badge">Active Beta Pilot</span>
+      <span class="deployment-name">Service Canada AI - Employment Insurance</span>
     </div>
-
-    <table class="roi-table">
-      <thead>
-        <tr>
-          <th>Adoption Level</th>
-          <th>Query Diversion</th>
-          <th>Sessions Redirected</th>
-          <th>FTE Offset / Staff Time Recovered</th>
-          <th>Return on COMPAiSS Cost</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Low</strong></td><td>~15%</td><td>200-300/yr</td><td>0.1-0.2 FTE | $7,000-$17,000 recovered</td><td>Roughly cost-neutral</td></tr>
-        <tr><td><strong>Medium</strong></td><td>~35%</td><td>500-700/yr</td><td>0.3-0.5 FTE | $21,000-$42,000 recovered</td><td><strong>1.5x - 3x return</strong></td></tr>
-        <tr><td><strong>High</strong></td><td>~55%</td><td>800-1,200/yr</td><td>0.6-0.9 FTE | $42,000-$76,000 recovered</td><td><strong>3x - 5x return</strong></td></tr>
-      </tbody>
-    </table>
-
-    <p style="font-size: 0.88rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic;">Staff time recovery figures based on a fully loaded FTE cost of $70,000-$85,000/yr and proportional offset calculation. Actual recovery will vary by deployment scope and adoption rate.</p>
-
-    <div class="card-grid" style="margin-top: 1.5rem;">
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>At medium adoption</h3>
-        <p>COMPAiSS pays for itself and offsets a meaningful portion of one staff position - directly addressing capacity gaps without adding headcount.</p>
+    <div class="question-block">
+      <div class="q-label">Question submitted</div>
+      <div class="q-text">"What are the current EI benefit rates, and how exactly are they calculated based on earnings and regional unemployment?"</div>
+    </div>
+    <div class="compare-grid">
+      <div class="governed-panel">
+        <div class="panel-label"><span class="dot"></span> COMPAiSS - Governed Response</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
+          <div class="full-response-body">
+            <p>Below is a complete, structured explanation based exclusively on official Government of Canada sources.</p>
+            <h4>1. The Core EI Benefit Rate (Set by Law)</h4>
+            <p>Under the Employment Insurance Act, regular EI benefits are calculated at 55% of your average insurable weekly earnings, up to a maximum amount. (Source: Government of Canada - EI maternity and parental benefits: Benefit amount.) This 55% rate is fixed in legislation and does not change by region.</p>
+            <h4>2. Maximum Insurable Earnings - 2026</h4>
+            <p>For 2026, the Government of Canada has set Maximum Insurable Earnings at $63,200. (Source: Government of Canada - 2026 Maximum Insurable Earnings.) Maximum Weekly Benefit: $63,200 divided by 52 weeks = $1,215.38/week. 55% of $1,215.38 = $668.46/week. Maximum weekly EI benefit in 2026: approximately $668.</p>
+            <h4>3. How EI Calculates Your Weekly Payment</h4>
+            <p>EI uses your best weeks of earnings. Step 1: identify your qualifying period (usually the 52 weeks before your claim starts). Step 2: determine number of best weeks based on your region's unemployment rate (higher unemployment means fewer weeks required). Step 3: average those best weeks. Step 4: apply 55%. Step 5: apply maximum cap if result exceeds approximately $668/week.</p>
+            <h4>4. Example Calculations</h4>
+            <p>Worker earning $1,000/week: 55% of $1,000 = $550/week. Worker earning $1,500/week: because $1,500 exceeds the insurable maximum, 55% of approximately $1,215 = approximately $668/week.</p>
+            <h4>5. How Regional Unemployment Affects EI</h4>
+            <p>Regional unemployment does NOT change the 55% rate. It affects: (A) number of hours required to qualify - higher unemployment means fewer hours required; (B) number of best weeks used - higher unemployment means fewer weeks averaged, which may increase benefit; (C) duration of benefits - higher unemployment means more weeks payable.</p>
+            <h4>6. Family Supplement</h4>
+            <p>If you have children, receive the Canada Child Benefit, and have low family income, you may receive a Family Supplement which can increase your benefit rate to up to 80% of your average insurable earnings. (Source: EI maternity and parental benefits: Benefit amount.)</p>
+            <h4>7. Parental Benefits Options</h4>
+            <table>
+              <thead><tr><th>Type</th><th>Rate</th><th>Duration</th></tr></thead>
+              <tbody>
+                <tr><td>Standard</td><td>55%</td><td>Up to 40 weeks (one parent max 35)</td></tr>
+                <tr><td>Extended</td><td>33%</td><td>Up to 69 weeks (one parent max 61)</td></tr>
+              </tbody>
+            </table>
+            <p>Service Canada Contact: 1-800-206-7218. TTY: 1-800-529-3742. Monday to Friday, 8:30 a.m. to 4:30 p.m. (local time).</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <div class="card-icon">💰</div>
-        <h3>At high adoption</h3>
-        <p>Staff time savings approach the full cost of one FTE - making COMPAiSS effectively self-funding while simultaneously raising service quality and 24/7 availability.</p>
+      <div class="ungoverned-panel">
+        <div class="panel-label"><span class="dot"></span> Ungoverned AI - Same Model</div>
+        <div class="full-response-toggle">
+          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full ungoverned response</button>
+          <div class="full-response-body">
+            <p>Here's how Employment Insurance (EI) regular benefits work in Canada (based on the latest published rates available to me - 2024 rates). Because EI figures are updated yearly, you should confirm current numbers on the Service Canada website for 2026.</p>
+            <h4>1. Current EI Benefit Rate (2024 figures)</h4>
+            <p>Benefit rate: 55% of your average insurable weekly earnings. Maximum insurable earnings (2024): $63,200 per year. Maximum weekly benefit (2024): $668 per week. If maximum insurable earnings increase in 2025-2026, the maximum weekly benefit will increase proportionally.</p>
+            <h4>2. How Your Weekly Benefit Is Calculated</h4>
+            <p>Service Canada uses your best weeks of earnings during your qualifying period (usually the last 52 weeks). The number of best weeks used depends on regional unemployment rates.</p>
+            <table>
+              <thead><tr><th>Regional Unemployment Rate</th><th>Number of Best Weeks Used</th></tr></thead>
+              <tbody>
+                <tr><td>6% or less</td><td>22 weeks</td></tr>
+                <tr><td>6.1% - 7%</td><td>21 weeks</td></tr>
+                <tr><td>7.1% - 8%</td><td>20 weeks</td></tr>
+                <tr><td>8.1% - 9%</td><td>19 weeks</td></tr>
+                <tr><td>Over 13%</td><td>14 weeks</td></tr>
+              </tbody>
+            </table>
+            <p>Higher unemployment = fewer weeks used = often a higher average. Example: average weekly earnings $1,000 - 55% of $1,000 = $550/week.</p>
+            <h4>3. How Regional Unemployment Affects EI</h4>
+            <p>Regional unemployment affects (A) how many hours you need to qualify (higher unemployment = fewer hours required, ranging from 420 to 700 hours); (B) how many weeks of benefits you can receive (between 14 and 45 weeks).</p>
+            <h4>4. Family Supplement</h4>
+            <p>If you have children, receive the Canada Child Benefit, and have a low net family income (under about $25,921 - subject to updates), your benefit rate can increase from 55% up to 80% of your average insurable earnings (still subject to the maximum cap).</p>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div style="margin-top: 2.5rem; padding: 2rem 2.2rem; background: rgba(240,196,76,0.08); border: 1px solid rgba(240,196,76,0.25); border-radius: 10px; font-family: system-ui, -apple-system, sans-serif;">
-      <div style="font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #f0c44c; margin-bottom: 0.7rem; font-weight: 600;">Request an Evaluation</div>
-      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation and pricing for your institution:</p>
-      <a href="/cdn-cgi/l/email-protection#33505c465d4756415552504746525f475b565c414a73545e525a5f1d505c5e0c404651595650470e707c7e63725a60601601037645525f4652475a5c5d16010361564246564047" style="display: inline-block; padding: 0.7rem 1.6rem; background: #f0c44c; color: #000; font-weight: 600; font-size: 0.92rem; border-radius: 6px; text-decoration: none; letter-spacing: 0.04em;">Request a Demonstration &rarr;</a>
-    </div>
+    </div></div>
   </div>
+</div>
+<hr>
 
+<!-- PRICING -->
+<div class="content-section" id="pricing">
+  <h2>Institutional Pricing</h2>
+  <p class="section-intro">Transparent, all-inclusive licensing for medium-size universities.</p>
+  <p>COMPAiSS is offered as an institutional platform license. All infrastructure, AI processing, governance oversight, monitoring, and reporting are included within the annual license fee. Institutions do not manage or pay for underlying components separately.</p>
+  <p>The pricing below is modelled on a medium-size university deployment (approximately 7,000-10,000 students) with an initial scope of Student Affairs &amp; Services. Year 1 is conservatively projected at approximately 12,000 annual sessions.</p>
+  <div class="cost-summary-grid">
+    <div class="cost-item"><div class="ci-label">Pilot Dev. &amp; Implementation Fee</div><div class="ci-value">$4,000</div><div class="ci-sub">Year 1 only</div></div>
+    <div class="cost-item"><div class="ci-label">Annual License (Y1-Y2)</div><div class="ci-value">$26,000</div><div class="ci-sub">All-inclusive</div></div>
+    <div class="cost-item"><div class="ci-label">Annual License (Y3)</div><div class="ci-value">$23,000</div><div class="ci-sub">~20% usage growth</div></div>
+    <div class="cost-item"><div class="ci-label">Deployment Timeline</div><div class="ci-value">2-3 wks</div><div class="ci-sub">From contract execution</div></div>
+  </div>
+  <div class="highlight-block">
+    <p><strong>What the license includes:</strong> AI processing capacity, secure hosting infrastructure (24/7 uptime, encryption, traffic protection), governance oversight and policy validation (ongoing greenlist maintenance, scope boundary updates, quarterly risk reviews), monitoring and analytics (engagement analytics, administrative dashboards, performance diagnostics), and a staff pilot period of up to 30 days before full student deployment.</p>
+  </div>
+  <h3 style="color:var(--text-heading);font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;margin:2rem 0 0.8rem;font-family:system-ui,-apple-system,sans-serif;">Usage &amp; Growth Framework</h3>
+  <table class="pricing-table">
+    <thead><tr><th>Usage Level</th><th>Interaction Range</th><th>Cost Impact</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Within Projected Band</strong></td><td>~12,000/yr</td><td>Fully included</td><td>No action required</td></tr>
+      <tr><td>Moderate Overuse</td><td>120-150% of projection</td><td>Incremental AI cost only</td><td>Monitored; absorbed where reasonable</td></tr>
+      <tr><td>Significant Overuse</td><td>&gt;150% of projection</td><td>Scaling review</td><td>Pricing adjustment discussion</td></tr>
+      <tr><td>Significant Underuse</td><td>&lt;50% of projection</td><td>Lower variable cost</td><td>Year 1 review may be conducted</td></tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<!-- COMPETITOR COMPARISON -->
+<div class="content-section" id="competitor-comparison">
+  <h2>Competitive Comparison</h2>
+  <p class="section-intro">Annual licensing costs for comparable AI assistant platforms deployed in higher education. Figures exclude implementation, onboarding, and governance configuration - which typically add 15-30% to first-year total cost of ownership for competing solutions.</p>
+  <table class="pricing-table">
+    <thead><tr><th>Platform</th><th>Small University</th><th>Medium University</th><th>Large University</th><th>Pricing Model</th></tr></thead>
+    <tbody>
+      <tr><td>Bolt AI Assistants</td><td>$30K-$50K</td><td>$50K-$80K</td><td>$80K-$110K</td><td>Annual subscription</td></tr>
+      <tr><td>Capacity AI</td><td>$30K-$55K</td><td>$55K-$85K</td><td>$85K-$120K</td><td>Usage + platform fee</td></tr>
+      <tr><td>Coveo AI</td><td>$40K-$70K</td><td>$70K-$100K</td><td>$100K-$140K</td><td>Enterprise contract</td></tr>
+      <tr><td>Intercom (Education)</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$150K</td><td>Usage + seats</td></tr>
+      <tr><td>Ivy.ai</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$145K</td><td>Annual subscription</td></tr>
+      <tr><td>Mainstay (AdmitHub)</td><td>$35K-$60K</td><td>$60K-$95K</td><td>$95K-$135K</td><td>Annual subscription</td></tr>
+      <tr><td>Ocelot</td><td>$20K-$40K</td><td>$40K-$65K</td><td>$65K-$90K</td><td>Annual subscription</td></tr>
+      <tr><td>Verge AI</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$120K</td><td>Enterprise contract</td></tr>
+      <tr><td>Zendesk Answer Bot</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$105K</td><td>Per-agent pricing</td></tr>
+      <tr class="compaiss-row"><td>COMPAiSS (Medium Univ. - Y1)</td><td> - </td><td><strong>$26,000</strong></td><td> - </td><td>Governance-first institutional pilot - implementation fee, 6-month review, all-inclusive</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">COMPAiSS is sized for the specific deployment scope. Competitor figures reflect standard institutional tiers. The cost advantage would narrow at enterprise scale; however, COMPAiSS's pre-inference governance architecture remains unique across the competitive set regardless of scale.</p>
+  <div class="card-grid" style="margin-top:2rem;">
+    <div class="card"><div class="card-icon">&#127959;</div><h3>Pre-inference governance</h3><p>Source validation and scope enforcement occur before AI generation. No competitor operates at this architectural layer. Every platform above applies filtering after inference - meaning hallucinated content is produced first and suppressed second.</p></div>
+    <div class="card"><div class="card-icon">&#128268;</div><h3>Minimal IT integration</h3><p>Embeds directly within the institution's existing website. Optional SSO requires a single app registration in Azure AD - no server installations, database migrations, or infrastructure changes required.</p></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Procurement-ready</h3><p>Pre-inference authorization means every interaction follows a documented, reproducible governance path. Compatible with AI governance panel requirements, AIA frameworks, and government procurement standards.</p></div>
+  </div>
+</div>
+<hr>
+<!-- ROI -->
+<div class="content-section" id="roi">
+  <h2>Return on Investment</h2>
+  <p class="section-intro">Staff time recovery modelled against a medium-size university Student Affairs team - at three adoption levels.</p>
+  <p>Student Affairs teams at institutions of this scale manage high inquiry volumes concentrated around predictable institutional cycles: intake arrivals, enrolment periods, government document deadlines, and graduation. A significant proportion of these inquiries are routine, policy-grounded, and answerable from verified sources - the precise query profile COMPAiSS is designed to handle.</p>
+  <div class="highlight-block">
+    <p><strong>Baseline: 1 FTE in Student Affairs (routine inquiries)</strong><br>Fully loaded annual cost (salary + benefits): $70,000-$85,000</p>
+  </div>
+  <table class="roi-table">
+    <thead><tr><th>Adoption Level</th><th>Query Diversion</th><th>Sessions Redirected</th><th>FTE Offset / Staff Time Recovered</th><th>Return on COMPAiSS Cost</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Low</strong></td><td>~15%</td><td>200-300/yr</td><td>0.1-0.2 FTE | $7,000-$17,000 recovered</td><td>Roughly cost-neutral</td></tr>
+      <tr><td><strong>Medium</strong></td><td>~35%</td><td>500-700/yr</td><td>0.3-0.5 FTE | $21,000-$42,000 recovered</td><td><strong>1.5x - 3x return</strong></td></tr>
+      <tr><td><strong>High</strong></td><td>~55%</td><td>800-1,200/yr</td><td>0.6-0.9 FTE | $42,000-$76,000 recovered</td><td><strong>3x - 5x return</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">Staff time recovery figures based on a fully loaded FTE cost of $70,000-$85,000/yr and proportional offset calculation. Actual recovery will vary by deployment scope and adoption rate.</p>
+  <div class="card-grid" style="margin-top:1.5rem;">
+    <div class="card"><div class="card-icon">&#128202;</div><h3>At medium adoption</h3><p>COMPAiSS pays for itself and offsets a meaningful portion of one staff position - directly addressing capacity gaps without adding headcount.</p></div>
+    <div class="card"><div class="card-icon">&#128176;</div><h3>At high adoption</h3><p>Staff time savings approach the full cost of one FTE - making COMPAiSS effectively self-funding while simultaneously raising service quality and 24/7 availability.</p></div>
+  </div>
+  <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Request an Evaluation</div>
+    <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation and pricing for your institution:</p>
+    <a href="/cdn-cgi/l/email-protection#abc8c4dec5dfced9cdcac8dfdecac7dfc3cec4d9d2ebccc6cac2c785c8c4c694d8dec9c1cec8df96e8e4e6fbeac2f8f88e999beeddcac7decadfc2c4c58e999bf9cedadeced8df" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">Request a Demonstration &rarr;</a>
+  </div>
+</div>
 </main>
-
 <footer>
   <div class="footer-inner">
-    <p style="margin-top: 0.8rem;">Contact: <a href="/cdn-cgi/l/email-protection#65060a100b11001703040611100409110d000a171c250208040c094b060a08"><span class="__cf_email__" data-cfemail="55363a203b21302733343621203439213d303a272c153238343c397b363a38">[email&#160;protected]</span></a></p>
+    <p style="margin-top:0.8rem;">Contact: <a href="/cdn-cgi/l/email-protection#3d5e52485349584f5b5c5e49485c51495558524f447d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="197a766c776d7c6b7f787a6d6c78756d717c766b60597e74787075377a7674">[email&#160;protected]</span></a></p>
   </div>
 </footer>
-
-<button id="backToTop" aria-label="Back to top">↑</button>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<button id="backToTop" aria-label="Back to top">&#8593;</button>
+<script>
   function toggleResponse(btn) {
     btn.classList.toggle('open');
     const body = btn.nextElementSibling;
     body.classList.toggle('visible');
-    con
+    const textNode = Array.from(btn.childNodes).find(n => n.nodeType === 3);
+    if (textNode) {
+      if (body.classList.contains('visible')) {
+        textNode.textContent = ' Hide response';
+      } else {
+        const isGov = btn.closest('.governed-panel') !== null;
+        textNode.textContent = isGov ? ' View full governed response' : ' View full ungoverned response';
+      }
+    }
+  }
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+</body>
+</html>
