@@ -215,9 +215,7 @@ gtag('config', 'G-JR7LJGK5PK');
       margin: 3rem 0;
     }
 
-    .deployment-block {
-      margin-bottom: 3rem;
-    }
+    .deployment-block { margin-bottom: 3rem; }
 
     .deployment-header {
       display: flex;
@@ -315,8 +313,7 @@ gtag('config', 'G-JR7LJGK5PK');
     .ungoverned-panel .panel-label { color: var(--red); }
 
     .panel-label .dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       flex-shrink: 0;
     }
@@ -335,8 +332,84 @@ gtag('config', 'G-JR7LJGK5PK');
       padding: 0;
     }
 
-    .panel-content li {
-      margin: 0.3rem 0;
+    .panel-content li { margin: 0.3rem 0; }
+
+    .full-response-toggle {
+      margin-top: 0.9rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .toggle-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .governed-panel .toggle-btn:hover { border-color: var(--green); color: var(--green); }
+    .ungoverned-panel .toggle-btn:hover { border-color: var(--red); color: var(--red); }
+
+    .toggle-btn .arrow { font-size: 0.65rem; transition: transform 0.2s; }
+    .toggle-btn.open .arrow { transform: rotate(180deg); }
+
+    .full-response-body {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.84rem;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .full-response-body.visible { display: block; }
+
+    .full-response-body h4 {
+      font-size: 0.82rem;
+      color: var(--text-heading);
+      margin: 1rem 0 0.3rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+    }
+
+    .full-response-body ul {
+      margin: 0.4rem 0 0.8rem 1.2rem;
+      padding: 0;
+    }
+
+    .full-response-body li { margin: 0.3rem 0; }
+    .full-response-body p { margin: 0.6rem 0; max-width: none; font-size: 0.84rem; }
+
+    .full-response-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 0.8rem 0;
+    }
+
+    .full-response-body table th {
+      text-align: left;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.75rem;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-accent);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .full-response-body table td {
+      padding: 0.4rem 0.7rem;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
     }
 
     .governance-delta {
@@ -359,7 +432,6 @@ gtag('config', 'G-JR7LJGK5PK');
     }
 
     .governance-delta .risk-line { color: #e05555; }
-    .governance-delta .pass-line { color: var(--green); }
 
     .highlight-block {
       background: var(--accent-soft);
@@ -414,9 +486,7 @@ gtag('config', 'G-JR7LJGK5PK');
       font-weight: 600;
     }
 
-    .pricing-table tr.compaiss-row td:first-child {
-      border-left: 3px solid var(--accent);
-    }
+    .pricing-table tr.compaiss-row td:first-child { border-left: 3px solid var(--accent); }
 
     .card-grid {
       display: grid;
@@ -556,7 +626,8 @@ gtag('config', 'G-JR7LJGK5PK');
     <ul>
       <li><a href="/governance-fr.html">Gouvernance IA</a></li>
       <li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
-      <li><a href="/governance-demonstration.html">EN</a></li>
+      <li><a href="/gouvernance-en-action.html" class="active">Démonstrations et tarification</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">EN</a></li>
     </ul>
   </nav>
 </header>
@@ -566,7 +637,7 @@ gtag('config', 'G-JR7LJGK5PK');
   <div class="page-header">
     <div class="eyebrow">Démonstrations de gouvernance en direct et tarification institutionnelle</div>
     <h1>La gouvernance en action</h1>
-    <p class="subtitle">Réponses réelles de cinq déploiements pilotes actifs de COMPAiSS - chacune accompagnée de ce qu'une IA non gouvernée retourne à la même question. Suivi d'une tarification institutionnelle transparente.</p>
+    <p class="subtitle">Réponses réelles de cinq projets pilotes bêta actifs de COMPAiSS - chacune accompagnée de ce qu'une IA non gouvernée retourne à la même question. Suivi d'une tarification institutionnelle transparente.</p>
   </div>
 
   <div class="section-nav">
@@ -587,14 +658,15 @@ gtag('config', 'G-JR7LJGK5PK');
   <!-- CE QUE VOUS VOYEZ -->
   <div class="content-section" id="ce-que-vous-voyez">
     <h2>Ce que vous voyez</h2>
-    <p class="section-intro">Démonstrations de gouvernance contrefactuelle en direct à partir de cinq déploiements institutionnels actifs.</p>
+    <p class="section-intro">Démonstrations de gouvernance contrefactuelle en direct à partir de cinq projets pilotes institutionnels actifs.</p>
 
-    <p>Chaque démonstration ci-dessous présente la même question soumise à un déploiement pilote actif de COMPAiSS - d'abord avec la gouvernance active, puis sans. La réponse non gouvernée est générée par le même modèle d'IA sous-jacent (GPT-5.2-latest) fonctionnant sans le portail d'exécution COMPAiSS, sans la liste verte, sans le gabarit institutionnel et sans l'injection de sources faisant autorité.</p>
+    <p>Chaque démonstration ci-dessous présente la même question soumise à un projet pilote bêta actif de COMPAiSS - d'abord avec la gouvernance active, puis sans. La réponse non gouvernée est générée par le même modèle d'IA sous-jacent (GPT-5.2-latest) fonctionnant sans le portail d'exécution COMPAiSS, sans la liste verte, sans le gabarit institutionnel et sans l'injection de sources faisant autorité.</p>
 
     <p>Il ne s'agit pas d'une simulation. Ce sont de vraies réponses issues de vrais déploiements. Vous pouvez reproduire n'importe laquelle d'entre elles en visitant le déploiement concerné et en soumettant la même question - avec ou sans le préfixe <code>compare:</code>.</p>
 
     <div class="highlight-block">
       <p><strong>La logique contrefactuelle :</strong> les réponses gouvernées et non gouvernées sont générées par le même modèle. Toute différence entre elles est causée exclusivement par l'architecture de gouvernance COMPAiSS - le portail d'exécution, la liste verte, l'injection de sources faisant autorité et le gabarit institutionnel. C'est l'écart de gouvernance rendu visible.</p>
+      <p>Chaque comparaison présente un résumé par défaut. Cliquez sur <strong>Voir la réponse complète</strong> sous l'un ou l'autre panneau pour lire le texte intégral exactement tel qu'un étudiant le recevrait.</p>
     </div>
   </div>
 
@@ -628,7 +700,23 @@ gtag('config', 'G-JR7LJGK5PK');
               <li>Étape 4 : Consulter le Règlement sur les absences étudiantes (2017, en vigueur en 2018) pour les travaux manqués</li>
               <li>Étape 5 : Contacter le Centre d'accessibilité aux étudiants si le stress a un impact académique à long terme</li>
             </ul>
-            <p>Tous les liens sont vérifiés par rapport à la liste verte de Dalhousie. La Politique d'adaptation des étudiants (révisée en juin 2025) est citée avec le libellé exact de la politique. Aucune ressource externe, aucun numéro de téléphone non vérifié.</p>
+            <p>Tous les liens sont vérifiés par rapport à la liste verte de Dalhousie. La Politique d'adaptation des étudiants (révisée en juin 2025) est citée avec le libellé exact. Aucune ressource externe, aucun numéro de téléphone non vérifié.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis vraiment content que vous ayez contacté le service. Se sentir dépassé par ses notes est très courant - surtout pendant les périodes chargées du trimestre - et Dalhousie dispose de plusieurs soutiens spécifiques et structurés conçus pour vous aider à gérer à la fois les aspects académiques et émotionnels de cette situation.</p>
+                <h4>Étape 1 : Parler à un professionnel de la santé et du mieux-être</h4>
+                <p>Si le stress affecte votre sommeil, votre concentration, votre motivation ou votre humeur, votre premier arrêt devrait être le service Santé et mieux-être des étudiants de Dalhousie. Vous pouvez prendre un rendez-vous via le portail en ligne. Ces rendez-vous sont confidentiels. Vous pouvez voir un conseiller, un médecin, une infirmière ou un autre professionnel de la santé. Un soutien est disponible pour le stress, l'anxiété, la pression académique, l'épuisement professionnel et les compétences d'adaptation.</p>
+                <h4>Étape 2 : Vérifier votre situation académique</h4>
+                <p>L'anxiété augmente parfois quand les choses semblent floues. Comprendre où vous en êtes académiquement peut réduire l'incertitude. Consultez vos notes et votre dossier étudiant, utilisez le calculateur de moyenne officiel et vérifiez votre situation académique. Vous vous sentez peut-être plus mal que votre situation académique réelle ne le reflète. De nombreux étudiants se rétablissent avec succès après un trimestre difficile.</p>
+                <h4>Étape 3 : Rencontrer un conseiller académique</h4>
+                <p>Si votre stress est lié au fait de prendre du retard, à la peur d'échouer, à la considération d'abandonner un cours ou à des inquiétudes concernant votre situation académique, prenez rendez-vous avec votre conseiller de faculté. Les conseillers peuvent vous aider à créer un plan de reprise, à décider si vous devez vous retirer d'un cours, à comprendre les règles de probation, à planifier le trimestre suivant de manière stratégique et à discuter de l'équilibre de la charge de travail.</p>
+                <h4>Étape 4 : Si le stress vous a fait manquer des travaux</h4>
+                <p>Si vous avez manqué des devoirs, des examens ou des cours en raison du stress, le Règlement sur les absences étudiantes de Dalhousie (2017, en vigueur en 2018) peut s'appliquer. Ce règlement permet l'autodéclaration pour les absences de courte durée (3 jours consécutifs ou moins), exige de contacter votre instructeur avant la date limite, et vous limite à deux déclarations d'étudiant par cours par trimestre. Si le stress ou les problèmes de santé mentale sont persistants, la Politique d'adaptation des étudiants (révisée en juin 2025) confirme que vous avez droit à une adaptation. Le Centre d'accessibilité aux étudiants (CAS) gère ce processus.</p>
+                <h4>Étape 5 : Soutien émotionnel immédiat</h4>
+                <p>Si vous vous sentez très dépassé et avez besoin de parler à quelqu'un aujourd'hui, Santé et mieux-être est votre meilleur premier pas. Des rendez-vous le jour même sont souvent disponibles. Vous méritez un soutien avant que les choses ne s'aggravent. Un trimestre difficile ne définit pas votre intelligence, votre avenir ou votre valeur. Le fait que vous demandiez de l'aide est un signe très fort que vous vous souciez de vous améliorer.</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ungoverned-panel">
@@ -637,12 +725,26 @@ gtag('config', 'G-JR7LJGK5PK');
             <p>Retourne une structure similaire mais avec des différences importantes :</p>
             <ul>
               <li>Cite <strong>Good2Talk</strong> (1-833-292-3698) - un service tiers absent du périmètre autorisé de Dalhousie</li>
-              <li>Renvoie à <em>dal.ca/campus_life/health-and-wellness</em> - une URL non vérifiée par rapport à la liste verte institutionnelle</li>
+              <li>Renvoie à dal.ca/campus_life/health-and-wellness - une URL non vérifiée par rapport à la liste verte institutionnelle</li>
               <li>Référence <strong>DSU Advocacy</strong> (dsadvocacy.ca) - une organisation externe non autorisée par le déploiement Dalhousie</li>
               <li>Recommande d'appeler le 988 - une ligne de crise nationale hors périmètre institutionnel</li>
               <li>Aucune citation du Règlement sur les absences étudiantes ni de la Politique d'adaptation</li>
             </ul>
             <p>La réponse paraît utile et fait autorité. Aucune des ressources tierces citées n'a été vérifiée par rapport aux sources approuvées de Dalhousie.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis vraiment content que vous ayez contacté le service. Se sentir dépassé par ses notes est très courant à Dal (surtout autour des examens de mi-session et finaux), et vous n'avez pas à le gérer seul. Il y a des soutiens spécifiques sur le campus conçus exactement pour cela.</p>
+                <h4>1. Santé mentale et counseling (gratuit pour les étudiants)</h4>
+                <p>Centre Santé et mieux-être des étudiants de Dalhousie - offre du counseling à court terme, des rendez-vous le jour même ou urgents, des infirmières en santé mentale et des ateliers sur le stress et l'anxiété. Campus de Halifax : 902-494-2171. dal.ca/campus_life/health-and-wellness. Si vous vous sentez dépassé et avez besoin de parler à quelqu'un bientôt, appelez et demandez des rendez-vous de counseling le jour même.</p>
+                <h4>2. Soutien immédiat 24/7</h4>
+                <p>Good2Talk (pour les étudiants postsecondaires en N.-É.) : 1-833-292-3698. Texto : 1-866-925-5454. Disponible 24/7, gratuit et confidentiel. Si les choses semblent ingérables ou si vous êtes en crise : 988 (Ligne d'aide en cas de crise suicidaire - 24/7 partout au Canada). Même si vous êtes « juste vraiment stressé », vous avez absolument le droit d'appeler.</p>
+                <h4>3. Soutien académique</h4>
+                <p>Conseil académique : votre conseiller de faculté peut vous aider à comprendre votre situation de notes, discuter des préoccupations de probation (si pertinent), vous aider à planifier les prochaines étapes, et expliquer les options comme le retrait de cours ou les prolongations. Vous pouvez trouver votre conseiller à dal.ca/advising. Le Syndicat des étudiants de Dalhousie (DSU) Advocacy offre un soutien étudiant gratuit et confidentiel à dsadvocacy.ca - ils peuvent même vous aider à rédiger des courriels à vos professeurs.</p>
+                <h4>4. Soutiens à la gestion du stress</h4>
+                <p>Dal Mieux-être organise souvent des séances de pleine conscience, des ateliers de réduction du stress et des séances de groupe à participation libre. Si tout semble « trop », commencez par une petite étape : appelez Santé et mieux-être et demandez une prise en charge en counseling. Ou appelez Good2Talk ce soir si vous avez besoin d'un soulagement immédiat. Ensuite, prenez rendez-vous avec un conseiller académique.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -683,13 +785,32 @@ gtag('config', 'G-JR7LJGK5PK');
             <p>Fournit un exposé fondé sur les politiques, ne citant que des documents UCW autorisés :</p>
             <ul>
               <li>Cite la <strong>Politique 5006 - Intégrité académique</strong> et la <strong>Procédure 5006p</strong> avec liens directs</li>
-              <li>Explique les étapes d'initiation, d'examen, de prise de décision et d'escalade telles que définies dans la procédure officielle UCW</li>
               <li>Référence correctement la <strong>Politique 9023 - Situation académique</strong> pour les implications sur le relevé de notes</li>
               <li>Dirige le recours en appel vers la <strong>Politique 5005 - Révision et appel des notes finales</strong></li>
               <li>Confirme les droits des étudiants en vertu de la <strong>Politique 9014</strong></li>
-              <li>Lorsque les délais exacts sont définis dans la procédure, renvoie explicitement l'étudiant au document officiel plutôt que d'énoncer des données potentiellement inexactes</li>
+              <li>Lorsque les délais exacts sont définis dans la procédure, renvoie explicitement l'étudiant au document officiel</li>
             </ul>
             <p>Chaque citation est une URL vérifiée de la liste verte UCW. Aucun délai fabriqué. Aucune catégorie de sanction inventée.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Si vous avez été accusé de plagiat, il est important de comprendre que l'UCW suit un processus formel dans le cadre de son cadre d'intégrité académique. Parce que ce processus peut directement affecter votre situation académique, vous devriez vous fier aux documents de procédure officiels pour le libellé exact et les délais. Les documents régisseurs pour le cycle académique 2025-2026 sont la Politique 5006 - Intégrité académique et la Procédure 5006p sur l'intégrité académique.</p>
+                <h4>1. Initiation d'une préoccupation d'intégrité académique</h4>
+                <p>En vertu de la Procédure 5006p, le processus commence lorsqu'une violation potentielle est identifiée. Typiquement : l'instructeur identifie et documente la préoccupation, l'étudiant est informé de l'allégation, et l'étudiant reçoit la possibilité de répondre. Pour le libellé exact et les exigences de délai, consultez la procédure directement.</p>
+                <h4>2. Examen et prise de décision</h4>
+                <p>La procédure établit qui examine le dossier, comment les preuves sont évaluées, et si le dossier reste au niveau de l'instructeur ou est transmis à une instance supérieure. Selon la gravité et les antécédents, la question peut être résolue par l'instructeur ou transmise à une autorité académique supérieure pour un examen formel.</p>
+                <h4>3. Conséquences possibles</h4>
+                <p>L'éventail des conséquences pour le plagiat est défini dans la Politique 5006 et la Procédure 5006p. Les sanctions peuvent varier selon la gravité, s'il s'agit d'une première ou d'une récidive, le niveau académique (MBA vs BCom) et l'impact sur l'intégrité de l'évaluation. Parce que les sanctions sont formellement catégorisées dans la politique, vous devez consulter le document officiel pour la liste complète et les définitions.</p>
+                <h4>4. Délais</h4>
+                <p>La Procédure 5006p décrit les délais de notification, les délais de réponse et les délais de transmission si applicable. Ces délais sont formellement définis dans le document de procédure. Pour les délais contraignants, consultez directement la Procédure 5006p.</p>
+                <h4>5. Comment les décisions sont consignées</h4>
+                <p>La procédure établit comment les conclusions sont documentées, où les dossiers sont conservés et qui y a accès. Les conclusions d'intégrité académique sont formellement consignées conformément aux pratiques de tenue de dossiers internes de l'UCW. Vous pouvez également consulter la Politique 6751 sur la confidentialité et la sécurité de l'information.</p>
+                <h4>6. Les décisions apparaissent-elles au dossier académique ?</h4>
+                <p>Que les résultats soient ou non reflétés dans le dossier académique dépend du type de sanction imposée, du niveau de gravité et de la catégorie de résultat définie dans la Politique 5006 et la Procédure 5006p. Les implications sur la situation académique sont régies par la Politique 9023 et la Procédure 9023p. Pour le libellé définitif sur la notation au relevé de notes, vous devez consulter directement la Procédure d'intégrité académique.</p>
+                <h4>7. Si vous n'êtes pas d'accord avec la décision</h4>
+                <p>Si une décision finale est rendue et que vous croyez qu'elle a été prise par erreur, la voie d'appel formelle est régie par la Politique 5005 - Révision et appel des notes finales et la Procédure 5005p. Vos droits tout au long du processus sont protégés en vertu de la Politique 9014 - Droits et responsabilités des étudiants.</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ungoverned-panel">
@@ -698,12 +819,28 @@ gtag('config', 'G-JR7LJGK5PK');
             <p>Retourne une réponse confiante et détaillée avec des données fabriquées :</p>
             <ul>
               <li>Indique que l'étudiant est contacté « dans les quelques jours ouvrables à 1-2 semaines » - <strong>aucun tel délai n'existe dans la politique UCW</strong></li>
-              <li>Liste des pénalités précises pour une première infraction (avertissement, note réduite, zéro, reprise) comme sanctions UCW - <strong>catégories inventées</strong></li>
+              <li>Liste des pénalités précises pour une première infraction comme sanctions UCW - <strong>catégories inventées</strong></li>
               <li>Affirme que les appels doivent être déposés « souvent dans les 5-10 jours ouvrables » - <strong>non vérifié par rapport à la procédure UCW</strong></li>
               <li>Prétend que les premières infractions mineures « n'apparaissent généralement pas au relevé officiel » - <strong>non vérifié par rapport à la Politique 5006 UCW</strong></li>
-              <li>Suggère d'écrire à <em>academic.integrity@ucanwest.ca</em> - <strong>une adresse courriel non vérifiée</strong></li>
+              <li>Suggère d'écrire à academic.integrity@ucanwest.ca - <strong>une adresse courriel non vérifiée</strong></li>
             </ul>
             <p>Un étudiant s'appuyant sur cette réponse pourrait manquer un vrai délai, mal comprendre les sanctions réelles ou agir sur des informations incorrectes concernant son dossier.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je n'ai pas accès en direct à la Procédure d'intégrité académique actuelle de l'UCW, et les universités mettent périodiquement à jour les délais et la terminologie. Pour une exactitude absolue, vous devriez consulter le Calendrier académique de l'UCW (année en cours) ou contacter les Affaires étudiantes ou le Bureau du registraire. Cela dit, sur la base du cadre d'intégrité académique établi de l'UCW, le processus suit généralement cette structure :</p>
+                <h4>1. Allégation initiale de plagiat</h4>
+                <p>L'instructeur examine le plagiat suspecté, recueille des preuves, et l'étudiant est typiquement contacté et informé de la préoccupation. L'étudiant reçoit un avis écrit de l'allégation et se voit offrir la possibilité de répondre via une réunion ou une explication écrite. Délai : généralement dans les quelques jours ouvrables à 1-2 semaines après la détection.</p>
+                <h4>2. Décision au niveau de l'instructeur</h4>
+                <p>S'il s'agit d'une première infraction (gravité mineure ou modérée), l'instructeur peut attribuer : un avertissement, une note réduite sur le devoir, un zéro sur le devoir, l'obligation de refaire le travail, ou une note d'échec dans le cours. Le dossier est généralement signalé au Bureau d'intégrité académique pour consignation.</p>
+                <h4>3. Escalade pour les infractions graves ou répétées</h4>
+                <p>Si le plagiat est grave ou si l'étudiant a des violations antérieures, le dossier est transmis au doyen ou à un Comité d'intégrité académique. Les pénalités possibles à ce stade : note d'échec dans le cours, probation académique, suspension (typiquement un ou plusieurs trimestres), expulsion (dans les cas extrêmes ou répétés), ou notation d'inconduite académique. Les examens formels se déroulent généralement dans les quelques semaines suivant la transmission.</p>
+                <h4>4. Processus d'appel</h4>
+                <p>Les étudiants ont généralement un délai limité pour faire appel (souvent 5-10 jours ouvrables après avoir reçu la décision). Les appels doivent généralement être fondés sur une erreur de procédure, de nouvelles preuves ou une pénalité déraisonnable.</p>
+                <h4>5. Consignation de la décision</h4>
+                <p>L'UCW consigne généralement toutes les conclusions d'intégrité académique en interne. Les premières infractions mineures n'apparaissent généralement pas sur le relevé de notes officiel. Une note d'échec dans un cours apparaît comme une note de cours normale (p. ex., « F »). Les suspensions ou expulsions peuvent apparaître comme « Retrait exigé » ou « Suspension académique ». Pour des renseignements précis, envoyez un courriel à academic.integrity@ucanwest.ca ou contactez votre conseiller de programme.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -748,8 +885,25 @@ gtag('config', 'G-JR7LJGK5PK');
               <li>Précise les dates d'évaluation de la situation : <strong>janvier, mai et septembre</strong></li>
               <li>Fixe le seuil de retour en situation satisfaisante : <strong>la MCUM doit atteindre 2,00 ou plus</strong></li>
               <li>Explique les conséquences d'une situation insatisfaisante : annulation de l'inscription, retrait obligatoire, réadmission non garantie</li>
-              <li>Toutes les informations proviennent des pages de politique de situation académique de la Faculté des arts de McGill sur la liste verte autorisée</li>
             </ul>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis vraiment content que vous ayez contacté le service. Être placé en Situation de probation peut sembler stressant - mais cela signifie également que vous êtes toujours autorisé à continuer dans votre programme, sous des conditions spécifiques. Voici une ventilation claire adaptée à votre situation d'étudiant de premier cycle à la Faculté des arts pour l'année académique 2025-2026.</p>
+                <h4>1. Pourquoi vous avez été placé en probation (Faculté des arts)</h4>
+                <p>À la Faculté des arts, la situation académique est principalement basée sur votre Moyenne cumulative (MCUM) et parfois aussi sur votre Moyenne trimestrielle (MTUM). Vous êtes placé en Situation de probation si votre MCUM se situe entre 1,50 et 1,99, et que vous étiez auparavant en Situation satisfaisante.</p>
+                <h4>2. Conditions exactes pendant la probation</h4>
+                <p>En Situation de probation (arts) : vous devez porter un maximum de 14 crédits par trimestre (obligatoire, non optionnel) ; vous devez élever votre MCUM à 2,00 ou plus pour retourner en Situation satisfaisante ; vous êtes censé consulter votre conseiller départemental au sujet de la sélection de cours et rencontrer votre conseiller de faculté (Service aux étudiants de la Faculté des arts).</p>
+                <h4>3. Calendrier : quand la situation est évaluée</h4>
+                <p>La situation académique est évaluée en janvier (pour le trimestre d'automne - décision intérimaire), en mai (après le trimestre d'hiver - décision finale pour l'année académique) et en septembre (si des cours d'été ont été suivis). Pour les étudiants en arts, les situations du trimestre d'automne sont souvent étiquetées « Intérimaires ». La décision de situation la plus importante est prise après le trimestre d'hiver.</p>
+                <h4>4. Quelle moyenne devez-vous atteindre ?</h4>
+                <p>Pour retourner en Situation satisfaisante, vous devez élever votre Moyenne cumulative (MCUM) à 2,00 ou plus. Il ne suffit pas d'avoir un bon trimestre - votre MCUM globale doit atteindre 2,00. Si votre MTUM est forte mais que votre MCUM reste inférieure à 2,00, vous pouvez rester en probation jusqu'à ce que la moyenne cumulative atteigne 2,00.</p>
+                <h4>5. Conséquences si vous ne vous améliorez pas</h4>
+                <p>Vous serez placé en Situation insatisfaisante si votre MCUM tombe en dessous de 1,50, ou si votre MTUM est inférieure à 2,50 et votre MCUM est inférieure à 2,00 après avoir déjà été en probation. Si vous êtes placé en Situation insatisfaisante : vous ne pouvez pas continuer dans votre programme, votre inscription sera annulée, vous devez demander une réadmission, et la réadmission n'est pas automatique ni garantie. Si vous êtes en Situation insatisfaisante pour la deuxième fois, vous devez vous retirer définitivement.</p>
+                <h4>Résumé des exigences clés</h4>
+                <p>Pour retrouver une situation satisfaisante (arts) : maintenir une charge de cours de 14 crédits maximum par trimestre ; élever la MCUM à 2,00 ou plus ; rencontrer les conseillers académiques ; améliorer la performance d'ici la fin du trimestre d'hiver (examen typiquement en mai).</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ungoverned-panel">
@@ -758,12 +912,27 @@ gtag('config', 'G-JR7LJGK5PK');
             <p>Retourne une réponse plausible mais inexacte :</p>
             <ul>
               <li>Indique que la probation est déclenchée si « la MTUM est inférieure à 2,00 » - <strong>incorrect</strong>. La probation en arts utilise les seuils de MCUM, pas seulement la MTUM</li>
-              <li>Indique « parfois 12-14 crédits recommandés » - <strong>incorrect</strong>. La limite de 14 crédits est obligatoire selon les règles de la Faculté des arts, pas une recommandation</li>
-              <li>Indique « généralement un trimestre académique accordé pour s'améliorer » - <strong>imprécis</strong>. Les dates d'évaluation sont précises et dépendent du trimestre</li>
+              <li>Indique « parfois 12-14 crédits recommandés » - <strong>incorrect</strong>. La limite de 14 crédits est obligatoire, pas une recommandation</li>
               <li>Référence un « conseiller OASIS en arts » - <strong>le bureau correct est le Service aux étudiants de la Faculté des arts</strong>, pas OASIS</li>
               <li>Indique que le retrait obligatoire est « normalement pour une année académique » - <strong>non vérifié par rapport à la politique actuelle de McGill</strong></li>
             </ul>
             <p>Chaque erreur est plausible et semble faire autorité. Un étudiant agissant sur l'information incorrecte concernant la charge de cours pourrait faire face à des conséquences académiques.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis désolé que vous traversiez cela - la probation académique peut sembler stressante, mais c'est très récupérable. Voici comment cela fonctionne spécifiquement pour les étudiants de la Faculté des arts de McGill :</p>
+                <h4>Ce que signifie la probation académique (Faculté des arts)</h4>
+                <p>Vous êtes placé en probation académique si votre Moyenne trimestrielle (MTUM) est inférieure à 2,00, et/ou si votre Moyenne cumulative (MCUM) tombe en dessous de 2,00. Une MCUM de 2,00 est le minimum requis pour une situation satisfaisante en arts.</p>
+                <h4>Conditions pendant la probation académique</h4>
+                <p>Pendant la probation : vous devez élever votre MCUM à 2,00 ou plus ; vous êtes généralement requis de limiter votre charge de cours (parfois 12-14 crédits recommandés) ; rencontrer un conseiller OASIS en arts ; suivre un plan d'amélioration académique (si assigné) ; et démontrer des progrès satisfaisants au prochain trimestre.</p>
+                <h4>Calendrier pour retrouver une situation satisfaisante</h4>
+                <p>Vous disposez généralement d'un trimestre académique (automne ou hiver) pour améliorer votre MCUM. À la fin du prochain trimestre : si votre MCUM est de 2,00 ou plus, vous retrouvez une situation satisfaisante. Si votre MCUM est toujours inférieure à 2,00 mais que votre MTUM est de 2,00 ou plus, vous pouvez continuer en probation. Si votre MCUM et votre MTUM sont toutes deux inférieures à 2,00, vous pourriez faire face à un retrait obligatoire.</p>
+                <h4>Conséquences si vous ne vous améliorez pas</h4>
+                <p>Si après le trimestre de probation votre MCUM reste inférieure à 2,00 ET votre MTUM est inférieure à 2,00, vous pourriez être Requis de se retirer (RSR). Pour les étudiants en arts : le premier RSR est normalement pour une année académique. Vous pouvez demander une réadmission après la période de retrait. La réadmission n'est pas automatique.</p>
+                <h4>Quelle moyenne vous faut-il ?</h4>
+                <p>Pour retrouver une situation satisfaisante, votre MCUM doit être d'au moins 2,00. Pas seulement votre MTUM - votre MCUM globale cumulative doit atteindre 2,00. Si vous êtes proche (p. ex., 1,95-1,99), les conseillers discutent parfois de planification stratégique de cours pour vous aider à atteindre 2,00 rapidement.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -807,9 +976,24 @@ gtag('config', 'G-JR7LJGK5PK');
               <li>Précise le délai d'appel : <strong>10 jours ouvrables</strong> à compter de la note finale officielle (Politique 168, article 5.2)</li>
               <li>Énumère les quatre motifs reconnus d'appel : gestion de cours, circonstances atténuantes, erreur de procédure, préjugé</li>
               <li>Confirme trois niveaux d'appel : Département - Faculté - Comité d'appel du Sénat (final, sans appel possible)</li>
-              <li>Cite la <strong>Politique 170(a), article 7.5</strong> pour les règles exactes de notation au relevé : DS retiré à la graduation, DW permanent, expulsion permanente</li>
-              <li>Confirme que le fardeau de la preuve incombe à l'étudiant (Politique 168, article 5.9)</li>
+              <li>Cite la <strong>Politique 170(a), article 7.5</strong> pour les règles exactes de notation au relevé</li>
             </ul>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis désolé que vous traversiez cela - recevoir un F en raison d'une inconduite académique est stressant et peut sembler accablant. Toutes les directives ci-dessous sont strictement basées sur les politiques actuelles du Sénat de la TMU pour l'année académique 2025-2026.</p>
+                <h4>1. Votre droit d'appel</h4>
+                <p>Vos droits d'appel sont régis par la Politique du Sénat 168 - Appels de notes et de situation. Si vous avez reçu une note finale de F en raison d'une inconduite académique, vous pouvez faire appel de la note finale. Si votre situation académique a changé (p. ex., Retrait exigé), vous pouvez également faire appel de la situation. Vous devez d'abord tenter une résolution informelle avant de soumettre un appel formel (Politique 168, articles 5.2-5.4).</p>
+                <h4>2. Motifs requis pour faire appel</h4>
+                <p>En vertu de la Politique 168 (articles 5.6 et 6), vous pouvez faire appel uniquement si un ou plusieurs des motifs suivants existent : (1) Gestion de cours - un écart significatif par rapport au plan de cours, aux politiques de gestion des cours ou aux procédures d'évaluation équitables ; (2) Circonstances atténuantes - des événements hors de votre contrôle qui ont affecté significativement votre rendement académique ; (3) Erreur de procédure - une erreur dans la façon dont la politique universitaire a été appliquée qui a affecté votre note ou votre situation académique ; (4) Préjugé - si votre note a été affectée par une discrimination fondée sur des motifs protégés en vertu du Code des droits de la personne de l'Ontario.</p>
+                <h4>3. Processus d'appel - étape par étape</h4>
+                <p>Niveau 1 (Département/École/Programme) : soumettez dans les 10 jours ouvrables suivant la réception de votre note finale officielle. Le décideur répond par écrit dans les 10 jours ouvrables. Niveau 2 (Faculté) : si vous n'êtes pas d'accord avec la décision de niveau 1, transmettez dans les 10 jours ouvrables suivant la réception de la décision de niveau 1. Niveau 3 (Comité d'appel du Sénat) : les décisions au niveau du Sénat sont finales et sans appel possible (Politique 168, article 3.10).</p>
+                <h4>4. Cela apparaîtra-t-il sur votre relevé de notes ?</h4>
+                <p>En vertu de la Politique 170(a), article 5.5.4 : le DEF est remplacé par une note de cours finale lors de la résolution en vertu de la Politique 60. En vertu de la Politique 170(a), article 7.5 : la Suspension disciplinaire (SD) apparaît sur le relevé de notes mais est retirée à la graduation. Le Retrait disciplinaire (RD) apparaît de façon permanente. L'expulsion apparaît de façon permanente. Si seule une note F a été attribuée (sans situation disciplinaire), le relevé de notes indique le F comme tout autre cours échoué.</p>
+                <h4>5. Avertissement critique concernant les délais</h4>
+                <p>Vous avez 10 jours ouvrables à partir de la réception de votre note finale officielle pour déposer un appel de niveau 1. Manquer ce délai peut éliminer vos droits d'appel sauf si des circonstances spéciales sont acceptées. Le fardeau de la preuve incombe à l'étudiant (Politique 168, article 5.9).</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ungoverned-panel">
@@ -817,13 +1001,25 @@ gtag('config', 'G-JR7LJGK5PK');
           <div class="panel-content">
             <p>Retourne une réponse générale avec plusieurs affirmations non vérifiées :</p>
             <ul>
-              <li>Indique « souvent dans les 10 jours ouvrables » - <strong>délai correct, mais source non vérifiée</strong></li>
               <li>Indique que les appels sont acheminés au « Comité d'intégrité académique du département ou de la faculté » - <strong>pas la structure d'appel TMU correcte selon la Politique 168</strong></li>
-              <li>Suggère que l'étudiant peut « amener une personne de soutien ou un défenseur du syndicat étudiant TMU » - <strong>non vérifié par rapport aux procédures de la Politique 168</strong></li>
               <li>Indique que « le relevé peut ne pas mentionner explicitement l'inconduite académique » - <strong>contredit les règles de notation de la Politique 170(a)</strong></li>
               <li>Référence « TMU Students' Union (TMSU) Student Advocacy » - <strong>ressource non vérifiée, absente de la liste verte TMU</strong></li>
               <li>Ne cite pas la Politique 168, la Politique 170(a) ni la Politique 60 - les trois documents régisseurs</li>
             </ul>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Je suis désolé que vous deviez faire face à cela - un F pour inconduite académique est sérieux, mais vous avez des droits. À l'Université métropolitaine de Toronto (TMU), l'inconduite académique est traitée en vertu de la Politique du Sénat 60 (Intégrité académique) et du Code de conduite académique des étudiants.</p>
+                <h4>1. Votre droit d'appel</h4>
+                <p>Oui - vous avez le droit de faire appel à la fois de la conclusion d'inconduite académique et/ou de la pénalité attribuée (p. ex., un F dans le cours). Les appels sont généralement autorisés sur des motifs spécifiques tels que : erreur de procédure (la politique n'a pas été suivie correctement), nouvelles preuves qui n'étaient pas raisonnablement disponibles plus tôt, pénalité excessive ou déraisonnable, ou partialité ou traitement injuste.</p>
+                <h4>2. Le processus d'appel</h4>
+                <p>Vous devriez avoir reçu une décision écrite, la pénalité imposée, des informations sur votre droit d'appel et une date limite pour soumettre votre appel. Les délais sont stricts - souvent dans les 10 jours ouvrables suivant la décision. Vous devez soumettre un formulaire d'appel formel (généralement par votre faculté ou département), énoncer clairement les motifs de l'appel et joindre des documents justificatifs. Les appels sont généralement acheminés au Comité d'intégrité académique du département ou de la faculté, selon l'étape.</p>
+                <h4>3. Le F apparaîtra-t-il sur votre relevé de notes ?</h4>
+                <p>Cela dépend de la pénalité. Si la pénalité est un F dans le cours (en raison d'une inconduite), la note « F » apparaîtra sur votre relevé de notes. Dans de nombreux cas à la TMU, le relevé peut ne pas mentionner explicitement « l'inconduite académique » mais en interne, l'université tient un dossier. Dans les cas plus graves (p. ex., suspension ou expulsion), le relevé peut inclure une notation telle que « Retrait exigé » ou « Suspendu ».</p>
+                <h4>4. Vous devriez contacter immédiatement</h4>
+                <p>À la TMU, les étudiants peuvent obtenir de l'aide gratuite auprès du Syndicat des étudiants de la TMU (TMSU) - Défense et soutien des étudiants, du Bureau d'intégrité académique de la faculté, et du Bureau de l'ombudsman (pour les préoccupations d'équité procédurale). Ils peuvent vous aider à rédiger votre appel, examiner votre lettre de décision et vous conseiller sur les probabilités de succès.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -866,10 +1062,36 @@ gtag('config', 'G-JR7LJGK5PK');
               <li>Confirme le taux : <strong>55 % de la rémunération hebdomadaire assurable moyenne</strong></li>
               <li>Indique la rémunération assurable maximale 2026 : <strong>63 200 $</strong> - en citant la source du gouvernement du Canada</li>
               <li>Calcule la prestation hebdomadaire maximale : <strong>~668 $/semaine</strong> avec la formule présentée</li>
-              <li>Explique correctement que le taux de chômage régional affecte le <em>calcul des meilleures semaines et la durée</em> - pas le taux de 55 %</li>
-              <li>Inclut le Supplément familial (jusqu'à 80 %) et l'option parentale prolongée (33 %) avec les sources officielles citées</li>
+              <li>Explique correctement que le taux de chômage régional affecte le calcul des meilleures semaines et la durée - pas le taux de 55 %</li>
               <li>Tous les chiffres tirés exclusivement des pages officielles du gouvernement du Canada (EDSC) sur la liste verte</li>
             </ul>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Voici une explication complète et structurée basée exclusivement sur les sources officielles du gouvernement du Canada.</p>
+                <h4>1. Le taux de base des prestations d'AE (établi par la loi)</h4>
+                <p>En vertu de la Loi sur l'assurance-emploi, les prestations régulières d'AE sont calculées à 55 % de votre rémunération hebdomadaire assurable moyenne, jusqu'à un montant maximum. (Source : Gouvernement du Canada - Prestations de maternité et parentales d'AE : Montant des prestations.) Ce taux de 55 % est fixé dans la législation et ne varie pas selon la région.</p>
+                <h4>2. Rémunération assurable maximale - 2026</h4>
+                <p>Pour 2026, le gouvernement du Canada a établi la Rémunération assurable maximale à 63 200 $. (Source : Gouvernement du Canada - Rémunération assurable maximale 2026.) L'AE n'assure que les gains jusqu'à 63 200 $ par année. Prestation hebdomadaire maximale : 63 200 $ divisé par 52 semaines = 1 215,38 $/semaine. 55 % de 1 215,38 $ = 668,46 $/semaine. Prestation hebdomadaire maximale d'AE en 2026 : environ 668 $.</p>
+                <h4>3. Comment l'AE calcule votre paiement hebdomadaire</h4>
+                <p>L'AE utilise vos meilleures semaines de gains. Le nombre de semaines dépend de votre taux de chômage régional. Le gouvernement du Canada explique : « Nous calculons le montant de vos prestations en utilisant vos meilleures semaines (les mieux rémunérées) de gains pendant votre période de référence. » Étape 1 : identifier votre période de référence (généralement les 52 semaines avant le début de votre demande). Étape 2 : déterminer le nombre de « meilleures semaines » selon le taux de chômage régional. Étape 3 : calculer la moyenne de ces meilleures semaines. Étape 4 : appliquer 55 %. Étape 5 : appliquer le plafond maximum si le résultat dépasse ~668 $/semaine.</p>
+                <h4>4. Exemples de calcul</h4>
+                <p>Travailleur gagnant 1 000 $/semaine : 55 % de 1 000 $ = 550 $/semaine. Travailleur gagnant 1 500 $/semaine : parce que 1 500 $ dépasse le maximum assurable, 55 % de 1 215 $ = ~668 $/semaine.</p>
+                <h4>5. Comment le chômage régional affecte l'AE</h4>
+                <p>Le chômage régional ne change PAS le taux de 55 %. Il affecte : (A) le nombre d'heures requises pour être admissible - un chômage plus élevé signifie moins d'heures requises ; (B) le nombre de meilleures semaines utilisées - un chômage plus élevé signifie moins de semaines en moyenne, ce qui peut augmenter la prestation ; (C) la durée des prestations - un chômage plus élevé signifie plus de semaines payables.</p>
+                <h4>6. Supplément familial</h4>
+                <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial, vous pouvez recevoir un Supplément familial qui peut augmenter votre taux de prestations jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne. (Source : Prestations de maternité et parentales d'AE : Montant des prestations.)</p>
+                <h4>7. Options de prestations parentales</h4>
+                <table>
+                  <thead><tr><th>Type</th><th>Taux</th><th>Durée</th></tr></thead>
+                  <tbody>
+                    <tr><td>Standard</td><td>55 %</td><td>Jusqu'à 40 semaines (un parent max 35)</td></tr>
+                    <tr><td>Prolongé</td><td>33 %</td><td>Jusqu'à 69 semaines (un parent max 61)</td></tr>
+                  </tbody>
+                </table>
+                <p>Contact Service Canada : 1-800-206-7218. ATS : 1-800-529-3742. Du lundi au vendredi, de 8 h 30 à 16 h 30 (heure locale).</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ungoverned-panel">
@@ -879,12 +1101,35 @@ gtag('config', 'G-JR7LJGK5PK');
             <ul>
               <li>Indique « fondé sur les taux les plus récents dont je dispose - <strong>taux de 2024</strong> »</li>
               <li>Fournit le maximum correct de 2024 (63 200 $, 668 $/semaine) mais sans confirmation pour 2026</li>
-              <li>Décrit correctement la structure de calcul des meilleures semaines</li>
               <li>Ne cite aucune source du gouvernement du Canada</li>
               <li>Aucune ressource EDSC injectée - le modèle s'appuie sur ses données d'entraînement</li>
               <li>Conseille à l'utilisateur de « confirmer les chiffres actuels sur le site Web de Service Canada » - reconnaissant ainsi sa propre incertitude</li>
             </ul>
             <p>Les chiffres de 2024 et de 2026 coïncident dans ce cas. Au cours d'années précédentes, la rémunération assurable maximale a changé - un citoyen se fiant aux données d'entraînement lors d'un changement recevrait des informations incorrectes sur ses prestations.</p>
+            <div class="full-response-toggle">
+              <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
+              <div class="full-response-body">
+                <p>Voici comment fonctionnent les prestations régulières d'assurance-emploi (AE) au Canada (sur la base des taux les plus récents dont je dispose - taux de 2024). Parce que les chiffres d'AE sont mis à jour chaque année, vous devriez confirmer les chiffres actuels sur le site Web de Service Canada pour 2026.</p>
+                <h4>1. Taux de base des prestations d'AE (chiffres 2024)</h4>
+                <p>Taux de prestations : 55 % de votre rémunération hebdomadaire assurable moyenne. Rémunération assurable maximale (2024) : 63 200 $ par an. Prestation hebdomadaire maximale (2024) : 668 $ par semaine. Si la rémunération assurable maximale augmente en 2025-2026, la prestation hebdomadaire maximale augmentera proportionnellement.</p>
+                <h4>2. Comment votre prestation hebdomadaire est calculée</h4>
+                <p>Service Canada utilise vos meilleures semaines de gains pendant votre période de référence (généralement les 52 dernières semaines). Le nombre de meilleures semaines utilisées dépend des taux de chômage régionaux.</p>
+                <table>
+                  <thead><tr><th>Taux de chômage régional</th><th>Nombre de meilleures semaines utilisées</th></tr></thead>
+                  <tbody>
+                    <tr><td>6 % ou moins</td><td>22 semaines</td></tr>
+                    <tr><td>6,1 % - 7 %</td><td>21 semaines</td></tr>
+                    <tr><td>7,1 % - 8 %</td><td>20 semaines</td></tr>
+                    <tr><td>Plus de 13 %</td><td>14 semaines</td></tr>
+                  </tbody>
+                </table>
+                <p>Chômage plus élevé = moins de semaines utilisées = souvent une moyenne plus élevée. Exemple : rémunération hebdomadaire moyenne 1 000 $ - 55 % de 1 000 $ = 550 $/semaine. Si 55 % dépasse la prestation hebdomadaire maximale, vous recevrez le montant plafonné (p. ex., 668 $ en 2024).</p>
+                <h4>3. Comment le chômage régional affecte l'AE</h4>
+                <p>Le chômage régional affecte (A) le nombre d'heures dont vous avez besoin pour être admissible (chômage plus élevé = moins d'heures requises, allant de 420 à 700 heures) ; (B) le nombre de semaines de prestations que vous pouvez recevoir (entre 14 et 45 semaines). Chômage plus élevé = potentiellement plus de semaines de prestations.</p>
+                <h4>4. Supplément familial</h4>
+                <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial net (moins d'environ 25 921 $ - sous réserve de mises à jour), votre taux de prestations peut augmenter de 55 % jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne (toujours soumis au plafond maximum).</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -909,7 +1154,7 @@ gtag('config', 'G-JR7LJGK5PK');
 
     <p>COMPAiSS est offert sous forme de licence de plateforme institutionnelle. L'infrastructure, le traitement IA, la surveillance de la gouvernance, le suivi et les rapports sont tous inclus dans les frais de licence annuels. Les institutions ne gèrent pas et ne paient pas séparément les composantes sous-jacentes.</p>
 
-    <p>La tarification ci-dessous est fondée sur le déploiement d'une université de taille moyenne (environ 7 000 à 10 000 étudiants) avec une portée initiale ciblant les Affaires étudiantes et services - le point de contact institutionnel le plus fréquemment sollicité par les étudiants nouveaux et en cours d'études. L'année 1 est projetée de manière conservatrice à environ 12 000 sessions annuelles.</p>
+    <p>La tarification ci-dessous est fondée sur le déploiement d'une université de taille moyenne (environ 7 000 à 10 000 étudiants) avec une portée initiale ciblant les Affaires étudiantes et services. L'année 1 est projetée de manière conservatrice à environ 12 000 sessions annuelles.</p>
 
     <div class="cost-summary-grid">
       <div class="cost-item">
@@ -950,30 +1195,10 @@ gtag('config', 'G-JR7LJGK5PK');
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>Dans la plage projetée</strong></td>
-          <td>~12 000/an</td>
-          <td>Entièrement inclus</td>
-          <td>Aucune action requise</td>
-        </tr>
-        <tr>
-          <td>Surutilisation modérée</td>
-          <td>120-150 % de la projection</td>
-          <td>Coût IA incrémentiel seulement</td>
-          <td>Suivi ; absorbé dans la mesure du raisonnable</td>
-        </tr>
-        <tr>
-          <td>Surutilisation importante</td>
-          <td>&gt;150 % de la projection</td>
-          <td>Révision de la mise à l'échelle</td>
-          <td>Discussion d'ajustement tarifaire</td>
-        </tr>
-        <tr>
-          <td>Sous-utilisation importante</td>
-          <td>&lt;50 % de la projection</td>
-          <td>Coût variable réduit</td>
-          <td>Révision de l'année 1 possible</td>
-        </tr>
+        <tr><td><strong>Dans la plage projetée</strong></td><td>~12 000/an</td><td>Entièrement inclus</td><td>Aucune action requise</td></tr>
+        <tr><td>Surutilisation modérée</td><td>120-150 % de la projection</td><td>Coût IA incrémentiel seulement</td><td>Suivi ; absorbé dans la mesure du raisonnable</td></tr>
+        <tr><td>Surutilisation importante</td><td>&gt;150 % de la projection</td><td>Révision de la mise à l'échelle</td><td>Discussion d'ajustement tarifaire</td></tr>
+        <tr><td>Sous-utilisation importante</td><td>&lt;50 % de la projection</td><td>Coût variable réduit</td><td>Révision de l'année 1 possible</td></tr>
       </tbody>
     </table>
 
@@ -999,69 +1224,15 @@ gtag('config', 'G-JR7LJGK5PK');
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Bolt AI Assistants</td>
-          <td>30 K$ - 50 K$</td>
-          <td>50 K$ - 80 K$</td>
-          <td>80 K$ - 110 K$</td>
-          <td>Abonnement annuel</td>
-        </tr>
-        <tr>
-          <td>Capacity AI</td>
-          <td>30 K$ - 55 K$</td>
-          <td>55 K$ - 85 K$</td>
-          <td>85 K$ - 120 K$</td>
-          <td>Utilisation + frais de plateforme</td>
-        </tr>
-        <tr>
-          <td>Coveo AI</td>
-          <td>40 K$ - 70 K$</td>
-          <td>70 K$ - 100 K$</td>
-          <td>100 K$ - 140 K$</td>
-          <td>Contrat d'entreprise</td>
-        </tr>
-        <tr>
-          <td>Intercom (Éducation)</td>
-          <td>45 K$ - 75 K$</td>
-          <td>75 K$ - 110 K$</td>
-          <td>110 K$ - 150 K$</td>
-          <td>Utilisation + sièges</td>
-        </tr>
-        <tr>
-          <td>Ivy.ai</td>
-          <td>45 K$ - 75 K$</td>
-          <td>75 K$ - 110 K$</td>
-          <td>110 K$ - 145 K$</td>
-          <td>Abonnement annuel</td>
-        </tr>
-        <tr>
-          <td>Mainstay (AdmitHub)</td>
-          <td>35 K$ - 60 K$</td>
-          <td>60 K$ - 95 K$</td>
-          <td>95 K$ - 135 K$</td>
-          <td>Abonnement annuel</td>
-        </tr>
-        <tr>
-          <td>Ocelot</td>
-          <td>20 K$ - 40 K$</td>
-          <td>40 K$ - 65 K$</td>
-          <td>65 K$ - 90 K$</td>
-          <td>Abonnement annuel</td>
-        </tr>
-        <tr>
-          <td>Verge AI</td>
-          <td>25 K$ - 45 K$</td>
-          <td>45 K$ - 75 K$</td>
-          <td>75 K$ - 120 K$</td>
-          <td>Contrat d'entreprise</td>
-        </tr>
-        <tr>
-          <td>Zendesk Answer Bot</td>
-          <td>25 K$ - 45 K$</td>
-          <td>45 K$ - 75 K$</td>
-          <td>75 K$ - 105 K$</td>
-          <td>Tarification par agent</td>
-        </tr>
+        <tr><td>Bolt AI Assistants</td><td>30 K$ - 50 K$</td><td>50 K$ - 80 K$</td><td>80 K$ - 110 K$</td><td>Abonnement annuel</td></tr>
+        <tr><td>Capacity AI</td><td>30 K$ - 55 K$</td><td>55 K$ - 85 K$</td><td>85 K$ - 120 K$</td><td>Utilisation + frais de plateforme</td></tr>
+        <tr><td>Coveo AI</td><td>40 K$ - 70 K$</td><td>70 K$ - 100 K$</td><td>100 K$ - 140 K$</td><td>Contrat d'entreprise</td></tr>
+        <tr><td>Intercom (Éducation)</td><td>45 K$ - 75 K$</td><td>75 K$ - 110 K$</td><td>110 K$ - 150 K$</td><td>Utilisation + sièges</td></tr>
+        <tr><td>Ivy.ai</td><td>45 K$ - 75 K$</td><td>75 K$ - 110 K$</td><td>110 K$ - 145 K$</td><td>Abonnement annuel</td></tr>
+        <tr><td>Mainstay (AdmitHub)</td><td>35 K$ - 60 K$</td><td>60 K$ - 95 K$</td><td>95 K$ - 135 K$</td><td>Abonnement annuel</td></tr>
+        <tr><td>Ocelot</td><td>20 K$ - 40 K$</td><td>40 K$ - 65 K$</td><td>65 K$ - 90 K$</td><td>Abonnement annuel</td></tr>
+        <tr><td>Verge AI</td><td>25 K$ - 45 K$</td><td>45 K$ - 75 K$</td><td>75 K$ - 120 K$</td><td>Contrat d'entreprise</td></tr>
+        <tr><td>Zendesk Answer Bot</td><td>25 K$ - 45 K$</td><td>45 K$ - 75 K$</td><td>75 K$ - 105 K$</td><td>Tarification par agent</td></tr>
         <tr class="compaiss-row">
           <td>COMPAiSS (Univ. moyenne - A1)</td>
           <td> - </td>
@@ -1118,27 +1289,9 @@ gtag('config', 'G-JR7LJGK5PK');
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>Faible</strong></td>
-          <td>~15 %</td>
-          <td>200-300/an</td>
-          <td>0,1-0,2 ETP | 7 000 $ - 17 000 $ récupérés</td>
-          <td>Environ neutre sur les coûts</td>
-        </tr>
-        <tr>
-          <td><strong>Moyen</strong></td>
-          <td>~35 %</td>
-          <td>500-700/an</td>
-          <td>0,3-0,5 ETP | 21 000 $ - 42 000 $ récupérés</td>
-          <td><strong>Retour de 1,5× à 3×</strong></td>
-        </tr>
-        <tr>
-          <td><strong>Élevé</strong></td>
-          <td>~55 %</td>
-          <td>800-1 200/an</td>
-          <td>0,6-0,9 ETP | 42 000 $ - 76 000 $ récupérés</td>
-          <td><strong>Retour de 3× à 5×</strong></td>
-        </tr>
+        <tr><td><strong>Faible</strong></td><td>~15 %</td><td>200-300/an</td><td>0,1-0,2 ETP | 7 000 $ - 17 000 $ récupérés</td><td>Environ neutre sur les coûts</td></tr>
+        <tr><td><strong>Moyen</strong></td><td>~35 %</td><td>500-700/an</td><td>0,3-0,5 ETP | 21 000 $ - 42 000 $ récupérés</td><td><strong>Retour de 1,5x à 3x</strong></td></tr>
+        <tr><td><strong>Élevé</strong></td><td>~55 %</td><td>800-1 200/an</td><td>0,6-0,9 ETP | 42 000 $ - 76 000 $ récupérés</td><td><strong>Retour de 3x à 5x</strong></td></tr>
       </tbody>
     </table>
 
@@ -1157,39 +1310,10 @@ gtag('config', 'G-JR7LJGK5PK');
       </div>
     </div>
 
-    <div style="
-      margin-top: 2.5rem;
-      padding: 2rem 2.2rem;
-      background: rgba(240,196,76,0.08);
-      border: 1px solid rgba(240,196,76,0.25);
-      border-radius: 10px;
-      font-family: system-ui, -apple-system, sans-serif;
-    ">
-      <div style="
-        font-size: 0.75rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #f0c44c;
-        margin-bottom: 0.7rem;
-        font-weight: 600;
-      ">Demander une évaluation</div>
-      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
-        COMPAiSS est disponible pour évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance et la tarification pour votre institution :
-      </p>
-      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20d%27évaluation%20COMPAiSS"
-         style="
-           display: inline-block;
-           padding: 0.7rem 1.6rem;
-           background: #f0c44c;
-           color: #000;
-           font-weight: 600;
-           font-size: 0.92rem;
-           border-radius: 6px;
-           text-decoration: none;
-           letter-spacing: 0.04em;
-         ">
-        Demander une démonstration &rarr;
-      </a>
+    <div style="margin-top: 2.5rem; padding: 2rem 2.2rem; background: rgba(240,196,76,0.08); border: 1px solid rgba(240,196,76,0.25); border-radius: 10px; font-family: system-ui, -apple-system, sans-serif;">
+      <div style="font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: #f0c44c; margin-bottom: 0.7rem; font-weight: 600;">Demander une évaluation</div>
+      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">COMPAiSS est disponible pour évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance et la tarification pour votre institution :</p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20d%27évaluation%20COMPAiSS" style="display: inline-block; padding: 0.7rem 1.6rem; background: #f0c44c; color: #000; font-weight: 600; font-size: 0.92rem; border-radius: 6px; text-decoration: none; letter-spacing: 0.04em;">Demander une démonstration &rarr;</a>
     </div>
   </div>
 
@@ -1197,15 +1321,25 @@ gtag('config', 'G-JR7LJGK5PK');
 
 <footer>
   <div class="footer-inner">
-    <p style="margin-top: 0.8rem;">
-      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
-    </p>
+    <p style="margin-top: 0.8rem;">Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
   </div>
 </footer>
 
 <button id="backToTop" aria-label="Retour en haut">↑</button>
 
 <script>
+  function toggleResponse(btn) {
+    btn.classList.toggle('open');
+    const body = btn.nextElementSibling;
+    body.classList.toggle('visible');
+    if (body.classList.contains('visible')) {
+      btn.childNodes[1].textContent = ' Masquer la réponse complète';
+    } else {
+      const isGoverned = btn.closest('.governed-panel') !== null;
+      btn.childNodes[1].textContent = isGoverned ? ' Voir la réponse gouvernée complète' : ' Voir la réponse non gouvernée complète';
+    }
+  }
+
   const backBtn = document.getElementById('backToTop');
 
   function checkScroll() {
