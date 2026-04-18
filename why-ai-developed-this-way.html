@@ -513,7 +513,7 @@ hr {
 
     <p>Role-based access control determined who could reach an inference endpoint. It did not determine whether an inference runtime should exist for a given request. Identity and access management governed service invocation. It did not govern whether the service's generative capacity should be instantiated at all.</p>
 
-    <p>In each case, the architecture assumed a standing, callable generative runtime. Control was applied around it, not before it.</p>
+    <p>In each case, the architecture assumed a standing, callable generative runtime. Some systems - AWS Bedrock Guardrails, moderation endpoints, and policy engines - can block individual requests before tokens are generated. But the inference service itself remains deployed regardless of the outcome. Control is applied around a standing capability, not before it exists.</p>
 
     <div class="highlight-block">
       <p><strong>The result is an arms race.</strong> As models become more capable, they become harder to control. A more capable system has more ways to generate convincing but incorrect responses, more ways to operate outside intended boundaries, and more ways to sound authoritative when it is wrong. The field responds by adding more controls - which increases complexity and cost without resolving the underlying structural problem. As AI systems continue to improve, the assumption that they should always answer becomes harder - not easier - to justify in regulated environments.</p>
