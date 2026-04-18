@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>Déploiement et adéquation institutionnelle - COMPAiSS</title>
+
+<style>
+:root {
+  --wrap: 980px;
+  --pad: 32px;
+  --bg-page: #0c2d5a;
+  --bg-panel: #10386e;
+  --bg-panel-soft: rgba(16,56,110,0.55);
+  --bg-card: rgba(255,255,255,0.05);
+  --text-main: #c6cfdd;
+  --text-muted: #aeb9cc;
+  --text-heading: #ffffff;
+  --accent: #f0c44c;
+  --accent-soft: rgba(240,196,76,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-accent: rgba(240,196,76,0.3);
+  --link: #9cc9ff;
+  --link-visited: #c8e0ff;
+  --radius: 10px;
+  --green: #4caf82;
+  --green-soft: rgba(76,175,130,0.12);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited { color: var(--link-visited); }
+a:hover, a:focus { opacity: .95; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px; top: 16px; width: auto; height: auto;
+  background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+}
+
+header { border-bottom: 1px solid var(--border-soft); }
+
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav .brand-text {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.nav a { text-decoration: none; color: var(--text-muted); }
+.nav a:hover { color: var(--text-heading); }
+.nav a.active { color: var(--accent); }
+
+main {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+footer .footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 2.5rem var(--pad);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3rem;
+}
+
+.page-header .eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav {
+  margin-bottom: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav strong {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .section-nav ul { grid-template-columns: 1fr; }
+}
+
+.section-nav li { margin: 0; }
+.section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+.section-nav a:hover { color: var(--text-heading); }
+
+.content-section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+.content-section h2 {
+  font-size: 1.7rem;
+  color: var(--text-heading);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-accent);
+  letter-spacing: 0.01em;
+}
+
+.content-section .section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.8rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.content-section p {
+  max-width: 70ch;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.content-section ul {
+  max-width: 70ch;
+  margin: 1em 0 1.6em 1.4em;
+}
+
+.content-section li {
+  margin: 0.55em 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.highlight-block {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.highlight-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.highlight-block p:last-child { margin-bottom: 0; }
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+@media (max-width: 640px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}
+
+.compare-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+}
+
+.compare-col.accent-col {
+  border-color: var(--border-accent);
+  background: var(--accent-soft);
+}
+
+.compare-col .col-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.compare-col.accent-col .col-label {
+  color: var(--accent);
+}
+
+.compare-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.compare-col li {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0.5rem 0;
+  padding-left: 1.1rem;
+  position: relative;
+  color: var(--text-main);
+}
+
+.compare-col li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.compare-col.accent-col li::before {
+  content: '+';
+  color: var(--green);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+
+.card h3 {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.6rem;
+}
+
+.card p {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1.6;
+  max-width: none;
+}
+
+.hybrid-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: center;
+  margin: 2rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+@media (max-width: 640px) {
+  .hybrid-grid { grid-template-columns: 1fr; }
+  .hybrid-divider { display: none; }
+}
+
+.hybrid-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+}
+
+.hybrid-col.right {
+  border-color: var(--border-accent);
+  background: var(--accent-soft);
+}
+
+.hybrid-col .hybrid-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.hybrid-col.right .hybrid-label { color: var(--accent); }
+
+.hybrid-col .hybrid-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 0.8rem;
+}
+
+.hybrid-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hybrid-col li {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin: 0.4rem 0;
+  line-height: 1.5;
+}
+
+.hybrid-divider {
+  text-align: center;
+  padding: 0 1.2rem;
+  color: var(--accent);
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.key-line {
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(240,196,76,0.05);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+  font-style: italic;
+}
+
+.cta-block {
+  margin-top: 3rem;
+  padding: 2rem 2.2rem;
+  background: rgba(240,196,76,0.08);
+  border: 1px solid rgba(240,196,76,0.25);
+  border-radius: var(--radius);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.cta-block .cta-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+.cta-block p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.cta-block a.cta-btn {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 3rem 0;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+#backToTop:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="/index.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a évolué ainsi</a></li>
+      <li><a href="/governance.html">Gouvernance de l'IA</a></li>
+      <li><a href="/ai-risk-assessment.html">Évaluation des risques IA</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">Démonstrations et tarification</a></li>
+      <li><a href="/deploiement-et-adequation-institutionnelle.html" class="active">Déploiement et adéquation</a></li>
+      <li><a href="/index.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">De l'argument à la décision</div>
+    <h1>Déploiement, intégration<br>et adéquation institutionnelle</h1>
+    <p class="subtitle">
+      COMPAiSS est conçu pour être évalué immédiatement, déployé sans perturbation et approuvé sans cycle d'approvisionnement prolongé. Cette page explique pourquoi.
+    </p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Navigation</strong>
+    <ul>
+      <li><a href="#no-integration">Aucune intégration requise pour commencer</a></li>
+      <li><a href="#crm-workflows">Compatible avec les flux de travail CRM existants</a></li>
+      <li><a href="#no-burden">Aucun fardeau d'intégration en entreprise</a></li>
+      <li><a href="#web-shift">En phase avec l'évolution du Web institutionnel</a></li>
+      <li><a href="#hybrid">Le modèle hybride : exécution et intelligence gouvernée</a></li>
+      <li><a href="#approval">Évaluation et approbation à faible risque</a></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="content-section" id="no-integration">
+    <h2>Aucune intégration requise pour commencer</h2>
+    <p class="section-intro">Déploiement en quelques jours, et non en quelques mois - sans toucher aux systèmes existants.</p>
+
+    <p>COMPAiSS ne nécessite aucune intégration avec les systèmes internes, les bases de données ou les CRM pour fonctionner. Il utilise des sources institutionnelles accessibles au public, combinées à une couche d'autorisation gouvernée, pour fournir des réponses exactes et conformes aux politiques dès le premier jour.</p>
+
+    <p>Il n'y a aucun pipeline d'ingestion de données à construire. Aucun accès aux dossiers internes n'est requis. Aucune ressource en TI ni aucun changement de système n'est nécessaire avant qu'un déploiement puisse commencer.</p>
+
+    <p>Le déploiement peut être complété en quelques jours. Une institution peut évaluer COMPAiSS sur ses propres questions courantes, en utilisant son propre contenu accessible au public, sans aucune dépendance envers les systèmes internes ni approbation des équipes technologiques.</p>
+
+    <div class="key-line">« Le système est prêt à fonctionner dès que les sources institutionnelles sont autorisées. Rien d'autre n'a besoin d'être connecté au préalable. »</div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 2 -->
+  <div class="content-section" id="crm-workflows">
+    <h2>Compatible avec les flux de travail CRM existants</h2>
+    <p class="section-intro">Intégration à la couche d'interaction - et non à la couche de données.</p>
+
+    <p>Pour les institutions qui souhaitent étendre l'utilisation aux flux de travail opérationnels, COMPAiSS peut fonctionner en parallèle avec les plateformes CRM existantes - y compris les systèmes d'information étudiante et d'admission - sans accéder aux données internes ni les modifier.</p>
+
+    <p>Cette distinction est importante. La plupart des fournisseurs d'IA abordent l'intégration CRM à la couche de données - en se connectant aux dossiers, en ingérant du contenu structuré et en intégrant l'inférence directement dans l'architecture du système. Cette approche introduit de la dépendance, du risque et des obligations de maintenance continue.</p>
+
+    <p>COMPAiSS s'intègre à la couche d'interaction. Le personnel continue de travailler dans ses systèmes existants. Lorsque des questions complexes ou liées aux politiques se posent, COMPAiSS génère des réponses exactes, conformes aux politiques et prêtes à l'emploi, qui peuvent être retournées directement dans les flux de travail du personnel.</p>
+
+    <div class="compare-grid">
+      <div class="compare-col">
+        <div class="col-label">Intégration IA standard dans un CRM</div>
+        <ul>
+          <li>Intègre l'IA directement dans l'interface CRM</li>
+          <li>Nécessite l'accès aux dossiers étudiants et aux données internes</li>
+          <li>Génère des réponses à partir de contenu fragmenté ou en constante évolution</li>
+          <li>Inférence en premier : génère d'abord, valide ensuite</li>
+          <li>Crée une dépendance architecturale et des obligations de maintenance continue</li>
+        </ul>
+      </div>
+      <div class="compare-col accent-col">
+        <div class="col-label">COMPAiSS en parallèle avec votre CRM</div>
+        <ul>
+          <li>Fonctionne en parallèle avec le CRM - et non à l'intérieur</li>
+          <li>Aucun dossier étudiant ni base de données interne requis</li>
+          <li>Génère des réponses uniquement à partir de sources autorisées par l'institution</li>
+          <li>Autorisation en premier : gouverne avant de générer</li>
+          <li>Aucune dépendance système - peut être adopté ou abandonné de manière indépendante</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="key-line">« COMPAiSS gouverne la façon dont l'information est utilisée - et non la façon dont les données sont stockées. Il améliore les systèmes existants sans faire partie de l'architecture du système. »</div>
+
+    <p>Cela signifie également que des outils comme Copilot ou d'autres IA de productivité demeurent utiles pour la rédaction et les communications. COMPAiSS répond à un problème différent : s'assurer que le contenu de ces communications est exact sur le plan des politiques et autorisé par l'institution.</p>
+
+    <div class="key-line">« Copilot vous aide à rédiger plus vite. COMPAiSS vous aide à vous assurer que ce que vous rédigez est exact. »</div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 3 -->
+  <div class="content-section" id="no-burden">
+    <h2>Aucun fardeau d'intégration en entreprise</h2>
+    <p class="section-intro">Les coûts et la complexité qui accompagnent généralement l'adoption de l'IA en entreprise sont éliminés par l'architecture.</p>
+
+    <p>Les déploiements RAG à grande échelle et les systèmes d'IA d'entreprise de type Copilot comportent un ensemble commun d'exigences d'infrastructure qui entraînent des coûts et des délais de mise en oeuvre. COMPAiSS n'en a pas.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">&#10006;</div>
+        <h3>Non requis</h3>
+        <p>Pipelines d'ingestion ou de synchronisation de données. Bases de données vectorielles ou infrastructure d'indexation. Accès aux systèmes internes ou aux API. Cycles continus de nettoyage ou de maintenance du contenu.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#10003;</div>
+        <h3>Ce que cela signifie</h3>
+        <p>Aucun projet TI à lancer. Aucun verrouillage fournisseur. Aucun investissement en infrastructure avant l'évaluation. Aucune dépendance envers de grandes équipes d'ingénierie des données ou la restructuration du CRM.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#8594;</div>
+        <h3>Le résultat</h3>
+        <p>Risque de mise en oeuvre réduit. Chemin plus rapide vers l'évaluation. Structure de coûts qui s'adapte sans nécessiter d'investissement majeur en infrastructure. Un système qui peut être abandonné à tout moment sans conséquence.</p>
+      </div>
+    </div>
+
+    <p>Il ne s'agit pas d'un compromis sur les capacités. C'est la conséquence d'une approche architecturale différente - une approche dans laquelle la couche d'autorisation, plutôt que la couche de données, assure l'exactitude et la conformité à la portée.</p>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 4 -->
+  <div class="content-section" id="web-shift">
+    <h2>En phase avec l'évolution du Web institutionnel</h2>
+    <p class="section-intro">Le passage de la navigation aux réponses directes par IA est déjà en cours.</p>
+
+    <p>De nombreuses universités et institutions publiques entreprennent actuellement une restructuration importante de leur présence Web - s'éloignant des grands écosystèmes de sites décentralisés vers des ensembles plus restreints de contenu de grande valeur et faisant autorité. Parallèlement, le comportement des utilisateurs s'éloigne de la navigation traditionnelle sur les sites Web pour adopter des réponses directes par l'intermédiaire de l'IA.</p>
+
+    <p>Cela crée un défi particulier. Lors des périodes de migration Web, les URL changent, le contenu se fragmente et certaines pages se dégradent ou disparaissent. Les institutions qui ont investi dans des systèmes d'IA basés sur la récupération, liés à leur structure Web existante, font face à un problème qui se cumule : la couche de contenu dont dépend leur IA devient instable précisément au moment où les réponses exactes importent le plus.</p>
+
+    <p>COMPAiSS est conçu pour cet environnement. Plutôt que de s'appuyer sur la structure du site ou la navigation, il identifie et priorise algorithmiquement le contenu institutionnel faisant autorité - les mêmes politiques de grande valeur, informations du registrariat, conseils des services aux étudiants et règles académiques que les institutions tentent elles-mêmes de mettre en avant. Il filtre les pages de faible valeur ou non gouvernées et fournit des réponses directes et vérifiées sans que les utilisateurs aient besoin de naviguer dans des systèmes Web complexes ou en transition.</p>
+
+    <div class="highlight-block">
+      <p>À mesure que les institutions restructurent leur présence Web et que les utilisateurs s'attendent de plus en plus à des réponses directes par IA, COMPAiSS fournit une couche de stabilité sur un environnement d'information en évolution - une couche qui maintient l'exactitude et le contrôle institutionnel quelle que soit la façon dont l'infrastructure Web sous-jacente change.</p>
+      <p>Les institutions peuvent maintenir la qualité des réponses générées par IA même lorsque leur infrastructure Web est en transition, sans avoir à reconstruire la couche IA chaque fois que le contenu est déplacé.</p>
+    </div>
+
+    <div class="key-line">« COMPAiSS fait abstraction de la complexité Web. Il fournit des réponses gouvernées à partir de contenu faisant autorité - quelle que soit la façon dont ce contenu est structuré, hébergé ou réorganisé. »</div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 5 -->
+  <div class="content-section" id="hybrid">
+    <h2>Le modèle hybride : exécution et intelligence gouvernée</h2>
+    <p class="section-intro">Deux systèmes, un seul flux de travail - chacun faisant ce qu'il fait de mieux.</p>
+
+    <p>Le déploiement institutionnel le plus efficace n'est pas un modèle de remplacement - c'est un modèle hybride. Les systèmes CRM et de flux de travail existants gèrent les processus, les communications et la gestion des dossiers. COMPAiSS gère l'intelligence gouvernée : des réponses exactes, conformes aux politiques et autorisées par l'institution.</p>
+
+    <div class="hybrid-grid">
+      <div class="hybrid-col">
+        <div class="hybrid-label">Votre CRM / système de flux de travail existant</div>
+        <div class="hybrid-name">Système de référence</div>
+        <ul>
+          <li>Gère les candidatures et les données étudiantes</li>
+          <li>Traite les communications à grande échelle</li>
+          <li>Suit les flux de travail et les processus</li>
+          <li>Soutient le recrutement et les événements</li>
+          <li>Guide les étudiants à travers les étapes d'admission</li>
+        </ul>
+      </div>
+      <div class="hybrid-divider">+</div>
+      <div class="hybrid-col right">
+        <div class="hybrid-label">COMPAiSS</div>
+        <div class="hybrid-name">Couche d'intelligence gouvernée</div>
+        <ul>
+          <li>Répond avec exactitude aux questions complexes de politique</li>
+          <li>Élimine la variation d'un conseiller à l'autre</li>
+          <li>Gère les cas limites et les règles conditionnelles</li>
+          <li>Active les connaissances institutionnelles internes</li>
+          <li>Génère des réponses prêtes à l'emploi, conformes aux politiques</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="key-line">« Votre CRM gère les interactions. COMPAiSS gouverne l'intelligence derrière ces interactions. »</div>
+
+    <p>Ce modèle ouvre également l'accès aux connaissances institutionnelles qui n'existent actuellement que dans des documents internes - conseils en matière d'admission, interprétations internes des politiques, documents destinés au personnel - qui ne sont pas accessibles au public mais qui informent directement la façon dont le personnel utilise ses systèmes. COMPAiSS peut intégrer ce contenu sous le contrôle total de l'institution, créant une couche en mode personnel qui active les connaissances institutionnelles sans les exposer publiquement.</p>
+
+    <div class="key-line">« Il s'agit de libérer les connaissances institutionnelles - pas les données CRM. Rien n'entre dans le système à moins que l'institution ne l'autorise explicitement. »</div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 6 -->
+  <div class="content-section" id="approval">
+    <h2>Évaluation et approbation à faible risque</h2>
+    <p class="section-intro">Un système conçu pour être essayé avant d'être adopté.</p>
+
+    <p>COMPAiSS peut être déployé de manière indépendante, évalué en toute sécurité et abandonné à tout moment sans affecter les systèmes existants. Aucun flux de travail existant n'est perturbé. Aucune donnée n'est touchée. Aucune architecture n'est modifiée.</p>
+
+    <p>Comme il fonctionne sans intégration de système et tombe généralement en dessous des seuils d'approvisionnement standard pour les logiciels d'entreprise, il peut être évalué rapidement - sans cycles de mise en oeuvre prolongés, approbations de projets TI ou risque opérationnel.</p>
+
+    <p>Une évaluation peut commencer avec un ensemble ciblé de contenu politique et d'admission à fort impact, puis s'étendre au fil du temps à mesure que la confiance grandit - en ajoutant des documents internes, des domaines de politique supplémentaires ou une intégration de flux de travail au rythme de l'institution et sous son contrôle.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">&#9651;</div>
+        <h3>Commencer modestement</h3>
+        <p>Débuter avec un ensemble défini de contenu politique et de questions à fort volume. Aucun engagement en infrastructure requis pour évaluer la performance réelle sur des questions institutionnelles réelles.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#8594;</div>
+        <h3>Progresser à votre rythme</h3>
+        <p>Ajouter des documents internes, des domaines de politique supplémentaires ou une intégration de flux de travail au fil du temps. Chaque expansion est contrôlée par l'institution et ne nécessite pas de changements de système.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#9632;</div>
+        <h3>Se retirer sans conséquence</h3>
+        <p>COMPAiSS fonctionne indépendamment des systèmes existants. L'abandonner ne laisse rien derrière - aucune dépendance aux données, aucune intégration à défaire, aucune infrastructure à désactiver.</p>
+      </div>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong>L'argument central pour l'approvisionnement :</strong> COMPAiSS ne demande pas aux institutions de s'engager dans un changement architectural avant d'avoir vu le système fonctionner. Il leur demande de l'évaluer sur leurs propres questions, en utilisant leur propre contenu, sans perturber quoi que ce soit sur quoi elles s'appuient actuellement.</p>
+      <p>Le risque de l'évaluer est faible. Le risque de ne pas l'évaluer - pendant que les problèmes d'exactitude et de gouvernance qu'il résout continuent de s'aggraver - ne l'est pas.</p>
+    </div>
+
+    <div class="key-line">« Nous n'avons pas besoin de reconstruire ou de nous intégrer aux systèmes existants pour apporter de la valeur. COMPAiSS fonctionne en parallèle, réduisant les coûts, la complexité et le risque tout en améliorant immédiatement la qualité de l'information. »</div>
+
+    <div class="cta-block">
+      <div class="cta-label">Demander une évaluation</div>
+      <p>COMPAiSS est disponible pour une évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance aux fins d'examen de l'approvisionnement :</p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=Demande%20d%27%C3%A9valuation%20COMPAiSS" class="cta-btn">Demander une démonstration &rarr;</a>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>COMPAiSS - Brevet en instance : OPIC 3 299 174 / USPTO 19/455 963</p>
+    <p style="margin-top: 0.8rem;">
+      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Retour en haut">&#8593;</button>
+
+<script>
+const backBtn = document.getElementById('backToTop');
+function checkScroll() {
+  backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+}
+window.addEventListener('scroll', checkScroll);
+window.addEventListener('load', checkScroll);
+backBtn.addEventListener('click', () => {
+  const nav = document.querySelector('.section-nav');
+  nav.scrollIntoView({ block: 'start' });
+  history.replaceState(null, null, window.location.pathname);
+});
+</script>
+
+</body>
+</html>
