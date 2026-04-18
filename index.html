@@ -63,14 +63,22 @@ gtag('config', 'G-JR7LJGK5PK');
 
     header { border-bottom: 1px solid var(--border-soft); }
 
-    .nav {
-      max-width: var(--wrap);
-      margin: 0 auto;
-      padding: 18px var(--pad);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav ul {
+  flex: 1;
+  justify-content: center;
+  gap: 2rem;
+}
 
     .nav .brand-text {
       font-weight: 600;
