@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<title>Pourquoi l'IA a évolué ainsi - COMPAiSS</title>
+
+<style>
+:root {
+  --wrap: 980px;
+  --pad: 32px;
+  --bg-page: #0c2d5a;
+  --bg-panel: #10386e;
+  --bg-panel-soft: rgba(16,56,110,0.55);
+  --bg-card: rgba(255,255,255,0.05);
+  --text-main: #c6cfdd;
+  --text-muted: #aeb9cc;
+  --text-heading: #ffffff;
+  --accent: #f0c44c;
+  --accent-soft: rgba(240,196,76,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-accent: rgba(240,196,76,0.3);
+  --link: #9cc9ff;
+  --link-visited: #c8e0ff;
+  --radius: 10px;
+  --green: #4caf82;
+  --green-soft: rgba(76,175,130,0.12);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited { color: var(--link-visited); }
+a:hover, a:focus { opacity: .95; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px; top: 16px; width: auto; height: auto;
+  background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+}
+
+header { border-bottom: 1px solid var(--border-soft); }
+
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav .brand-text {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.nav a { text-decoration: none; color: var(--text-muted); }
+.nav a:hover { color: var(--text-heading); }
+.nav a.active { color: var(--accent); }
+
+main {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+footer .footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 2.5rem var(--pad);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3rem;
+}
+
+.page-header .eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.road-ref {
+  margin: 1.6rem auto 0;
+  max-width: 62ch;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.road-ref a { color: var(--link); }
+
+.section-nav {
+  margin-bottom: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav strong {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .section-nav ul { grid-template-columns: 1fr; }
+}
+
+.section-nav li { margin: 0; }
+.section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+.section-nav a:hover { color: var(--text-heading); }
+
+.content-section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+.content-section h2 {
+  font-size: 1.7rem;
+  color: var(--text-heading);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-accent);
+  letter-spacing: 0.01em;
+}
+
+.content-section .section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.8rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.content-section p {
+  max-width: 70ch;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.content-section ul {
+  max-width: 70ch;
+  margin: 1em 0 1.6em 1.4em;
+}
+
+.content-section li {
+  margin: 0.55em 0;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.highlight-block {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.highlight-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.highlight-block p:last-child { margin-bottom: 0; }
+
+.assumption-block {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+  margin: 2rem 0;
+  background: rgba(255,255,255,0.03);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.assumption-block .assumption-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+
+.assumption-block .assumption-text {
+  font-size: 1.05rem;
+  color: var(--text-heading);
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+  max-width: none;
+}
+
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+  margin: 1.8rem 0;
+}
+
+.model-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.model-card .model-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.model-card .model-verdict {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.model-card .model-finding {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.82rem;
+  color: var(--green);
+  font-style: italic;
+}
+
+.patent-disclosure {
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.patent-disclosure summary {
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  user-select: none;
+}
+
+.patent-disclosure summary::-webkit-details-marker { display: none; }
+
+.patent-disclosure summary::before {
+  content: '+';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--border-accent);
+  border-radius: 3px;
+  text-align: center;
+  line-height: 16px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.patent-disclosure[open] summary::before {
+  content: '-';
+}
+
+.patent-disclosure summary:hover {
+  color: var(--text-heading);
+  border-color: var(--border-accent);
+}
+
+.patent-table-wrap {
+  border: 1px solid var(--border-soft);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow-x: auto;
+}
+
+.patent-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.87rem;
+}
+
+.patent-table th {
+  text-align: left;
+  padding: 0.7rem 1rem;
+  background: rgba(255,255,255,0.04);
+  color: var(--accent);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-accent);
+}
+
+.patent-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.patent-table tr:last-child td { border-bottom: none; }
+
+.patent-table .col-org {
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.patent-table .col-verdict {
+  color: #ff8080;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 3rem 0;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+#backToTop:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.6rem; }
+  .patent-table { font-size: 0.8rem; }
+  .patent-table th, .patent-table td { padding: 0.5rem 0.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="/index.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/pourquoi-lia-a-evolue-ainsi.html" class="active">Pourquoi l'IA a évolué ainsi</a></li>
+      <li><a href="/governance.html">Gouvernance de l'IA</a></li>
+      <li><a href="/ai-risk-assessment.html">Évaluation des risques IA</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">Démonstrations et tarification</a></li>
+      <li><a href="/index.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">L'argument structurel</div>
+    <h1>Pourquoi l'IA a évolué ainsi -<br>et pourquoi cette voie ne peut pas résoudre le problème</h1>
+    <p class="subtitle">
+      Un examen de l'hypothèse fondamentale intégrée dans chaque grand système d'IA - et le dossier de recherche indépendant confirmant que personne ne l'a encore remise en question.
+    </p>
+    <p class="road-ref">
+      Cette page approfondit l'argument présenté dans <a href="/assets/road_less_travelled_revised.pdf">La voie moins fréquentée - Repenser les coûts, la sécurité et la confiance en matière d'IA générative dans les institutions réglementées</a>, qui explique pourquoi le paradigme standard de l'IA produit des coûts et des risques structurels que les organisations réglementées ne peuvent pas entièrement atténuer. L'analyse ci-dessous prolonge cet argument vers le dossier technique.
+    </p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Navigation</strong>
+    <ul>
+      <li><a href="#the-assumption">L'hypothèse que personne n'a remise en question</a></li>
+      <li><a href="#what-the-field-built">Ce que le domaine a construit sur cette hypothèse</a></li>
+      <li><a href="#the-research">Ce que la recherche indépendante a révélé</a></li>
+      <li><a href="#ai-convergence">Quatre systèmes d'IA, une seule conclusion</a></li>
+      <li><a href="#what-changes">Ce qui change quand on déplace le point de contrôle</a></li>
+      <li><a href="#the-implication">Les implications pour les environnements réglementés</a></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="content-section" id="the-assumption">
+    <h2>L'hypothèse que personne n'a remise en question</h2>
+    <p class="section-intro">Comment une commodité d'ingénierie est devenue un fondement architectural.</p>
+
+    <p>Lorsque les premiers grands modèles de langage ont été déployés pour le grand public, une décision a été prise tôt et n'a jamais été reconsidérée : l'inférence se produirait toujours. Lorsqu'un utilisateur soumet une question, le modèle génère une réponse. C'est ainsi que le système fonctionne. Ce n'est pas un choix de politique. Ce n'est pas une option de configuration. C'est l'hypothèse fondamentale de pratiquement chaque système d'IA générative construit au cours de la dernière décennie.</p>
+
+    <p>Le raisonnement derrière cette hypothèse était solide. Les modèles déployés comme services doivent être disponibles. La latence compte. Les points de terminaison d'inférence préconfigurés sont plus rapides et moins coûteux à exploiter à grande échelle. Et à l'époque, l'objectif principal était de démontrer les capacités - montrer ce que ces systèmes pouvaient faire lorsqu'on leur posait une question.</p>
+
+    <p>Cette décision a façonné tout ce qui a suivi : la gestion des risques, la conception de la sécurité, la vente et le déploiement de l'IA en entreprise, et la raison pour laquelle les hallucinations demeurent un coût accepté dans les environnements à enjeux élevés.</p>
+
+    <div class="assumption-block">
+      <div class="assumption-label">L'hypothèse non examinée</div>
+      <p class="assumption-text">« L'inférence générative est supposée disponible. Le système est conçu pour produire une réponse. Le risque est géré en contrôlant ce qui entre dans le modèle et ce qui en sort - et non en déterminant si le modèle devrait fonctionner du tout. Même lorsque des requêtes individuelles sont bloquées avant l'exécution, le moteur d'inférence demeure déployé, accessible et prêt à fonctionner. »</p>
+    </div>
+
+    <p>Cette hypothèse n'est pas déraisonnable pour l'IA grand public. Elle est toutefois structurellement incompatible avec les environnements institutionnels réglementés - et le domaine ne s'est jamais sérieusement demandé si elle devait être vraie.</p>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 2 -->
+  <div class="content-section" id="what-the-field-built">
+    <h2>Ce que le domaine a construit sur cette hypothèse</h2>
+    <p class="section-intro">Des décennies d'innovation - toutes dans les limites de la même contrainte fondamentale.</p>
+
+    <p>Une fois que l'inférence-en-premier est devenue la norme, tout un écosystème d'outils et de techniques s'est développé pour gérer les conséquences. Chaque génération d'améliorations s'est attaquée aux symptômes de l'inférence toujours active sans remettre en question les prémisses.</p>
+
+    <p>La génération augmentée par récupération (RAG) réduisait ce que le modèle pouvait voir, mais le modèle générait quand même une réponse pour chaque requête - y compris celles pour lesquelles aucune information faisant autorité n'existait. Les garde-fous et les filtres de contenu appliquaient des règles aux sorties après que le modèle les avait déjà produites. Les classificateurs de sécurité évaluaient les réponses après leur génération et substituaient des messages de refus si nécessaire. L'IA constitutionnelle entraînait les modèles à refuser certaines requêtes - mais un refus est lui-même une sortie générative, produite par un processus d'inférence qui s'est déroulé jusqu'à son terme.</p>
+
+    <p>Le contrôle d'accès basé sur les rôles déterminait qui pouvait accéder à un point de terminaison d'inférence. Il ne déterminait pas si un moteur d'inférence devait exister pour une requête donnée. La gestion des identités et des accès régissait l'invocation des services. Elle ne régissait pas si la capacité générative du service devait être instanciée du tout.</p>
+
+    <p>Dans chaque cas, l'architecture supposait un moteur d'inférence générative permanent et accessible. Certains systèmes - les garde-fous AWS Bedrock, les points de terminaison de modération et les moteurs de politique - peuvent bloquer des requêtes individuelles avant la génération de jetons. Mais le service d'inférence lui-même demeure déployé quel que soit le résultat. Le contrôle est appliqué autour d'une capacité permanente, et non avant qu'elle n'existe.</p>
+
+    <div class="highlight-block">
+      <p><strong>Le résultat est une course aux armements.</strong> Plus les modèles deviennent capables, plus ils sont difficiles à contrôler. Un système plus capable dispose de davantage de moyens pour générer des réponses convaincantes mais incorrectes, de davantage de moyens pour opérer en dehors des limites prévues, et de davantage de moyens pour sembler faire autorité alors qu'il a tort. Le domaine répond en ajoutant plus de contrôles - ce qui augmente la complexité et les coûts sans résoudre le problème structurel sous-jacent. À mesure que les systèmes d'IA continuent de s'améliorer, l'hypothèse selon laquelle ils devraient toujours répondre devient plus difficile - et non plus facile - à justifier dans les environnements réglementés.</p>
+    </div>
+
+    <p>Il ne s'agit pas d'une critique d'un système ou d'un fournisseur en particulier. C'est une description de ce qui se produit lorsqu'une industrie entière s'appuie sur une hypothèse partagée que personne n'a testée.</p>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 3 -->
+  <div class="content-section" id="the-research">
+    <h2>Ce que la recherche indépendante a révélé</h2>
+    <p class="section-intro">Une investigation en quatre étapes sur l'état de la technique, portant sur les brevets, les systèmes révisés par des pairs et les descriptions du cycle de vie de l'exécution.</p>
+
+    <p>Pour déterminer si cette distinction architecturale était réellement nouvelle - ou si elle avait simplement été négligée dans la littérature existante - une investigation structurée sur l'état de la technique a été menée en quatre étapes progressives. La recherche a examiné les bases de données de brevets de l'USPTO, de l'OMPI et de l'OEB, ainsi que la littérature académique sur l'architecture des systèmes, en mettant l'accent sur l'<em>ordre d'exécution</em> et la <em>sémantique d'instanciation du moteur d'exécution</em>, et non sur les résultats en matière de sécurité ou les revendications de politique.</p>
+
+    <p>L'enquête était délibérément contradictoire. Elle était conçue pour trouver tout ce qui pourrait contredire la revendication architecturale - et non pour la confirmer. Chaque étape a testé un angle différent : réplication directe, état de la technique le plus proche, absence systématique dans le corpus de brevets sur les hallucinations, et un test de résistance final de type examinateur combinant les trois.</p>
+
+    <p>Les résultats ont été cohérents tout au long des quatre étapes. Chaque brevet examiné - de Cisco, Microsoft, C3.ai, Intuit, Noblis et d'autres - partageait la même hypothèse d'exécution : l'inférence générative est toujours instanciée et les contrôles sont appliqués pendant ou après la génération. Aucun brevet ni article académique n'a divulgué une architecture dans laquelle un moteur d'inférence générative n'existe pas à moins qu'une étape d'autorisation préalable à l'exécution ne réussisse. Les systèmes existants contrôlent l'accès à l'inférence - via IAM, les garde-fous et les couches de politique - mais ne conditionnent pas l'existence d'un moteur d'inférence pour une requête donnée. C'est précisément cette distinction que le dossier de recherche identifie. Aucune référence ne traitait les requêtes non autorisées comme des états terminaux non génératifs.</p>
+
+    <p>Plus révélateur que ce qui était absent, c'est ce qui était systématiquement présent. Le corpus de brevets sur les hallucinations et la sécurité ne s'est pas seulement abstenu d'aborder l'autorisation préalable à l'instanciation - il a activement renforcé l'hypothèse contraire. Les brevets décrivent des systèmes « configurés pour recevoir les données de sortie d'un modèle génératif ». Les diagrammes montrent l'inférence comme la première étape irréversible dans chaque flux d'exécution. Même les réponses « par défaut » pour les requêtes bloquées sont décrites comme des sorties générées - du texte produit par un modèle qui a fonctionné.</p>
+
+    <div class="highlight-block">
+      <p><strong>La conclusion de la recherche pour les quatre étapes :</strong> La littérature dominante et le corpus de brevets supposent uniformément des architectures à inférence-en-premier avec un contrôle post-génération. Cette hypothèse n'est pas accessoire. Elle est structurelle - intégrée dans le langage des revendications, les diagrammes d'exécution et les descriptions architecturales des principales institutions qui travaillent sur ce problème. Aucun système examiné ne divulgue ni ne suggère de conditionner l'existence de l'inférence générative à une autorisation préalable à l'exécution, ni de traiter les requêtes non autorisées comme des états terminaux non génératifs.</p>
+    </div>
+
+    <p>Pour les lecteurs qui souhaitent voir comment cette hypothèse apparaît dans les systèmes et brevets réels, les exemples suivants illustrent le même schéma d'exécution répété dans les principales institutions travaillant sur ce problème.</p>
+
+    <details class="patent-disclosure">
+      <summary>Exemples de l'état de la technique - brevets et systèmes examinés, avec notes sur le cycle de vie de l'exécution</summary>
+      <div class="patent-table-wrap">
+        <table class="patent-table" aria-label="Tableau comparatif de l'état de la technique">
+          <thead>
+            <tr>
+              <th>Brevet / Système</th>
+              <th>Organisation</th>
+              <th>Ce qu'il fait</th>
+              <th>Lacune d'exécution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>US20250156632A1 - Réduction proactive des hallucinations dans les réponses des modèles d'IA générative</td>
+              <td class="col-org">Microsoft</td>
+              <td>Compare les sorties du modèle à des paires question-réponse vérifiées; substitue une réponse par défaut si la similarité est faible. Le modèle cible est toujours invoqué en premier - la couche de vérification opère sur une réponse déjà générée.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>US20240386253A1 - Méthode pour détecter et corriger les hallucinations dans les grands modèles de langage génératifs</td>
+              <td class="col-org">Cisco</td>
+              <td>Détecte les schémas d'hallucination dans les sorties du modèle et réinterroge le modèle avec des faits corrigés. Le diagramme de flux ne présente aucune branche où le modèle n'est pas appelé - la détection et la correction se produisent toutes deux après la génération.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>US20240370709A1 - Architecture anti-hallucination et d'attribution pour l'IA générative en entreprise</td>
+              <td class="col-org">C3.ai</td>
+              <td>Ajoute une couche d'attribution et de validation aux systèmes d'IA générative déployés. Le brevet se décrit explicitement comme un module complémentaire qui « peut être ajouté aux systèmes d'intelligence artificielle générative déployés » - le point de terminaison d'inférence est une base supposée.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>US12417359B2 - Cadre de prévention des hallucinations et des tentatives de contournement de l'IA</td>
+              <td class="col-org">-</td>
+              <td>Enchaîne trois LLM : le premier transforme le message, le second génère une réponse, le troisième assainit la sortie. L'inférence générative se produit toujours dans le second LLM. Même le chemin de sortie « sécurisé » nécessite l'invocation du modèle.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>US11875130B1 - Génération de confiance pour la gestion d'un modèle d'IA générative</td>
+              <td class="col-org">Intuit</td>
+              <td>Calcule une métrique de confiance à partir de la question, de la réponse et du contenu, puis utilise cette métrique pour entraîner ou affiner le modèle. La réponse doit exister avant que la confiance puisse être calculée - l'inférence précède le contrôle dans chaque chemin.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>US20240386207A1 - Systèmes et méthodes pour détecter les erreurs et les hallucinations dans les données de sortie des modèles génératifs</td>
+              <td class="col-org">Noblis</td>
+              <td>Les revendications sont explicitement formulées comme « recevant des données de sortie d'un modèle génératif » et les comparant à des données de référence. Le contrôle est strictement post-génération. Le système ne dispose d'aucun chemin d'exécution empêchant l'invocation du modèle.</td>
+              <td class="col-verdict">Inférence en premier</td>
+            </tr>
+            <tr>
+              <td>AWS Bedrock Guardrails</td>
+              <td class="col-org">Amazon</td>
+              <td>Bloque les messages avant la génération de jetons; aucune facturation pour le modèle de fondation si l'entrée est bloquée. Cependant, le service d'inférence demeure déployé et accessible en tant qu'infrastructure permanente. Les requêtes bloquées renvoient des messages prédéfinis - et non des états terminaux non génératifs. Le point de terminaison du modèle existe quel que soit le résultat de l'autorisation.</td>
+              <td class="col-verdict">Moteur persistant</td>
+            </tr>
+            <tr>
+              <td>IA constitutionnelle / Piles de refus</td>
+              <td class="col-org">Anthropic / OpenAI / DeepMind</td>
+              <td>Entraîne les modèles à refuser certaines requêtes par alignement comportemental. Un refus est une sortie générée par le modèle - l'inférence a fonctionné pour produire le texte indiquant qu'elle ne répondra pas. Ces systèmes ne préviennent pas l'inférence; ils façonnent ce que l'inférence produit.</td>
+              <td class="col-verdict">Le refus est génératif</td>
+            </tr>
+            <tr>
+              <td>Systèmes IAM / RBAC (Azure, AWS, Google Cloud)</td>
+              <td class="col-org">Microsoft / Amazon / Google</td>
+              <td>Autorisent ou refusent l'accès aux points de terminaison d'inférence existants selon l'identité et le rôle. L'autorisation régit qui peut appeler un service déployé - elle ne régit pas si un moteur d'inférence générative peut exister pour une requête donnée. Le point de terminaison du modèle est préconfiguré indépendamment des décisions d'autorisation par requête.</td>
+              <td class="col-verdict">Accès, non existence</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+  </div>
+
+  <hr>
+
+  <!-- SECTION 4 -->
+  <div class="content-section" id="ai-convergence">
+    <h2>Quatre systèmes d'IA, une seule conclusion</h2>
+    <p class="section-intro">Des vérifications croisées indépendantes par sollicitation contradictoire - chaque système chargé de trouver des preuves contredisant la revendication architecturale.</p>
+
+    <p>À titre de vérification croisée indépendante, la même question structurée a été soumise à quatre grands systèmes d'IA - Perplexity (avec recherche de brevets fondée sur des outils), Claude, Gemini et Copilot. Chacun a été sollicité de manière indépendante, avec un accès différent aux sources et sans contexte partagé, pour agir en tant qu'examinateur sceptique spécifiquement chargé de trouver l'état de la technique qui remettrait en question la revendication architecturale.</p>
+
+    <p>Les quatre ont convergé vers la même conclusion.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <div class="model-name">Perplexity (4 étapes)</div>
+        <div class="model-verdict">A conduit quatre investigations progressives sur l'état de la technique avec accès direct aux bases de données de brevets. A examiné les revendications indépendantes et les diagrammes d'exécution de l'USPTO, de l'OMPI et de l'OEB. Chaque étape s'est intensifiée en rigueur - du balayage général au test de résistance de type examinateur.</div>
+        <div class="model-finding">« Aucun brevet ni article académique identifié ne divulgue une architecture dans laquelle un moteur d'inférence générative n'existe pas à moins que l'autorisation préalable à l'exécution ne réussisse. »</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Claude</div>
+        <div class="model-verdict">A caractérisé de manière indépendante les systèmes existants comme suivant un cycle de vie à inférence-en-premier. A explicitement distingué le contrôle d'accès à un service d'inférence déployé du conditionnement de l'existence d'un moteur d'inférence. A examiné séparément AWS, Azure, Google et les systèmes académiques.</div>
+        <div class="model-finding">« Aucun état de la technique ne divulgue le conditionnement de la construction du moteur d'inférence sur la portée dérivée de l'autorisation. Aucun travail académique identifié ne conditionne l'existence de l'inférence sur l'autorisation. »</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Gemini</div>
+        <div class="model-verdict">A identifié une distinction structurelle entre les systèmes qui « pensent d'abord et corrigent ensuite » et les architectures qui déterminent quelle pensée est permise avant que l'inférence n'existe. A caractérisé cela comme une différence dans le cycle de vie de l'exécution et le placement du contrôle - non dans la politique ou la formation.</div>
+        <div class="model-finding">« En dehors du cadre COMPAiSS, aucune architecture matériellement équivalente n'a été identifiée dans les systèmes d'IA générative standard. »</div>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Copilot</div>
+        <div class="model-verdict">A analysé les architectures documentées publiquement d'Azure OpenAI, Google Vertex AI, AWS Bedrock, l'IA constitutionnelle, les pipelines RAG et les systèmes IAM. Chacun examiné séparément pour l'équivalence du cycle de vie de l'exécution par rapport à la revendication architecturale spécifique.</div>
+        <div class="model-finding">« Aucun système matériellement équivalent n'a été identifié qui conditionne l'existence d'un moteur d'inférence générative sur une autorisation préalable à l'exécution. »</div>
+      </div>
+    </div>
+
+    <p>La convergence entre quatre systèmes indépendants - chacun sollicité de manière contradictoire, chacun ayant accès à des sources différentes, chacun raisonnant sans accès aux résultats des autres - est significative. Ce n'est pas que chaque système n'ait pas trouvé l'état de la technique. C'est que chaque système, examinant le domaine sous un angle différent, a identifié la même hypothèse structurelle : les architectures à inférence-en-premier avec contrôle post-génération sont universelles dans l'art existant. L'alternative - l'autorisation comme condition préalable à l'existence de l'inférence - n'est pas présente. Les résultats sont fondés sur des systèmes documentés publiquement et la littérature disponible - non pas une affirmation qu'aucun système non découvert n'existe, mais une constatation cohérente que le schéma architectural dominant, dans chaque catégorie examinée, traite l'inférence comme une capacité permanente à gouverner plutôt que comme un état conditionnel à mériter.</p>
+
+    <p>Voilà ce que le dossier de recherche révèle : non pas que personne n'a réfléchi à la sécurité de l'IA, à la prévention des hallucinations ou à la gouvernance institutionnelle. Les gens ont réfléchi de manière approfondie à toutes ces questions. La recherche montre qu'en abordant tous ces problèmes, le domaine n'a pas systématiquement traité l'existence même de l'inférence comme un point de contrôle. L'hypothèse selon laquelle elle devrait toujours se produire n'a tout simplement jamais été examinée.</p>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 5 -->
+  <div class="content-section" id="what-changes">
+    <h2>Ce qui change quand on déplace le point de contrôle</h2>
+    <p class="section-intro">La conséquence architecturale de poser d'abord une question différente.</p>
+
+    <p>La question conventionnelle dans la conception des systèmes d'IA est : <em>comment améliorer les réponses que l'IA produit?</em> Plus de récupération, un meilleur filtrage, des garde-fous plus solides, plus de modération. Chacune de ces réponses suppose que le modèle fonctionnera et demande comment façonner ce qui en sort.</p>
+
+    <p>COMPAiSS pose d'abord une question différente : <em>dans quelles conditions ce système devrait-il être autorisé à produire une réponse?</em> Cette question reçoit une réponse avant que l'inférence ne commence. Si la réponse est qu'il n'existe aucune base institutionnelle faisant autorité pour une réponse, le modèle ne fonctionne pas. Il n'y a pas de réponse à filtrer, pas d'hallucination à détecter, pas de refus à générer. Il n'y a pas de réponse à évaluer, parce qu'aucune réponse n'a jamais été produite. Le système entre dans un état non génératif et fournit directement à l'utilisateur la source faisant autorité.</p>
+
+    <p>Cela change plusieurs choses à la fois. Cela élimine une catégorie entière d'hallucinations - non pas en interceptant les réponses fabriquées après leur production, mais en prévenant les conditions dans lesquelles la fabrication se produit. Cela supprime entièrement le coût d'inférence pour les requêtes non autorisées. Cela rend la gouvernance vérifiable au niveau architectural, et non au niveau des sorties : chaque interaction suit un chemin déterministe et documenté à travers la décision d'autorisation avant tout calcul génératif.</p>
+
+    <p>Cela change également ce à quoi ressemble un « échec ». Lorsqu'un système d'IA standard rencontre une question à laquelle il ne peut pas répondre de manière fiable, il produit généralement quand même une réponse - une qui peut sembler faire autorité, mélanger des informations exactes avec des inférences, et être utilisée avant que ses limites ne soient reconnues. Lorsque COMPAiSS ne peut pas autoriser une réponse, il ne produit rien de génératif. Le système est honnête sur ses limites de la seule façon dont un système peut être véritablement honnête : en ne fonctionnant pas au-delà d'elles.</p>
+
+    <div class="highlight-block">
+      <p><strong>La distinction ne porte pas sur la qualité des réponses de l'IA.</strong> Elle porte sur la question de savoir si l'IA devrait répondre à une question donnée - et si cette décision est prise de manière architecturale, avant que l'inférence ne commence, plutôt que de manière probabiliste, après qu'une réponse a déjà été produite.</p>
+      <p>Dans les environnements réglementés, cette distinction représente la différence entre un système qui peut être gouverné et un système qui peut seulement être géré.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- SECTION 6 -->
+  <div class="content-section" id="the-implication">
+    <h2>Les implications pour les environnements réglementés</h2>
+    <p class="section-intro">Pourquoi cela importe particulièrement là où l'exactitude, l'autorité et la responsabilité sont non négociables.</p>
+
+    <p>L'hypothèse d'inférence-en-premier est acceptable - même appropriée - dans les environnements où l'objectif principal est l'étendue, l'utilité et la capacité générale. L'IA grand public, les outils créatifs, les assistants de productivité et les aides à la recherche bénéficient tous de systèmes qui essaient toujours d'aider et gèrent le risque d'imprécision par l'itération, la correction et la supervision humaine.</p>
+
+    <p>Les environnements institutionnels réglementés sont différents. Les universités, les ministères des services gouvernementaux, les hôpitaux, les organismes de réglementation professionnelle et autres institutions similaires fournissent des informations qui concernent les droits, les obligations, l'admissibilité et l'accès aux services. Dans ces environnements, une réponse incorrecte n'est pas seulement inutile. Elle peut mal représenter la politique officielle, produire de la désinformation susceptible d'être mise en oeuvre, et avoir des conséquences juridiques, cliniques ou procédurales qui ne peuvent pas être annulées après les faits.</p>
+
+    <p>Ces institutions font également face à une obligation de gouvernance spécifique que les contextes d'IA grand public n'ont pas : elles doivent être en mesure de démontrer comment les réponses non autorisées ou hors portée sont prévenues - et non simplement gérées après leur survenue. Les cadres d'approvisionnement, les panels d'examen éthique et les organes de surveillance gouvernementaux exigent de plus en plus que les systèmes d'IA institutionnels démontrent que leur architecture de gouvernance est déterministe et vérifiable, non probabiliste et surveillée.</p>
+
+    <p>L'architecture à inférence-en-premier, aussi bien gérée soit-elle, ne peut pas entièrement satisfaire cette exigence. Elle peut montrer que les sorties sont examinées et filtrées. Elle ne peut pas montrer que l'inférence non autorisée ne s'est jamais produite, parce que l'inférence non autorisée est structurellement possible dans tout système où l'inférence est toujours disponible. Les contrôles opèrent après les faits.</p>
+
+    <p>COMPAiSS satisfait cette exigence de manière structurelle. Parce que l'autorisation précède l'inférence, chaque interaction suit un chemin documenté et reproductible à travers la décision d'autorisation. L'institution contrôle quelles sources font autorité. L'institution définit la limite de portée. Le système applique les deux avant tout calcul génératif. Ce n'est pas une revendication de surveillance ni une revendication de performance. C'est une revendication architecturale - et c'est une revendication que l'art existant ne fait pas.</p>
+
+    <div class="highlight-block">
+      <p>Le domaine a passé une décennie à rendre l'IA meilleure pour répondre aux questions. Dans beaucoup des environnements où cela compte le plus, l'exigence critique est différente : un système qui est honnête sur le moment où il ne devrait pas répondre du tout - et qui applique cette honnêteté de manière architecturale, non probabiliste.</p>
+      <p>C'est le problème que la voie actuelle ne peut pas entièrement résoudre. Et c'est pourquoi une approche architecturale différente n'est pas simplement une amélioration incrémentale, mais un départ structurel de l'hypothèse qui a défini le domaine.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>COMPAiSS - Brevet en instance : OPIC 3 299 174 / USPTO 19/455 963</p>
+    <p style="margin-top: 0.8rem;">
+      Contact : <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Retour en haut">&#8593;</button>
+
+<script>
+const backBtn = document.getElementById('backToTop');
+function checkScroll() {
+  backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+}
+window.addEventListener('scroll', checkScroll);
+window.addEventListener('load', checkScroll);
+backBtn.addEventListener('click', () => {
+  const nav = document.querySelector('.section-nav');
+  nav.scrollIntoView({ block: 'start' });
+  history.replaceState(null, null, window.location.pathname);
+});
+</script>
+
+</body>
+</html>
