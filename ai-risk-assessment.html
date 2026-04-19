@@ -62,7 +62,9 @@ gtag('config', 'G-JR7LJGK5PK');
       background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
     }
 
-    header { border-bottom: 1px solid var(--border-soft); }
+header {
+  border-bottom: 1px solid var(--border-soft);
+}
 
 .nav {
   max-width: var(--wrap);
@@ -70,23 +72,27 @@ gtag('config', 'G-JR7LJGK5PK');
   padding: 18px var(--pad);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 2rem;
   width: 100%;
   box-sizing: border-box;
 }
-    .nav .brand-text {
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text-heading);
-      font-family: system-ui, -apple-system, sans-serif;
-      text-decoration: none;
-    }
 
+/* LEFT: brand (fixed width behavior) */
+.nav .brand-text {
+  flex: 0 0 auto;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* CENTER: nav container (no flex rebalancing) */
 .nav ul {
   list-style: none;
   display: flex;
-  flex: 1;
+  flex: 1 0 0;              /* 🔒 critical: no shrink */
   justify-content: center;
   gap: 2rem;
   margin: 0;
@@ -95,17 +101,29 @@ gtag('config', 'G-JR7LJGK5PK');
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* EACH ITEM: fixed width behavior */
 .nav li {
+  flex: 0 0 auto;           /* 🔒 prevents redistribution */
   text-align: center;
 }
 
+/* LINKS */
 .nav li a {
   display: block;
+  text-decoration: none;
+  color: var(--text-muted);
+  line-height: 1.2;
+  white-space: nowrap;      /* 🔒 prevents wrapping shift */
 }
 
-    .nav a { text-decoration: none; color: var(--text-muted); }
-    .nav a:hover { color: var(--text-heading); }
-    .nav a.active { color: var(--accent); }
+/* STATES (safe: color only) */
+.nav a:hover {
+  color: var(--text-heading);
+}
+
+.nav a.active {
+  color: var(--accent);
+}
 
     main {
       max-width: var(--wrap);
