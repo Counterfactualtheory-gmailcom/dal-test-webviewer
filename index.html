@@ -71,12 +71,12 @@ header {
   padding: 18px var(--pad);
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 2rem;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* LEFT: brand (fixed width behavior) */
 .nav .brand-text {
   flex: 0 0 auto;
   font-weight: 600;
@@ -84,14 +84,13 @@ header {
   color: var(--text-heading);
   font-family: system-ui, -apple-system, sans-serif;
   text-decoration: none;
-  white-space: normal;
+  white-space: nowrap;
 }
 
-/* CENTER: nav container (no flex rebalancing) */
 .nav ul {
   list-style: none;
   display: flex;
-  flex: 1 0 0;              /* 🔒 critical: no shrink */
+  flex: 1 1 auto;
   justify-content: center;
   gap: 2rem;
   margin: 0;
@@ -100,22 +99,16 @@ header {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* EACH ITEM: fixed width behavior */
 .nav li {
-  flex: 0 0 auto;           /* 🔒 prevents redistribution */
   text-align: center;
 }
 
-/* LINKS */
 .nav li a {
   display: block;
   text-decoration: none;
   color: var(--text-muted);
-  line-height: 1.2;
-  white-space: normal;      /* 🔒 prevents wrapping shift */
 }
 
-/* STATES (safe: color only) */
 .nav a:hover {
   color: var(--text-heading);
 }
@@ -123,7 +116,6 @@ header {
 .nav a.active {
   color: var(--accent);
 }
-
     main {
       max-width: var(--wrap);
       margin: 0 auto;
