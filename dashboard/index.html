@@ -408,31 +408,59 @@ async function saveToGitHub() {
   msg += 'Railway will redeploy automatically. Change live in ~2 minutes.';
   if (!confirm(msg)) return;
 
-  var glPath  = GREENLIST_PATHS[INSTITUTION];
-  var apiUrl  = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
-              + '/contents/' + glPath;
-  var ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
-  var message = 'Dashboard: greenlist ' + INSTITUTION + ' updated [' + ts + ']';
-  var content = btoa(unescape(encodeURIComponent(JSON.stringify(sources, null, 2))));
+  var glPath = GREENLIST_PATHS[INSTITUTION];
+  var apiUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+             + '/contents/' + glPath;
 
   try {
+    showStatus('Verifying current file state...', 'amber');
+
+    // FIX 1 -- Always fetch fresh SHA immediately before commit
+    // Never rely on the SHA loaded at login -- it may be stale
+    var shaRes  = await ghFetch(apiUrl + '?ref=' + BRANCH, 'GET');
+    if (!shaRes.ok) {
+      const shaErrText = await shaRes.text();
+      console.error('GitHub SHA fetch error:', shaErrText);
+      showStatus('Could not verify current file state. Try refreshing and committing again.', 'red');
+      return;
+    }
+    var shaData  = await shaRes.json();
+    var freshSha = shaData.sha;  // use this, not the stored fileSha
+    console.log('Fresh SHA fetched:', freshSha);
+
+    var ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
+    var message = 'Dashboard: greenlist ' + INSTITUTION + ' updated [' + ts + ']';
+    var content = btoa(unescape(encodeURIComponent(JSON.stringify(sources, null, 2))));
+
     showStatus('Committing to GitHub...', 'amber');
-    var res = await ghFetch(apiUrl, 'PUT', { message: message, content: content, sha: fileSha, branch: BRANCH });
+
+    var res = await ghFetch(apiUrl, 'PUT', {
+      message: message,
+      content: content,
+      sha: freshSha,   // FIX 1 -- fresh SHA, not fileSha
+      branch: BRANCH
+    });
+
     if (res.ok) {
       var data = await res.json();
-      fileSha        = data.content.sha;
-      committed      = sources.slice();
-      pendingChanges = false;
-      renderStats();
-      renderTable();
-      updateCommitBtn();
+
+      // FIX 3 -- Log confirmed commit SHA and URL
+      console.log('Commit successful. SHA:', data.commit.sha);
+      console.log('Commit URL:', data.commit.html_url);
+
+      // FIX 4 -- Reload greenlist from GitHub so UI reflects actual state
+      await loadGreenlist();
+
       showStatus('Committed to GitHub. Railway is redeploying -- change live in ~2 minutes.', 'green');
     } else {
-      var err = await res.json();
-      showStatus('Commit failed: ' + (err.message || 'Unknown error'), 'red');
+      // FIX 2 -- Use res.text() not res.json() so errors never fail silently
+      const errText = await res.text();
+      console.error('GitHub API error:', errText);
+      showStatus('Commit failed. See browser console for details.', 'red');
     }
+
   } catch (e) {
-    console.error('saveToGitHub:', e);
+    console.error('saveToGitHub exception:', e);
     showStatus('Network error. Please check your connection and try again.', 'red');
   }
 }
