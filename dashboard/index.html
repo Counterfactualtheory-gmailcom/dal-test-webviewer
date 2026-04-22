@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COMPAiSS Greenlist Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         background: #f0f2f5; min-height: 100vh; }
+  #login { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .login-card { background: white; border-radius: 12px; padding: 40px;
+                box-shadow: 0 4px 24px rgba(0,0,0,0.1); width: 360px; }
+  .login-card h1 { font-size: 20px; color: #1a2f5a; margin-bottom: 6px; }
+  .login-card p  { font-size: 13px; color: #888; margin-bottom: 24px; }
+  .login-card label { font-size: 12px; color: #555; display: block; margin-bottom: 4px; margin-top: 14px; }
+  .login-card input, .login-card select { width: 100%; padding: 9px 12px;
+    border: 1px solid #d0d0d0; border-radius: 6px; font-size: 13px; }
+  .login-card button { margin-top: 20px; width: 100%; padding: 10px;
+    background: #1a2f5a; color: white; border: none; border-radius: 6px;
+    font-size: 14px; font-weight: 600; cursor: pointer; }
+  .login-card button:hover { background: #243f75; }
+  .error { color: #c0392b; font-size: 12px; margin-top: 10px; }
+  #app { display: none; }
+  .layout { display: flex; min-height: 100vh; }
+  .sidebar { width: 220px; background: white; border-right: 1px solid #e8eaed;
+             display: flex; flex-direction: column; flex-shrink: 0; }
+  .sidebar-header { padding: 20px 16px; border-bottom: 1px solid #e8eaed; }
+  .logo { font-size: 15px; font-weight: 700; color: #1a2f5a; }
+  .institution-tag { font-size: 11px; background: #e8f0fe; color: #1a2f5a;
+    padding: 2px 8px; border-radius: 10px; margin-top: 6px; display: inline-block; }
+  .nav { padding: 12px 0; flex: 1; }
+  .nav a { display: flex; align-items: center; gap: 8px; padding: 9px 16px;
+    font-size: 13px; color: #555; cursor: pointer; text-decoration: none; }
+  .nav a.active { background: #1a2f5a; color: white; border-radius: 6px;
+    margin: 0 8px; padding: 9px 8px; }
+  .nav a:not(.active):hover { background: #f8fafc; }
+  .sidebar-bottom { padding: 12px; border-top: 1px solid #e8eaed; }
+  .revert-btn { width: 100%; padding: 9px 12px; background: #c0392b; color: white;
+    border: none; border-radius: 6px; font-size: 12px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 6px; justify-content: center; }
+  .revert-btn:hover { background: #a93226; }
+  .revert-desc { font-size: 11px; color: #888; margin-top: 8px; line-height: 1.5; }
+  .main { flex: 1; padding: 28px 32px; overflow-y: auto; }
+  .page-title { font-size: 22px; font-weight: 700; color: #1a2f5a; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: #888; margin-bottom: 20px; line-height: 1.6; }
+  .stats { display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1px; background: #e8eaed; border: 1px solid #e8eaed;
+    border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+  .stat { background: white; padding: 14px 16px; }
+  .stat-label { font-size: 11px; color: #888; margin-bottom: 4px;
+    text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat-val { font-size: 24px; font-weight: 700; color: #1a2f5a; }
+  .stat-val.green { color: #27ae60; }
+  .stat-val.sm { font-size: 13px; font-weight: 500; margin-top: 4px; }
+  .toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .btn-primary { background: #1a2f5a; color: white; border: none; border-radius: 6px;
+    padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .btn-primary:hover { background: #243f75; }
+  .btn-commit { background: #27ae60; color: white; border: none; border-radius: 6px;
+    padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .btn-commit:hover { background: #229954; }
+  .btn-commit:disabled { background: #aaa; cursor: not-allowed; }
+  .btn-secondary { background: white; color: #444; border: 1px solid #d0d0d0;
+    border-radius: 6px; padding: 8px 14px; font-size: 13px; cursor: pointer; }
+  .btn-secondary:hover { background: #f8fafc; }
+  .search { margin-left: auto; padding: 8px 12px; border: 1px solid #d0d0d0;
+    border-radius: 6px; font-size: 13px; width: 200px; }
+  .table-wrap { border: 1px solid #e8eaed; border-radius: 8px; overflow: hidden; background: white; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 600;
+    color: #666; border-bottom: 1px solid #e8eaed; background: #fafafa;
+    text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e8eaed; color: #222; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .url-text { color: #2563eb; font-size: 12px; word-break: break-all; }
+  .del-btn { background: none; border: none; color: #bbb; cursor: pointer; font-size: 16px; padding: 2px 6px; }
+  .del-btn:hover { color: #c0392b; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #27ae60;
+    display: inline-block; margin-right: 6px; }
+  .new-badge { font-size: 10px; background: #e8f5e9; color: #27ae60;
+    border: 1px solid #a5d6a7; border-radius: 4px; padding: 1px 6px; margin-left: 6px; }
+  .modal-overlay { display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; }
+  .modal-overlay.open { display: flex; }
+  .modal-card { background: white; border-radius: 10px; padding: 28px;
+    width: 480px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+  .modal-card h3 { font-size: 16px; color: #1a2f5a; margin-bottom: 8px; }
+  .modal-card p { font-size: 12px; color: #888; margin-bottom: 14px; line-height: 1.5; }
+  .modal-card textarea { width: 100%; padding: 10px 12px; border: 1px solid #d0d0d0;
+    border-radius: 6px; font-size: 12px; font-family: monospace;
+    height: 120px; resize: vertical; margin-bottom: 12px; }
+  .modal-actions { display: flex; gap: 8px; }
+  .status-bar { position: fixed; bottom: 24px; right: 24px; background: #1a2f5a;
+    color: white; padding: 12px 20px; border-radius: 8px; font-size: 13px;
+    display: none; z-index: 200; max-width: 420px; line-height: 1.5;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+  .status-bar.green { background: #27ae60; }
+  .status-bar.amber { background: #e67e22; }
+  .status-bar.red   { background: #c0392b; }
+  .sha-link { color: #2563eb; text-decoration: none; font-family: monospace; }
+  .sha-link:hover { text-decoration: underline; }
+  .empty-state { padding: 40px; text-align: center; color: #888; font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="login-card">
+    <h1>&#10022; COMPAiSS Admin</h1>
+    <p>Greenlist Management Dashboard</p>
+    <label>Institution</label>
+    <select id="inst">
+      <option value="dalhousie">Dalhousie University</option>
+      <option value="mcgill">McGill University</option>
+      <option value="ucw">University Canada West</option>
+      <option value="tmu">Toronto Metropolitan University</option>
+    </select>
+    <label>GitHub Personal Access Token</label>
+    <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <button onclick="login()">Sign In</button>
+    <p class="error" id="login-err"></p>
+  </div>
+</div>
+
+<div id="app">
+  <div class="layout">
+
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">&#10022; COMPAiSS</div>
+        <div class="institution-tag" id="inst-tag">Dalhousie</div>
+      </div>
+      <nav class="nav">
+        <a class="active" onclick="showPanel('greenlist', this)">
+          &#9776;&nbsp; Greenlist
+        </a>
+        <a onclick="showPanel('changelog', this)">
+          &#128336;&nbsp; Change Log
+        </a>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="revert-btn" onclick="revertGreenlist()">
+          &#8635; Revert (Rollback)
+        </button>
+        <p class="revert-desc">
+          Loads the previous committed version from GitHub history.
+          You must still click Commit to apply.
+        </p>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <div id="panel-greenlist">
+        <div class="page-title">Greenlist Management</div>
+        <div class="page-sub">
+          Manage approved institutional sources used for response generation.
+          Changes are committed directly to GitHub and take effect after
+          Railway redeploys (typically under 2 minutes).
+        </div>
+        <div class="stats" id="stats-bar"></div>
+        <div class="toolbar">
+          <button class="btn-primary" onclick="openAddModal()">+ Add URL</button>
+          <button class="btn-commit" id="commit-btn"
+                  onclick="saveToGitHub()" disabled>
+            &#8679; Commit to GitHub
+          </button>
+          <button class="btn-secondary" onclick="refreshFromGitHub()">
+            &#8635; Refresh
+          </button>
+          <input class="search" id="search-box"
+                 placeholder="Search sources..." oninput="renderTable()">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:100px">Status</th>
+                <th>Source URL</th>
+                <th style="width:50px"></th>
+              </tr>
+            </thead>
+            <tbody id="gl-body">
+              <tr><td colspan="3" class="empty-state">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="panel-changelog" style="display:none">
+        <div class="page-title">GitHub Commit History</div>
+        <div class="page-sub">
+          Every change to this institution's greenlist.json committed
+          via this dashboard or directly in GitHub.
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:70px">Commit</th>
+                <th>Message</th>
+                <th style="width:160px">Date</th>
+              </tr>
+            </thead>
+            <tbody id="changelog-body">
+              <tr><td colspan="3" class="empty-state">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-add">
+  <div class="modal-card">
+    <h3>Add URL to Greenlist</h3>
+    <p>
+      Paste one or more URLs, one per line. Only URLs beginning with
+      https:// will be added. Click Add to stage the changes, then
+      Commit to GitHub to save.
+    </p>
+    <textarea id="add-urls"
+      placeholder="https://dal.ca/some/page.html&#10;https://dal.ca/another/page.html">
+    </textarea>
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="addUrls()">Add</button>
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="status-bar" id="status-bar"></div>
+
+<script>
+let TOKEN        = '';
+let INSTITUTION  = 'dalhousie';
+let REPO_OWNER   = 'Counterfactualtheory-gmailcom';
+let REPO_NAME    = 'compaiss-engine-v2';
+let BRANCH       = 'main';
+let sources      = [];
+let committed    = [];
+let fileSha      = '';
+let pendingChanges = false;
+
+const GREENLIST_PATHS = {
+  dalhousie: 'institutions/dalhousie/greenlist.json',
+  mcgill:    'institutions/mcgill/greenlist_mcgill.json',
+  ucw:       'institutions/ucw/greenlist_ucw.json',
+  tmu:       'institutions/tmu/greenlist_tmu.json'
+};
+
+async function login() {
+  TOKEN = document.getElementById('gh-token').value.trim();
+  INSTITUTION = document.getElementById('inst').value;
+  document.getElementById('login-err').textContent = '';
+  if (!TOKEN) {
+    document.getElementById('login-err').textContent = 'A GitHub token is required.';
+    return;
+  }
+  const ok = await loadGreenlist();
+  if (ok) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    const sel = document.getElementById('inst');
+    document.getElementById('inst-tag').textContent =
+      sel.options[sel.selectedIndex].text;
+  } else {
+    document.getElementById('login-err').textContent =
+      'Could not load greenlist. Check your token and institution, then try again.';
+  }
+}
+
+async function loadGreenlist() {
+  const glPath = GREENLIST_PATHS[INSTITUTION];
+  const url = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+            + '/contents/' + glPath + '?ref=' + BRANCH;
+  try {
+    const res  = await ghFetch(url, 'GET');
+    if (!res.ok) return false;
+    const data = await res.json();
+    fileSha = data.sha;
+    const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
+    sources   = Array.isArray(decoded) ? decoded.slice() : [];
+    committed = sources.slice();
+    pendingChanges = false;
+    renderStats();
+    renderTable();
+    updateCommitBtn();
+    return true;
+  } catch (e) {
+    console.error('loadGreenlist:', e);
+    return false;
+  }
+}
+
+async function refreshFromGitHub() {
+  if (pendingChanges) {
+    if (!confirm('You have unsaved changes. Refresh will discard them. Continue?')) return;
+  }
+  showStatus('Refreshing from GitHub...', 'amber');
+  const ok = await loadGreenlist();
+  if (ok) showStatus('Refreshed from GitHub.', 'green');
+  else    showStatus('Refresh failed. Check your connection.', 'red');
+}
+
+function renderStats() {
+  const pending = pendingChanges
+    ? '<span style="color:#c0392b;font-weight:600">Yes -- commit to save</span>'
+    : '<span style="color:#27ae60">None</span>';
+  document.getElementById('stats-bar').innerHTML =
+    '<div class="stat"><div class="stat-label">Total Sources</div>'
+    + '<div class="stat-val">' + sources.length + '</div></div>'
+    + '<div class="stat"><div class="stat-label">Active</div>'
+    + '<div class="stat-val green">' + sources.length + '</div></div>'
+    + '<div class="stat"><div class="stat-label">Institution</div>'
+    + '<div class="stat-val" style="font-size:13px;margin-top:4px">' + INSTITUTION + '</div></div>'
+    + '<div class="stat"><div class="stat-label">Unsaved Changes</div>'
+    + '<div class="stat-val sm">' + pending + '</div></div>';
+}
+
+function renderTable() {
+  const q = document.getElementById('search-box').value.toLowerCase();
+  const filtered = sources.filter(function(u) { return u.toLowerCase().includes(q); });
+  if (filtered.length === 0) {
+    document.getElementById('gl-body').innerHTML =
+      '<tr><td colspan="3" class="empty-state">'
+      + (q ? 'No sources match your search.' : 'No sources in greenlist.')
+      + '</td></tr>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < filtered.length; i++) {
+    var url    = filtered[i];
+    var isNew  = committed.indexOf(url) === -1;
+    var badge  = isNew ? '<span class="new-badge">NEW</span>' : '';
+    html += '<tr>'
+          + '<td><span class="status-dot"></span>Active' + badge + '</td>'
+          + '<td class="url-text">' + escHtml(url) + '</td>'
+          + '<td><button class="del-btn" onclick="deleteUrl(\'' + escAttr(url)
+          + '\')" title="Remove">&#128465;</button></td>'
+          + '</tr>';
+  }
+  document.getElementById('gl-body').innerHTML = html;
+}
+
+function updateCommitBtn() {
+  document.getElementById('commit-btn').disabled = !pendingChanges;
+}
+
+function deleteUrl(url) {
+  if (!confirm('Remove this source from the greenlist?\n\n' + url)) return;
+  sources = sources.filter(function(u) { return u !== url; });
+  pendingChanges = true;
+  renderStats();
+  renderTable();
+  updateCommitBtn();
+  showStatus('URL removed. Click Commit to GitHub to save.', 'amber');
+}
+
+function addUrls() {
+  var raw = document.getElementById('add-urls').value.trim();
+  var newUrls = raw.split('\n')
+    .map(function(u) { return u.trim(); })
+    .filter(function(u) { return u.indexOf('http') === 0; });
+  if (newUrls.length === 0) {
+    showStatus('No valid URLs found. URLs must start with http:// or https://', 'red');
+    return;
+  }
+  var added = 0;
+  newUrls.forEach(function(u) {
+    if (sources.indexOf(u) === -1) { sources.push(u); added++; }
+  });
+  if (added === 0) {
+    showStatus('All URLs are already in the greenlist.', 'amber');
+    closeModal();
+    return;
+  }
+  pendingChanges = true;
+  closeModal();
+  renderStats();
+  renderTable();
+  updateCommitBtn();
+  showStatus(added + ' URL' + (added > 1 ? 's' : '') + ' added. Click Commit to GitHub to save.', 'amber');
+}
+
+async function saveToGitHub() {
+  if (!pendingChanges) { showStatus('No changes to commit.', 'green'); return; }
+
+  var added   = sources.filter(function(u) { return committed.indexOf(u) === -1; });
+  var removed = committed.filter(function(u) { return sources.indexOf(u) === -1; });
+
+  var msg = 'Commit the following changes to GitHub?\n\n';
+  if (added.length > 0) {
+    msg += 'ADDING ' + added.length + ' URL' + (added.length > 1 ? 's' : '') + ':\n';
+    msg += added.slice(0, 5).join('\n');
+    if (added.length > 5) msg += '\n...and ' + (added.length - 5) + ' more';
+    msg += '\n\n';
+  }
+  if (removed.length > 0) {
+    msg += 'REMOVING ' + removed.length + ' URL' + (removed.length > 1 ? 's' : '') + ':\n';
+    msg += removed.slice(0, 5).join('\n');
+    if (removed.length > 5) msg += '\n...and ' + (removed.length - 5) + ' more';
+    msg += '\n\n';
+  }
+  msg += 'Railway will redeploy automatically. Change live in ~2 minutes.';
+  if (!confirm(msg)) return;
+
+  var glPath  = GREENLIST_PATHS[INSTITUTION];
+  var apiUrl  = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+              + '/contents/' + glPath;
+  var ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
+  var message = 'Dashboard: greenlist ' + INSTITUTION + ' updated [' + ts + ']';
+  var content = btoa(unescape(encodeURIComponent(JSON.stringify(sources, null, 2))));
+
+  try {
+    showStatus('Committing to GitHub...', 'amber');
+    var res = await ghFetch(apiUrl, 'PUT', { message: message, content: content, sha: fileSha, branch: BRANCH });
+    if (res.ok) {
+      var data = await res.json();
+      fileSha        = data.content.sha;
+      committed      = sources.slice();
+      pendingChanges = false;
+      renderStats();
+      renderTable();
+      updateCommitBtn();
+      showStatus('Committed to GitHub. Railway is redeploying -- change live in ~2 minutes.', 'green');
+    } else {
+      var err = await res.json();
+      showStatus('Commit failed: ' + (err.message || 'Unknown error'), 'red');
+    }
+  } catch (e) {
+    console.error('saveToGitHub:', e);
+    showStatus('Network error. Please check your connection and try again.', 'red');
+  }
+}
+
+async function revertGreenlist() {
+  if (!confirm(
+    'Load the previous committed version of the greenlist?\n\n'
+    + 'This replaces your working copy with the version from before the last commit.\n\n'
+    + 'You will still need to click Commit to GitHub to apply the revert.'
+  )) return;
+
+  var glPath = GREENLIST_PATHS[INSTITUTION];
+  var commitsUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                 + '/commits?path=' + glPath + '&per_page=2';
+  try {
+    showStatus('Loading previous version from GitHub...', 'amber');
+    var res     = await ghFetch(commitsUrl, 'GET');
+    var commits = await res.json();
+    if (!Array.isArray(commits) || commits.length < 2) {
+      showStatus('No previous version available -- this may be the first commit.', 'red');
+      return;
+    }
+    // commits[0] = current, commits[1] = the one before -- correct rollback target
+    var prevSha  = commits[1].sha;
+    var fileUrl  = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                 + '/contents/' + glPath + '?ref=' + prevSha;
+    var fileRes  = await ghFetch(fileUrl, 'GET');
+    var fileData = await fileRes.json();
+    var prev     = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
+    sources        = Array.isArray(prev) ? prev.slice() : [];
+    pendingChanges = true;
+    renderStats();
+    renderTable();
+    updateCommitBtn();
+    showStatus('Previous version loaded (' + sources.length + ' sources). Click Commit to GitHub to apply the revert.', 'amber');
+  } catch (e) {
+    console.error('revertGreenlist:', e);
+    showStatus('Revert failed. Check your token and try again.', 'red');
+  }
+}
+
+async function loadChangelog() {
+  var glPath = GREENLIST_PATHS[INSTITUTION];
+  var url    = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+             + '/commits?path=' + glPath + '&per_page=25';
+  try {
+    var res     = await ghFetch(url, 'GET');
+    var commits = await res.json();
+    if (!Array.isArray(commits) || commits.length === 0) {
+      document.getElementById('changelog-body').innerHTML =
+        '<tr><td colspan="3" class="empty-state">No commits found.</td></tr>';
+      return;
+    }
+    var html = '';
+    commits.forEach(function(c) {
+      html += '<tr>'
+            + '<td><a class="sha-link" href="' + c.html_url + '" target="_blank">'
+            + c.sha.slice(0, 7) + '</a></td>'
+            + '<td style="font-size:12px">' + escHtml(c.commit.message) + '</td>'
+            + '<td style="font-size:12px;color:#888">'
+            + new Date(c.commit.author.date).toLocaleString() + '</td>'
+            + '</tr>';
+    });
+    document.getElementById('changelog-body').innerHTML = html;
+  } catch (e) {
+    document.getElementById('changelog-body').innerHTML =
+      '<tr><td colspan="3" class="empty-state">Could not load commit history.</td></tr>';
+  }
+}
+
+function ghFetch(url, method, body) {
+  return fetch(url, {
+    method: method,
+    headers: {
+      'Authorization':        'Bearer ' + TOKEN,
+      'Accept':               'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type':         'application/json'
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+}
+
+function showPanel(name, el) {
+  ['greenlist', 'changelog'].forEach(function(p) {
+    document.getElementById('panel-' + p).style.display = p === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav a').forEach(function(a) { a.classList.remove('active'); });
+  if (el) el.classList.add('active');
+  if (name === 'changelog') loadChangelog();
+}
+
+function openAddModal() {
+  document.getElementById('add-urls').value = '';
+  document.getElementById('modal-add').classList.add('open');
+}
+
+function closeModal() {
+  document.querySelectorAll('.modal-overlay').forEach(function(m) {
+    m.classList.remove('open');
+  });
+}
+
+var statusTimer;
+function showStatus(msg, type) {
+  type = type || 'green';
+  var bar = document.getElementById('status-bar');
+  bar.textContent   = msg;
+  bar.className     = 'status-bar ' + type;
+  bar.style.display = 'block';
+  clearTimeout(statusTimer);
+  statusTimer = setTimeout(function() { bar.style.display = 'none'; },
+    type === 'green' ? 4000 : 6000);
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function escAttr(s) {
+  return String(s).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+}
+
+window.addEventListener('beforeunload', function(e) {
+  if (pendingChanges) { e.preventDefault(); e.returnValue = ''; }
+});
+
+document.querySelectorAll('.modal-overlay').forEach(function(o) {
+  o.addEventListener('click', function(e) { if (e.target === o) closeModal(); });
+});
+</script>
+</body>
+</html>
