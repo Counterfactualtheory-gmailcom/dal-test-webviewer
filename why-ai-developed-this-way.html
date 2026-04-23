@@ -693,6 +693,23 @@ hr {
 
     <p>COMPAiSS asks a different question first: <em>under what conditions should this system be permitted to produce a response at all?</em> That question is answered before inference begins. If the answer is that no authoritative institutional basis exists for a response, the model does not run. There is no response to filter, no hallucination to catch, no refusal to generate. There is no response to evaluate, because no response was ever produced. The system enters a non-generative state and provides the user with the authoritative source directly.</p>
 
+    <p>To see what this looks like in practice, consider what happens when a user asks the McGill University deployment a question outside its institutional scope:</p>
+
+<div class="assumption-block">
+  <div class="assumption-label">Live example &mdash; McGill COMPAiSS deployment</div>
+  <p class="assumption-text" style="font-style:normal;font-size:0.92rem;line-height:1.7;">
+    <span style="color:var(--accent);font-weight:600;">Question submitted:</span><br>
+    Why is the sky blue?<br><br>
+    <span style="color:var(--accent);font-weight:600;">COMPAiSS response:</span><br>
+    Your question about why the sky is blue is a general science question and is not related to McGill University&rsquo;s academic programs, policies, services, or institutional responsibilities.<br><br>
+    This assistant is designed specifically to provide information and guidance about McGill University &mdash; including admissions, programs, academic regulations, student services, employment policies, and university resources.<br><br>
+    If you have a question about studying science at McGill, course requirements, academic programs, or research in physics or atmospheric science at McGill, I would be happy to help.<br><br>
+    Please feel free to ask a McGill-related question.
+  </p>
+</div>
+
+<p>No inference ran. No generative model was consulted. The response above was produced by a deterministic redirect, not a language model. The system recognized the absence of institutional authority before any AI computation took place and returned a structured non-generative response. The query was handled at zero inference cost.</p>
+    
     <p>This changes several things at once. It eliminates an entire class of hallucination - not by catching fabricated responses after they have been produced, but by preventing the conditions under which fabrication occurs. It removes inference cost for unauthorized queries entirely. It makes governance auditable at the architectural level, not the output level: every interaction follows a deterministic, documented path through the authorization decision before any generative computation takes place.</p>
 
     <p>It also changes what "failure" looks like. When a standard AI system encounters a question it cannot answer reliably, it typically produces a response anyway - one that may sound authoritative, may blend accurate information with inference, and may be acted upon before its limitations are recognized. When COMPAiSS cannot authorize a response, it produces nothing generative. The system is honest about its limits in the only way a system can be truly honest: by not operating beyond them.</p>
