@@ -251,7 +251,7 @@ const GREENLIST_PATHS = {
 
 async function login() {
   TOKEN = document.getElementById('gh-token').value.trim();
-INSTITUTION = 'dalhousie'; // hard lock to Dalhousie
+  INSTITUTION = 'dalhousie'; // hard lock
   document.getElementById('login-err').textContent = '';
   if (!TOKEN) {
     document.getElementById('login-err').textContent = 'A GitHub token is required.';
