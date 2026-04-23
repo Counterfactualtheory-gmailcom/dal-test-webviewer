@@ -693,6 +693,22 @@ hr {
 
     <p>COMPAiSS pose d'abord une question différente : <em>dans quelles conditions ce système devrait-il être autorisé à produire une réponse?</em> Cette question reçoit une réponse avant que l'inférence ne commence. Si la réponse est qu'il n'existe aucune base institutionnelle faisant autorité pour une réponse, le modèle ne fonctionne pas. Il n'y a pas de réponse à filtrer, pas d'hallucination à détecter, pas de refus à générer. Il n'y a pas de réponse à évaluer, parce qu'aucune réponse n'a jamais été produite. Le système entre dans un état non génératif et fournit directement à l'utilisateur la source faisant autorité.</p>
 
+    <p>Pour illustrer concrètement ce fonctionnement, considérons ce qui se produit lorsqu’un utilisateur pose à la version de l’Université McGill une question en dehors de son périmètre institutionnel&nbsp;:</p>
+
+<div class="assumption-block">
+  <div class="assumption-label">Exemple en direct &mdash; déploiement COMPAiSS de McGill</div>
+  <p class="assumption-text" style="font-style:normal;font-size:0.92rem;line-height:1.7;">
+    <span style="color:var(--accent);font-weight:600;">Question soumise&nbsp;:</span><br>
+    Pourquoi le ciel est-il bleu&nbsp;?<br><br>
+    <span style="color:var(--accent);font-weight:600;">Réponse de COMPAiSS&nbsp;:</span><br>
+    Cette question ne relève pas du champ d’application des programmes, politiques, services et ressources institutionnelles officielles de l’Université McGill.<br><br>
+    Cet assistant est conçu spécifiquement pour fournir des renseignements exacts et vérifiés sur McGill, notamment en ce qui concerne les programmes d’études, l’admission, les services aux étudiants, l’emploi et les politiques universitaires.<br><br>
+    Si vous avez une question liée à McGill, je serai heureux de vous aider.
+  </p>
+</div>
+
+<p>Aucune inférence n’a été exécutée. Aucun modèle génératif n’a été sollicité. La réponse ci-dessus a été produite par une redirection déterministe, et non par un modèle de langage. Le système a détecté l’absence d’autorité institutionnelle avant toute étape de calcul en intelligence artificielle et a retourné une réponse structurée non générative. La requête a été traitée sans aucun coût d’inférence.</p>
+    
     <p>Cela change plusieurs choses à la fois. Cela élimine une catégorie entière d'hallucinations - non pas en interceptant les réponses fabriquées après leur production, mais en prévenant les conditions dans lesquelles la fabrication se produit. Cela supprime entièrement le coût d'inférence pour les requêtes non autorisées. Cela rend la gouvernance vérifiable au niveau architectural, et non au niveau des sorties : chaque interaction suit un chemin déterministe et documenté à travers la décision d'autorisation avant tout calcul génératif.</p>
 
     <p>Cela change également ce à quoi ressemble un « échec ». Lorsqu'un système d'IA standard rencontre une question à laquelle il ne peut pas répondre de manière fiable, il produit généralement quand même une réponse - une qui peut sembler faire autorité, mélanger des informations exactes avec des inférences, et être utilisée avant que ses limites ne soient reconnues. Lorsque COMPAiSS ne peut pas autoriser une réponse, il ne produit rien de génératif. Le système est honnête sur ses limites de la seule façon dont un système peut être véritablement honnête : en ne fonctionnant pas au-delà d'elles.</p>
