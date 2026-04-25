@@ -1,40 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Primary Landing Pages -->
   <url>
     <loc>https://compaiss.ca/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-04-25</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/index_french.html</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>1.0</priority>
   </url>
 
+  <!-- Key Content Pages -->
   <url>
-    <loc>https://compaiss.ca/index.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://compaiss.ca/governance.html</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://compaiss.ca/index_french.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://compaiss.ca/compaiss_demos_and_pricing.html</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.9</priority>
   </url>
-
   <url>
-    <loc>https://compaiss.ca/dalhousie/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://compaiss.ca/deployment-and-institutional-fit.html</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.8</priority>
   </url>
 
+  <!-- High-Value PDFs — English -->
   <url>
-    <loc>https://compaiss.ca/mcgill/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://compaiss.ca/assets/road_less_travelled_revised.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/final_report-hallucinations_by_design-v2.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_institutional_positioning_styled.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://compaiss.ca/service-canada/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <loc>https://compaiss.ca/assets/cost_savings_by_design_styled.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- High-Value PDFs — French -->
+  <url>
+    <loc>https://compaiss.ca/assets/la_voie_moins_empruntee.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/rapport_final-hallucinations_par_conception-fr.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_positionnement_institutionnel_styled.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/economies_de_couts_par_conception_styled.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/hallucination_rates-fr.pdf</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
