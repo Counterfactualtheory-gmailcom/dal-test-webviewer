@@ -8,24 +8,66 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://compaiss.ca/index.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://compaiss.ca/index_french.html</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>1.0</priority>
   </url>
 
-  <!-- Key Content Pages -->
+  <!-- Article Pages — English -->
   <url>
     <loc>https://compaiss.ca/governance.html</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://compaiss.ca/compaiss_demos_and_pricing.html</loc>
+    <loc>https://compaiss.ca/why-ai-developed-this-way.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/ai-risk-assessment.html</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://compaiss.ca/deployment-and-institutional-fit.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/compaiss_demos_and_pricing.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Article Pages — French -->
+  <url>
+    <loc>https://compaiss.ca/governance-fr.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/gouvernance-en-action.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/evaluation-des-risques-ia.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/deploiement-et-adequation-institutionnelle.html</loc>
     <lastmod>2026-04-25</lastmod>
     <priority>0.8</priority>
   </url>
