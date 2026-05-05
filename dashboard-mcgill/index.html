@@ -128,14 +128,7 @@
         <div class="logo">&#10022; COMPAiSS</div>
         <div class="institution-tag" id="inst-tag">McGill</div>
       </div>
-      <nav class="nav">
-        <a class="active" onclick="showPanel('greenlist', this)">
-          &#9776;&nbsp; Greenlist
-        </a>
-        <a onclick="showPanel('changelog', this)">
-          &#128336;&nbsp; Change Log
-        </a>
-      </nav>
+
       <div class="sidebar-bottom">
         <button class="revert-btn" onclick="revertGreenlist()">
           &#8635; Revert (Rollback)
@@ -145,6 +138,15 @@
           You must still click Commit to apply.
         </p>
       </div>
+     
+      <nav class="nav">
+        <a class="active" onclick="showPanel('greenlist', this)">
+          &#9776;&nbsp; Greenlist
+        </a>
+        <a onclick="showPanel('changelog', this)">
+          &#128336;&nbsp; Change Log
+        </a>
+      </nav>
     </div>
 
     <div class="main">
