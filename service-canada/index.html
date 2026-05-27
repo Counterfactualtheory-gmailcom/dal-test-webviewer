@@ -364,6 +364,21 @@ outEl.innerHTML +=
     : '') +
   questionBlock +
   clean2;
+
+// Hide decorative emoji from screen readers
+outEl.querySelectorAll('*').forEach(el => {
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3 && /\p{Emoji}/u.test(node.textContent)) {
+      const wrapped = node.textContent.replace(
+        /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu,
+        '<span aria-hidden="true">$1</span>'
+      );
+      const span = document.createElement('span');
+      span.innerHTML = wrapped;
+      node.replaceWith(span);
+    }
+  });
+});
   
   /* -----------------------------------------------------------
      DAL–McGill DOM REFRESH BLOCK — triggers reflow & wake-up
