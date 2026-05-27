@@ -192,10 +192,10 @@ gtag('config', 'G-JR7LJGK5PK', {
     
 /* --- Larger textarea (cleanest, safest) --- */
 #followup-text {
-  width: 100%;                /* fills followup-box width */
+  width: 100%;
   min-height: 170px;
-  padding: 14px;              /* ← increased from 10px */
-  font-size: 16px;            /* ← slightly larger */
+  padding: 14px;
+  font-size: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
@@ -204,6 +204,9 @@ gtag('config', 'G-JR7LJGK5PK', {
   box-sizing: border-box;
   background-color: #f9f9f9;
   color: #000;
+}
+#followup-text::placeholder {
+  color: #595959;
 }
     
 #followup-btn, #copy-btn {
