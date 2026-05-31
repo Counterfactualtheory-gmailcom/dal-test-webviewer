@@ -712,6 +712,68 @@ header {
   <p>Lorsque les sources institutionnelles sont incomplètes ou obsolètes, COMPAiSS le reflète honnêtement plutôt que de fabriquer une réponse. Et parce que le système fait remonter ce que les utilisateurs demandent réellement, les institutions peuvent identifier et corriger les lacunes de contenu de manière systématique, bouclant ainsi la boucle entre la performance de l'IA et la qualité de l'information institutionnelle. Les détails complets sur les audits de la liste verte et la maintenance des sources sont disponibles sur la <a href="/governance-fr.html">page Gouvernance de l'IA</a>.</p>
 </div>
 
+<div style="margin:2.5rem 0 2rem;">
+    <h3 style="color:var(--text-heading);font-size:1rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Le tableau de bord de gestion de la liste verte</h3>
+    <p style="max-width:70ch;font-size:0.95rem;line-height:1.7;margin:0 0 1.4rem;color:var(--text-main);">Chaque déploiement de COMPAiSS comprend un tableau de bord administratif dédié qui donne au personnel institutionnel désigné un contrôle direct et authentifié sur la limite de sources approuvées. Les administrateurs peuvent ajouter ou supprimer des URL, consulter l'historique complet des modifications et valider des changements qui prennent effet en quelques minutes. Aucune intervention de développeur n'est requise pour les mises à jour courantes du périmètre. L'exemple ci-dessous présente la liste verte de l'Université McGill avec 2 010 sources actives, toutes vérifiées et à jour.</p>
+
+    <div style="border:1px solid var(--border-accent);border-radius:var(--radius);overflow:hidden;max-width:900px;">
+      <div style="background:rgba(15,45,90,0.6);border-bottom:1px solid var(--border-soft);padding:10px 18px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-family:system-ui,-apple-system,sans-serif;font-weight:600;">✦ COMPAiSS</span>
+        <span style="font-size:0.72rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;">Tableau de bord de gestion de la liste verte — Université McGill</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border-soft);padding:16px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-family:system-ui,-apple-system,sans-serif;">
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;">Sources totales</div>
+          <div style="font-size:1.6rem;font-weight:600;color:var(--text-heading);line-height:1;">2 010</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;">Actives</div>
+          <div style="font-size:1.6rem;font-weight:600;color:var(--green);line-height:1;">2 010</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;">Établissement</div>
+          <div style="font-size:1rem;font-weight:600;color:var(--text-heading);line-height:1;margin-top:6px;">McGill</div>
+        </div>
+        <div>
+          <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;">Modifications non enregistrées</div>
+          <div style="font-size:1rem;font-weight:600;color:var(--green);line-height:1;margin-top:6px;">Aucune</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border-soft);padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:system-ui,-apple-system,sans-serif;">
+        <span style="background:var(--accent);color:#0c2d5a;font-size:0.72rem;font-weight:700;padding:5px 12px;border-radius:4px;letter-spacing:0.06em;">+ Ajouter une URL</span>
+        <span style="background:rgba(255,255,255,0.07);color:var(--text-muted);font-size:0.72rem;padding:5px 12px;border-radius:4px;border:1px solid var(--border-soft);letter-spacing:0.06em;">Valider les modifications</span>
+        <span style="background:rgba(255,255,255,0.07);color:var(--text-muted);font-size:0.72rem;padding:5px 12px;border-radius:4px;border:1px solid var(--border-soft);letter-spacing:0.06em;">↺ Actualiser</span>
+        <span style="margin-left:auto;background:rgba(255,255,255,0.05);color:var(--text-muted);font-size:0.72rem;padding:5px 14px;border-radius:4px;border:1px solid var(--border-soft);">Rechercher des sources...</span>
+      </div>
+      <div style="font-family:system-ui,-apple-system,sans-serif;">
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:6px 20px;border-bottom:1px solid var(--border-soft);color:var(--text-muted);font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;">
+          <span>Statut</span><span>URL source</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:9px 20px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;">
+          <span style="color:var(--green);font-size:0.72rem;">● Active</span>
+          <span style="color:var(--link);font-size:0.75rem;word-break:break-all;">https://www.mcgill.ca/student-accounts/tuition-fees/general-tuition-and-fees-information/tuition-fees-2026-27</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:9px 20px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;">
+          <span style="color:var(--green);font-size:0.72rem;">● Active</span>
+          <span style="color:var(--link);font-size:0.75rem;word-break:break-all;">https://www.mcgill.ca/student-accounts/files/student-accounts/new_cnrq_ugrad_admitted_for_2026-27_1.pdf</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:9px 20px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;">
+          <span style="color:var(--green);font-size:0.72rem;">● Active</span>
+          <span style="color:var(--link);font-size:0.75rem;word-break:break-all;">https://www.mcgill.ca/student-accounts/files/student-accounts/new_cnrq_grad_g1-non-thesis_qualifying_admitted_for_2026-27_3.pdf</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:9px 20px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center;">
+          <span style="color:var(--green);font-size:0.72rem;">● Active</span>
+          <span style="color:var(--link);font-size:0.75rem;word-break:break-all;">https://www.mcgill.ca/student-accounts/files/student-accounts/new_cnrq_grad_post-dent_admitted_for_2026-27.pdf</span>
+        </div>
+        <div style="display:grid;grid-template-columns:110px 1fr;padding:9px 20px;align-items:center;background:rgba(255,255,255,0.02);">
+          <span style="color:var(--text-muted);font-size:0.72rem;font-style:italic;">+ 2 005 autres</span>
+          <span style="color:var(--text-muted);font-size:0.72rem;font-style:italic;">Toutes actives, vérifiées et à jour au moment du déploiement</span>
+        </div>
+      </div>
+    </div>
+    <p style="max-width:70ch;font-size:0.85rem;line-height:1.65;margin:1rem 0 0;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">Les modifications prennent effet en quelques minutes après validation. Chaque changement est consigné dans l'historique complet des versions. Aucune intervention de développeur n'est requise pour les mises à jour courantes du périmètre.</p>
+  </div>
+       
   <hr>
 
   <!-- DOCUMENTATION -->
