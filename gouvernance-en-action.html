@@ -1017,30 +1017,121 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
 <!-- ROI -->
 <div class="content-section" id="roi">
   <h2>Retour sur investissement</h2>
-  <p class="section-intro">Récupération du temps du personnel modélisée pour une équipe des Affaires étudiantes d'une université de taille moyenne — à trois niveaux d'adoption.</p>
-  <p>Les équipes des Affaires étudiantes des institutions de cette taille gèrent des volumes élevés de demandes concentrées autour de cycles institutionnels prévisibles : arrivées en début de session, périodes d'inscription, échéances de documents gouvernementaux et remise des diplômes. Une part importante de ces demandes est routinière, fondée sur des politiques et répondable à partir de sources vérifiées — le profil de requête précis que COMPAiSS est conçu pour traiter.</p>
-  <div class="highlight-block">
-    <p><strong>Référence : 1 ETP aux Affaires étudiantes (demandes routinières)</strong><br>Coût annuel entièrement chargé (salaire + avantages sociaux) : 70 000 $ - 85 000 $</p>
-  </div>
-  <table class="roi-table">
-    <thead><tr><th>Niveau d'adoption</th><th>Détournement des demandes</th><th>Sessions redirigées</th><th>Compensation ETP / Temps récupéré</th><th>Retour sur le coût COMPAiSS</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Faible</strong></td><td>~15 %</td><td>200-300/an</td><td>0,1-0,2 ETP | 7 000 $ - 17 000 $ récupérés</td><td>Environ neutre sur les coûts</td></tr>
-      <tr><td><strong>Moyen</strong></td><td>~35 %</td><td>500-700/an</td><td>0,3-0,5 ETP | 21 000 $ - 42 000 $ récupérés</td><td><strong>Retour de 1,5x à 3x</strong></td></tr>
-      <tr><td><strong>Élevé</strong></td><td>~55 %</td><td>800-1 200/an</td><td>0,6-0,9 ETP | 42 000 $ - 76 000 $ récupérés</td><td><strong>Retour de 3x à 5x</strong></td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">Les chiffres de récupération du temps du personnel sont fondés sur un coût ETP entièrement chargé de 70 000 $ - 85 000 $/an et un calcul de compensation proportionnelle. La récupération réelle variera selon la portée du déploiement et le taux d'adoption.</p>
-  <div class="card-grid" style="margin-top:1.5rem;">
-    <div class="card"><div class="card-icon">&#128202;</div><h3>À adoption moyenne</h3><p>COMPAiSS est autofinancé et compense une part significative d'un poste du personnel — répondant directement aux lacunes de capacité sans ajouter de ressources humaines.</p></div>
-    <div class="card"><div class="card-icon">&#128176;</div><h3>À adoption élevée</h3><p>Les économies de temps du personnel approchent le coût total d'un ETP — rendant COMPAiSS effectivement autofinancé tout en améliorant simultanément la qualité du service et la disponibilité 24/7.</p></div>
-  </div>
-  <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
-    <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Demander une évaluation</div>
-    <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">COMPAiSS est disponible pour évaluation institutionnelle. Pour planifier une démonstration, discuter d'un déploiement pilote ou demander la documentation de gouvernance et la tarification pour votre institution :</p>
-    <a href="/cdn-cgi/l/email-protection#abc8c4dec5dfced9cdcac8dfdecac7dfc3cec4d9d2ebccc6cac2c785c8c4c694d8dec9c1cec8df96e8e4e6fbeac2f8f88e999beeddcac7decadfc2c4c58e999bf9cedadeced8df" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">Demander une démonstration &rarr;</a>
-  </div>
-</div>
+  <p class="section-intro">Ajustez les curseurs selon votre établissement et calculez votre rendement annuel estimé.</p>
+
+  <style>
+    .roi-calc { margin: 1.5rem 0; }
+    .roi-slider-row { margin-bottom: 1.2rem; }
+    .roi-slider-row label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .roi-slider-row label span {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .roi-slider-row input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .roi-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 2rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .roi-results { grid-template-columns: 1fr; }
+    }
+    .roi-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .roi-card.roi-highlight {
+      border-color: var(--border-accent);
+      background: var(--accent-soft);
+    }
+    .roi-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .roi-card-value {
+      font-size: 1.5rem;
+      color: var(--text-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .roi-card.roi-highlight .roi-card-value {
+      color: var(--accent);
+    }
+    .roi-card-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .roi-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      max-width: 70ch;
+    }
+  </style>
+
+  <div class="roi-calc">
+    <div class="roi-slider-row">
+      <label>Demandes étudiantes annuelles traitées par le personnel <span id="lbl-queries-fr">25 000</span></label>
+      <input type="range" min="5000" max="100000" step="5000" value="25000" oninput="roiCalcFr()" id="sl-queries-fr">
+    </div>
+    <div class="roi-slider-row">
+      <label>Coût chargé par demande, personnel (CAD) <span id="lbl-cost-fr">8 $</span></label>
+      <input type="range" min="3" max="20" step="1" value="8" oninput="roiCalcFr()" id="sl-cost-fr">
+    </div>
+    <div class="roi-slider-row">
+      <label>Taux estimé de détournement des demandes <span id="lbl-div-fr">35 %</span></label>
+      <input type="range" min="10" max="60" step="5" value="35" oninput="roiCalcFr()" id="sl-div-fr">
+    </div>
+    <div class="roi-slider-row">
+      <label>Coût annuel de la licence COMPAiSS (CAD) <span id="lbl-license-fr">30 000 $</span></label>
+      <input type="range" min="10000" max="90000" step="5000" value="30000" oninput="roiCalcFr()" id="sl-license-fr">
+    </div>
+
+    <div class="roi-results">
+      <div class="roi-card">
+        <div class="roi-card-label">Demandes détournées</div>
+        <div class="roi-card-value" id="r-diverted-fr">8 750</div>
+        <div class="roi-card-sub">par année</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-label">Temps du personnel récupéré</div>
+        <div class="roi-card-value" id="r-saved-fr">70 000 $</div>
+        <div class="roi-card-sub">valeur annuelle estimée</div>
+      </div>
+      <div class="roi-card roi-highlight">
+        <div class="roi-card-label">Rendement net annuel</div>
+        <div class="roi-card-value" id="r-roi-fr">40 000 $</div>
+        <div class="roi-card-sub" id="r-multiple-fr">Rendement de 2,3x sur l'investissement</div>
+      </div>
+    </div>
+
+    <p class="roi-note">Les estimations sont basées sur le coût chargé du personnel par
 </main>
 <footer>
   <div class="footer-inner">
