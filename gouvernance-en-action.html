@@ -1093,6 +1093,57 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
       margin-top: 0.5rem;
       max-width: 70ch;
     }
+       
+.roi-benchmark {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.roi-bm-col {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-family: system-ui,-apple-system,sans-serif;
+}
+
+.roi-benchmark-header {
+  grid-column: 1 / -1;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.roi-bm-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.roi-bm-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.4rem;
+}
+
+.roi-bm-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .roi-benchmark {
+    grid-template-columns: 1fr;
+  }
+}
+       
   </style>
 
   <div class="roi-calc">
