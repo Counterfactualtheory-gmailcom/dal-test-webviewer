@@ -955,30 +955,110 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
     <p><strong>Question context:</strong> A self-employed claimant aged 62 asking about CPP reduction, OAS eligibility, Canada-France portability, and required documentation — deployed on Service Canada COMPAiSS. The same question was submitted simultaneously to Claude Sonnet 4.6, COMPAiSS, Copilot, and Gemini and scored using COMPAiSS's Institutional AI Evaluation Framework v3 (12 criteria, 105% total weight).</p>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2rem 0 1.5rem;font-family:system-ui,-apple-system,sans-serif;">
-    <div style="background:var(--accent-soft);border:1px solid var(--border-accent);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
-      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:700;">🥇 1st</div>
-      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">COMPAiSS</div>
-      <div style="font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;">8.1</div>
-      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+<!-- EVALUATION TABS LABEL -->
+  <div style="font-family:system-ui,-apple-system,sans-serif;margin:2rem 0 0.8rem;">
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1rem;">Evaluation 1 — March 2026 &nbsp;·&nbsp; Service Canada CPP/OAS/France portability question</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;">
+      <div style="background:var(--accent-soft);border:1px solid var(--border-accent);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:700;">🥇 1st</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">COMPAiSS</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;">8.1</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+      </div>
+      <div style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;font-weight:700;">🥈 2nd</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Copilot</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--text-heading);line-height:1;">7.0</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+      </div>
+      <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">🥉 3rd</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Claude Sonnet 4.6</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−5.1</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −10</div>
+      </div>
+      <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">4th</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Gemini</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−13.9</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −20 (hard fail)</div>
+      </div>
     </div>
-    <div style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
-      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;font-weight:700;">🥈 2nd</div>
-      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Copilot</div>
-      <div style="font-size:2.2rem;font-weight:800;color:var(--text-heading);line-height:1;">7.0</div>
-      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1rem;">Evaluation 2 — June 2026 &nbsp;·&nbsp; Same question, current deployment</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;">
+      <div style="background:var(--accent-soft);border:1px solid var(--border-accent);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:700;">🥇 1st</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">COMPAiSS</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;">8.8</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties — improved</div>
+      </div>
+      <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">🥈 2nd</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Claude Sonnet 4.6</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−4.2</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −10</div>
+      </div>
+      <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">🥉 3rd</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Gemini</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−5.3</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −10</div>
+      </div>
+      <div style="background:rgba(220,80,80,0.08);border:2px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+        <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">4th</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Copilot</div>
+        <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−15.4</div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −20 (hard fail)</div>
+      </div>
     </div>
-    <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
-      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">🥉 3rd</div>
-      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Claude Sonnet 4.6</div>
-      <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−5.1</div>
-      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −10</div>
-    </div>
-    <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
-      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">4th</div>
-      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Gemini</div>
-      <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−13.9</div>
-      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −20 (hard fail)</div>
+
+    <!-- CROSS-EVALUATION SUMMARY TABLE -->
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1rem;">Cross-evaluation summary — 2 evaluations, same question</div>
+    <table style="width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.84rem;margin-bottom:1.5rem;">
+      <thead>
+        <tr style="border-bottom:1px solid var(--border-accent);">
+          <th style="text-align:left;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">System</th>
+          <th style="text-align:center;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Eval 1 (Mar 2026)</th>
+          <th style="text-align:center;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Eval 2 (Jun 2026)</th>
+          <th style="text-align:center;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">Trend</th>
+          <th style="text-align:left;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">HSI record</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--accent-soft);border-bottom:0.5px solid var(--border-soft);">
+          <td style="padding:0.75rem 0.9rem;font-weight:700;color:var(--text-heading);">COMPAiSS</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;font-weight:700;color:var(--accent);">8.1</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;font-weight:700;color:var(--accent);">8.8</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--green);font-weight:700;">↑ +0.7</td>
+          <td style="padding:0.75rem 0.9rem;color:var(--green);font-weight:600;">0 penalties across 2 evals</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border-soft);">
+          <td style="padding:0.75rem 0.9rem;color:var(--text-main);">Copilot</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--text-heading);">7.0</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);font-weight:700;">−15.4</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);font-weight:700;">↓ −22.4</td>
+          <td style="padding:0.75rem 0.9rem;color:var(--red);">HSI −20 in Eval 2 (unauthorized domain)</td>
+        </tr>
+        <tr style="border-bottom:0.5px solid var(--border-soft);">
+          <td style="padding:0.75rem 0.9rem;color:var(--text-main);">Claude Sonnet 4.6</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);">−5.1</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);">−4.2</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:#e09055;">↑ +0.9</td>
+          <td style="padding:0.75rem 0.9rem;color:var(--red);">HSI −10 in both evals (zero URLs)</td>
+        </tr>
+        <tr>
+          <td style="padding:0.75rem 0.9rem;color:var(--text-main);">Gemini</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);">−13.9</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:var(--red);">−5.3</td>
+          <td style="padding:0.75rem 0.9rem;text-align:center;color:#e09055;">↑ +8.6</td>
+          <td style="padding:0.75rem 0.9rem;color:var(--red);">HSI penalty in both evals</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="padding:1rem 1.4rem;background:rgba(240,196,76,0.06);border:1px solid var(--border-accent);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;font-size:0.84rem;color:var(--text-main);line-height:1.6;">
+      <strong style="color:var(--text-heading);">The pattern across two evaluations:</strong> COMPAiSS is the only system that has never triggered an HSI penalty. Three of the four competitors have triggered HSI penalties in at least one evaluation — and Copilot, which placed 2nd in Evaluation 1, triggered a C1 hard fail in Evaluation 2 by citing an unauthorized commercial domain. Governance consistency cannot be assumed from a single test.
     </div>
   </div>
 
