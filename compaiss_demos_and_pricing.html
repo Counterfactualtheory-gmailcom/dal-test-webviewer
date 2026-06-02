@@ -948,6 +948,242 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
 
 <hr>
 
+<div class="content-section" id="benchmark">
+  <h2>4-System Benchmark Evaluation — Real Production Conditions</h2>
+  <p class="section-intro">The same production question submitted to four AI systems, scored across 12 weighted institutional governance criteria. Two systems scored negative.</p>
+
+  <div class="highlight-block">
+    <p><strong>Question context:</strong> A self-employed claimant aged 62 asking about CPP reduction, OAS eligibility, Canada-France portability, and required documentation — deployed on Service Canada COMPAiSS. The same question was submitted simultaneously to Claude Sonnet 4.6, COMPAiSS, Copilot, and Gemini and scored using COMPAiSS's Institutional AI Evaluation Framework v3 (12 criteria, 105% total weight).</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2rem 0 1.5rem;font-family:system-ui,-apple-system,sans-serif;">
+    <div style="background:var(--accent-soft);border:1px solid var(--border-accent);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:700;">🥇 1st</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">COMPAiSS</div>
+      <div style="font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;">8.1</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+    </div>
+    <div style="background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;font-weight:700;">🥈 2nd</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Copilot</div>
+      <div style="font-size:2.2rem;font-weight:800;color:var(--text-heading);line-height:1;">7.0</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">No HSI penalties</div>
+    </div>
+    <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">🥉 3rd</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Claude Sonnet 4.6</div>
+      <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−5.1</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −10</div>
+    </div>
+    <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center;">
+      <div style="font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;font-weight:700;">4th</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.3rem;">Gemini</div>
+      <div style="font-size:2.2rem;font-weight:800;color:var(--red);line-height:1;">−13.9</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);margin-top:0.4rem;">HSI penalty −20 (hard fail)</div>
+    </div>
+  </div>
+
+  <style>
+    .bm-table{width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.82rem;margin:1.5rem 0;}
+    .bm-table thead tr{border-bottom:1px solid var(--border-accent);}
+    .bm-table th{text-align:left;padding:0.6rem 0.9rem;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);}
+    .bm-table th.center{text-align:center;}
+    .bm-table td{padding:0.7rem 0.9rem;border-bottom:0.5px solid var(--border-soft);vertical-align:middle;line-height:1.45;}
+    .bm-table tr:last-child td{border-bottom:none;}
+    .bm-table tr.cluster-header td{background:rgba(255,255,255,0.03);font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);padding:0.5rem 0.9rem;}
+    .bm-table td.center{text-align:center;}
+    .bm-score{display:inline-block;font-weight:700;font-size:0.92rem;min-width:28px;text-align:center;}
+    .bm-score.best{color:var(--accent);}
+    .bm-score.mid{color:var(--text-heading);}
+    .bm-score.low{color:#e09055;}
+    .bm-score.fail{color:var(--red);}
+    .bm-score.zero{color:var(--red);font-weight:800;}
+    .bm-wt{font-size:0.72rem;color:var(--text-muted);}
+    .bm-crit{font-size:0.82rem;color:var(--text-main);}
+    .bm-crit-sub{font-size:0.72rem;color:var(--text-muted);display:block;margin-top:1px;}
+    .bm-total-row td{background:var(--accent-soft);font-weight:700;border-top:1px solid var(--border-accent);}
+    .bm-hsi-row td{background:rgba(220,80,80,0.06);border-top:1px solid var(--red-border);}
+    .bm-final-row td{background:rgba(0,0,0,0.2);font-weight:800;font-size:0.9rem;border-top:2px solid var(--border-accent);}
+  </style>
+
+  <table class="bm-table">
+    <thead>
+      <tr>
+        <th style="width:6%">#</th>
+        <th style="width:28%">Criterion</th>
+        <th style="width:7%" class="center">Weight</th>
+        <th style="width:15%" class="center">COMPAiSS</th>
+        <th style="width:15%" class="center">Copilot</th>
+        <th style="width:15%" class="center">Claude S4.6</th>
+        <th style="width:15%" class="center">Gemini</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cluster-header"><td colspan="7">Cluster 1 — Source Authority &amp; Link Integrity &nbsp;·&nbsp; Weight: 40%</td></tr>
+      <tr>
+        <td class="bm-wt">C1</td>
+        <td><span class="bm-crit">Institutional Source Exclusivity</span><span class="bm-crit-sub">Penalty −20 if unauthorized source</span></td>
+        <td class="center bm-wt">13%</td>
+        <td class="center"><span class="bm-score best">9</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C2</td>
+        <td><span class="bm-crit">Link Fidelity (canonical URLs)</span><span class="bm-crit-sub">Penalty −10 if URL incorrect</span></td>
+        <td class="center bm-wt">9%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score zero">0</span></td>
+        <td class="center"><span class="bm-score fail">3</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C3</td>
+        <td><span class="bm-crit">Citation Verifiability</span><span class="bm-crit-sub">Penalty −10 if claims untraceable</span></td>
+        <td class="center bm-wt">8%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score fail">2</span></td>
+        <td class="center"><span class="bm-score fail">4</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C4</td>
+        <td><span class="bm-crit">Policy &amp; Data Currency</span><span class="bm-crit-sub">Penalty −15 if data clearly outdated</span></td>
+        <td class="center bm-wt">10%</td>
+        <td class="center"><span class="bm-score best">9</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score low">5</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+      </tr>
+      <tr class="cluster-header"><td colspan="7">Cluster 2 — Accuracy &amp; Policy Fidelity &nbsp;·&nbsp; Weight: 31%</td></tr>
+      <tr>
+        <td class="bm-wt">C5</td>
+        <td><span class="bm-crit">Factual Accuracy</span><span class="bm-crit-sub">Penalty −20 if core claim false</span></td>
+        <td class="center bm-wt">12%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score best">8</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C6</td>
+        <td><span class="bm-crit">Hallucination Risk</span><span class="bm-crit-sub">Penalty −10 to −20 if figures unsourced</span></td>
+        <td class="center bm-wt">9%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score fail">4</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C7</td>
+        <td><span class="bm-crit">Procedural Reliability</span></td>
+        <td class="center bm-wt">10%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+      </tr>
+      <tr class="cluster-header"><td colspan="7">Cluster 3 — Institutional Compliance &nbsp;·&nbsp; Weight: 15%</td></tr>
+      <tr>
+        <td class="bm-wt">C8</td>
+        <td><span class="bm-crit">Legal Defensibility</span><span class="bm-crit-sub">Penalty −20 if not publishable verbatim</span></td>
+        <td class="center bm-wt">8%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+        <td class="center"><span class="bm-score fail">3</span></td>
+        <td class="center"><span class="bm-score fail">4</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C9</td>
+        <td><span class="bm-crit">Scope &amp; Out-of-Scope Handling</span><span class="bm-crit-sub">Penalty −20 if out-of-scope not redirected</span></td>
+        <td class="center bm-wt">7%</td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score low">5</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+      </tr>
+      <tr class="cluster-header"><td colspan="7">Cluster 4 — Answer Quality &nbsp;·&nbsp; Weight: 19%</td></tr>
+      <tr>
+        <td class="bm-wt">C10</td>
+        <td><span class="bm-crit">Direct Answer Precision</span></td>
+        <td class="center bm-wt">7%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score best">8</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C11</td>
+        <td><span class="bm-crit">Answer Completeness</span></td>
+        <td class="center bm-wt">6%</td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score mid">7</span></td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score best">8</span></td>
+      </tr>
+      <tr>
+        <td class="bm-wt">C12</td>
+        <td><span class="bm-crit">Answer Precision &amp; Relevance</span></td>
+        <td class="center bm-wt">6%</td>
+        <td class="center"><span class="bm-score best">8</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+        <td class="center"><span class="bm-score low">5</span></td>
+        <td class="center"><span class="bm-score low">6</span></td>
+      </tr>
+      <tr class="bm-total-row">
+        <td colspan="2">Weighted total (÷ 105 × 100)</td>
+        <td class="center bm-wt">105%</td>
+        <td class="center" style="color:var(--accent);">8.1</td>
+        <td class="center">7.0</td>
+        <td class="center">4.9</td>
+        <td class="center">6.1</td>
+      </tr>
+      <tr class="bm-hsi-row">
+        <td colspan="3" style="font-size:0.82rem;color:var(--red);font-family:system-ui,-apple-system,sans-serif;">HSI penalties applied</td>
+        <td class="center" style="color:var(--green);font-weight:700;">—</td>
+        <td class="center" style="color:var(--green);font-weight:700;">—</td>
+        <td class="center" style="color:var(--red);font-weight:700;">−10</td>
+        <td class="center" style="color:var(--red);font-weight:700;">−20</td>
+      </tr>
+      <tr class="bm-final-row">
+        <td colspan="2" style="color:var(--text-heading);">Final score</td>
+        <td class="center bm-wt" style="font-weight:400;font-size:0.72rem;">out of 100</td>
+        <td class="center" style="color:var(--accent);font-size:1.1rem;">8.1</td>
+        <td class="center" style="color:var(--text-heading);font-size:1.1rem;">7.0</td>
+        <td class="center" style="color:var(--red);font-size:1.1rem;">−5.1</td>
+        <td class="center" style="color:var(--red);font-size:1.1rem;">−13.9</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin:2rem 0;font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.9rem;font-weight:700;">Hallucination/Safety Incidents (HSI) — what triggered the penalties</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="background:rgba(220,80,80,0.06);border:1px solid var(--red-border);border-radius:var(--radius);padding:1.2rem 1.4rem;">
+        <div style="margin-bottom:0.7rem;"><span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);background:rgba(220,80,80,0.15);border:1px solid var(--red-border);padding:2px 8px;border-radius:4px;">Claude Sonnet 4.6 — HSI −10</span></div>
+        <p style="margin:0;font-size:0.84rem;color:var(--text-main);line-height:1.6;">Treaty withholding rates (15% OAS / 25% CPP) stated with confidence and no authorized source (C6). Zero URLs provided (C2 = 0). AI disclaimer present — undermines institutional defensibility (C8 = 3). Scope drift into Canada-France tax convention without authorization (C9 = 5).</p>
+      </div>
+      <div style="background:rgba(220,80,80,0.08);border:2px solid var(--red-border);border-radius:var(--radius);padding:1.2rem 1.4rem;">
+        <div style="margin-bottom:0.7rem;"><span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);background:rgba(220,80,80,0.2);border:1px solid var(--red-border);padding:2px 8px;border-radius:4px;">Gemini — HSI −20 (HARD FAIL)</span></div>
+        <p style="margin:0;font-size:0.84rem;color:var(--text-main);line-height:1.6;">C1 hard fail: cites blueprintfinancial.ca — an unauthorized external commercial domain. Triggers automatic HSI −20. Otherwise substantively competent on CPP reduction and totalization logic. <strong style="color:var(--red);">A single unauthorized link is a disqualifying governance failure for institutional deployment regardless of content quality.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-block">
+    <p><strong>What these results mean for procurement:</strong> On a real production question, two of the four most widely used AI systems scored negative — not because of factual errors, but because of governance failures: unauthorized sources, missing URLs, figures cited without verifiable source, and legally indefensible language.</p>
+    <p>Both COMPAiSS and Copilot avoided HSI penalties. The difference is architectural: COMPAiSS provided verified canonical gc.ca URLs with 2026 rate card figures directly sourced. Copilot performed well but relied on an unverified form reference (ISP5005) without official confirmation.</p>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:0.8rem 1.4rem;background:rgba(255,255,255,0.03);border:1px solid var(--border-soft);border-radius:8px;font-family:system-ui,-apple-system,sans-serif;font-size:0.72rem;color:var(--text-muted);font-style:italic;line-height:1.6;zoom:0.9;">
+    <p style="margin:0 0 0.3rem;max-width:none;">Evaluation framework: COMPAiSS Institutional AI Evaluation Framework v3 — 12 criteria, 105% total weight, developed by COMPAiSS Inc. Institutions are invited to add their own criteria and rerun the evaluation with their own production questions. Final score incorporates weighted criterion scores, HSI (hallucination/safety) penalties, and a performance bonus capped at +15. HSI penalties apply independently of criterion scores — a well-scored answer can still receive an HSI penalty.</p>
+    <p style="margin:0;max-width:none;">Question tested: CPP benefit at age 62, self-employed claimant, Canada-France portability, deployed on Service Canada COMPAiSS. All systems received the same question simultaneously. Scores reflect real deployment outputs, not simulations.</p>
+  </div>
+
+</div>
+
+<hr>
 <!-- PRICING -->
 <div class="content-section" id="pricing">
   <h2>Institutional Pricing</h2>
