@@ -1069,32 +1069,167 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
 </div>
 <hr>
 <!-- ROI -->
+<!-- ============================================================ -->
+<!-- ROI CALCULATOR — Replace existing #roi content-section      -->
+<!-- ============================================================ -->
+
 <div class="content-section" id="roi">
   <h2>Return on Investment</h2>
-  <p class="section-intro">Staff time recovery modelled against a medium-size university Student Affairs team - at three adoption levels.</p>
-  <p>Student Affairs teams at institutions of this scale manage high inquiry volumes concentrated around predictable institutional cycles: intake arrivals, enrolment periods, government document deadlines, and graduation. A significant proportion of these inquiries are routine, policy-grounded, and answerable from verified sources - the precise query profile COMPAiSS is designed to handle.</p>
-  <div class="highlight-block">
-    <p><strong>Baseline: 1 FTE in Student Affairs (routine inquiries)</strong><br>Fully loaded annual cost (salary + benefits): $70,000-$85,000</p>
+  <p class="section-intro">Adjust the sliders to match your institution and see your estimated annual return.</p>
+
+  <style>
+    .roi-calc { margin: 1.5rem 0; }
+    .roi-slider-row { margin-bottom: 1.2rem; }
+    .roi-slider-row label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .roi-slider-row label span {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .roi-slider-row input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .roi-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 2rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .roi-results { grid-template-columns: 1fr; }
+    }
+    .roi-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .roi-card.roi-highlight {
+      border-color: var(--border-accent);
+      background: var(--accent-soft);
+    }
+    .roi-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .roi-card-value {
+      font-size: 1.5rem;
+      color: var(--text-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .roi-card.roi-highlight .roi-card-value {
+      color: var(--accent);
+    }
+    .roi-card-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .roi-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      max-width: 70ch;
+    }
+  </style>
+
+  <div class="roi-calc">
+    <div class="roi-slider-row">
+      <label>Annual student inquiries handled by staff <span id="lbl-queries">25,000</span></label>
+      <input type="range" min="5000" max="100000" step="5000" value="25000" oninput="roiCalc()" id="sl-queries">
+    </div>
+    <div class="roi-slider-row">
+      <label>Fully loaded staff cost per inquiry (CAD) <span id="lbl-cost">$8</span></label>
+      <input type="range" min="3" max="20" step="1" value="8" oninput="roiCalc()" id="sl-cost">
+    </div>
+    <div class="roi-slider-row">
+      <label>Estimated query diversion rate <span id="lbl-div">35%</span></label>
+      <input type="range" min="10" max="60" step="5" value="35" oninput="roiCalc()" id="sl-div">
+    </div>
+    <div class="roi-slider-row">
+      <label>Annual COMPAiSS license cost (CAD) <span id="lbl-license">$30,000</span></label>
+      <input type="range" min="10000" max="90000" step="5000" value="30000" oninput="roiCalc()" id="sl-license">
+    </div>
+
+    <div class="roi-results">
+      <div class="roi-card">
+        <div class="roi-card-label">Queries diverted</div>
+        <div class="roi-card-value" id="r-diverted">8,750</div>
+        <div class="roi-card-sub">per year</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-label">Staff time recovered</div>
+        <div class="roi-card-value" id="r-saved">$70,000</div>
+        <div class="roi-card-sub">estimated annual value</div>
+      </div>
+      <div class="roi-card roi-highlight">
+        <div class="roi-card-label">Net annual return</div>
+        <div class="roi-card-value" id="r-roi">$40,000</div>
+        <div class="roi-card-sub" id="r-multiple">2.3x return on investment</div>
+      </div>
+    </div>
+
+    <p class="roi-note">Estimates based on fully loaded staff cost per inquiry and proportional diversion modelling. Actual results will vary by institution size, deployment scope, and adoption rate. Query diversion rate reflects the proportion of routine, policy-grounded inquiries COMPAiSS can reliably handle from authorized sources.</p>
   </div>
-  <table class="roi-table">
-    <thead><tr><th>Adoption Level</th><th>Query Diversion</th><th>Sessions Redirected</th><th>FTE Offset / Staff Time Recovered</th><th>Return on COMPAiSS Cost</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Low</strong></td><td>~15%</td><td>200-300/yr</td><td>0.1-0.2 FTE | $7,000-$17,000 recovered</td><td>Roughly cost-neutral</td></tr>
-      <tr><td><strong>Medium</strong></td><td>~35%</td><td>500-700/yr</td><td>0.3-0.5 FTE | $21,000-$42,000 recovered</td><td><strong>1.5x - 3x return</strong></td></tr>
-      <tr><td><strong>High</strong></td><td>~55%</td><td>800-1,200/yr</td><td>0.6-0.9 FTE | $42,000-$76,000 recovered</td><td><strong>3x - 5x return</strong></td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:0.88rem;color:var(--text-muted);font-family:system-ui,-apple-system,sans-serif;font-style:italic;">Staff time recovery figures based on a fully loaded FTE cost of $70,000-$85,000/yr and proportional offset calculation. Actual recovery will vary by deployment scope and adoption rate.</p>
-  <div class="card-grid" style="margin-top:1.5rem;">
-    <div class="card"><div class="card-icon">&#128202;</div><h3>At medium adoption</h3><p>COMPAiSS pays for itself and offsets a meaningful portion of one staff position - directly addressing capacity gaps without adding headcount.</p></div>
-    <div class="card"><div class="card-icon">&#128176;</div><h3>At high adoption</h3><p>Staff time savings approach the full cost of one FTE - making COMPAiSS effectively self-funding while simultaneously raising service quality and 24/7 availability.</p></div>
-  </div>
+
   <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
     <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Request an Evaluation</div>
     <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation and pricing for your institution:</p>
-    <a href="/cdn-cgi/l/email-protection#abc8c4dec5dfced9cdcac8dfdecac7dfc3cec4d9d2ebccc6cac2c785c8c4c694d8dec9c1cec8df96e8e4e6fbeac2f8f88e999beeddcac7decadfc2c4c58e999bf9cedadeced8df" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">Request a Demonstration &rarr;</a>
+    <a href="mailto:counterfactualtheory@gmail.com" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">Request a Demonstration &rarr;</a>
   </div>
+
 </div>
+
+<script>
+function roiCalc() {
+  var queries  = parseInt(document.getElementById('sl-queries').value);
+  var cost     = parseInt(document.getElementById('sl-cost').value);
+  var div      = parseInt(document.getElementById('sl-div').value);
+  var license  = parseInt(document.getElementById('sl-license').value);
+
+  document.getElementById('lbl-queries').textContent = queries.toLocaleString('en-CA');
+  document.getElementById('lbl-cost').textContent    = '$' + cost;
+  document.getElementById('lbl-div').textContent     = div + '%';
+  document.getElementById('lbl-license').textContent = '$' + license.toLocaleString('en-CA');
+
+  var diverted = Math.round(queries * div / 100);
+  var saved    = Math.round(diverted * cost);
+  var net      = saved - license;
+  var multiple = saved > 0 ? (saved / license).toFixed(1) : '0';
+
+  document.getElementById('r-diverted').textContent = diverted.toLocaleString('en-CA');
+  document.getElementById('r-saved').textContent    = '$' + saved.toLocaleString('en-CA');
+  document.getElementById('r-roi').textContent      = net >= 0
+    ? '$' + Math.round(net).toLocaleString('en-CA')
+    : '-$' + Math.round(Math.abs(net)).toLocaleString('en-CA');
+  document.getElementById('r-roi').style.color      = net >= 0 ? 'var(--accent)' : '#ff7070';
+  document.getElementById('r-multiple').textContent = multiple + 'x return on investment';
+}
+roiCalc();
+</script>
+<!-- ============================================================ -->
+<!-- END ROI CALCULATOR                                           -->
+<!-- ============================================================ -->
 </main>
 <footer>
   <div class="footer-inner">
