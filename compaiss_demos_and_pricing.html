@@ -1219,12 +1219,13 @@ function roiCalc() {
 
   document.getElementById('r-diverted').textContent = diverted.toLocaleString('en-CA');
   document.getElementById('r-saved').textContent    = '$' + saved.toLocaleString('en-CA');
-  document.getElementById('r-roi').textContent      = net >= 0
+document.getElementById('r-roi').textContent      = net >= 0
     ? '$' + Math.round(net).toLocaleString('en-CA')
-    : '-$' + Math.round(Math.abs(net)).toLocaleString('en-CA');
-  document.getElementById('r-roi').style.color      = net >= 0 ? 'var(--accent)' : '#ff7070';
-  document.getElementById('r-multiple').textContent = multiple + 'x return on investment';
-}
+    : 'Cost-neutral';
+  document.getElementById('r-roi').style.color      = net >= 0 ? 'var(--accent)' : 'var(--text-muted)';
+  document.getElementById('r-multiple').textContent = net >= 0
+    ? multiple + 'x return on investment'
+    : 'Increase adoption rate to improve return';}
 roiCalc();
 </script>
 <!-- ============================================================ -->
