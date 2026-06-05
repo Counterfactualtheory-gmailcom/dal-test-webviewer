@@ -1693,7 +1693,7 @@ function roiCalc() {
 document.getElementById('r-roi').textContent      = net >= 0
     ? '$' + Math.round(net).toLocaleString('en-CA')
     : 'Cost-neutral';
-  document.getElementById('r-roi').style.color      = net >= 0 ? 'var(--accent)' : 'var(--text-muted)';
+  document.getElementById('r-roi').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
   document.getElementById('r-multiple').textContent = net >= 0
     ? multiple + 'x return on investment'
     : 'Increase adoption rate to improve return';}
