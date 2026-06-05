@@ -1693,10 +1693,38 @@ Les changements prennent effet quelques minutes après leur enregistrement. Chaq
   function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
   window.addEventListener('scroll', checkScroll);
   window.addEventListener('load', checkScroll);
-  backBtn.addEventListener('click', () => {
+backBtn.addEventListener('click', () => {
     document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
     history.replaceState(null, null, window.location.pathname);
   });
+
+function roiCalcFr() {
+  var queries  = parseInt(document.getElementById('sl-queries-fr').value);
+  var cost     = parseInt(document.getElementById('sl-cost-fr').value);
+  var div      = parseInt(document.getElementById('sl-div-fr').value);
+  var license  = parseInt(document.getElementById('sl-license-fr').value);
+
+  document.getElementById('lbl-queries-fr').textContent = queries.toLocaleString('fr-CA');
+  document.getElementById('lbl-cost-fr').textContent    = cost + ' $';
+  document.getElementById('lbl-div-fr').textContent     = div + ' %';
+  document.getElementById('lbl-license-fr').textContent = license.toLocaleString('fr-CA') + ' $';
+
+  var diverted = Math.round(queries * div / 100);
+  var saved    = Math.round(diverted * cost);
+  var net      = saved - license;
+  var multiple = saved > 0 ? (saved / license).toFixed(1) : '0';
+
+  document.getElementById('r-diverted-fr').textContent = diverted.toLocaleString('fr-CA');
+  document.getElementById('r-saved-fr').textContent    = saved.toLocaleString('fr-CA') + ' $';
+  document.getElementById('r-roi-fr').textContent      = net >= 0
+    ? Math.round(net).toLocaleString('fr-CA') + ' $'
+    : 'Neutre';
+  document.getElementById('r-roi-fr').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
+  document.getElementById('r-multiple-fr').textContent = net >= 0
+    ? 'Rendement de ' + multiple + 'x sur l\'investissement'
+    : 'Augmentez le taux de détournement pour améliorer le rendement';
+}
+roiCalcFr();
 </script>
 </body>
 </html>
