@@ -1697,7 +1697,489 @@ document.getElementById('r-roi').textContent      = net >= 0
     ? multiple + 'x return on investment'
     : 'Increase adoption rate to improve return';}
 roiCalc();
-</script>
+
+<!-- ============================================================ -->
+<!-- CALL CENTRE ROI — paste after closing </div> of #roi        -->
+<!-- ============================================================ -->
+
+<hr>
+
+<div class="content-section" id="roi-callcentre">
+  <h2>Return on Investment — Call Centre &amp; Public Sector</h2>
+  <p class="section-intro">Modelled on the live Service Canada deployment. Adjust the sliders to match your call centre and see your estimated annual savings.</p>
+
+  <style>
+    .cc-deployment-badge {
+      display: inline-block;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      background: var(--accent-soft);
+      border: 1px solid var(--border-accent);
+      color: var(--accent);
+      margin-bottom: 1.4rem;
+    }
+    .cc-preset-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .cc-preset-label {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      margin-right: 4px;
+    }
+    .cc-preset-btn {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .cc-preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .cc-preset-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--border-accent);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .cc-roi-calc { margin: 1.5rem 0; }
+    .cc-slider-row { margin-bottom: 1.2rem; }
+    .cc-slider-row label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .cc-slider-row label span {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+    .cc-slider-row input[type=range] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .cc-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 2rem 0 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .cc-results { grid-template-columns: 1fr; }
+    }
+    .cc-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .cc-card.cc-highlight {
+      border-color: var(--border-accent);
+      background: var(--accent-soft);
+    }
+    .cc-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .cc-card-value {
+      font-size: 1.5rem;
+      color: var(--text-heading);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .cc-card.cc-highlight .cc-card-value { color: var(--accent); }
+    .cc-card-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .cc-bar-section {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .cc-bar-section-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .cc-legend {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 1rem;
+    }
+    .cc-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .cc-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .cc-bar-rows { display: flex; flex-direction: column; gap: 10px; }
+    .cc-bar-row  { display: flex; align-items: center; gap: 10px; }
+    .cc-bar-lbl  {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      width: 64px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cc-bar-track {
+      flex: 1;
+      height: 30px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .cc-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+    .cc-bar-fill.cc-staffed { background: rgba(174,185,204,0.3); }
+    .cc-bar-fill.cc-ai      { background: rgba(76,175,130,0.7); }
+    .cc-bar-fill-lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .cc-bar-amt {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      width: 88px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cc-adopt-rows { display: flex; flex-direction: column; gap: 9px; }
+    .cc-adopt-row  { display: flex; align-items: center; gap: 10px; }
+    .cc-adopt-pct  {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      width: 34px;
+      flex-shrink: 0;
+    }
+    .cc-adopt-track {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .cc-adopt-fill {
+      height: 100%;
+      background: rgba(76,175,130,0.65);
+      border-radius: 5px;
+      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cc-adopt-saving {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--green);
+      width: 95px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cc-adopt-calls {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      width: 90px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    @media (max-width: 520px) { .cc-adopt-calls { display: none; } }
+    .cc-roi-note {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      max-width: 70ch;
+    }
+    .cc-benchmark-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      .cc-benchmark-grid { grid-template-columns: 1fr; }
+    }
+    .cc-benchmark-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .cc-benchmark-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .cc-benchmark-value {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .cc-benchmark-desc {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+  </style>
+
+  <div class="cc-deployment-badge">&#9679; Live deployment — compaiss.ca/service-canada</div>
+
+  <div class="cc-preset-row">
+    <span class="cc-preset-label">Load a profile:</span>
+    <button class="cc-preset-btn active" onclick="ccPreset('sc',this)">Service Canada</button>
+    <button class="cc-preset-btn" onclick="ccPreset('generic',this)">Generic call centre</button>
+    <button class="cc-preset-btn" onclick="ccPreset('hospital',this)">Hospital</button>
+    <button class="cc-preset-btn" onclick="ccPreset('muni',this)">Municipality</button>
+  </div>
+
+  <div class="cc-roi-calc">
+    <div class="cc-slider-row">
+      <label>Annual call volume <span id="cc-lbl-calls">8,000,000</span></label>
+      <input type="range" id="cc-calls" min="50000" max="20000000" step="50000" value="8000000" oninput="ccCalc()">
+    </div>
+    <div class="cc-slider-row">
+      <label>Cost per staffed call (CAD) <span id="cc-lbl-cost">$8.33</span></label>
+      <input type="range" id="cc-cost" min="1" max="30" step="0.25" value="8.33" oninput="ccCalc()">
+    </div>
+    <div class="cc-slider-row">
+      <label>Routine informational queries (%) <span id="cc-lbl-routine">60%</span></label>
+      <input type="range" id="cc-routine" min="10" max="90" step="5" value="60" oninput="ccCalc()">
+    </div>
+    <div class="cc-slider-row">
+      <label>COMPAiSS cost per interaction (CAD) <span id="cc-lbl-aicost">$0.02</span></label>
+      <input type="range" id="cc-aicost" min="0.01" max="0.20" step="0.01" value="0.02" oninput="ccCalc()">
+    </div>
+  </div>
+
+  <div class="cc-results">
+    <div class="cc-card">
+      <div class="cc-card-label">Routine call pool</div>
+      <div class="cc-card-value" id="cc-r-pool">4.8M</div>
+      <div class="cc-card-sub">eligible for AI deflection</div>
+    </div>
+    <div class="cc-card">
+      <div class="cc-card-label">Savings per interaction</div>
+      <div class="cc-card-value" id="cc-r-saving">$8.31</div>
+      <div class="cc-card-sub">staffed cost minus AI cost</div>
+    </div>
+    <div class="cc-card cc-highlight">
+      <div class="cc-card-label">Annual savings at 30% adoption</div>
+      <div class="cc-card-value" id="cc-r-30">$19.94M</div>
+      <div class="cc-card-sub" id="cc-r-ratio">416× cost reduction</div>
+    </div>
+  </div>
+
+  <div class="cc-bar-section">
+    <div class="cc-bar-section-title">Cost per interaction — staffed vs COMPAiSS</div>
+    <div class="cc-legend">
+      <span class="cc-legend-item"><span class="cc-swatch" style="background:rgba(174,185,204,0.5)"></span>Staffed call</span>
+      <span class="cc-legend-item"><span class="cc-swatch" style="background:rgba(76,175,130,0.7)"></span>COMPAiSS</span>
+    </div>
+    <div class="cc-bar-rows">
+      <div class="cc-bar-row">
+        <span class="cc-bar-lbl">Staffed</span>
+        <div class="cc-bar-track">
+          <div class="cc-bar-fill cc-staffed" id="cc-bar-staffed" style="width:100%">
+            <span class="cc-bar-fill-lbl" id="cc-bar-staffed-lbl">$8.33</span>
+          </div>
+        </div>
+        <span class="cc-bar-amt" id="cc-bar-staffed-amt">$8.33 / call</span>
+      </div>
+      <div class="cc-bar-row">
+        <span class="cc-bar-lbl">COMPAiSS</span>
+        <div class="cc-bar-track">
+          <div class="cc-bar-fill cc-ai" id="cc-bar-ai" style="width:0.4%"></div>
+        </div>
+        <span class="cc-bar-amt" id="cc-bar-ai-amt">$0.02 / call</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc-bar-section">
+    <div class="cc-bar-section-title">Annual savings by adoption rate</div>
+    <div class="cc-adopt-rows" id="cc-adopt-rows"></div>
+  </div>
+
+  <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-family:system-ui,-apple-system,sans-serif;">
+    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At Service Canada's confirmed interaction cost of $0.02 — versus $8.33 per staffed call — COMPAiSS delivers a 416× cost reduction per interaction. Diverting 30% of routine informational queries saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
+  </div>
+
+  <div style="margin-top:2rem;font-family:system-ui,-apple-system,sans-serif;">
+    <h3 style="font-size:0.9rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin:0 0 1rem;">Industry reference benchmarks — Canadian public sector call centres</h3>
+    <div class="cc-benchmark-grid">
+      <div class="cc-benchmark-card">
+        <div class="cc-benchmark-title">Cost per staffed call</div>
+        <div class="cc-benchmark-value">$6 – $12 CAD</div>
+        <div class="cc-benchmark-desc">Federal and provincial call centres typically run $7–$10 per interaction fully loaded; Service Canada confirmed at $8.33 (2023–24).</div>
+      </div>
+      <div class="cc-benchmark-card">
+        <div class="cc-benchmark-title">Annual call volume</div>
+        <div class="cc-benchmark-value">300K – 20M</div>
+        <div class="cc-benchmark-desc">Service Canada handles ~8M calls annually across EI, CPP, OAS and GIS. Municipal 311 centres average 300K–2M. Hospital switchboards 200K–800K.</div>
+      </div>
+      <div class="cc-benchmark-card">
+        <div class="cc-benchmark-title">Routine query share</div>
+        <div class="cc-benchmark-value">45% – 70%</div>
+        <div class="cc-benchmark-desc">Informational queries — eligibility, status checks, hours, locations, program details — typically represent 50–65% of inbound volume at public sector centres.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS interaction cost confirmed at $0.02. Savings projections assume COMPAiSS handles routine informational queries only — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
+
+</div>
+
+<script>
+(function(){
+  var ccPresets = {
+    sc:       { calls:8000000, cost:8.33, routine:60, aicost:0.02 },
+    generic:  { calls:1000000, cost:6.00, routine:50, aicost:0.02 },
+    hospital: { calls:500000,  cost:9.00, routine:45, aicost:0.02 },
+    muni:     { calls:300000,  cost:5.50, routine:55, aicost:0.02 }
+  };
+  var ccNames = {
+    sc:'Service Canada', generic:'this call centre',
+    hospital:'this hospital', muni:'this municipality'
+  };
+  var ccCurrent = 'sc';
+
+  window.ccPreset = function(key, btn) {
+    ccCurrent = key;
+    var p = ccPresets[key];
+    document.getElementById('cc-calls').value   = p.calls;
+    document.getElementById('cc-cost').value    = p.cost;
+    document.getElementById('cc-routine').value = p.routine;
+    document.getElementById('cc-aicost').value  = p.aicost;
+    document.querySelectorAll('.cc-preset-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    ccCalc();
+  };
+
+  function ccFmt(n){
+    if(n>=1000000) return '$'+(n/1000000).toFixed(2)+'M';
+    if(n>=1000)    return '$'+Math.round(n/1000)+'K';
+    return '$'+Math.round(n).toLocaleString('en-CA');
+  }
+  function ccFmtNum(n){
+    if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+    if(n>=1000)    return Math.round(n/1000)+'K';
+    return n.toLocaleString('en-CA');
+  }
+
+  window.ccCalc = function(){
+    var calls   = parseInt(document.getElementById('cc-calls').value);
+    var cost    = parseFloat(document.getElementById('cc-cost').value);
+    var routine = parseInt(document.getElementById('cc-routine').value);
+    var aicost  = parseFloat(document.getElementById('cc-aicost').value);
+
+    document.getElementById('cc-lbl-calls').textContent   = calls.toLocaleString('en-CA');
+    document.getElementById('cc-lbl-cost').textContent    = '$'+cost.toFixed(2);
+    document.getElementById('cc-lbl-routine').textContent = routine+'%';
+    document.getElementById('cc-lbl-aicost').textContent  = '$'+aicost.toFixed(2);
+
+    var pool   = Math.round(calls * routine / 100);
+    var saving = cost - aicost;
+    var ratio  = Math.round(cost / aicost);
+    var s30    = Math.round(pool * 0.30 * saving);
+
+    document.getElementById('cc-r-pool').textContent   = ccFmtNum(pool);
+    document.getElementById('cc-r-saving').textContent = '$'+saving.toFixed(2);
+    document.getElementById('cc-r-30').textContent     = ccFmt(s30);
+    document.getElementById('cc-r-ratio').textContent  = ratio.toLocaleString('en-CA')+'× cost reduction';
+
+    var aiPct = Math.max(0.4, (aicost/cost)*100);
+    document.getElementById('cc-bar-staffed-lbl').textContent = '$'+cost.toFixed(2);
+    document.getElementById('cc-bar-staffed-amt').textContent = '$'+cost.toFixed(2)+' / call';
+    document.getElementById('cc-bar-ai').style.width          = aiPct.toFixed(2)+'%';
+    document.getElementById('cc-bar-ai-amt').textContent      = '$'+aicost.toFixed(2)+' / call';
+
+    var rates  = [0.10,0.20,0.30,0.50,0.75];
+    var labels = ['10%','20%','30%','50%','75%'];
+    var maxSav = pool * 0.75 * saving;
+    var rows   = document.getElementById('cc-adopt-rows');
+    rows.innerHTML = '';
+    rates.forEach(function(r,i){
+      var deflected = Math.round(pool*r);
+      var saved     = deflected*saving;
+      var barPct    = maxSav>0 ? Math.round((saved/maxSav)*100) : 0;
+      var div = document.createElement('div');
+      div.className = 'cc-adopt-row';
+      div.innerHTML =
+        '<span class="cc-adopt-pct">'+labels[i]+'</span>'+
+        '<div class="cc-adopt-track"><div class="cc-adopt-fill" style="width:'+barPct+'%"></div></div>'+
+        '<span class="cc-adopt-saving">'+ccFmt(saved)+' / yr</span>'+
+        '<span class="cc-adopt-calls">'+ccFmtNum(deflected)+' calls</span>';
+      rows.appendChild(div);
+    });
+
+    var name = ccNames[ccCurrent] || 'this deployment';
+    document.getElementById('cc-highlight').textContent =
+      'At a confirmed interaction cost of $'+aicost.toFixed(2)+
+      ' — versus $'+cost.toFixed(2)+' per staffed call — COMPAiSS delivers a '+
+      ratio.toLocaleString('en-CA')+'× cost reduction per interaction. Diverting 30% of routine informational queries from '+
+      name+' saves an estimated '+ccFmt(s30)+' annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.';
+  };
+
+  ccCalc();
+})();
+</script>  
+  
 <!-- ============================================================ -->
 <!-- END ROI CALCULATOR                                           -->
 <!-- ============================================================ -->
