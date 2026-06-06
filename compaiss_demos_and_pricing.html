@@ -1693,17 +1693,14 @@ document.getElementById('r-roi').textContent      = net >= 0
     ? '$' + Math.round(net).toLocaleString('en-CA')
     : 'Cost-neutral';
   document.getElementById('r-roi').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
-  document.getElementById('r-multiple').textContent = net >= 0
+document.getElementById('r-multiple').textContent = net >= 0
     ? multiple + 'x return on investment'
-    : 'Increase adoption rate to improve return';}
+    : 'Increase adoption rate to improve return';
+}
 roiCalc();
-
-<!-- ============================================================ -->
-<!-- CALL CENTRE ROI — paste after closing </div> of #roi        -->
-<!-- ============================================================ -->
+</script>
 
 <hr>
-
 <div class="content-section" id="roi-callcentre">
   <h2>Return on Investment — Call Centre &amp; Public Sector</h2>
   <p class="section-intro">Modelled on the live Service Canada deployment. Adjust the sliders to match your call centre and see your estimated annual savings.</p>
