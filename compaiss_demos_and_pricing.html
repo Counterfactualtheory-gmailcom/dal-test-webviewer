@@ -1700,7 +1700,15 @@ document.getElementById('r-multiple').textContent = net >= 0
 roiCalc();
 </script>
 
+<!-- ============================================================ -->
+<!-- CALL CENTRE ROI — UPDATED EN — paste after closing </div>   -->
+<!-- of #roi section and before </script> closing tag            -->
+<!-- CHANGE: removed "Routine informational queries" slider.     -->
+<!-- Adoption rate bars now apply directly to total call volume. -->
+<!-- ============================================================ -->
+
 <hr>
+
 <div class="content-section" id="roi-callcentre">
   <h2>Return on Investment — Call Centre &amp; Public Sector</h2>
   <p class="section-intro">Modelled on the live Service Canada deployment. Adjust the sliders to match your call centre and see your estimated annual savings.</p>
@@ -1747,10 +1755,7 @@ roiCalc();
       transition: border-color 0.15s, color 0.15s, background 0.15s;
       letter-spacing: 0.03em;
     }
-    .cc-preset-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .cc-preset-btn:hover { border-color: var(--accent); color: var(--accent); }
     .cc-preset-btn.active {
       background: var(--accent-soft);
       border-color: var(--border-accent);
@@ -1768,25 +1773,15 @@ roiCalc();
       color: var(--text-muted);
       margin-bottom: 6px;
     }
-    .cc-slider-row label span {
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
-    .cc-slider-row input[type=range] {
-      width: 100%;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
+    .cc-slider-row label span { color: var(--accent); font-weight: 600; font-size: 0.92rem; }
+    .cc-slider-row input[type=range] { width: 100%; accent-color: var(--accent); cursor: pointer; }
     .cc-results {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin: 2rem 0 1.5rem;
     }
-    @media (max-width: 600px) {
-      .cc-results { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .cc-results { grid-template-columns: 1fr; } }
     .cc-card {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
@@ -1795,29 +1790,11 @@ roiCalc();
       text-align: center;
       font-family: system-ui, -apple-system, sans-serif;
     }
-    .cc-card.cc-highlight {
-      border-color: var(--border-accent);
-      background: var(--accent-soft);
-    }
-    .cc-card-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .cc-card-value {
-      font-size: 1.5rem;
-      color: var(--text-heading);
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    .cc-card.cc-highlight { border-color: var(--border-accent); background: var(--accent-soft); }
+    .cc-card-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .cc-card-value { font-size: 1.5rem; color: var(--text-heading); font-weight: 700; line-height: 1.2; }
     .cc-card.cc-highlight .cc-card-value { color: var(--accent); }
-    .cc-card-sub {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .cc-card-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
     .cc-bar-section {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
@@ -1826,108 +1803,28 @@ roiCalc();
       margin: 1.5rem 0;
       font-family: system-ui, -apple-system, sans-serif;
     }
-    .cc-bar-section-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    .cc-legend {
-      display: flex;
-      gap: 18px;
-      margin-bottom: 1rem;
-    }
-    .cc-legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .cc-swatch {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
+    .cc-bar-section-title { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; font-weight: 700; }
+    .cc-legend { display: flex; gap: 18px; margin-bottom: 1rem; }
+    .cc-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-muted); }
+    .cc-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
     .cc-bar-rows { display: flex; flex-direction: column; gap: 10px; }
     .cc-bar-row  { display: flex; align-items: center; gap: 10px; }
-    .cc-bar-lbl  {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      width: 64px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-    .cc-bar-track {
-      flex: 1;
-      height: 30px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .cc-bar-fill {
-      height: 100%;
-      border-radius: 6px;
-      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-    }
+    .cc-bar-lbl  { font-size: 0.75rem; color: var(--text-muted); width: 64px; text-align: right; flex-shrink: 0; }
+    .cc-bar-track { flex: 1; height: 30px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+    .cc-bar-fill { height: 100%; border-radius: 6px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); display: flex; align-items: center; padding: 0 10px; }
     .cc-bar-fill.cc-staffed { background: rgba(174,185,204,0.3); }
     .cc-bar-fill.cc-ai      { background: rgba(76,175,130,0.7); }
-    .cc-bar-fill-lbl {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #fff;
-      white-space: nowrap;
-    }
-    .cc-bar-amt {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      width: 88px;
-      text-align: right;
-      flex-shrink: 0;
-    }
+    .cc-bar-fill-lbl { font-size: 0.72rem; font-weight: 600; color: #fff; white-space: nowrap; }
+    .cc-bar-amt { font-size: 0.75rem; color: var(--text-muted); width: 88px; text-align: right; flex-shrink: 0; }
     .cc-adopt-rows { display: flex; flex-direction: column; gap: 9px; }
     .cc-adopt-row  { display: flex; align-items: center; gap: 10px; }
-    .cc-adopt-pct  {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      width: 34px;
-      flex-shrink: 0;
-    }
-    .cc-adopt-track {
-      flex: 1;
-      height: 22px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .cc-adopt-fill {
-      height: 100%;
-      background: rgba(76,175,130,0.65);
-      border-radius: 5px;
-      transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    .cc-adopt-saving {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--green);
-      width: 95px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-    .cc-adopt-calls {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      width: 90px;
-      text-align: right;
-      flex-shrink: 0;
-    }
+    .cc-adopt-pct  { font-size: 0.75rem; color: var(--text-muted); width: 34px; flex-shrink: 0; }
+    .cc-adopt-track { flex: 1; height: 22px; background: rgba(255,255,255,0.06); border-radius: 5px; overflow: hidden; }
+    .cc-adopt-fill { height: 100%; background: rgba(76,175,130,0.65); border-radius: 5px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .cc-adopt-saving { font-size: 0.8rem; font-weight: 600; color: var(--green); width: 95px; text-align: right; flex-shrink: 0; }
+    .cc-adopt-calls { font-size: 0.72rem; color: var(--text-muted); width: 90px; text-align: right; flex-shrink: 0; }
     @media (max-width: 520px) { .cc-adopt-calls { display: none; } }
+    .cc-adopt-note { font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.8rem; }
     .cc-roi-note {
       font-family: system-ui, -apple-system, sans-serif;
       font-size: 0.78rem;
@@ -1938,15 +1835,8 @@ roiCalc();
       margin-top: 0.5rem;
       max-width: 70ch;
     }
-    .cc-benchmark-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 1rem;
-    }
-    @media (max-width: 600px) {
-      .cc-benchmark-grid { grid-template-columns: 1fr; }
-    }
+    .cc-benchmark-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 1rem; }
+    @media (max-width: 600px) { .cc-benchmark-grid { grid-template-columns: 1fr; } }
     .cc-benchmark-card {
       background: var(--bg-panel);
       border: 1px solid var(--border-soft);
@@ -1954,25 +1844,9 @@ roiCalc();
       padding: 1.1rem 1.2rem;
       font-family: system-ui, -apple-system, sans-serif;
     }
-    .cc-benchmark-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-    .cc-benchmark-value {
-      font-size: 1.5rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .cc-benchmark-desc {
-      font-size: 0.82rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
+    .cc-benchmark-title { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
+    .cc-benchmark-value { font-size: 1.5rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+    .cc-benchmark-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
   </style>
 
   <div class="cc-deployment-badge">&#9679; Live deployment — compaiss.ca/service-canada</div>
@@ -1995,10 +1869,6 @@ roiCalc();
       <input type="range" id="cc-cost" min="1" max="30" step="0.25" value="8.33" oninput="ccCalc()">
     </div>
     <div class="cc-slider-row">
-      <label>Routine informational queries (%) <span id="cc-lbl-routine">60%</span></label>
-      <input type="range" id="cc-routine" min="10" max="90" step="5" value="60" oninput="ccCalc()">
-    </div>
-    <div class="cc-slider-row">
       <label>COMPAiSS cost per interaction (CAD) <span id="cc-lbl-aicost">$0.02</span></label>
       <input type="range" id="cc-aicost" min="0.01" max="0.20" step="0.01" value="0.02" oninput="ccCalc()">
     </div>
@@ -2006,9 +1876,9 @@ roiCalc();
 
   <div class="cc-results">
     <div class="cc-card">
-      <div class="cc-card-label">Routine call pool</div>
-      <div class="cc-card-value" id="cc-r-pool">4.8M</div>
-      <div class="cc-card-sub">eligible for AI deflection</div>
+      <div class="cc-card-label">Total annual calls</div>
+      <div class="cc-card-value" id="cc-r-calls">8.0M</div>
+      <div class="cc-card-sub">current call volume</div>
     </div>
     <div class="cc-card">
       <div class="cc-card-label">Savings per interaction</div>
@@ -2016,7 +1886,7 @@ roiCalc();
       <div class="cc-card-sub">staffed cost minus AI cost</div>
     </div>
     <div class="cc-card cc-highlight">
-      <div class="cc-card-label">Annual savings at 30% adoption</div>
+      <div class="cc-card-label">Annual savings at 30% deflection</div>
       <div class="cc-card-value" id="cc-r-30">$19.94M</div>
       <div class="cc-card-sub" id="cc-r-ratio">416× cost reduction</div>
     </div>
@@ -2049,12 +1919,13 @@ roiCalc();
   </div>
 
   <div class="cc-bar-section">
-    <div class="cc-bar-section-title">Annual savings by adoption rate</div>
+    <div class="cc-bar-section-title" id="cc-adopt-title">Annual savings by deflection rate — Service Canada</div>
+    <p class="cc-adopt-note">Each row shows annual savings if that percentage of total calls is handled by COMPAiSS instead of staff.</p>
     <div class="cc-adopt-rows" id="cc-adopt-rows"></div>
   </div>
 
   <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-family:system-ui,-apple-system,sans-serif;">
-    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At Service Canada's confirmed interaction cost of $0.02 — versus $8.33 per staffed call — COMPAiSS delivers a 416× cost reduction per interaction. Diverting 30% of routine informational queries saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
+    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At Service Canada's confirmed interaction cost of $0.02 — versus $8.33 per staffed call — COMPAiSS delivers a 416× cost reduction per interaction. Deflecting 30% of total calls saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
   </div>
 
   <div style="margin-top:2rem;font-family:system-ui,-apple-system,sans-serif;">
@@ -2071,38 +1942,41 @@ roiCalc();
         <div class="cc-benchmark-desc">Service Canada handles ~8M calls annually across EI, CPP, OAS and GIS. Municipal 311 centres average 300K–2M. Hospital switchboards 200K–800K.</div>
       </div>
       <div class="cc-benchmark-card">
-        <div class="cc-benchmark-title">Routine query share</div>
-        <div class="cc-benchmark-value">45% – 70%</div>
-        <div class="cc-benchmark-desc">Informational queries — eligibility, status checks, hours, locations, program details — typically represent 50–65% of inbound volume at public sector centres.</div>
+        <div class="cc-benchmark-title">Deflection potential</div>
+        <div class="cc-benchmark-value">25% – 65%</div>
+        <div class="cc-benchmark-desc">Informational queries — eligibility, status checks, hours, locations, program details — typically represent 50–65% of inbound volume at public sector centres and are candidates for AI deflection.</div>
       </div>
     </div>
   </div>
 
-  <p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS interaction cost confirmed at $0.02. Savings projections assume COMPAiSS handles routine informational queries only — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
+  <p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS interaction cost confirmed at $0.02. Savings projections assume COMPAiSS handles calls that would otherwise be answered by staff — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
 
 </div>
 
 <script>
 (function(){
   var ccPresets = {
-    sc:       { calls:8000000, cost:8.33, routine:60, aicost:0.02 },
-    generic:  { calls:1000000, cost:6.00, routine:50, aicost:0.02 },
-    hospital: { calls:500000,  cost:9.00, routine:45, aicost:0.02 },
-    muni:     { calls:300000,  cost:5.50, routine:55, aicost:0.02 }
+    sc:       { calls:8000000, cost:8.33, aicost:0.02 },
+    generic:  { calls:1000000, cost:6.00, aicost:0.02 },
+    hospital: { calls:500000,  cost:9.00, aicost:0.02 },
+    muni:     { calls:300000,  cost:5.50, aicost:0.02 }
   };
   var ccNames = {
     sc:'Service Canada', generic:'this call centre',
     hospital:'this hospital', muni:'this municipality'
+  };
+  var ccTitleNames = {
+    sc:'Service Canada', generic:'Generic call centre',
+    hospital:'Hospital', muni:'Municipality'
   };
   var ccCurrent = 'sc';
 
   window.ccPreset = function(key, btn) {
     ccCurrent = key;
     var p = ccPresets[key];
-    document.getElementById('cc-calls').value   = p.calls;
-    document.getElementById('cc-cost').value    = p.cost;
-    document.getElementById('cc-routine').value = p.routine;
-    document.getElementById('cc-aicost').value  = p.aicost;
+    document.getElementById('cc-calls').value  = p.calls;
+    document.getElementById('cc-cost').value   = p.cost;
+    document.getElementById('cc-aicost').value = p.aicost;
     document.querySelectorAll('.cc-preset-btn').forEach(function(b){ b.classList.remove('active'); });
     btn.classList.add('active');
     ccCalc();
@@ -2120,22 +1994,19 @@ roiCalc();
   }
 
   window.ccCalc = function(){
-    var calls   = parseInt(document.getElementById('cc-calls').value);
-    var cost    = parseFloat(document.getElementById('cc-cost').value);
-    var routine = parseInt(document.getElementById('cc-routine').value);
-    var aicost  = parseFloat(document.getElementById('cc-aicost').value);
+    var calls  = parseInt(document.getElementById('cc-calls').value);
+    var cost   = parseFloat(document.getElementById('cc-cost').value);
+    var aicost = parseFloat(document.getElementById('cc-aicost').value);
 
-    document.getElementById('cc-lbl-calls').textContent   = calls.toLocaleString('en-CA');
-    document.getElementById('cc-lbl-cost').textContent    = '$'+cost.toFixed(2);
-    document.getElementById('cc-lbl-routine').textContent = routine+'%';
-    document.getElementById('cc-lbl-aicost').textContent  = '$'+aicost.toFixed(2);
+    document.getElementById('cc-lbl-calls').textContent  = calls.toLocaleString('en-CA');
+    document.getElementById('cc-lbl-cost').textContent   = '$'+cost.toFixed(2);
+    document.getElementById('cc-lbl-aicost').textContent = '$'+aicost.toFixed(2);
 
-    var pool   = Math.round(calls * routine / 100);
     var saving = cost - aicost;
     var ratio  = Math.round(cost / aicost);
-    var s30    = Math.round(pool * 0.30 * saving);
+    var s30    = Math.round(calls * 0.30 * saving);
 
-    document.getElementById('cc-r-pool').textContent   = ccFmtNum(pool);
+    document.getElementById('cc-r-calls').textContent  = ccFmtNum(calls);
     document.getElementById('cc-r-saving').textContent = '$'+saving.toFixed(2);
     document.getElementById('cc-r-30').textContent     = ccFmt(s30);
     document.getElementById('cc-r-ratio').textContent  = ratio.toLocaleString('en-CA')+'× cost reduction';
@@ -2146,15 +2017,18 @@ roiCalc();
     document.getElementById('cc-bar-ai').style.width          = aiPct.toFixed(2)+'%';
     document.getElementById('cc-bar-ai-amt').textContent      = '$'+aicost.toFixed(2)+' / call';
 
+    document.getElementById('cc-adopt-title').textContent =
+      'Annual savings by deflection rate — ' + (ccTitleNames[ccCurrent] || 'this deployment');
+
     var rates  = [0.10,0.20,0.30,0.50,0.75];
     var labels = ['10%','20%','30%','50%','75%'];
-    var maxSav = pool * 0.75 * saving;
+    var maxSav = calls * 0.75 * saving;
     var rows   = document.getElementById('cc-adopt-rows');
     rows.innerHTML = '';
     rates.forEach(function(r,i){
-      var deflected = Math.round(pool*r);
-      var saved     = deflected*saving;
-      var barPct    = maxSav>0 ? Math.round((saved/maxSav)*100) : 0;
+      var deflected = Math.round(calls * r);
+      var saved     = deflected * saving;
+      var barPct    = maxSav > 0 ? Math.round((saved/maxSav)*100) : 0;
       var div = document.createElement('div');
       div.className = 'cc-adopt-row';
       div.innerHTML =
@@ -2169,17 +2043,13 @@ roiCalc();
     document.getElementById('cc-highlight').textContent =
       'At a confirmed interaction cost of $'+aicost.toFixed(2)+
       ' — versus $'+cost.toFixed(2)+' per staffed call — COMPAiSS delivers a '+
-      ratio.toLocaleString('en-CA')+'× cost reduction per interaction. Diverting 30% of routine informational queries from '+
+      ratio.toLocaleString('en-CA')+'× cost reduction per interaction. Deflecting 30% of total calls from '+
       name+' saves an estimated '+ccFmt(s30)+' annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.';
   };
 
   ccCalc();
 })();
-</script>  
-  
-<!-- ============================================================ -->
-<!-- END ROI CALCULATOR                                           -->
-<!-- ============================================================ -->
+</script>
 </main>
 <footer>
   <div class="footer-inner">
