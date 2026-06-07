@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4686202821245413"
+     crossorigin="anonymous"></script>
+
+<link rel="canonical" href="https://compaiss.ca/" />
+<link rel="alternate" hreflang="en" href="https://compaiss.ca/index.html" />
+<link rel="alternate" hreflang="fr" href="https://compaiss.ca/index_french.html" />
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>COMPAiSS</title>
+
+  <style>
+    :root {
+      --wrap: 980px;
+      --pad: 32px;
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+      --bg-card: rgba(255,255,255,0.05);
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+      --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
+      --border-soft: rgba(255,255,255,0.08);
+      --border-accent: rgba(240,196,76,0.3);
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+      --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: .95; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; background: #000; color: #fff; padding: 8px 12px; z-index: 1000; }
+
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav .brand-text {
+      flex: 0 0 auto;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, sans-serif;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0; padding: 0;
+      font-size: 0.82rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .nav li { text-align: center; }
+    .nav li a { display: block; text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+
+    .nav-cta {
+      flex: 0 0 auto;
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: var(--accent);
+      color: #000 !important;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      border-radius: 5px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; color: #000 !important; }
+
+    main { max-width: var(--wrap); margin: 0 auto; padding: var(--pad); }
+
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header .logo-wrap { margin-bottom: 1.6rem; }
+    .page-header .logo-wrap img { max-width: 480px; width: 100%; height: auto; display: inline-block; }
+
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-nav ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    @media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
+
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .content-section { margin-bottom: 4rem; padding-top: 1rem; }
+
+    .content-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .content-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .content-section p { max-width: 70ch; margin: 1em 0; font-size: 1rem; line-height: 1.7; }
+    .content-section ul { max-width: 70ch; margin: 1em 0 1.6em 1.4em; }
+    .content-section li { margin: 0.55em 0; font-size: 1rem; line-height: 1.65; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+
+    .card h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .card p { font-size: 0.92rem; color: var(--text-main); margin: 0; line-height: 1.6; max-width: none; }
+
+    .highlight-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .highlight-block p { margin: 0 0 0.6rem; font-size: 0.95rem; color: var(--text-main); max-width: none; line-height: 1.65; }
+    .highlight-block p:last-child { margin-bottom: 0; }
+
+    .doc-list { list-style: none; margin: 1.5rem 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+    .doc-list li {
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .doc-list li a { color: var(--link); font-weight: 500; }
+
+    hr { border: none; border-top: 1px solid var(--border-soft); margin: 3rem 0; }
+
+    /* Benefits two-column grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem;
+      margin: 1.4rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .benefit-item::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Competitor table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      margin: 1.6rem 0;
+    }
+
+    .comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+    .comp-table th {
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .comp-table th.center { text-align: center; }
+
+    .comp-table td {
+      padding: 0.7rem 0.9rem;
+      border-bottom: 0.5px solid var(--border-soft);
+      color: var(--text-main);
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-table td.center { text-align: center; }
+
+    .comp-table tr.compaiss-row td {
+      background: var(--accent-soft);
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .comp-table tr.compaiss-row td:first-child { border-left: 3px solid var(--accent); }
+
+    .yes-no-yes { color: var(--green); font-weight: 700; }
+    .yes-no-no  { color: #e05555; font-weight: 700; }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header .logo-wrap img { max-width: 320px; }
+      .nav-cta { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <nav class="nav" aria-label="Primary">
+    <a href="/index.html" class="brand-text active">COMPAiSS</a>
+    <ul>
+      <li><a href="/why-ai-developed-this-way.html">Why AI Developed This Way</a></li>
+      <li><a href="/governance.html">AI Governance</a></li>
+      <li><a href="/ai-risk-assessment.html">AI Risk Assessment</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">COMPAiSS Demos and Pricing</a></li>
+      <li><a href="/deployment-and-institutional-fit.html">Deployment and Institutional Fit</a></li>
+      <li><a href="/index_french.html">FR</a></li>
+    </ul>
+    <a href="mailto:counterfactualtheory@gmail.com?subject=COMPAiSS%20Evaluation%20Request" class="nav-cta">Request a Demo</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ -->
+  <!-- HERO                                                         -->
+  <!-- ============================================================ -->
+
+  <div class="page-header">
+    <div class="eyebrow">Institutional AI Governance</div>
+    <div class="logo-wrap">
+      <img
+        src="/assets/compaiss_logo-en.png"
+        alt="COMPAiSS - Designed for Environments Where Accuracy Is Mandatory. Where AI Stops Guessing."
+      >
+    </div>
+    <p class="hero-statement">
+      <strong style="display:block; font-size:1.35rem; line-height:1.5; max-width:720px; margin:0 auto;">
+        COMPAiSS does not allow AI to generate a response unless it is authorized in advance against institution-approved sources.
+      </strong>
+      <span style="display:block; margin-top:0.8rem; font-size:0.9rem; color:#9cc9ff; font-family:system-ui,-apple-system,sans-serif;">
+        An AI system engineered for regulated environments where accuracy, authority, and governance are non-negotiable.
+      </span>
+    </p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- INSERTION 1: GOVERNANCE PARADOX - above section nav         -->
+  <!-- The most original strategic insight on the site, surfaced   -->
+  <!-- immediately as a provocation before any other argument.     -->
+  <!-- ============================================================ -->
+
+  <div style="margin: 0 0 2.8rem; padding: 1.6rem 2rem; background: rgba(240,196,76,0.07); border: 1px solid rgba(240,196,76,0.3); border-radius: var(--radius); font-family: system-ui, -apple-system, sans-serif;">
+    <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem;">The Governance Paradox</div>
+    <p style="font-size: 1.05rem; color: var(--text-heading); line-height: 1.65; margin: 0 0 0.8rem; max-width: 72ch; font-weight: 400;">
+      As frontier AI models become more capable, they become <em>less</em> suitable for regulated institutions - not more. A more capable model does not produce fewer boundary violations. It produces more persuasive ones.
+    </p>
+    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 72ch;">
+      For regulated institutions, the governance challenge scales with AI capability. Waiting for better models is not a mitigation strategy. It is a deferral of a problem that compounds over time. COMPAiSS addresses this structurally: authorization occurs before inference, external to the model, and is therefore invariant to model improvement.
+    </p>
+  </div>
+
+  <!-- SECTION NAV -->
+  <div class="section-nav">
+    <strong>Navigate</strong>
+    <ul>
+      <li><a href="#what-compaiss-does">What COMPAiSS Does</a></li>
+      <li><a href="#why-choose">Why Institutions Choose COMPAiSS</a></li>
+      <li><a href="#architecture">How the Architecture Works</a></li>
+      <li><a href="#structural-problem">The Structural Problem with AI Today</a></li>
+      <li><a href="#accuracy">Where Accuracy Is Not Optional</a></li>
+      <li><a href="#structural-solution">COMPAiSS: The Structural Solution</a></li>
+      <li><a href="#competitor-table">COMPAiSS vs. Enterprise AI</a></li>
+      <li><a href="#not-rag-gp-faq">Not RAG. Not General-Purpose. Not a FAQ Bot.</a></li>
+      <li><a href="#cost-savings">Cost Savings by Design</a></li>
+      <li><a href="#enterprise-contrast">The Contrast with Enterprise AI Assistants</a></li>
+      <li><a href="#translations">Multilingual Governance</a></li>
+      <li><a href="#consulting-firms">For Consulting Firms and System Integrators</a></li>
+      <li><a href="#procurement">Built for Institutional Procurement</a></li>
+      <li><a href="#accountability">Institutional Accountability and Control</a></li>
+      <li><a href="#explore">Explore This Architecture</a></li>
+      <li><a href="#technical-docs">Technical Documentation</a></li>
+      <li><a href="#about">About COMPAiSS</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- WHAT IT DOES                                                 -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="what-compaiss-does">
+    <h2>What COMPAiSS Does</h2>
+    <p class="section-intro">Turning complex institutional web ecosystems into accurate, authoritative, multilingual AI responses.</p>
+    <p>Websites for regulated institutions contain thousands of pages of information - policies, procedures, rules, and support resources - typically distributed across multiple departments, administrative offices, and service units. For most users, navigating these opaque websites to find the right answer quickly is a daunting proposition.</p>
+    <p>Universities, government service departments, hospitals, and professional regulators all face the same challenge: the information exists, but it is spread across hundreds or thousands of webpages and policy documents, each governed by different offices and updated on different schedules.</p>
+    <p>COMPAiSS solves this problem for institutions that have an obligation to provide clear, accurate, and authoritative information - delivered in any language the user prefers - without generating responses that go beyond what the institution has actually authorized.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- INSERTION 2: WHY INSTITUTIONS CHOOSE COMPAISS               -->
+  <!-- Benefits block - outcomes, not just architecture.           -->
+  <!-- Positioned before the architecture section so CIOs and      -->
+  <!-- procurement officers see what they get before the how.      -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="why-choose">
+    <h2>Why Institutions Choose COMPAiSS</h2>
+    <p class="section-intro">Eight outcomes that no generation-first AI system can match by architecture.</p>
+    <div class="benefits-grid">
+      <div class="benefit-item">Eliminates unauthorized institutional AI responses</div>
+      <div class="benefit-item">Reduces AI governance risk structurally, not probabilistically</div>
+      <div class="benefit-item">Reduces deployment cost by 70–85% versus enterprise RAG</div>
+      <div class="benefit-item">Answers correctly in any language - meaning governed before translation</div>
+      <div class="benefit-item">Deploys in days, not months - no IT integration required to start</div>
+      <div class="benefit-item">Produces a complete, auditable procurement trail</div>
+      <div class="benefit-item">Institution controls which sources are authoritative</div>
+      <div class="benefit-item">Institution controls scope - the AI cannot answer outside it</div>
+    </div>
+    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Each of these properties is architectural - not a policy setting, not a configuration option, not a dashboard control. They are structural properties of the execution-gated inference model that cannot be accidentally disabled.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- ARCHITECTURE DIAGRAM                                         -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="architecture">
+    <h2>How the Architecture Works</h2>
+    <p class="section-intro">Execution-gated inference - the AI will not answer questions it is not authorized to answer.</p>
+    <p>At its core, COMPAiSS is built on an execution-gated inference architecture. If authorization fails, the primary institutional reasoning model does not execute or allocate primary inference resources.</p>
+    <p>By controlling whether AI reasoning happens at all, COMPAiSS enforces institutional authority structurally, rather than relying on post-generation filtering or correction.</p>
+    <p>COMPAiSS employs defense-in-depth controls: authorization gating prevents unauthorized primary model execution, instruction-based constraints guide behavior during authorized inference, and post-generation validation ensures URL compliance with institutional sources.</p>
+    <p>The greenlist and parsing architecture do more than control scope - they control what the model receives as its epistemic environment. When the model receives content only from pre-parsed, institutionally authorized pages and documents, the surface area for misinterpretation is dramatically smaller than in a RAG system reasoning over a broad, unstructured corpus.</p>
+
+    <div class="highlight-block">
+      <p>The precise claim: COMPAiSS eliminates scope-violation hallucinations by design, and materially reduces - though does not eliminate - generation-quality risks within authorized scope through structured parsing and tightly bounded inference contexts.</p>
+      <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2.pdf">View Comparison Table (PDF)</a></p>
+    </div>
+
+    <img src="/assets/compaiss_executive_comparison.png" alt="COMPAiSS architecture comparison: execution-gated inference versus generation-first AI" role="img" style="max-width: 100%; height: auto; display: block; margin: 2.5rem auto; border-radius: 8px;">
+
+    <div class="card-grid" style="margin-top: 1.8rem;">
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Figure 1 - Standard RAG Architecture</h3>
+        <p>Illustrates how conventional AI and RAG systems operate with model inference active from the start, relying on retrieval and post-generation controls to manage risk after an answer has been produced.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/rag_figure_1.pdf">View Figure 1 (PDF)</a></p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Figure 2 - COMPAiSS Architecture</h3>
+        <p>Shows COMPAiSS's execution-gated design, where authorization and scope validation occur before any model inference, and unsupported questions prevent the AI from running at all.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_figure_2.pdf">View Figure 2 (PDF)</a></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- STRUCTURAL PROBLEM (consolidated)                           -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="structural-problem">
+    <h2>The Structural Problem with AI Systems Today</h2>
+    <p class="section-intro">Why generation-first AI creates risks that disclaimers cannot fix.</p>
+
+    <p>As a direct consequence of complex institutional web ecosystems, many users turn to consumer-based AI systems (ChatGPT, Copilot, Gemini, and similar tools) to obtain fast, clear answers to institution-specific questions.</p>
+    <p>But consumer AI models are designed to generate responses by default. They optimize for broad usefulness across a vast training base. When these systems are applied to narrow, institution-specific questions, errors, hallucinations, and references to non-authoritative or external sources are a predictable byproduct of that design.</p>
+    <p>The AI industry readily acknowledges these facts - incorrect or unsupported answers are generally treated as expected outcomes to be managed rather than failures to be prevented. In regulated institutional environments, however, this approach introduces risks that are difficult - if not impossible - to fully mitigate after an answer has already been delivered.</p>
+    <p>There are also strong economic incentives to preserve this generation-first model. Managing risk after answers are produced enables entire ecosystems of enterprise features - monitoring tools, compliance dashboards, moderation layers, human review workflows, and governance add-ons - that are costly to build, costly to operate, and highly profitable to sell. These measures may reduce exposure, but they do not change the underlying architecture or eliminate the root causes of hallucinations.</p>
+
+    <div class="highlight-block">
+      <h3>Independent Evidence</h3>
+      <p>A 2025 global study conducted by KPMG and the University of Melbourne surveyed more than 48,000 people across 47 countries and found that AI adoption is accelerating while trust, governance, and oversight challenges remain significant. The study reported that 66% of respondents use AI regularly, yet only 46% are willing to trust AI systems, while 70% believe stronger AI regulation is needed. The researchers concluded that organizations must strengthen governance, trust, literacy, and oversight as AI deployment expands. COMPAiSS was developed specifically to address this governance gap through pre-inference authorization and execution-gated governance.</p>
+      <p>
+        <a href="https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html"
+           target="_blank" rel="noopener">
+           Read the KPMG / University of Melbourne Global AI Trust Study
+        </a>
+      </p>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong><a href="/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf">View Empirical Hallucination Rates Across Leading AI Models (2023–2025) (PDF)</a></strong></p>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong><a href="/assets/institutional_ai_failures_in_practice.pdf">When Institutions Get AI Wrong - Five Documented Cases from Higher Education and Regulated Environments (PDF)</a></strong></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- WHERE ACCURACY IS NOT OPTIONAL                              -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="accuracy">
+    <h2>Where Accuracy Is Not Optional</h2>
+    <p class="section-intro">The consequences of incorrect information are not theoretical in these environments.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3>Universities</h3>
+        <p>Universities publish policies governing admissions, academic standing, accommodations, financial aid, degree requirements, and student rights. An incorrect answer can misrepresent official policy, lead to improper decisions or appeals, and create equity and compliance issues.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏥</div>
+        <h3>Hospitals and Health Care</h3>
+        <p>Hospitals operate under strict clinical, administrative, and regulatory constraints. Inaccurate information can misstate patient rights or procedures, create compliance exposure, and undermine trust in care delivery.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛</div>
+        <h3>Government Services</h3>
+        <p>Public agencies provide information that affects benefits, eligibility, obligations, and access to services. Incorrect guidance can delay or deny services, create legal exposure, and erode public trust.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖</div>
+        <h3>Professional Regulatory Bodies</h3>
+        <p>Regulatory organizations publish licensing requirements, disciplinary procedures, and professional standards. Inaccurate guidance can misrepresent statutory requirements and expose the organization to legal challenge.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏫</div>
+        <h3>Colleges and Polytechnics</h3>
+        <p>Colleges publish structured program requirements, credential pathways, and admissions standards. Incorrect information can mislead prospective students and trigger formal complaints or appeals.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏙</div>
+        <h3>Municipal Governments</h3>
+        <p>Municipalities publish permit procedures, zoning regulations, and licensing rules. Incorrect guidance can create legal liability, delay public services, and generate political accountability issues.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- THE STRUCTURAL SOLUTION                                     -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="structural-solution">
+    <h2>COMPAiSS: The Structural Solution to Systemic AI Failure</h2>
+    <p class="section-intro">Authorization before inference - not filtering after it.</p>
+
+    <div style="margin:1.8rem 0 2.2rem;max-width:800px;border-radius:var(--radius);overflow:hidden;">
+      <video controls width="100%" style="display:block;" poster="/assets/compaiss_logo-en.png">
+        <source src="/assets/compaiss-pitch-v3.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <p>Instead of generating an answer by default and attempting to manage risk afterward, COMPAiSS evaluates each question for institutional authorization before primary model inference is permitted to occur.</p>
+    <p>When a question is asked, the system first determines whether the question falls within an institution's defined scope, whether authoritative, institution-approved material exists to support an answer, and whether producing an answer would be responsible and defensible. The AI model is only allowed to provide an answer when those conditions are met.</p>
+    <p>This means COMPAiSS does not rely on disclaimers, confidence scores, post-answer filtering, or human review to retrofit compliance after an answer has already been produced. Unsupported or out-of-scope questions are prevented from triggering primary institutional model execution in the first place.</p>
+    <p>When a question is clearly institution-specific and authoritative information exists within approved sources, COMPAiSS produces a clear answer grounded exclusively in that institution's authorized materials - not inferred from the broader universe of unrelated organizations or jurisdictions. When a question cannot be supported, the system does not guess, generalize, fill gaps, or improvise simply to be "helpful".</p>
+    <p>By shifting decision-making ahead of AI generation, COMPAiSS removes the need for many of the costly corrective controls required by generation-first AI systems and eliminates a major class of unauthorized institutional hallucinations by design.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- INSERTION 3: COMPETITOR COMPARISON TABLE                    -->
+  <!-- Answers "why not Copilot / Gemini / Claude" in one glance. -->
+  <!-- Positioned after the solution argument, before the         -->
+  <!-- "not RAG / not FAQ" detail section.                        -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="competitor-table">
+    <h2>COMPAiSS vs. Enterprise AI</h2>
+    <p class="section-intro">Eight governance properties - and how the leading AI platforms compare.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="width:42%">Governance property</th>
+          <th class="center" style="width:12%">Copilot</th>
+          <th class="center" style="width:12%">Gemini</th>
+          <th class="center" style="width:12%">ChatGPT</th>
+          <th class="center" style="width:12%">RAG</th>
+          <th class="center" style="width:12%">COMPAiSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Authorization check before inference runs</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Unauthorized queries are non-generative terminal states</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Answers restricted to institution-approved sources only</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center">Partial</td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Audit trail at the authorization level (not output level)</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Governance invariant to model capability improvement</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>No vector database or data ingestion pipeline required</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>AIA Level I classification completed</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+        <tr class="compaiss-row">
+          <td>Pre-qualified on Government of Canada AI Source List</td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-no">✗</span></td>
+          <td class="center"><span class="yes-no-yes">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.78rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic; margin-top:0.6rem;">All competitor assessments based on publicly documented architectures and available compliance documentation. RAG column reflects conventional retrieval-augmented generation deployments without a pre-inference gate. <a href="/compaiss_demos_and_pricing.html">See full benchmarking and governance gap analysis →</a></p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- NOT RAG / NOT GENERAL-PURPOSE / NOT FAQ (consolidated)      -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="not-rag-gp-faq">
+    <h2>Not RAG. Not General-Purpose. Not a FAQ Bot.</h2>
+    <p class="section-intro">Three common misconceptions - and why the architecture of COMPAiSS is different from all three.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not Retrieval-Augmented Generation (RAG)</h3>
+    <p>RAG systems connect AI to an institution's documents or databases so it can "look things up" while generating an answer. Many AI systems rely on RAG and similar post-processing controls to reduce hallucinations after a response has already been generated. These approaches require retrieval pipelines, vector databases, monitoring systems, and ongoing oversight - and the model still generates a response for every request, including requests for which no authoritative information exists.</p>
+    <p>COMPAiSS operates earlier. By preventing unsupported or unanswerable questions from triggering the AI model in the first place, COMPAiSS prevents unsupported responses from being generated at all - materially reducing reliance on costly post-generation cleanup tools. This difference is not a tuning choice or configuration detail. It reflects a fundamentally different architectural approach.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not a General-Purpose AI System</h3>
+    <p>General-purpose AI systems are designed to answer questions about anything. Their value lies in breadth - the ability to move freely across domains, institutions, and jurisdictions without predefined boundaries. COMPAiSS is intentionally built for institutional specificity. Its purpose is not to approximate an answer from general knowledge, but to reflect only what a particular institution has actually authorized as its official position, policy, or guidance - and only then release the AI to answer the question.</p>
+    <p>In short: general-purpose AI optimizes for how much it can answer. COMPAiSS optimizes for when it is appropriate to answer about your institution - and when it is not.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not a FAQ Bot or Scripted Chatbot</h3>
+    <p>FAQ systems are built around predefined questions and fixed answers, requiring users to frame their questions within those limits. They break down when questions exceed those limits or require context, judgment, or interpretation of institutional rules. COMPAiSS does not rely on scripts. Each question is evaluated on its own terms, drawing from relevant institutional information to provide clear, detailed, and nuanced answers aligned with what users are actually seeking.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- COST SAVINGS                                                 -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="cost-savings">
+    <h2>Cost Savings by Design</h2>
+    <p class="section-intro">The cost difference between COMPAiSS and conventional enterprise AI is structural, not marginal.</p>
+    <p>For institutions managing approximately 100,000 AI-assisted queries annually, conventional RAG deployments typically incur total annual operating costs between $90,000 and $200,000, driven by three compounding cost drivers: inference waste, persistent RAG infrastructure, and compensatory governance. A COMPAiSS deployment addressing the same workload operates at approximately $15,000 to $30,000 per year - because all three of those cost drivers are eliminated by architecture, not managed after the fact.</p>
+    <p>Approximately 40% of queries in a typical institutional deployment are denied inference entirely. Those users receive a high-value safe failure response - direct links to authoritative institutional policies - at zero marginal compute cost.</p>
+    <p>Lower cost does not imply lower accuracy. Hallucinations require active inference. By preventing inference for unauthorized queries, COMPAiSS removes the structural conditions under which fabrication occurs - not as a downstream filter, but as an architectural property.</p>
+    <div class="highlight-block">
+      <p><strong><a href="/assets/cost_savings_by_design_styled.pdf">Cost Savings by Design - Comparative Cost Analysis (PDF)</a></strong></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- ENTERPRISE CONTRAST                                         -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="enterprise-contrast">
+    <h2>The Contrast with Enterprise AI Assistants</h2>
+    <p class="section-intro">A structural difference, not a superficial one.</p>
+    <p>Systems like Microsoft 365 Copilot are designed to operate across an organization's entire digital environment: emails, documents, Teams conversations, SharePoint repositories, and calendar data. When a multilingual user submits a question, the system translates that query and then retrieves across whatever content happens to be indexed - which may include outdated policy drafts, informal communications, or documents from unrelated departments that happen to contain matching keywords.</p>
+    <p>This is not a configuration failure. It is an architectural consequence of designing a system for breadth across an entire organizational corpus rather than for authority within a defined institutional scope.</p>
+    <p>COMPAiSS separates these functions entirely. Translation normalizes the question into a working language. Authorization determines whether the institution has approved materials to support an answer. Inference occurs only if both conditions are satisfied, drawing exclusively from institution-approved sources.</p>
+    <p>This means a student asking about academic standing in Mandarin, French, or Arabic receives the same institutionally authorized answer as a student asking in English - not an approximation shaped by translation artifacts or corpus noise. For institutions with obligations to serve multilingual populations equitably, this distinction is not incidental. It is the difference between a system that is consistent by architecture and one that is consistent only when conditions happen to align.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- MULTILINGUAL GOVERNANCE                                     -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="translations">
+    <h2>Keeping Meaning Consistent Across Translations</h2>
+    <p class="section-intro">Separating language from meaning at the architectural level.</p>
+    <p>Consumer-based AI systems often translate a user's question as part of how they search for information. In many RAG-based systems, this translation step is intertwined with retrieval and reasoning. As a result, small differences in phrasing can influence which documents are retrieved, how passages are interpreted, and what the system ultimately emphasizes in its response.</p>
+    <p>COMPAiSS avoids this problem by separating language from meaning at the architectural level. When a question is submitted in a non-English language, it is first translated into English as a preprocessing step outside the institutional authorization framework. Translation does not retrieve documents, interpret policy, apply institutional rules, or generate answers.</p>
+    <p>Once translated, the question is evaluated for institutional scope and authorization before any primary institutional reasoning occurs. After the answer is determined, it is translated back into the user's chosen language for presentation.</p>
+    <p>By fixing meaning, scope, and authorization before generation occurs, COMPAiSS prevents the interpretive drift and cross-language inconsistency common in RAG-based systems - ensuring that institutional answers remain accurate, authoritative, and consistent regardless of language.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- FOR CONSULTING FIRMS                                        -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="consulting-firms">
+    <h2>For Consulting Firms and System Integrators</h2>
+    <p class="section-intro">Two natural deployment entry points for organizations advising regulated institutions.</p>
+    <p>For clients with existing RAG infrastructure, COMPAiSS operates as a pre-inference governance layer that addresses the residual hallucination rates RAG alone cannot resolve - strengthening existing investments without replacing them. Peer-reviewed research documents residual hallucination rates of approximately 6% even under optimal RAG conditions, and independent empirical testing of Thomson Reuters' flagship legal AI platform found hallucination rates of 17–33% in real-world use. COMPAiSS addresses the architectural root cause those systems cannot eliminate.</p>
+    <p>For clients without RAG investment - whether cost-constrained or concerned about documented failure rates - COMPAiSS provides a complete inference governance alternative that enforces scope, source authority, and institutional policy without enterprise infrastructure overhead.</p>
+    <p>In both cases, deployment is straightforward and the governance story is auditable, defensible, and aligned with regulatory expectations in higher education, healthcare, government, and legal services.</p>
+    <p><em>COMPAiSS architecture is the subject of patent applications currently under examination in Canada and the United States.</em></p>
+    <div class="highlight-block">
+      <p><strong><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients (PDF)</a></strong></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- PROCUREMENT                                                 -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="procurement">
+    <h2>Built for Institutional Procurement and Governance Review</h2>
+    <p class="section-intro">Auditable, bounded, and aligned with fiduciary obligations.</p>
+    <p>Regulated institutions do not only need AI systems that perform well - they need AI systems they can document, defend, and submit for formal review. Procurement officers, audit committees, legal counsel, and government review panels increasingly require institutions to demonstrate not just that an AI system produces good outputs, but that its governance architecture is auditable, bounded, and aligned with fiduciary obligations.</p>
+    <p>COMPAiSS is designed with this requirement in mind. Because authorization decisions are deterministic and occur before inference, every interaction follows a documented, reproducible governance path. The institution controls which sources are authoritative. The institution defines the scope boundary. The system enforces both structurally, not probabilistically.</p>
+    <p>This makes COMPAiSS directly compatible with the documentation requirements of AI governance panels, institutional ethics review processes, and government procurement frameworks - including those that require institutions to demonstrate how unauthorized or out-of-scope AI responses are prevented, not merely managed.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- ACCOUNTABILITY                                              -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="accountability">
+    <h2>Institutional Accountability and Control</h2>
+    <p class="section-intro">Visibility and control over every AI-mediated answer.</p>
+    <p>Beyond preventing AI-generated errors, COMPAiSS has direct implications for institutional accountability and content governance. When institutions provide information, they implicitly promise that it is accurate, authoritative, and reliable. COMPAiSS extends that same standard into AI-mediated answers by ensuring that primary institutional responses are grounded in institution-approved sources.</p>
+    <p>COMPAiSS also supports the ongoing quality of institutional source content in two concrete ways. Regular greenlist audits verify that every approved source is live, current, and correctly indexed - identifying broken links, outdated pages, and redirect chains before they affect responses. And because COMPAiSS surfaces the questions users are actually asking, institutions gain a continuous signal about where published content is missing, ambiguous, or in need of revision. The system does not just reflect institutional content - it helps institutions keep that content authoritative.</p>
+    <p>It is important to note that COMPAiSS, like any information system, reflects the authoritative materials it is permitted to use. If an authorized institutional link, webpage, policy document, or official guidance is outdated or requires revision, that limitation applies equally to any AI system, search tool, or human process relying on the same source. COMPAiSS does not reinterpret or supplement institutional content; it reflects what the institution itself has authorized.</p>
+    <p>The difference lies in visibility and control. By restricting answers to institution-approved sources and preventing unsupported inference, COMPAiSS makes gaps or inconsistencies explicit and correctable rather than obscuring them through generalized or speculative responses.</p>
+    <div class="highlight-block">
+      <p><strong>Regulated institutions deserve AI systems that respect their obligations - not ones that bypass them to be "helpful". COMPAiSS is designed for institutional environments where accuracy, authority, and governance are non-negotiable.</strong></p>
+      <p>When institutional sources are incomplete or outdated, COMPAiSS reflects that honestly rather than fabricating an answer. And because the system surfaces what users are asking, institutions can identify and correct content gaps systematically - closing the loop between AI performance and institutional information quality. Full details on greenlist auditing and source maintenance are available on the <a href="/governance.html">AI Governance page</a>.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- EXPLORE + CTA                                               -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="explore">
+    <h2>Explore This Architecture</h2>
+    <p class="section-intro">Active deployments across Canadian institutional environments.</p>
+    <p>COMPAiSS is currently in active beta testing pilot deployments across five Canadian institutional environments, including research-intensive universities and a federal public service context, with two additional institutional pilots currently under review.</p>
+    <p>A federal-scale public service demonstration environment has also been developed to validate execution-gated inference in high-volume constituent service contexts, reflecting organizational environments that manage tens of millions of citizen interactions annually across telephone, in-person, and digital channels.</p>
+    <p>The system has been shaped through direct institutional governance experience and is currently being evaluated in registrarial and student services domains where policy accuracy and institutional authority are critical.</p>
+    <p><strong>For institutional evaluation or technology partnership inquiries:</strong> <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a></p>
+
+    <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
+      <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Request an Evaluation</div>
+      <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">
+        COMPAiSS is available for institutional evaluation. To schedule a demonstration, discuss a pilot deployment, or request governance documentation for procurement review:
+      </p>
+      <a href="mailto:counterfactualtheory@gmail.com?subject=COMPAiSS%20Evaluation%20Request"
+         style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">
+        Request a Demonstration &rarr;
+      </a>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- TECHNICAL DOCS                                              -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="technical-docs">
+    <h2>Technical Documentation and Further Reading</h2>
+    <p class="section-intro">White papers, architecture papers, cost analyses, comparative assessments, and governance materials for institutional evaluation.</p>
+    <ul class="doc-list">
+      <li><a href="/assets/road_less_travelled_revised.pdf">The Road Less Travelled - Rethinking Generative AI Costs, Safety, and Trust in Regulated Institutions</a> - Expands on the structural arguments and associated costs of post-generation controls.</li>
+      <li><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients</a> - White paper directed at major consulting firms, presenting the empirical case for execution-gated inference as an architectural alternative to generation-first AI governance, with active deployment evidence from Service Canada, Dalhousie University, and McGill University.</li>
+      <li><a href="/assets/compaiss-white-paper-2026-v2.pdf">COMPAiSS White Paper - Execution-Gated AI for Regulated Institutional Environments</a> - Foundational overview of the COMPAiSS architecture, execution-gated inference model, multilingual authorization framework, governance controls, institutional deployment strategy, and structural contrast with generation-first AI systems.</li>
+      <li><a href="/assets/compaiss_institutional_positioning_styled.pdf">Authorization-Controlled Institutional AI in Regulated Environments</a> - Outlines the structural argument behind COMPAiSS and the limitations of generation-first systems.</li>
+      <li><a href="/assets/final_report-hallucinations_by_design-v2.pdf">Hallucinations by Design - A Cross-Model Assessment of How Major AI Consulting Firms Advise Clients to Manage Generative AI Errors</a> - Structured cross-model consensus analysis of AI consulting firm approaches to hallucination management.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT                                                       -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="about">
+    <h2>About COMPAiSS</h2>
+    <p class="section-intro">Built from direct institutional governance experience.</p>
+    <p>COMPAiSS was developed by Frank Harvey, Professor of Political Science and Senior Advisor at Dalhousie University. Over the course of his career Harvey has held senior leadership roles across Canadian higher education (including acting President, Provost and Vice-President Academic, Dean, and Department Chair) giving him direct, institutional-level experience with the governance, accountability, and compliance obligations that regulated environments actually impose on information systems.</p>
+    <p>COMPAiSS was built from that vantage point. Not as a technology solution looking for a problem, but as an architectural response to a structural failure Harvey observed directly: institutions deploying generation-first AI in environments where that architecture cannot meet their obligations.</p>
+    <p>Architecture and development were led by Harvey. Backend engineering, API integration, and deployment infrastructure were built with AI-assisted development tools, primarily GPT and Claude, under Harvey's direct architectural oversight. The system has been validated through thousands of test scenarios across student, faculty, and administrative use cases in multilingual institutional environments.</p>
+    <p>COMPAiSS is actively seeking institutional evaluation partners and technology collaborators.</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p style="margin-top:0.8rem;">
+      Contact: <a href="mailto:counterfactualtheory@gmail.com">counterfactualtheory@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
