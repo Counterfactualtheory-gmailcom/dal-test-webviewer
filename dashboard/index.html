@@ -153,15 +153,15 @@
         <div class="page-title">Greenlist Management</div>
         <div class="page-sub">
           Manage approved institutional sources used for response generation.
-          Changes are committed directly to GitHub and take effect after
-          Railway redeploys (typically under 2 minutes).
+          Changes are committed directly and take effect after
+          redeployments (typically under 2 minutes).
         </div>
         <div class="stats" id="stats-bar"></div>
         <div class="toolbar">
           <button class="btn-primary" onclick="openAddModal()">+ Add URL</button>
           <button class="btn-commit" id="commit-btn"
                   onclick="saveToGitHub()" disabled>
-            &#8679; Commit to GitHub
+            &#8679; Commit
           </button>
           <button class="btn-secondary" onclick="refreshFromGitHub()">
             &#8635; Refresh
