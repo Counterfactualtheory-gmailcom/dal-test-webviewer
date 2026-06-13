@@ -719,7 +719,7 @@ hr {
 
 <p>No inference ran. No generative model was consulted. The response above was produced by a deterministic redirect, not a language model. The system recognized the absence of institutional authority before any AI computation took place and returned a structured non-generative response. The query was handled at zero inference cost.</p>
     
-    <p>This changes several things at once. It eliminates an entire class of hallucination - not by catching fabricated responses after they have been produced, but by preventing the conditions under which fabrication occurs. It removes inference cost for unauthorized queries entirely. It makes governance auditable at the architectural level, not the output level: every interaction follows a deterministic, documented path through the authorization decision before any generative computation takes place.</p>
+    <p>This changes several things at once. It prevents the generation of answers beyond authorized institutional sources - not by catching fabricated responses after they have been produced, but by preventing the conditions under which those responses would be generated.</p>
 
     <p>It also changes what "failure" looks like. When a standard AI system encounters a question it cannot answer reliably, it typically produces a response anyway - one that may sound authoritative, may blend accurate information with inference, and may be acted upon before its limitations are recognized. When COMPAiSS cannot authorize a response, it produces nothing generative. The system is honest about its limits in the only way a system can be truly honest: by not operating beyond them.</p>
 
