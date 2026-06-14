@@ -438,10 +438,14 @@ gtag('config', 'G-JR7LJGK5PK');
     .hero-v2 .hero-dots { display:flex; justify-content:center; gap:6px; margin-top:1.6rem; }
     .hero-v2 .hero-dot { width:5px; height:5px; border-radius:50%; background:var(--border-soft); transition:background 0.3s; }
     .hero-v2 .hero-dot.hd-on { background:var(--accent); }
-    @media (max-width:700px) {
+@media (max-width:700px) {
       .hero-v2 .hero-word-slot { min-width:240px; }
       .hero-v2 .hero-two-col { grid-template-columns:1fr; }
       .hero-v2 .hero-vs { display:none; }
+    }
+    .hero-img-side { display:block; }
+    @media (max-width:900px) {
+      .hero-img-side { display:none; }
     }
   </style>
  
