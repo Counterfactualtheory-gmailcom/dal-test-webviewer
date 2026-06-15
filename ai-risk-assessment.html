@@ -872,6 +872,47 @@ header {
       <a href="/why-ai-developed-this-way.html">Why AI Developed This Way</a> |
       <a href="/compaiss_demos_and_pricing.html#benchmark">Governance Stress Tests and Benchmarks</a>
     </p>
+</div>
+
+  <hr>
+
+  <!-- POLICY AND REGULATORY ALIGNMENT REPORT -->
+  <div class="gov-section" id="policy-alignment">
+    <h2>Policy and Regulatory Alignment Report</h2>
+    <p class="section-intro">How execution-gated inference maps to Canadian and international governance frameworks.</p>
+
+    <p>COMPAiSS has published a structured policy and regulatory alignment report evaluating the execution-gated inference architecture against Canada's Voluntary Code of Conduct on Responsible Generative AI, the National AI Strategy <em>AI for All</em> (June 2026), the NIST AI Risk Management Framework, and Zero Trust Architecture standards.</p>
+
+    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e05555;margin-bottom:1rem;">✗ &nbsp; Generation-First AI — Governance After the Fact</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Model runs first, governance applied after</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Hallucinated outputs caught post-generation</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> 2 to 5 percent adversarial false negative rate</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Full token cost consumed even for refusals</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Audit trail begins after unauthorized output exists</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Governance costs scale as model capability increases</div>
+      </div>
+    </div>
+
+    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">✓ &nbsp; COMPAiSS — Authorization Before Inference</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Authorization checked before model executes</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Unauthorized queries never reach the model</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Deterministic gate reduces semantic manipulation risk</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Refusals cost zero marginal compute</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Audit trail exists before any output is produced</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Governance invariant to model capability improvements</div>
+      </div>
+    </div>
+
+    <div class="finding-block">
+      <div class="finding-label">Policy and Regulatory Alignment Report</div>
+      <p><strong><a href="/assets/compaiss_policy_regulatory_alignment_report_2026.pdf" target="_blank" rel="noopener">Download the full report (PDF) &rarr;</a></strong></p>
+      <p>Full evaluation against Canada's Voluntary Code of Conduct, the National AI Strategy <em>AI for All</em>, NIST AI RMF, and Zero Trust Architecture standards, with empirical benchmarking results and institutional deployment evidence.</p>
+    </div>
+
   </div>
 
   <hr>
