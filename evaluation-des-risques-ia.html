@@ -862,9 +862,51 @@ gtag('config', 'G-JR7LJGK5PK');
     <p><a href="/investigation-architecturale.html">Lire l&#x2019;investigation architecturale compl&egrave;te &rarr;</a></p>
   </div>
 
+<hr>
+
+  <!-- ALIGNEMENT RÉGLEMENTAIRE ET POLITIQUE -->
+  <div class="gov-section" id="alignement-politique">
+    <h2>Rapport d&rsquo;alignement réglementaire et politique</h2>
+    <p class="section-intro">Comment l&rsquo;inférence à exécution conditionnelle s&rsquo;articule avec les cadres canadiens et internationaux de gouvernance de l&rsquo;IA.</p>
+
+    <p>COMPAiSS a publié un rapport structuré d&rsquo;alignement réglementaire et politique évaluant l&rsquo;architecture à inférence conditionnelle au regard du Code de conduite volontaire du Canada sur le développement et la gestion responsables des systèmes d&rsquo;IA générative avancés, de la Stratégie nationale en matière d&rsquo;IA <em>L&rsquo;IA pour tous</em> (juin 2026), du Cadre de gestion des risques liés à l&rsquo;IA du NIST, et des normes d&rsquo;architecture à vérification systématique. Le rapport comprend des résultats d&rsquo;évaluation comparative empirique, des données probantes sur les déploiements institutionnels, ainsi qu&rsquo;une analyse structurée des limites du système.</p>
+
+    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e05555;margin-bottom:1rem;">✗ &nbsp; IA générative classique &mdash; Gouvernance après la génération</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Le modèle s&rsquo;exécute en premier, la gouvernance s&rsquo;applique ensuite</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les résultats hallucinés sont détectés après la génération</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Taux de faux négatifs adversariaux de 2 à 5 pour cent</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Coût total en jetons engagé même pour les refus</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> La piste d&rsquo;audit débute après la production d&rsquo;une réponse non autorisée</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les coûts de gouvernance augmentent avec les capacités du modèle</div>
+      </div>
+    </div>
+
+    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">✓ &nbsp; COMPAiSS &mdash; Autorisation avant l&rsquo;inférence</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> L&rsquo;autorisation est vérifiée avant l&rsquo;exécution du modèle</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Les requêtes non autorisées n&rsquo;atteignent jamais le modèle</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Le portail déterministe réduit le risque de manipulation sémantique</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Les refus n&rsquo;engagent aucun coût de calcul marginal</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> La piste d&rsquo;audit est établie avant toute production de réponse</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> La gouvernance est invariante aux améliorations des capacités du modèle</div>
+      </div>
+    </div>
+
+    <div class="finding-block">
+      <div class="finding-label">Rapport d&rsquo;alignement réglementaire et politique</div>
+      <p><strong><a href="/assets/compaiss_policy_regulatory_alignment_report_2026.pdf" target="_blank" rel="noopener">Télécharger le rapport complet (PDF) &rarr;</a></strong></p>
+      <p>Évaluation complète au regard du Code de conduite volontaire du Canada, de la Stratégie nationale en matière d&rsquo;IA <em>L&rsquo;IA pour tous</em>, du Cadre de gestion des risques liés à l&rsquo;IA du NIST et des normes d&rsquo;architecture à vérification systématique, avec résultats d&rsquo;évaluation comparative empirique et données probantes sur les déploiements institutionnels.</p>
+    </div>
+
+  </div>
+
   <hr>
 
   <!-- DEMANDER LA DOCUMENTATION -->
+  <div class="gov-section" id="demande-documentation">
   <div class="gov-section" id="demande-documentation">
     <h2>Demander la documentation</h2>
     <p class="section-intro">Comment obtenir la documentation formelle de gouvernance aux fins d'approvisionnement ou d'examen réglementaire.</p>
