@@ -432,7 +432,7 @@ gtag('config', 'G-JR7LJGK5PK');
     .hero-v2 .hside-redirect .hero-side-label { color:var(--accent); }
     .hero-v2 .hside-redirect .hmk { color:var(--accent); }
     .hero-v2 .hero-vs { font-family:system-ui,-apple-system,sans-serif; font-size:0.7rem; color:rgba(166,185,204,0.4); font-weight:700; letter-spacing:0.08em; display:flex; align-items:center; }
-    .hero-v2 .hero-verdict { margin-top:1rem; font-family:system-ui,-apple-system,sans-serif; font-size:0.84rem; font-weight:600; padding:0.55rem 1rem; border-radius:5px; text-align:center; transition:background 0.5s ease,border-color 0.5s ease,color 0.5s ease; min-height:2.6rem; display:flex; align-items:center; justify-content:center; white-space:nowrap; overflow:hidden; }
+    .hero-v2 .hero-verdict { margin-top:1rem; font-family:system-ui,-apple-system,sans-serif; font-size:0.84rem; font-weight:600; padding:0.55rem 1rem; border-radius:5px; text-align:center; transition:background 0.5s ease,border-color 0.5s ease,color 0.5s ease; }
     .hero-v2 .hverdict-pass { background:var(--green-soft); border:1px solid rgba(76,175,130,0.3); color:var(--green); }
     .hero-v2 .hverdict-redirect { background:var(--accent-soft); border:1px solid var(--border-accent); color:var(--accent); }
     .hero-v2 .hero-dots { display:flex; justify-content:center; gap:6px; margin-top:1.6rem; }
@@ -445,9 +445,9 @@ gtag('config', 'G-JR7LJGK5PK');
     }
   </style>
  
-  <div style="display:grid; grid-template-columns:3fr 4fr 3fr; gap:1.2rem; align-items:stretch; margin-bottom:3rem; height:680px;">
+  <div style="display:grid; grid-template-columns:3fr 4fr 3fr; gap:1.2rem; align-items:stretch; margin-bottom:3rem;">
 
-    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden; height:100%;">
+    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
       <img src="/assets/rag-library.jpg" alt="Toute autre IA traite l'univers entier de la connaissance" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
       <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(150,20,20,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
       <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">Toute autre IA</div>
@@ -455,7 +455,7 @@ gtag('config', 'G-JR7LJGK5PK');
 
     <div class="hero-v2" style="margin:0; border:none; padding:2.5rem 1rem;">
  
-    <div class="hero-static">COMPAiSS IA ne s'exécute que lorsque</div>
+    <div class="hero-static">Le modèle IA de COMPAiSS ne s'exécute que lorsque</div>
  
     <div class="hero-cycling-wrap">
       <div class="hero-word-slot" aria-live="polite" aria-atomic="true">
@@ -490,7 +490,7 @@ gtag('config', 'G-JR7LJGK5PK');
           <div class="hero-side-label" id="hRightLabel">COMPAiSS</div>
           <div class="hero-side-item"><span class="hmk" id="hm1">✓</span> <span id="ht1">Autorisation vérifiée en premier</span></div>
           <div class="hero-side-item"><span class="hmk" id="hm2">✓</span> <span id="ht2">Le modèle ne s'exécute que si autorisé</span></div>
-          <div class="hero-side-item"><span class="hmk" id="hm3">✓</span> <span id="ht3">Hallucinations empêchées par conception</span></div>
+          <div class="hero-side-item"><span class="hmk" id="hm3">✓</span> <span id="ht3">COMPAiSS ne génère pas de réponses au-delà des sources institutionnelles autorisées</span></div>
         </div>
       </div>
       <div class="hero-verdict hverdict-pass" id="hVerdict">✓ Autorisé. Le modèle est autorisé à s'exécuter.</div>
@@ -507,10 +507,10 @@ gtag('config', 'G-JR7LJGK5PK');
 </div>
     </div>
 
-    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden; height:100%;">
+    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
       <img src="/assets/compaiss-library.jpg" alt="COMPAiSS opère uniquement sur les connaissances institutionnelles autorisées" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
       <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(10,40,80,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
-      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; color:#f0c44c;">COMPAiSS</div>
+      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#f0c44c;">COMPAiSS</div>
     </div>
 
   </div>
@@ -530,7 +530,7 @@ gtag('config', 'G-JR7LJGK5PK');
       panel:'hside-pass', m:'✓',
       t1:'Autorisation vérifiée en premier',
       t2:'Le modèle ne s\'exécute que si autorisé',
-      t3:'Hallucinations empêchées par conception',
+      t3:'COMPAiSS ne génère pas de réponses au-delà des sources institutionnelles autorisées',
       vc:'hverdict-pass', vt:'✓ Autorisé. Le modèle est autorisé à s\'exécuter.'
     };
     var failState = {
@@ -538,7 +538,7 @@ gtag('config', 'G-JR7LJGK5PK');
       t1:'Autorisation refusée',
       t2:'Le modèle ne s\'exécute pas',
       t3:'Utilisateur redirigé vers les sources autorisées',
-      vc:'hverdict-redirect', vt:'→ Hors portée. Redirigé vers les sources autorisées.'
+      vc:'hverdict-redirect', vt:'→ Hors portée. Utilisateur redirigé vers les sources autorisées.'
     };
     var seq = [passState,passState,passState,passState,passState,failState,failState];
     var cur = 0;
@@ -880,14 +880,14 @@ gtag('config', 'G-JR7LJGK5PK');
   <!-- NI RAG, NI IA GENERALISTE, NI FAQ                           -->
   <!-- ============================================================ -->
 
-<div class="content-section" id="not-rag-gp-faq">
-    <h2>Une architecture différente pour un problème différent</h2>
-    <p class="section-intro">La RAG et COMPAiSS ne sont pas des implémentations concurrentes d'une même idée. Ils ont été conçus pour répondre à des exigences de gouvernance différentes - et cette différence est déterminante lorsque le coût d'une réponse erronée est élevé.</p>
+  <div class="content-section" id="not-rag-gp-faq">
+    <h2>Ni RAG, ni IA généraliste, ni FAQ</h2>
+    <p class="section-intro">Trois idees recues courantes - et pourquoi l'architecture de COMPAiSS diffère des trois.</p>
 
-    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Là où la RAG fonctionne - et là où elle atteint ses limites</h3>
-    <p>La RAG représente une amélioration significative par rapport à la génération d'IA non ancrée. En connectant le modèle à des documents pertinents avant de produire une réponse, la RAG réduit la fréquence des hallucinations et améliore la qualité des réponses dans un large éventail de contextes d'utilisation. Pour les organisations disposant de vastes bases de connaissances non structurées où le défi principal est de trouver du contenu pertinent et où la qualité des réponses est la préoccupation première, la RAG constitue un choix architectural raisonnable. Les risques résiduels sont gérables dans les environnements où des erreurs occasionnelles sont acceptables.</p>
-    <p>Le problème est que les hallucinations résiduelles dans les systèmes RAG ne sont pas des cas limites rares. Des recherches évaluées par des pairs documentent des taux d'hallucination d'environ 6 % même dans des conditions RAG optimales. Des tests empiriques indépendants de la principale plateforme d'IA juridique de Thomson Reuters ont révélé des taux de 17 à 33 % en conditions réelles. Pour de nombreux environnements d'entreprise, ces taux représentent un compromis acceptable. Pour les institutions réglementées - où un étudiant manque une échéance légale, un contribuable perd l'accès à une prestation fédérale, ou un citoyen reçoit des conseils incorrects sur ses droits - ils ne le sont pas.</p>
-    <p>La RAG suppose que la gouvernance intervient après la génération. COMPAiSS suppose que la gouvernance intervient avant la génération. Ce n'est pas une préférence de séquençage. C'est une différence quant au lieu où se situe la responsabilité. Pour les institutions dont l'ensemble des sources autorisées est déjà connu, dont la portée des réponses permises doit être délimitée, et pour lesquelles une réponse erronée entraîne de véritables conséquences, la question architecturale change fondamentalement. La question n'est plus comment améliorer la qualité de génération. La question est de savoir si le système a le droit de générer une réponse, compte tenu de la requête et des sources autorisées disponibles. COMPAiSS a été conçu pour répondre à cette question. La RAG ne l'a pas été.</p>
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système de génération augmentée par récupération (RAG)</h3>
+    <p>Les systèmes RAG connectent l'IA aux documents ou bases de données d'un établissement pour qu'elle puisse « consulter des informations » tout en générant une réponse. De nombreux systèmes d'IA s'appuient sur le RAG et des contrôles post-traitement similaires pour réduire les hallucinations après qu'une réponse a déjà été générée. Ces approches nécessitent des pipelines de récupération, des bases de données vectorielles, des systèmes de surveillance et une supervision continue - et le modèle génère quand même une réponse pour chaque requête, y compris les requêtes pour lesquelles aucune information autorisée n'existe.</p>
+    <p>COMPAiSS opère en amont. En empêchant les questions non étayées ou sans réponse possible de déclencher le modèle d'IA en premier lieu, COMPAiSS empêche la génération de réponses non étayées - réduisant matériellement le recours à des outils de nettoyage post-génération coûteux. Cette différence n'est pas un choix de réglage ou un détail de configuration. Elle reflète une approche architecturale fondamentalement différente.</p>
+
     <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système d'IA généraliste</h3>
     <p>Les systèmes d'IA généralistes sont conçus pour répondre à des questions sur n'importe quoi. Leur valeur réside dans la portée - la capacité de se déplacer librement entre domaines, établissements et juridictions sans frontières prédéfinies. COMPAiSS est intentionnellement construit pour la spécificité institutionnelle. Son but n'est pas d'approximer une réponse à partir de connaissances générales, mais de refléter uniquement ce qu'un établissement particulier a effectivement autorisé comme sa position officielle, sa politique ou ses directives - et seulement alors de permettre à l'IA de répondre à la question.</p>
     <p>En bref : l'IA généraliste optimise le nombre de questions auxquelles elle peut répondre. COMPAiSS optimise le moment où il est approprié de répondre à des questions sur votre établissement - et quand ce ne l'est pas.</p>
@@ -952,8 +952,9 @@ gtag('config', 'G-JR7LJGK5PK');
   <div class="content-section" id="consulting-firms">
     <h2>Pour les cabinets-conseils et les intégrateurs de systèmes</h2>
     <p class="section-intro">Deux points d'entrée naturels pour les organisations conseillant des établissements réglementés.</p>
-<p>Pour les cabinets-conseils qui accompagnent des institutions réglementées, la question architecturale n'est pas de savoir quel système récupère mieux l'information. Elle porte sur la question de savoir si les exigences de gouvernance de l'institution sont mieux satisfaites par un système de génération en premier avec des contrôles post-hoc, ou par un système qui applique l'autorisation avant toute génération. La RAG et COMPAiSS répondent à des problèmes différents dans des contextes différents. Là où le risque d'hallucination résiduel est acceptable, la RAG constitue un choix raisonnable. Là où il ne l'est pas - dans les services aux étudiants, l'orientation fiscale, les services juridiques, les soins de santé et la conformité réglementaire - les exigences architecturales sont différentes. COMPAiSS a été conçu pour ces environnements. Des recherches évaluées par des pairs documentent des taux d'hallucination résiduels d'environ 6 % même dans des conditions RAG optimales, et des tests empiriques indépendants de la principale plateforme d'IA juridique de Thomson Reuters ont révélé des taux de 17 à 33 % en conditions réelles. COMPAiSS élimine la cause profonde architecturale que ces systèmes ne peuvent pas résoudre.</p>
-    <p>Pour les clients ne disposant pas d'infrastructure RAG existante, COMPAiSS fournit une architecture complète de gouvernance d'inférence qui applique la portée, l'autorité des sources et la politique institutionnelle sans surcharge d'infrastructure d'entreprise.</p>    <p>Dans les deux cas, le déploiement est simple et le récit de gouvernance est auditable, défendable et aligné sur les attentes réglementaires dans l'enseignement supérieur, les soins de santé, le gouvernement et les services juridiques.</p>
+    <p>Pour les clients disposant d'une infrastructure RAG existante, COMPAiSS fonctionne comme une couche de gouvernance pré-inférence qui traite les taux d'hallucination résiduels que le RAG seul ne peut pas résoudre - renforçant les investissements existants sans les remplacer. La recherche évaluée par des pairs documente des taux d'hallucination résiduels d'environ 6 % même dans des conditions RAG optimales, et les tests empiriques indépendants de la principale plateforme d'IA juridique de Thomson Reuters ont trouvé des taux d'hallucination de 17 à 33 % dans une utilisation réelle. COMPAiSS traite la cause profonde architecturale que ces systèmes ne peuvent pas éliminer.</p>
+    <p>Pour les clients sans investissement RAG - qu'ils soient contraints par les coûts ou préoccupés par les taux d'échec documentés - COMPAiSS fournit une alternative complète de gouvernance d'inférence qui applique la portée, l'autorité des sources et la politique institutionnelle sans infrastructure d'entreprise supplémentaire.</p>
+    <p>Dans les deux cas, le déploiement est simple et le récit de gouvernance est auditable, défendable et aligné sur les attentes réglementaires dans l'enseignement supérieur, les soins de santé, le gouvernement et les services juridiques.</p>
     <p><em>L'architecture de COMPAiSS fait l'objet de demandes de brevet en cours d'examen au Canada et aux États-Unis.</em></p>
     <div class="highlight-block">
       <p><strong><a href="/assets/sortir_de_la_matrice_fr_3.pdf">Sortir de la matrice - Une nouvelle opportunité pour les cabinets-conseils en IA avec des clients d'industries réglementées (PDF)</a></strong></p>
@@ -1091,3 +1092,4 @@ gtag('config', 'G-JR7LJGK5PK');
 
 </body>
 </html>
+
