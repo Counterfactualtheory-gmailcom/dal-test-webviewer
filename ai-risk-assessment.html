@@ -460,6 +460,121 @@ header {
     @media (max-width: 700px) {
       .page-header h1 { font-size: 1.9rem; }
     }
+
+    /* =============================================
+       PRIVACY POLICY SECTION - added June 2026
+       ============================================= */
+    .privacy-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+
+    .privacy-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .privacy-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .privacy-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .privacy-section h3 {
+      color: var(--text-heading);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 2rem 0 0.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-section ul {
+      list-style: none;
+      margin: 0.8rem 0 1.2rem;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-section ul li {
+      padding: 0.5rem 1rem 0.5rem 2.2rem;
+      position: relative;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .privacy-section ul li::before {
+      content: "-";
+      position: absolute;
+      left: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .privacy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-card .pc-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-card p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+      line-height: 1.55;
+    }
+
+    .privacy-contact {
+      margin-top: 2rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .privacy-contact .pc-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
   </style>
 </head>
 
@@ -502,6 +617,7 @@ header {
       <li><a href="#canada-ai-strategy">Canada's National AI Strategy</a></li>
       <li><a href="#policy-alignment">Policy and Regulatory Alignment</a></li>
       <li><a href="#request-documentation">Request Documentation</a></li>
+      <li><a href="#privacy-policy">Privacy Policy</a></li>
     </ul>
   </div>
 
@@ -539,7 +655,7 @@ header {
       <div class="card">
         <div class="card-icon">🤖</div>
         <h3>AI Engine</h3>
-        <p>OpenAI inference API - standard API without fine-tuning. No institutional data enters any training pipeline at any stage.</p>
+        <p>Azure OpenAI Service - Canada East region. Standard inference API without fine-tuning. No institutional data enters any training pipeline at any stage.</p>
       </div>
     </div>
 
@@ -618,7 +734,7 @@ header {
       </div>
       <div class="data-item">
         <div class="di-label">Data Residency</div>
-        <p>Configurable to Canadian-region hosting upon institutional agreement, satisfying PIPEDA and provincial privacy law requirements.</p>
+        <p>All application hosting, AI inference processing, and operational logging are restricted to Canadian infrastructure. AI inference is performed exclusively through Azure OpenAI Service in the Canada East region, satisfying PIPEDA and provincial privacy law requirements.</p>
       </div>
     </div>
 
@@ -662,7 +778,7 @@ header {
       </li>
       <li>
         <strong>No continuous learning from user interactions</strong>
-        <span>The system does not learn from individual user queries. No interaction data is fed back into any model. The AI model improves only as OpenAI updates its underlying models - a process that is entirely external to institutional data and interactions.</span>
+        <span>The system does not learn from individual user queries. No interaction data is fed back into any model. The AI model improves only as Microsoft updates the Azure OpenAI models - a process entirely external to institutional data and interactions, with no institutional data used for model training.</span>
       </li>
     </ul>
   </div>
@@ -789,12 +905,12 @@ header {
       <div class="card">
         <div class="card-icon">🍁</div>
         <h3>Canadian Data Residency</h3>
-        <p>Hosting can be configured to any Canadian-region infrastructure upon signing, satisfying PIPEDA and provincial privacy law requirements for Canadian institutions.</p>
+        <p>All application hosting (Fly.io Toronto, YYZ), AI inference processing (Azure OpenAI Canada East), and operational logging are restricted to Canadian infrastructure. No data leaves Canadian jurisdiction at any stage.</p>
       </div>
       <div class="card">
         <div class="card-icon">🌐</div>
         <h3>Accessibility</h3>
-        <p>Web-embedded interface accessible from any browser-enabled device. No specialized software, download, or installation required. Formal accessibility compliance review is conducted prior to each institutional deployment.</p>
+        <p>Web-embedded interface accessible from any browser-enabled device. No specialized software, download, or installation required. Formal WCAG 2.1 AA accessibility compliance review is conducted prior to each institutional deployment.</p>
       </div>
       <div class="card">
         <div class="card-icon">📊</div>
@@ -834,7 +950,7 @@ header {
         The central challenge identified across modern AI governance frameworks is not simply improving model performance. It is ensuring that AI-generated outputs remain consistent with authorized information, institutional responsibilities, and established governance requirements.
       </p>
       <p>
-        As frontier models gain access to larger knowledge bases and increasingly sophisticated reasoning capabilities, they also gain greater ability to generate information beyond institutional boundaries. Governance therefore becomes more important — not less — as AI systems become more powerful.
+        As frontier models gain access to larger knowledge bases and increasingly sophisticated reasoning capabilities, they also gain greater ability to generate information beyond institutional boundaries. Governance therefore becomes more important - not less - as AI systems become more powerful.
       </p>
     </div>
     <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">
@@ -884,26 +1000,26 @@ header {
     <p>COMPAiSS has published a structured policy and regulatory alignment report evaluating the execution-gated inference architecture against Canada's Voluntary Code of Conduct on Responsible Generative AI, the National AI Strategy <em>AI for All</em> (June 2026), the NIST AI Risk Management Framework, and Zero Trust Architecture standards.</p>
 
     <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e05555;margin-bottom:1rem;">✗ &nbsp; Generation-First AI — Governance After the Fact</div>
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e05555;margin-bottom:1rem;">&#x2717; &nbsp; Generation-First AI - Governance After the Fact</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Model runs first, governance applied after</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Hallucinated outputs caught post-generation</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> 2 to 5 percent adversarial false negative rate</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Full token cost consumed even for refusals</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Audit trail begins after unauthorized output exists</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Governance costs scale as model capability increases</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Model runs first, governance applied after</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Hallucinated outputs caught post-generation</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> 2 to 5 percent adversarial false negative rate</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Full token cost consumed even for refusals</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Audit trail begins after unauthorized output exists</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Governance costs scale as model capability increases</div>
       </div>
     </div>
 
     <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">✓ &nbsp; COMPAiSS — Authorization Before Inference</div>
+      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">&#x2713; &nbsp; COMPAiSS - Authorization Before Inference</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Authorization checked before model executes</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Unauthorized queries never reach the model</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Deterministic gate reduces semantic manipulation risk</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Refusals cost zero marginal compute</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Audit trail exists before any output is produced</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Governance invariant to model capability improvements</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Authorization checked before model executes</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Unauthorized queries never reach the model</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Deterministic gate reduces semantic manipulation risk</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Refusals cost zero marginal compute</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Audit trail exists before any output is produced</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">&#x2713;</span> Governance invariant to model capability improvements</div>
       </div>
     </div>
 
@@ -974,25 +1090,105 @@ header {
            text-decoration: none;
            letter-spacing: 0.04em;
          ">
-        Request Documentation -&gt;
+        Request Documentation &rarr;
       </a>
     </div>
 
+  </div>
+
+  <hr>
+
+  <!-- PRIVACY POLICY - added June 2026 -->
+  <div class="gov-section privacy-section" id="privacy-policy">
+    <h2>Privacy Policy</h2>
+    <p class="section-intro">COMPAiSS Inc. | Last updated: June 2026</p>
+
+    <p>COMPAiSS is designed so that privacy protection is not a policy commitment layered on top of the platform - it is a structural property of how the system works. This policy describes what data COMPAiSS collects, processes, and retains in connection with institutional deployments, including the Dalhousie University COMPAiSS deployment.</p>
+
+    <div class="test-result">
+      <div class="test-label">Summary</div>
+      <p>COMPAiSS does not collect, store, or share any personal information. Queries are stateless and discarded immediately after a response is delivered. No user data is retained, logged, or used for any purpose beyond generating a single response.</p>
+    </div>
+
+    <h3>What We Do Not Collect</h3>
+    <p>COMPAiSS does not require users to sign in or create an account. No identifying information is collected at any stage:</p>
+    <ul>
+      <li>No names, email addresses, student IDs, or account credentials</li>
+      <li>No device identifiers, IP addresses, or MAC addresses</li>
+      <li>No location data, contacts, photos, microphone access, or device storage</li>
+      <li>No cookies or web tracking technologies used by the COMPAiSS application itself</li>
+      <li>No query text or conversation history retained after a response is delivered</li>
+      <li>No third-party marketing tools or advertising frameworks within the COMPAiSS application</li>
+    </ul>
+
+    <h3>How Queries Are Processed</h3>
+    <p>When a user submits a query, it is validated against the institution's approved source list before any AI generation occurs. If the query falls within the authorized scope, it is transmitted securely via HTTPS to the AI inference layer for processing. The response is returned to the user and the query is discarded. Nothing is retained after the transaction completes.</p>
+
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <div class="pc-label">AI Inference</div>
+        <p>For the Dalhousie University deployment, AI inference is processed exclusively through Microsoft Azure OpenAI Service in the Canada East region. Queries do not leave Canadian jurisdiction. Microsoft's enterprise terms confirm that institutional data is not used to train or improve AI models.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">Application Hosting</div>
+        <p>The COMPAiSS application is hosted on Fly.io infrastructure in the Toronto (YYZ) region. Operational logs are maintained on Canadian-hosted infrastructure. No data is processed outside of Canada.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">Canadian Data Residency</div>
+        <p>All components of the Dalhousie COMPAiSS deployment - application hosting, AI inference, and operational logging - are restricted to Canadian infrastructure, satisfying PIPEDA and Nova Scotia privacy law requirements.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">No Model Training</div>
+        <p>No institutional data, student queries, or interaction history enters any AI model training pipeline at any stage. The AI model used by COMPAiSS is updated only by Microsoft, entirely independently of institutional data.</p>
+      </div>
+    </div>
+
+    <h3>Operational Logging</h3>
+    <p>COMPAiSS maintains operational logs for platform integrity, security, and governance purposes. These logs record system-level events such as gate authorization results, source retrieval outcomes, and platform version information. Logs do not contain query text, user identifiers, or any personally identifiable information. Retention controls are configurable per institutional agreement. Access to logs is restricted to authorized personnel.</p>
+
+    <h3>Aggregated Usage Data</h3>
+    <p>Anonymized, aggregated usage patterns - such as topic areas generating high query volume - may be made available to the institution for service planning purposes. This data cannot be traced back to any individual user and does not constitute personal information under PIPEDA or applicable provincial privacy law.</p>
+
+    <h3>Third-Party Infrastructure</h3>
+    <p>COMPAiSS relies on the following infrastructure providers for the Dalhousie deployment:</p>
+    <ul>
+      <li><strong style="color: var(--text-heading);">Microsoft Azure OpenAI Service (Canada East)</strong> - AI inference processing, governed by Microsoft's enterprise data protection terms, which confirm no use of customer data for model training</li>
+      <li><strong style="color: var(--text-heading);">Fly.io (Toronto, YYZ)</strong> - Application hosting and platform infrastructure</li>
+      <li><strong style="color: var(--text-heading);">Cloudflare</strong> - Network protection, DDoS mitigation, and traffic filtering</li>
+    </ul>
+    <p>No identifying information is shared with any third party. All third-party services operate under contractual data protection obligations consistent with Canadian privacy requirements.</p>
+
+    <h3>Data Subject Rights</h3>
+    <p>Because COMPAiSS does not collect or retain personal information, there is no personal data associated with any individual user that could be accessed, corrected, or deleted on request. Users who have questions about what information, if any, may be held in connection with their use of the platform are encouraged to contact us directly.</p>
+
+    <h3>Security</h3>
+    <p>All communications between users and the COMPAiSS platform are encrypted using HTTPS with TLS 1.2 or higher. Data at rest is protected using AES-256 encryption. Network-level protection is provided by Cloudflare infrastructure.</p>
+
+    <h3>Changes to This Policy</h3>
+    <p>This Privacy Policy may be updated to reflect changes in platform architecture, institutional deployment configurations, or applicable law. Material changes will be noted with an updated date above. Institutions with active deployments will be notified directly of any changes that affect their privacy commitments.</p>
+
+    <div class="privacy-contact">
+      <div class="pc-label">Contact</div>
+      If you have questions or concerns about this Privacy Policy or about how COMPAiSS handles data in connection with your institution's deployment, please contact:<br><br>
+      Frank P. Harvey, Senior Advisor<br>
+      COMPAiSS Inc. / Dalhousie University<br>
+      <a href="mailto:Frank.Harvey@Dal.Ca">Frank.Harvey@Dal.Ca</a>
+    </div>
   </div>
 
 </main>
 
 <footer>
   <div class="footer-inner">
-<div class="highlight-block" style="margin-top:2rem;">
-  <p style="margin:0 0 0.4rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">Architectural Investigation</p>
-  <p style="margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">The bounded failure model described in this risk assessment was put to analytical scrutiny by Copilot in a structured exchange. The conclusions it reached after sustained engagement with the evidence are documented here.</p>
-  <p style="margin:0;font-size:0.95rem;max-width:none;"><a href="/architecture-investigation.html">Read the architectural investigation →</a></p>
-</div>    </p>
+    <div class="highlight-block" style="margin-top:2rem;">
+      <p style="margin:0 0 0.4rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">Architectural Investigation</p>
+      <p style="margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">The bounded failure model described in this risk assessment was put to analytical scrutiny by Copilot in a structured exchange. The conclusions it reached after sustained engagement with the evidence are documented here.</p>
+      <p style="margin:0;font-size:0.95rem;max-width:none;"><a href="/architecture-investigation.html">Read the architectural investigation &rarr;</a></p>
+    </div>
   </div>
 </footer>
 
-<button id="backToTop" aria-label="Back to top">↑</button>
+<button id="backToTop" aria-label="Back to top">&#x2191;</button>
 
 <script>
   const backBtn = document.getElementById('backToTop');
