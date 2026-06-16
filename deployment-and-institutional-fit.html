@@ -703,12 +703,13 @@ hr {
   <hr>
 
   <!-- SECTION 5 -->
-  <div class="content-section" id="hybrid">
-    <h2>The Hybrid Model: Execution and Governed Intelligence</h2>
-    <p class="section-intro">Two systems, one workflow - each doing what it does best.</p>
+<div class="content-section" id="hybrid">
+    <h2>COMPAiSS and Your Existing Systems</h2>
+    <p class="section-intro">COMPAiSS does not replace your existing workflow systems. It adds a governed intelligence layer they were never designed to provide.</p>
 
-    <p>The most effective institutional deployment is not a replacement model - it is a hybrid one. Existing CRM and workflow systems handle process, communication, and record management. COMPAiSS handles governed intelligence: accurate, policy-aligned, institutionally authorized answers.</p>
-
+    <p>RAG and COMPAiSS address different problems under different circumstances. RAG improves generation quality by connecting the model to relevant documents before a response is produced. It is a meaningful improvement over ungrounded AI, but residual hallucination rates remain a documented challenge even under optimal conditions. For institutions where those residual risks are acceptable, RAG is a reasonable architecture. For institutions where they are not, a different approach is required.</p>
+    <p>COMPAiSS addresses the authorization problem rather than the retrieval problem. When an institution already knows which sources are authoritative and the scope of permitted responses must be bounded, the relevant question is not which content is most relevant to retrieve. It is whether the system is permitted to generate a response at all. COMPAiSS enforces that authorization before inference occurs. For institutions evaluating AI for the first time, this provides a complete governance architecture without the infrastructure overhead RAG requires. For institutions that have already invested in RAG for other purposes, COMPAiSS addresses a different and complementary requirement.</p>
+    <p>In both cases, COMPAiSS operates alongside existing CRM and workflow systems rather than replacing them. Existing systems handle process, communication, and record management. COMPAiSS handles governed intelligence: accurate, policy-aligned, institutionally authorized answers.</p>
     <div class="hybrid-grid">
       <div class="hybrid-col">
         <div class="hybrid-label">Your existing CRM / workflow system</div>
