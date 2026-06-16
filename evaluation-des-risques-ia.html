@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
 <script>
@@ -10,20 +11,18 @@ gtag('js', new Date());
 gtag('config', 'G-JR7LJGK5PK');
 </script>
 
-<!-- ✅ ADD ADSENSE RIGHT HERE -->
-
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4686202821245413"
      crossorigin="anonymous"></script>
 
-<link rel="canonical" href="https://compaiss.ca/evaluation-des-risques-ia.html" />
-<link rel="alternate" hreflang="en" href="https://compaiss.ca/ai-risk-assessment.html" />
-<link rel="alternate" hreflang="fr" href="https://compaiss.ca/evaluation-des-risques-ia.html" />
+<link rel="canonical" href="https://compaiss.ca/index_french.html" />
+<link rel="alternate" hreflang="fr" href="https://compaiss.ca/index_french.html" />
+<link rel="alternate" hreflang="en" href="https://compaiss.ca/index.html" />
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Évaluation des risques et de la responsabilité liés à l'IA - COMPAiSS</title>
+  <title>COMPAiSS</title>
 
   <style>
     :root {
@@ -45,13 +44,10 @@ gtag('config', 'G-JR7LJGK5PK');
       --radius: 10px;
       --green: #4caf82;
       --green-soft: rgba(76,175,130,0.12);
-      --red-soft: rgba(220,80,80,0.10);
-      --red-border: rgba(220,80,80,0.25);
     }
 
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: var(--bg-page);
       color: var(--text-main);
       font: 18px/1.65 'Georgia', 'Times New Roman', serif;
@@ -60,15 +56,11 @@ gtag('config', 'G-JR7LJGK5PK');
 
     a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
     a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: .95; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-    .skip-link {
-      position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
-    }
-    .skip-link:focus {
-      left: 16px; top: 16px; width: auto; height: auto;
-      background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
-    }
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; background: #000; color: #fff; padding: 8px 12px; z-index: 1000; }
 
     header { border-bottom: 1px solid var(--border-soft); }
 
@@ -100,8 +92,7 @@ gtag('config', 'G-JR7LJGK5PK');
       flex: 1 1 auto;
       justify-content: center;
       gap: 2rem;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-size: 0.82rem;
       font-family: system-ui, -apple-system, sans-serif;
     }
@@ -110,6 +101,24 @@ gtag('config', 'G-JR7LJGK5PK');
     .nav li a { display: block; text-decoration: none; color: var(--text-muted); }
     .nav a:hover { color: var(--text-heading); }
     .nav a.active { color: var(--accent); }
+
+    .nav-cta {
+      flex: 0 0 auto;
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: var(--accent);
+      color: #000 !important;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      border-radius: 5px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; color: #000 !important; }
 
     main { max-width: var(--wrap); margin: 0 auto; padding: var(--pad); }
 
@@ -139,21 +148,8 @@ gtag('config', 'G-JR7LJGK5PK');
       margin-bottom: 1rem;
     }
 
-    .page-header h1 {
-      font-size: 2.6rem;
-      color: var(--text-heading);
-      margin: 0 0 1rem;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
-
-    .page-header .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 60ch;
-      margin: 0 auto;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
+    .page-header .logo-wrap { margin-bottom: 1.6rem; }
+    .page-header .logo-wrap img { max-width: 480px; width: 100%; height: auto; display: inline-block; }
 
     .section-nav {
       margin-bottom: 3rem;
@@ -175,27 +171,21 @@ gtag('config', 'G-JR7LJGK5PK');
 
     .section-nav ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.5rem 2rem;
     }
 
-    @media (max-width: 600px) {
-      .section-nav ul { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
 
     .section-nav li { margin: 0; }
     .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
     .section-nav a:hover { color: var(--text-heading); }
 
-    .gov-section {
-      margin-bottom: 4rem;
-      padding-top: 1rem;
-    }
+    .content-section { margin-bottom: 4rem; padding-top: 1rem; }
 
-    .gov-section h2 {
+    .content-section h2 {
       font-size: 1.7rem;
       color: var(--text-heading);
       margin: 0 0 0.5rem;
@@ -204,7 +194,7 @@ gtag('config', 'G-JR7LJGK5PK');
       letter-spacing: 0.01em;
     }
 
-    .gov-section .section-intro {
+    .content-section .section-intro {
       color: var(--text-muted);
       font-size: 0.95rem;
       margin: 0 0 1.8rem;
@@ -212,12 +202,9 @@ gtag('config', 'G-JR7LJGK5PK');
       font-style: italic;
     }
 
-    .gov-section p {
-      max-width: 70ch;
-      margin: 1em 0;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
+    .content-section p { max-width: 70ch; margin: 1em 0; font-size: 1rem; line-height: 1.7; }
+    .content-section ul { max-width: 70ch; margin: 1em 0 1.6em 1.4em; }
+    .content-section li { margin: 0.55em 0; font-size: 1rem; line-height: 1.65; }
 
     .card-grid {
       display: grid;
@@ -244,116 +231,9 @@ gtag('config', 'G-JR7LJGK5PK');
       margin: 0 0 0.6rem;
     }
 
-    .card p {
-      font-size: 0.92rem;
-      color: var(--text-main);
-      margin: 0;
-      line-height: 1.6;
-      max-width: none;
-    }
+    .card p { font-size: 0.92rem; color: var(--text-main); margin: 0; line-height: 1.6; max-width: none; }
 
-    .verified-list {
-      list-style: none;
-      margin: 1.5rem 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .verified-list li {
-      padding: 0.85rem 1rem 0.85rem 3rem;
-      margin-bottom: 0.6rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 8px;
-      position: relative;
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-
-    .verified-list li::before {
-      content: "✓";
-      position: absolute;
-      left: 1rem;
-      color: var(--green);
-      font-weight: 700;
-    }
-
-    .verified-list li strong {
-      color: var(--text-heading);
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.92rem;
-    }
-
-    .verified-list li span {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-    }
-
-    .risk-list {
-      list-style: none;
-      margin: 1.5rem 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .risk-list li {
-      padding: 0.85rem 1rem 0.85rem 3rem;
-      margin-bottom: 0.6rem;
-      background: var(--red-soft);
-      border: 1px solid var(--red-border);
-      border-radius: 8px;
-      position: relative;
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-
-    .risk-list li::before {
-      content: "!";
-      position: absolute;
-      left: 1.1rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .risk-list li strong {
-      color: var(--text-heading);
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.92rem;
-    }
-
-    .risk-list li span {
-      color: var(--text-muted);
-      font-size: 0.88rem;
-    }
-
-    .test-result {
-      background: var(--green-soft);
-      border: 1px solid rgba(76,175,130,0.3);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
-      margin: 1.5rem 0;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .test-result .test-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .test-result p {
-      margin: 0;
-      font-size: 0.93rem;
-      color: var(--text-main);
-      max-width: none;
-    }
-
-    .finding-block {
+    .highlight-block {
       background: var(--accent-soft);
       border-left: 3px solid var(--accent);
       border-radius: 0 var(--radius) var(--radius) 0;
@@ -362,67 +242,99 @@ gtag('config', 'G-JR7LJGK5PK');
       font-family: system-ui, -apple-system, sans-serif;
     }
 
-    .finding-block .finding-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
+    .highlight-block p { margin: 0 0 0.6rem; font-size: 0.95rem; color: var(--text-main); max-width: none; line-height: 1.65; }
+    .highlight-block p:last-child { margin-bottom: 0; }
 
-    .finding-block p {
-      margin: 0 0 0.6rem;
-      font-size: 0.93rem;
-      color: var(--text-main);
-      max-width: none;
-    }
+    .doc-list { list-style: none; margin: 1.5rem 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
 
-    .finding-block p:last-child { margin-bottom: 0; }
-
-    .data-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .data-item {
+    .doc-list li {
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.6rem;
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
-      border-radius: var(--radius);
-      padding: 1.2rem 1.4rem;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
-
-    .data-item .di-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    .data-item p {
-      font-size: 0.88rem;
-      color: var(--text-main);
-      margin: 0;
-      max-width: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
       line-height: 1.55;
     }
 
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-soft);
-      margin: 3rem 0;
+    .doc-list li a { color: var(--link); font-weight: 500; }
+
+    hr { border: none; border-top: 1px solid var(--border-soft); margin: 3rem 0; }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem;
+      margin: 1.4rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
     }
+    @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .benefit-item::before {
+      content: '\2713';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.85rem;
+      margin: 1.6rem 0;
+    }
+
+    .comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+    .comp-table th {
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .comp-table th.center { text-align: center; }
+
+    .comp-table td {
+      padding: 0.7rem 0.9rem;
+      border-bottom: 0.5px solid var(--border-soft);
+      color: var(--text-main);
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table td.center { text-align: center; }
+
+    .comp-table tr.compaiss-row td {
+      background: var(--accent-soft);
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .comp-table tr.compaiss-row td:first-child { border-left: 3px solid var(--accent); }
+
+    .yes-no-yes { color: var(--green); font-weight: 700; }
+    .yes-no-no  { color: #e05555; font-weight: 700; }
 
     #backToTop {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 44px;
-      height: 44px;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
       border-radius: 50%;
       border: none;
       background: var(--accent);
@@ -437,9 +349,157 @@ gtag('config', 'G-JR7LJGK5PK');
     #backToTop:hover { opacity: 0.9; }
 
     @media (max-width: 700px) {
-      .page-header h1 { font-size: 1.9rem; }
+      .page-header .logo-wrap img { max-width: 320px; }
+      .nav-cta { display: none; }
+    }
+
+     @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+    .hero-img-side { display:block; }
+    @media (max-width:900px) { .hero-img-side { display:none; } }
+
+    /* =============================================
+       POLITIQUE DE CONFIDENTIALITE - ajout juin 2026
+       ============================================= */
+    .privacy-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+
+    .privacy-section h2 {
+      font-size: 1.7rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .privacy-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-style: italic;
+    }
+
+    .privacy-section p {
+      max-width: 70ch;
+      margin: 1em 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .privacy-section h3 {
+      color: var(--text-heading);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 2rem 0 0.8rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-section ul {
+      list-style: none;
+      margin: 0.8rem 0 1.2rem;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-section ul li {
+      padding: 0.5rem 1rem 0.5rem 2.2rem;
+      position: relative;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.55;
+    }
+
+    .privacy-section ul li::before {
+      content: "-";
+      position: absolute;
+      left: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .privacy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.4rem;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-card .pc-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .privacy-card p {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin: 0;
+      max-width: none;
+      line-height: 1.55;
+    }
+
+    .privacy-summary {
+      background: var(--green-soft);
+      border: 1px solid rgba(76,175,130,0.3);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .privacy-summary .ps-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .privacy-summary p {
+      margin: 0;
+      font-size: 0.93rem;
+      color: var(--text-main);
+      max-width: none;
+    }
+
+    .privacy-contact {
+      margin-top: 2rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .privacy-contact .pc-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
   </style>
+
 </head>
 
 <body>
@@ -447,14 +507,14 @@ gtag('config', 'G-JR7LJGK5PK');
 <a href="#main" class="skip-link">Passer au contenu</a>
 
 <header>
-  <nav class="nav" aria-label="Navigation principale">
-    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
+  <nav class="nav" aria-label="Principal">
+    <a href="/index_french.html" class="brand-text active">COMPAiSS</a>
     <ul>
-      <li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a évolué ainsi</a></li>
+      <li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a &eacute;volu&eacute; ainsi</a></li>
       <li><a href="/governance-fr.html">Gouvernance IA</a></li>
-      <li><a href="/evaluation-des-risques-ia.html" class="active">Évaluation des risques IA</a></li>
-      <li><a href="/gouvernance-en-action.html">Démonstrations et tarification</a></li>
-      <li><a href="/deploiement-et-adequation-institutionnelle.html">Déploiement et adéquation</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">&Eacute;valuation des risques IA</a></li>
+      <li><a href="/gouvernance-en-action.html">D&eacute;monstrations et tarification</a></li>
+      <li><a href="/deploiement-et-adequation-institutionnelle.html">D&eacute;ploiement et ad&eacute;quation</a></li>
       <li><a href="/index.html">EN</a></li>
     </ul>
   </nav>
@@ -462,539 +522,791 @@ gtag('config', 'G-JR7LJGK5PK');
 
 <main id="main">
 
+  <!-- ============================================================ -->
+  <!-- HERO                                                         -->
+  <!-- ============================================================ -->
+
   <div class="page-header">
-    <div class="eyebrow">Approvisionnement, conformité et examen réglementaire</div>
-    <h1>Évaluation des risques et de la responsabilité liés à l'IA</h1>
-    <p class="subtitle">Une évaluation structurée de COMPAiSS par rapport aux cadres reconnus de responsabilité en matière d'IA, à l'intention des processus d'approvisionnement institutionnel et d'examen réglementaire.</p>
+    <div class="eyebrow">Gouvernance de l'IA institutionnelle</div>
+    <div class="logo-wrap">
+      <img
+        src="/assets/compaiss_logo-fr.png"
+        alt="COMPAiSS - Con&ccedil;u pour les environnements o&ugrave; la pr&eacute;cision est obligatoire. L&agrave; o&ugrave; l'IA cesse de supposer."
+      >
+    </div>
+    <p class="hero-statement">
+      <strong style="display:block; font-size:1.35rem; line-height:1.5; max-width:720px; margin:0 auto;">
+        COMPAiSS n'autorise pas l'IA &agrave; g&eacute;n&eacute;rer une r&eacute;ponse &agrave; moins qu'elle ne soit pr&eacute;alablement autoris&eacute;e par rapport aux sources approuv&eacute;es par l'&eacute;tablissement.
+      </strong>
+      <span style="display:block; margin-top:0.8rem; font-size:0.9rem; color:#9cc9ff; font-family:system-ui,-apple-system,sans-serif;">
+        Un syst&egrave;me d'IA con&ccedil;u pour les environnements r&eacute;glement&eacute;s o&ugrave; la pr&eacute;cision, l'autorit&eacute; et la gouvernance sont non n&eacute;gociables.
+      </span>
+    </p>
   </div>
 
+  <style>
+    .hero-v2 { text-align:center; padding:3rem 0 2.8rem; border-bottom:1px solid var(--border-soft); margin-bottom:3rem; }
+    .hero-v2 .hero-static { font-size:clamp(1rem,2.2vw,1.4rem); font-weight:400; color:#ffffff; line-height:1.5; margin:0 auto; max-width:760px; font-family:Georgia,'Times New Roman',serif; }
+    .hero-v2 .hero-cycling-wrap { font-size:clamp(1rem,2.2vw,1.4rem); font-weight:400; max-width:760px; margin:0 auto 0.6rem; height:2.2rem; display:flex; align-items:center; justify-content:center; font-family:Georgia,'Times New Roman',serif; }
+    .hero-v2 .hero-word-slot { display:inline-block; position:relative; height:2.2rem; overflow:hidden; min-width:500px; text-align:center; }
+    .hero-v2 .hero-word { position:absolute; width:100%; left:0; top:50%; transform:translateY(120%); color:var(--accent); font-style:italic; opacity:0; transition:opacity 0.45s ease,transform 0.45s ease; white-space:nowrap; }
+    .hero-v2 .hero-word.hw-active { opacity:1; transform:translateY(-50%); }
+    .hero-v2 .hero-word.hw-exit { opacity:0; transform:translateY(-140%); transition:opacity 0.35s ease,transform 0.35s ease; }
+    .hero-v2 .hero-subline { font-family:system-ui,-apple-system,sans-serif; font-size:0.9rem; color:var(--link); max-width:580px; margin:0 auto 2.4rem; line-height:1.65; }
+    .hero-v2 .hero-gate { max-width:640px; margin:0 auto; background:rgba(10,30,60,0.7); border:1px solid var(--border-accent); border-radius:var(--radius); padding:1.3rem 1.8rem 1.5rem; text-align:left; }
+    .hero-v2 .hero-gate-label { font-family:system-ui,-apple-system,sans-serif; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:1.1rem; display:flex; align-items:center; gap:7px; }
+    .hero-v2 .hero-gate-pulse { width:7px; height:7px; border-radius:50%; background:var(--green); flex-shrink:0; animation:heroPulse 1.4s ease-in-out infinite; }
+    @keyframes heroPulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.35;transform:scale(0.65);} }
+    .hero-v2 .hero-two-col { display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:1rem; }
+    .hero-v2 .hero-side { border-radius:6px; padding:0.9rem 1.1rem; font-family:system-ui,-apple-system,sans-serif; transition:background 0.5s ease,border-color 0.5s ease; }
+    .hero-v2 .hero-side-label { font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; margin-bottom:0.6rem; transition:color 0.5s ease; }
+    .hero-v2 .hero-side-item { font-size:0.82rem; line-height:1.6; color:var(--text-main); padding:0.1rem 0; display:flex; align-items:baseline; gap:0.4em; }
+    .hero-v2 .hero-side-item .hmk { font-size:0.65rem; flex-shrink:0; transition:color 0.5s ease; }
+    .hero-v2 .hside-bad { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); }
+    .hero-v2 .hside-bad .hero-side-label { color:var(--text-muted); }
+    .hero-v2 .hside-bad .hmk { color:var(--text-muted); }
+    .hero-v2 .hside-pass { background:var(--green-soft); border:1px solid rgba(76,175,130,0.3); }
+    .hero-v2 .hside-pass .hero-side-label { color:var(--green); }
+    .hero-v2 .hside-pass .hmk { color:var(--green); }
+    .hero-v2 .hside-redirect { background:var(--accent-soft); border:1px solid var(--border-accent); }
+    .hero-v2 .hside-redirect .hero-side-label { color:var(--accent); }
+    .hero-v2 .hside-redirect .hmk { color:var(--accent); }
+    .hero-v2 .hero-vs { font-family:system-ui,-apple-system,sans-serif; font-size:0.7rem; color:rgba(166,185,204,0.4); font-weight:700; letter-spacing:0.08em; display:flex; align-items:center; }
+    .hero-v2 .hero-verdict { margin-top:1rem; font-family:system-ui,-apple-system,sans-serif; font-size:0.84rem; font-weight:600; padding:0.55rem 1rem; border-radius:5px; text-align:center; transition:background 0.5s ease,border-color 0.5s ease,color 0.5s ease; min-height:3rem; display:flex; align-items:center; justify-content:center; }
+    .hero-v2 .hverdict-pass { background:var(--green-soft); border:1px solid rgba(76,175,130,0.3); color:var(--green); }
+    .hero-v2 .hverdict-redirect { background:var(--accent-soft); border:1px solid var(--border-accent); color:var(--accent); }
+    .hero-v2 .hero-dots { display:flex; justify-content:center; gap:6px; margin-top:1.6rem; }
+    .hero-v2 .hero-dot { width:5px; height:5px; border-radius:50%; background:var(--border-soft); transition:background 0.3s; }
+    .hero-v2 .hero-dot.hd-on { background:var(--accent); }
+    @media (max-width:700px) {
+      .hero-v2 .hero-word-slot { min-width:240px; }
+      .hero-v2 .hero-two-col { grid-template-columns:1fr; }
+      .hero-v2 .hero-vs { display:none; }
+    }
+  </style>
+ 
+  <div style="display:grid; grid-template-columns:3fr 4fr 3fr; gap:1.2rem; align-items:stretch; margin-bottom:3rem;">
+
+    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
+      <img src="/assets/rag-library.jpg" alt="Toute autre IA traite l'univers entier de la connaissance" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(150,20,20,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
+      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">Toute autre IA</div>
+    </div>
+
+    <div class="hero-v2" style="margin:0; border:none; padding:2.5rem 1rem;">
+ 
+    <div class="hero-static">L'IA COMPAiSS ne s'ex&eacute;cute que lorsque</div>
+ 
+    <div class="hero-cycling-wrap">
+      <div class="hero-word-slot" aria-live="polite" aria-atomic="true">
+        <span class="hero-word hw-active" id="hw0">votre institution l'autorise.</span>
+        <span class="hero-word" id="hw1">une v&eacute;rification externe dit oui.</span>
+        <span class="hero-word" id="hw2">la liste verte confirme la port&eacute;e.</span>
+        <span class="hero-word" id="hw3">l'autorisation passe en premier.</span>
+        <span class="hero-word" id="hw4">l'institution le permet.</span>
+        <span class="hero-word" id="hw5">des sources approuv&eacute;es existent.</span>
+        <span class="hero-word" id="hw6">une v&eacute;rification externe le confirme.</span>
+      </div>
+    </div>
+ 
+    <p class="hero-subline">
+      Pas un param&egrave;tre de configuration. Pas une couche de politique. Une propri&eacute;t&eacute; structurelle de l'architecture. Le mod&egrave;le ne peut pas s'ex&eacute;cuter tant qu'une v&eacute;rification d'autorisation externe ne l'y autorise pas.
+    </p>
+ 
+    <div class="hero-gate">
+      <div class="hero-gate-label">
+        <span class="hero-gate-pulse"></span>
+        Autorisation pr&eacute;-inf&eacute;rence. En direct.
+      </div>
+      <div class="hero-two-col">
+        <div class="hero-side hside-bad">
+          <div class="hero-side-label">Toute autre IA</div>
+          <div class="hero-side-item"><span class="hmk">&#x2717;</span> Le mod&egrave;le s'ex&eacute;cute d'abord</div>
+          <div class="hero-side-item"><span class="hmk">&#x2717;</span> Le risque est g&eacute;r&eacute; apr&egrave;s</div>
+          <div class="hero-side-item"><span class="hmk">&#x2717;</span> Hallucinations r&eacute;siduelles fr&eacute;quentes</div>
+        </div>
+        <div class="hero-vs">c/&agrave;</div>
+        <div class="hero-side hside-pass" id="hRightPanel">
+          <div class="hero-side-label" id="hRightLabel">COMPAiSS</div>
+          <div class="hero-side-item"><span class="hmk" id="hm1">&#x2713;</span> <span id="ht1">Autorisation v&eacute;rifi&eacute;e en premier</span></div>
+          <div class="hero-side-item"><span class="hmk" id="hm2">&#x2713;</span> <span id="ht2">Le mod&egrave;le ne s'ex&eacute;cute que si autoris&eacute;</span></div>
+          <div class="hero-side-item"><span class="hmk" id="hm3">&#x2713;</span> <span id="ht3">COMPAiSS ne g&eacute;n&egrave;re pas de r&eacute;ponses au-del&agrave; des sources institutionnelles autoris&eacute;es</span></div>
+        </div>
+      </div>
+      <div class="hero-verdict hverdict-pass" id="hVerdict">&#x2713; Autoris&eacute;. Le mod&egrave;le est autoris&eacute; &agrave; s'ex&eacute;cuter.</div>
+    </div>
+ 
+    <div class="hero-dots">
+      <div class="hero-dot hd-on"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
+    </div>
+
+    <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
+      <img src="/assets/compaiss-library.jpg" alt="COMPAiSS op&egrave;re uniquement sur les connaissances institutionnelles autoris&eacute;es" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(10,40,80,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
+      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#f0c44c;">COMPAiSS</div>
+    </div>
+
+  </div>
+
+  <script>
+  (function() {
+    var words = [
+      'votre institution l\'autorise.',
+      'une v\u00e9rification externe dit oui.',
+      'la liste verte confirme la port\u00e9e.',
+      'l\'autorisation passe en premier.',
+      'l\'institution le permet.',
+      'des sources approuv\u00e9es existent.',
+      'une v\u00e9rification externe le confirme.'
+    ];
+    var passState = {
+      panel:'hside-pass', m:'\u2713',
+      t1:'Autorisation v\u00e9rifi\u00e9e en premier',
+      t2:'Le mod\u00e8le ne s\'ex\u00e9cute que si autoris\u00e9',
+      t3:'COMPAiSS ne g\u00e9n\u00e8re pas de r\u00e9ponses au-del\u00e0 des sources institutionnelles autoris\u00e9es',
+      vc:'hverdict-pass', vt:'\u2713 Autoris\u00e9. Le mod\u00e8le est autoris\u00e9 \u00e0 s\'ex\u00e9cuter.'
+    };
+    var failState = {
+      panel:'hside-redirect', m:'\u2192',
+      t1:'Autorisation refus\u00e9e',
+      t2:'Le mod\u00e8le ne s\'ex\u00e9cute pas',
+      t3:'Utilisateur redirig\u00e9 vers les sources autoris\u00e9es',
+      vc:'hverdict-redirect', vt:'\u2192 Hors port\u00e9e. Utilisateur redirig\u00e9 vers les sources autoris\u00e9es.'
+    };
+    var seq = [passState,passState,passState,passState,passState,failState,failState];
+    var cur = 0;
+    var dots = document.querySelectorAll('.hero-dot');
+    var verdict = document.getElementById('hVerdict');
+    var panel   = document.getElementById('hRightPanel');
+    function applyState(s) {
+      panel.className = 'hero-side ' + s.panel;
+      document.getElementById('hRightLabel').textContent = 'COMPAiSS';
+      ['hm1','hm2','hm3'].forEach(function(id){ document.getElementById(id).textContent = s.m; });
+      document.getElementById('ht1').textContent = s.t1;
+      document.getElementById('ht2').textContent = s.t2;
+      document.getElementById('ht3').textContent = s.t3;
+      verdict.className = 'hero-verdict ' + s.vc;
+      verdict.textContent = s.vt;
+    }
+    function cycle() {
+      var prev = cur;
+      cur = (cur + 1) % words.length;
+      var prevEl = document.getElementById('hw' + prev);
+      var nextEl = document.getElementById('hw' + cur);
+      prevEl.classList.remove('hw-active');
+      prevEl.classList.add('hw-exit');
+      setTimeout(function() {
+        nextEl.classList.add('hw-active');
+        setTimeout(function(){ prevEl.classList.remove('hw-exit'); }, 450);
+      }, 60);
+      dots.forEach(function(d,i){ d.classList.toggle('hd-on', i===cur); });
+      applyState(seq[cur]);
+    }
+    applyState(seq[0]);
+    setInterval(cycle, 4200);
+  })();
+  </script>
+
+  <!-- ============================================================ -->
+  <!-- PARADOXE DE LA GOUVERNANCE                                   -->
+  <!-- ============================================================ -->
+
+  <div style="margin: 0 0 2.8rem; padding: 1.6rem 2rem; background: rgba(240,196,76,0.07); border: 1px solid rgba(240,196,76,0.3); border-radius: var(--radius); font-family: system-ui, -apple-system, sans-serif;">
+    <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem;">Le paradoxe de la gouvernance</div>
+    <p style="font-size: 1.05rem; color: var(--text-heading); line-height: 1.65; margin: 0 0 0.8rem; max-width: 72ch; font-weight: 400;">
+      Plus les mod&egrave;les d'IA de pointe deviennent performants, moins ils conviennent aux &eacute;tablissements r&eacute;glement&eacute;s - et non l'inverse. Un mod&egrave;le plus capable ne produit pas moins de violations des limites autoris&eacute;es. Il en produit de plus convaincantes.
+    </p>
+    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 72ch;">
+      Pour les &eacute;tablissements r&eacute;glement&eacute;s, le d&eacute;fi de la gouvernance &eacute;volue avec les capacit&eacute;s de l'IA. Attendre des mod&egrave;les plus performants n'est pas une strat&eacute;gie d'att&eacute;nuation. C'est un report d'un probl&egrave;me qui s'aggrave avec le temps. COMPAiSS r&egrave;gle ce probl&egrave;me de fa&ccedil;on structurelle&nbsp;: l'autorisation intervient avant l'inf&eacute;rence, &agrave; l'ext&eacute;rieur du mod&egrave;le, et est donc invariante aux am&eacute;liorations du mod&egrave;le.
+    </p>
+  </div>
+
+  <!-- NAVIGATION DE SECTION -->
   <div class="section-nav">
-    <strong>Sur cette page</strong>
+    <strong>Navigation</strong>
     <ul>
-      <li><a href="#identification-systeme">Identification du système</a></li>
-      <li><a href="#classification-risque">Classification des risques</a></li>
-      <li><a href="#gouvernance-donnees">Gouvernance des données</a></li>
-      <li><a href="#responsabilite-architecture">Responsabilité architecturale</a></li>
-      <li><a href="#registre-risques">Registre des risques</a></li>
-      <li><a href="#surveillance-humaine">Surveillance humaine et recours</a></li>
-      <li><a href="#preparation-approvisionnement">Préparation à l'approvisionnement</a></li>
-      <li><a href="#strategie-ia-canada">Stratégie nationale en IA du Canada</a></li>
-      <li><a href="#alignement-politique">Alignement réglementaire et politique</a></li>   
-      <li><a href="#demande-documentation">Demander la documentation</a></li>
+      <li><a href="#what-compaiss-does">Ce que fait COMPAiSS</a></li>
+      <li><a href="#why-choose">Pourquoi les &eacute;tablissements choisissent COMPAiSS</a></li>
+      <li><a href="#architecture">Comment fonctionne l'architecture</a></li>
+      <li><a href="#structural-problem">Le probl&egrave;me structurel de l'IA aujourd'hui</a></li>
+      <li><a href="#accuracy">L&agrave; o&ugrave; la pr&eacute;cision n'est pas facultative</a></li>
+      <li><a href="#structural-solution">COMPAiSS&nbsp;: la solution structurelle</a></li>
+      <li><a href="#competitor-table">COMPAiSS vs. l'IA d'entreprise</a></li>
+      <li><a href="#not-rag-gp-faq">Ni RAG, ni IA g&eacute;n&eacute;raliste, ni FAQ</a></li>
+      <li><a href="#cost-savings">&Eacute;conomies par conception</a></li>
+      <li><a href="#enterprise-contrast">Le contraste avec les assistants IA d'entreprise</a></li>
+      <li><a href="#translations">Gouvernance multilingue</a></li>
+      <li><a href="#consulting-firms">Pour les cabinets-conseils et int&eacute;grateurs</a></li>
+      <li><a href="#procurement">Con&ccedil;u pour l'approvisionnement institutionnel</a></li>
+      <li><a href="#accountability">Responsabilit&eacute; et contr&ocirc;le institutionnels</a></li>
+      <li><a href="#explore">Explorer cette architecture</a></li>
+      <li><a href="#technical-docs">Documentation technique</a></li>
+      <li><a href="#about">&Agrave; propos de COMPAiSS</a></li>
+      <li><a href="#politique-confidentialite">Politique de confidentialit&eacute;</a></li>
     </ul>
   </div>
 
-  <!-- IDENTIFICATION DU SYSTÈME -->
-  <div class="gov-section" id="identification-systeme">
-    <h2>Identification du système</h2>
-    <p class="section-intro">Renseignements d'identification de base aux fins d'approvisionnement et d'examen réglementaire.</p>
+  <!-- ============================================================ -->
+  <!-- CE QUE FAIT COMPAISS                                         -->
+  <!-- ============================================================ -->
 
+  <div class="content-section" id="what-compaiss-does">
+    <h2>Ce que fait COMPAiSS</h2>
+    <p class="section-intro">Transformer les &eacute;cosyst&egrave;mes Web institutionnels complexes en r&eacute;ponses IA pr&eacute;cises, faisant autorit&eacute; et multilingues.</p>
+    <p>Les sites Web des &eacute;tablissements r&eacute;glement&eacute;s contiennent des milliers de pages d'information - politiques, proc&eacute;dures, r&egrave;gles et ressources de soutien - g&eacute;n&eacute;ralement r&eacute;parties entre plusieurs d&eacute;partements, bureaux administratifs et unit&eacute;s de service. Pour la plupart des utilisateurs, naviguer dans ces sites opaques pour trouver rapidement la bonne r&eacute;ponse est une t&acirc;che ardue.</p>
+    <p>Les universit&eacute;s, les minist&egrave;res, les h&ocirc;pitaux et les organismes de r&eacute;glementation professionnelle font tous face au m&ecirc;me d&eacute;fi&nbsp;: l'information existe, mais elle est dispers&eacute;e sur des centaines ou des milliers de pages Web et de documents de politique, chacun r&eacute;gi par des bureaux diff&eacute;rents et mis &agrave; jour selon des calendriers diff&eacute;rents.</p>
+    <p>COMPAiSS r&eacute;sout ce probl&egrave;me pour les &eacute;tablissements qui ont l'obligation de fournir des informations claires, pr&eacute;cises et faisant autorit&eacute; - dans la langue pr&eacute;f&eacute;r&eacute;e de l'utilisateur - sans g&eacute;n&eacute;rer de r&eacute;ponses qui vont au-del&agrave; de ce que l'&eacute;tablissement a effectivement autoris&eacute;.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- POURQUOI LES ETABLISSEMENTS CHOISISSENT COMPAISS             -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="why-choose">
+    <h2>Pourquoi les &eacute;tablissements choisissent COMPAiSS</h2>
+    <p class="section-intro">Huit r&eacute;sultats qu'aucun syst&egrave;me d'IA g&eacute;n&eacute;rative par d&eacute;faut ne peut obtenir par architecture.</p>
+    <div class="benefits-grid">
+      <div class="benefit-item">&Eacute;limine les r&eacute;ponses IA institutionnelles non autoris&eacute;es</div>
+      <div class="benefit-item">R&eacute;duit le risque de gouvernance de l'IA de fa&ccedil;on structurelle, et non probabiliste</div>
+      <div class="benefit-item">R&eacute;duit les co&ucirc;ts de d&eacute;ploiement de 70 &agrave; 85&nbsp;% par rapport au RAG d'entreprise</div>
+      <div class="benefit-item">R&eacute;pond correctement dans n'importe quelle langue - le sens est gouvern&eacute; avant la traduction</div>
+      <div class="benefit-item">D&eacute;ploiement en jours, non en mois - aucune int&eacute;gration TI requise pour d&eacute;marrer</div>
+      <div class="benefit-item">Produit une piste d'audit compl&egrave;te pour l'approvisionnement</div>
+      <div class="benefit-item">L'&eacute;tablissement contr&ocirc;le quelles sources font autorit&eacute;</div>
+      <div class="benefit-item">L'&eacute;tablissement contr&ocirc;le la port&eacute;e - l'IA ne peut pas r&eacute;pondre en dehors de celle-ci</div>
+    </div>
+    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Chacune de ces propri&eacute;t&eacute;s est architecturale - ce n'est pas un param&egrave;tre de politique, ni une option de configuration, ni un contr&ocirc;le de tableau de bord. Ce sont des propri&eacute;t&eacute;s structurelles du mod&egrave;le d'inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e qui ne peuvent pas &ecirc;tre d&eacute;sactiv&eacute;es accidentellement.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- COMMENT FONCTIONNE L'ARCHITECTURE                            -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="architecture">
+    <h2>Comment fonctionne l'architecture</h2>
+    <p class="section-intro">Inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e - l'IA ne r&eacute;pondra pas aux questions qu'elle n'est pas autoris&eacute;e &agrave; traiter.</p>
+    <p>Au c&oelig;ur de COMPAiSS se trouve une architecture d'inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e. Si l'autorisation &eacute;choue, le mod&egrave;le de raisonnement institutionnel principal ne s'ex&eacute;cute pas et n'alloue pas de ressources d'inf&eacute;rence primaires.</p>
+    <p>En contr&ocirc;lant si le raisonnement de l'IA se produit du tout, COMPAiSS applique l'autorit&eacute; institutionnelle de fa&ccedil;on structurelle, plut&ocirc;t que de s'appuyer sur le filtrage ou la correction apr&egrave;s la g&eacute;n&eacute;ration.</p>
+    <p>COMPAiSS emploie des contr&ocirc;les de d&eacute;fense en profondeur&nbsp;: le portail d'autorisation emp&ecirc;che l'ex&eacute;cution du mod&egrave;le principal non autoris&eacute;, les contraintes bas&eacute;es sur les instructions guident le comportement lors de l'inf&eacute;rence autoris&eacute;e, et la validation post-g&eacute;n&eacute;ration assure la conformit&eacute; des URL avec les sources institutionnelles.</p>
+    <p>L'architecture de la liste verte et d'analyse ne fait pas que contr&ocirc;ler la port&eacute;e - elle contr&ocirc;le ce que le mod&egrave;le re&ccedil;oit comme environnement &eacute;pist&eacute;mique. Lorsque le mod&egrave;le re&ccedil;oit du contenu uniquement de pages et de documents institutionnels pr&eacute;-analys&eacute;s et autoris&eacute;s, la surface d'erreur d'interpr&eacute;tation est consid&eacute;rablement plus petite que dans un syst&egrave;me RAG raisonnant sur un corpus vaste et non structur&eacute;.</p>
+
+    <div class="highlight-block">
+      <p>L'affirmation pr&eacute;cise&nbsp;: COMPAiSS &eacute;limine par conception les hallucinations li&eacute;es &agrave; la violation de port&eacute;e, et r&eacute;duit consid&eacute;rablement - sans les &eacute;liminer enti&egrave;rement - les risques de qualit&eacute; de g&eacute;n&eacute;ration dans la port&eacute;e autoris&eacute;e, gr&acirc;ce &agrave; une analyse structur&eacute;e et &agrave; des contextes d'inf&eacute;rence strictement d&eacute;limit&eacute;s.</p>
+      <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf">Comparaison architecturale - RAG vs COMPAiSS (PDF)</a></p>
+    </div>
+
+    <img src="/assets/compaiss_executive_comparison_fr.png" alt="Comparaison de l'architecture COMPAiSS&nbsp;: inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e versus IA g&eacute;n&eacute;rative par d&eacute;faut" role="img" style="max-width: 100%; height: auto; display: block; margin: 2.5rem auto; border-radius: 8px;">
+
+    <div class="card-grid" style="margin-top: 1.8rem;">
+      <div class="card">
+        <div class="card-icon">&#128196;</div>
+        <h3>Figure 1 - Architecture RAG standard</h3>
+        <p>Illustre comment les syst&egrave;mes d'IA conventionnels et RAG fonctionnent avec l'inf&eacute;rence du mod&egrave;le active d&egrave;s le d&eacute;part, en s'appuyant sur la r&eacute;cup&eacute;ration et les contr&ocirc;les post-g&eacute;n&eacute;ration pour g&eacute;rer le risque apr&egrave;s qu'une r&eacute;ponse a &eacute;t&eacute; produite.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/figure1_rag_standard_fr-v2.pdf">Voir la Figure 1 (PDF)</a></p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128196;</div>
+        <h3>Figure 2 - Architecture COMPAiSS</h3>
+        <p>Montre la conception &agrave; ex&eacute;cution contr&ocirc;l&eacute;e de COMPAiSS, o&ugrave; l'autorisation et la validation de la port&eacute;e se produisent avant toute inf&eacute;rence du mod&egrave;le, et o&ugrave; les questions non &eacute;tay&eacute;es emp&ecirc;chent l'IA de s'ex&eacute;cuter.</p>
+        <p style="margin-top: 0.8rem;"><a href="/assets/figure2_compass_controlee_fr-v2.pdf">Voir la Figure 2 (PDF)</a></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- LE PROBLEME STRUCTUREL                                       -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="structural-problem">
+    <h2>Le probl&egrave;me structurel des syst&egrave;mes d'IA aujourd'hui</h2>
+    <p class="section-intro">Pourquoi l'IA g&eacute;n&eacute;rative par d&eacute;faut cr&eacute;e des risques que les clauses de non-responsabilit&eacute; ne peuvent pas corriger.</p>
+    <p>En cons&eacute;quence directe des &eacute;cosyst&egrave;mes Web institutionnels complexes, de nombreux utilisateurs se tournent vers des syst&egrave;mes d'IA grand public (ChatGPT, Copilot, Gemini et autres outils similaires) pour obtenir des r&eacute;ponses rapides et claires &agrave; des questions propres &agrave; leur &eacute;tablissement.</p>
+    <p>Mais les mod&egrave;les d'IA grand public sont con&ccedil;us pour g&eacute;n&eacute;rer des r&eacute;ponses par d&eacute;faut. Ils optimisent leur utilit&eacute; g&eacute;n&eacute;rale sur une vaste base d'entra&icirc;nement. Lorsque ces syst&egrave;mes sont appliqu&eacute;s &agrave; des questions sp&eacute;cifiques &agrave; un &eacute;tablissement, les erreurs, les hallucinations et les r&eacute;f&eacute;rences &agrave; des sources non autoris&eacute;es ou externes sont un sous-produit pr&eacute;visible de cette conception.</p>
+    <p>L'industrie de l'IA reconna&icirc;t volontiers ces faits - les r&eacute;ponses incorrectes ou non &eacute;tay&eacute;es sont g&eacute;n&eacute;ralement trait&eacute;es comme des r&eacute;sultats attendus &agrave; g&eacute;rer plut&ocirc;t que des &eacute;checs &agrave; pr&eacute;venir. Dans les environnements institutionnels r&eacute;glement&eacute;s, cependant, cette approche introduit des risques difficiles - voire impossibles - &agrave; att&eacute;nuer pleinement apr&egrave;s qu'une r&eacute;ponse a d&eacute;j&agrave; &eacute;t&eacute; fournie.</p>
+    <p>Il existe &eacute;galement de fortes incitations &eacute;conomiques &agrave; pr&eacute;server ce mod&egrave;le g&eacute;n&eacute;ratif par d&eacute;faut. La gestion des risques apr&egrave;s que les r&eacute;ponses sont produites permet des &eacute;cosyst&egrave;mes entiers de fonctionnalit&eacute;s d'entreprise - outils de surveillance, tableaux de bord de conformit&eacute;, couches de mod&eacute;ration, flux de travail de r&eacute;vision humaine et modules de gouvernance - qui sont co&ucirc;teux &agrave; construire, co&ucirc;teux &agrave; exploiter et tr&egrave;s rentables &agrave; vendre. Ces mesures peuvent r&eacute;duire l'exposition, mais elles ne changent pas l'architecture sous-jacente ni n'&eacute;liminent les causes profondes des hallucinations.</p>
+
+    <div class="highlight-block">
+      <h3>Donn&eacute;es probantes ind&eacute;pendantes</h3>
+      <p>Une &eacute;tude mondiale de 2025 men&eacute;e par KPMG et l'Universit&eacute; de Melbourne aupr&egrave;s de plus de 48&nbsp;000 personnes dans 47 pays a r&eacute;v&eacute;l&eacute; que l'adoption de l'IA s'acc&eacute;l&egrave;re tandis que les d&eacute;fis de confiance, de gouvernance et de surveillance restent importants. L'&eacute;tude a rapport&eacute; que 66&nbsp;% des r&eacute;pondants utilisent l'IA r&eacute;guli&egrave;rement, mais seulement 46&nbsp;% sont pr&ecirc;ts &agrave; faire confiance aux syst&egrave;mes d'IA, tandis que 70&nbsp;% estiment qu'une r&eacute;glementation plus stricte de l'IA est n&eacute;cessaire. Les chercheurs ont conclu que les organisations doivent renforcer la gouvernance, la confiance, la litt&eacute;ratie et la surveillance &agrave; mesure que le d&eacute;ploiement de l'IA s'&eacute;tend. COMPAiSS a &eacute;t&eacute; d&eacute;velopp&eacute; sp&eacute;cifiquement pour combler ce foss&eacute; de gouvernance gr&acirc;ce &agrave; l'autorisation pr&eacute;-inf&eacute;rence et &agrave; la gouvernance &agrave; ex&eacute;cution contr&ocirc;l&eacute;e.</p>
+      <p><a href="https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html" target="_blank" rel="noopener">Lire l'&eacute;tude mondiale sur la confiance envers l'IA de KPMG et l'Universit&eacute; de Melbourne</a></p>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong><a href="/assets/hallucination_rates-fr.pdf">Voir les taux empiriques d'hallucination des principaux mod&egrave;les d'IA (2023-2025) (PDF)</a></strong></p>
+    </div>
+
+    <div class="highlight-block">
+      <p><strong><a href="/assets/echecs_ia_institutionnels_en_pratique.pdf">Quand les &eacute;tablissements se trompent avec l'IA - Cinq cas document&eacute;s dans l'enseignement sup&eacute;rieur et les environnements r&eacute;glement&eacute;s (PDF)</a></strong></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- LA OU LA PRECISION N'EST PAS FACULTATIVE                     -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="accuracy">
+    <h2>L&agrave; o&ugrave; la pr&eacute;cision n'est pas facultative</h2>
+    <p class="section-intro">Les cons&eacute;quences d'une information incorrecte ne sont pas th&eacute;oriques dans ces environnements.</p>
     <div class="card-grid">
       <div class="card">
-        <div class="card-icon">🏛</div>
-        <h3>Nom du système</h3>
-        <p>COMPAiSS — Système d'IA institutionnel multiplateforme axé sur la conformité (Compliance-Oriented Multi-Platform AI Institutional Scope System)</p>
+        <div class="card-icon">&#127979;</div>
+        <h3>Universit&eacute;s</h3>
+        <p>Les universit&eacute;s publient des politiques r&eacute;gissant les admissions, la situation acad&eacute;mique, les accommodements, l'aide financi&egrave;re, les exigences de dipl&ocirc;me et les droits des &eacute;tudiants. Une r&eacute;ponse incorrecte peut mal repr&eacute;senter la politique officielle, mener &agrave; des d&eacute;cisions ou appels inappropri&eacute;s, et cr&eacute;er des probl&egrave;mes d'&eacute;quit&eacute; et de conformit&eacute;.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🏗</div>
-        <h3>Type de système</h3>
-        <p>Système d'information institutionnel en IA à exécution contrôlée. Ni un système d'IA à usage général. Ni un système de prise de décision.</p>
+        <div class="card-icon">&#127973;</div>
+        <h3>H&ocirc;pitaux et soins de sant&eacute;</h3>
+        <p>Les h&ocirc;pitaux fonctionnent sous des contraintes cliniques, administratives et r&eacute;glementaires strictes. Des informations inexactes peuvent mal &eacute;noncer les droits ou les proc&eacute;dures des patients, cr&eacute;er une exposition &agrave; la conformit&eacute; et miner la confiance dans la prestation des soins.</p>
       </div>
       <div class="card">
-        <div class="card-icon">👤</div>
-        <h3>Développeur et partie responsable</h3>
-        <p>Frank Harvey, professeur titulaire de science politique et conseiller principal, Université Dalhousie. COMPAiSS Inc. détient la propriété intellectuelle et les demandes de brevet.</p>
+        <div class="card-icon">&#127963;</div>
+        <h3>Services gouvernementaux</h3>
+        <p>Les agences publiques fournissent des informations qui affectent les prestations, l'admissibilit&eacute;, les obligations et l'acc&egrave;s aux services. Des conseils incorrects peuvent retarder ou refuser des services, cr&eacute;er une exposition juridique et &eacute;roder la confiance du public.</p>
       </div>
       <div class="card">
-        <div class="card-icon">⚖</div>
-        <h3>Statut des brevets</h3>
-        <p>Demande de brevet canadien OPIC 3 299 174 et demande de brevet américain USPTO 19/455 963 — toutes deux en cours d'examen, décrivant le mécanisme de portail d'exécution pré-inférence.</p>
+        <div class="card-icon">&#9878;</div>
+        <h3>Organismes de r&eacute;glementation professionnelle</h3>
+        <p>Les organisations de r&eacute;glementation publient les exigences de licence, les proc&eacute;dures disciplinaires et les normes professionnelles. Des conseils inexacts peuvent mal repr&eacute;senter les exigences l&eacute;gales et exposer l'organisation &agrave; des contestations juridiques.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🚀</div>
-        <h3>Statut de déploiement</h3>
-        <p>Projets pilotes bêta actifs dans cinq environnements institutionnels canadiens, notamment des universités de recherche intensive et un contexte de service public fédéral. Deux projets pilotes supplémentaires en cours d'examen institutionnel.</p>
+        <div class="card-icon">&#127979;</div>
+        <h3>Coll&egrave;ges et polytechniques</h3>
+        <p>Les coll&egrave;ges publient des exigences de programme structur&eacute;es, des voies de qualification et des normes d'admission. Des informations incorrectes peuvent induire en erreur les futurs &eacute;tudiants et d&eacute;clencher des plaintes formelles ou des appels.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🤖</div>
-        <h3>Moteur d'IA</h3>
-        <p>API d'inférence OpenAI — API standard sans ajustement fin. Aucune donnée institutionnelle n'entre dans quelque pipeline d'entraînement de modèle que ce soit.</p>
+        <div class="card-icon">&#127961;</div>
+        <h3>Administrations municipales</h3>
+        <p>Les municipalit&eacute;s publient les proc&eacute;dures de permis, les r&egrave;glements de zonage et les r&egrave;gles de d&eacute;livrance de licences. Des conseils incorrects peuvent cr&eacute;er une responsabilit&eacute; juridique, retarder les services publics et g&eacute;n&eacute;rer des probl&egrave;mes de responsabilit&eacute; politique.</p>
       </div>
-    </div>
-
-    <div class="finding-block" style="margin-top: 2rem;">
-      <div class="finding-label">Portée de l'évaluation</div>
-      <p>La présente évaluation couvre l'architecture de la plateforme COMPAiSS et le cadre de gouvernance tel que déployé dans des environnements institutionnels réglementés. Les configurations de déploiement propres à chaque institution — notamment les listes de sources autorisées, les limites de portée et les protocoles d'intervention en situation de crise — sont documentées séparément pour chaque déploiement institutionnel et sont disponibles sur demande.</p>
     </div>
   </div>
 
   <hr>
 
-  <!-- CLASSIFICATION DES RISQUES -->
-  <div class="gov-section" id="classification-risque">
-    <h2>Classification des risques</h2>
-    <p class="section-intro">Évaluation par rapport à la Directive sur la prise de décisions automatisée du Canada et aux cadres équivalents de gouvernance institutionnelle de l'IA.</p>
+  <!-- ============================================================ -->
+  <!-- LA SOLUTION STRUCTURELLE                                     -->
+  <!-- ============================================================ -->
 
-    <div class="test-result">
-      <div class="test-label">Constat de classification</div>
-      <p><strong>Niveau I — Impact faible ou nul</strong> en vertu de la Directive sur la prise de décisions automatisée du Canada. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions d'évaluation pertinentes. Cette classification s'applique à tous les déploiements institutionnels actuels.</p>
+  <div class="content-section" id="structural-solution">
+    <h2>COMPAiSS&nbsp;: la solution structurelle &agrave; l'echec systemique de l'IA</h2>
+    <p class="section-intro">Autorisation avant inf&eacute;rence - pas filtrage apr&egrave;s.</p>
+
+    <div style="margin:1.8rem 0 2.2rem;max-width:800px;border-radius:var(--radius);overflow:hidden;">
+      <video controls width="100%" style="display:block;" poster="/assets/compaiss_logo-fr.png">
+        <source src="/assets/compaiss-french-pitch-v1.mp4" type="video/mp4">
+      </video>
     </div>
 
-    <p>La classification de Niveau I est étayée par quatre constats indépendants, chacun plaçant indépendamment le système au niveau d'impact le plus bas :</p>
+    <p>Au lieu de g&eacute;n&eacute;rer une r&eacute;ponse par d&eacute;faut et de tenter de g&eacute;rer le risque par la suite, COMPAiSS &eacute;value chaque question pour l'autorisation institutionnelle avant que l'inf&eacute;rence du mod&egrave;le principal soit permise.</p>
+    <p>Lorsqu'une question est pos&eacute;e, le syst&egrave;me d&eacute;termine d'abord si la question s'inscrit dans la port&eacute;e d&eacute;finie d'un &eacute;tablissement, si des sources autoris&eacute;es et approuv&eacute;es par l'&eacute;tablissement existent pour &eacute;tayer une r&eacute;ponse, et si produire une r&eacute;ponse serait responsable et d&eacute;fendable. Le mod&egrave;le d'IA n'est autoris&eacute; &agrave; fournir une r&eacute;ponse que lorsque ces conditions sont remplies.</p>
+    <p>Cela signifie que COMPAiSS ne s'appuie pas sur des clauses de non-responsabilit&eacute;, des scores de confiance, le filtrage post-r&eacute;ponse ou la r&eacute;vision humaine pour adapter la conformit&eacute; apr&egrave;s qu'une r&eacute;ponse a d&eacute;j&agrave; &eacute;t&eacute; produite. Les questions non &eacute;tay&eacute;es ou hors port&eacute;e sont emp&ecirc;ch&eacute;es de d&eacute;clencher l'ex&eacute;cution du mod&egrave;le institutionnel principal d&egrave;s le d&eacute;part.</p>
+    <p>Lorsqu'une question est clairement sp&eacute;cifique &agrave; l'&eacute;tablissement et que des informations faisant autorit&eacute; existent dans les sources approuv&eacute;es, COMPAiSS produit une r&eacute;ponse claire fond&eacute;e exclusivement sur les sources autoris&eacute;es de cet &eacute;tablissement - non inf&eacute;r&eacute;e &agrave; partir du vaste univers d'organisations ou de juridictions sans lien. Lorsqu'une question ne peut pas &ecirc;tre &eacute;tay&eacute;e, le syst&egrave;me ne suppose pas, ne g&eacute;n&eacute;ralise pas, ne comble pas les lacunes et n'improvise pas simplement pour &ecirc;tre &laquo;&nbsp;utile&nbsp;&raquo;.</p>
+    <p>En d&eacute;pla&ccedil;ant la prise de d&eacute;cision en amont de la g&eacute;n&eacute;ration d'IA, COMPAiSS &eacute;limine le besoin de nombreux contr&ocirc;les correctifs co&ucirc;teux requis par les syst&egrave;mes d'IA g&eacute;n&eacute;ratifs par d&eacute;faut et &eacute;limine par conception une cat&eacute;gorie majeure d'hallucinations institutionnelles non autoris&eacute;es.</p>
+  </div>
 
-    <ul class="verified-list">
-      <li>
-        <strong>Aucune décision administrative n'est prise ou appuyée</strong>
-        <span>COMPAiSS est un outil de navigation de l'information. Il oriente les utilisateurs vers des sources institutionnelles vérifiées. Aucune détermination d'admissibilité, aucun classement, aucune notation, aucune priorisation ni aucune décision affectant des droits, des avantages ou des attributions n'est prise par le système à quelque moment que ce soit. Toute l'autorité décisionnelle demeure entre les mains de l'institution et de l'utilisateur.</span>
-      </li>
-      <li>
-        <strong>Aucun renseignement personnel n'est collecté, stocké ou traité</strong>
-        <span>Les requêtes sont sans état. Le système ne reçoit que des saisies textuelles. Aucun nom, numéro d'identification, information de compte ou renseignement permettant d'identifier une personne n'est collecté ni conservé. Rien ne persiste après la fin de la transaction. Une évaluation des facteurs relatifs à la vie privée n'est pas requise.</span>
-      </li>
-      <li>
-        <strong>Tous les impacts sont immédiatement et entièrement réversibles</strong>
-        <span>Le système fournit uniquement de l'information. Aucune action n'est prise au nom de l'utilisateur. Un utilisateur qui reçoit une réponse inexacte ou peu utile conserve la pleine capacité de contacter directement le personnel institutionnel par les voies existantes à tout moment. Aucun droit, avantage ou attribution n'est affecté par la production du système.</span>
-      </li>
-      <li>
-        <strong>Le portail d'exécution pré-inférence empêche la génération de réponses au-delà des sources institutionnelles autorisées</strong>
-        <span>La validation des sources et l'application du périmètre ont lieu avant que l'IA ne génère toute réponse. COMPAiSS ne génère pas de réponses au-delà des sources institutionnelles autorisées, ne peut pas citer des sources non autorisées et ne peut pas produire de contenu hors de l'ensemble de sources institutionnelles autorisées.</span>
-      </li>
-    </ul>
+  <hr>
 
-    <div class="finding-block">
-      <div class="finding-label">Applicabilité du cadre</div>
-      <p>Bien que la Directive sur la prise de décisions automatisée soit un instrument du gouvernement du Canada, les dimensions de risque qu'elle évalue — autorité décisionnelle, traitement des données personnelles, réversibilité et contrôles d'exactitude — s'appliquent directement à l'examen de gouvernance de l'IA dans les contextes de l'enseignement supérieur, de la santé et du secteur public. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions, quel que soit le cadre institutionnel appliqué.</p>
+  <!-- ============================================================ -->
+  <!-- COMPAISS VS. L'IA D'ENTREPRISE                               -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="competitor-table">
+    <h2>COMPAiSS vs. l'IA d'entreprise</h2>
+    <p class="section-intro">Huit proprietes de gouvernance - et comment les principales plateformes d'IA se comparent.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="width:42%">Propri&eacute;t&eacute; de gouvernance</th>
+          <th class="center" style="width:12%">Copilot</th>
+          <th class="center" style="width:12%">Gemini</th>
+          <th class="center" style="width:12%">ChatGPT</th>
+          <th class="center" style="width:12%">RAG</th>
+          <th class="center" style="width:12%">COMPAiSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>V&eacute;rification d'autorisation avant l'ex&eacute;cution de l'inf&eacute;rence</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Les requ&ecirc;tes non autoris&eacute;es sont des &eacute;tats terminaux non g&eacute;n&eacute;ratifs</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>R&eacute;ponses limit&eacute;es exclusivement aux sources approuv&eacute;es par l'&eacute;tablissement</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center">Partiel</td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Piste d'audit au niveau de l'autorisation (et non au niveau des r&eacute;sultats)</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Fonctionne de fa&ccedil;on s&eacute;curitaire quelle que soit la puissance du mod&egrave;le sous-jacent</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>Aucune base de donn&eacute;es vectorielle ni pipeline d'ing&eacute;stion de donn&eacute;es requis</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td>&Eacute;valuation d'impact algorithmique (&Eacute;IA) de niveau I compl&eacute;t&eacute;e</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+        <tr class="compaiss-row">
+          <td>Inscrit sur la liste des sources d'IA du gouvernement du Canada</td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-no">&#10007;</span></td>
+          <td class="center"><span class="yes-no-yes">&#10003;</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.78rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic; margin-top:0.6rem;">Toutes les &eacute;valuations des concurrents sont bas&eacute;es sur les architectures document&eacute;es publiquement et la documentation de conformit&eacute; disponible. La colonne RAG refl&egrave;te les d&eacute;ploiements conventionnels de g&eacute;n&eacute;ration augment&eacute;e par r&eacute;cup&eacute;ration sans portail pr&eacute;-inf&eacute;rence. <a href="/gouvernance-en-action.html">Voir l'analyse comparative compl&egrave;te et l'analyse des &eacute;carts de gouvernance &rarr;</a></p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- NI RAG, NI IA GENERALISTE, NI FAQ                           -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="not-rag-gp-faq">
+    <h2>Ni RAG, ni IA g&eacute;n&eacute;raliste, ni FAQ</h2>
+    <p class="section-intro">Trois idees recues courantes - et pourquoi l'architecture de COMPAiSS diff&egrave;re des trois.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un syst&egrave;me de g&eacute;n&eacute;ration augment&eacute;e par r&eacute;cup&eacute;ration (RAG)</h3>
+    <p>Les syst&egrave;mes RAG connectent l'IA aux documents ou bases de donn&eacute;es d'un &eacute;tablissement pour qu'elle puisse &laquo;&nbsp;consulter des informations&nbsp;&raquo; tout en g&eacute;n&eacute;rant une r&eacute;ponse. De nombreux syst&egrave;mes d'IA s'appuient sur le RAG et des contr&ocirc;les post-traitement similaires pour r&eacute;duire les hallucinations apr&egrave;s qu'une r&eacute;ponse a d&eacute;j&agrave; &eacute;t&eacute; g&eacute;n&eacute;r&eacute;e. Ces approches n&eacute;cessitent des pipelines de r&eacute;cup&eacute;ration, des bases de donn&eacute;es vectorielles, des syst&egrave;mes de surveillance et une supervision continue - et le mod&egrave;le g&eacute;n&egrave;re quand m&ecirc;me une r&eacute;ponse pour chaque requ&ecirc;te, y compris les requ&ecirc;tes pour lesquelles aucune information autoris&eacute;e n'existe.</p>
+    <p>COMPAiSS op&egrave;re en amont. En emp&ecirc;chant les questions non &eacute;tay&eacute;es ou sans r&eacute;ponse possible de d&eacute;clencher le mod&egrave;le d'IA en premier lieu, COMPAiSS emp&ecirc;che la g&eacute;n&eacute;ration de r&eacute;ponses non &eacute;tay&eacute;es - r&eacute;duisant mat&eacute;riellement le recours &agrave; des outils de nettoyage post-g&eacute;n&eacute;ration co&ucirc;teux. Cette diff&eacute;rence n'est pas un choix de r&eacute;glage ou un d&eacute;tail de configuration. Elle refl&egrave;te une approche architecturale fondamentalement diff&eacute;rente.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un syst&egrave;me d'IA g&eacute;n&eacute;raliste</h3>
+    <p>Les syst&egrave;mes d'IA g&eacute;n&eacute;ralistes sont con&ccedil;us pour r&eacute;pondre &agrave; des questions sur n'importe quoi. Leur valeur r&eacute;side dans la port&eacute;e - la capacit&eacute; de se d&eacute;placer librement entre domaines, &eacute;tablissements et juridictions sans fronti&egrave;res pr&eacute;d&eacute;finies. COMPAiSS est intentionnellement construit pour la sp&eacute;cificit&eacute; institutionnelle. Son but n'est pas d'approximer une r&eacute;ponse &agrave; partir de connaissances g&eacute;n&eacute;rales, mais de refl&eacute;ter uniquement ce qu'un &eacute;tablissement particulier a effectivement autoris&eacute; comme sa position officielle, sa politique ou ses directives - et seulement alors de permettre &agrave; l'IA de r&eacute;pondre &agrave; la question.</p>
+    <p>En bref&nbsp;: l'IA g&eacute;n&eacute;raliste optimise le nombre de questions auxquelles elle peut r&eacute;pondre. COMPAiSS optimise le moment o&ugrave; il est appropri&eacute; de r&eacute;pondre &agrave; des questions sur votre &eacute;tablissement - et quand ce ne l'est pas.</p>
+
+    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un robot FAQ ou un chatbot script&eacute;</h3>
+    <p>Les syst&egrave;mes FAQ sont construits autour de questions pr&eacute;d&eacute;finies et de r&eacute;ponses fixes, obligeant les utilisateurs &agrave; formuler leurs questions dans ces limites. Ils s'effondrent lorsque les questions d&eacute;passent ces limites ou n&eacute;cessitent un contexte, un jugement ou une interpr&eacute;tation des r&egrave;gles institutionnelles. COMPAiSS ne s'appuie pas sur des scripts. Chaque question est &eacute;valu&eacute;e selon ses propres termes, en s'appuyant sur les informations institutionnelles pertinentes pour fournir des r&eacute;ponses claires, d&eacute;taill&eacute;es et nuanc&eacute;es correspondant &agrave; ce que les utilisateurs recherchent r&eacute;ellement.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- ECONOMIES PAR CONCEPTION                                     -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="cost-savings">
+    <h2>&Eacute;conomies par conception</h2>
+    <p class="section-intro">La diff&eacute;rence de co&ucirc;t entre COMPAiSS et l'IA d'entreprise conventionnelle est structurelle, pas marginale.</p>
+    <p>Pour les &eacute;tablissements g&eacute;rant environ 100&nbsp;000 requ&ecirc;tes assist&eacute;es par IA annuellement, les d&eacute;ploiements RAG conventionnels engendrent g&eacute;n&eacute;ralement des co&ucirc;ts d'exploitation annuels totaux entre 90&nbsp;000&nbsp;$ et 200&nbsp;000&nbsp;$, attribuables &agrave; trois facteurs de co&ucirc;t cumulatifs&nbsp;: le gaspillage d'inf&eacute;rence, l'infrastructure RAG persistante et la gouvernance compensatoire. Un d&eacute;ploiement COMPAiSS traitant la m&ecirc;me charge de travail fonctionne &agrave; environ 15&nbsp;000&nbsp;$ &agrave; 30&nbsp;000&nbsp;$ par ann&eacute;e - parce que les trois facteurs de co&ucirc;t sont &eacute;limin&eacute;s par architecture, pas g&eacute;r&eacute;s apr&egrave;s coup.</p>
+    <p>Environ 40&nbsp;% des requ&ecirc;tes dans un d&eacute;ploiement institutionnel typique se voient refuser l'inf&eacute;rence enti&egrave;rement. Ces utilisateurs re&ccedil;oivent une r&eacute;ponse d'&eacute;chec s&eacute;curitaire de haute valeur - des liens directs vers les politiques institutionnelles faisant autorit&eacute; - &agrave; z&eacute;ro co&ucirc;t marginal de calcul.</p>
+    <p>Un co&ucirc;t inf&eacute;rieur n'implique pas une pr&eacute;cision inf&eacute;rieure. Les hallucinations n&eacute;cessitent une inf&eacute;rence active. En emp&ecirc;chant l'inf&eacute;rence pour les requ&ecirc;tes non autoris&eacute;es, COMPAiSS supprime les conditions structurelles dans lesquelles la fabrication se produit - non pas comme un filtre en aval, mais comme une propri&eacute;t&eacute; architecturale.</p>
+    <div class="highlight-block">
+      <p><strong><a href="/assets/economies_de_couts_par_conception_styled.pdf">Economies par conception - Analyse comparative des co&ucirc;ts (PDF)</a></strong></p>
     </div>
   </div>
 
   <hr>
 
-  <!-- GOUVERNANCE DES DONNÉES -->
-  <div class="gov-section" id="gouvernance-donnees">
-    <h2>Gouvernance des données</h2>
-    <p class="section-intro">Ce que le système collecte, traite et conserve — et ce qu'il ne fait pas.</p>
+  <!-- ============================================================ -->
+  <!-- LE CONTRASTE AVEC LES ASSISTANTS IA D'ENTREPRISE            -->
+  <!-- ============================================================ -->
 
-    <div class="data-grid">
-      <div class="data-item">
-        <div class="di-label">Données personnelles collectées</div>
-        <p>Aucune. Ni noms, ni identifiants, ni numéros de compte, ni aucun renseignement identificatoire à quelque étape que ce soit.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Conservation des requêtes</div>
-        <p>Aucune. Les requêtes sont traitées de façon transitoire et éliminées. Rien n'est conservé après la livraison de la réponse.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Classification de sécurité</div>
-        <p>Non classifiée. Tout le contenu source consiste en des pages Web institutionnelles accessibles au public.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Exigence d'EFVP</div>
-        <p>Non requise. Aucun renseignement personnel n'est collecté ni traité à quelque étape que ce soit.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Données d'entraînement</div>
-        <p>Sans objet. API d'inférence standard sans ajustement fin. Aucune donnée institutionnelle n'entre dans quelque pipeline d'entraînement de modèle que ce soit.</p>
-      </div>
-      <div class="data-item">
-        <div class="di-label">Résidence des données</div>
-        <p>Configurable pour un hébergement en région canadienne sur accord institutionnel, satisfaisant aux exigences de la LPRPDE et des lois provinciales sur la protection de la vie privée.</p>
-      </div>
-    </div>
+  <div class="content-section" id="enterprise-contrast">
+    <h2>Le contraste avec les assistants IA d'entreprise</h2>
+    <p class="section-intro">Une diff&eacute;rence structurelle, pas superficielle.</p>
+    <p>Des syst&egrave;mes comme Microsoft 365 Copilot sont con&ccedil;us pour op&eacute;rer dans l'ensemble de l'environnement num&eacute;rique d'une organisation&nbsp;: courriels, documents, conversations Teams, r&eacute;f&eacute;rentiels SharePoint et donn&eacute;es de calendrier. Lorsqu'un utilisateur multilingue soumet une question, le syst&egrave;me traduit cette requ&ecirc;te puis r&eacute;cup&egrave;re dans tout le contenu index&eacute; - ce qui peut inclure des brouillons de politique obsol&egrave;tes, des communications informelles ou des documents de d&eacute;partements sans rapport qui contiennent des mots-cl&eacute;s correspondants.</p>
+    <p>Ce n'est pas un &eacute;chec de configuration. C'est une cons&eacute;quence architecturale de la conception d'un syst&egrave;me pour la port&eacute;e dans l'ensemble du corpus organisationnel plut&ocirc;t que pour l'autorit&eacute; dans une port&eacute;e institutionnelle d&eacute;finie.</p>
+    <p>COMPAiSS s&eacute;pare enti&egrave;rement ces fonctions. La traduction normalise la question dans une langue de travail. L'autorisation d&eacute;termine si l'&eacute;tablissement dispose de mat&eacute;riaux approuv&eacute;s pour soutenir une r&eacute;ponse. L'inf&eacute;rence ne se produit que si les deux conditions sont satisfaites, en s'appuyant exclusivement sur des sources approuv&eacute;es par l'&eacute;tablissement.</p>
+    <p>Cela signifie qu'un &eacute;tudiant posant une question sur sa situation acad&eacute;mique en mandarin, en fran&ccedil;ais ou en arabe re&ccedil;oit la m&ecirc;me r&eacute;ponse institutionnellement autoris&eacute;e qu'un &eacute;tudiant posant la question en anglais - pas une approximation fausss&eacute;e par des artefacts de traduction ou du bruit du corpus. Pour les &eacute;tablissements ayant l'obligation de servir &eacute;quitablement des populations multilingues, cette distinction n'est pas accessoire. C'est la diff&eacute;rence entre un syst&egrave;me coh&eacute;rent par architecture et un syst&egrave;me coh&eacute;rent seulement lorsque les conditions s'alignent par hasard.</p>
+  </div>
 
-    <p style="margin-top: 2rem;">Des tendances d'utilisation agrégées et anonymisées — par exemple, les domaines thématiques générant un volume élevé de requêtes — peuvent être mises à la disposition de l'institution aux fins de planification des services. Cette fonction analytique opère exclusivement sur des données agrégées dépersonnalisées et ne peut pas être retracée à un utilisateur individuel.</p>
+  <hr>
 
-    <div class="test-result">
-      <div class="test-label">Constat sur la gouvernance des données</div>
-      <p>COMPAiSS opère entièrement hors de l'espace des données personnelles par conception architecturale. Il n'y a aucun pipeline de données personnelles à gouverner, aucune politique de conservation des données à administrer et aucun risque de violation de données exposant des renseignements d'utilisateurs — parce qu'aucune information sur les utilisateurs n'est collectée.</p>
+  <!-- ============================================================ -->
+  <!-- GOUVERNANCE MULTILINGUE                                      -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="translations">
+    <h2>Maintenir la coh&eacute;rence du sens entre les traductions</h2>
+    <p class="section-intro">S&eacute;parer la langue du sens au niveau architectural.</p>
+    <p>Les syst&egrave;mes d'IA grand public traduisent souvent la question d'un utilisateur dans le cadre de leur recherche d'informations. Dans de nombreux syst&egrave;mes bas&eacute;s sur le RAG, cette &eacute;tape de traduction est entrelac&eacute;e avec la r&eacute;cup&eacute;ration et le raisonnement. En cons&eacute;quence, de petites diff&eacute;rences de formulation peuvent influencer les documents r&eacute;cup&eacute;r&eacute;s, la fa&ccedil;on dont les passages sont interpr&eacute;t&eacute;s et ce que le syst&egrave;me finit par mettre en valeur dans sa r&eacute;ponse.</p>
+    <p>COMPAiSS &eacute;vite ce probl&egrave;me en s&eacute;parant la langue du sens au niveau architectural. Lorsqu'une question est soumise dans une langue non anglaise, elle est d'abord traduite en anglais comme &eacute;tape de pr&eacute;traitement en dehors du cadre d'autorisation institutionnelle. La traduction ne r&eacute;cup&egrave;re pas de documents, n'interpr&egrave;te pas de politique, n'applique pas de r&egrave;gles institutionnelles et ne g&eacute;n&egrave;re pas de r&eacute;ponses.</p>
+    <p>Une fois traduite, la question est &eacute;valu&eacute;e pour la port&eacute;e institutionnelle et l'autorisation avant tout raisonnement institutionnel principal. Apr&egrave;s que la r&eacute;ponse est d&eacute;termin&eacute;e, elle est retraduite dans la langue choisie par l'utilisateur pour la pr&eacute;sentation.</p>
+    <p>En fixant le sens, la port&eacute;e et l'autorisation avant la g&eacute;n&eacute;ration, COMPAiSS emp&ecirc;che la d&eacute;rive d'interpr&eacute;tation et l'incoh&eacute;rence interlinguistique courantes dans les syst&egrave;mes bas&eacute;s sur le RAG - garantissant que les r&eacute;ponses institutionnelles restent pr&eacute;cises, faisant autorit&eacute; et coh&eacute;rentes quelle que soit la langue.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- POUR LES CABINETS-CONSEILS                                   -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="consulting-firms">
+    <h2>Pour les cabinets-conseils et les int&eacute;grateurs de syst&egrave;mes</h2>
+    <p class="section-intro">Deux points d'entr&eacute;e naturels pour les organisations conseillant des &eacute;tablissements r&eacute;glement&eacute;s.</p>
+    <p>Pour les clients disposant d'une infrastructure RAG existante, COMPAiSS fonctionne comme une couche de gouvernance pr&eacute;-inf&eacute;rence qui traite les taux d'hallucination r&eacute;siduels que le RAG seul ne peut pas r&eacute;soudre - renfor&ccedil;ant les investissements existants sans les remplacer. La recherche &eacute;valu&eacute;e par des pairs documente des taux d'hallucination r&eacute;siduels d'environ 6&nbsp;% m&ecirc;me dans des conditions RAG optimales, et les tests empiriques ind&eacute;pendants de la principale plateforme d'IA juridique de Thomson Reuters ont trouv&eacute; des taux d'hallucination de 17 &agrave; 33&nbsp;% dans une utilisation r&eacute;elle. COMPAiSS traite la cause profonde architecturale que ces syst&egrave;mes ne peuvent pas &eacute;liminer.</p>
+    <p>Pour les clients sans investissement RAG - qu'ils soient contraints par les co&ucirc;ts ou pr&eacute;occup&eacute;s par les taux d'&eacute;chec document&eacute;s - COMPAiSS fournit une alternative compl&egrave;te de gouvernance d'inf&eacute;rence qui applique la port&eacute;e, l'autorit&eacute; des sources et la politique institutionnelle sans infrastructure d'entreprise suppl&eacute;mentaire.</p>
+    <p>Dans les deux cas, le d&eacute;ploiement est simple et le r&eacute;cit de gouvernance est auditable, d&eacute;fendable et align&eacute; sur les attentes r&eacute;glementaires dans l'enseignement sup&eacute;rieur, les soins de sant&eacute;, le gouvernement et les services juridiques.</p>
+    <p><em>L'architecture de COMPAiSS fait l'objet de demandes de brevet en cours d'examen au Canada et aux &Eacute;tats-Unis.</em></p>
+    <div class="highlight-block">
+      <p><strong><a href="/assets/sortir_de_la_matrice_fr_3.pdf">Sortir de la matrice - Une nouvelle opportunit&eacute; pour les cabinets-conseils en IA avec des clients d'industries r&eacute;glement&eacute;es (PDF)</a></strong></p>
     </div>
   </div>
 
   <hr>
 
-  <!-- RESPONSABILITÉ ARCHITECTURALE -->
-  <div class="gov-section" id="responsabilite-architecture">
-    <h2>Responsabilité architecturale</h2>
-    <p class="section-intro">Comment le système applique le périmètre, maintient les pistes d'audit et soutient la surveillance institutionnelle.</p>
+  <!-- ============================================================ -->
+  <!-- APPROVISIONNEMENT INSTITUTIONNEL                             -->
+  <!-- ============================================================ -->
 
-    <p>COMPAiSS repose sur une architecture d'inférence à exécution contrôlée. L'autorisation et la validation du périmètre ont lieu avant toute génération par l'IA. Si aucune source institutionnelle autorisée n'existe pour une requête, le modèle d'IA ne s'exécute pas. Il s'agit de la propriété fondamentale de responsabilité architecturale — et non d'un paramètre de configuration pouvant être contourné au niveau de l'utilisateur.</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Portail d'exécution pré-inférence</strong>
-        <span>Chaque requête est validée par rapport à la liste de sources autorisées de l'institution avant toute génération par l'IA. Les requêtes hors périmètre sont rejetées au portail. Le modèle d'IA ne s'exécute que lorsque les conditions d'autorisation sont satisfaites. Cette contrainte est architecturale — elle ne peut être contournée par une invite, une reformulation ou une manipulation.</span>
-      </li>
-      <li>
-        <strong>Gouvernance de la liste de sources autorisées (liste verte)</strong>
-        <span>L'institution conserve la pleine autorité pour examiner, approuver et modifier la liste de sources autorisées à tout moment. COMPAiSS ne peut accéder à aucune page, document ou source qui ne figure pas sur la liste approuvée. Chaque réponse est traçable jusqu'à des sources autorisées spécifiques.</span>
-      </li>
-      <li>
-        <strong>Piste d'audit et journalisation</strong>
-        <span>Les journaux système consignent chaque requête reçue, le résultat d'autorisation du portail et les sources analysées pour chaque transaction. Chaque réponse est traçable jusqu'à des pages de sources autorisées spécifiques. Les journaux identifient la version de la plateforme, la version de la configuration de gouvernance et la version du modèle d'IA utilisées pour chaque transaction.</span>
-      </li>
-      <li>
-        <strong>Contrôle des versions et gestion des changements</strong>
-        <span>Toutes les modifications apportées à la configuration de gouvernance, à la liste de sources autorisées, à l'architecture des invites et à l'infrastructure de la plateforme sont consignées dans un dépôt à contrôle de version avec horodatages et enregistrements des changements. L'institution conserve un historique complet de toutes les modifications de configuration de gouvernance.</span>
-      </li>
-      <li>
-        <strong>Audit d'intégrité de la liste verte</strong>
-        <span>Un serveur d'audit dédié vérifie chaque URL de la liste de sources autorisées d'une institution par rapport au Web en direct selon un cycle de maintenance régulier, classant chaque entrée comme active, redirigée, brisée ou inaccessible. Les URL brisées ou déplacées sont corrigées et la liste corrigée est déployée automatiquement via le dépôt à contrôle de version.</span>
-      </li>
-      <li>
-        <strong>Aucun apprentissage continu à partir des interactions des utilisateurs</strong>
-        <span>Le système n'apprend pas des requêtes individuelles des utilisateurs. Aucune donnée d'interaction n'est réinjectée dans quelque modèle que ce soit. Le modèle d'IA s'améliore uniquement lorsqu'OpenAI met à jour ses modèles sous-jacents — un processus entièrement externe aux données et interactions institutionnelles.</span>
-      </li>
-    </ul>
+  <div class="content-section" id="procurement">
+    <h2>Con&ccedil;u pour l'approvisionnement institutionnel et l'examen de gouvernance</h2>
+    <p class="section-intro">Auditable, d&eacute;limit&eacute; et align&eacute; sur les obligations fiduciaires.</p>
+    <p>Les &eacute;tablissements r&eacute;glement&eacute;s n'ont pas seulement besoin de syst&egrave;mes d'IA qui fonctionnent bien - ils ont besoin de syst&egrave;mes d'IA qu'ils peuvent documenter, d&eacute;fendre et soumettre &agrave; un examen formel. Les agents d'approvisionnement, les comit&eacute;s d'audit, les conseillers juridiques et les panels d'examen gouvernementaux exigent de plus en plus que les &eacute;tablissements d&eacute;montrent non seulement qu'un syst&egrave;me d'IA produit de bons r&eacute;sultats, mais que son architecture de gouvernance est auditable, d&eacute;limit&eacute;e et align&eacute;e sur les obligations fiduciaires.</p>
+    <p>COMPAiSS est con&ccedil;u avec cette exigence en t&ecirc;te. Parce que les d&eacute;cisions d'autorisation sont d&eacute;terministes et se produisent avant l'inf&eacute;rence, chaque interaction suit un chemin de gouvernance document&eacute; et reproductible. L'&eacute;tablissement contr&ocirc;le quelles sources font autorit&eacute;. L'&eacute;tablissement d&eacute;finit la fronti&egrave;re de port&eacute;e. Le syst&egrave;me applique les deux de fa&ccedil;on structurelle, et non probabiliste.</p>
+    <p>Cela rend COMPAiSS directement compatible avec les exigences de documentation des panels de gouvernance de l'IA, des processus d'examen &eacute;thique institutionnels et des cadres d'approvisionnement gouvernementaux - y compris ceux qui exigent que les &eacute;tablissements d&eacute;montrent comment les r&eacute;ponses d'IA non autoris&eacute;es ou hors port&eacute;e sont pr&eacute;venues, pas seulement g&eacute;r&eacute;es.</p>
   </div>
 
   <hr>
 
-  <!-- REGISTRE DES RISQUES -->
-  <div class="gov-section" id="registre-risques">
-    <h2>Registre des risques</h2>
-    <p class="section-intro">Risques identifiés par catégorie avec les mesures d'atténuation architecturales et opérationnelles.</p>
+  <!-- ============================================================ -->
+  <!-- RESPONSABILITE ET CONTROLE INSTITUTIONNELS                  -->
+  <!-- ============================================================ -->
 
-    <p>Aucun risque éthique, financier, lié à la vie privée ou juridique susceptible d'entraver le déploiement institutionnel n'a été identifié. Les risques suivants ont été identifiés et atténués :</p>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques techniques</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Disponibilité de l'API d'inférence IA</strong>
-        <span>Atténuation : La gestion standard des erreurs et la messagerie de repli orientent les utilisateurs vers le personnel institutionnel lorsque la couche d'inférence est indisponible. Le système se dégrade de façon sécuritaire — il ne produit pas de résultats peu fiables lorsque l'API est dégradée.</span>
-      </li>
-      <li>
-        <strong>Contenu de sources autorisées devenant obsolète</strong>
-        <span>Atténuation : Maintenance active de la liste verte selon un cycle d'audit régulier. L'institution signale tout changement de contenu source. Les pages obsolètes ou supprimées sont retirées de la liste autorisée, empêchant le système de citer du contenu qui ne reflète plus la politique en vigueur.</span>
-      </li>
-      <li>
-        <strong>URL source indisponible au moment d'une requête</strong>
-        <span>Atténuation : Si une source est inaccessible au moment d'une requête, le système puise dans d'autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécuritaire orientant l'utilisateur vers le personnel institutionnel. Il ne peut pas fabriquer de contenu à partir d'une source qu'il ne peut pas atteindre.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques de gouvernance</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Dépassement du périmètre au-delà du contenu autorisé</strong>
-        <span>Atténuation : Architecturale — le portail d'exécution pré-inférence ne peut pas être contourné au niveau de l'utilisateur. Les requêtes hors périmètre sont rejetées dès la première tentative et à chaque tentative subséquente, quelle que soit leur formulation ou reformulation.</span>
-      </li>
-      <li>
-        <strong>Manipulation adversariale des invites</strong>
-        <span>Atténuation : Le filtrage des saisies bloque les saisies excessivement longues, le texte indésirable et les tentatives d'invites adversariales avant qu'elles n'atteignent le portail. Le portail lui-même applique les limites du périmètre de façon déterministe. Les tentatives de manipulation des instructions de l'IA sont bloquées avant d'atteindre le modèle.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques d'équité</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Obstacles à l'accessibilité numérique</strong>
-        <span>Atténuation : Conception intégrée au Web accessible depuis n'importe quel appareil doté d'un navigateur, sans logiciel spécialisé ni installation. Les utilisateurs qui ne peuvent pas ou ne souhaitent pas utiliser le système conservent un accès complet à la même information via les voies institutionnelles existantes.</span>
-      </li>
-      <li>
-        <strong>Barrières linguistiques</strong>
-        <span>Atténuation : Prise en charge multilingue des requêtes — les utilisateurs peuvent soumettre des requêtes dans n'importe quelle langue. La traduction est traitée comme une étape de prétraitement externe au cadre d'autorisation, garantissant que la langue de la requête n'affecte pas le contenu institutionnel considéré comme faisant autorité.</span>
-      </li>
-    </ul>
-
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques réputationnels</h3>
-    <ul class="risk-list">
-      <li>
-        <strong>Préoccupations du public ou de l'institution concernant le déploiement de l'IA</strong>
-        <span>Atténuation : L'architecture axée sur la gouvernance, la traçabilité complète, l'approche de confidentialité par conception sans état et le portail d'exécution pré-inférence qui élimine structurellement toutes les sources standard d'hallucination répondent directement aux préoccupations qui génèrent un examen institutionnel. Le système est conçu pour être auditable et défendable dès la phase conceptuelle.</span>
-      </li>
-    </ul>
-
-    <div class="test-result">
-      <div class="test-label">Constat de l'évaluation des risques</div>
-      <p>Tous les risques identifiés sont atténués au niveau architectural — non pas uniquement par une surveillance post-déploiement ou des contrôles de politique. Cela signifie que les mesures d'atténuation sont des propriétés structurelles du système qui ne peuvent pas être désactivées accidentellement ou modifiées par configuration.</p>
+  <div class="content-section" id="accountability">
+    <h2>Responsabilit&eacute; et contr&ocirc;le institutionnels</h2>
+    <p class="section-intro">Visibilit&eacute; et contr&ocirc;le sur chaque r&eacute;ponse m&eacute;di&eacute;e par l'IA.</p>
+    <p>Au-del&agrave; de la pr&eacute;vention des erreurs g&eacute;n&eacute;r&eacute;es par l'IA, COMPAiSS a des implications directes pour la responsabilit&eacute; institutionnelle et la gouvernance du contenu. Lorsque les &eacute;tablissements fournissent des informations, ils promettent implicitement qu'elles sont pr&eacute;cises, faisant autorit&eacute; et fiables. COMPAiSS &eacute;tend cette m&ecirc;me norme aux r&eacute;ponses m&eacute;di&eacute;es par l'IA en veillant &agrave; ce que les r&eacute;ponses institutionnelles principales soient fond&eacute;es sur des sources approuv&eacute;es par l'&eacute;tablissement.</p>
+    <p>COMPAiSS soutient &eacute;galement la qualit&eacute; continue du contenu des sources institutionnelles de deux fa&ccedil;ons concr&egrave;tes. Les audits r&eacute;guliers de la liste verte v&eacute;rifient que chaque source approuv&eacute;e est active, actuelle et correctement index&eacute;e - identifiant les liens bris&eacute;s, les pages obsol&egrave;tes et les cha&icirc;nes de redirection avant qu'elles n'affectent les r&eacute;ponses. Et parce que COMPAiSS met en &eacute;vidence les questions que les utilisateurs posent r&eacute;ellement, les &eacute;tablissements obtiennent un signal continu sur l'endroit o&ugrave; le contenu publi&eacute; est manquant, ambigu ou n&eacute;cessite une r&eacute;vision. Le syst&egrave;me ne refl&egrave;te pas seulement le contenu institutionnel - il aide les &eacute;tablissements &agrave; garder ce contenu faisant autorit&eacute;.</p>
+    <p>Il est important de noter que COMPAiSS, comme tout syst&egrave;me d'information, refl&egrave;te les mat&eacute;riaux faisant autorit&eacute; qu'il est autoris&eacute; &agrave; utiliser. Si un lien institutionnel autoris&eacute;, une page Web, un document de politique ou des directives officielles sont obsol&egrave;tes ou n&eacute;cessitent une r&eacute;vision, cette limitation s'applique &eacute;galement &agrave; tout syst&egrave;me d'IA, outil de recherche ou processus humain s'appuyant sur la m&ecirc;me source. COMPAiSS ne r&eacute;interpr&egrave;te pas et ne compl&egrave;te pas le contenu institutionnel&nbsp;; il refl&egrave;te ce que l'&eacute;tablissement lui-m&ecirc;me a autoris&eacute;.</p>
+    <p>La diff&eacute;rence r&eacute;side dans la visibilit&eacute; et le contr&ocirc;le. En limitant les r&eacute;ponses aux sources approuv&eacute;es par l'&eacute;tablissement et en emp&ecirc;chant l'inf&eacute;rence non &eacute;tay&eacute;e, COMPAiSS rend les lacunes ou incoh&eacute;rences explicites et corrigeables plut&ocirc;t que de les masquer par des r&eacute;ponses g&eacute;n&eacute;ralis&eacute;es ou sp&eacute;culatives.</p>
+    <div class="highlight-block">
+      <p><strong>Les &eacute;tablissements r&eacute;glement&eacute;s m&eacute;ritent des syst&egrave;mes d'IA qui respectent leurs obligations - pas ceux qui les contournent pour &ecirc;tre &laquo;&nbsp;utiles&nbsp;&raquo;. COMPAiSS est con&ccedil;u pour les environnements institutionnels o&ugrave; la pr&eacute;cision, l'autorit&eacute; et la gouvernance sont non n&eacute;gociables.</strong></p>
+      <p>Lorsque les sources institutionnelles sont incompl&egrave;tes ou obsol&egrave;tes, COMPAiSS le refl&egrave;te honn&ecirc;tement plut&ocirc;t que de fabriquer une r&eacute;ponse. Et parce que le syst&egrave;me met en &eacute;vidence ce que les utilisateurs demandent, les &eacute;tablissements peuvent identifier et corriger syst&eacute;matiquement les lacunes de contenu - fermant la boucle entre les performances de l'IA et la qualit&eacute; de l'information institutionnelle. Des d&eacute;tails complets sur l'audit de la liste verte et la maintenance des sources sont disponibles sur la <a href="/governance-fr.html">page Gouvernance de l'IA</a>.</p>
     </div>
   </div>
 
   <hr>
 
-  <!-- SURVEILLANCE HUMAINE ET RECOURS -->
-  <div class="gov-section" id="surveillance-humaine">
-    <h2>Surveillance humaine et recours</h2>
-    <p class="section-intro">Comment l'autorité institutionnelle est préservée et comment les utilisateurs font remonter les problèmes lorsque le système ne répond pas à leurs besoins.</p>
+  <!-- ============================================================ -->
+  <!-- EXPLORER CETTE ARCHITECTURE                                  -->
+  <!-- ============================================================ -->
 
-    <p>La surveillance et l'intervention humaines opèrent à plusieurs niveaux dans chaque déploiement COMPAiSS. Le système est conçu dès la phase conceptuelle pour préserver l'autorité institutionnelle et le recours des utilisateurs à chaque étape.</p>
+  <div class="content-section" id="explore">
+    <h2>Explorer cette architecture</h2>
+    <p class="section-intro">D&eacute;ploiements actifs dans des environnements institutionnels canadiens.</p>
+    <p>COMPAiSS est actuellement en phase de tests pilotes b&ecirc;ta actifs dans cinq environnements institutionnels canadiens, notamment des universit&eacute;s &agrave; forte intensit&eacute; de recherche et un contexte de service public f&eacute;d&eacute;ral, avec deux pilotes institutionnels suppl&eacute;mentaires actuellement en cours d'examen.</p>
+    <p>Un environnement de d&eacute;monstration de service public &agrave; l'&eacute;chelle f&eacute;d&eacute;rale a &eacute;galement &eacute;t&eacute; d&eacute;velopp&eacute; pour valider l'inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e dans des contextes de services aux citoyens &agrave; volume &eacute;lev&eacute;, refl&eacute;tant des environnements organisationnels qui g&egrave;rent des dizaines de millions d'interactions citoyennes annuellement par t&eacute;l&eacute;phone, en personne et par voie num&eacute;rique.</p>
+    <p>Le syst&egrave;me a &eacute;t&eacute; fa&ccedil;onn&eacute; par une exp&eacute;rience directe de gouvernance institutionnelle et est actuellement &eacute;valu&eacute; dans les domaines des services aux &eacute;tudiants et du registrariat o&ugrave; la pr&eacute;cision des politiques et l'autorit&eacute; institutionnelle sont essentielles.</p>
+    <p><strong>Pour une &eacute;valuation institutionnelle ou des demandes de partenariat technologique&nbsp;:</strong> <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a></p>
 
-    <ul class="verified-list">
-      <li>
-        <strong>Recours immédiat pour l'utilisateur</strong>
-        <span>Chaque réponse du système inclut des liens vers des pages institutionnelles officielles et oriente les utilisateurs à contacter directement le personnel institutionnel pour obtenir une aide supplémentaire. Un utilisateur qui reçoit une réponse inexacte ou peu utile peut contacter le personnel par les voies existantes à tout moment. Aucune action n'est prise en son nom et aucun droit ni attribution n'est affecté.</span>
-      </li>
-      <li>
-        <strong>Autorité de dérogation institutionnelle</strong>
-        <span>L'institution déployante conserve la pleine autorité pour modifier la liste de sources autorisées, mettre à jour la configuration de gouvernance ou désactiver le système à tout moment. Tous ces changements prennent effet immédiatement et sont consignés avec horodatages dans le dépôt à contrôle de version.</span>
-      </li>
-      <li>
-        <strong>Traitement des requêtes en situation de crise</strong>
-        <span>Lorsqu'une requête contient un langage associé à une détresse personnelle ou à une crise, le système retourne une réponse institutionnelle préapprouvée orientant l'utilisateur vers les ressources de soutien appropriées — services de counseling, sécurité du campus ou contacts d'urgence — tels que configurés par l'institution en conformité avec ses propres politiques d'obligation de diligence. Le modèle d'IA ne traite pas le contenu de crise.</span>
-      </li>
-      <li>
-        <strong>Responsabilité du développeur</strong>
-        <span>Frank Harvey assume la responsabilité technique directe pour toute la conception, le développement, la maintenance et la configuration de gouvernance. COMPAiSS Inc. est l'entité constituée qui détient la propriété intellectuelle et les droits d'exploitation de la plateforme. Les niveaux de service et les obligations de responsabilité sont définis dans chaque accord de licence institutionnel.</span>
-      </li>
-      <li>
-        <strong>Alternative non automatisée toujours disponible</strong>
-        <span>COMPAiSS est un canal complémentaire. Toutes les voies institutionnelles d'information existantes, les ressources du personnel et les options de service demeurent disponibles en tout temps. L'indisponibilité du système n'affecte pas l'accès aux services ou à l'information institutionnels.</span>
-      </li>
-    </ul>
-  </div>
-
-  <hr>
-
-  <!-- PRÉPARATION À L'APPROVISIONNEMENT -->
-  <div class="gov-section" id="preparation-approvisionnement">
-    <h2>Préparation à l'approvisionnement</h2>
-    <p class="section-intro">Documentation et statut de conformité pour les processus d'approvisionnement institutionnel et d'examen de gouvernance.</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Évaluation de l'impact algorithmique</h3>
-        <p>Une EIA complète a été préparée et soumise pour examen fédéral. La documentation EIA propre à chaque institution est disponible pour tout déploiement institutionnel réglementé sur demande.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔒</div>
-        <h3>Confidentialité par conception</h3>
-        <p>Requêtes sans état, aucune collecte de données personnelles, aucun stockage de session, aucun profilage des utilisateurs. Le système opère entièrement hors de l'espace des données personnelles par conception architecturale.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">⚖</div>
-        <h3>Architecture protégée par brevet</h3>
-        <p>Le portail d'exécution pré-inférence fait l'objet de demandes de brevet au Canada (OPIC 3 299 174) et aux États-Unis (USPTO 19/455 963). La distinction architecturale est formellement documentée et défendable.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🍁</div>
-        <h3>Résidence des données au Canada</h3>
-        <p>L'hébergement peut être configuré sur toute infrastructure en région canadienne à la signature, satisfaisant aux exigences de la LPRPDE et des lois provinciales sur la protection de la vie privée pour les institutions canadiennes.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌐</div>
-        <h3>Accessibilité</h3>
-        <p>Interface intégrée au Web accessible depuis n'importe quel appareil doté d'un navigateur. Aucun logiciel spécialisé, téléchargement ou installation requis. Un examen formel de conformité en matière d'accessibilité est effectué avant chaque déploiement institutionnel.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Outils de gouvernance en temps réel</h3>
-        <p>Les reçus de conformité, les comparaisons delta de gouvernance et les rapports de gouvernance sont disponibles pour les administrateurs institutionnels autorisés sans logiciel externe ni assistance IA. Voir la page Gouvernance IA pour tous les détails.</p>
-      </div>
+    <div class="highlight-block" style="margin-top:2rem;">
+      <p style="margin:0 0 0.4rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">Nouvelle&nbsp;: Investigation architecturale</p>
+      <p style="margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">Nous avons demand&eacute; &agrave; Copilot d'analyser les diff&eacute;rences architecturales entre lui-m&ecirc;me et COMPAiSS. Apr&egrave;s un engagement analytique soutenu avec les &eacute;l&eacute;ments de preuve, il est parvenu &agrave; des conclusions que son cadrage initial avait explicitement r&eacute;sist&eacute;es.</p>
+      <p style="margin:0;font-size:0.95rem;max-width:none;"><a href="/investigation-architecturale.html">Lire l'investigation &rarr;</a></p>
     </div>
 
-    <div class="finding-block" style="margin-top: 2.5rem;">
-      <div class="finding-label">Compatibilité avec la politique d'utilisation acceptable</div>
-      <p>COMPAiSS applique une limite épistémique plus stricte que ce que la plupart des PUA institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres PUA standard. Pour les institutions disposant de dispositions PUA spécifiques à l'IA, l'architecture à exécution contrôlée fournit un parcours de conformité documenté et auditable que les systèmes axés sur la génération ne peuvent pas égaler.</p>
+    <div class="highlight-block" style="margin-top:2rem;">
+      <p><strong>Reconnaissance ind&eacute;pendante&nbsp;:</strong></p>
+      <p><a href="https://scottgraffius.com/blog/files/ai-governance-initiative-uses-graffius-research.html" target="_blank" rel="noopener">Lire la citation de recherche de Graffius &rarr;</a></p>
     </div>
 
-    <div class="finding-block">
-      <div class="finding-label">Cadre de responsabilité civile</div>
-      <p>COMPAiSS répond exclusivement à partir de sources que l'institution elle-même a désignées comme faisant autorité. Si ces sources contiennent une erreur, l'exposition en responsabilité civile de l'institution n'est pas plus grande que si un membre du personnel lisait la même page. Plus important encore, COMPAiSS élimine la catégorie de directives institutionnelles fabriquées — où une IA invente une politique qui n'existe pas — qui crée l'exposition en responsabilité civile la plus grave pour les institutions déployant une IA axée sur la génération. Cette classe d'erreur est architecturalement impossible dans COMPAiSS.</p>
-    </div>
-  </div>
-
-  <hr>
-
-  <!-- STRATÉGIE NATIONALE EN IA DU CANADA -->
-  <div class="gov-section" id="strategie-ia-canada">
-    <h2>La Stratégie nationale en intelligence artificielle du Canada et les institutions réglementées</h2>
-    <p class="section-intro">
-      Comment le cadre canadien en évolution de gouvernance de l'IA s'aligne avec l'IA institutionnelle à exécution contrôlée.
-    </p>
-    <p>
-      La <a href="https://ised-isde.canada.ca/site/isde/fr/strategie-nationale-matiere-dintelligence-artificielle-canada-lia-pour-tous" target="_blank" rel="noopener">Stratégie nationale en intelligence artificielle du Canada</a> reconnaît à la fois les occasions et les risques associés à l'adoption généralisée de l'IA. La stratégie met l'accent sur le déploiement responsable, la confiance du public, la transparence, la reddition de comptes et la gouvernance comme conditions essentielles à l'utilisation réussie de l'IA dans les institutions publiques et les secteurs réglementés. Elle reflète une tendance internationale plus large vers des systèmes d'IA fiables, imputables et encadrés par des structures de gouvernance adaptées aux environnements institutionnels réglementés.
-    </p>
-    <p>
-      À mesure que les systèmes d'IA deviennent plus performants, le défi de gouvernance prend de l'importance. Les institutions sont de plus en plus appelées à démontrer non seulement que les systèmes d'IA sont utiles, mais aussi qu'ils fonctionnent dans des cadres de reddition de comptes clairement définis, respectent l'autorité institutionnelle et maintiennent la confiance du public.
-    </p>
-    <div class="finding-block">
-      <div class="finding-label">Défi de gouvernance central</div>
-      <p>
-        Le défi central identifié dans les cadres modernes de gouvernance de l'IA n'est pas simplement d'améliorer les performances des modèles. Il s'agit de s'assurer que les résultats générés par l'IA demeurent cohérents avec l'information autorisée, les responsabilités institutionnelles et les exigences de gouvernance établies.
+    <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
+      <div style="margin-bottom:2rem;padding:1.4rem 1.8rem;border-left:3px solid rgba(255,255,255,0.15);font-family:Georgia,'Times New Roman',serif;">
+        <p style="font-size:1.1rem;color:var(--text-heading);line-height:1.6;margin:0 0 0.6rem;font-style:italic;">&laquo;&nbsp;La promesse de l'IA lui ouvre la porte. La qualit&eacute;, la fiabilit&eacute; et la gouvernance sont ce qui la maintient.&nbsp;&raquo;</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin:0;font-family:system-ui,-apple-system,sans-serif;">- Scott M. Graffius, leader en transformation strat&eacute;gique cit&eacute; par Yale, la Harvard Medical School, l'IEEE et Microsoft</p>
+      </div>
+      <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Demander une &eacute;valuation</div>
+      <p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">
+        COMPAiSS est disponible pour une &eacute;valuation institutionnelle. Pour planifier une d&eacute;monstration, discuter d'un d&eacute;ploiement pilote ou demander la documentation de gouvernance aux fins d'examen d'approvisionnement&nbsp;:
       </p>
-      <p>
-        À mesure que les modèles de pointe accèdent à des bases de connaissances plus étendues et à des capacités de raisonnement plus sophistiquées, ils acquièrent également une plus grande capacité à générer de l'information au-delà des frontières institutionnelles. La gouvernance devient donc plus importante — et non moins importante — à mesure que les systèmes d'IA deviennent plus puissants.
-      </p>
-    </div>
-    <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">
-      Ce que cela signifie pour les institutions réglementées
-    </h3>
-    <ul class="verified-list">
-      <li>
-        <strong>La gouvernance doit être démontrable</strong>
-        <span>Les institutions exigent de plus en plus la preuve que les systèmes d'IA fonctionnent dans des cadres de reddition de comptes documentés, plutôt que de s'appuyer uniquement sur des avis de non-responsabilité ou sur une surveillance après génération.</span>
-      </li>
-      <li>
-        <strong>Les limites d'information autorisée sont essentielles</strong>
-        <span>Les institutions doivent être en mesure d'expliquer l'origine de l'information, quelles sources sont considérées comme faisant autorité et comment le contenu non autorisé est empêché.</span>
-      </li>
-      <li>
-        <strong>La traçabilité devient indispensable</strong>
-        <span>Les cadres de gouvernance mettent de plus en plus l'accent sur la traçabilité, la transparence et la surveillance institutionnelle des interactions gérées par l'IA.</span>
-      </li>
-      <li>
-        <strong>La confiance du public dépend de la reddition de comptes</strong>
-        <span>La capacité à démontrer comment les systèmes d'IA sont gouvernés pourrait devenir aussi importante que la performance des modèles eux-mêmes.</span>
-      </li>
-    </ul>
-    <div class="test-result">
-      <div class="test-label">Évaluation COMPAiSS</div>
-      <p>
-        COMPAiSS a été conçu en tenant compte de nombreux défis de gouvernance identifiés dans les cadres canadiens émergents de gouvernance de l'IA. Plutôt que de tenter de gérer les hallucinations après la génération par des mécanismes de surveillance, de filtrage ou de révision, COMPAiSS applique l'autorisation et la gouvernance des sources avant que l'inférence ne se produise. Les limites des sources institutionnelles, la traçabilité, la reddition de comptes et les contrôles de gouvernance sont appliqués de façon structurelle par le mécanisme d'exécution contrôlée plutôt que par des mécanismes d'atténuation en aval.
-      </p>
-    </div>
-    <p>
-      Pour les institutions qui évaluent l'IA dans le contexte des cadres canadiens de gouvernance émergents, la distinction entre les architectures axées sur la génération et les architectures axées sur la gouvernance — telles que l'inférence à exécution contrôlée — pourrait devenir de plus en plus significative à mesure qu'évoluent les attentes en matière de reddition de comptes, de transparence et d'IA responsable.
-    </p>
-    <p>
-<a href="/governance-fr.html">Cadre de gouvernance IA</a> |
-      <a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a évolué ainsi</a> |
-      <a href="/gouvernance-en-action.html#benchmark">Tests de stress en gouvernance et analyses comparatives</a>
-    </p>
-  </div>
-
-  <hr>
-
-  <div class="gov-section">
-    <h2>Investigation architecturale</h2>
-    <p class="section-intro">Ce qui s&#x2019;est produit lorsque Copilot a analys&eacute; les hypoth&egrave;ses qui sous-tendent les architectures IA modernes.</p>
-    <p>Nous avons demand&eacute; &agrave; Copilot d&#x2019;analyser les diff&eacute;rences architecturales entre lui-m&ecirc;me et COMPAiSS. Apr&egrave;s un engagement analytique soutenu avec les &eacute;l&eacute;ments de preuve, il est parvenu &agrave; des conclusions que son cadrage initial avait explicitement r&eacute;sist&eacute;es. L&#x2019;&eacute;change est pass&eacute; de &laquo;&thinsp;COMPAiSS est une version plus s&eacute;curitaire de la m&ecirc;me architecture&thinsp;&raquo; &agrave; une conclusion architecturale pr&eacute;cise : COMPAiSS et Copilot ne sont pas directement comparables parce qu&#x2019;ils r&eacute;solvent des probl&egrave;mes diff&eacute;rents &agrave; partir de points de d&eacute;part diff&eacute;rents.</p>
-    <p><a href="/investigation-architecturale.html">Lire l&#x2019;investigation architecturale compl&egrave;te &rarr;</a></p>
-  </div>
-
-<hr>
-
-  <!-- ALIGNEMENT RÉGLEMENTAIRE ET POLITIQUE -->
-  <div class="gov-section" id="alignement-politique">
-    <h2>Rapport d&rsquo;alignement réglementaire et politique</h2>
-    <p class="section-intro">Comment l&rsquo;inférence à exécution conditionnelle s&rsquo;articule avec les cadres canadiens et internationaux de gouvernance de l&rsquo;IA.</p>
-
-    <p>COMPAiSS a publié un rapport structuré d&rsquo;alignement réglementaire et politique évaluant l&rsquo;architecture à inférence conditionnelle au regard du Code de conduite volontaire du Canada sur le développement et la gestion responsables des systèmes d&rsquo;IA générative avancés, de la Stratégie nationale en matière d&rsquo;IA <em>L&rsquo;IA pour tous</em> (juin 2026), du Cadre de gestion des risques liés à l&rsquo;IA du NIST, et des normes d&rsquo;architecture à vérification systématique. Le rapport comprend des résultats d&rsquo;évaluation comparative empirique, des données probantes sur les déploiements institutionnels, ainsi qu&rsquo;une analyse structurée des limites du système.</p>
-
-    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--red-soft);border:1px solid var(--red-border);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#e05555;margin-bottom:1rem;">✗ &nbsp; IA générative classique &mdash; Gouvernance après la génération</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Le modèle s&rsquo;exécute en premier, la gouvernance s&rsquo;applique ensuite</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les résultats hallucinés sont détectés après la génération</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Taux de faux négatifs adversariaux de 2 à 5 pour cent</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Coût total en jetons engagé même pour les refus</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> La piste d&rsquo;audit débute après la production d&rsquo;une réponse non autorisée</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les coûts de gouvernance augmentent avec les capacités du modèle</div>
-      </div>
-    </div>
-
-    <div style="margin:2rem 0;padding:1.6rem 1.8rem;background:var(--green-soft);border:1px solid rgba(76,175,130,0.3);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
-      <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;">✓ &nbsp; COMPAiSS &mdash; Autorisation avant l&rsquo;inférence</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> L&rsquo;autorisation est vérifiée avant l&rsquo;exécution du modèle</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Les requêtes non autorisées n&rsquo;atteignent jamais le modèle</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Le portail déterministe réduit le risque de manipulation sémantique</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> Les refus n&rsquo;engagent aucun coût de calcul marginal</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> La piste d&rsquo;audit est établie avant toute production de réponse</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span> La gouvernance est invariante aux améliorations des capacités du modèle</div>
-      </div>
-    </div>
-
-    <div class="finding-block">
-      <div class="finding-label">Rapport d&rsquo;alignement réglementaire et politique</div>
-      <p><strong><a href="/assets/compaiss_rapport_alignement_reglementaire_politique_2026.pdf" target="_blank" rel="noopener">Télécharger le rapport complet (PDF) &rarr;</a></strong></p>
-      <p>Évaluation complète au regard du Code de conduite volontaire du Canada, de la Stratégie nationale en matière d&rsquo;IA <em>L&rsquo;IA pour tous</em>, du Cadre de gestion des risques liés à l&rsquo;IA du NIST et des normes d&rsquo;architecture à vérification systématique, avec résultats d&rsquo;évaluation comparative empirique et données probantes sur les déploiements institutionnels.</p>
-    </div>
-
-  </div>
-
-  <hr>
-
-  <!-- DEMANDER LA DOCUMENTATION -->
-  <div class="gov-section" id="demande-documentation">
-  <div class="gov-section" id="demande-documentation">
-    <h2>Demander la documentation</h2>
-    <p class="section-intro">Comment obtenir la documentation formelle de gouvernance aux fins d'approvisionnement ou d'examen réglementaire.</p>
-
-    <p>La documentation suivante est disponible sur demande pour toute institution effectuant un examen formel d'approvisionnement ou de gouvernance :</p>
-
-    <ul class="verified-list">
-      <li>
-        <strong>Évaluation de l'impact algorithmique complète</strong>
-        <span>Réponses EIA complètes dans toutes les sections, notamment la justification de la classification des risques, l'évaluation du traitement des données, l'analyse de l'équité procédurale et la documentation de la responsabilité du système.</span>
-      </li>
-      <li>
-        <strong>Documentation de l'architecture technique</strong>
-        <span>Description détaillée du portail d'exécution pré-inférence, du modèle de gouvernance de la liste verte, de l'architecture de la piste d'audit et des contrôles de sécurité en profondeur.</span>
-      </li>
-      <li>
-        <strong>Résultats des déploiements pilotes</strong>
-        <span>Documentation de la configuration de gouvernance, analyse du volume de requêtes et du taux de réussite ou d'échec du portail, et retours institutionnels des déploiements actifs.</span>
-      </li>
-      <li>
-        <strong>Trousse de gouvernance propre à l'institution</strong>
-        <span>Une trousse de documentation de gouvernance adaptée au cadre d'approvisionnement spécifique de votre institution, aux exigences de la PUA et au processus d'examen — préparée avant la soumission formelle.</span>
-      </li>
-    </ul>
-
-    <div style="
-      margin-top: 2.5rem;
-      padding: 2rem 2.2rem;
-      background: rgba(240,196,76,0.08);
-      border: 1px solid rgba(240,196,76,0.25);
-      border-radius: 10px;
-      font-family: system-ui, -apple-system, sans-serif;
-    ">
-      <div style="
-        font-size: 0.75rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: #f0c44c;
-        margin-bottom: 0.7rem;
-        font-weight: 600;
-      ">Demander la documentation de gouvernance</div>
-      <p style="margin: 0 0 1rem; font-size: 0.95rem; color: #c6cfdd; max-width: 60ch;">
-        Pour demander la documentation formelle de gouvernance, planifier une présentation d'examen d'approvisionnement ou discuter d'un déploiement pilote institutionnel :
-      </p>
-      <a href="mailto:frank.harvey@compaiss.ca?subject=COMPAiSS%20Demande%20de%20documentation%20de%20gouvernance"
-         style="
-           display: inline-block;
-           padding: 0.7rem 1.6rem;
-           background: #f0c44c;
-           color: #000;
-           font-weight: 600;
-           font-size: 0.92rem;
-           border-radius: 6px;
-           text-decoration: none;
-           letter-spacing: 0.04em;
-         ">
-        Demander la documentation &rarr;
+      <a href="mailto:frank.harvey@compaiss.ca?subject=Demande%20d%27evaluation%20COMPAiSS"
+         style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;">
+        Demander une d&eacute;monstration &rarr;
       </a>
     </div>
+  </div>
 
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- DOCUMENTATION TECHNIQUE                                      -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="technical-docs">
+    <h2>Documentation technique et lectures compl&eacute;mentaires</h2>
+    <p class="section-intro">Livres blancs, documents d'architecture, analyses de co&ucirc;ts, &eacute;valuations comparatives et mat&eacute;riaux de gouvernance pour l'&eacute;valuation institutionnelle.</p>
+    <ul class="doc-list">
+      <li><a href="/assets/la_voie_moins_empruntee.pdf">La voie moins emprunt&eacute;e - Repenser les co&ucirc;ts, la s&eacute;curit&eacute; et la confiance li&eacute;s &agrave; l'IA g&eacute;n&eacute;rative dans les environnements r&eacute;glement&eacute;s</a> - Approfondit les arguments structurels et les co&ucirc;ts associ&eacute;s aux m&eacute;canismes de contr&ocirc;le post-g&eacute;n&eacute;rationnels.</li>
+      <li><a href="/assets/sortir_de_la_matrice_fr_3.pdf">Sortir de la matrice - Une nouvelle opportunit&eacute; pour les cabinets-conseils en IA avec des clients d'industries r&eacute;glement&eacute;es</a> - Livre blanc destin&eacute; aux cabinets-conseils, pr&eacute;sentant l'argument empirique en faveur de l'inf&eacute;rence &agrave; ex&eacute;cution contr&ocirc;l&eacute;e comme alternative architecturale aux syst&egrave;mes d'IA g&eacute;n&eacute;ratifs par d&eacute;faut, avec des d&eacute;ploiements actifs &agrave; Service Canada, &agrave; l'Universit&eacute; Dalhousie et &agrave; l'Universit&eacute; McGill.</li>
+      <li><strong><a href="/assets/compaiss_livre_blanc_v5.pdf">Inf&eacute;rence &agrave; ex&eacute;cution conditionnelle&nbsp;: une solution architecturale aux hallucinations de l'IA en contexte institutionnel r&eacute;glement&eacute;</a></strong> - Livre blanc de Frank P. Harvey, Ph.&nbsp;D. D&eacute;crit l'architecture, l'art ant&eacute;rieur, les performances empiriques et l'application aux environnements r&eacute;glement&eacute;s.</li>
+      <li><a href="/assets/compaiss_positionnement_institutionnel_styled.pdf">IA institutionnelle &agrave; autorisation contr&ocirc;l&eacute;e dans les environnements r&eacute;glement&eacute;s</a> - Expose l'argument structurel sous-tendant COMPAiSS ainsi que les limites des syst&egrave;mes d'IA g&eacute;n&eacute;ratifs par d&eacute;faut.</li>
+      <li><a href="/assets/rapport_final-hallucinations_par_conception-fr.pdf">Hallucinations par conception - Une &eacute;valuation intermod&egrave;les de la mani&egrave;re dont les grands cabinets de conseil en IA conseillent leurs clients pour g&eacute;rer les erreurs de l'IA g&eacute;n&eacute;rative</a> - Analyse structur&eacute;e fond&eacute;e sur un consensus intermod&egrave;les des approches des cabinets de conseil.</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- A PROPOS DE COMPAISS                                         -->
+  <!-- ============================================================ -->
+
+  <div class="content-section" id="about">
+    <h2>&Agrave; propos de COMPAiSS</h2>
+    <p class="section-intro">Construit &agrave; partir d'une exp&eacute;rience directe en gouvernance institutionnelle.</p>
+    <p>COMPAiSS a &eacute;t&eacute; d&eacute;velopp&eacute; par Frank Harvey, professeur de sciences politiques et conseiller principal &agrave; l'Universit&eacute; Dalhousie. Au cours de sa carri&egrave;re, Harvey a occup&eacute; des postes de direction dans l'enseignement sup&eacute;rieur canadien (notamment pr&eacute;sident par int&eacute;rim, provost et vice-recteur acad&eacute;mique, doyen et directeur de d&eacute;partement), ce qui lui a donn&eacute; une exp&eacute;rience directe au niveau institutionnel des obligations de gouvernance, de responsabilit&eacute; et de conformit&eacute; que les environnements r&eacute;glement&eacute;s imposent r&eacute;ellement aux syst&egrave;mes d'information.</p>
+    <p>COMPAiSS a &eacute;t&eacute; construit dans cette perspective. Non pas comme une solution technologique &agrave; la recherche d'un probl&egrave;me, mais comme une r&eacute;ponse architecturale &agrave; un &eacute;chec structurel qu'Harvey a observ&eacute; directement&nbsp;: des &eacute;tablissements d&eacute;ploient des syst&egrave;mes d'IA g&eacute;n&eacute;ratifs par d&eacute;faut dans des environnements o&ugrave; cette architecture ne peut pas satisfaire leurs obligations.</p>
+    <p>L'architecture et le d&eacute;veloppement ont &eacute;t&eacute; men&eacute;s par Harvey. L'ing&eacute;nierie backend, l'int&eacute;gration API et l'infrastructure de d&eacute;ploiement ont &eacute;t&eacute; construites avec des outils de d&eacute;veloppement assist&eacute;s par l'IA, principalement GPT et Claude, sous la supervision architecturale directe de Harvey. Le syst&egrave;me a &eacute;t&eacute; valid&eacute; &agrave; travers des milliers de sc&eacute;narios de test couvrant les cas d'utilisation &eacute;tudiants, professeurs et administratifs dans des environnements institutionnels multilingues.</p>
+    <p>COMPAiSS recherche activement des partenaires d'&eacute;valuation institutionnelle et des collaborateurs technologiques.</p>
+  </div>
+
+  <hr>
+
+  <!-- ============================================================ -->
+  <!-- POLITIQUE DE CONFIDENTIALITE - ajout juin 2026              -->
+  <!-- ============================================================ -->
+
+  <div class="content-section privacy-section" id="politique-confidentialite">
+    <h2>Politique de confidentialit&eacute;</h2>
+    <p class="section-intro">COMPAiSS Inc. | Derni&egrave;re mise &agrave; jour&nbsp;: juin 2026</p>
+
+    <p>COMPAiSS est con&ccedil;u de sorte que la protection de la vie priv&eacute;e ne soit pas un engagement de politique ajout&eacute; par-dessus la plateforme - c'est une propri&eacute;t&eacute; structurelle du fonctionnement du syst&egrave;me. La pr&eacute;sente politique d&eacute;crit les donn&eacute;es que COMPAiSS collecte, traite et conserve dans le cadre des d&eacute;ploiements institutionnels, notamment le d&eacute;ploiement COMPAiSS de l'Universit&eacute; Dalhousie.</p>
+
+    <div class="privacy-summary">
+      <div class="ps-label">Sommaire</div>
+      <p>COMPAiSS ne collecte, ne stocke ni ne partage aucun renseignement personnel. Les requ&ecirc;tes sont sans &eacute;tat et supprim&eacute;es imm&eacute;diatement apr&egrave;s la livraison d'une r&eacute;ponse. Aucune donn&eacute;e utilisateur n'est conserv&eacute;e, consign&eacute;e ou utilis&eacute;e &agrave; d'autres fins que la g&eacute;n&eacute;ration d'une r&eacute;ponse unique.</p>
+    </div>
+
+    <h3>Ce que nous ne collectons pas</h3>
+    <p>COMPAiSS n'exige pas des utilisateurs qu'ils se connectent ou cr&eacute;ent un compte. Aucun renseignement permettant l'identification n'est collect&eacute; &agrave; quelque &eacute;tape que ce soit&nbsp;:</p>
+    <ul>
+      <li>Aucun nom, adresse courriel, num&eacute;ro d'&eacute;tudiant ni identifiant de compte</li>
+      <li>Aucun identifiant d'appareil, adresse IP ni adresse MAC</li>
+      <li>Aucune donn&eacute;e de localisation, contacts, photos, acc&egrave;s au microphone ni stockage sur l'appareil</li>
+      <li>Aucun t&eacute;moin (cookie) ni technologie de tra&ccedil;age Web utilis&eacute;s par l'application COMPAiSS elle-m&ecirc;me</li>
+      <li>Aucun texte de requ&ecirc;te ni historique de conversation conserv&eacute; apr&egrave;s la livraison d'une r&eacute;ponse</li>
+      <li>Aucun outil de marketing tiers ni cadre publicitaire au sein de l'application COMPAiSS</li>
+    </ul>
+
+    <h3>Comment les requ&ecirc;tes sont trait&eacute;es</h3>
+    <p>Lorsqu'un utilisateur soumet une requ&ecirc;te, celle-ci est valid&eacute;e par rapport &agrave; la liste de sources approuv&eacute;es de l'&eacute;tablissement avant que toute g&eacute;n&eacute;ration par IA ne soit effectu&eacute;e. Si la requ&ecirc;te s'inscrit dans la port&eacute;e autoris&eacute;e, elle est transmise de fa&ccedil;on s&eacute;curis&eacute;e par protocole HTTPS &agrave; la couche d'inf&eacute;rence de l'IA pour traitement. La r&eacute;ponse est livr&eacute;e &agrave; l'utilisateur, puis la requ&ecirc;te est supprim&eacute;e. Rien n'est conserv&eacute; apr&egrave;s la fin de la transaction.</p>
+
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <div class="pc-label">Inf&eacute;rence IA</div>
+        <p>Pour le d&eacute;ploiement de l'Universit&eacute; Dalhousie, l'inf&eacute;rence IA est trait&eacute;e exclusivement par le service Microsoft Azure OpenAI en r&eacute;gion Canada Est. Les requ&ecirc;tes ne quittent pas la juridiction canadienne. Les conditions d'utilisation d'entreprise de Microsoft confirment que les donn&eacute;es institutionnelles ne sont pas utilis&eacute;es pour entra&icirc;ner ou am&eacute;liorer les mod&egrave;les d'IA.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">H&eacute;bergement de l'application</div>
+        <p>L'application COMPAiSS est h&eacute;berg&eacute;e sur l'infrastructure Fly.io en r&eacute;gion de Toronto (YYZ). Les journaux d'exploitation sont conserv&eacute;s sur une infrastructure h&eacute;berg&eacute;e au Canada. Aucune donn&eacute;e n'est trait&eacute;e en dehors du Canada.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">R&eacute;sidence des donn&eacute;es au Canada</div>
+        <p>Tous les composants du d&eacute;ploiement COMPAiSS de Dalhousie - h&eacute;bergement de l'application, inf&eacute;rence IA et journalisation - sont limit&eacute;s &agrave; l'infrastructure canadienne, satisfaisant aux exigences de la LPRPDE et des lois provinciales sur la protection des renseignements personnels en Nouvelle-&Eacute;cosse.</p>
+      </div>
+      <div class="privacy-card">
+        <div class="pc-label">Aucune formation de mod&egrave;le</div>
+        <p>Aucune donn&eacute;e institutionnelle, requ&ecirc;te d'&eacute;tudiant ni historique d'interaction ne sont int&eacute;gr&eacute;s dans quelque pipeline de formation de mod&egrave;le d'IA que ce soit. Le mod&egrave;le d'IA utilis&eacute; par COMPAiSS est mis &agrave; jour uniquement par Microsoft, ind&eacute;pendamment des donn&eacute;es institutionnelles.</p>
+      </div>
+    </div>
+
+    <h3>Journalisation d'exploitation</h3>
+    <p>COMPAiSS tient des journaux d'exploitation &agrave; des fins d'int&eacute;grit&eacute; de la plateforme, de s&eacute;curit&eacute; et de gouvernance. Ces journaux consignent des &eacute;v&eacute;nements de niveau syst&egrave;me tels que les r&eacute;sultats d'autorisation du portail, les r&eacute;sultats de r&eacute;cup&eacute;ration de sources et les informations de version de la plateforme. Les journaux ne contiennent pas de texte de requ&ecirc;te, d'identifiants d'utilisateur ni de renseignements permettant l'identification des personnes. Les dur&eacute;es de conservation sont configurables selon les ententes institutionnelles. L'acc&egrave;s aux journaux est limit&eacute; au personnel autoris&eacute;.</p>
+
+    <h3>Donn&eacute;es d'utilisation agr&eacute;g&eacute;es</h3>
+    <p>Des tendances d'utilisation anonymis&eacute;es et agr&eacute;g&eacute;es - comme les domaines de sujets g&eacute;n&eacute;rant un volume &eacute;lev&eacute; de requ&ecirc;tes - peuvent &ecirc;tre mises &agrave; la disposition de l'&eacute;tablissement &agrave; des fins de planification des services. Ces donn&eacute;es ne peuvent pas &ecirc;tre retrac&eacute;es jusqu'&agrave; un utilisateur individuel et ne constituent pas des renseignements personnels au sens de la LPRPDE ou de la loi provinciale applicable.</p>
+
+    <h3>Infrastructures tierces</h3>
+    <p>COMPAiSS s'appuie sur les fournisseurs d'infrastructure suivants pour le d&eacute;ploiement de Dalhousie&nbsp;:</p>
+    <ul>
+      <li><strong style="color: var(--text-heading);">Microsoft Azure OpenAI Service (Canada Est)</strong> - Traitement de l'inf&eacute;rence IA, r&eacute;gi par les conditions de protection des donn&eacute;es d'entreprise de Microsoft, qui confirment qu'aucune donn&eacute;e client n'est utilis&eacute;e pour la formation des mod&egrave;les</li>
+      <li><strong style="color: var(--text-heading);">Fly.io (Toronto, YYZ)</strong> - H&eacute;bergement de l'application et infrastructure de la plateforme</li>
+      <li><strong style="color: var(--text-heading);">Cloudflare</strong> - Protection r&eacute;seau, att&eacute;nuation des attaques DDoS et filtrage du trafic</li>
+    </ul>
+    <p>Aucun renseignement permettant l'identification n'est partag&eacute; avec un tiers. Tous les fournisseurs de services tiers sont assujettis &agrave; des obligations contractuelles de protection des donn&eacute;es conformes aux exigences canadiennes en mati&egrave;re de protection des renseignements personnels.</p>
+
+    <h3>Droits des personnes concern&eacute;es</h3>
+    <p>Puisque COMPAiSS ne collecte ni ne conserve de renseignements personnels, aucune donn&eacute;e associ&eacute;e &agrave; un utilisateur individuel ne peut faire l'objet d'une demande d'acc&egrave;s, de correction ou de suppression. Les utilisateurs qui souhaitent savoir quels renseignements, le cas &eacute;ch&eacute;ant, pourraient &ecirc;tre d&eacute;tenus en lien avec leur utilisation de la plateforme sont invit&eacute;s &agrave; communiquer directement avec nous.</p>
+
+    <h3>S&eacute;curit&eacute;</h3>
+    <p>Toutes les communications entre les utilisateurs et la plateforme COMPAiSS sont chiffr&eacute;es au moyen du protocole HTTPS avec TLS 1.2 ou sup&eacute;rieur. Les donn&eacute;es au repos sont prot&eacute;g&eacute;es par chiffrement AES-256. La protection au niveau du r&eacute;seau est assur&eacute;e par l'infrastructure Cloudflare.</p>
+
+    <h3>Modifications de la pr&eacute;sente politique</h3>
+    <p>La pr&eacute;sente politique de confidentialit&eacute; peut &ecirc;tre mise &agrave; jour afin de refl&eacute;ter les changements apport&eacute;s &agrave; l'architecture de la plateforme, aux configurations de d&eacute;ploiement institutionnel ou aux lois applicables. Les modifications importantes seront indiqu&eacute;es par une date de mise &agrave; jour au haut de la pr&eacute;sente section. Les &eacute;tablissements disposant de d&eacute;ploiements actifs seront inform&eacute;s directement de tout changement affectant leurs engagements en mati&egrave;re de confidentialit&eacute;.</p>
+
+    <div class="privacy-contact">
+      <div class="pc-label">Nous joindre</div>
+      Pour toute question ou pr&eacute;occupation concernant la pr&eacute;sente politique de confidentialit&eacute; ou la fa&ccedil;on dont COMPAiSS traite les donn&eacute;es dans le cadre du d&eacute;ploiement de votre &eacute;tablissement, veuillez communiquer avec&nbsp;:<br><br>
+      Frank P. Harvey, conseiller principal<br>
+      COMPAiSS Inc. / Universit&eacute; Dalhousie<br>
+      <a href="mailto:Frank.Harvey@Dal.Ca">Frank.Harvey@Dal.Ca</a>
+    </div>
   </div>
 
 </main>
 
 <footer>
   <div class="footer-inner">
-    <p style="margin-top: 0.8rem;">
-      Contact : <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
+    <p style="margin-top:0.8rem;">
+      Contact&nbsp;: <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
     </p>
   </div>
 </footer>
 
-<button id="backToTop" aria-label="Retour en haut">↑</button>
+<button id="backToTop" aria-label="Retour en haut">&#8593;</button>
 
 <script>
   const backBtn = document.getElementById('backToTop');
-
   function checkScroll() {
     backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
   }
-
   window.addEventListener('scroll', checkScroll);
   window.addEventListener('load', checkScroll);
-
   backBtn.addEventListener('click', () => {
-    const nav = document.querySelector('.section-nav');
-    nav.scrollIntoView({ block: 'start' });
-    history.replaceState(null, null, window.location.pathname);
+    window.scrollTo({ top: 0, behavior: 'instant' });
   });
 </script>
 
