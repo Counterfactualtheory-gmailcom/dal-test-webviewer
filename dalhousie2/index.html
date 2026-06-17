@@ -326,7 +326,9 @@ a:visited {
     const loading=document.getElementById('loading');
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream; 
     const copyBtn = document.getElementById('copy-btn');
-
+    const wordCounter = document.getElementById('word-counter');
+    const MAX_WORDS = 300;
+    
 // Mobile detection: iOS OR Android
 const isMobile =
   /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
