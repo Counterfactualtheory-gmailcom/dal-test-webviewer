@@ -575,7 +575,9 @@ followupBtn.disabled=true;
 
   loading.style.display = 'none';
   followupBtn.disabled = false;
-  followupText.value = '';
+followupText.value = '';
+wordCounter.textContent = '0 / 300 words';
+wordCounter.classList.remove('warning');
 };
 
 // ✅ Trim excess “Verified Greenlist Source” links & replace placeholder text
