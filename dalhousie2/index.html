@@ -507,9 +507,12 @@ followupBtn.disabled=true;
       }catch(err){
         safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nIf this is an urgent matter or personal emergency, please contact:\n\n**Dalhousie Security (24/7):** 902-494-4109\n\n**Nova Scotia Crisis Line (24/7):** 1-888-429-8167\n\n**Info-Santé / Health Link (24/7):** 811');
       }
-      loading.style.display='none';
-      followupBtn.disabled=false;
-      followupText.value='';
+loading.style.display='none';
+followupBtn.disabled=false;
+
+followupText.value='';
+wordCounter.textContent='0 / 300 words';
+wordCounter.classList.remove('warning');
     };
 
 // ✅ Trim and rename verified source links like McGill
