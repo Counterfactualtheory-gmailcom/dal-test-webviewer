@@ -917,10 +917,105 @@ gtag('config', 'G-JR7LJGK5PK');
     <h2>Not RAG. Not General-Purpose. Not a FAQ Bot.</h2>
     <p class="section-intro">Three common misconceptions - and why the architecture of COMPAiSS is different from all three.</p>
 
-    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not Retrieval-Augmented Generation (RAG)</h3>
-    <p>RAG systems connect AI to an institution's documents or databases so it can "look things up" while generating an answer. Many AI systems rely on RAG and similar post-processing controls to reduce hallucinations after a response has already been generated. These approaches require retrieval pipelines, vector databases, monitoring systems, and ongoing oversight - and the model still generates a response for every request, including requests for which no authoritative information exists.</p>
-    <p>COMPAiSS operates earlier. By preventing unsupported or unanswerable questions from triggering the AI model in the first place, COMPAiSS prevents unsupported responses from being generated at all - materially reducing reliance on costly post-generation cleanup tools. This difference is not a tuning choice or configuration detail. It reflects a fundamentally different architectural approach.</p>
+<h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not Retrieval-Augmented Generation (RAG)</h3>
 
+<p>RAG systems connect an AI model to an institution's documents so it can retrieve relevant material before generating an answer. They are a genuine improvement over general-purpose AI, but they remain generation-first systems. And that distinction matters more than it first appears.</p>
+
+<p>To understand why, consider what a RAG system actually does between the moment a user submits a question and the moment an answer appears. There is not one AI decision in that process. There are many.</p>
+
+<table class="comp-table" style="margin:1.8rem 0;">
+  <thead>
+    <tr>
+      <th style="width:35%">Stage</th>
+      <th>What the system decides</th>
+      <th>Where error enters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Query interpretation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">figuring out what you actually meant</em></td>
+      <td>What is this user actually asking?</td>
+      <td>Ambiguous phrasing, jargon, or multilingual input can shift meaning before retrieval begins</td>
+    </tr>
+    <tr>
+      <td>Embedding generation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">converting your question into a mathematical pattern</em></td>
+      <td>How should this question be represented mathematically?</td>
+      <td>Conceptually related but institutionally distinct topics can occupy similar positions in vector space</td>
+    </tr>
+    <tr>
+      <td>Vector search<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">finding stored content that resembles the question</em></td>
+      <td>Which stored content is closest to this question?</td>
+      <td>Relevant material that was never indexed, chunked inconsistently, or embedded poorly will not be retrieved</td>
+    </tr>
+    <tr>
+      <td>Candidate retrieval<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">selecting which documents to work from</em></td>
+      <td>Which documents should be considered?</td>
+      <td>The correct document may rank below an incorrect one that happens to share surface vocabulary</td>
+    </tr>
+    <tr>
+      <td>Chunk scoring and re-ranking<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">deciding which passages within those documents matter most</em></td>
+      <td>Which passages within those documents are most relevant?</td>
+      <td>Chunk scores are relevance scores, not truth scores. The highest-scoring passage is the one that matches the query best, not necessarily the one that is authoritative</td>
+    </tr>
+    <tr>
+      <td>Context assembly<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">assembling the evidence the model will read before answering</em></td>
+      <td>What evidence should the model receive?</td>
+      <td>Critical qualifications, exceptions, or policy nuances may be omitted if they appear in a lower-ranked chunk</td>
+    </tr>
+    <tr>
+      <td>Generation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">writing the answer, filling gaps with inference where evidence runs out</em></td>
+      <td>What answer should be produced from this evidence?</td>
+      <td>The model fills gaps, resolves contradictions, and makes inferences, often without signalling that it is doing so</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each of these stages involves a probabilistic judgment. The system is not retrieving the truth. It is retrieving what it estimates to be the most relevant material and then generating from that estimate. Enterprise RAG investments improve individual stages. Better embeddings improve vector search. Re-ranking improves chunk selection. But no combination of improvements changes the fundamental sequence: retrieve probable information, then generate.</p>
+
+<p>Independent evaluations of leading enterprise legal and retrieval-augmented AI systems continue to document residual hallucination and accuracy errors despite sophisticated retrieval architectures. These are not implementation failures. They are predictable consequences of generation-first architecture operating under retrieval uncertainty.</p>
+
+<div class="highlight-block">
+  <p style="font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;font-family:system-ui,-apple-system,sans-serif;">Supporting Evidence</p>
+  <p>Peer-reviewed testing of a leading enterprise legal AI platform found hallucination rates of 17 to 33 percent in real-world legal research tasks. Independent research has documented residual hallucination rates of approximately 6 percent even under optimal RAG conditions. Full citations are available in the <a href="/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf">Empirical Hallucination Rates report (PDF)</a>.</p>
+</div>
+
+<p>COMPAiSS is not a better RAG system. It is a different kind of system, one that asks a question RAG never asks: should the AI be permitted to answer this at all?</p>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin:2rem 0;">
+
+  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius); padding:1.4rem 1.6rem; font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:1rem;">Enterprise RAG</div>
+    <div style="font-size:0.88rem; color:var(--text-main); line-height:2.2;">
+      Question<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Retrieve probable information<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Generate answer<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Manage residual errors after delivery
+    </div>
+  </div>
+
+  <div style="background:var(--green-soft); border:1px solid rgba(76,175,130,0.3); border-radius:var(--radius); padding:1.4rem 1.6rem; font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); font-weight:700; margin-bottom:1rem;">COMPAiSS</div>
+    <div style="font-size:0.88rem; color:var(--text-main); line-height:2.2;">
+      Question<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Is this authorized? <span style="color:#e05555; font-weight:600;">If no, stop.</span><br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Discover authorized sources<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Parse and verify source content<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Evidence available? <span style="color:#e05555; font-weight:600;">If no, stop.</span><br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Generate answer from verified evidence
+    </div>
+  </div>
+
+</div>
+
+<p>The difference is not that COMPAiSS retrieves better. It is that COMPAiSS determines whether inference should occur at all, and stops before generation when it should not. RAG systems try to improve what the model receives. COMPAiSS controls whether the model runs.</p>
     <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Not a General-Purpose AI System</h3>
     <p>General-purpose AI systems are designed to answer questions about anything. Their value lies in breadth - the ability to move freely across domains, institutions, and jurisdictions without predefined boundaries. COMPAiSS is intentionally built for institutional specificity. Its purpose is not to approximate an answer from general knowledge, but to reflect only what a particular institution has actually authorized as its official position, policy, or guidance - and only then release the AI to answer the question.</p>
     <p>In short: general-purpose AI optimizes for how much it can answer. COMPAiSS optimizes for when it is appropriate to answer about your institution - and when it is not.</p>
