@@ -900,10 +900,97 @@ gtag('config', 'G-JR7LJGK5PK');
     <h2>Ni RAG, ni IA généraliste, ni FAQ</h2>
     <p class="section-intro">Trois idees recues courantes - et pourquoi l'architecture de COMPAiSS diffère des trois.</p>
 
-    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système de génération augmentée par récupération (RAG)</h3>
-    <p>Les systèmes RAG connectent l'IA aux documents ou bases de données d'un établissement pour qu'elle puisse « consulter des informations » tout en générant une réponse. De nombreux systèmes d'IA s'appuient sur le RAG et des contrôles post-traitement similaires pour réduire les hallucinations après qu'une réponse a déjà été générée. Ces approches nécessitent des pipelines de récupération, des bases de données vectorielles, des systèmes de surveillance et une supervision continue - et le modèle génère quand même une réponse pour chaque requête, y compris les requêtes pour lesquelles aucune information autorisée n'existe.</p>
-    <p>COMPAiSS opère en amont. En empêchant les questions non étayées ou sans réponse possible de déclencher le modèle d'IA en premier lieu, COMPAiSS empêche la génération de réponses non étayées - réduisant matériellement le recours à des outils de nettoyage post-génération coûteux. Cette différence n'est pas un choix de réglage ou un détail de configuration. Elle reflète une approche architecturale fondamentalement différente.</p>
+<h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas de génération augmentée par récupération (RAG)</h3>
 
+<p>Les systèmes RAG connectent un modèle d'IA aux documents d'un établissement afin qu'il puisse récupérer du matériel pertinent avant de générer une réponse. Il s'agit d'une véritable amélioration par rapport à l'IA généraliste, mais ces systèmes demeurent des systèmes axés sur la génération en premier lieu. Et cette distinction est plus importante qu'il n'y paraît.</p>
+
+<p>Pour comprendre pourquoi, considérez ce qu'un système RAG fait réellement entre le moment où un utilisateur soumet une question et le moment où une réponse apparaît. Il n'y a pas qu'une seule décision d'IA dans ce processus. Il y en a plusieurs.</p>
+
+<table class="comp-table" style="margin:1.8rem 0;">
+  <thead>
+    <tr>
+      <th style="width:45%">Étape</th>
+      <th>Où l'erreur s'introduit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Interprétation de la requête<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">comprendre ce que vous vouliez réellement dire</em></td>
+      <td>Une formulation ambiguë, du jargon ou une saisie multilingue peuvent modifier le sens avant même que la récupération ne commence</td>
+    </tr>
+    <tr>
+      <td>Génération d'incorporations<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">convertir votre question en schéma mathématique</em></td>
+      <td>Des sujets conceptuellement liés mais institutionnellement distincts peuvent occuper des positions similaires dans l'espace vectoriel</td>
+    </tr>
+    <tr>
+      <td>Recherche vectorielle<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">trouver le contenu stocké qui ressemble à la question</em></td>
+      <td>Le matériel pertinent qui n'a jamais été indexé, découpé de manière incohérente ou mal incorporé ne sera pas récupéré</td>
+    </tr>
+    <tr>
+      <td>Récupération de candidats<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">sélectionner les documents à utiliser</em></td>
+      <td>Le bon document peut être classé en dessous d'un document incorrect qui partage simplement un vocabulaire de surface similaire</td>
+    </tr>
+    <tr>
+      <td>Notation et reclassement des segments<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">décider quels passages de ces documents sont les plus importants</em></td>
+      <td>Les scores de segments sont des scores de pertinence, et non des scores de vérité. Le segment le mieux classé est celui qui correspond le mieux à la requête, pas nécessairement celui qui fait autorité</td>
+    </tr>
+    <tr>
+      <td>Assemblage du contexte<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">rassembler les données probantes que le modèle lira avant de répondre</em></td>
+      <td>Les qualifications essentielles, les exceptions ou les nuances des politiques peuvent être omises si elles apparaissent dans un segment moins bien classé</td>
+    </tr>
+    <tr>
+      <td>Génération<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">rédiger la réponse, comblant les lacunes par inférence lorsque les données probantes manquent</em></td>
+      <td>Le modèle comble les lacunes, résout les contradictions et fait des inférences, souvent sans le signaler</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Chacune de ces étapes implique un jugement probabiliste. Le système ne récupère pas la vérité. Il récupère ce qu'il estime être le matériel le plus pertinent, puis génère à partir de cette estimation. Les investissements dans les systèmes RAG d'entreprise améliorent certaines étapes individuelles. De meilleures incorporations améliorent la recherche vectorielle. Le reclassement améliore la sélection des segments. Mais aucune combinaison d'améliorations ne modifie la séquence fondamentale : récupérer des informations probables, puis générer.</p>
+
+<p>Les évaluations indépendantes des principaux systèmes juridiques d'entreprise et de génération augmentée par récupération continuent de documenter des erreurs résiduelles d'hallucination et d'exactitude, malgré des architectures de récupération sophistiquées. Il ne s'agit pas de défaillances d'implémentation. Ce sont des conséquences prévisibles d'une architecture axée sur la génération en premier lieu, fonctionnant sous incertitude de récupération.</p>
+
+<div class="highlight-block">
+  <p style="font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;font-family:system-ui,-apple-system,sans-serif;">Données probantes à l'appui</p>
+  <p>Des tests évalués par des pairs sur une plateforme d'IA juridique d'entreprise de premier plan ont révélé des taux d'hallucination de 17 à 33 pour cent dans des tâches de recherche juridique réelles. Des recherches indépendantes ont documenté des taux d'hallucination résiduels d'environ 6 pour cent, même dans des conditions RAG optimales. Les références complètes sont disponibles dans le <a href="/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf">rapport sur les taux d'hallucination empiriques (PDF)</a>.</p>
+</div>
+
+<p>COMPAiSS n'est pas un meilleur système RAG. C'est un type de système différent, qui pose une question que le RAG ne pose jamais : l'IA devrait-elle être autorisée à répondre à cela?</p>
+
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; margin:2rem 0;">
+
+  <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius); padding:1.4rem 1.6rem; font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); font-weight:700; margin-bottom:1rem;">RAG d'entreprise</div>
+    <div style="font-size:0.88rem; color:var(--text-main); line-height:2.2;">
+      Question<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Récupérer des informations probables<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Générer une réponse<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Gérer les erreurs résiduelles après la livraison
+    </div>
+  </div>
+
+  <div style="background:var(--green-soft); border:1px solid rgba(76,175,130,0.3); border-radius:var(--radius); padding:1.4rem 1.6rem; font-family:system-ui,-apple-system,sans-serif;">
+    <div style="font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--green); font-weight:700; margin-bottom:1rem;">COMPAiSS</div>
+    <div style="font-size:0.88rem; color:var(--text-main); line-height:2.2;">
+      Question<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Est-ce autorisé? <span style="color:#e05555; font-weight:600;">Si non, arrêt.</span><br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Découvrir les sources autorisées<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Analyser et vérifier le contenu des sources<br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Données probantes disponibles? <span style="color:#e05555; font-weight:600;">Si non, arrêt.</span><br>
+      <span style="color:var(--text-muted);">↓</span><br>
+      Générer une réponse à partir de données probantes vérifiées
+    </div>
+  </div>
+
+</div>
+
+<p>La différence ne réside pas dans le fait que COMPAiSS récupère mieux. C'est que COMPAiSS détermine si l'inférence devrait se produire du tout, et s'arrête avant la génération lorsqu'elle ne devrait pas. Les systèmes RAG cherchent à améliorer ce que le modèle reçoit. COMPAiSS contrôle si le modèle fonctionne.</p>
     <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système d'IA généraliste</h3>
     <p>Les systèmes d'IA généralistes sont conçus pour répondre à des questions sur n'importe quoi. Leur valeur réside dans la portée - la capacité de se déplacer librement entre domaines, établissements et juridictions sans frontières prédéfinies. COMPAiSS est intentionnellement construit pour la spécificité institutionnelle. Son but n'est pas d'approximer une réponse à partir de connaissances générales, mais de refléter uniquement ce qu'un établissement particulier a effectivement autorisé comme sa position officielle, sa politique ou ses directives - et seulement alors de permettre à l'IA de répondre à la question.</p>
     <p>En bref : l'IA généraliste optimise le nombre de questions auxquelles elle peut répondre. COMPAiSS optimise le moment où il est approprié de répondre à des questions sur votre établissement - et quand ce ne l'est pas.</p>
