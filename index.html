@@ -926,45 +926,37 @@ gtag('config', 'G-JR7LJGK5PK');
 <table class="comp-table" style="margin:1.8rem 0;">
   <thead>
     <tr>
-      <th style="width:35%">Stage</th>
-      <th>What the system decides</th>
+      <th style="width:45%">Stage</th>
       <th>Where error enters</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Query interpretation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">figuring out what you actually meant</em></td>
-      <td>What is this user actually asking?</td>
       <td>Ambiguous phrasing, jargon, or multilingual input can shift meaning before retrieval begins</td>
     </tr>
     <tr>
       <td>Embedding generation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">converting your question into a mathematical pattern</em></td>
-      <td>How should this question be represented mathematically?</td>
       <td>Conceptually related but institutionally distinct topics can occupy similar positions in vector space</td>
     </tr>
     <tr>
       <td>Vector search<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">finding stored content that resembles the question</em></td>
-      <td>Which stored content is closest to this question?</td>
       <td>Relevant material that was never indexed, chunked inconsistently, or embedded poorly will not be retrieved</td>
     </tr>
     <tr>
       <td>Candidate retrieval<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">selecting which documents to work from</em></td>
-      <td>Which documents should be considered?</td>
       <td>The correct document may rank below an incorrect one that happens to share surface vocabulary</td>
     </tr>
     <tr>
       <td>Chunk scoring and re-ranking<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">deciding which passages within those documents matter most</em></td>
-      <td>Which passages within those documents are most relevant?</td>
       <td>Chunk scores are relevance scores, not truth scores. The highest-scoring passage is the one that matches the query best, not necessarily the one that is authoritative</td>
     </tr>
     <tr>
       <td>Context assembly<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">assembling the evidence the model will read before answering</em></td>
-      <td>What evidence should the model receive?</td>
       <td>Critical qualifications, exceptions, or policy nuances may be omitted if they appear in a lower-ranked chunk</td>
     </tr>
     <tr>
       <td>Generation<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">writing the answer, filling gaps with inference where evidence runs out</em></td>
-      <td>What answer should be produced from this evidence?</td>
       <td>The model fills gaps, resolves contradictions, and makes inferences, often without signalling that it is doing so</td>
     </tr>
   </tbody>
