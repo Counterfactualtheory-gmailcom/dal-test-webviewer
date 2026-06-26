@@ -912,7 +912,7 @@ gtag('config', 'G-JR7LJGK5PK');
 
 <p>Les systèmes RAG connectent un modèle d'IA aux documents d'un établissement afin qu'il puisse récupérer du matériel pertinent avant de générer une réponse. Il s'agit d'une véritable amélioration par rapport à l'IA généraliste, mais ces systèmes demeurent des systèmes axés sur la génération en premier lieu. Et cette distinction est plus importante qu'il n'y paraît.</p>
 
-<p>Pour comprendre pourquoi, considérez ce qu'un système RAG fait réellement entre le moment où un utilisateur soumet une question et le moment où une réponse apparaît. Il n'y a pas qu'une seule décision d'IA dans ce processus. Il y en a plusieurs.</p>
+<p>Entre le moment où un utilisateur soumet une question et le moment où une réponse apparaît, un système RAG moderne exécute une séquence de modèles d'IA. Chaque modèle effectue une inférence probabiliste — estimant le sens, la similarité, la pertinence ou l'importance — et chaque prédiction détermine quelles données probantes parviennent en fin de compte au modèle de langage. Au moment où le grand modèle de langage commence à générer du texte, plusieurs étapes d'inférence pilotées par l'IA ont déjà déterminé quelles informations il verra — et ne verra pas. Il n'y a pas qu'une seule décision d'IA dans ce processus. Il y en a plusieurs.</p>
 
 <table class="comp-table" style="margin:1.8rem 0;">
   <thead>
@@ -923,38 +923,37 @@ gtag('config', 'G-JR7LJGK5PK');
   </thead>
   <tbody>
     <tr>
-      <td>Interprétation de la requête<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">comprendre ce que vous vouliez réellement dire</em></td>
+      <td>Interprétation de la requête - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit ce que l'utilisateur voulait dire</em></td>
       <td>Une formulation ambiguë, du jargon ou une saisie multilingue peuvent modifier le sens avant même que la récupération ne commence</td>
     </tr>
     <tr>
-      <td>Génération d'incorporations<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">convertir votre question en schéma mathématique</em></td>
+      <td>Génération d'incorporations - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit la représentation mathématique du sens</em></td>
       <td>Des sujets conceptuellement liés mais institutionnellement distincts peuvent occuper des positions similaires dans l'espace vectoriel</td>
     </tr>
     <tr>
-      <td>Recherche vectorielle<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">trouver le contenu stocké qui ressemble à la question</em></td>
+      <td>Recherche vectorielle - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit quel contenu stocké est sémantiquement similaire</em></td>
       <td>Le matériel pertinent qui n'a jamais été indexé, découpé de manière incohérente ou mal incorporé ne sera pas récupéré</td>
     </tr>
     <tr>
-      <td>Récupération de candidats<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">sélectionner les documents à utiliser</em></td>
+      <td>Récupération de candidats - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit quels documents sont les plus pertinents</em></td>
       <td>Le bon document peut être classé en dessous d'un document incorrect qui partage simplement un vocabulaire de surface similaire</td>
     </tr>
     <tr>
-      <td>Notation et reclassement des segments<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">décider quels passages de ces documents sont les plus importants</em></td>
+      <td>Notation et reclassement des segments - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit quelles données probantes sont les plus importantes</em></td>
       <td>Les scores de segments sont des scores de pertinence, et non des scores de vérité. Le segment le mieux classé est celui qui correspond le mieux à la requête, pas nécessairement celui qui fait autorité</td>
     </tr>
     <tr>
-      <td>Assemblage du contexte<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">rassembler les données probantes que le modèle lira avant de répondre</em></td>
+      <td>Assemblage du contexte - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit quelles données probantes présenter au grand modèle de langage</em></td>
       <td>Les qualifications essentielles, les exceptions ou les nuances des politiques peuvent être omises si elles apparaissent dans un segment moins bien classé</td>
     </tr>
     <tr>
-      <td>Génération<br><em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">rédiger la réponse, comblant les lacunes par inférence lorsque les données probantes manquent</em></td>
+      <td>Génération - <em style="font-size:0.8rem;color:var(--text-muted);font-weight:400;">l'IA prédit les prochains tokens qui forment la réponse finale</em></td>
       <td>Le modèle comble les lacunes, résout les contradictions et fait des inférences, souvent sans le signaler</td>
     </tr>
   </tbody>
 </table>
 
-<p>Chacune de ces étapes implique un jugement probabiliste. Le système ne récupère pas la vérité. Il récupère ce qu'il estime être le matériel le plus pertinent, puis génère à partir de cette estimation. Les investissements dans les systèmes RAG d'entreprise améliorent certaines étapes individuelles. De meilleures incorporations améliorent la recherche vectorielle. Le reclassement améliore la sélection des segments. Mais aucune combinaison d'améliorations ne modifie la séquence fondamentale : récupérer des informations probables, puis générer.</p>
-
+<p>Chaque étape de ce pipeline repose sur une inférence probabiliste par l'IA. Les améliorations apportées aux incorporations, aux algorithmes de récupération ou aux modèles de classement peuvent améliorer des prédictions individuelles, mais elles n'éliminent pas la dépendance fondamentale à l'égard de l'estimation statistique apprise. Au moment où le modèle de langage commence à générer une réponse, plusieurs modèles d'IA ont déjà déterminé quelles données probantes il verra — et ne verra pas. L'architecture demeure donc fondamentalement axée sur la génération en premier lieu : la récupération identifie ce qui est probablement le plus pertinent, et le modèle de langage génère à partir de ces données probantes probabilistes.</p>
 <p>Les évaluations indépendantes des principaux systèmes juridiques d'entreprise et de génération augmentée par récupération continuent de documenter des erreurs résiduelles d'hallucination et d'exactitude, malgré des architectures de récupération sophistiquées. Il ne s'agit pas de défaillances d'implémentation. Ce sont des conséquences prévisibles d'une architecture axée sur la génération en premier lieu, fonctionnant sous incertitude de récupération.</p>
 
 <div class="highlight-block">
