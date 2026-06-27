@@ -449,17 +449,6 @@ gtag('config', 'G-JR7LJGK5PK');
  
   <div style="display:grid; grid-template-columns:3fr 4fr 3fr; gap:1.2rem; align-items:stretch; margin-bottom:3rem;">
 
-<!-- ============================================================ -->
-<!-- COMPARAISON DES UNIVERS DE CONNAISSANCES                    -->
-<!-- ============================================================ -->
-
-<div style="margin:0 0 3rem; text-align:center;">
-  <img
-    src="/assets/knowledge-universe-comparison-fr.jpg"
-    alt="Comparaison entre l'univers en expansion des connaissances et l'univers de connaissances autorisées utilisé par COMPAiSS"
-    style="width:100%; max-width:980px; height:auto; display:block; margin:0 auto; border-radius:10px;">
-</div>
-       
     <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
       <img src="/assets/rag-library.jpg" alt="Toute autre IA traite l'univers entier de la connaissance" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
       <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(150,20,20,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
@@ -587,30 +576,20 @@ gtag('config', 'G-JR7LJGK5PK');
   })();
   </script>
 
-<!-- ============================================================ -->
-<!-- PARADOXE DE LA GOUVERNANCE                                   -->
-<!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- PARADOXE DE LA GOUVERNANCE                                   -->
+  <!-- ============================================================ -->
 
-<div style="margin:0 0 2.8rem;padding:1.6rem 2rem;background:rgba(240,196,76,0.07);border:1px solid rgba(240,196,76,0.3);border-radius:var(--radius);font-family:system-ui,-apple-system,sans-serif;">
-
-  <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:0.9rem;">
-    Le paradoxe de la gouvernance
+  <div style="margin: 0 0 2.8rem; padding: 1.6rem 2rem; background: rgba(240,196,76,0.07); border: 1px solid rgba(240,196,76,0.3); border-radius: var(--radius); font-family: system-ui, -apple-system, sans-serif;">
+    <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem;">Le paradoxe de la gouvernance</div>
+    <p style="font-size: 1.05rem; color: var(--text-heading); line-height: 1.65; margin: 0 0 0.8rem; max-width: 72ch; font-weight: 400;">
+      Plus les modèles d'IA de pointe deviennent performants, moins ils conviennent aux établissements réglementés - et non l'inverse. Un modèle plus capable ne produit pas moins de violations des limites autorisées. Il en produit de plus convaincantes.
+    </p>
+    <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin: 0; max-width: 72ch;">
+      Pour les établissements réglementés, le défi de la gouvernance évolue avec les capacités de l'IA. Attendre des modèles plus performants n'est pas une stratégie d'atténuation. C'est un report d'un problème qui s'aggrave avec le temps. COMPAiSS règle ce problème de façon structurelle : l'autorisation intervient avant l'inférence, à l'extérieur du modèle, et est donc invariante aux améliorations du modèle.
+    </p>
   </div>
 
-  <p style="font-size:1.05rem;color:var(--text-heading);line-height:1.65;margin:0 0 0.8rem;max-width:72ch;">
-    À mesure que les systèmes d'IA accèdent à un univers de connaissances toujours plus vaste et deviennent plus performants, ils deviennent paradoxalement moins adaptés aux environnements réglementés, et non davantage.
-  </p>
-
-  <p style="font-size:0.92rem;color:var(--text-muted);line-height:1.65;margin:0 0 0.8rem;max-width:72ch;">
-    La raison est simple. Un modèle plus puissant ne commet pas nécessairement moins d'erreurs. Il produit des erreurs plus convaincantes, donc beaucoup plus difficiles à détecter.
-  </p>
-
-  <p style="font-size:0.92rem;color:var(--text-muted);line-height:1.65;margin:0;max-width:72ch;">
-    Pour les universités, les gouvernements, les hôpitaux et les autres organisations réglementées, ce risque augmente à mesure que les capacités des modèles progressent. Attendre les futurs modèles n'est donc pas une stratégie durable. COMPAiSS adopte une approche différente&nbsp;: avant qu'un modèle puisse produire une réponse, le système vérifie d'abord que celle-ci est autorisée par les sources institutionnelles approuvées. Si cette condition n'est pas remplie, le modèle ne s'exécute tout simplement pas.
-  </p>
-
-</div>
-     
 <div style="margin: 0 0 2.8rem; padding: 1.6rem 2rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); font-family: system-ui, -apple-system, sans-serif;">
   <div style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.9rem;">Une question différente de celle posée par la plupart des recherches en sécurité de l'IA</div>
   <p style="font-size: 1.0rem; color: var(--text-heading); line-height: 1.65; margin: 0 0 0.8rem; max-width: 72ch;">
@@ -688,11 +667,9 @@ gtag('config', 'G-JR7LJGK5PK');
 
   <div class="content-section" id="architecture">
     <h2>Comment fonctionne l'architecture</h2>
-<p class="section-intro">
-COMPAiSS (Execution-Gated Generation&nbsp;– EGG) — l'IA ne produit une réponse que lorsqu'elle est autorisée à le faire.
-</p>
-    <p>Au cœur de COMPAiSS se trouve une architecture d'<strong>Execution-Gated Generation (EGG)</strong>. Avant que le modèle d'IA puisse générer une réponse, une couche de gouvernance indépendante vérifie que la question est autorisée et qu'elle peut être étayée par des sources institutionnelles approuvées. Si cette autorisation échoue, le modèle principal ne s'exécute tout simplement pas.</p>
-   <p>En contrôlant si la génération par l'IA peut avoir lieu, COMPAiSS applique l'autorité institutionnelle de manière structurelle plutôt que de s'appuyer sur des filtres, des avertissements ou des corrections après la génération. L'autorisation n'est pas un mécanisme de surveillance. C'est une condition préalable à l'exécution même du modèle.</p>
+    <p class="section-intro">Inférence à exécution contrôlée - l'IA ne répondra pas aux questions qu'elle n'est pas autorisée à traiter.</p>
+    <p>Au cœur de COMPAiSS se trouve une architecture d'inférence à exécution contrôlée. Si l'autorisation échoue, le modèle de raisonnement institutionnel principal ne s'exécute pas et n'alloue pas de ressources d'inférence primaires.</p>
+    <p>En contrôlant si le raisonnement de l'IA se produit du tout, COMPAiSS applique l'autorité institutionnelle de façon structurelle, plutôt que de s'appuyer sur le filtrage ou la correction après la génération.</p>
     <p>COMPAiSS emploie des contrôles de défense en profondeur : le portail d'autorisation empêche l'exécution du modèle principal non autorisé, les contraintes basées sur les instructions guident le comportement lors de l'inférence autorisée, et la validation post-génération assure la conformité des URL avec les sources institutionnelles.</p>
     <p>L'architecture de la liste verte et d'analyse ne fait pas que contrôler la portée - elle contrôle ce que le modèle reçoit comme environnement épistémique. Lorsque le modèle reçoit du contenu uniquement de pages et de documents institutionnels pré-analysés et autorisés, la surface d'erreur d'interprétation est considérablement plus petite que dans un système RAG raisonnant sur un corpus vaste et non structuré.</p>
 
@@ -936,7 +913,8 @@ COMPAiSS (Execution-Gated Generation&nbsp;– EGG) — l'IA ne produit une répo
 
 <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas de génération augmentée par récupération (RAG)</h3>
 
-<p>Les systèmes de génération augmentée par récupération (RAG) connectent un modèle d'IA aux documents d'un établissement afin de récupérer des informations pertinentes avant de générer une réponse. Il s'agit d'une amélioration importante par rapport à l'IA généraliste, mais ces systèmes demeurent fondamentalement des architectures où la génération précède la gouvernance. Et cette distinction est plus importante qu'il n'y paraît.</p>
+<p>Les systèmes RAG connectent un modèle d'IA aux documents d'un établissement afin qu'il puisse récupérer du matériel pertinent avant de générer une réponse. Il s'agit d'une véritable amélioration par rapport à l'IA généraliste, mais ces systèmes demeurent des systèmes axés sur la génération en premier lieu. Et cette distinction est plus importante qu'il n'y paraît.</p>
+
 <p>Entre le moment où un utilisateur soumet une question et le moment où une réponse apparaît, un système RAG moderne exécute une séquence de modèles d'IA. Chaque modèle effectue une inférence probabiliste — estimant le sens, la similarité, la pertinence ou l'importance — et chaque prédiction détermine quelles données probantes parviennent en fin de compte au modèle de langage. Au moment où le grand modèle de langage commence à générer du texte, plusieurs étapes d'inférence pilotées par l'IA ont déjà déterminé quelles informations il verra — et ne verra pas. Il n'y a pas qu'une seule décision d'IA dans ce processus. Il y en a plusieurs.</p>
 
 <table class="comp-table" style="margin:1.8rem 0;">
