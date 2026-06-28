@@ -562,20 +562,20 @@ gtag('config', 'G-JR7LJGK5PK');
       'approved sources exist.',
       'an external check clears it.'
     ];
-    var passState = {
-      panel:'hside-pass', m:'✓',
-      t1:'Authorization checked first',
-      t2:'Model only runs if cleared',
-      t3:'Hallucinations prevented by design',
-      vc:'hverdict-pass', vt:'✓ Authorized. Model permitted to run.'
-    };
-    var failState = {
-      panel:'hside-redirect', m:'→',
-      t1:'Authorization failed',
-      t2:'Model does not run',
-      t3:'User redirected to authorized sources',
-      vc:'hverdict-redirect', vt:'→ Out of scope. User redirected to authorized sources.'
-    };
+var passState = {
+  panel:'hside-pass', m:'✓',
+  t1:'Authorization checked first',
+  t2:'Model runs only if cleared',
+  t3:'Unauthorized responses blocked',
+  vc:'hverdict-pass', vt:'✓ Authorized. Model permitted to run.'
+};
+var failState = {
+  panel:'hside-redirect', m:'→',
+  t1:'Authorization check failed',
+  t2:'Model does not execute',
+  t3:'User sent to approved sources',
+  vc:'hverdict-redirect', vt:'→ Out of scope. User redirected to authorized sources.'
+};
     var seq = [passState,passState,passState,passState,passState,failState,failState];
     var cur = 0;
     var dots = document.querySelectorAll('.hero-dot');
