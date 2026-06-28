@@ -353,9 +353,29 @@ gtag('config', 'G-JR7LJGK5PK');
 
     #backToTop:hover { opacity: 0.9; }
 
-    @media (max-width: 700px) {
+@media (max-width: 700px) {
       .page-header .logo-wrap img { max-width: 320px; }
       .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: #0e2f5c;
+        border-top: 1px solid var(--border-soft);
+        border-bottom: 1px solid var(--border-soft);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0.5rem 0;
+        z-index: 100;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      }
+      .nav ul.nav-open { display: flex; }
+      .nav li { width: 100%; text-align: left; }
+      .nav li a { padding: 0.75rem var(--pad); font-size: 0.9rem; border-bottom: 1px solid var(--border-soft); }
+      .nav li:last-child a { border-bottom: none; }
     }
 
      @media (prefers-reduced-motion: reduce) {
