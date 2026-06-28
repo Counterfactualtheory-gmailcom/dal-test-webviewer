@@ -684,7 +684,7 @@ var failState = {
       <div class="benefit-item">Institution controls which sources are authoritative</div>
       <div class="benefit-item">Institution controls scope - the AI cannot answer outside it</div>
     </div>
-    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Each of these properties is architectural - not a policy setting, not a configuration option, not a dashboard control. They are structural properties of the execution-gated inference model that cannot be accidentally disabled.</p>
+    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Each of these properties is architectural - not a policy setting, not a configuration option, not a dashboard control. They are structural properties of the execution-gated generation model that cannot be accidentally disabled.</p>
   </div>
 
   <hr>
@@ -695,8 +695,8 @@ var failState = {
 
   <div class="content-section" id="architecture">
     <h2>How the Architecture Works</h2>
-    <p class="section-intro">Execution-gated inference - the AI will not answer questions it is not authorized to answer.</p>
-    <p>At its core, COMPAiSS is built on an execution-gated inference architecture. If authorization fails, the primary institutional reasoning model does not execute or allocate primary inference resources.</p>
+    <p class="section-intro">Execution-gated generation - the AI will not answer questions it is not authorized to answer.</p>
+    <p>At its core, COMPAiSS is built on an execution-gated generation architecture. If authorization fails, the primary institutional reasoning model does not execute or allocate primary inference resources.</p>
     <p>By controlling whether AI reasoning happens at all, COMPAiSS enforces institutional authority structurally, rather than relying on post-generation filtering or correction.</p>
     <p>COMPAiSS employs defense-in-depth controls: authorization gating prevents unauthorized primary model execution, instruction-based constraints guide behavior during authorized inference, and post-generation validation ensures URL compliance with institutional sources.</p>
     <p>The greenlist and parsing architecture do more than control scope - they control what the model receives as its epistemic environment. When the model receives content only from pre-parsed, institutionally authorized pages and documents, the surface area for misinterpretation is dramatically smaller than in a RAG system reasoning over a broad, unstructured corpus.</p>
@@ -706,7 +706,7 @@ var failState = {
       <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2.pdf">View Comparison Table (PDF)</a></p>
     </div>
 
-    <img src="/assets/compaiss_executive_comparison.png" alt="COMPAiSS architecture comparison: execution-gated inference versus generation-first AI" role="img" style="max-width: 100%; height: auto; display: block; margin: 2.5rem auto; border-radius: 8px;">
+    <img src="/assets/compaiss_executive_comparison.png" alt="COMPAiSS architecture comparison: execution-gated generation versus generation-first AI" role="img" style="max-width: 100%; height: auto; display: block; margin: 2.5rem auto; border-radius: 8px;">
 
     <div class="card-grid" style="margin-top: 1.8rem;">
       <div class="card">
@@ -1107,7 +1107,7 @@ var failState = {
   <h2>For Consulting Firms and System Integrators</h2>
   <p class="section-intro">A different architectural option for regulated clients.</p>
   <p>Consulting firms increasingly encounter regulated clients where the standard generation-first architecture creates more governance risk than it solves. COMPAiSS offers a fundamentally different architectural option for those organizations.</p>
-  <p>Rather than improving retrieval quality or attempting to reduce hallucinations after AI generation has already begun, COMPAiSS determines whether institutional AI generation should occur at all. For organizations whose primary requirement is authoritative, institution-governed responses rather than broad enterprise knowledge discovery, execution-gated inference is a structurally different and more defensible design choice.</p>
+  <p>Rather than improving retrieval quality or attempting to reduce hallucinations after AI generation has already begun, COMPAiSS determines whether institutional AI generation should occur at all. For organizations whose primary requirement is authoritative, institution-governed responses rather than broad enterprise knowledge discovery, execution-gated generation is a structurally different and more defensible design choice.</p>
   <p>Enterprise RAG strategies remain appropriate where broad organizational knowledge discovery is the objective: searching across email, documents, and internal repositories. But many regulated institutional deployments have a different requirement. The objective is not to search the widest possible corpus. It is to ensure that responses are limited to institution-approved sources and that unauthorized questions never trigger institutional AI generation. Those are governance requirements. RAG improves retrieval to support generation. COMPAiSS governs whether generation occurs at all. They address fundamentally different problems.</p>
   <p>COMPAiSS does not compete by retrieving more information. It competes by reducing the circumstances under which AI is permitted to generate institutional information in the first place.</p>
   <p>For consulting firms, this creates a genuine opportunity: offering clients an architectural alternative rather than another optimization of the same generation-first model. COMPAiSS can reduce infrastructure complexity, shorten deployment timelines, and strengthen institutional accountability, while giving clients a governance story that is auditable, bounded, and defensible in procurement and regulatory review contexts.</p>
@@ -1160,12 +1160,12 @@ var failState = {
     <h2>Explore This Architecture</h2>
     <p class="section-intro">Active deployments across Canadian institutional environments.</p>
     <p>COMPAiSS is currently in active beta testing pilot deployments across five Canadian institutional environments, including research-intensive universities and a federal public service context, with two additional institutional pilots currently under review.</p>
-    <p>A federal-scale public service demonstration environment has also been developed to validate execution-gated inference in high-volume constituent service contexts, reflecting organizational environments that manage tens of millions of citizen interactions annually across telephone, in-person, and digital channels.</p>
+    <p>A federal-scale public service demonstration environment has also been developed to validate execution-gated generation in high-volume constituent service contexts, reflecting organizational environments that manage tens of millions of citizen interactions annually across telephone, in-person, and digital channels.</p>
     <p>The system has been shaped through direct institutional governance experience and is currently being evaluated in registrarial and student services domains where policy accuracy and institutional authority are critical.</p>
     <p><strong>For institutional evaluation or technology partnership inquiries:</strong> <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a></p>
 
 <div class="highlight-block" style="margin-top:2rem;">
-  <p><strong>Independent recognition:</strong> COMPAiSS has been cited in AI governance research by Scott M. Graffius - a strategic transformation leader whose work is featured by Yale University, Harvard Medical School, IEEE, Adobe, Microsoft, the US Department of Energy, and others across 25 countries. Graffius described COMPAiSS as "a framework designed not for experimentation, but for institutional deployment where predictability is non-negotiable," and identified its execution-gated inference architecture as a prerequisite for responsible AI in high-stakes environments.</p>
+  <p><strong>Independent recognition:</strong> COMPAiSS has been cited in AI governance research by Scott M. Graffius - a strategic transformation leader whose work is featured by Yale University, Harvard Medical School, IEEE, Adobe, Microsoft, the US Department of Energy, and others across 25 countries. Graffius described COMPAiSS as "a framework designed not for experimentation, but for institutional deployment where predictability is non-negotiable," and identified its execution-gated generation architecture as a prerequisite for responsible AI in high-stakes environments.</p>
   <p><a href="https://scottgraffius.com/blog/files/ai-governance-initiative-uses-graffius-research.html" target="_blank" rel="noopener">Read the Graffius research citation &rarr;</a></p>
 </div>
     <div style="margin-top:2.5rem;padding:2rem 2.2rem;background:rgba(240,196,76,0.08);border:1px solid rgba(240,196,76,0.25);border-radius:10px;font-family:system-ui,-apple-system,sans-serif;">
@@ -1195,8 +1195,8 @@ var failState = {
     <p class="section-intro">White papers, architecture papers, cost analyses, comparative assessments, and governance materials for institutional evaluation.</p>
     <ul class="doc-list">
       <li><a href="/assets/road_less_travelled_revised.pdf">The Road Less Travelled - Rethinking Generative AI Costs, Safety, and Trust in Regulated Institutions</a> - Expands on the structural arguments and associated costs of post-generation controls.</li>
-      <li><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients</a> - White paper directed at major consulting firms, presenting the empirical case for execution-gated inference as an architectural alternative to generation-first AI governance, with active deployment evidence from Service Canada, Dalhousie University, and McGill University.</li>
-      <li><a href="/assets/compaiss-white-paper-2026-v2.pdf">COMPAiSS White Paper - Execution-Gated AI for Regulated Institutional Environments</a> - Foundational overview of the COMPAiSS architecture, execution-gated inference model, multilingual authorization framework, governance controls, institutional deployment strategy, and structural contrast with generation-first AI systems.</li>
+      <li><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients</a> - White paper directed at major consulting firms, presenting the empirical case for execution-gated generation as an architectural alternative to generation-first AI governance, with active deployment evidence from Service Canada, Dalhousie University, and McGill University.</li>
+      <li><a href="/assets/compaiss-white-paper-2026-v2.pdf">COMPAiSS White Paper - Execution-Gated AI for Regulated Institutional Environments</a> - Foundational overview of the COMPAiSS architecture, execution-gated generation model, multilingual authorization framework, governance controls, institutional deployment strategy, and structural contrast with generation-first AI systems.</li>
       <li><a href="/assets/compaiss_institutional_positioning_styled.pdf">Authorization-Controlled Institutional AI in Regulated Environments</a> - Outlines the structural argument behind COMPAiSS and the limitations of generation-first systems.</li>
       <li><a href="/assets/final_report-hallucinations_by_design-v2.pdf">Hallucinations by Design - A Cross-Model Assessment of How Major AI Consulting Firms Advise Clients to Manage Generative AI Errors</a> - Structured cross-model consensus analysis of AI consulting firm approaches to hallucination management.</li>
     </ul>
