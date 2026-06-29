@@ -559,20 +559,20 @@ gtag('config', 'G-JR7LJGK5PK');
       'des sources approuvées existent.',
       'une vérification externe le confirme.'
     ];
-    var passState = {
-      panel:'hside-pass', m:'✓',
-      t1:'Autorisation vérifiée en premier',
-      t2:'Le modèle ne s\'exécute que si autorisé',
-      t3:'COMPAiSS ne génère pas de réponses au-delà des sources institutionnelles autorisées',
-      vc:'hverdict-pass', vt:'✓ Autorisé. Le modèle est autorisé à s\'exécuter.'
-    };
-    var failState = {
-      panel:'hside-redirect', m:'→',
-      t1:'Autorisation refusée',
-      t2:'Le modèle ne s\'exécute pas',
-      t3:'Utilisateur redirigé vers les sources autorisées',
-      vc:'hverdict-redirect', vt:'→ Hors portée. Utilisateur redirigé vers les sources autorisées.'
-    };
+var passState = {
+  panel:'hside-pass', m:'✓',
+  t1:'Autorisation vérifiée d\'abord',
+  t2:'Modèle actif si autorisé',
+  t3:'Réponses non autorisées bloquées',
+  vc:'hverdict-pass', vt:'✓ Autorisé. Modèle autorisé.'
+};
+var failState = {
+  panel:'hside-redirect', m:'→',
+  t1:'Autorisation refusée',
+  t2:'Modèle ne s\'exécute pas',
+  t3:'Vers les sources approuvées',
+  vc:'hverdict-redirect', vt:'→ Hors portée. Redirigé.'
+};
     var seq = [passState,passState,passState,passState,passState,failState,failState];
     var cur = 0;
     var dots = document.querySelectorAll('.hero-dot');
