@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://compaiss.ca/investigation-architecturale.html" />
+<link rel="alternate" hreflang="en" href="https://compaiss.ca/architecture-investigation.html" />
+<link rel="alternate" hreflang="fr" href="https://compaiss.ca/investigation-architecturale.html" />
+<title>Nous avons demand&#233; &#224; deux syst&#232;mes d&#8217;IA concurrents de contester l&#8217;architecture COMPAiSS. Voici leurs conclusions. &#8212; COMPAiSS</title>
+<meta name="description" content="Copilot et Gemini ont chacun analys&#233; les diff&#233;rences architecturales entre eux-m&#234;mes et COMPAiSS dans des &#233;changes adversatifs structur&#233;s. Les deux ont abouti ind&#233;pendamment &#224; la m&#234;me conclusion." />
+<style>
+:root {
+  --wrap: 980px;
+  --pad: 32px;
+  --bg-page: #0c2d5a;
+  --bg-panel: #10386e;
+  --bg-panel-soft: rgba(16,56,110,0.55);
+  --bg-card: rgba(255,255,255,0.05);
+  --text-main: #c6cfdd;
+  --text-muted: #aeb9cc;
+  --text-heading: #ffffff;
+  --accent: #f0c44c;
+  --accent-soft: rgba(240,196,76,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-accent: rgba(240,196,76,0.3);
+  --link: #9cc9ff;
+  --link-visited: #c8e0ff;
+  --radius: 10px;
+  --green: #4caf82;
+  --green-soft: rgba(76,175,130,0.12);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited { color: var(--link-visited); }
+a:hover { opacity: .9; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px; top: 16px; width: auto; height: auto;
+  background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+}
+
+header { border-bottom: 1px solid var(--border-soft); }
+
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav .brand-text {
+  flex: 0 0 auto;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.nav li { text-align: center; }
+.nav li a { display: block; text-decoration: none; color: var(--text-muted); }
+.nav a:hover { color: var(--text-heading); }
+.nav a.active { color: var(--accent); }
+
+main {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+footer .footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 2.5rem var(--pad);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3rem;
+}
+
+.page-header .eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav {
+  margin-bottom: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav strong {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+@media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
+
+.section-nav li { margin: 0; }
+.section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+.section-nav a:hover { color: var(--text-heading); }
+
+.content-section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+.content-section h2 {
+  font-size: 1.7rem;
+  color: var(--text-heading);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-accent);
+  letter-spacing: 0.01em;
+}
+
+.content-section h3 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 2rem 0 0.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.content-section .section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.8rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.content-section p {
+  max-width: 70ch;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.content-section p.wide { max-width: none; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 3rem 0;
+}
+
+.highlight-block {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.highlight-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.highlight-block p:last-child { margin-bottom: 0; }
+
+.quote-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--link);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.2rem 1.6rem;
+  margin: 1.4rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.quote-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+  max-width: none;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.quote-block p:last-child { margin-bottom: 0; }
+
+.methodology-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.methodology-box .method-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.methodology-box p {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.methodology-box p:last-child { margin-bottom: 0; }
+
+.stage-block {
+  margin: 2rem 0;
+  padding: 1.6rem 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+}
+
+.stage-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stage-block h3 {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.stage-block p {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  margin: 0.6rem 0;
+  line-height: 1.7;
+}
+
+.stage-block .quote-block { margin: 1rem 0; }
+
+.finding-block {
+  margin: 1.4rem 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.finding-block .finding-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.finding-block p {
+  margin: 0 0 0.5rem;
+  font-size: 0.93rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.finding-block p:last-child { margin-bottom: 0; }
+
+.finding-block .finding-note {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.key-statement {
+  text-align: center;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+}
+
+.key-statement p {
+  font-size: 1.25rem;
+  color: var(--text-heading);
+  font-style: italic;
+  margin: 0;
+  max-width: none;
+  line-height: 1.5;
+}
+
+.verdict-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 700px) { .verdict-grid { grid-template-columns: 1fr; } }
+
+.verdict-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.verdict-card .vc-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.verdict-card h4 {
+  font-size: 1rem;
+  color: var(--text-heading);
+  margin: 0 0 0.6rem;
+}
+
+.verdict-card p {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.exchange-header {
+  padding: 1.2rem 1.8rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.exchange-header-copilot {
+  background: rgba(0, 120, 212, 0.1);
+  border: 1px solid rgba(0, 120, 212, 0.3);
+}
+
+.exchange-header-gemini {
+  background: rgba(66, 133, 244, 0.1);
+  border: 1px solid rgba(66, 133, 244, 0.3);
+}
+
+.exchange-header .eh-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.exchange-header-copilot .eh-label { color: #60a8e0; }
+.exchange-header-gemini .eh-label { color: #7baaf7; }
+
+.exchange-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  margin: 1.6rem 0;
+}
+
+.comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+.comp-table th {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.comp-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 0.5px solid var(--border-soft);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.comp-table tr:last-child td { border-bottom: none; }
+
+.comp-table td:first-child {
+  font-weight: 600;
+  color: var(--text-heading);
+  width: 22%;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+#backToTop:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.7rem; }
+  .nav ul { gap: 1rem; font-size: 0.75rem; }
+}
+</style>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Passer au contenu</a>
+
+<header>
+  <nav class="nav" aria-label="Principal">
+    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l&#8217;IA a &#233;volu&#233; ainsi</a></li>
+      <li><a href="/governance-fr.html">Gouvernance IA</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">&#201;valuation des risques IA</a></li>
+      <li><a href="/gouvernance-en-action.html">D&#233;monstrations et tarification</a></li>
+      <li><a href="/deploiement-et-adequation-institutionnelle.html">D&#233;ploiement et ad&#233;quation</a></li>
+      <li><a href="/architecture-investigation.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Investigation architecturale &nbsp;&#183;&nbsp; Juin 2026</div>
+    <h1>Nous avons demand&#233; &#224; deux syst&#232;mes d&#8217;IA concurrents de contester l&#8217;architecture COMPAiSS. Voici ce qu&#8217;ils ont conclu.</h1>
+    <p class="subtitle">Copilot et Gemini ont chacun commenc&#233; par s&#8217;y opposer. Les deux ont fini au m&#234;me endroit.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Sur cette page</strong>
+    <ul>
+      <li><a href="#executive-summary">Ce qui s&#8217;est pass&#233;</a></li>
+      <li><a href="#methodology">Comment les &#233;changes ont &#233;t&#233; men&#233;s</a></li>
+      <li><a href="#copilot-exchange">&#201;change un : Copilot</a></li>
+      <li><a href="#gemini-exchange">&#201;change deux : Gemini</a></li>
+      <li><a href="#gpt">Un troisi&#232;me syst&#232;me ind&#233;pendant</a></li>
+      <li><a href="#convergence">Pourquoi la convergence est significative</a></li>
+      <li><a href="#findings">Cinq constats pour la gouvernance institutionnelle de l&#8217;IA</a></li>
+      <li><a href="#procurement">Ce que cela signifie pour l&#8217;approvisionnement</a></li>
+      <li><a href="#final">Observation finale</a></li>
+    </ul>
+  </div>
+
+  <!-- CE QUI S'EST PASSE -->
+  <div class="content-section" id="executive-summary">
+    <h2>Ce qui s&#8217;est pass&#233;</h2>
+
+    <p>La plupart des institutions qui &#233;valuent COMPAiSS disposent d&#233;j&#224; de Copilot dans le cadre de leur licence Microsoft 365. La question qui revient dans presque chaque conversation est directe : si nous avons d&#233;j&#224; Copilot, pourquoi aurions-nous besoin d&#8217;autre chose&#160;?</p>
+
+    <p>Nous avons d&#233;cid&#233; de poser cette question directement &#224; Copilot. Puis &#224; Gemini.</p>
+
+    <p>Aucun des deux syst&#232;mes n&#8217;a &#233;t&#233; invit&#233; &#224; appuyer COMPAiSS. Chacun a &#233;t&#233; invit&#233; &#224; faire le contraire&#160;: agir comme un &#233;valuateur critique et trouver l&#8217;objection la plus solide &#224; l&#8217;affirmation selon laquelle COMPAiSS repr&#233;sente un type de syst&#232;me fondamentalement diff&#233;rent. Aucune conclusion n&#8217;a &#233;t&#233; fournie &#224; l&#8217;avance. Les deux syst&#232;mes ont commenc&#233; en position de r&#233;sistance.</p>
+
+    <p>Copilot a commenc&#233; par dire que COMPAiSS &#233;tait essentiellement une version plus s&#233;curitaire et mieux encadr&#233;e de la m&#234;me architecture qu&#8217;il utilise. Gemini est all&#233; plus loin&#160;: il a soutenu que la distinction architecturale pr&#233;tendue &#233;tait une illusion structurelle.</p>
+
+    <p>Les deux ont revu leur position au fil des &#233;changes. Et les deux sont arriv&#233;s &#224; la m&#234;me conclusion.</p>
+
+    <p>Cette conclusion n&#8217;&#233;tait pas que COMPAiSS est meilleur que l&#8217;un ou l&#8217;autre de ces syst&#232;mes. C&#8217;&#233;tait que COMPAiSS et les syst&#232;mes d&#8217;IA &#224; g&#233;n&#233;ration premi&#232;re ne sont pas vraiment comparables -- parce qu&#8217;ils ont &#233;t&#233; con&#231;us pour r&#233;soudre des probl&#232;mes diff&#233;rents.</p>
+
+    <p>Ce constat, atteint ind&#233;pendamment par deux syst&#232;mes concurrents, est ce que cette page documente.</p>
+  </div>
+
+  <hr>
+
+  <!-- COMMENT LES ECHANGES ONT ETE MENES -->
+  <div class="content-section" id="methodology">
+    <h2>Comment les &#233;changes ont &#233;t&#233; men&#233;s</h2>
+
+    <div class="methodology-box">
+      <span class="method-label">M&#233;thodologie</span>
+      <p>Les deux &#233;changes ont suivi la m&#234;me approche. Chaque syst&#232;me a &#233;t&#233; invit&#233; &#224; agir comme un &#233;valuateur critique -- sp&#233;cifiquement charg&#233; de trouver des objections, et non de confirmer des affirmations. Chacun a &#233;t&#233; contest&#233; &#224; chaque &#233;tape et invit&#233; &#224; r&#233;viser son analyse au fil de l&#8217;&#233;change. Aucun syst&#232;me n&#8217;a eu acc&#232;s aux conclusions de l&#8217;autre. Toutes les conclusions ont &#233;merg&#233; du processus de raisonnement propre &#224; chaque syst&#232;me.</p>
+      <p>L&#8217;objectif n&#8217;&#233;tait pas d&#8217;obtenir des commentaires flatteurs de la part de deux syst&#232;mes d&#8217;IA. Il s&#8217;agissait de v&#233;rifier si la distinction architecturale tiendrait sous une pression critique soutenue de la part de syst&#232;mes qui avaient toutes les raisons de la r&#233;sister. Les transcriptions compl&#232;tes des deux &#233;changes sont disponibles sur demande.</p>
+      <p>Cette page a elle-m&#234;me &#233;t&#233; r&#233;vis&#233;e par plusieurs syst&#232;mes d&#8217;IA avant publication et modifi&#233;e en fonction de leurs commentaires -- ce qui la soumet au m&#234;me niveau d&#8217;examen critique que celui qu&#8217;elle d&#233;crit.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ECHANGE UN : COPILOT -->
+  <div class="content-section" id="copilot-exchange">
+    <h2>&#201;change un&#160;: Copilot</h2>
+
+    <div class="exchange-header exchange-header-copilot">
+      <span class="eh-label">Microsoft Copilot -- le syst&#232;me d&#8217;IA d&#8217;entreprise par d&#233;faut dans la plupart des universit&#233;s, h&#244;pitaux et minist&#232;res canadiens</span>
+      <p>Copilot n&#8217;est pas un produit de niche. C&#8217;est le syst&#232;me d&#8217;IA que la plupart des institutions poss&#232;dent d&#233;j&#224;. Le fait de lui demander d&#8217;analyser l&#8217;architecture d&#8217;un concurrent potentiel -- et de remettre en question son propre cadrage initial -- rend ses conclusions plus significatives, et non moins.</p>
+    </div>
+
+    <p class="section-intro">L&#8217;&#233;change a progress&#233; en six &#233;tapes. Chacune a modifi&#233; la fa&#231;on dont Copilot d&#233;crivait ce qu&#8217;est r&#233;ellement COMPAiSS.</p>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 1</span>
+      <h3>Le point de d&#233;part de Copilot</h3>
+      <p>La premi&#232;re r&#233;ponse de Copilot &#233;tait celle que la plupart des acteurs du secteur de l&#8217;IA auraient donn&#233;e. Il d&#233;crivait COMPAiSS comme une version plus encadr&#233;e et mieux circonscrite du fonctionnement habituel des syst&#232;mes d&#8217;IA -- des garde-fous plus stricts, des contr&#244;les de source plus rigoureux, un ancrage institutionnel plus solide. Une version plus s&#233;curitaire de la m&#234;me chose.</p>
+      <p>C&#8217;est un point de d&#233;part raisonnable. C&#8217;est aussi, comme l&#8217;&#233;change l&#8217;a finalement montr&#233;, le mauvais cadre d&#8217;analyse.</p>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 2</span>
+      <h3>La premi&#232;re fissure</h3>
+      <p>Lorsqu&#8217;on lui a demand&#233; d&#8217;identifier pr&#233;cis&#233;ment o&#249; dans le processus chaque syst&#232;me applique ses contr&#244;les, la r&#233;ponse de Copilot a commenc&#233; &#224; &#233;voluer.</p>
+      <p>Il a reconnu que dans sa propre architecture -- et dans les syst&#232;mes d&#8217;IA conventionnels en g&#233;n&#233;ral -- la gestion des risques intervient apr&#232;s que le mod&#232;le a d&#233;j&#224; g&#233;n&#233;r&#233; une r&#233;ponse. Le filtrage, la mod&#233;ration et les contr&#244;les des r&#233;sultats s&#8217;appliquent tous &#224; quelque chose que le mod&#232;le a d&#233;j&#224; produit.</p>
+      <p>Il a reconnu que COMPAiSS fonctionne diff&#233;remment. Mais il d&#233;crivait encore cette diff&#233;rence comme une question de degr&#233; -- une meilleure gouvernance, pas un autre type de gouvernance.</p>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 3 -- Le point tournant</span>
+      <h3>La question qui a tout chang&#233;</h3>
+      <p>L&#8217;&#233;change a bascul&#233; sur une seule question pr&#233;cise&#160;: lorsque COMPAiSS refuse de r&#233;pondre &#224; une question hors port&#233;e, est-ce que le mod&#232;le d&#8217;IA y r&#233;fl&#233;chit et d&#233;cide de ne pas r&#233;pondre -- ou est-ce que le mod&#232;le ne s&#8217;ex&#233;cute tout simplement pas&#160;?</p>
+      <p>C&#8217;est l&#224; que Copilot s&#8217;est corrig&#233; lui-m&#234;me directement.</p>
+      <div class="quote-block">
+        <p>&#171;&#160;Le mod&#232;le r&#233;fl&#233;chit et choisit de ne pas r&#233;pondre -- NON. La barri&#232;re pr&#233;-inf&#233;rence n&#8217;est pas un raisonnement IA, ni une d&#233;lib&#233;ration du mod&#232;le, ni une d&#233;cision du mod&#232;le. C&#8217;est une logique d&#8217;autorisation d&#233;terministe&#160;: correspondance d&#8217;URL, validation de la liste verte, v&#233;rification de la port&#233;e.&#160;&#187;</p>
+      </div>
+      <div class="quote-block">
+        <p>&#171;&#160;Pour de nombreuses requ&#234;tes, il n&#8217;y a aucun mod&#232;le, aucune inf&#233;rence, aucune r&#233;flexion -- seulement un &#233;chec d&#8217;autorisation d&#233;terministe.&#160;&#187;</p>
+      </div>
+      <p>Cette distinction n&#8217;est pas mineure. Elle change ce qu&#8217;est fondamentalement le syst&#232;me. Un syst&#232;me o&#249; le mod&#232;le d&#233;cide de ne pas r&#233;pondre est encore un syst&#232;me &#224; g&#233;n&#233;ration premi&#232;re. Un syst&#232;me o&#249; le mod&#232;le ne s&#8217;ex&#233;cute jamais est autre chose.</p>
+      <p>Copilot a nomm&#233; cette autre chose directement&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;COMPAiSS n&#8217;est pas une IA avec gouvernance. C&#8217;est un syst&#232;me de gouvernance qui invoque l&#8217;IA de fa&#231;on conditionnelle.&#160;&#187;</p>
+      </div>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 4</span>
+      <h3>Ce qui d&#233;coule de cette distinction</h3>
+      <p>Une fois le point architectural &#233;tabli, Copilot en a tir&#233; les implications clairement.</p>
+      <div class="quote-block">
+        <p>&#171;&#160;COMPAiSS n&#8217;est pas simplement une impl&#233;mentation plus s&#233;curitaire de l&#8217;IA g&#233;n&#233;rative. C&#8217;est une classe de syst&#232;me diff&#233;rente qui restreint la g&#233;n&#233;ration de connaissances &#224; un domaine ferm&#233; et auditable, convertissant des &#233;checs d&#8217;inf&#233;rence impr&#233;visibles en erreurs de connaissances born&#233;es et d&#233;couvrables.&#160;&#187;</p>
+      </div>
+      <p>Sur ce que cela signifie pour la nature des &#233;checs du syst&#232;me&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;COMPAiSS convertit le risque IA d&#8217;un probl&#232;me &#233;pist&#233;mique probabiliste en un probl&#232;me de couverture d&#233;terministe. Il s&#8217;agit d&#8217;un changement de cat&#233;gorie, pas d&#8217;une am&#233;lioration.&#160;&#187;</p>
+      </div>
+      <p>La diff&#233;rence entre un probl&#232;me probabiliste et un probl&#232;me d&#233;terministe est concr&#232;te pour toute institution ayant des obligations d&#8217;imputabilit&#233;. Un &#233;chec probabiliste -- une hallucination -- peut survenir n&#8217;importe o&#249;, pour des raisons difficiles &#224; retracer et &#224; emp&#234;cher de se reproduire. Un &#233;chec d&#233;terministe -- une lacune dans les sources autoris&#233;es -- a un emplacement connu et une correction directe.</p>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 5</span>
+      <h3>Un constat qui s&#8217;applique &#224; l&#8217;ensemble du secteur</h3>
+      <p>L&#8217;&#233;change s&#8217;est &#233;largi pour demander si cette observation concernait uniquement Copilot et COMPAiSS, ou plus g&#233;n&#233;ralement l&#8217;ensemble du secteur de l&#8217;IA institutionnelle.</p>
+      <p>La conclusion de Copilot &#233;tait directe&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;L&#8217;ensemble du secteur s&#8217;entend pour dire que les hallucinations sont in&#233;vitables -- mais seulement parce que tous acceptent la m&#234;me hypoth&#232;se&#160;: que l&#8217;inf&#233;rence doit toujours s&#8217;ex&#233;cuter.&#160;&#187;</p>
+      </div>
+      <div class="quote-block">
+        <p>&#171;&#160;Aucun syst&#232;me commercialis&#233; majeur ne pr&#233;conise le blocage pr&#233;-g&#233;n&#233;ration. Le refus est un comportement configur&#233;, pas une architecture par d&#233;faut.&#160;&#187;</p>
+      </div>
+      <p>Autrement dit&#160;: l&#8217;hypoth&#232;se selon laquelle un mod&#232;le d&#8217;IA devrait toujours r&#233;pondre lorsqu&#8217;on lui pose une question n&#8217;est pas une n&#233;cessit&#233; technique. C&#8217;est un choix de conception. Et c&#8217;est un choix que l&#8217;ensemble du secteur a fait sans vraiment examiner s&#8217;il &#233;tait le bon pour les environnements r&#233;glement&#233;s.</p>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 6 -- O&#249; l&#8217;&#233;change a abouti</span>
+      <h3>La conclusion finale de Copilot</h3>
+      <p>Apr&#232;s avoir progress&#233; en six &#233;tapes, Copilot est arriv&#233; &#224; une conclusion qu&#8217;il n&#8217;aurait pas offerte au d&#233;part&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;COMPAiSS est fondamentalement distinct des syst&#232;mes d&#8217;IA conventionnels parce qu&#8217;il contraint l&#8217;espace &#233;pist&#233;mique de l&#8217;IA &#224; un domaine fini et autoris&#233;, transformant ainsi la nature des &#233;checs d&#8217;&#233;mergents et non born&#233;s en &#233;checs d&#233;terministes et d&#233;couvrables.&#160;&#187;</p>
+      </div>
+      <p>Et le r&#233;sum&#233; le plus clair de la diff&#233;rence&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;Les syst&#232;mes conventionnels se demandent&#160;: comment puis-je r&#233;pondre &#224; cela&#160;? COMPAiSS se demande&#160;: suis-je autoris&#233; &#224; r&#233;pondre &#224; cela&#160;? Et seulement alors&#160;: r&#233;pondre, mais uniquement &#224; partir de sources faisant autorit&#233;.&#160;&#187;</p>
+      </div>
+      <p style="font-weight: 600; color: var(--text-heading); font-family: system-ui, -apple-system, sans-serif;">Copilot est un produit Microsoft. C&#8217;est le syst&#232;me d&#8217;IA que la plupart des institutions &#233;valuant COMPAiSS poss&#232;dent d&#233;j&#224;. Il n&#8217;a pas commenc&#233; cet &#233;change dans cette position. Cette progression est le constat.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ECHANGE DEUX : GEMINI -->
+  <div class="content-section" id="gemini-exchange">
+    <h2>&#201;change deux&#160;: Gemini</h2>
+
+    <div class="exchange-header exchange-header-gemini">
+      <span class="eh-label">Google Gemini -- un &#233;change distinct, sans acc&#232;s aux conclusions de Copilot</span>
+      <p>Gemini ne connaissait pas les conclusions de Copilot. Il a commenc&#233; dans une position de scepticisme plus marqu&#233;&#160;: non seulement la distinction &#233;tait surestim&#233;e, mais elle n&#8217;existait tout simplement pas.</p>
+    </div>
+
+    <p class="section-intro">Le d&#233;fi de Gemini &#233;tait plus techniquement agressif que celui de Copilot. Cela rend sa conclusion finale d&#8217;autant plus significative.</p>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 1 -- L&#8217;objection initiale</span>
+      <h3>L&#8217;argument central de Gemini&#160;: la barri&#232;re est une illusion</h3>
+      <p>La premi&#232;re objection de Gemini allait directement au coeur de l&#8217;architecture. Il soutenait que la nouveaut&#233; pr&#233;tendue de la barri&#232;re COMPAiSS &#233;tait une illusion structurelle.</p>
+      <p>Son raisonnement&#160;: pour qu&#8217;une barri&#232;re d&#233;termine si une question non structur&#233;e d&#8217;un utilisateur rel&#232;ve de la port&#233;e institutionnelle autoris&#233;e, la barri&#232;re elle-m&#234;me doit comprendre la question. Et comprendre une question non structur&#233;e n&#233;cessite une inf&#233;rence -- qu&#8217;il s&#8217;agisse de correspondance de mots-cl&#233;s, de similarit&#233; s&#233;mantique ou d&#8217;un mod&#232;le de classification. Si la barri&#232;re utilise l&#8217;un de ces m&#233;canismes, un raisonnement d&#8217;IA probabiliste se produit avant que le mod&#232;le principal s&#8217;ex&#233;cute. Le risque n&#8217;a pas &#233;t&#233; &#233;limin&#233;. Il a simplement &#233;t&#233; d&#233;plac&#233; plus t&#244;t dans le processus.</p>
+      <p>C&#8217;&#233;tait une objection s&#233;rieuse. Elle ne pouvait pas &#234;tre r&#233;pondue en reconfigurant le probl&#232;me. Elle exigeait une correction factuelle directe.</p>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 2 -- La correction factuelle</span>
+      <h3>La barri&#232;re n&#8217;utilise pas d&#8217;inf&#233;rence s&#233;mantique</h3>
+      <p>La correction fournie &#224; Gemini &#233;tait pr&#233;cise&#160;: la barri&#232;re pr&#233;-inf&#233;rence de COMPAiSS n&#8217;utilise pas d&#8217;inf&#233;rence s&#233;mantique, de g&#233;n&#233;ration d&#8217;embeddings, de correspondance par similarit&#233; vectorielle, ni aucune classification probabiliste. Elle effectue des op&#233;rations informatiques d&#233;terministes -- sp&#233;cifiquement, une recherche dans un ensemble pr&#233;autoris&#233; d&#8217;URL institutionnelles pour d&#233;terminer si l&#8217;une de ces sources contient du contenu pouvant fonder une r&#233;ponse &#224; la requ&#234;te.</p>
+      <p>La barri&#232;re pose une seule question binaire&#160;: des sources institutionnelles autoris&#233;es existent-elles pour soutenir une r&#233;ponse&#160;? Si non, le mod&#232;le principal ne s&#8217;ex&#233;cute pas. Il n&#8217;y a pas d&#8217;&#233;tape probabiliste. Il n&#8217;y a pas de mod&#232;le au niveau de la barri&#232;re. C&#8217;est une op&#233;ration de recherche dans un corpus born&#233;.</p>
+      <p>Gemini a accept&#233; cette correction. Son argument de circularit&#233; &#233;pist&#233;mique, tel qu&#8217;il l&#8217;avait formul&#233;, s&#8217;est effondr&#233;. Il a ensuite avanc&#233; une deuxi&#232;me objection&#160;: que n&#8217;importe quelle &#233;quipe d&#8217;ing&#233;nierie pourrait r&#233;pliquer la m&#234;me propri&#233;t&#233; d&#8217;ex&#233;cution contr&#244;l&#233;e en utilisant des outils standard, ce qui signifie qu&#8217;elle n&#8217;est pas architecturalement nouvelle.</p>
+      <p>La r&#233;ponse &#224; cela &#233;tait tout aussi directe&#160;: la question n&#8217;est pas de savoir si la propri&#233;t&#233; pourrait &#234;tre r&#233;pliqu&#233;e par quelqu&#8217;un qui choisissait de la construire ainsi. La question est de savoir si un syst&#232;me d&#233;ploy&#233; l&#8217;a effectivement construite ainsi. Une investigation sur l&#8217;art ant&#233;rieur men&#233;e dans des bases de donn&#233;es de brevets internationales -- et v&#233;rifi&#233;e de fa&#231;on adversative par quatre syst&#232;mes d&#8217;IA -- a constat&#233; qu&#8217;aucun syst&#232;me commercialis&#233; ne traite les requ&#234;tes non autoris&#233;es comme des &#233;tats terminaux non g&#233;n&#233;ratifs par d&#233;faut. D&#233;crire ce qui devrait &#234;tre fait pour r&#233;pliquer une propri&#233;t&#233; est lui-m&#234;me une preuve que les syst&#232;mes existants ne la poss&#232;dent pas.</p>
+      <div class="quote-block">
+        <p>&#171;&#160;R&#233;soudre ce point expose imm&#233;diatement une tension syst&#233;mique plus profonde. Si la barri&#232;re op&#232;re uniquement sur des propri&#233;t&#233;s structurelles et z&#233;ro compr&#233;hension s&#233;mantique de la requ&#234;te, le fardeau architectural n&#8217;a pas disparu -- il a simplement &#233;t&#233; d&#233;plac&#233; en aval.&#160;&#187;</p>
+      </div>
+    </div>
+
+    <div class="stage-block">
+      <span class="stage-label">&#201;tape 3 -- La convergence</span>
+      <h3>L&#8217;&#233;valuation d&#233;finitive de Gemini</h3>
+      <p>Apr&#232;s la correction factuelle et la r&#233;ponse &#224; l&#8217;objection de r&#233;plicabilit&#233;, Gemini a produit ce qu&#8217;il a d&#233;crit comme son &#233;valuation d&#233;finitive. Il a offert une description math&#233;matique de la propri&#233;t&#233; d&#8217;ex&#233;cution&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;Le mod&#232;le principal se comporte comme une fonction conditionnelle&#160;: il ne s&#8217;ex&#233;cute que si l&#8217;ensemble de fondement n&#8217;est pas vide. Si aucun mat&#233;riel de fondement autoris&#233; n&#8217;existe, la fonction g&#233;n&#233;rative ne s&#8217;instancie jamais.&#160;&#187;</p>
+      </div>
+      <p>Il a ensuite produit ind&#233;pendamment -- sans acc&#232;s &#224; l&#8217;&#233;change avec Copilot -- une analyse des modes d&#8217;&#233;chec qui aboutissait &#224; la m&#234;me distinction que Copilot avait atteinte par un chemin diff&#233;rent&#160;:</p>
+
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Ce qui change</th>
+            <th>IA &#224; g&#233;n&#233;ration premi&#232;re</th>
+            <th>COMPAiSS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Comment il &#233;choue</td>
+            <td>Hallucination -- le syst&#232;me produit une r&#233;ponse assur&#233;e qui est incorrecte, hors port&#233;e, ou tir&#233;e de la mauvaise institution</td>
+            <td>Lacune de couverture -- le syst&#232;me dit qu&#8217;il ne trouve pas de r&#233;ponse autoris&#233;e et dirige l&#8217;utilisateur vers le bon service</td>
+          </tr>
+          <tr>
+            <td>Comment on le corrige</td>
+            <td>Ing&#233;nierie de prompt, ajustement fin, modification des seuils -- un correctif probabiliste qui r&#233;duit mais n&#8217;&#233;limine jamais le risque</td>
+            <td>Ajouter la source manquante &#224; la liste autoris&#233;e -- une correction directe et d&#233;terministe</td>
+          </tr>
+          <tr>
+            <td>R&#233;silience adversative</td>
+            <td>Vuln&#233;rable &#224; la manipulation par le cadrage contextuel, les signaux d&#8217;autorit&#233; et la persistance dans les &#233;changes</td>
+            <td>Invariant au texte du prompt&#160;: si le contenu ne figure pas sur la liste autoris&#233;e, aucune manipulation linguistique ne peut faire s&#8217;ex&#233;cuter le mod&#232;le</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>La conclusion finale de Gemini sur la signification de la distinction&#160;:</p>
+      <div class="quote-block">
+        <p>&#171;&#160;Du point de vue de la th&#233;orie de l&#8217;IA&#160;: c&#8217;est un paradigme d&#8217;encapsulation op&#233;rationnel. Du point de vue de la gouvernance institutionnelle&#160;: c&#8217;est une classe de syst&#232;me fondamentalement diff&#233;rente. Pour un auditeur, une &#233;quipe juridique ou un registraire, un syst&#232;me dont le mode d&#8217;&#233;chec est une omission pr&#233;visible et corrigeable est une esp&#232;ce de logiciel compl&#232;tement diff&#233;rente d&#8217;un syst&#232;me dont le mode d&#8217;&#233;chec est une invention impr&#233;visible et incommensurable.&#160;&#187;</p>
+      </div>
+      <div class="quote-block">
+        <p>&#171;&#160;COMPAiSS atteint la s&#233;curit&#233; dans les espaces r&#233;glement&#233;s en &#233;changeant l&#8217;autonomie ouverte de la machine contre une pr&#233;dictibilit&#233; absolue et d&#233;terministe. La fa&#231;on la plus efficace de gouverner l&#8217;IA dans les environnements &#224; enjeux &#233;lev&#233;s n&#8217;est pas de rendre le mod&#232;le plus intelligent ou les filtres plus resserr&#233;s, mais de rendre le chemin d&#8217;ex&#233;cution lui-m&#234;me conditionnel &#224; une recherche institutionnelle.&#160;&#187;</p>
+      </div>
+      <p style="font-weight: 600; color: var(--text-heading); font-family: system-ui, -apple-system, sans-serif;">Gemini a commenc&#233; cet &#233;change en qualifiant la distinction architecturale d&#8217;illusion structurelle. Il l&#8217;a termin&#233; en fournissant la description technique la plus pr&#233;cise de la propri&#233;t&#233; de g&#233;n&#233;ration &#224; ex&#233;cution contr&#244;l&#233;e produite dans les deux &#233;changes.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- UN TROISIEME SYSTEME INDEPENDANT -->
+  <div class="content-section" id="gpt">
+    <h2>Un troisi&#232;me syst&#232;me ind&#233;pendant</h2>
+    <p>Les m&#234;mes questions architecturales ont &#233;t&#233; soumises &#224; GPT dans un &#233;change distinct. Sa conclusion &#233;tait coh&#233;rente avec les deux autres&#160;:</p>
+    <div class="quote-block">
+      <p>&#171;&#160;COMPAiSS n&#8217;est pas simplement un meilleur syst&#232;me de garde-fous. C&#8217;est le premier syst&#232;me de cette analyse qui refuse r&#233;ellement d&#8217;accepter l&#8217;hypoth&#232;se fondamentale sur laquelle repose tous les autres syst&#232;mes.&#160;&#187;</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- POURQUOI LA CONVERGENCE EST SIGNIFICATIVE -->
+  <div class="content-section" id="convergence">
+    <h2>Pourquoi la convergence est significative</h2>
+
+    <p>Trois syst&#232;mes d&#8217;IA -- Copilot (Microsoft), Gemini (Google) et GPT (OpenAI) -- ont chacun analys&#233; la m&#234;me affirmation architecturale ind&#233;pendamment, chacun partant d&#8217;une position sceptique, chacun sans acc&#232;s aux conclusions des autres.</p>
+
+    <p>Les trois ont abouti au m&#234;me endroit. La distinction entre les modes d&#8217;&#233;chec -- probabiliste et non born&#233; contre d&#233;terministe et corrigeable -- n&#8217;&#233;tait pas une conclusion dont l&#8217;un d&#8217;eux &#233;tait parti. Elle a &#233;merg&#233; de l&#8217;engagement de chaque syst&#232;me avec les &#233;l&#233;ments de preuve.</p>
+
+    <p>Ce n&#8217;est pas la m&#234;me chose que trois syst&#232;mes s&#8217;accordant sur quelque chose d&#8217;&#233;vident. Ce sont des produits de concurrents directs, chacun ayant des raisons de r&#233;sister &#224; l&#8217;affirmation. La convergence s&#8217;est produite malgr&#233; cela, et non gr&#226;ce &#224; cela.</p>
+
+    <div class="highlight-block">
+      <p>Un constat de l&#8217;&#233;change Gemini m&#233;rite une attention particuli&#232;re. Gemini a ind&#233;pendamment identifi&#233; que la barri&#232;re COMPAiSS est invariante au texte du prompt. Parce que le mod&#232;le principal ne s&#8217;ex&#233;cute que lorsque du mat&#233;riel de fondement autoris&#233; existe dans la liste de sources institutionnelles, aucune forme de manipulation linguistique -- prompts adversatifs, cadrage d&#8217;autorit&#233;, pression conversationnelle -- ne peut faire s&#8217;ex&#233;cuter le mod&#232;le en l&#8217;absence de ce mat&#233;riel. La propri&#233;t&#233; de s&#233;curit&#233; ne d&#233;pend pas de la r&#233;sistance du mod&#232;le &#224; la manipulation. Elle d&#233;pend de l&#8217;absence du chemin d&#8217;ex&#233;cution lui-m&#234;me.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CINQ CONSTATS -->
+  <div class="content-section" id="findings">
+    <h2>Cinq constats pour la gouvernance institutionnelle de l&#8217;IA</h2>
+
+    <div class="finding-block">
+      <span class="finding-label">Constat 1</span>
+      <p><strong style="color: var(--text-heading);">Ex&#233;cuter le mod&#232;le d&#8217;IA est un choix, pas une n&#233;cessit&#233;.</strong></p>
+      <p>Tout syst&#232;me qui invoque un mod&#232;le par d&#233;faut accepte une surface de risque qui ne peut &#234;tre enti&#232;rement born&#233;e. Ce n&#8217;est pas un d&#233;faut d&#8217;un syst&#232;me particulier. C&#8217;est un choix de conception. Les institutions qui &#233;valuent des syst&#232;mes d&#8217;IA devraient comprendre qu&#8217;elles font ce choix explicitement -- et qu&#8217;une alternative existe.</p>
+    </div>
+
+    <div class="finding-block">
+      <span class="finding-label">Constat 2</span>
+      <p><strong style="color: var(--text-heading);">Tous les &#233;checs de l&#8217;IA ne sont pas du m&#234;me type.</strong></p>
+      <p>Une hallucination et une lacune de couverture ne sont pas le m&#234;me probl&#232;me. Une hallucination -- o&#249; l&#8217;IA produit une r&#233;ponse assur&#233;e mais incorrecte -- est probabiliste, difficile &#224; retracer et difficile &#224; emp&#234;cher de se reproduire. Une lacune de couverture -- o&#249; COMPAiSS dit qu&#8217;il ne peut pas trouver de r&#233;ponse autoris&#233;e -- est d&#233;terministe, tra&#231;able et corrig&#233;e en ajoutant la source manquante. Les cadres de gouvernance qui traitent ces deux types d&#8217;&#233;checs de la m&#234;me fa&#231;on manquent une distinction critique.</p>
+      <p class="finding-note">Cela ne signifie pas que COMPAiSS &#233;limine les erreurs. Il change le type d&#8217;erreur qui est possible. Les erreurs proviennent de lacunes dans les sources autoris&#233;es, et non du mod&#232;le qui invente une r&#233;ponse. Ces erreurs sont visibles, born&#233;es et corrigeables.</p>
+    </div>
+
+    <div class="finding-block">
+      <span class="finding-label">Constat 3</span>
+      <p><strong style="color: var(--text-heading);">Un univers de connaissances born&#233; change ce que signifie l&#8217;audit.</strong></p>
+      <p>Lorsqu&#8217;un syst&#232;me &#224; g&#233;n&#233;ration premi&#232;re produit une r&#233;ponse incorrecte, l&#8217;erreur peut provenir des pond&#233;rations du mod&#232;le, des donn&#233;es d&#8217;entra&#238;nement, d&#8217;art&#233;facts de r&#233;cup&#233;ration, ou de toute combinaison de ces facteurs. La source est souvent impossible &#224; identifier. Lorsque COMPAiSS produit une r&#233;ponse incorrecte ou incompl&#232;te, la source se trouve quelque part dans la liste autoris&#233;e -- quelque part o&#249; vous pouvez regarder. Pour les agents de conformit&#233; et les fonctions d&#8217;audit, cette diff&#233;rence n&#8217;est pas th&#233;orique.</p>
+    </div>
+
+    <div class="finding-block">
+      <span class="finding-label">Constat 4</span>
+      <p><strong style="color: var(--text-heading);">Les hallucinations sont peut-&#234;tre une cons&#233;quence architecturale, pas un probl&#232;me de r&#233;glage.</strong></p>
+      <p>Le secteur de l&#8217;IA traite les hallucinations comme un risque in&#233;vitable &#224; g&#233;rer apr&#232;s la g&#233;n&#233;ration. L&#8217;interpr&#233;tation alternative -- que les deux &#233;changes ont explor&#233;e -- est que les hallucinations persistent pr&#233;cis&#233;ment parce que le secteur n&#8217;a jamais s&#233;rieusement remis en question si le mod&#232;le devait s&#8217;ex&#233;cuter par d&#233;faut. Si l&#8217;architecture &#224; inf&#233;rence premi&#232;re est la cause plut&#244;t que simplement le contexte, alors de meilleurs mod&#232;les et des filtres plus resserr&#233;s r&#233;duiront les hallucinations sans jamais les &#233;liminer. C&#8217;est une conclusion d&#8217;approvisionnement diff&#233;rente de &#171;&#160;attendons le prochain mod&#232;le&#160;&#187;.</p>
+    </div>
+
+    <div class="finding-block">
+      <span class="finding-label">Constat 5</span>
+      <p><strong style="color: var(--text-heading);">La comparaison pertinente n&#8217;est pas entre produits.</strong></p>
+      <p>Elle est entre deux r&#233;ponses diff&#233;rentes &#224; la question de ce que l&#8217;IA est autoris&#233;e &#224; faire dans les environnements r&#233;glement&#233;s. Les syst&#232;mes &#224; g&#233;n&#233;ration premi&#232;re supposent que le mod&#232;le est toujours disponible pour r&#233;pondre et g&#232;rent les risques qui s&#8217;ensuivent. COMPAiSS suppose que le mod&#232;le n&#233;cessite une autorisation et d&#233;termine si cette condition est satisfaite. Ce ne sont pas des impl&#233;mentations concurrentes de la m&#234;me id&#233;e. Ce sont des id&#233;es diff&#233;rentes.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- CE QUE CELA SIGNIFIE POUR L'APPROVISIONNEMENT -->
+  <div class="content-section" id="procurement">
+    <h2>Ce que cela signifie pour l&#8217;approvisionnement</h2>
+
+    <p>La plupart des institutions qui &#233;valuent COMPAiSS ne choisissent pas entre COMPAiSS et rien. Elles choisissent entre COMPAiSS et Copilot, qui est d&#233;j&#224; disponible dans le cadre de leur licence Microsoft 365 existante.</p>
+
+    <p>Les &#233;changes document&#233;s sur cette page sugg&#232;rent que la bonne question n&#8217;est pas quel syst&#232;me performe mieux sur un r&#233;f&#233;rentiel d&#8217;&#233;valuation. C&#8217;est quelle question l&#8217;institution a besoin que son syst&#232;me d&#8217;IA pose.</p>
+
+    <div class="verdict-grid">
+      <div class="verdict-card">
+        <span class="vc-label">Si votre institution a besoin de</span>
+        <h4>Largeur, flexibilit&#233; et int&#233;gration &#224; la productivit&#233;</h4>
+        <p>Copilot est le choix appropri&#233;. Il est bien con&#231;u pour une utilit&#233; large sur un vaste &#233;ventail de t&#226;ches et s&#8217;int&#232;gre directement aux outils Microsoft 365 existants.</p>
+      </div>
+      <div class="verdict-card" style="border-color: var(--border-accent); background: var(--accent-soft);">
+        <span class="vc-label">Si votre institution a besoin de</span>
+        <h4>Imputabilit&#233;, auditabilit&#233; et gouvernance born&#233;e</h4>
+        <p>Les &#233;changes document&#233;s ici sugg&#232;rent que ces exigences d&#233;crivent un mod&#232;le architectural enti&#232;rement diff&#233;rent -- un mod&#232;le o&#249; les &#233;checs sont d&#233;terministes et corrigeables plut&#244;t que probabilistes et &#233;mergents.</p>
+      </div>
+    </div>
+
+    <div class="highlight-block">
+      <p>Le choix entre ces syst&#232;mes n&#8217;est pas principalement technique. C&#8217;est une d&#233;cision de gouvernance qui consiste &#224; d&#233;terminer si l&#8217;institution est pr&#234;te &#224; accepter des r&#233;sultats probabilistes ou si elle exige des r&#233;sultats born&#233;s et auditables.</p>
+    </div>
+
+    <p>Copilot lui-m&#234;me, apr&#232;s avoir travaill&#233; &#224; travers les &#233;l&#233;ments de preuve, a d&#233;crit la diff&#233;rence de cette fa&#231;on&#160;:</p>
+
+    <div class="quote-block">
+      <p>&#171;&#160;Les syst&#232;mes conventionnels se demandent&#160;: comment puis-je r&#233;pondre &#224; cela&#160;? COMPAiSS se demande&#160;: suis-je autoris&#233; &#224; r&#233;pondre &#224; cela&#160;?&#160;&#187;</p>
+    </div>
+
+    <p>Quelle question l&#8217;institution a besoin que son syst&#232;me d&#8217;IA pose est peut-&#234;tre plus importante que toute comparaison de fonctionnalit&#233;s.</p>
+  </div>
+
+  <hr>
+
+  <!-- OBSERVATION FINALE -->
+  <div class="content-section" id="final">
+    <h2>Observation finale</h2>
+
+    <p>Le constat le plus significatif de ces &#233;changes n&#8217;&#233;tait pas qu&#8217;un syst&#232;me surpassait un autre.</p>
+
+    <p>C&#8217;&#233;tait que trois syst&#232;mes d&#8217;IA ind&#233;pendants -- chacun un produit d&#8217;une organisation diff&#233;rente, chacun invit&#233; &#224; r&#233;sister, chacun ignorant les conclusions des autres -- ont converg&#233; vers le m&#234;me constat &#224; travers leur propre raisonnement&#160;: que d&#233;placer le point de contr&#244;le avant l&#8217;ex&#233;cution du mod&#232;le, plut&#244;t qu&#8217;apr&#232;s qu&#8217;il a produit une r&#233;ponse, cr&#233;e un syst&#232;me avec des propri&#233;t&#233;s de gouvernance cat&#233;goriquement diff&#233;rentes pour les institutions r&#233;glement&#233;es.</p>
+
+    <p>Copilot et Gemini sont optimis&#233;s pour la largeur, la flexibilit&#233; et l&#8217;utilit&#233; sur un large &#233;ventail de t&#226;ches. Ils supposent que le mod&#232;le est toujours disponible et g&#232;rent les risques qui s&#8217;ensuivent.</p>
+
+    <p>COMPAiSS est optimis&#233; pour l&#8217;imputabilit&#233;, l&#8217;auditabilit&#233; et la d&#233;fendabilit&#233; institutionnelle. Il suppose que le mod&#232;le n&#233;cessite une autorisation et d&#233;termine si cette condition est satisfaite avant de permettre l&#8217;inf&#233;rence.</p>
+
+    <p>Aucun n&#8217;est sup&#233;rieur dans l&#8217;absolu. Ils repr&#233;sentent des r&#233;ponses diff&#233;rentes &#224; la question de la finalit&#233; de l&#8217;IA et de sa redevabilit&#233;.</p>
+
+    <p>Pour les institutions qui op&#232;rent dans des environnements r&#233;glement&#233;s et &#224; haute imputabilit&#233;, comprendre cette distinction est peut-&#234;tre la question de gouvernance de l&#8217;IA la plus importante des prochaines ann&#233;es.</p>
+
+    <div class="key-statement">
+      <p>La comparaison n&#8217;est pas entre produits. Elle est entre philosophies.</p>
+    </div>
+
+    <p style="font-size: 0.9rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic; margin-top: 2rem;">
+      Documentation compl&#232;te de gouvernance et analyse d&#8217;alignement avec la Directive du gouvernement du Canada sur la prise de d&#233;cisions automatis&#233;e&#160;: <a href="/evaluation-des-risques-ia.html">compaiss.ca/evaluation-des-risques-ia.html</a><br>
+      Pour les demandes d&#8217;approvisionnement ou d&#8217;&#233;valuation institutionnelle&#160;: <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
+    </p>
+  </div>
+
+</main>
+
+<button id="backToTop" aria-label="Retour en haut">&#8593;</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
+</body>
+</html>
