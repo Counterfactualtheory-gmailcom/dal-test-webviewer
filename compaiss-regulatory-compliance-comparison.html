@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Authorization-First Institutional AI: Governance Alignment and a Proposed Evaluation Framework</title>
+<style>
+  :root {
+    --wrap: 980px;
+    --pad: 32px;
+    --bg-page: #0c2d5a;
+    --bg-panel: #10386e;
+    --bg-card: rgba(255,255,255,0.05);
+    --text-main: #c6cfdd;
+    --text-muted: #aeb9cc;
+    --text-heading: #ffffff;
+    --accent: #f0c44c;
+    --accent-soft: rgba(240,196,76,0.12);
+    --border-soft: rgba(255,255,255,0.08);
+    --border-accent: rgba(240,196,76,0.3);
+    --link: #9cc9ff;
+    --radius: 10px;
+    --green: #4caf82;
+    --green-soft: rgba(76,175,130,0.12);
+    --green-border: rgba(76,175,130,0.3);
+    --red: #e05555;
+    --red-soft: rgba(224,85,85,0.1);
+    --red-border: rgba(224,85,85,0.3);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.75;
+  }
+
+  .page { max-width: var(--wrap); margin: 0 auto; padding: 4rem var(--pad); }
+
+  .masthead {
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  .masthead-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .masthead h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text-heading);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .masthead-sub {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.65;
+  }
+  .masthead-meta {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    border-top: 1px solid var(--border-soft);
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+
+  /* Scope notice */
+  .scope-notice {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--text-muted);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.2rem 1.6rem;
+    margin-bottom: 4rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+  .scope-notice strong { color: var(--text-heading); }
+
+  /* Authorization thesis block */
+  .thesis-block {
+    background: rgba(240,196,76,0.06);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius);
+    padding: 2rem 2.2rem;
+    margin-bottom: 4rem;
+  }
+  .thesis-block .thesis-label {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .thesis-block h2 {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    color: var(--text-heading);
+    line-height: 1.35;
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
+  }
+  .thesis-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.4rem 0;
+  }
+  @media (max-width: 580px) { .thesis-compare { grid-template-columns: 1fr; } }
+  .thesis-col {
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .thesis-col.conventional { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); }
+  .thesis-col.compaiss { background: var(--green-soft); border: 1px solid var(--green-border); }
+  .thesis-col-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+  }
+  .thesis-col.conventional .thesis-col-label { color: var(--text-muted); }
+  .thesis-col.compaiss .thesis-col-label { color: var(--green); }
+  .thesis-q {
+    font-size: 0.95rem;
+    color: var(--text-heading);
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 0.5rem;
+  }
+  .thesis-sub {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .thesis-block p {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    max-width: none;
+    line-height: 1.7;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  .section { margin-bottom: 4rem; }
+  .section-eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section h2 {
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 400;
+    color: var(--text-heading);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border-accent);
+  }
+  .section-intro {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 1.8rem;
+    margin-top: 0.4rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+    max-width: 74ch;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  .reg-status { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+  @media (max-width: 640px) { .reg-status { grid-template-columns: 1fr; } }
+  .reg-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .reg-box-label {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); margin-bottom: 0.6rem;
+  }
+  .reg-box h3 { font-size: 1rem; font-weight: 700; color: var(--text-heading); margin-bottom: 0.5rem; }
+  .reg-box p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; max-width: none; margin: 0; }
+
+  .principle { margin-bottom: 2rem; border: 1px solid var(--border-soft); border-radius: var(--radius); overflow: hidden; }
+  .principle-header {
+    background: rgba(255,255,255,0.04);
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  }
+  .principle-num { font-family: system-ui, -apple-system, sans-serif; font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; flex-shrink: 0; }
+  .principle-title { font-family: system-ui, -apple-system, sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text-heading); }
+  .principle-source { font-family: system-ui, -apple-system, sans-serif; font-size: 0.72rem; color: var(--text-muted); margin-left: auto; }
+  .principle-body { display: grid; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 640px) { .principle-body { grid-template-columns: 1fr; } }
+  .principle-col { padding: 1.2rem 1.4rem; font-family: system-ui, -apple-system, sans-serif; font-size: 0.88rem; line-height: 1.65; }
+  .principle-col + .principle-col { border-left: 1px solid var(--border-soft); }
+  @media (max-width: 640px) { .principle-col + .principle-col { border-left: none; border-top: 1px solid var(--border-soft); } }
+  .col-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.6rem; }
+  .col-label.compaiss { color: var(--green); }
+  .col-label.rag { color: var(--text-muted); }
+  .col-compaiss { background: rgba(76,175,130,0.05); }
+  .col-rag { background: rgba(255,255,255,0.02); }
+  .col-text { color: var(--text-main); }
+  .score-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.9rem; padding-top: 0.7rem; border-top: 1px solid rgba(255,255,255,0.06); }
+  .score-label { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; flex-shrink: 0; }
+  .score-bar-wrap { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .score-bar { height: 100%; border-radius: 3px; }
+  .score-bar.high { background: var(--green); }
+  .score-bar.mid { background: var(--accent); }
+  .score-bar.low { background: var(--red); }
+  .score-val { font-size: 0.78rem; font-weight: 700; font-family: system-ui, -apple-system, sans-serif; min-width: 2.5rem; text-align: right; }
+  .score-val.high { color: var(--green); }
+  .score-val.mid { color: var(--accent); }
+  .score-val.low { color: var(--red); }
+
+  /* Score methodology box - prominent, before table */
+  .score-methodology {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 1.5rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .score-methodology-label {
+    font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+    color: var(--text-muted); margin-bottom: 0.8rem;
+  }
+  .score-methodology p {
+    font-size: 0.88rem; color: var(--text-muted); max-width: none; line-height: 1.65; margin: 0;
+  }
+  .score-methodology strong { color: var(--text-heading); }
+
+  .summary-table { width: 100%; border-collapse: collapse; font-family: system-ui, -apple-system, sans-serif; font-size: 0.82rem; margin: 1.5rem 0; }
+  .summary-table thead tr { border-bottom: 1px solid var(--border-accent); }
+  .summary-table th { text-align: left; padding: 0.65rem 1rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .summary-table th.center { text-align: center; }
+  .summary-table td { padding: 0.75rem 1rem; border-bottom: 0.5px solid var(--border-soft); color: var(--text-main); vertical-align: middle; line-height: 1.4; }
+  .summary-table tr:last-child td { border-bottom: none; }
+  .summary-table td.center { text-align: center; }
+  .summary-table tr.total-row td { background: var(--accent-soft); font-weight: 700; color: var(--text-heading); border-top: 1px solid var(--border-accent); }
+  .score-chip { display: inline-block; padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 700; font-size: 0.82rem; }
+  .chip-high { background: var(--green-soft); color: var(--green); border: 1px solid var(--green-border); }
+  .chip-mid { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-accent); }
+  .chip-low { background: var(--red-soft); color: var(--red); border: 1px solid var(--red-border); }
+
+  .callout { background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.4rem 1.6rem; margin: 2rem 0; font-family: system-ui, -apple-system, sans-serif; }
+  .callout p { font-size: 0.95rem; color: var(--text-main); max-width: none; line-height: 1.65; margin-bottom: 0.6rem; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout-label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 0.6rem; }
+
+  .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  @media (max-width: 600px) { .cost-grid { grid-template-columns: 1fr; } }
+  .cost-col { border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 1.2rem 1.4rem; font-family: system-ui, -apple-system, sans-serif; }
+  .cost-col.rag-col { background: rgba(224,85,85,0.05); border-color: var(--red-border); }
+  .cost-col.compaiss-col { background: var(--green-soft); border-color: var(--green-border); }
+  .cost-col h4 { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.9rem; }
+  .rag-col h4 { color: var(--red); }
+  .compaiss-col h4 { color: var(--green); }
+  .cost-item { display: flex; justify-content: space-between; align-items: baseline; padding: 0.4rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.06); font-size: 0.85rem; color: var(--text-main); gap: 1rem; }
+  .cost-item:last-child { border-bottom: none; }
+  .cost-item-label { color: var(--text-muted); }
+  .cost-item-val { font-weight: 600; font-size: 0.82rem; }
+  .rag-col .cost-item-val { color: var(--red); }
+  .compaiss-col .cost-item-val { color: var(--green); }
+  .cost-note { font-family: system-ui, -apple-system, sans-serif; font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-top: 0.8rem; line-height: 1.6; }
+
+  .themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .theme-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 1.2rem 1.4rem; font-family: system-ui, -apple-system, sans-serif; }
+  .theme-card h4 { font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+  .theme-card p { font-size: 0.85rem; color: var(--text-muted); max-width: none; line-height: 1.6; margin: 0; }
+
+  hr { border: none; border-top: 1px solid var(--border-soft); margin: 3rem 0; }
+
+  .doc-footer { font-family: system-ui, -apple-system, sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.3); border-top: 1px solid var(--border-soft); padding-top: 1.5rem; margin-top: 3rem; line-height: 1.6; }
+
+  @media (max-width: 700px) { .page { padding: 2rem 1.25rem; } }
+
+  /* Authorization Fidelity definition */
+  .definition-block {
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 4rem;
+  }
+  .definition-header {
+    background: rgba(255,255,255,0.04);
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .definition-eyebrow {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 700; color: var(--accent); margin-bottom: 0.4rem;
+  }
+  .definition-header h2 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 400; color: var(--text-heading);
+    line-height: 1.3; margin: 0; border: none; padding: 0;
+  }
+  .definition-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 640px) { .definition-body { grid-template-columns: 1fr; } }
+  .definition-col {
+    padding: 1.4rem 1.8rem;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+  .definition-col + .definition-col { border-left: 1px solid var(--border-soft); }
+  @media (max-width: 640px) { .definition-col + .definition-col { border-left: none; border-top: 1px solid var(--border-soft); } }
+  .definition-col-label {
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .definition-col:first-child .definition-col-label { color: var(--text-muted); }
+  .definition-col:last-child .definition-col-label { color: var(--accent); }
+  .definition-col:last-child { background: rgba(240,196,76,0.04); }
+  .metric-list {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0;
+  }
+  .metric-list li {
+    padding: 0.35rem 0;
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    color: var(--text-main);
+    font-size: 0.87rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .metric-list li:last-child { border-bottom: none; }
+  .metric-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 0.45rem;
+  }
+  .metric-dot.standard { background: var(--text-muted); }
+  .metric-dot.new { background: var(--accent); }
+  .definition-footer {
+    padding: 1rem 1.8rem;
+    border-top: 1px solid var(--border-soft);
+    background: rgba(255,255,255,0.02);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* Conceptual model */
+  .arch-model {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin: 1.5rem 0 2rem;
+  }
+  @media (max-width: 580px) { .arch-model { grid-template-columns: 1fr; } }
+  .arch-col {
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .arch-col.generation-first {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .arch-col.authorization-first {
+    background: var(--green-soft);
+    border: 1px solid var(--green-border);
+  }
+  .arch-col-label {
+    font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .generation-first .arch-col-label { color: var(--text-muted); }
+  .authorization-first .arch-col-label { color: var(--green); }
+  .arch-step {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.45rem 0;
+    font-size: 0.87rem;
+    color: var(--text-main);
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+  }
+  .arch-step:last-child { border-bottom: none; }
+  .arch-arrow {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    padding: 0.1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(255,255,255,0.06);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .arch-arrow:last-child { border-bottom: none; }
+  .step-badge {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 0.15rem 0.4rem; border-radius: 3px; flex-shrink: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .badge-gate { background: var(--green-soft); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-new { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-accent); }
+  .badge-std { background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1); }
+
+  /* Limitations section */
+  .limitations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 580px) { .limitations-grid { grid-template-columns: 1fr; } }
+  .limitation-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .limitation-card h4 {
+    font-size: 0.82rem; font-weight: 700; color: var(--text-heading);
+    margin-bottom: 0.4rem;
+  }
+  .limitation-card p {
+    font-size: 0.83rem; color: var(--text-muted); max-width: none;
+    line-height: 1.6; margin: 0;
+  }
+
+  /* Future research */
+  .research-list {
+    list-style: none;
+    margin: 1.2rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .research-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    line-height: 1.55;
+  }
+  .research-num {
+    font-size: 0.65rem; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.08em; flex-shrink: 0; padding-top: 0.1rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div class="masthead-label">COMPAiSS - Architectural Position Paper</div>
+    <h1>Authorization-First Institutional AI:<br>Governance Alignment and a Proposed Evaluation Framework</h1>
+    <p class="masthead-sub">This paper proposes that AI systems operating in regulated institutional environments require an expanded governance-aware evaluation methodology - one in which authorization fidelity, governance preservation, and evidence traceability are treated as first-class criteria alongside traditional AI performance metrics. The comparison with conventional RAG implementations serves as an illustration of this broader proposition.</p>
+    <div class="masthead-meta">Architectural position paper. Not legal advice or a formal compliance certification. All regulatory citations sourced from primary legislative texts and official guidance as of June 2026. Cross-model review: GPT-4, Gemini, Copilot. Patent: CIPO 3,299,174 / USPTO 19/455,963.</div>
+  </div>
+
+  <!-- Scope notice -->
+  <div class="scope-notice">
+    <strong>Purpose and scope of this paper.</strong> This is an architectural comparison paper that advances the proposition that execution-gated generation architectures are inherently better aligned with emerging regulatory principles than conventional generation-first architectures. It is intentionally an argument, not a neutral survey. The analysis draws on published regulatory text, architectural documentation, and independent expert review. It does not constitute legal advice, a formal compliance assessment, or a regulatory certification of any kind. Institutions should engage qualified legal counsel for formal compliance determinations. The numerical alignment scores are illustrative architectural assessments developed for comparative analysis, not official regulatory measurements. Where the paper states that COMPAiSS is "designed to support" or "architected to facilitate" a regulatory principle, this reflects an architectural assessment; deployment context, institutional governance, and regulatory determination govern actual compliance.
+  </div>
+
+  <!-- Authorization-First Thesis - THE OPENING ARGUMENT -->
+  <div class="thesis-block">
+    <div class="thesis-label">The Central Thesis - A Different Evaluation Methodology</div>
+    <h2>Conventional AI evaluation and COMPAiSS evaluation are not answering the same question.</h2>
+
+    <div class="thesis-compare">
+      <div class="thesis-col conventional">
+        <div class="thesis-col-label">Conventional AI Evaluation</div>
+        <div class="thesis-q">"Is the answer accurate?"</div>
+        <div class="thesis-sub">Success is defined as factual correctness. The source of the information is secondary to its correctness. A well-grounded, well-scored hallucination is considered a better outcome than a correct answer that lacks source attribution.</div>
+      </div>
+      <div class="thesis-col compaiss">
+        <div class="thesis-col-label">COMPAiSS Evaluation</div>
+        <div class="thesis-q">"Was the answer produced exclusively from authorized institutional sources - and is it accurate relative to those sources?"</div>
+        <div class="thesis-sub">Success requires authorization first, then accuracy within that authorized corpus. A factually correct answer drawn from an unauthorized source is a governance failure, regardless of its accuracy.</div>
+      </div>
+    </div>
+
+    <p>This distinction is not a feature difference. It is a methodological one. Conventional AI systems optimize for the first question. COMPAiSS is architected around the second. For regulated public institutions - government services, universities, hospitals, professional regulators - the second question is the one that matters. When a citizen asks about their benefit eligibility, or a student asks about academic standing, the institution's obligation is not to provide an accurate answer from any available source. It is to provide an authorized answer from its own institutional sources. An unauthorized truth carries the same governance risk as a hallucinated one, because the institution cannot be held accountable for information it did not authorize.</p>
+
+    <p>This difference explains why the regulatory alignment comparison that follows consistently favors an authorization-first architecture. The EU AI Act, the Canadian Treasury Board Directive, PIPEDA, and Quebec Law 25 were all written in response to the governance failures of generation-first systems. Their traceability, transparency, accountability, and human oversight requirements map directly and naturally to an architecture that enforces authorization before generation - not because COMPAiSS was designed to satisfy those regulations, but because both are responses to the same underlying institutional governance problem.</p>
+  </div>
+
+  <!-- Authorization Fidelity Definition -->
+  <div class="definition-block">
+    <div class="definition-header">
+      <div class="definition-eyebrow">Proposed Evaluation Construct</div>
+      <h2>Authorization Fidelity and an Expanded Evaluation Methodology for Institutional AI</h2>
+    </div>
+    <div class="definition-body">
+      <div class="definition-col">
+        <div class="definition-col-label">Traditional AI Evaluation Metrics</div>
+        <p style="font-size:0.87rem;color:var(--text-muted);max-width:none;margin-bottom:0.8rem;">Conventional AI evaluation frameworks emphasize performance metrics applicable across general-purpose use cases:</p>
+        <ul class="metric-list">
+          <li><span class="metric-dot standard"></span>Factual accuracy</li>
+          <li><span class="metric-dot standard"></span>Retrieval precision and recall</li>
+          <li><span class="metric-dot standard"></span>Response latency</li>
+          <li><span class="metric-dot standard"></span>Robustness to adversarial inputs</li>
+          <li><span class="metric-dot standard"></span>Hallucination rate</li>
+          <li><span class="metric-dot standard"></span>User satisfaction</li>
+          <li><span class="metric-dot standard"></span>Context faithfulness</li>
+        </ul>
+        <p style="font-size:0.84rem;color:var(--text-muted);max-width:none;margin-top:0.8rem;line-height:1.6;">These metrics are necessary and well-established. This paper does not propose replacing them.</p>
+      </div>
+      <div class="definition-col">
+        <div class="definition-col-label">Proposed Additional Dimensions for Institutional AI</div>
+        <p style="font-size:0.87rem;color:var(--text-main);max-width:none;margin-bottom:0.8rem;">This paper proposes that AI systems operating in regulated institutional environments require additional governance-oriented evaluation dimensions:</p>
+        <ul class="metric-list">
+          <li><span class="metric-dot new"></span><strong>Authorization Fidelity</strong> - the degree to which a system remains within an institution's authorized knowledge boundary</li>
+          <li><span class="metric-dot new"></span><strong>Governance Preservation Rate</strong> - the proportion of responses that avoid unauthorized institutional claims</li>
+          <li><span class="metric-dot new"></span><strong>Evidence Fidelity</strong> - the degree to which each claim can be traced to a specific parsed source</li>
+          <li><span class="metric-dot new"></span><strong>Audit Traceability</strong> - the completeness and determinism of the per-response governance record</li>
+          <li><span class="metric-dot new"></span><strong>Institutional Accountability</strong> - the degree to which human authority governs system scope before inference</li>
+          <li><span class="metric-dot new"></span><strong>Safe Refusal Rate</strong> - the proportion of out-of-scope queries that produce appropriate refusals rather than unauthorized responses</li>
+        </ul>
+      </div>
+    </div>
+    <div class="definition-footer">
+      These proposed dimensions are presented as a preliminary evaluation construct, not as established industry metrics. Authorization fidelity, in particular, is offered as a candidate concept for future standardization. The authors invite independent researchers, regulators, and procurement professionals to critique, refine, and empirically test these dimensions. Their utility depends on whether they can be measured reliably - a question the paper identifies as a priority for future validation.
+    </div>
+  </div>
+
+  <!-- Conceptual Model -->
+  <div class="section">
+    <div class="section-eyebrow">Conceptual Model</div>
+    <h2>The Architectural Inversion: Governance Before vs. After Generation</h2>
+    <p class="section-intro">The paper's central architectural distinction illustrated as a process model. Governance moves from after generation to before generation - changing not just when controls are applied, but what kind of controls are structurally possible.</p>
+
+    <div class="arch-model">
+      <div class="arch-col generation-first">
+        <div class="arch-col-label">Generation-First Architecture (Conventional RAG)</div>
+        <div class="arch-step"><span class="step-badge badge-std">1</span> Question received</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">2</span> Query embedding and retrieval</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">3</span> Candidate ranking and reranking</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">4</span> Context assembly</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">5</span> <strong>Generation</strong> - model inference runs</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">6</span> Answer delivered to user</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">7</span> Governance review, monitoring, logging</div>
+      </div>
+      <div class="arch-col authorization-first">
+        <div class="arch-col-label">Authorization-First Architecture (COMPAiSS)</div>
+        <div class="arch-step"><span class="step-badge badge-std">1</span> Question received</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-gate">GATE</span> Authorization check against greenlist</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-gate">GATE</span> Source validation - does evidence exist?</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">4</span> Live parsing of authorized sources</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">5</span> <strong>Generation</strong> - only if gates pass</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-new">RECEIPT</span> Compliance receipt generated at runtime</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">7</span> Answer delivered with audit trail</div>
+      </div>
+    </div>
+
+    <p>In the generation-first model, governance is applied to outputs the model has already produced. In the authorization-first model, governance determines whether the model is permitted to produce output at all. This distinction is not a matter of degree - it is a difference in the structural position of the governance control relative to the inference step. All downstream properties of the two architectures - traceability, accountability, audit trail completeness, adversarial robustness, procurement defensibility - flow from this single architectural difference.</p>
+
+    <p>The generation-first model asks: <em>How do we manage the risks of outputs the model has already generated?</em> The authorization-first model asks: <em>How do we govern whether the model is permitted to generate at all?</em> For regulated institutions, the second question is the one that most regulatory frameworks are ultimately designed to answer.</p>
+  </div>
+
+  <hr>
+
+  <!-- Expanded Evaluation Framework -->
+  <div class="section">
+    <div class="section-eyebrow">Proposed Framework</div>
+    <h2>An Expanded Evaluation Framework for Authorization-First Institutional AI</h2>
+    <p class="section-intro">This framework does not replace traditional AI evaluation. It proposes additional governance-oriented dimensions appropriate for AI systems operating in regulated institutional environments.</p>
+
+    <p>Traditional AI evaluation frameworks were developed for general-purpose AI systems operating across broad domains. They optimize for accuracy, efficiency, and user satisfaction - all essential properties. However, they were not designed for a class of AI systems whose primary obligation is not to maximize the range of questions they can answer, but to ensure that every answer they do provide falls within the governance boundaries of a specific regulated institution.</p>
+
+    <p>This paper proposes that authorization-first institutional AI systems warrant evaluation across two complementary sets of dimensions:</p>
+
+    <div class="reg-status" style="margin: 1.5rem 0;">
+      <div class="reg-box">
+        <div class="reg-box-label">Dimension Set A - Traditional Performance</div>
+        <h3>Retained from Conventional AI Evaluation</h3>
+        <p>Factual accuracy within authorized scope. Retrieval precision for authorized sources. Response latency and throughput. Robustness to adversarial inputs. User comprehension and satisfaction. Multilingual accuracy and consistency. These dimensions remain essential and should be evaluated alongside the governance dimensions below.</p>
+      </div>
+      <div class="reg-box">
+        <div class="reg-box-label">Dimension Set B - Governance Performance</div>
+        <h3>Proposed for Authorization-First Systems</h3>
+        <p>Authorization fidelity across query types. Governance preservation rate under adversarial testing. Evidence fidelity - claim-to-source traceability. Audit trail completeness and determinism. Safe refusal rate for out-of-scope queries. Human oversight integration depth. Procurement documentation completeness.</p>
+      </div>
+    </div>
+
+    <p>The key methodological proposition is that for regulated institutional AI, a system that scores highly on Dimension Set A but poorly on Dimension Set B is not a high-performing system - it is a high-performing system with an unacceptable governance profile. Conversely, a system that scores highly on both sets is genuinely well-suited for regulated institutional deployment. The COMPAiSS Version 8 Proof-of-Concept Validation Framework represents one early operationalization of Dimension Set B, including the Governance Preservation Rate, Constitutional Fidelity Rate, and Evidence Integrity Rate. Independent validation, standardization, and broader empirical testing of these dimensions is a priority for future research.</p>
+  </div>
+
+  <hr>
+
+  <!-- Regulatory Context -->
+  <div class="section">
+    <div class="section-eyebrow">The Regulatory Landscape - June 2026</div>
+    <h2>What the Frameworks Actually Require</h2>
+    <p class="section-intro">The current state of both frameworks before drawing architectural comparisons.</p>
+
+    <div class="reg-status">
+      <div class="reg-box">
+        <div class="reg-box-label">European Union</div>
+        <h3>EU AI Act (Regulation 2024/1689)</h3>
+        <p>Entered into force August 2024. Prohibited practices enforced from February 2025. GPAI transparency requirements in force from August 2025. Full high-risk system requirements apply August 2026. Penalties up to €35 million or 7% of global turnover. Education, employment, essential services, and public-sector AI are classified as high-risk categories under Annex III, with mandatory conformity assessments, technical documentation, human oversight, traceability, and registration in the EU AI database.</p>
+      </div>
+      <div class="reg-box">
+        <div class="reg-box-label">Canada</div>
+        <h3>Federal Governance Framework (2026)</h3>
+        <p>AIDA (Bill C-27) died in Parliament in January 2025 and has not been re-introduced. Binding instruments in 2026 are: the Treasury Board Directive on Automated Decision-Making (in force since 2019 for federal institutions), PIPEDA, Quebec's Law 25 (the most demanding provincial requirement, including rights to human review of automated decisions), OSFI guidance for financial institutions, and the Canada-EU MOU on AI signed December 2025 signalling alignment with EU principles. Federal procurement is increasingly used as a de facto standard-setting mechanism.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Why AIDA's absence strengthens the compliance case</div>
+      <p>The failure of AIDA to pass does not create a regulatory vacuum. It creates a compliance patchwork that is in practice more demanding than a single statute, because institutions must satisfy multiple overlapping instruments simultaneously: federal privacy law, provincial privacy regimes, Treasury Board directives, sector guidance, and procurement standards. An architecture designed to facilitate compliance with the underlying principles of traceability, authorization, and human oversight is well positioned to satisfy all of these simultaneously - not as a series of separate compliance exercises, but as a natural consequence of how the system is built.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- EU Comparison -->
+  <div class="section">
+    <div class="section-eyebrow">Part 1 - European Union AI Act</div>
+    <h2>COMPAiSS vs. Conventional RAG Implementations: EU Principles</h2>
+    <p class="section-intro">Eight core obligations under the EU AI Act. The comparison is against typical conventional RAG implementations. Sophisticated enterprise RAG deployments that include deterministic retrieval filters, provenance tracking, observability stacks, and human review workflows can narrow some of these gaps through supplementary governance controls - though not through architectural equivalence.</p>
+
+    <!-- EU 1 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-01</span>
+        <span class="principle-title">Risk Classification and Impact Assessment</span>
+        <span class="principle-source">Arts. 9, 27 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">COMPAiSS's execution gate is designed to structurally limit output to authorized institutional sources, which appears likely to reduce the system's risk profile in impact assessments. In a completed Algorithmic Impact Assessment conducted for a Service Canada deployment, the system was assessed at Level 1 impact - the lowest tier under the Treasury Board framework - reflecting that its architecture provides information within a defined, authorized scope rather than making autonomous decisions. This assessment outcome is consistent with an architecture in which the output space is explicitly bounded by institutional authorization.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations for institutional contexts - student services, government benefits, healthcare information - typically fall into EU AI Act high-risk categories under Annex III. Each pipeline stage introduces probabilistic uncertainty that is difficult to bound in advance, making impact assessment less predictable and potentially requiring classification at a higher risk tier. Additional governance controls are generally required to achieve comparable risk bounds. Sophisticated enterprise RAG implementations with source restrictions and confidence thresholds can narrow this gap, but typically cannot eliminate it without supplementary architecture.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div>
+            <span class="score-val mid">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 2 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-02</span>
+        <span class="principle-title">Transparency and Provision of Information to Deployers</span>
+        <span class="principle-source">Art. 13 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Article 13 requires that high-risk AI systems be designed so their operation is sufficiently transparent for deployers to interpret outputs. COMPAiSS is designed to support this at the architectural level: every response is traceable to a specific, named, authorized source URL that was actually fetched and parsed for that query. The compliance receipt generated per interaction documents the gate decision, sources retrieved, pages parsed, assets injected, and token usage - providing deployers with a detailed operational record without supplementary tooling. Deployers can directly inspect the source of any claim by visiting the cited institutional URL.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations typically provide citations indicating which documents were retrieved, but the generation step can blend, summarize, or infer from retrieved context in ways that make the specific origin of individual claims unclear. A statement in the AI's response may draw on multiple retrieved passages, on parametric training knowledge, or on inference - and distinguishing between these sources in a standardized, auditable form typically requires additional logging and attribution tooling beyond the core pipeline. Meeting Article 13's transparency requirements generally requires supplementary observability infrastructure.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar low" style="width:40%"></div></div>
+            <span class="score-val low">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 3 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-03</span>
+        <span class="principle-title">Human Oversight</span>
+        <span class="principle-source">Art. 14 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Article 14 requires that high-risk AI systems be designed to allow deployers to implement meaningful human oversight. COMPAiSS is designed to embed human governance at two architecturally enforced points. First, the greenlist is a human-curated, human-maintained authorization list: institutional administrators control which sources are authorized, can add or remove URLs, and conduct regular audits through the greenlist dashboard. Second, the execution gate is a structural checkpoint that reflects human-defined institutional scope before any inference occurs. Changes to what the system can address require explicit human authorization - oversight is pre-inference, not post-generation.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div>
+            <span class="score-val high">9.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations require human oversight to be implemented as a governance layer on top of the generation architecture: monitoring dashboards, human-in-the-loop review queues, escalation workflows, or post-generation quality controls. This is human oversight as remediation rather than as structural constraint. Sophisticated enterprise deployments can add approval workflows and source restrictions that partially close this gap, but these controls typically operate on the retrieval or output layer rather than as a pre-inference authorization gate. The generation step itself remains primary, with human oversight as a secondary control.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:50%"></div></div>
+            <span class="score-val mid">5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 4 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-04</span>
+        <span class="principle-title">Record-Keeping and Automatically Generated Logs</span>
+        <span class="principle-source">Arts. 12, 18, 19 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Articles 12, 18, and 19 establish requirements for logging, record-keeping, and automatically generated audit trails. COMPAiSS is designed to generate a compliance receipt for every interaction as part of the response pipeline. Each receipt records the gate decision and rule applied, the sources retrieved and their relevance scores, the pages actually parsed, the authoritative assets injected, whether inference was permitted or blocked, and the token usage. This creates a forensically traceable record for every response - not a secondary log, but a governance artifact produced at runtime. Auditors can trace any generated claim back through the pipeline to its specific source document.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div>
+            <span class="score-val high">9.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG deployments can be instrumented to produce logs, but logging is typically not architecturally native to the generation pipeline. Production deployments frequently require separate observability tools to capture retrieval and generation steps with sufficient fidelity for regulatory audit. When a hallucination or scope error occurs, post-hoc log analysis often cannot definitively establish which retrieved content contributed to a specific generated claim, because the generation step blends context probabilistically. Meeting Articles 12, 18, and 19 for high-risk systems typically requires substantial additional observability infrastructure beyond the core RAG pipeline.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar low" style="width:38%"></div></div>
+            <span class="score-val low">3.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 5 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-05</span>
+        <span class="principle-title">Accuracy, Robustness, and Cybersecurity</span>
+        <span class="principle-source">Art. 15 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Article 15 requires appropriate levels of accuracy, robustness, and cybersecurity, including resistance to adversarial inputs. COMPAiSS's architecture is designed to reduce certain classes of adversarial risk: because the gate decision is based on a deterministic lookup against the greenlist rather than model inference, adversarial language inside the prompt is less likely to redirect the system to unauthorized sources. However, the architecture does not eliminate all security risks - parsing pipelines can be attacked, authorized sources can contain compromised content, translation layers introduce their own vulnerabilities, and downstream LLM behavior remains probabilistic within the authorized scope. The architecture appears to materially reduce certain adversarial attack surfaces without claiming to eliminate them.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div>
+            <span class="score-val high">8 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations are subject to a broader range of adversarial vulnerabilities: prompt injection through retrieved documents, jailbreaking via creative phrasing, retrieval poisoning, and model exploitation through crafted inputs. Robustness requires dedicated adversarial testing programs, regular red-teaming, guardrail models, content moderation layers, and prompt safety classifiers - each of which is an additional system component that can itself fail or be circumvented. The probabilistic nature of generation means accuracy is expressed as a rate rather than a structural bound, which is a different kind of claim when presented to regulators evaluating Article 15 compliance.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div>
+            <span class="score-val mid">4.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 6 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-06</span>
+        <span class="principle-title">Data and Data Governance</span>
+        <span class="principle-source">Art. 10 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Article 10 requires that training, validation, and testing datasets meet quality criteria and that data governance is maintained. COMPAiSS's architecture is designed to limit the data governance burden for institutional answers: the epistemic environment provided to the model at inference time consists of content fetched from greenlist-authorized, live-parsed institutional sources. The institution controls what that content is, audits it through the greenlist dashboard, and updates it as sources change. There is no opaque or unauditable data pool contributing to institutional answers beyond what the institution itself has authorized. The data governance scope is defined by the greenlist rather than by a broad training corpus.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:88%"></div></div>
+            <span class="score-val high">8.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations inherit data governance obligations from both the base LLM's training data and the retrieval corpus they operate over. Establishing the provenance, quality, and representativeness of retrieval corpora for regulated institutional use cases requires significant data auditing work. When base model parametric knowledge contributes to a generated response alongside retrieved content, establishing which parts of the output originate from which data source is technically complex. Article 10 compliance typically requires a formal data governance program covering both the training data and the retrieval corpus, with separate documentation for each.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div>
+            <span class="score-val mid">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 7 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-07</span>
+        <span class="principle-title">Technical Documentation</span>
+        <span class="principle-source">Art. 11 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Article 11 requires providers of high-risk AI systems to produce technical documentation sufficient to demonstrate conformity. COMPAiSS's deterministic, bounded architecture makes technical documentation more tractable than for probabilistic systems: the execution gate logic, greenlist authorization mechanism, parsing pipeline, evidence requirements, and compliance receipt generation are architecturally stable and fully documentable. The COMPAiSS Version 8 Proof-of-Concept Validation Framework provides a formal evaluation methodology with structured performance metrics, an inter-rater reliability standard (Cohen's Kappa ≥ 0.70), and a typed failure taxonomy - all of which are directly mappable to Article 11 documentation requirements.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Producing Article 11-compliant technical documentation for a conventional RAG deployment is substantially more complex, because the system's behavior is not fully deterministic and can shift with model updates, retrieval corpus changes, or embedding model updates. Documentation must account for the interaction of multiple AI model stages, each with their own performance characteristics, failure modes, and update cycles. The documentation burden is ongoing: changes to any component of the RAG stack may require documentation updates and potentially new conformity assessments. Enterprise RAG vendors typically require dedicated compliance engineering to maintain this documentation at the level Article 11 requires for high-risk systems.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar low" style="width:40%"></div></div>
+            <span class="score-val low">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EU 8 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">EU-08</span>
+        <span class="principle-title">Accountability and Quality Management System</span>
+        <span class="principle-source">Arts. 17, 27 - EU AI Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Articles 17 and 27 require a quality management system and, for public-sector deployers, a fundamental rights impact assessment before deployment. COMPAiSS's architecture is designed to make both more tractable. The quality management system is substantially built into the architecture: the greenlist audit cycle, the compliance receipt trail, the execution gate's pass/fail decision, and the structured failure taxonomy (Type A utility refusals, Type B governance violations, Type C pipeline defects) provide a built-in quality framework with measurable, auditable metrics. The fundamental rights impact assessment is facilitated by the bounded scope: the output space is explicitly defined by institutional authorization rather than by the full range of model capability.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Building a quality management system for a conventional RAG deployment requires constructing quality controls at every stage of the probabilistic pipeline: retrieval quality monitoring, generation faithfulness scoring, post-generation output review, incident reporting workflows, and continuous performance monitoring. The fundamental rights impact assessment for a general-purpose RAG deployed in public services, healthcare, or education must account for a wider and less predictable output space. Each of these elements requires organizational investment that COMPAiSS's architecture is designed to reduce by constraining the output space to an authorized institutional scope from the start.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div>
+            <span class="score-val mid">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Canadian Framework -->
+  <div class="section">
+    <div class="section-eyebrow">Part 2 - Canadian Regulatory Framework</div>
+    <h2>COMPAiSS vs. Conventional RAG Implementations: Canadian Principles</h2>
+    <p class="section-intro">Seven principles drawn from the Treasury Board Directive on Automated Decision-Making, PIPEDA, Quebec Law 25, and the Canada-EU MOU on AI (December 2025). Sophisticated enterprise RAG implementations with supplementary governance layers can close some of these gaps; the comparison reflects typical implementations without such supplementation.</p>
+
+    <!-- CAN 1 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-01</span>
+        <span class="principle-title">Algorithmic Impact Assessment and Risk Tiering</span>
+        <span class="principle-source">Treasury Board Directive on Automated Decision-Making</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">The Treasury Board Directive requires federal institutions to conduct Algorithmic Impact Assessments prior to deploying automated decision systems. A completed AIA for a Service Canada deployment assessed the COMPAiSS implementation at Level 1 impact - the lowest tier - because the architecture provides information rather than making administrative decisions, and the execution gate is designed to prevent outputs beyond the authorized institutional scope. This assessment outcome reflects an architecture specifically suited to the information-provision use case that falls at the lower end of the Directive's impact scale. The AIA completion constitutes documented procurement history with a federal institution.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:92%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">A conventional RAG deployment for public-facing government services is more likely to attract a higher impact tier under the Treasury Board Directive, particularly where the information provided affects citizens' understanding of their benefits, eligibility, or obligations. The probabilistic output space and potential for cross-jurisdictional information to influence citizens' decisions elevates assessed risk. Meeting the Directive's obligations at a higher tier requires mandatory human review checkpoints, more extensive documentation, and ongoing monitoring mechanisms. Sophisticated enterprise RAG deployments with source restrictions can narrow this gap but typically cannot achieve the same bounded risk profile as an authorization-first architecture.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div>
+            <span class="score-val mid">4.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 2 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-02</span>
+        <span class="principle-title">Transparency and Explainability</span>
+        <span class="principle-source">Treasury Board Directive; PIPEDA; Quebec Law 25</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Canadian frameworks require that individuals be informed about how automated systems work and, under Quebec Law 25, have the right to be informed of automated decisions affecting them. COMPAiSS is designed to support transparency structurally: users receive answers sourced from named, publicly accessible institutional URLs, with the ability to verify any claim at its source. When the system cannot answer - because no authorized source supports the query - it explicitly communicates this and redirects to institutional resources rather than generating a plausible but unsupported response. The system's constraints are visible to users through its behavior, not disclosed separately in fine print.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div>
+            <span class="score-val high">9 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations cite sources, but the relationship between a cited source and a specific generated claim is often non-trivial to establish for explanation purposes. The model may cite a document that informed the response generally while specific phrasing or factual claims were generated from parametric knowledge or inference. For Quebec Law 25's right-to-explanation requirements and for PIPEDA transparency obligations in contexts involving personal information, this blended provenance is challenging to satisfy without additional explainability tooling and user-facing disclosure infrastructure.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div>
+            <span class="score-val mid">4 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 3 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-03</span>
+        <span class="principle-title">Meaningful Human Intervention</span>
+        <span class="principle-source">Treasury Board Directive; Quebec Law 25 Art. 12</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Both the Treasury Board Directive and Quebec Law 25 require that meaningful human intervention be available in automated processes that affect individuals. COMPAiSS's greenlist governance structure is designed to make this requirement native: institution administrators actively control what the system can respond to, can remove or update authorized sources in real time, and conduct regular audits. The system's structural refusal of out-of-scope queries ensures that edge cases are escalated to human processes rather than addressed by model inference. Human authority over institutional scope is a precondition for inference, not a dashboard override applied after generation.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div>
+            <span class="score-val high">9.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Meaningful human intervention in conventional RAG deployments for regulated public services typically requires human review queues for flagged outputs, escalation mechanisms when confidence thresholds are not met, and ongoing output monitoring. These mechanisms represent human intervention as a reactive control rather than a pre-inference structural constraint. For Quebec Law 25's right to request human review of automated decisions, RAG deployments require explicit process infrastructure beyond the AI pipeline. Enterprise implementations with approval workflows can partially close this gap, but the underlying generation step typically remains primary rather than secondary to human authorization.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:48%"></div></div>
+            <span class="score-val mid">4.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 4 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-04</span>
+        <span class="principle-title">Bias Mitigation and Equitable Access</span>
+        <span class="principle-source">Treasury Board Directive; Canadian Human Rights Act</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">COMPAiSS's greenlist architecture is designed to provide structural bias mitigation for institutional use cases by constraining outputs to authorized institutional sources. Because the system draws from the institution's own published policies - which must by law be non-discriminatory - the bias introduced by the AI is bounded by the source material rather than by broad training corpus characteristics. Multilingual capability is governed pre-inference: translation normalizes the question before authorization, and the authorized answer is then translated back, designed to ensure users in different languages receive the same institutionally authorized content rather than a corpus-shaped approximation. Independent bias testing across languages and demographic groups would strengthen this assessment.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div>
+            <span class="score-val high">8 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG implementations can introduce bias through multiple channels: base model training biases, retrieval ranking biases that favor certain document types or phrasings, and generation biases in how retrieved information is synthesized. In multilingual contexts, different languages may retrieve different documents or generate differently weighted responses, potentially introducing differential outcomes across user populations. Bias mitigation requires active testing programs across languages and demographic groups, continuous monitoring, and regular model evaluation - a non-trivial ongoing investment that sophisticated enterprise RAG deployments typically address through dedicated testing programs.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div>
+            <span class="score-val mid">4.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 5 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-05</span>
+        <span class="principle-title">Auditability and Accountability</span>
+        <span class="principle-source">Treasury Board Directive; PIPEDA; Canada-EU MOU on AI (Dec. 2025)</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">The Treasury Board Directive requires that automated decision systems maintain audit trails sufficient to reconstruct decisions and demonstrate compliance. The Canada-EU MOU on AI, signed December 2025, commits Canada to aligning with EU principles including traceability throughout the model lifecycle. COMPAiSS is designed to generate a per-interaction compliance receipt tracing the gate decision, sources consulted, pages parsed, and inference authorization status. Institutional auditors can trace any generated output to specific parsed source content - or confirm that a query was appropriately refused and why. This creates the kind of deterministic audit trail that both the Treasury Board Directive and the Canada-EU MOU's traceability commitment appear to require.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div>
+            <span class="score-val high">9.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Producing audit trails for conventional RAG that satisfy both the Treasury Board Directive and the EU traceability principles in the December 2025 Canada-EU MOU requires observability infrastructure that is not standard in typical RAG deployments. When an audit requires establishing which retrieved content produced which specific claim, the probabilistic generation step means this tracing is often approximate rather than definitive. A conventional RAG system that generates an incorrect or out-of-scope response may produce logs, but those logs cannot always definitively establish whether the error originated in retrieval, generation, or their interaction. Enterprise observability tooling can improve this, but cannot provide the same claim-level traceability as a runtime governance receipt.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar low" style="width:38%"></div></div>
+            <span class="score-val low">3.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 6 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-06</span>
+        <span class="principle-title">Privacy and Data Minimization</span>
+        <span class="principle-source">PIPEDA; Quebec Law 25</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">PIPEDA and Quebec Law 25 require that personal information be collected only as necessary and used only for the purpose for which it was collected. COMPAiSS is designed to process user queries against a defined, institution-controlled greenlist without building user profiles, retaining personal data for model training, or passing information to external data pools. The greenlist contains only publicly authorized institutional URLs, not personal information. The architecture's data minimization is structural: it uses no more data than is necessary for authorization and inference, and retains no data beyond what is captured in the per-interaction compliance receipt. The deployment context and specific implementation may affect these properties and should be confirmed for each institutional deployment.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:88%"></div></div>
+            <span class="score-val high">8.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG deployments in public-sector or institutional contexts must carefully manage query data, conversation history, user context, and retrieval logs under PIPEDA and Law 25. Enterprise RAG platforms may maintain conversation history, use queries to improve retrieval systems, or share telemetry with model providers - each of which triggers privacy obligations requiring explicit governance. Data residency requirements under Law 25 impose additional constraints on where data may be processed. Building a RAG deployment that satisfies PIPEDA and Law 25 simultaneously requires explicit privacy architecture decisions that are not default in standard enterprise RAG implementations.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar mid" style="width:50%"></div></div>
+            <span class="score-val mid">5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAN 7 -->
+    <div class="principle">
+      <div class="principle-header">
+        <span class="principle-num">CAN-07</span>
+        <span class="principle-title">Procurement Defensibility and Institutional Accountability</span>
+        <span class="principle-source">Treasury Board Directive; Federal Procurement Policy</span>
+      </div>
+      <div class="principle-body">
+        <div class="principle-col col-compaiss">
+          <div class="col-label compaiss">COMPAiSS</div>
+          <div class="col-text">Federal and provincial procurement frameworks increasingly require institutions to demonstrate how unauthorized AI responses are structurally prevented - not merely managed after delivery. COMPAiSS provides an architecturally defensible answer to this requirement: the execution gate is a documented, testable mechanism designed to prevent unauthorized inference. The compliance receipt provides a per-interaction audit trail directly compatible with Treasury Board documentation requirements. The completion of an Algorithmic Impact Assessment for a Service Canada deployment demonstrates that the formal federal procurement evaluation pathway has been navigated. This constitutes verified institutional procurement history rather than a theoretical compliance claim.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div>
+            <span class="score-val high">9.5 / 10</span>
+          </div>
+        </div>
+        <div class="principle-col col-rag">
+          <div class="col-label rag">Conventional RAG Implementations</div>
+          <div class="col-text">Conventional RAG vendors typically cannot demonstrate structural prevention of unauthorized outputs at procurement. Their compliance story is probabilistic: hallucination rates have been reduced, monitoring is in place, human review is available. Procurement officers who ask "how does the system structurally prevent unauthorized responses?" cannot receive a structural answer from a generation-first architecture, because generation itself is the first step. The response must be "we manage unauthorized responses after they occur." This procurement vulnerability becomes an increasing liability as federal and provincial procurement guidance tightens around AI governance requirements. Sophisticated enterprise implementations with approval workflows partially close this gap but do not fully resolve the underlying architectural claim.</div>
+          <div class="score-row">
+            <span class="score-label">Alignment</span>
+            <div class="score-bar-wrap"><div class="score-bar low" style="width:35%"></div></div>
+            <span class="score-val low">3.5 / 10</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Summary Table -->
+  <div class="section">
+    <div class="section-eyebrow">Summary</div>
+    <h2>Illustrative Alignment Scores: All Principles</h2>
+
+    <!-- Methodology box - PROMINENT, BEFORE TABLE -->
+    <div class="score-methodology">
+      <div class="score-methodology-label">Scoring Methodology and Limitations</div>
+      <p><strong>These are illustrative architectural alignment assessments, not official regulatory scores, compliance certifications, or legal determinations.</strong> No numerical scoring rubric exists under either the EU AI Act or the Canadian regulatory framework. The scores reflect the authors' assessment of how naturally each architecture is designed to support each regulatory principle - a score of 9–10 indicates the principle is addressed structurally by the architecture; a score of 4–5 indicates the principle can be addressed through supplementary governance controls but is not addressed by the core architecture. These assessments are based on published regulatory text, architectural documentation, and cross-model review by GPT-4, Gemini, and Copilot. They represent a reasoned architectural argument, not a measured compliance outcome. Institutions should engage qualified legal counsel for formal compliance assessments. The comparison is against typical conventional RAG implementations; sophisticated enterprise RAG deployments with deterministic source controls, provenance tracking, and observability infrastructure can close some of these gaps through supplementary governance layers.</p>
+    </div>
+
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="width:5%">#</th>
+          <th style="width:38%">Principle</th>
+          <th style="width:15%">Framework</th>
+          <th class="center" style="width:18%">COMPAiSS</th>
+          <th class="center" style="width:18%">Conventional RAG</th>
+          <th class="center" style="width:6%">Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EU-01</td><td>Risk Classification and Impact Assessment</td><td>EU AI Act Art. 9, 27</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>EU-02</td><td>Transparency and Information to Deployers</td><td>EU AI Act Art. 13</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>EU-03</td><td>Human Oversight</td><td>EU AI Act Art. 14</td>
+          <td class="center"><span class="score-chip chip-high">9.5</span></td>
+          <td class="center"><span class="score-chip chip-mid">5.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+4.5</td>
+        </tr>
+        <tr>
+          <td>EU-04</td><td>Record-Keeping and Audit Logs</td><td>EU AI Act Arts. 12, 18, 19</td>
+          <td class="center"><span class="score-chip chip-high">9.5</span></td>
+          <td class="center"><span class="score-chip chip-low">3.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+6.0</td>
+        </tr>
+        <tr>
+          <td>EU-05</td><td>Accuracy, Robustness, Cybersecurity</td><td>EU AI Act Art. 15</td>
+          <td class="center"><span class="score-chip chip-high">8.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+3.5</td>
+        </tr>
+        <tr>
+          <td>EU-06</td><td>Data Governance</td><td>EU AI Act Art. 10</td>
+          <td class="center"><span class="score-chip chip-high">8.5</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+4.5</td>
+        </tr>
+        <tr>
+          <td>EU-07</td><td>Technical Documentation</td><td>EU AI Act Art. 11</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>EU-08</td><td>Accountability and Quality Management</td><td>EU AI Act Arts. 17, 27</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>CAN-01</td><td>Algorithmic Impact Assessment and Risk Tiering</td><td>Treasury Board Directive</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+4.5</td>
+        </tr>
+        <tr>
+          <td>CAN-02</td><td>Transparency and Explainability</td><td>Treasury Board; PIPEDA; Law 25</td>
+          <td class="center"><span class="score-chip chip-high">9.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>CAN-03</td><td>Meaningful Human Intervention</td><td>Treasury Board; Law 25 Art. 12</td>
+          <td class="center"><span class="score-chip chip-high">9.5</span></td>
+          <td class="center"><span class="score-chip chip-low">4.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+5.0</td>
+        </tr>
+        <tr>
+          <td>CAN-04</td><td>Bias Mitigation and Equitable Access</td><td>Treasury Board; Canadian Human Rights Act</td>
+          <td class="center"><span class="score-chip chip-high">8.0</span></td>
+          <td class="center"><span class="score-chip chip-low">4.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+3.5</td>
+        </tr>
+        <tr>
+          <td>CAN-05</td><td>Auditability and Accountability</td><td>Treasury Board; PIPEDA; Canada-EU MOU</td>
+          <td class="center"><span class="score-chip chip-high">9.5</span></td>
+          <td class="center"><span class="score-chip chip-low">3.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+6.0</td>
+        </tr>
+        <tr>
+          <td>CAN-06</td><td>Privacy and Data Minimization</td><td>PIPEDA; Quebec Law 25</td>
+          <td class="center"><span class="score-chip chip-high">8.5</span></td>
+          <td class="center"><span class="score-chip chip-mid">5.0</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+3.5</td>
+        </tr>
+        <tr>
+          <td>CAN-07</td><td>Procurement Defensibility</td><td>Federal Procurement; Treasury Board</td>
+          <td class="center"><span class="score-chip chip-high">9.5</span></td>
+          <td class="center"><span class="score-chip chip-low">3.5</span></td>
+          <td class="center" style="color:var(--green);font-weight:700;">+6.0</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">Overall Illustrative Architectural Alignment (15 principles, mean)</td>
+          <td class="center">8.9 / 10</td>
+          <td class="center">4.2 / 10</td>
+          <td class="center" style="color:var(--green);">+4.7</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- Cost Implications -->
+  <div class="section">
+    <div class="section-eyebrow">Cost Implications</div>
+    <h2>The Compliance Cost of Generation-First Architecture</h2>
+    <p class="section-intro">The structural cost difference between achieving regulatory alignment through architecture versus achieving it through supplementary governance controls.</p>
+
+    <p>The alignment assessments above reveal a structural cost asymmetry with direct procurement implications. COMPAiSS's alignment across these principles is a consequence of its architecture. A conventional RAG deployment aiming to achieve comparable alignment must invest in supplementary systems at each gap point - and each of those investments recurs.</p>
+
+    <div class="cost-grid">
+      <div class="cost-col rag-col">
+        <h4>Conventional RAG: Compliance Supplementation Required</h4>
+        <div class="cost-item"><span class="cost-item-label">Observability and audit logging infrastructure</span><span class="cost-item-val">Additional layer</span></div>
+        <div class="cost-item"><span class="cost-item-label">Human oversight workflows and staffing</span><span class="cost-item-val">Ongoing cost</span></div>
+        <div class="cost-item"><span class="cost-item-label">Guardrail models and content moderation</span><span class="cost-item-val">Additional layer</span></div>
+        <div class="cost-item"><span class="cost-item-label">Adversarial testing and red-teaming programs</span><span class="cost-item-val">Ongoing cost</span></div>
+        <div class="cost-item"><span class="cost-item-label">Technical documentation maintenance</span><span class="cost-item-val">Ongoing cost</span></div>
+        <div class="cost-item"><span class="cost-item-label">Bias testing across languages and groups</span><span class="cost-item-val">Ongoing cost</span></div>
+        <div class="cost-item"><span class="cost-item-label">Privacy architecture and data residency controls</span><span class="cost-item-val">Additional layer</span></div>
+        <div class="cost-item"><span class="cost-item-label">Illustrative annual operating cost (100K queries)</span><span class="cost-item-val">$90K - $200K</span></div>
+      </div>
+      <div class="cost-col compaiss-col">
+        <h4>COMPAiSS: Compliance by Architecture</h4>
+        <div class="cost-item"><span class="cost-item-label">Audit logs</span><span class="cost-item-val">Built-in</span></div>
+        <div class="cost-item"><span class="cost-item-label">Human oversight</span><span class="cost-item-val">Greenlist (built-in)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Output constraint</span><span class="cost-item-val">Execution gate (built-in)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Adversarial scope control</span><span class="cost-item-val">Structural (built-in)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Technical documentation</span><span class="cost-item-val">Deterministic (tractable)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Multilingual equity</span><span class="cost-item-val">Pre-inference (built-in)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Privacy / data minimization</span><span class="cost-item-val">Architectural (built-in)</span></div>
+        <div class="cost-item"><span class="cost-item-label">Illustrative annual operating cost (100K queries)</span><span class="cost-item-val">$15K - $30K</span></div>
+      </div>
+    </div>
+
+    <p class="cost-note">Cost estimates are illustrative deployment scenarios based on typical institutional deployments at approximately 100,000 annual queries. Conventional RAG figures reflect inference costs, vector database hosting, observability tooling, human review staffing, and compliance program overhead. COMPAiSS figures reflect inference costs for authorized queries only (approximately 60% of total queries, since unauthorized queries do not incur primary model inference costs), greenlist maintenance, and compliance receipt storage. Actual costs vary significantly by institution size, query volume, hosting environment, existing infrastructure, and governance requirements. These figures should be treated as directional indicators, not procurement-ready estimates. Detailed cost modelling for specific institutional contexts is available on request.</p>
+  </div>
+
+  <hr>
+
+  <!-- Limitations and Future Validation -->
+  <div class="section">
+    <div class="section-eyebrow">Limitations and Future Validation</div>
+    <h2>What This Paper Claims - and What It Does Not</h2>
+    <p class="section-intro">Scholarly papers distinguish between scope and limitations. This section addresses both explicitly.</p>
+
+    <p>This paper advances a testable architectural hypothesis: that authorization-first AI architectures are structurally better positioned to satisfy the governance requirements of regulated institutional environments than conventional generation-first architectures. It supports this hypothesis through architectural analysis, regulatory text mapping, and illustrative alignment assessment. It does not prove it through independent empirical measurement.</p>
+
+    <p>The following limitations should be understood by any reader using this paper to inform procurement, policy, or research decisions:</p>
+
+    <div class="limitations-grid">
+      <div class="limitation-card">
+        <h4>Architectural Assessment, Not Legal Opinion</h4>
+        <p>This paper assesses how an architecture is designed to support regulatory principles. It does not constitute legal advice, a compliance certification, or a regulatory determination. Actual compliance is determined by regulators evaluating organizations, governance systems, processes, and deployment contexts - not software architecture alone.</p>
+      </div>
+      <div class="limitation-card">
+        <h4>Alignment Scores Are Illustrative</h4>
+        <p>The numerical alignment scores are expert judgments based on architectural analysis, not measurements produced by a validated scoring instrument. No official regulatory scoring rubric exists under either the EU AI Act or the Canadian framework. These scores should be understood as reasoned assessments, not objective measurements.</p>
+      </div>
+      <div class="limitation-card">
+        <h4>The RAG Comparison Is Against Typical Implementations</h4>
+        <p>Sophisticated enterprise RAG implementations with deterministic source controls, provenance tracking, full observability stacks, and human review workflows can narrow some of the governance gaps identified here through supplementary controls. The comparison does not represent a ceiling on what conventional RAG architectures can achieve with significant additional investment.</p>
+      </div>
+      <div class="limitation-card">
+        <h4>Cost Estimates Are Illustrative Scenarios</h4>
+        <p>The deployment cost figures are illustrative scenarios based on typical institutional deployments at approximately 100,000 annual queries. They are not audited cost reports. Actual costs vary significantly by institution size, query volume, hosting environment, existing infrastructure, and governance requirements.</p>
+      </div>
+      <div class="limitation-card">
+        <h4>Security Claims Are Directional</h4>
+        <p>The paper describes how COMPAiSS's architecture is designed to reduce certain adversarial attack surfaces. It does not claim to eliminate all security risks. Parsing pipelines can be attacked, authorized sources can contain compromised content, translation layers introduce vulnerabilities, and LLM behavior within authorized scope remains probabilistic.</p>
+      </div>
+      <div class="limitation-card">
+        <h4>Independent Validation Is Needed</h4>
+        <p>The authorization fidelity construct, governance preservation rate, and expanded evaluation framework proposed here are preliminary. They have not yet been independently validated, standardized, or subjected to peer review outside the cross-model review process described in this paper.</p>
+      </div>
+    </div>
+
+    <p>The next stage of validation for the architectural hypothesis advanced here should include: independent third-party security assessment of the execution-gated architecture; comparative benchmarking against sophisticated enterprise RAG implementations with full governance supplementation; longitudinal deployment studies measuring governance outcomes in live institutional environments; independent regulatory review of the proposed alignment assessment methodology; and empirical measurement of authorization fidelity, governance preservation rate, and evidence fidelity across diverse query types and institutional contexts.</p>
+
+    <div class="callout">
+      <div class="callout-label">The Testable Hypothesis</div>
+      <p>The central claim of this paper can be stated as a testable hypothesis: <em>AI systems whose architecture enforces authorization as a precondition for generation will, in regulated institutional deployment contexts, demonstrate measurably higher governance preservation rates, more complete audit trails, and lower compliance supplementation costs than systems whose architecture generates first and applies governance controls afterward.</em> This hypothesis is empirically falsifiable. The authors invite independent researchers, regulators, and procurement professionals to test it.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Themes -->
+  <div class="section">
+    <div class="section-eyebrow">Conclusion</div>
+    <h2>Overarching Themes from the Comparative Analysis</h2>
+    <p class="section-intro">Five structural observations that emerge consistently across both the European and Canadian regulatory frameworks.</p>
+
+    <div class="themes">
+      <div class="theme-card">
+        <h4>Authorization Before Accuracy</h4>
+        <p>Regulatory frameworks for public institutions are not primarily concerned with whether AI answers are correct. They are concerned with whether AI answers are authorized. A factually accurate answer drawn from an unauthorized source is a governance failure. This is the central methodological distinction between conventional AI evaluation and the evaluation framework appropriate for regulated institutional AI.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Determinism vs. Probability</h4>
+        <p>Both regulatory frameworks require traceability, accountability, and predictable behavior. An execution-gated architecture is designed to satisfy these requirements structurally. A probabilistic generation-first architecture is designed to satisfy them through supplementary controls. Regulators are increasingly distinguishing between these two approaches in high-risk institutional contexts.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Pre-Inference vs. Post-Generation Governance</h4>
+        <p>Every major regulatory principle - human oversight, transparency, accountability, record-keeping - can be addressed either before inference or after generation. The regulatory frameworks do not explicitly require pre-inference governance, but they appear to reward architectures that provide it structurally rather than reactively, because structural controls are more traceable, more predictable, and less dependent on secondary systems functioning correctly.</p>
+      </div>
+      <div class="theme-card">
+        <h4>Procurement Inversion</h4>
+        <p>As regulatory requirements tighten, the burden of proof in procurement shifts from "prove this system is safe" toward "demonstrate how unauthorized responses are structurally prevented." This is a question that a generation-first architecture cannot fully answer - because generation itself precedes any structural constraint. An authorization-first architecture is designed to answer it directly.</p>
+      </div>
+      <div class="theme-card">
+        <h4>The Compliance Tax</h4>
+        <p>Conventional RAG deployments in regulated institutional contexts carry a compliance tax: the ongoing cost of governance infrastructure required to satisfy regulatory requirements that an authorization-first architecture is designed to satisfy structurally. This tax manifests as infrastructure costs, staffing costs, monitoring costs, and organizational overhead. For institutions operating at scale, this tax is material and grows with deployment volume and regulatory scrutiny.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:2rem;">
+      <div class="callout-label">The architectural conclusion</div>
+      <p>Both the EU AI Act and the Canadian framework were developed in response to governance failures observed in generation-first AI deployments in regulated contexts. Their core requirements - traceability, human oversight, transparency, record-keeping, accountability, data governance, procurement defensibility - map more naturally to an architecture where authorization precedes generation than to one where governance is applied after the fact.</p>
+      <p>This analysis advances the proposition that this alignment is not coincidental. An architecture designed around the question "Was this answer produced exclusively from authorized institutional sources?" is structurally better positioned to satisfy regulatory frameworks that ask the same question - not because it was engineered to satisfy those regulations, but because both are responses to the same underlying institutional governance problem: the need for AI systems whose outputs can be traced, bounded, authorized, and defended.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Future Research Agenda -->
+  <div class="section">
+    <div class="section-eyebrow">Future Research Agenda</div>
+    <h2>Questions for the Field</h2>
+    <p class="section-intro">This paper proposes a framework. It does not complete one. The following questions identify where empirical investigation, independent validation, and field-wide collaboration are needed to advance authorization-first institutional AI from an architectural proposition to an established evaluation category.</p>
+
+    <ul class="research-list">
+      <li>
+        <span class="research-num">01</span>
+        <span><strong>How should authorization fidelity be measured?</strong> The construct proposed here requires a validated measurement instrument. What query types, adversarial conditions, and institutional contexts are necessary to produce a reliable authorization fidelity score? How should the instrument handle edge cases where authorized sources partially address a query?</span>
+      </li>
+      <li>
+        <span class="research-num">02</span>
+        <span><strong>Can architectural alignment scoring be standardized?</strong> The illustrative alignment scores in this paper are expert judgments. Is it possible to develop a reproducible, methodologically rigorous scoring instrument that could be applied consistently across AI systems and regulatory frameworks by independent evaluators?</span>
+      </li>
+      <li>
+        <span class="research-num">03</span>
+        <span><strong>How do authorization-first systems compare with advanced enterprise RAG under common benchmarks?</strong> The comparison in this paper is against typical conventional RAG implementations. A rigorous head-to-head comparison against sophisticated enterprise RAG deployments with full governance supplementation - using the expanded evaluation framework proposed here - would substantially strengthen or challenge the architectural hypothesis.</span>
+      </li>
+      <li>
+        <span class="research-num">04</span>
+        <span><strong>What independent testing methodologies are appropriate for governance-oriented AI evaluation?</strong> Traditional AI benchmarks are not designed to assess authorization fidelity or governance preservation. What evaluation protocols, adversarial testing regimes, and inter-rater reliability standards are appropriate for assessing Dimension Set B metrics in live institutional deployments?</span>
+      </li>
+      <li>
+        <span class="research-num">05</span>
+        <span><strong>Can execution-gated architectures measurably reduce regulatory risk in practice?</strong> The architectural hypothesis predicts that authorization-first deployments will produce fewer governance violations, lower compliance supplementation costs, and more complete audit trails than generation-first deployments in comparable institutional contexts. Longitudinal deployment studies across multiple institutions would test this prediction empirically.</span>
+      </li>
+      <li>
+        <span class="research-num">06</span>
+        <span><strong>How should procurement frameworks evaluate authorization-first AI?</strong> Current procurement frameworks for AI in regulated institutions were developed for generation-first systems. What modifications to procurement criteria, vendor evaluation processes, and compliance documentation requirements are needed to appropriately assess authorization-first architectures - and to prevent generation-first vendors from claiming equivalent governance properties through supplementary controls?</span>
+      </li>
+      <li>
+        <span class="research-num">07</span>
+        <span><strong>How should the expanded evaluation framework evolve as AI architectures develop?</strong> The governance landscape is changing rapidly. As hybrid architectures emerge that incorporate elements of both generation-first and authorization-first approaches, how should the evaluation framework adapt? Are there authorization-first properties that can be retrofitted into existing enterprise RAG deployments, and if so, at what governance cost?</span>
+      </li>
+    </ul>
+
+    <p>These questions define a research agenda rather than a conclusion. The proposition that authorization-first AI represents a distinct architectural category warranting its own evaluation methodology is offered here as a starting point for a broader field-wide conversation - among AI researchers, regulatory scholars, institutional AI practitioners, procurement professionals, and the regulated institutions that depend on AI systems they can genuinely govern.</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <p>This paper is an architectural position paper advancing the proposition that authorization-first AI architectures are structurally better positioned to satisfy the governance requirements of regulated institutional environments than conventional generation-first architectures, and that this class of systems warrants evaluation using an expanded governance-aware methodology. It is not legal advice, a formal compliance assessment, or a regulatory certification. Alignment scores are illustrative architectural assessments, not official regulatory measurements. Institutions should engage qualified legal counsel for formal compliance determinations. All regulatory citations are accurate as of June 2026. Cross-model review conducted with GPT-4, Gemini, and Copilot.</p>
+    <p style="margin-top:0.4rem;">COMPAiSS is a registered trademark. Patent: CIPO 3,299,174 / USPTO 19/455,963. &copy; Counterfactual Theory Inc.</p>
+  </div>
+
+</div>
+</body>
+</html>

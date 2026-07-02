@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L’IA institutionnelle axée sur l’autorisation : alignement avec la gouvernance et cadre d’évaluation proposé</title>
+<style>
+  :root {
+    --wrap:980px;--pad:32px;--bg-page:#0c2d5a;--bg-card:rgba(255,255,255,0.05);
+    --text-main:#c6cfdd;--text-muted:#aeb9cc;--text-heading:#ffffff;
+    --accent:#f0c44c;--accent-soft:rgba(240,196,76,0.12);
+    --border-soft:rgba(255,255,255,0.08);--border-accent:rgba(240,196,76,0.3);
+    --radius:10px;--green:#4caf82;--green-soft:rgba(76,175,130,0.12);
+    --green-border:rgba(76,175,130,0.3);--red:#e05555;
+    --red-soft:rgba(224,85,85,0.1);--red-border:rgba(224,85,85,0.3);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{font-size:16px;-webkit-font-smoothing:antialiased;}
+  body{font-family:Georgia,serif;background:var(--bg-page);color:var(--text-main);line-height:1.75;}
+  .page{max-width:var(--wrap);margin:0 auto;padding:4rem var(--pad);}
+  .masthead{border-bottom:1px solid var(--border-soft);padding-bottom:2rem;margin-bottom:4rem;text-align:center;}
+  .masthead-label{font-family:system-ui,sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+  .masthead h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:var(--text-heading);line-height:1.2;margin-bottom:1rem;letter-spacing:-0.02em;}
+  .masthead-sub{font-family:system-ui,sans-serif;font-size:1rem;color:var(--text-muted);max-width:680px;margin:0 auto 1.5rem;line-height:1.65;}
+  .masthead-meta{font-family:system-ui,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.3);border-top:1px solid var(--border-soft);padding-top:1rem;margin-top:1rem;}
+  .scope-notice{background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-left:3px solid var(--text-muted);border-radius:0 var(--radius) var(--radius) 0;padding:1.2rem 1.6rem;margin-bottom:4rem;font-family:system-ui,sans-serif;font-size:0.88rem;color:var(--text-muted);line-height:1.65;}
+  .scope-notice strong{color:var(--text-heading);}
+  .thesis-block{background:rgba(240,196,76,0.06);border:1px solid var(--border-accent);border-radius:var(--radius);padding:2rem 2.2rem;margin-bottom:4rem;}
+  .thesis-label{font-family:system-ui,sans-serif;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.2rem;}
+  .thesis-block h2{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:400;color:var(--text-heading);line-height:1.35;margin-bottom:1.4rem;}
+  .thesis-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.4rem 0;}
+  @media(max-width:580px){.thesis-compare{grid-template-columns:1fr;}}
+  .thesis-col{border-radius:8px;padding:1.2rem 1.4rem;font-family:system-ui,sans-serif;}
+  .thesis-col.conventional{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);}
+  .thesis-col.compaiss{background:var(--green-soft);border:1px solid var(--green-border);}
+  .thesis-col-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:0.7rem;}
+  .thesis-col.conventional .thesis-col-label{color:var(--text-muted);}
+  .thesis-col.compaiss .thesis-col-label{color:var(--green);}
+  .thesis-q{font-size:0.95rem;color:var(--text-heading);font-style:italic;line-height:1.55;margin-bottom:0.5rem;}
+  .thesis-sub{font-size:0.82rem;color:var(--text-muted);line-height:1.55;}
+  .thesis-block p{font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.7;margin-top:1rem;margin-bottom:0;}
+  .definition-block{border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;margin-bottom:4rem;}
+  .definition-header{background:rgba(255,255,255,0.04);padding:1.2rem 1.8rem;border-bottom:1px solid var(--border-soft);}
+  .definition-eyebrow{font-family:system-ui,sans-serif;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.4rem;}
+  .definition-header h2{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:400;color:var(--text-heading);line-height:1.3;margin:0;border:none;padding:0;}
+  .definition-body{display:grid;grid-template-columns:1fr 1fr;}
+  @media(max-width:640px){.definition-body{grid-template-columns:1fr;}}
+  .definition-col{padding:1.4rem 1.8rem;font-family:system-ui,sans-serif;font-size:0.88rem;line-height:1.65;}
+  .definition-col+.definition-col{border-left:1px solid var(--border-soft);}
+  .definition-col-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:0.8rem;}
+  .definition-col:first-child .definition-col-label{color:var(--text-muted);}
+  .definition-col:last-child .definition-col-label{color:var(--accent);}
+  .definition-col:last-child{background:rgba(240,196,76,0.04);}
+  .metric-list{list-style:none;margin:0.6rem 0 0;padding:0;}
+  .metric-list li{padding:0.35rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);color:var(--text-main);font-size:0.87rem;display:flex;align-items:baseline;gap:0.5rem;}
+  .metric-list li:last-child{border-bottom:none;}
+  .metric-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:0.45rem;}
+  .metric-dot.standard{background:var(--text-muted);}
+  .metric-dot.new{background:var(--accent);}
+  .definition-footer{padding:1rem 1.8rem;border-top:1px solid var(--border-soft);background:rgba(255,255,255,0.02);font-family:system-ui,sans-serif;font-size:0.84rem;color:var(--text-muted);font-style:italic;line-height:1.6;}
+  .section{margin-bottom:4rem;}
+  .section-eyebrow{font-family:system-ui,sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
+  .section h2{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:400;color:var(--text-heading);line-height:1.3;margin-bottom:0.5rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border-accent);}
+  .section-intro{font-family:system-ui,sans-serif;font-size:0.92rem;color:var(--text-muted);font-style:italic;margin-bottom:1.8rem;margin-top:0.4rem;}
+  p{font-size:1rem;line-height:1.75;margin-bottom:1rem;max-width:74ch;}
+  p:last-child{margin-bottom:0;}
+  .arch-model{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0 2rem;}
+  @media(max-width:580px){.arch-model{grid-template-columns:1fr;}}
+  .arch-col{border-radius:var(--radius);padding:1.4rem 1.6rem;font-family:system-ui,sans-serif;}
+  .arch-col.generation-first{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);}
+  .arch-col.authorization-first{background:var(--green-soft);border:1px solid var(--green-border);}
+  .arch-col-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:1rem;}
+  .generation-first .arch-col-label{color:var(--text-muted);}
+  .authorization-first .arch-col-label{color:var(--green);}
+  .arch-step{display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0;font-size:0.87rem;color:var(--text-main);border-bottom:0.5px solid rgba(255,255,255,0.06);}
+  .arch-step:last-child{border-bottom:none;}
+  .arch-arrow{font-size:0.7rem;color:var(--text-muted);padding:0.1rem 0;display:flex;justify-content:center;border-bottom:0.5px solid rgba(255,255,255,0.06);font-family:system-ui,sans-serif;}
+  .step-badge{font-size:0.6rem;font-weight:700;letter-spacing:0.06em;padding:0.15rem 0.4rem;border-radius:3px;flex-shrink:0;font-family:system-ui,sans-serif;}
+  .badge-gate{background:var(--green-soft);color:var(--green);border:1px solid var(--green-border);}
+  .badge-new{background:var(--accent-soft);color:var(--accent);border:1px solid var(--border-accent);}
+  .badge-std{background:rgba(255,255,255,0.06);color:var(--text-muted);border:1px solid rgba(255,255,255,0.1);}
+  .reg-status{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;}
+  @media(max-width:640px){.reg-status{grid-template-columns:1fr;}}
+  .reg-box{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.6rem;font-family:system-ui,sans-serif;}
+  .reg-box-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.6rem;}
+  .reg-box h3{font-size:1rem;font-weight:700;color:var(--text-heading);margin-bottom:0.5rem;}
+  .reg-box p{font-size:0.88rem;color:var(--text-muted);line-height:1.6;max-width:none;margin:0;}
+  .principle{margin-bottom:2rem;border:1px solid var(--border-soft);border-radius:var(--radius);overflow:hidden;}
+  .principle-header{background:rgba(255,255,255,0.04);padding:1rem 1.4rem;border-bottom:1px solid var(--border-soft);display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+  .principle-num{font-family:system-ui,sans-serif;font-size:0.65rem;font-weight:700;color:var(--accent);letter-spacing:0.1em;flex-shrink:0;}
+  .principle-title{font-family:system-ui,sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-heading);}
+  .principle-source{font-family:system-ui,sans-serif;font-size:0.72rem;color:var(--text-muted);margin-left:auto;}
+  .principle-body{display:grid;grid-template-columns:1fr 1fr;}
+  @media(max-width:640px){.principle-body{grid-template-columns:1fr;}}
+  .principle-col{padding:1.2rem 1.4rem;font-family:system-ui,sans-serif;font-size:0.88rem;line-height:1.65;}
+  .principle-col+.principle-col{border-left:1px solid var(--border-soft);}
+  .col-label{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:0.6rem;}
+  .col-label.compaiss{color:var(--green);}
+  .col-label.rag{color:var(--text-muted);}
+  .col-compaiss{background:rgba(76,175,130,0.05);}
+  .col-rag{background:rgba(255,255,255,0.02);}
+  .col-text{color:var(--text-main);}
+  .score-row{display:flex;align-items:center;gap:0.6rem;margin-top:0.9rem;padding-top:0.7rem;border-top:1px solid rgba(255,255,255,0.06);}
+  .score-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);font-weight:600;flex-shrink:0;}
+  .score-bar-wrap{flex:1;height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;}
+  .score-bar{height:100%;border-radius:3px;}
+  .score-bar.high{background:var(--green);}
+  .score-bar.mid{background:var(--accent);}
+  .score-bar.low{background:var(--red);}
+  .score-val{font-size:0.78rem;font-weight:700;font-family:system-ui,sans-serif;min-width:2.5rem;text-align:right;}
+  .score-val.high{color:var(--green);}
+  .score-val.mid{color:var(--accent);}
+  .score-val.low{color:var(--red);}
+  .score-methodology{background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.4rem 1.8rem;margin-bottom:1.5rem;font-family:system-ui,sans-serif;}
+  .score-methodology-label{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--text-muted);margin-bottom:0.8rem;}
+  .score-methodology p{font-size:0.88rem;color:var(--text-muted);max-width:none;line-height:1.65;margin:0;}
+  .score-methodology strong{color:var(--text-heading);}
+  .summary-table{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:0.82rem;margin:1.5rem 0;}
+  .summary-table thead tr{border-bottom:1px solid var(--border-accent);}
+  .summary-table th{text-align:left;padding:0.65rem 1rem;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .summary-table th.center{text-align:center;}
+  .summary-table td{padding:0.75rem 1rem;border-bottom:0.5px solid var(--border-soft);color:var(--text-main);vertical-align:middle;line-height:1.4;}
+  .summary-table tr:last-child td{border-bottom:none;}
+  .summary-table td.center{text-align:center;}
+  .summary-table tr.total-row td{background:var(--accent-soft);font-weight:700;color:var(--text-heading);border-top:1px solid var(--border-accent);}
+  .score-chip{display:inline-block;padding:0.2rem 0.55rem;border-radius:4px;font-weight:700;font-size:0.82rem;}
+  .chip-high{background:var(--green-soft);color:var(--green);border:1px solid var(--green-border);}
+  .chip-mid{background:var(--accent-soft);color:var(--accent);border:1px solid var(--border-accent);}
+  .chip-low{background:var(--red-soft);color:var(--red);border:1px solid var(--red-border);}
+  .callout{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.4rem 1.6rem;margin:2rem 0;font-family:system-ui,sans-serif;}
+  .callout p{font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;margin-bottom:0.6rem;}
+  .callout p:last-child{margin-bottom:0;}
+  .callout-label{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.6rem;}
+  .cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+  @media(max-width:600px){.cost-grid{grid-template-columns:1fr;}}
+  .cost-col{border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.2rem 1.4rem;font-family:system-ui,sans-serif;}
+  .cost-col.rag-col{background:rgba(224,85,85,0.05);border-color:var(--red-border);}
+  .cost-col.compaiss-col{background:var(--green-soft);border-color:var(--green-border);}
+  .cost-col h4{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:0.9rem;}
+  .rag-col h4{color:var(--red);}
+  .compaiss-col h4{color:var(--green);}
+  .cost-item{display:flex;justify-content:space-between;align-items:baseline;padding:0.4rem 0;border-bottom:0.5px solid rgba(255,255,255,0.06);font-size:0.85rem;color:var(--text-main);gap:1rem;}
+  .cost-item:last-child{border-bottom:none;}
+  .cost-item-label{color:var(--text-muted);}
+  .cost-item-val{font-weight:600;font-size:0.82rem;}
+  .rag-col .cost-item-val{color:var(--red);}
+  .compaiss-col .cost-item-val{color:var(--green);}
+  .cost-note{font-family:system-ui,sans-serif;font-size:0.82rem;color:var(--text-muted);font-style:italic;margin-top:0.8rem;line-height:1.6;}
+  .themes{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:1.5rem 0;}
+  .theme-card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.2rem 1.4rem;font-family:system-ui,sans-serif;}
+  .theme-card h4{font-size:0.85rem;font-weight:700;color:var(--accent);margin-bottom:0.5rem;}
+  .theme-card p{font-size:0.85rem;color:var(--text-muted);max-width:none;line-height:1.6;margin:0;}
+  .limitations-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+  @media(max-width:580px){.limitations-grid{grid-template-columns:1fr;}}
+  .limitation-card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius);padding:1.1rem 1.3rem;font-family:system-ui,sans-serif;}
+  .limitation-card h4{font-size:0.82rem;font-weight:700;color:var(--text-heading);margin-bottom:0.4rem;}
+  .limitation-card p{font-size:0.83rem;color:var(--text-muted);max-width:none;line-height:1.6;margin:0;}
+  .research-list{list-style:none;margin:1.2rem 0;padding:0;display:flex;flex-direction:column;gap:0.7rem;}
+  .research-list li{display:flex;align-items:baseline;gap:0.8rem;padding:0.8rem 1rem;background:var(--bg-card);border:1px solid var(--border-soft);border-radius:6px;font-family:system-ui,sans-serif;font-size:0.9rem;color:var(--text-main);line-height:1.55;}
+  .research-num{font-size:0.65rem;font-weight:700;color:var(--accent);letter-spacing:0.08em;flex-shrink:0;}
+  hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
+  .doc-footer{font-family:system-ui,sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.3);border-top:1px solid var(--border-soft);padding-top:1.5rem;margin-top:3rem;line-height:1.6;}
+  @media(max-width:700px){.page{padding:2rem 1.25rem;}}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="masthead">
+  <div class="masthead-label">COMPAiSS - Document de position architecturale</div>
+  <h1>L’IA institutionnelle axée sur l’autorisation :<br>alignement avec la gouvernance et cadre d’évaluation proposé</h1>
+  <p class="masthead-sub">Ce document propose que les systèmes d’IA déployés dans des environnements institutionnels réglementés requièrent une méthodologie d’évaluation élargie, consciente de la gouvernance, dans laquelle la fidélité à l’autorisation, la préservation de la gouvernance et la traçabilité des preuves sont traitées comme des critères de premier ordre aux côtés des métriques de performance traditionnelles. La comparaison avec les mises en oeuvre RAG conventionnelles sert d’illustration de cette proposition plus large.</p>
+  <div class="masthead-meta">Document de position architecturale. Ne constitue pas un avis juridique ni une certification de conformité réglementaire. Toutes les références réglementaires sont issues des textes législatifs primaires et des lignes directrices officielles en date de juin 2026. Revue inter-modèles : GPT-4, Gemini, Copilot. Brevet : CIPO 3 299 174 / USPTO 19/455 963.</div>
+</div>
+
+<div class="scope-notice">
+  <strong>Objet et portée du document.</strong> Ce document est un article de position architecturale qui avance la proposition que les architectures d’IA axées sur l’autorisation sont structurellement mieux positionnées pour satisfaire les exigences de gouvernance des environnements institutionnels réglementés que les architectures conventionnelles axées sur la génération. Il s’agit délibérément d’un argument, non d’une étude neutre. Il ne constitue pas un avis juridique, une évaluation de conformité formelle ou une certification réglementaire d’aucune sorte. Les établissements doivent consulter des juristes qualifiés pour les déterminations formelles de conformité. Les scores d’alignement numériques sont des évaluations architecturales fondées sur le jugement d’experts, non des mesures produites par un instrument de notation validé. Lorsque le document indique que COMPAiSS est « conçu pour soutenir » ou « architecturé pour faciliter » un principe réglementaire, cela reflète une évaluation architecturale; le contexte de déploiement, la gouvernance institutionnelle et la détermination réglementaire régissent la conformité effective.
+</div>
+
+<div class="thesis-block">
+  <div class="thesis-label">Thèse centrale - une méthodologie d’évaluation différente</div>
+  <h2>L’évaluation conventionnelle de l’IA et l’évaluation de COMPAiSS ne répondent pas à la même question.</h2>
+  <div class="thesis-compare">
+    <div class="thesis-col conventional">
+      <div class="thesis-col-label">Évaluation conventionnelle de l’IA</div>
+      <div class="thesis-q">« La réponse est-elle exacte? »</div>
+      <div class="thesis-sub">Le succès se définit par la correction factuelle. La source de l’information est secondaire par rapport à son exactitude. Une hallucination bien évaluée est considérée comme un meilleur résultat qu’une réponse correcte sans attribution de source.</div>
+    </div>
+    <div class="thesis-col compaiss">
+      <div class="thesis-col-label">Évaluation COMPAiSS</div>
+      <div class="thesis-q">« La réponse a-t-elle été produite exclusivement à partir de sources institutionnelles autorisées - et est-elle exacte par rapport à ces sources? »</div>
+      <div class="thesis-sub">Le succès exige d’abord l’autorisation, puis l’exactitude au sein du corpus autorisé. Une réponse factuellement correcte tirée d’une source non autorisée constitue une défaillance de gouvernance, indépendamment de son exactitude.</div>
+    </div>
+  </div>
+  <p>Cette distinction n’est pas une différence de fonctionnalité. C’est une différence méthodologique. Les systèmes d’IA conventionnels optimisent pour la première question. COMPAiSS est architecturé autour de la seconde. Pour les institutions publiques réglementées - services gouvernementaux, universités, hôpitaux, organismes de réglementation professionnelle - la seconde question est celle qui compte. Une vérité non autorisée comporte le même risque de gouvernance qu’une hallucination, car l’établissement ne peut pas être tenu responsable d’informations qu’il n’a pas autorisées.</p>
+  <p>Cette différence explique pourquoi la comparaison d’alignement réglementaire qui suit favorise systématiquement une architecture axée sur l’autorisation. La Loi européenne sur l’IA, la Directive du Conseil du Trésor canadien, la LPRPDE et la Loi 25 du Québec ont toutes été élaborées en réponse aux défaillances de gouvernance des systèmes de génération en premier. Leurs exigences en matière de traçabilité, de transparence, de responsabilisation et de supervision humaine s’appliquent directement et naturellement à une architecture qui impose l’autorisation avant la génération.</p>
+</div>
+<div class="definition-block">
+  <div class="definition-header">
+    <div class="definition-eyebrow">Construit d’évaluation proposé</div>
+    <h2>Fidélité à l’autorisation et méthodologie d’évaluation élargie pour l’IA institutionnelle</h2>
+  </div>
+  <div class="definition-body">
+    <div class="definition-col">
+      <div class="definition-col-label">Métriques traditionnelles d’évaluation de l’IA</div>
+      <p style="font-size:0.87rem;color:var(--text-muted);max-width:none;margin-bottom:0.8rem;">Les cadres conventionnels d’évaluation de l’IA privilégient des métriques de performance applicables aux cas d’utilisation généraux :</p>
+      <ul class="metric-list">
+        <li><span class="metric-dot standard"></span>Exactitude factuelle</li>
+        <li><span class="metric-dot standard"></span>Précision et rappel de la récupération</li>
+        <li><span class="metric-dot standard"></span>Latence des réponses</li>
+        <li><span class="metric-dot standard"></span>Robustesse aux entrées adversariales</li>
+        <li><span class="metric-dot standard"></span>Taux d’hallucination</li>
+        <li><span class="metric-dot standard"></span>Satisfaction des utilisateurs</li>
+        <li><span class="metric-dot standard"></span>Fidélité au contexte</li>
+      </ul>
+      <p style="font-size:0.84rem;color:var(--text-muted);max-width:none;margin-top:0.8rem;line-height:1.6;">Ces métriques sont nécessaires et bien établies. Ce document ne propose pas de les remplacer.</p>
+    </div>
+    <div class="definition-col">
+      <div class="definition-col-label">Dimensions supplémentaires proposées pour l’IA institutionnelle</div>
+      <p style="font-size:0.87rem;color:var(--text-main);max-width:none;margin-bottom:0.8rem;">Ce document propose que les systèmes d’IA opérant dans des environnements institutionnels réglementés requièrent des dimensions d’évaluation supplémentaires axées sur la gouvernance :</p>
+      <ul class="metric-list">
+        <li><span class="metric-dot new"></span><strong>Fidélité à l’autorisation</strong> - le degré auquel un système reste dans les limites du savoir autorisé par l’établissement</li>
+        <li><span class="metric-dot new"></span><strong>Taux de préservation de la gouvernance</strong> - la proportion de réponses qui évitent les affirmations institutionnelles non autorisées</li>
+        <li><span class="metric-dot new"></span><strong>Fidélité aux preuves</strong> - le degré auquel chaque affirmation peut être tracée jusqu’à une source analysée spécifique</li>
+        <li><span class="metric-dot new"></span><strong>Traçabilité d’audit</strong> - l’exhaustivité et le déterminisme du dossier de gouvernance par réponse</li>
+        <li><span class="metric-dot new"></span><strong>Responsabilité institutionnelle</strong> - le degré auquel l’autorité humaine gouverne la portée du système avant l’inférence</li>
+        <li><span class="metric-dot new"></span><strong>Taux de refus sécurisé</strong> - la proportion de requêtes hors portée qui produisent des refus appropriés plutôt que des réponses non autorisées</li>
+      </ul>
+    </div>
+  </div>
+  <div class="definition-footer">
+    Ces dimensions proposées sont présentées comme un construit d’évaluation préliminaire, non comme des métriques établies dans l’industrie. La fidélité à l’autorisation est proposée comme concept candidat à la normalisation future. Les auteurs invitent les chercheurs indépendants, les régulateurs et les responsables des achats à critiquer, affiner et tester empiriquement ces dimensions. Leur utilité dépend de la possibilité de les mesurer de façon fiable - une question que le document identifie comme une priorité pour la validation future.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Modèle conceptuel</div>
+  <h2>L’inversion architecturale : gouvernance avant ou après la génération</h2>
+  <p class="section-intro">La distinction architecturale centrale illustrée sous forme de modèle de processus. La gouvernance passe de l’après-génération à l’avant-génération, changeant non seulement le moment où les contrôles sont appliqués, mais aussi le type de contrôles structurellement possibles.</p>
+  <div class="arch-model">
+    <div class="arch-col generation-first">
+      <div class="arch-col-label">Architecture de génération en premier (RAG conventionnel)</div>
+      <div class="arch-step"><span class="step-badge badge-std">1</span> Question reçue</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">2</span> Intégration de la requête et récupération</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">3</span> Classement et reclassement des candidats</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">4</span> Assemblage du contexte</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">5</span> <strong>Génération</strong> - l’inférence du modèle s’exécute</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">6</span> Réponse livrée à l’utilisateur</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">7</span> Examen de gouvernance, surveillance, journalisation</div>
+    </div>
+    <div class="arch-col authorization-first">
+      <div class="arch-col-label">Architecture axée sur l’autorisation (COMPAiSS)</div>
+      <div class="arch-step"><span class="step-badge badge-std">1</span> Question reçue</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-gate">PORTAIL</span> Vérification d’autorisation contre la liste verte</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-gate">PORTAIL</span> Validation des sources - les preuves existent-elles?</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">4</span> Analyse en direct des sources autorisées</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">5</span> <strong>Génération</strong> - uniquement si les portails sont valides</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-new">REÇU</span> Reçu de conformité généré en temps réel</div>
+      <div class="arch-arrow">&#8595;</div>
+      <div class="arch-step"><span class="step-badge badge-std">7</span> Réponse livrée avec piste d’audit</div>
+    </div>
+  </div>
+  <p>Dans le modèle de génération en premier, la gouvernance est appliquée aux sorties que le modèle a déjà produites. Dans le modèle axé sur l’autorisation, la gouvernance détermine si le modèle est autorisé à produire une sortie. Cette distinction n’est pas une question de degré - c’est une différence dans la position structurelle du contrôle de gouvernance par rapport à l’étape d’inférence. Toutes les propriétés en aval des deux architectures - traçabilité, responsabilisation, exhaustivité de la piste d’audit, robustesse adversariale, défensibilité en matière d’approvisionnement - découlent de cette unique différence architecturale.</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="section-eyebrow">Cadre proposé</div>
+  <h2>Un cadre d’évaluation élargi pour l’IA institutionnelle axée sur l’autorisation</h2>
+  <p class="section-intro">Ce cadre ne remplace pas l’évaluation traditionnelle de l’IA. Il propose des dimensions supplémentaires axées sur la gouvernance, appropriées aux systèmes d’IA opérant dans des environnements institutionnels réglementés.</p>
+  <p>Les cadres d’évaluation traditionnels de l’IA ont été développés pour des systèmes d’IA généralistes opérant dans de vastes domaines. Ils optimisent l’exactitude, l’efficacité et la satisfaction des utilisateurs. Cependant, ils n’ont pas été conçus pour une catégorie de systèmes d’IA dont l’obligation principale est de garantir que chaque réponse fournie s’inscrit dans les limites de gouvernance d’un établissement réglementé spécifique.</p>
+  <div class="reg-status" style="margin:1.5rem 0;">
+    <div class="reg-box">
+      <div class="reg-box-label">Ensemble de dimensions A - Performance traditionnelle</div>
+      <h3>Conservé de l’évaluation conventionnelle de l’IA</h3>
+      <p>Exactitude factuelle dans la portée autorisée. Précision de la récupération pour les sources autorisées. Latence et débit des réponses. Robustesse aux entrées adversariales. Compréhension et satisfaction des utilisateurs. Exactitude et cohérence multilingues. Ces dimensions restent essentielles et doivent être évaluées conjointement avec les dimensions de gouvernance ci-dessous.</p>
+    </div>
+    <div class="reg-box">
+      <div class="reg-box-label">Ensemble de dimensions B - Performance de gouvernance</div>
+      <h3>Proposé pour les systèmes axés sur l’autorisation</h3>
+      <p>Fidélité à l’autorisation selon les types de requêtes. Taux de préservation de la gouvernance sous test adversarial. Fidélité aux preuves - traçabilité affirmation-source. Exhaustivité et déterminisme de la piste d’audit. Taux de refus sécurisé pour les requêtes hors portée. Profondeur d’intégration de la supervision humaine. Exhaustivité de la documentation pour l’approvisionnement.</p>
+    </div>
+  </div>
+  <p>La proposition méthodologique clé est que pour l’IA institutionnelle réglementée, un système obtenant des scores élevés sur l’ensemble de dimensions A mais de faibles scores sur l’ensemble B n’est pas un système performant - c’est un système performant avec un profil de gouvernance inacceptable. Inversement, un système obtenant des scores élevés sur les deux ensembles est génuinement adapté au déploiement institutionnel réglementé.</p>
+</div>
+
+<hr>
+<div class="section">
+  <div class="section-eyebrow">Paysage réglementaire - juin 2026</div>
+  <h2>Ce que les cadres exigent réellement</h2>
+  <p class="section-intro">L’état actuel des deux cadres avant d’effectuer des comparaisons architecturales.</p>
+  <div class="reg-status">
+    <div class="reg-box">
+      <div class="reg-box-label">Union européenne</div>
+      <h3>Loi européenne sur l’IA (Règlement 2024/1689)</h3>
+      <p>Entrée en vigueur en août 2024. Pratiques interdites en application depuis février 2025. Exigences de transparence des GPAI en vigueur depuis août 2025. Exigences complètes pour les systèmes à haut risque applicables en août 2026. Pénalités jusqu’à 35 millions d’euros ou 7 % du chiffre d’affaires mondial. L’éducation, l’emploi, les services essentiels et l’IA du secteur public sont classés dans les catégories à haut risque de l’Annexe III, avec des évaluations obligatoires de conformité, une documentation technique, une supervision humaine, une traçabilité et un enregistrement dans la base de données européenne de l’IA.</p>
+    </div>
+    <div class="reg-box">
+      <div class="reg-box-label">Canada</div>
+      <h3>Cadre fédéral de gouvernance de l’IA (2026)</h3>
+      <p>La Loi sur l’intelligence artificielle et les données (LIAD, projet de loi C-27) est morte au Parlement en janvier 2025 et n’a pas été réintroduite. Les instruments contraignants en 2026 sont la Directive du Conseil du Trésor sur la prise de décision automatisée (en vigueur depuis 2019 pour les institutions fédérales), la LPRPDE, la Loi 25 du Québec (l’exigence provinciale la plus rigoureuse, incluant le droit à la révision humaine des décisions automatisées), les lignes directrices du BSIF pour les institutions financières, et le protocole d’entente Canada-UE sur l’IA signé en décembre 2025.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">Pourquoi l’absence de la LIAD renforce l’argumentation</div>
+    <p>L’échec de la LIAD ne crée pas un vide réglementaire. Il crée un patchwork de conformité qui est en pratique plus exigeant qu’une loi unique, car les établissements doivent satisfaire simultanément de multiples instruments qui se chevauchent : droit fédéral à la vie privée, régimes provinciaux de confidentialité, directives du Conseil du Trésor, lignes directrices sectorielles et normes d’approvisionnement. Une architecture conçue pour faciliter la conformité aux principes sous-jacents de traçabilité, d’autorisation et de supervision humaine est bien positionnée pour satisfaire l’ensemble de ces instruments simultanément.</p>
+  </div>
+</div>
+
+<hr>
+<div class="section">
+  <div class="section-eyebrow">Partie 1 - Loi européenne sur l’IA</div>
+  <h2>COMPAiSS vs. mises en oeuvre RAG conventionnelles : principes européens</h2>
+  <p class="section-intro">Huit obligations fondamentales. La comparaison porte sur les mises en oeuvre RAG conventionnelles typiques. Les déploiements RAG d’entreprise sophistiqués peuvent réduire certains écarts par des contrôles de gouvernance supplémentaires, mais pas par équivalence architecturale.</p>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-01</span><span class="principle-title">Classification des risques et évaluation d’impact</span><span class="principle-source">Arts. 9, 27</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">Le portail d’exécution de COMPAiSS est conçu pour limiter structurellement les sorties aux sources institutionnelles autorisées, ce qui semble susceptible de réduire le profil de risque du système lors des évaluations d’impact. Dans une évaluation d’impact algorithmique réalisée pour un déploiement à Service Canada, le système a été évalué au niveau d’impact 1 - le niveau le plus bas - reflétant que son architecture fournit des informations dans une portée définie et autorisée plutôt que de prendre des décisions autonomes.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles pour les contextes institutionnels relèvent généralement des catégories à haut risque de la Loi européenne sur l’IA en vertu de l’Annexe III. Chaque étape du pipeline introduit une incertitude probabiliste difficile à circonscrire à l’avance. Des contrôles de gouvernance supplémentaires sont généralement nécessaires pour atteindre des limites de risque comparables.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div><span class="score-val mid">4 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-02</span><span class="principle-title">Transparence et fourniture d’informations aux déployeurs</span><span class="principle-source">Art. 13</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour soutenir la transparence au niveau architectural : chaque réponse est traçable jusqu’à une URL source spécifique, nommée, autorisée, qui a été réellement récupérée et analysée pour cette requête. Le reçu de conformité généré par interaction documente la décision du portail, les sources récupérées, les pages analysées, les actifs injectés et l’utilisation des jetons, fournissant aux déployeurs un dossier opérationnel détaillé sans outillage supplémentaire.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles fournissent généralement des citations, mais l’étape de génération peut mélanger, résumer ou inférer à partir du contexte récupéré de façon à rendre l’origine spécifique des affirmations individuelles peu claire. Satisfaire aux exigences de transparence de l’article 13 nécessite généralement une infrastructure d’observabilité supplémentaire.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar low" style="width:40%"></div></div><span class="score-val low">4 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-03</span><span class="principle-title">Supervision humaine</span><span class="principle-source">Art. 14</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour intégrer la gouvernance humaine à deux points structurellement imposés. Premièrement, la liste verte est une liste d’autorisation gérée par des humains : les administrateurs des établissements contrôlent les sources autorisées, peuvent ajouter ou supprimer des URL et effectuent des audits réguliers. Deuxièmement, le portail d’exécution est un point de contrôle structurel qui reflète la portée institutionnelle définie par l’humain avant toute inférence. Les modifications requièrent une action humaine explicite.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div><span class="score-val high">9,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles requièrent que la supervision humaine soit implémentée comme une couche de gouvernance supplémentaire : tableaux de bord de surveillance, files d’attente de révision, flux d’escalade ou contrôles de qualité post-génération. Il s’agit d’une supervision humaine comme mesure corrective plutôt que comme contrainte structurelle pré-inférence.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:50%"></div></div><span class="score-val mid">5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-04</span><span class="principle-title">Conservation des enregistrements et journaux générés automatiquement</span><span class="principle-source">Arts. 12, 18, 19</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour générer un reçu de conformité pour chaque interaction dans le cadre du pipeline de réponse. Chaque reçu enregistre la décision du portail et la règle appliquée, les sources récupérées et leurs scores de pertinence, les pages réellement analysées, les actifs faisant autorité injectés, si l’inférence a été permise ou bloquée, et l’utilisation des jetons. C’est un artefact de gouvernance produit en temps réel, non un journal secondaire.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div><span class="score-val high">9,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les déploiements RAG conventionnels peuvent être instrumentés pour produire des journaux, mais la journalisation n’est généralement pas architecturalement native au pipeline de génération. Lorsqu’une hallucination survient, l’analyse post-hoc des journaux ne peut souvent pas établir de façon définitive quel contenu récupéré a contribué à une affirmation générée spécifique, car l’étape de génération mélange le contexte de façon probabiliste.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar low" style="width:38%"></div></div><span class="score-val low">3,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-05</span><span class="principle-title">Exactitude, robustesse et cybersécurité</span><span class="principle-source">Art. 15</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">L’architecture de COMPAiSS est conçue pour réduire certaines classes de risques adversariaux : la décision du portail étant basée sur une consultation déterministe de la liste verte plutôt que sur l’inférence du modèle, le langage adversarial dans la requête est moins susceptible de rediriger le système vers des sources non autorisées. Cependant, l’architecture n’élimine pas tous les risques de sécurité : les pipelines d’analyse peuvent être attaqués, les sources autorisées peuvent contenir du contenu compromis, les couches de traduction introduisent leurs propres vulnérabilités, et le comportement du grand modèle de langage dans la portée autorisée reste probabiliste.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div><span class="score-val high">8 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles sont soumises à un éventail plus large de vulnérabilités adversariales : injection de prompts par les documents récupérés, jailbreaking, empoisonnement de la récupération et exploitation du modèle. La robustesse requiert des programmes de tests adversariaux dédiés, des modèles de garde-fous et des classificateurs de sécurité des prompts, chacun pouvant lui-même échouer ou être contourné.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div><span class="score-val mid">4,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-06</span><span class="principle-title">Données et gouvernance des données</span><span class="principle-source">Art. 10</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">L’architecture de COMPAiSS est conçue pour limiter le fardeau de la gouvernance des données pour les réponses institutionnelles : l’environnement épistémique fourni au modèle au moment de l’inférence se compose exclusivement de contenu provenant de sources institutionnelles autorisées par la liste verte et analysées en temps réel. Il n’existe pas de corpus de données opaque ou non auditable contribuant aux réponses institutionnelles au-delà de ce que l’établissement lui-même a autorisé.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:88%"></div></div><span class="score-val high">8,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles héritent des obligations de gouvernance des données tant du corpus d’entraînement du grand modèle de langage de base que du corpus de récupération sur lequel elles opèrent. La conformité à l’article 10 exige généralement un programme formel de gouvernance des données couvrant les deux corpus, avec une documentation séparée pour chacun.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div><span class="score-val mid">4 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-07</span><span class="principle-title">Documentation technique</span><span class="principle-source">Art. 11</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">L’architecture déterministe et délimitée de COMPAiSS rend la documentation technique plus accessible que pour les systèmes probabilistes. Le Cadre de validation de preuve de concept version 8 de COMPAiSS fournit une méthodologie d’évaluation formelle avec des métriques de performance structurées, une norme de fiabilité inter-évaluateurs (kappa de Cohen supérieur ou égal à 0,70) et une taxonomie typée des défaillances, directement mappables aux exigences de documentation de l’article 11.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">La production d’une documentation technique conforme à l’article 11 pour un déploiement RAG conventionnel est substantiellement plus complexe, car le comportement du système n’est pas entièrement déterministe et peut changer avec les mises à jour du modèle ou les modifications du corpus de récupération. Le fardeau de documentation est continu et non ponctuel.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar low" style="width:40%"></div></div><span class="score-val low">4 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">UE-08</span><span class="principle-title">Responsabilité et système de gestion de la qualité</span><span class="principle-source">Arts. 17, 27</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">L’architecture de COMPAiSS est conçue pour rendre les deux exigences plus accessibles. Le système de gestion de la qualité est substantiellement intégré à l’architecture : le cycle d’audit de la liste verte, la piste du reçu de conformité, la décision passe/échec du portail d’exécution et la taxonomie typée des défaillances (refus de type A, violations de gouvernance de type B, défauts de pipeline de type C) fournissent un cadre de qualité intégré avec des métriques mesurables et auditables.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">La construction d’un système de gestion de la qualité pour un déploiement RAG conventionnel requiert des contrôles de qualité à chaque étape du pipeline probabiliste : surveillance de la qualité de la récupération, notation de la fidélité de génération, révision des sorties, flux de reporting des incidents et surveillance continue des performances. Chaque élément exige un investissement organisationnel que l’architecture de COMPAiSS est conçue pour réduire.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div><span class="score-val mid">4 / 10</span></div></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="section">
+  <div class="section-eyebrow">Partie 2 - Cadre réglementaire canadien</div>
+  <h2>COMPAiSS vs. mises en oeuvre RAG conventionnelles : principes canadiens</h2>
+  <p class="section-intro">Sept principes tirés de la Directive du Conseil du Trésor sur la prise de décision automatisée, de la LPRPDE, de la Loi 25 du Québec et du protocole d’entente Canada-UE sur l’IA (décembre 2025). Les déploiements RAG d’entreprise sophistiqués avec des couches de gouvernance supplémentaires peuvent combler certains de ces écarts; la comparaison reflète les mises en oeuvre typiques sans une telle supplémentation.</p>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-01</span><span class="principle-title">Évaluation d’impact algorithmique et classification des risques</span><span class="principle-source">Directive du Conseil du Trésor</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">Une évaluation d’impact algorithmique réalisée pour un déploiement à Service Canada a évalué la mise en oeuvre de COMPAiSS au niveau d’impact 1 - le niveau le plus bas - parce que l’architecture fournit des informations plutôt que de prendre des décisions administratives, et que le portail d’exécution est conçu pour empêcher les sorties au-delà de la portée institutionnelle autorisée. L’achèvement de l’ÉIA constitue un historique d’approvisionnement documenté avec une institution fédérale.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:92%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Un déploiement RAG conventionnel pour des services gouvernementaux destinés au public est plus susceptible d’attirer un niveau d’impact plus élevé en vertu de la Directive du Conseil du Trésor, notamment lorsque les informations fournies affectent la compréhension par les citoyens de leurs prestations, de leur admissibilité ou de leurs obligations. Les mises en oeuvre RAG d’entreprise sophistiquées avec restrictions de sources peuvent réduire cet écart, mais ne peuvent généralement pas atteindre le même profil de risque délimité qu’une architecture axée sur l’autorisation.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div><span class="score-val mid">4,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-02</span><span class="principle-title">Transparence et explicabilité</span><span class="principle-source">Directive du Conseil du Trésor ; LPRPDE ; Loi 25 du Québec</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour soutenir la transparence de façon structurelle : les utilisateurs reçoivent des réponses provenant d’URL institutionnelles nommées et accessibles au public, avec la possibilité de vérifier toute affirmation à sa source. Lorsque le système ne peut pas répondre - parce qu’aucune source autorisée n’appuie la requête - il le communique explicitement et redirige vers les ressources institutionnelles plutôt que de générer une réponse plausible mais non étayée.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:90%"></div></div><span class="score-val high">9 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles citent des sources, mais la relation entre une source citée et une affirmation générée spécifique est souvent difficile à établir à des fins d’explication. Pour les exigences du droit à l’explication de la Loi 25 et les obligations de transparence de la LPRPDE, cette provenance mélangée est difficile à satisfaire sans outillage supplémentaire.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:42%"></div></div><span class="score-val mid">4 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-03</span><span class="principle-title">Intervention humaine significative</span><span class="principle-source">Directive du Conseil du Trésor ; Loi 25 du Québec, art. 12</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">La structure de gouvernance de la liste verte de COMPAiSS est conçue pour rendre cette exigence native : les administrateurs des établissements contrôlent activement ce à quoi le système peut répondre, peuvent supprimer ou mettre à jour les sources autorisées en temps réel et effectuent des audits réguliers. L’autorité humaine sur la portée institutionnelle est une condition préalable à l’inférence, non une intervention post-génération.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div><span class="score-val high">9,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">L’intervention humaine significative dans les déploiements RAG conventionnels pour les services publics réglementés requiert généralement des files d’attente de révision, des mécanismes d’escalade et une surveillance continue des sorties. Il s’agit d’une intervention humaine comme filet de sécurité réactif plutôt que comme contrainte structurelle pré-inférence. Les mises en oeuvre d’entreprise avec flux d’approbation peuvent partiellement combler cet écart.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:48%"></div></div><span class="score-val mid">4,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-04</span><span class="principle-title">Atténuation des biais et équité d’accès</span><span class="principle-source">Directive du Conseil du Trésor ; Loi canadienne sur les droits de la personne</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">L’architecture de liste verte de COMPAiSS est conçue pour fournir une atténuation structurelle des biais pour les cas d’utilisation institutionnels en contraignant les sorties aux sources institutionnelles autorisées. La capacité multilingue est gouvernée avant l’inférence : la traduction normalise la question avant l’autorisation, et la réponse autorisée est ensuite retraduite, conçue pour garantir que les utilisateurs dans différentes langues reçoivent le même contenu institutionnellement autorisé. Des tests de biais indépendants par langues et groupes démographiques renforcerait cette évaluation.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:82%"></div></div><span class="score-val high">8 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les mises en oeuvre RAG conventionnelles peuvent introduire des biais par de multiples canaux : biais du corpus d’entraînement du modèle de base, biais de classement de la récupération et biais de génération dans la façon dont les informations récupérées sont synthétisées. Dans les contextes multilingues, différentes langues peuvent récupérer différents documents ou générer des réponses avec des pondérations différentes, introduisant potentiellement des résultats différenciés selon les populations d’utilisateurs.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:45%"></div></div><span class="score-val mid">4,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-05</span><span class="principle-title">Auditabilité et responsabilisation</span><span class="principle-source">Directive du Conseil du Trésor ; LPRPDE ; PE Canada-UE (déc. 2025)</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour générer un reçu de conformité par interaction traçant la décision du portail, les sources consultées, les pages analysées et le statut d’autorisation de l’inférence. Le protocole d’entente Canada-UE sur l’IA, signé en décembre 2025, engage le Canada à s’aligner sur les principes européens incluant la traçabilité tout au long du cycle de vie du modèle. Les auditeurs institutionnels peuvent retracer toute sortie générée jusqu’au contenu source spécifique analysé, ou confirmer qu’une requête a été appropriément refusée et pourquoi.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div><span class="score-val high">9,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">La production de pistes d’audit satisfaisant à la fois la Directive du Conseil du Trésor et les principes de traçabilité européens du PE de décembre 2025 nécessite une infrastructure d’observabilité qui n’est pas standard dans les déploiements RAG typiques. Lorsqu’un audit exige d’établir quel contenu récupéré a produit quelle affirmation spécifique, l’étape de génération probabiliste signifie que ce traçage est souvent approximatif plutôt que définitif.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar low" style="width:38%"></div></div><span class="score-val low">3,5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-06</span><span class="principle-title">Protection de la vie privée et minimisation des données</span><span class="principle-source">LPRPDE ; Loi 25 du Québec</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS est conçu pour traiter les requêtes des utilisateurs par rapport à une liste verte définie, contrôlée par l’établissement, sans créer de profils d’utilisateurs, conserver des données personnelles pour l’entraînement du modèle ou transmettre des informations à des réservoirs de données externes. La liste verte contient uniquement des URL institutionnelles autorisées publiquement, non des renseignements personnels. La minimisation des données de l’architecture est structurelle. Le contexte de déploiement et la mise en oeuvre spécifique peuvent affecter ces propriétés et doivent être confirmés pour chaque déploiement institutionnel.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:88%"></div></div><span class="score-val high">8,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les déploiements RAG conventionnels dans les contextes du secteur public ou institutionnel doivent gérer soigneusement les données de requête, l’historique des conversations, le contexte utilisateur et les journaux de récupération en vertu de la LPRPDE et de la Loi 25. Les plateformes RAG d’entreprise peuvent maintenir un historique des conversations, utiliser les requêtes pour améliorer les systèmes de récupération ou partager des données de télémétrie avec les fournisseurs de modèles, chacun déclenchant des obligations en matière de confidentialité. Les exigences de résidentialité des données en vertu de la Loi 25 imposent des contraintes supplémentaires sur le lieu de traitement des données.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar mid" style="width:50%"></div></div><span class="score-val mid">5 / 10</span></div></div>
+    </div>
+  </div>
+
+  <div class="principle">
+    <div class="principle-header"><span class="principle-num">CAN-07</span><span class="principle-title">Défensibilité de l’approvisionnement et responsabilité institutionnelle</span><span class="principle-source">Directive du Conseil du Trésor ; Politique d’approvisionnement fédéral</span></div>
+    <div class="principle-body">
+      <div class="principle-col col-compaiss"><div class="col-label compaiss">COMPAiSS</div><div class="col-text">COMPAiSS fournit une réponse architecturalement défensible à cette exigence : le portail d’exécution est un mécanisme documenté et testable conçu pour empêcher l’inférence non autorisée. Le reçu de conformité fournit une piste d’audit par interaction directement compatible avec les exigences de documentation du Conseil du Trésor. L’achèvement d’une évaluation d’impact algorithmique pour un déploiement à Service Canada démontre que le parcours formel d’évaluation fédérale de l’approvisionnement a été complété avec succès. Il s’agit d’un historique d’approvisionnement institutionnel vérifié plutôt que d’une affirmation théorique de conformité.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar high" style="width:95%"></div></div><span class="score-val high">9,5 / 10</span></div></div>
+      <div class="principle-col col-rag"><div class="col-label rag">Mises en oeuvre RAG conventionnelles</div><div class="col-text">Les fournisseurs RAG conventionnels ne peuvent généralement pas démontrer la prévention structurelle des sorties non autorisées lors de l’approvisionnement. La réponse à la question « comment le système empêche-t-il structurellement les réponses non autorisées? » ne peut pas être structurelle pour une architecture de génération en premier, car la génération elle-même est la première étape. La réponse doit être « nous gérons les réponses non autorisées après leur production ». Cette vulnérabilité d’approvisionnement devient un passif croissant à mesure que les exigences d’approvisionnement se renforcent autour de la gouvernance de l’IA.</div><div class="score-row"><span class="score-label">Alignement</span><div class="score-bar-wrap"><div class="score-bar low" style="width:35%"></div></div><span class="score-val low">3,5 / 10</span></div></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="section">
+  <div class="section-eyebrow">Sommaire</div>
+  <h2>Scores d’alignement illustratifs : tous les principes</h2>
+  <div class="score-methodology">
+    <div class="score-methodology-label">Méthodologie de notation et limites</div>
+    <p><strong>Il s’agit d’évaluations d’alignement architectural illustratives, et non de scores réglementaires officiels, de certifications de conformité ou de déterminations juridiques.</strong> Aucune grille de notation numérique officielle n’existe. Les scores reflètent l’évaluation des auteurs quant à la façon dont chaque architecture est conçue pour soutenir chaque principe réglementaire. Ces évaluations sont fondées sur des textes réglementaires publiés, de la documentation architecturale et une revue inter-modèles par GPT-4, Gemini et Copilot. Les établissements doivent consulter des juristes qualifiés pour les déterminations formelles de conformité. La comparaison porte sur des mises en oeuvre RAG conventionnelles typiques; les déploiements RAG d’entreprise sophistiqués avec contrôles déterministes des sources, suivi de provenance et infrastructure d’observabilité peuvent combler certains écarts par des couches de gouvernance supplémentaires.</p>
+  </div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th style="width:5%">#</th>
+        <th style="width:38%">Principe</th>
+        <th style="width:15%">Cadre</th>
+        <th class="center" style="width:18%">COMPAiSS</th>
+        <th class="center" style="width:18%">RAG conventionnel</th>
+        <th class="center" style="width:6%">Écart</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>UE-01</td><td>Classification des risques et évaluation d’impact</td><td>Loi IA arts. 9, 27</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>UE-02</td><td>Transparence et information aux déployeurs</td><td>Loi IA art. 13</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>UE-03</td><td>Supervision humaine</td><td>Loi IA art. 14</td><td class="center"><span class="score-chip chip-high">9,5</span></td><td class="center"><span class="score-chip chip-mid">5,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+4,5</td></tr>
+      <tr><td>UE-04</td><td>Conservation des enregistrements et journaux</td><td>Loi IA arts. 12, 18, 19</td><td class="center"><span class="score-chip chip-high">9,5</span></td><td class="center"><span class="score-chip chip-low">3,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+6,0</td></tr>
+      <tr><td>UE-05</td><td>Exactitude, robustesse et cybersécurité</td><td>Loi IA art. 15</td><td class="center"><span class="score-chip chip-high">8,0</span></td><td class="center"><span class="score-chip chip-low">4,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+3,5</td></tr>
+      <tr><td>UE-06</td><td>Gouvernance des données</td><td>Loi IA art. 10</td><td class="center"><span class="score-chip chip-high">8,5</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+4,5</td></tr>
+      <tr><td>UE-07</td><td>Documentation technique</td><td>Loi IA art. 11</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>UE-08</td><td>Responsabilité et gestion de la qualité</td><td>Loi IA arts. 17, 27</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>CAN-01</td><td>Évaluation d’impact algorithmique et classification</td><td>Directive Conseil du Trésor</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+4,5</td></tr>
+      <tr><td>CAN-02</td><td>Transparence et explicabilité</td><td>Conseil du Trésor ; LPRPDE ; Loi 25</td><td class="center"><span class="score-chip chip-high">9,0</span></td><td class="center"><span class="score-chip chip-low">4,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>CAN-03</td><td>Intervention humaine significative</td><td>Conseil du Trésor ; Loi 25 art. 12</td><td class="center"><span class="score-chip chip-high">9,5</span></td><td class="center"><span class="score-chip chip-low">4,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+5,0</td></tr>
+      <tr><td>CAN-04</td><td>Atténuation des biais et équité d’accès</td><td>Conseil du Trésor ; Droits de la personne</td><td class="center"><span class="score-chip chip-high">8,0</span></td><td class="center"><span class="score-chip chip-low">4,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+3,5</td></tr>
+      <tr><td>CAN-05</td><td>Auditabilité et responsabilisation</td><td>Conseil du Trésor ; LPRPDE ; PE Canada-UE</td><td class="center"><span class="score-chip chip-high">9,5</span></td><td class="center"><span class="score-chip chip-low">3,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+6,0</td></tr>
+      <tr><td>CAN-06</td><td>Protection de la vie privée et minimisation</td><td>LPRPDE ; Loi 25 du Québec</td><td class="center"><span class="score-chip chip-high">8,5</span></td><td class="center"><span class="score-chip chip-mid">5,0</span></td><td class="center" style="color:var(--green);font-weight:700;">+3,5</td></tr>
+      <tr><td>CAN-07</td><td>Défensibilité de l’approvisionnement</td><td>Approv. fédéral ; Conseil du Trésor</td><td class="center"><span class="score-chip chip-high">9,5</span></td><td class="center"><span class="score-chip chip-low">3,5</span></td><td class="center" style="color:var(--green);font-weight:700;">+6,0</td></tr>
+      <tr class="total-row"><td colspan="3">Alignement architectural illustratif global (15 principes, moyenne)</td><td class="center">8,9 / 10</td><td class="center">4,2 / 10</td><td class="center" style="color:var(--green);">+4,7</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="section-eyebrow">Implications de coût</div>
+  <h2>Le coût de conformité de l’architecture de génération en premier</h2>
+  <p class="section-intro">La différence de coût structurelle entre atteindre l’alignement réglementaire par l’architecture et l’atteindre par des contrôles de gouvernance supplémentaires.</p>
+  <p>Les évaluations d’alignement ci-dessus révèlent une asymétrie de coûts structurelle avec des implications directes pour l’approvisionnement. L’alignement de COMPAiSS sur ces principes est une conséquence de son architecture. Un déploiement RAG conventionnel visant à atteindre un alignement comparable doit investir dans des systèmes supplémentaires à chaque point d’écart - et chacun de ces investissements se répète.</p>
+  <div class="cost-grid">
+    <div class="cost-col rag-col">
+      <h4>RAG conventionnel : supplémentation de conformité requise</h4>
+      <div class="cost-item"><span class="cost-item-label">Infrastructure d’observabilité et de journalisation d’audit</span><span class="cost-item-val">Couche supplémentaire</span></div>
+      <div class="cost-item"><span class="cost-item-label">Flux de supervision humaine et dotation</span><span class="cost-item-val">Coût récurrent</span></div>
+      <div class="cost-item"><span class="cost-item-label">Modèles de garde-fous et modération du contenu</span><span class="cost-item-val">Couche supplémentaire</span></div>
+      <div class="cost-item"><span class="cost-item-label">Programmes de tests adversariaux</span><span class="cost-item-val">Coût récurrent</span></div>
+      <div class="cost-item"><span class="cost-item-label">Maintenance de la documentation technique</span><span class="cost-item-val">Coût récurrent</span></div>
+      <div class="cost-item"><span class="cost-item-label">Tests de biais par langues et groupes</span><span class="cost-item-val">Coût récurrent</span></div>
+      <div class="cost-item"><span class="cost-item-label">Architecture de confidentialité et résidentialité des données</span><span class="cost-item-val">Couche supplémentaire</span></div>
+      <div class="cost-item"><span class="cost-item-label">Coût annuel illustratif (100 000 requêtes)</span><span class="cost-item-val">90 000 $ - 200 000 $</span></div>
+    </div>
+    <div class="cost-col compaiss-col">
+      <h4>COMPAiSS : conformité par architecture</h4>
+      <div class="cost-item"><span class="cost-item-label">Journaux d’audit</span><span class="cost-item-val">Intégré</span></div>
+      <div class="cost-item"><span class="cost-item-label">Supervision humaine</span><span class="cost-item-val">Liste verte (intégrée)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Contrainte de sortie</span><span class="cost-item-val">Portail d’exécution (intégré)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Contrôle adversarial de la portée</span><span class="cost-item-val">Structurel (intégré)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Documentation technique</span><span class="cost-item-val">Déterministe (tractable)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Équité multilingue</span><span class="cost-item-val">Pré-inférence (intégrée)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Minimisation des données</span><span class="cost-item-val">Architectural (intégré)</span></div>
+      <div class="cost-item"><span class="cost-item-label">Coût annuel illustratif (100 000 requêtes)</span><span class="cost-item-val">15 000 $ - 30 000 $</span></div>
+    </div>
+  </div>
+  <p class="cost-note">Les estimations de coût sont des scénarios de déploiement illustratifs basés sur des déploiements institutionnels typiques à environ 100 000 requêtes annuelles. Les chiffres pour le RAG conventionnel reflètent les coûts d’inférence, l’hébergement de bases de données vectorielles, les outils d’observabilité, la dotation en personnel de révision humaine et les frais généraux du programme de conformité. Les chiffres COMPAiSS reflètent les coûts d’inférence pour les requêtes autorisées uniquement (environ 60 % du total), la maintenance de la liste verte et le stockage des reçus de conformité. Les coûts réels varient considérablement selon la taille de l’établissement, le volume de requêtes, l’environnement d’hébergement et les exigences de gouvernance. Ces chiffres doivent être traités comme des indicateurs directionnels, non comme des estimations prêts pour l’approvisionnement.</p>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="section-eyebrow">Conclusion</div>
+  <h2>Thèmes transversaux de l’analyse comparative</h2>
+  <p class="section-intro">Cinq observations structurelles qui émergent systématiquement dans les cadres réglementaires européen et canadien.</p>
+  <div class="themes">
+    <div class="theme-card">
+      <h4>L’autorisation avant l’exactitude</h4>
+      <p>Les cadres réglementaires pour les institutions publiques ne visent pas principalement à déterminer si les réponses de l’IA sont correctes. Ils visent à déterminer si elles sont autorisées. Une réponse factuellement correcte tirée d’une source non autorisée constitue une défaillance de gouvernance. Il s’agit de la distinction méthodologique centrale entre l’évaluation conventionnelle de l’IA et le cadre d’évaluation approprié pour l’IA institutionnelle réglementée.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Déterminisme et probabilité</h4>
+      <p>Les deux cadres réglementaires exigent la traçabilité, la responsabilisation et un comportement prévisible. Une architecture à portail d’exécution est conçue pour satisfaire ces exigences de façon structurelle. Une architecture probabiliste de génération en premier y répond par des contrôles supplémentaires. Les régulateurs font de plus en plus la distinction entre ces deux approches dans les contextes institutionnels à haut risque.</p>
+    </div>
+    <div class="theme-card">
+      <h4>Gouvernance avant et après la génération</h4>
+      <p>Chaque principe réglementaire majeur peut être abordé avant l’inférence ou après la génération. Les cadres réglementaires n’exigent pas explicitement la gouvernance pré-inférence, mais ils semblent avantager les architectures qui la fournissent de façon structurelle plutôt que réactive, car les contrôles structurels sont plus traçables et moins dépendants du bon fonctionnement des systèmes secondaires.</p>
+    </div>
+    <div class="theme-card">
+      <h4>L’inversion de l’approvisionnement</h4>
+      <p>À mesure que les exigences réglementaires se renforcent, la charge de la preuve dans l’approvisionnement passe de « prouvez que ce système est sûr » vers « démontrez comment les réponses non autorisées sont structurellement empêchées ». Il s’agit d’une question à laquelle une architecture de génération en premier ne peut pas pleinement répondre, car la génération elle-même précède toute contrainte structurelle.</p>
+    </div>
+    <div class="theme-card">
+      <h4>La taxe de conformité</h4>
+      <p>Les déploiements RAG conventionnels dans les contextes institutionnels réglementés comportent une taxe de conformité : le coût récurrent de l’infrastructure de gouvernance requise pour satisfaire des exigences réglementaires qu’une architecture axée sur l’autorisation est conçue pour satisfaire structurellement. Cette taxe se manifeste par des coûts d’infrastructure, de dotation, de surveillance et de frais généraux organisationnels.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:2rem;">
+    <div class="callout-label">La conclusion architecturale</div>
+    <p>La Loi européenne sur l’IA et le cadre canadien ont tous deux été élaborés en réponse aux défaillances de gouvernance observées dans les déploiements d’IA de génération en premier dans des contextes réglementés. Leurs exigences fondamentales - traçabilité, supervision humaine, transparence, conservation des enregistrements, responsabilisation, gouvernance des données, défensibilité de l’approvisionnement - s’appliquent plus naturellement à une architecture où l’autorisation précède la génération qu’à une architecture où la gouvernance est appliquée après coup.</p>
+    <p>Cette analyse avance la proposition que cet alignement n’est pas fortuit. Une architecture conçue autour de la question « Cette réponse a-t-elle été produite exclusivement à partir de sources institutionnelles autorisées? » est structurellement mieux positionnée pour satisfaire les cadres réglementaires qui posent la même question.</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="section-eyebrow">Limites et validation future</div>
+  <h2>Ce que ce document affirme - et ce qu’il n’affirme pas</h2>
+  <p class="section-intro">Les articles de position savants distinguent la portée et les limites. Cette section aborde les deux explicitement.</p>
+  <p>Ce document avance une hypothèse architecturale testable : que les architectures d’IA axées sur l’autorisation sont structurellement mieux positionnées pour satisfaire les exigences de gouvernance des environnements institutionnels réglementés que les architectures conventionnelles de génération en premier. Il soutient cette hypothèse par une analyse architecturale, une cartographie des textes réglementaires et une évaluation d’alignement illustrative. Il ne la prouve pas par une mesure empirique indépendante.</p>
+  <div class="limitations-grid">
+    <div class="limitation-card"><h4>Évaluation architecturale, non avis juridique</h4><p>Ce document évalue comment une architecture est conçue pour soutenir des principes réglementaires. Il ne constitue pas un avis juridique, une certification de conformité ou une détermination réglementaire. La conformité effective est déterminée par les régulateurs évaluant les organisations, les systèmes de gouvernance, les processus et les contextes de déploiement.</p></div>
+    <div class="limitation-card"><h4>Les scores d’alignement sont illustratifs</h4><p>Les scores d’alignement numériques sont des jugements d’experts basés sur une analyse architecturale, non des mesures produites par un instrument de notation validé. Aucune grille de notation réglementaire officielle n’existe. Ces scores doivent être compris comme des évaluations raisonnées, non des mesures objectives.</p></div>
+    <div class="limitation-card"><h4>La comparaison RAG porte sur les mises en oeuvre typiques</h4><p>Les mises en oeuvre RAG d’entreprise sophistiquées avec contrôles déterministes des sources, suivi de provenance, piles d’observabilité complètes et flux de révision humaine peuvent réduire certains écarts de gouvernance par des contrôles supplémentaires. La comparaison ne représente pas un plafond de ce que les architectures RAG peuvent atteindre avec un investissement supplémentaire significatif.</p></div>
+    <div class="limitation-card"><h4>Les estimations de coût sont des scénarios illustratifs</h4><p>Les chiffres de coût de déploiement sont des scénarios illustratifs basés sur des déploiements institutionnels typiques. Ils ne sont pas des rapports de coût audités. Les coûts réels varient considérablement selon la taille de l’établissement, le volume de requêtes, l’environnement d’hébergement et les exigences de gouvernance.</p></div>
+    <div class="limitation-card"><h4>Les affirmations de sécurité sont directionnelles</h4><p>Le document décrit comment l’architecture de COMPAiSS est conçue pour réduire certaines surfaces d’attaque adversariales. Il n’affirme pas éliminer tous les risques de sécurité. Les pipelines d’analyse peuvent être attaqués, les sources autorisées peuvent contenir du contenu compromis, et le comportement du grand modèle de langage dans la portée autorisée reste probabiliste.</p></div>
+    <div class="limitation-card"><h4>Une validation indépendante est nécessaire</h4><p>Le construit de fidélité à l’autorisation, le taux de préservation de la gouvernance et le cadre d’évaluation élargi proposés ici sont préliminaires. Ils n’ont pas encore été validés indépendamment, normalisés ou soumis à une évaluation par les pairs au-delà du processus de revue inter-modèles décrit dans ce document.</p></div>
+  </div>
+  <div class="callout">
+    <div class="callout-label">L’hypothèse testable</div>
+    <p>L’affirmation centrale de ce document peut être énoncée comme une hypothèse testable : <em>Les systèmes d’IA dont l’architecture impose l’autorisation comme condition préalable à la génération démontreront, dans des contextes de déploiement institutionnel réglementés, des taux de préservation de la gouvernance mesurables plus élevés, des pistes d’audit plus complètes et des coûts de supplémentation de conformité plus faibles que les systèmes dont l’architecture génère en premier et applique des contrôles de gouvernance après coup.</em> Cette hypothèse est empiriquement réfutable. Les auteurs invitent les chercheurs indépendants, les régulateurs et les responsables des achats à la tester.</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="section">
+  <div class="section-eyebrow">Programme de recherche future</div>
+  <h2>Questions pour le domaine</h2>
+  <p class="section-intro">Ce document propose un cadre. Il ne le complète pas. Les questions suivantes identifient les domaines où l’investigation empirique, la validation indépendante et la collaboration à l’échelle du domaine sont nécessaires.</p>
+  <ul class="research-list">
+    <li><span class="research-num">01</span><span><strong>Comment la fidélité à l’autorisation devrait-elle être mesurée?</strong> Le construit proposé ici nécessite un instrument de mesure validé. Quels types de requêtes, conditions adversariales et contextes institutionnels sont nécessaires pour produire un score de fidélité à l’autorisation fiable?</span></li>
+    <li><span class="research-num">02</span><span><strong>La notation de l’alignement architectural peut-elle être normalisée?</strong> Les scores illustratifs de ce document sont des jugements d’experts. Est-il possible de développer un instrument de notation reproductible et méthodologiquement rigoureux qui pourrait être appliqué de façon cohérente par des évaluateurs indépendants à travers les systèmes d’IA et les cadres réglementaires?</span></li>
+    <li><span class="research-num">03</span><span><strong>Comment les systèmes axés sur l’autorisation se comparent-ils aux RAG d’entreprise avancés sous des référentiels communs?</strong> Une comparaison rigoureuse face à des déploiements RAG d’entreprise sophistiqués avec supplémentation complète de gouvernance renforcerait ou remettrait en question substantiellement l’hypothèse architecturale.</span></li>
+    <li><span class="research-num">04</span><span><strong>Quelles méthodologies de test indépendantes sont appropriées pour l’évaluation de l’IA axée sur la gouvernance?</strong> Les référentiels conventionnels de l’IA ne sont pas conçus pour évaluer la fidélité à l’autorisation ou la préservation de la gouvernance. Quels protocoles d’évaluation et régimes de tests adversariaux sont appropriés pour évaluer les métriques de l’ensemble B dans des déploiements institutionnels en production?</span></li>
+    <li><span class="research-num">05</span><span><strong>Les architectures à portail d’exécution peuvent-elles mesurablemente réduire le risque réglementaire en pratique?</strong> L’hypothèse architecturale prédit que les déploiements axés sur l’autorisation produiront moins de violations de gouvernance, des coûts de supplémentation de conformité plus faibles et des pistes d’audit plus complètes que les déploiements de génération en premier dans des contextes institutionnels comparables.</span></li>
+    <li><span class="research-num">06</span><span><strong>Comment les cadres d’approvisionnement devraient-ils évaluer l’IA axée sur l’autorisation?</strong> Quelles modifications aux critères d’évaluation sont nécessaires pour évaluer adéquatement les architectures axées sur l’autorisation et pour empêcher les fournisseurs de génération en premier de revendiquer des propriétés de gouvernance équivalentes par des contrôles supplémentaires?</span></li>
+    <li><span class="research-num">07</span><span><strong>Comment le cadre d’évaluation élargi devrait-il évoluer à mesure que les architectures d’IA se développent?</strong> À mesure que des architectures hybrides émergent, comment le cadre d’évaluation devrait-il s’adapter? Y a-t-il des propriétés axées sur l’autorisation qui peuvent être intégrées dans les déploiements RAG d’entreprise existants, et si oui, à quel coût de gouvernance?</span></li>
+  </ul>
+  <p>Ces questions définissent un programme de recherche plutôt qu’une conclusion. La proposition que l’IA axée sur l’autorisation représente une catégorie architecturale distincte méritant sa propre méthodologie d’évaluation est offerte ici comme point de départ pour une conversation plus large à l’échelle du domaine.</p>
+</div>
+
+<div class="doc-footer">
+  <p>Ce document est un article de position architecturale avançant la proposition que les architectures d’IA axées sur l’autorisation sont structurellement mieux positionnées pour satisfaire les exigences de gouvernance des environnements institutionnels réglementés que les architectures conventionnelles de génération en premier, et que cette catégorie de systèmes nécessite une évaluation utilisant une méthodologie élargie consciente de la gouvernance. Il ne constitue pas un avis juridique, une évaluation de conformité formelle ou une certification réglementaire. Les scores d’alignement sont des évaluations architecturales illustratives, non des mesures réglementaires officielles. Les établissements doivent consulter des juristes qualifiés pour les déterminations formelles de conformité. Toutes les références réglementaires sont exactes en date de juin 2026. Revue inter-modèles effectuée avec GPT-4, Gemini et Copilot.</p>
+  <p style="margin-top:0.4rem;">COMPAiSS est une marque déposée. Brevet : CIPO 3 299 174 / USPTO 19/455 963. &copy; Counterfactual Theory Inc.</p>
+</div>
+
+</div>
+</body>
+</html>
