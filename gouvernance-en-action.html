@@ -646,103 +646,122 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
         <div class="full-response-toggle">
           <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse gouvernée complète</button>
           <div class="full-response-body">
-            <p>Voici une explication complète et structurée de la formule actuelle du taux de prestations d'AE, de la façon dont les montants hebdomadaires sont calculés, de la rémunération assurable maximale pour 2026, de la façon dont le chômage régional affecte la durée (pas le taux), des règles spéciales (Supplément familial, prestations spéciales), des exemples de calcul étape par étape et des considérations de planification. Toutes les informations sont basées exclusivement sur les sources officielles du gouvernement du Canada.</p>
-            <h4>1️⃣ Le taux de base des prestations d'AE (établi par la loi)</h4>
-            <p>En vertu de la Loi sur l'assurance-emploi, les prestations régulières d'AE sont calculées à 55 % de votre rémunération hebdomadaire assurable moyenne, jusqu'à un montant maximum.<br>
-            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">Government of Canada — EI maternity and parental benefits: Benefit amount</a>)<br>
-            Ce taux de 55 % est fixé dans la législation et ne varie pas selon la région.</p>
-            <h4>2️⃣ Rémunération assurable maximale — 2026</h4>
-            <p>Pour 2026, le gouvernement du Canada a établi :<br>
-            ✅ Rémunération assurable maximale : 63 200 $<br>
-            (Source : <a href="https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html">Government of Canada — 2026 Maximum Insurable Earnings</a>)<br>
-            L'AE n'assure que les gains jusqu'à 63 200 $ par année. Même si vous gagnez plus, les calculs d'AE s'arrêtent à ce plafond.</p>
-            <p>📌 Prestation hebdomadaire maximale :<br>
-            63 200 $ ÷ 52 semaines = 1 215,38 $/semaine<br>
-            55 % de 1 215,38 $ = 668,46 $/semaine<br>
-            ✅ Prestation hebdomadaire maximale d'AE en 2026 : environ 668 $</p>
-            <h4>3️⃣ Comment l'AE calcule votre paiement hebdomadaire</h4>
-            <p>L'AE utilise vos meilleures semaines de gains. Le gouvernement du Canada explique : <em>« Nous calculons le montant de vos prestations en utilisant vos meilleures semaines (les mieux rémunérées) de gains pendant votre période de référence. »</em><br>
-            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
-            <p>Étape 1 — Identifier votre période de référence : généralement les 52 semaines avant le début de votre demande.<br>
-            Étape 2 — Déterminer le nombre de « meilleures semaines » selon le taux de chômage régional (chômage plus élevé → moins de semaines requises).<br>
-            Étape 3 — Calculer la moyenne de ces meilleures semaines : additionner les gains assurables des meilleures semaines requises, diviser par le nombre de semaines utilisées.<br>
-            Étape 4 — Appliquer 55 % : multiplier les gains hebdomadaires moyens × 55 %.<br>
-            Étape 5 — Appliquer le plafond maximum : si le résultat dépasse ~668 $/semaine, votre paiement est plafonné.</p>
-            <h4>4️⃣ Exemples de calcul</h4>
-            <p>Exemple 1 — Travailleur gagnant 1 000 $/semaine :<br>
-            55 % de 1 000 $ = 550 $/semaine ✅ AE hebdomadaire = 550 $</p>
-            <p>Exemple 2 — Travailleur gagnant 1 500 $/semaine :<br>
-            Rémunération hebdomadaire assurable maximale = ~1 215 $<br>
-            55 % de cela = ~668 $ ✅ AE hebdomadaire = 668 $</p>
-            <h4>5️⃣ Comment le chômage régional affecte l'AE</h4>
-            <p>Le chômage régional ne change PAS le taux de 55 %. Il affecte :</p>
-            <ul>
-              <li>✅ A. Nombre d'heures requises pour être admissible — chômage plus élevé → moins d'heures requises</li>
-              <li>✅ B. Nombre de meilleures semaines utilisées — chômage plus élevé → moins de semaines en moyenne → peut augmenter la prestation</li>
-              <li>✅ C. Durée des prestations — chômage plus élevé → plus de semaines payables</li>
-            </ul>
-            <p>📌 Beaucoup de gens croient que le taux de chômage change le pourcentage versé. Ce n'est pas le cas. Le taux est toujours de 55 %, sauf dans les cas spéciaux ci-dessous.</p>
-            <h4>6️⃣ Supplément familial (familles à faible revenu)</h4>
-            <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial, vous pouvez recevoir un Supplément familial qui peut augmenter votre taux de prestations jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne.<br>
-            (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)<br>
-            Cela s'applique automatiquement si les informations de l'ARC confirment l'admissibilité.</p>
-            <h4>7️⃣ Prestations d'AE spéciales (différentes options de taux)</h4>
-            <p>« Le taux de prestations standard est de 55 % de votre rémunération hebdomadaire assurable moyenne. » (Source : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
-            <table>
-              <thead><tr><th>Type</th><th>Taux</th><th>Durée</th></tr></thead>
-              <tbody>
-                <tr><td>Standard</td><td>55 %</td><td>Jusqu'à 40 semaines (un parent max 35)</td></tr>
-                <tr><td>Prolongé</td><td>33 %</td><td>Jusqu'à 69 semaines (un parent max 61)</td></tr>
-              </tbody>
-            </table>
-            <p>Si vous choisissez le taux prolongé (33 %), le taux inférieur s'applique pour toute la demande et ne peut pas être modifié ultérieurement.</p>
-            <h4>8️⃣ Où faire une demande ou gérer votre dossier</h4>
-            <ul>
-              <li>✅ Faire une demande : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/apply.html">Apply for EI maternity and parental benefits</a></li>
-              <li>✅ Après avoir fait une demande / gérer votre dossier : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html">After applying</a></li>
-              <li>✅ Demandes d'AE pour proches aidants : <a href="https://www.canada.ca/en/services/benefits/ei/caregiving/after-applying.html">After applying – Caregiving</a></li>
-              <li>Aperçu général du programme d'AE : <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html">EI Maternity and Parental Benefits</a></li>
-            </ul>
-            <h4>🔎 Tableau récapitulatif — Taux d'AE 2026</h4>
-            <table>
-              <thead><tr><th>Élément</th><th>Valeur 2026</th></tr></thead>
-              <tbody>
-                <tr><td>Taux de base d'AE</td><td>55 %</td></tr>
-                <tr><td>Taux parental prolongé</td><td>33 %</td></tr>
-                <tr><td>Rémunération assurable maximale</td><td>63 200 $</td></tr>
-                <tr><td>Prestation hebdomadaire maximale</td><td>~668 $</td></tr>
-                <tr><td>Supplément familial à faible revenu</td><td>Jusqu'à 80 %</td></tr>
-              </tbody>
-            </table>
-            <p>📞 Contact Service Canada : 1-800-206-7218 | ATS : 1-800-529-3742 | Du lundi au vendredi, de 8 h 30 à 16 h 30 (heure locale)</p>
-          </div>
-        </div>
-      </div>
-      <div class="ungoverned-panel">
-        <div class="panel-label"><span class="dot"></span> IA non gouvernée — Même modèle</div>
-        <div class="full-response-toggle">
-          <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> Voir la réponse non gouvernée complète</button>
-          <div class="full-response-body">
-            <p>Voici comment fonctionnent les prestations régulières d'assurance-emploi (AE) au Canada (sur la base des taux les plus récents dont je dispose — taux de 2024). Parce que les chiffres d'AE sont mis à jour chaque année, vous devriez confirmer les chiffres actuels sur le site Web de Service Canada pour 2026.</p>
-            <h4>1. Taux de base des prestations d'AE (chiffres 2024)</h4>
-            <p>Taux de prestations : 55 % de votre rémunération hebdomadaire assurable moyenne. Rémunération assurable maximale (2024) : 63 200 $ par an. Prestation hebdomadaire maximale (2024) : 668 $ par semaine. Si la rémunération assurable maximale augmente en 2025-2026, la prestation hebdomadaire maximale augmentera proportionnellement.</p>
-            <h4>2. Comment votre prestation hebdomadaire est calculée</h4>
-            <p>Service Canada utilise vos meilleures semaines de gains pendant votre période de référence (généralement les 52 dernières semaines). Le nombre de meilleures semaines utilisées dépend des taux de chômage régionaux.</p>
-            <table>
-              <thead><tr><th>Taux de chômage régional</th><th>Nombre de meilleures semaines utilisées</th></tr></thead>
-              <tbody>
-                <tr><td>6 % ou moins</td><td>22 semaines</td></tr>
-                <tr><td>6,1 % - 7 %</td><td>21 semaines</td></tr>
-                <tr><td>7,1 % - 8 %</td><td>20 semaines</td></tr>
-                <tr><td>8,1 % - 9 %</td><td>19 semaines</td></tr>
-                <tr><td>Plus de 13 %</td><td>14 semaines</td></tr>
-              </tbody>
-            </table>
-            <p>Chômage plus élevé = moins de semaines utilisées = souvent une moyenne plus élevée. Exemple : rémunération hebdomadaire moyenne 1 000 $ — 55 % de 1 000 $ = 550 $/semaine.</p>
-            <h4>3. Comment le chômage régional affecte l'AE</h4>
-            <p>Le chômage régional affecte (A) le nombre d'heures dont vous avez besoin pour être admissible (chômage plus élevé = moins d'heures requises, allant de 420 à 700 heures) ; (B) le nombre de semaines de prestations que vous pouvez recevoir (entre 14 et 45 semaines).</p>
-            <h4>4. Supplément familial</h4>
-            <p>Si vous avez des enfants, recevez l'Allocation canadienne pour enfants et avez un faible revenu familial net (moins d'environ 25 921 $ — sous réserve de mises à jour), votre taux de prestations peut augmenter de 55 % jusqu'à 80 % de votre rémunération hebdomadaire assurable moyenne (toujours soumis au plafond maximum).</p>
+<p>Au cours de l'exercice 2026&#8209;2027, les prestations régulières d'assurance&#8209;emploi sont calculées selon un taux de base de 55&nbsp;% de votre rémunération hebdomadaire moyenne assurable, jusqu'à un maximum établi par la loi.</p>
+
+<p>Voici les taux actuels et la méthode officielle de calcul, selon Service Canada.</p>
+
+<h3>Taux actuel des prestations régulières</h3>
+
+<p>Selon la page officielle <em>Montant que vous pourriez recevoir</em> et les données 2026 de l'AE&nbsp;:</p>
+
+<p>✅ Taux de base&nbsp;: 55&nbsp;% de la rémunération hebdomadaire moyenne assurable<br>
+✅ Maximum de la rémunération annuelle assurable&nbsp;: 68&nbsp;900&nbsp;$ (depuis le 1er janvier 2026)<br>
+✅ Montant maximal hebdomadaire&nbsp;: 729&nbsp;$ par semaine</p>
+
+<p>📌 Ces montants proviennent de&nbsp;:<br>
+la page officielle&nbsp;:<br>
+<a href="https://www.canada.ca/fr/services/prestations/ae/assurance-emploi-reguliere/montant-prestation.html">👉 Montant que vous pourriez recevoir – Assurance&#8209;emploi régulière</a><br>
+et de l'<a href="https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html">avis officiel 2026 sur les gains assurables maximaux</a>.</p>
+
+<h3>Comment votre montant hebdomadaire est calculé</h3>
+
+<p>Service Canada utilise une méthode en 3 étapes.</p>
+
+<h4>Étape 1 – Déterminer vos « meilleures semaines »</h4>
+
+<p>On additionne vos revenus assurables (salaires, pourboires, primes, commissions) pendant vos meilleures semaines.</p>
+
+<p>📌 Le nombre de semaines utilisées dépend du taux de chômage dans votre région.</p>
+
+<p><strong>Nombre de meilleures semaines selon le taux régional</strong></p>
+
+<table>
+  <thead>
+    <tr><th>Taux de chômage régional</th><th>Nombre de meilleures semaines</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>6&nbsp;% ou moins</td><td>22 semaines</td></tr>
+    <tr><td>6,1&nbsp;% à 7&nbsp;%</td><td>21 semaines</td></tr>
+    <tr><td>7,1&nbsp;% à 8&nbsp;%</td><td>20 semaines</td></tr>
+    <tr><td>8,1&nbsp;% à 9&nbsp;%</td><td>19 semaines</td></tr>
+    <tr><td>9,1&nbsp;% à 10&nbsp;%</td><td>18 semaines</td></tr>
+    <tr><td>10,1&nbsp;% à 11&nbsp;%</td><td>17 semaines</td></tr>
+    <tr><td>11,1&nbsp;% à 12&nbsp;%</td><td>16 semaines</td></tr>
+    <tr><td>12,1&nbsp;% à 13&nbsp;%</td><td>15 semaines</td></tr>
+    <tr><td>13,1&nbsp;% et plus</td><td>14 semaines</td></tr>
+  </tbody>
+</table>
+
+<p>(Source&nbsp;: <a href="https://www.canada.ca/fr/services/prestations/ae/assurance-emploi-reguliere/montant-prestation.html">👉 Montant que vous pourriez recevoir – AE régulière</a>)</p>
+
+<h4>Étape 2 – Calculer votre moyenne hebdomadaire</h4>
+
+<p>On divise le total de vos meilleures semaines par le nombre requis (14 à 22 semaines selon votre région).</p>
+
+<h4>Étape 3 – Appliquer le taux de 55&nbsp;%</h4>
+
+<p>On multiplie cette moyenne par 55&nbsp;%.</p>
+
+<p>📌 Le résultat correspond à votre prestation hebdomadaire, jusqu'à un maximum de 729&nbsp;$ par semaine en 2026.</p>
+
+<p>Une fois fixé, votre taux hebdomadaire ne change pas pendant toute votre période de prestations.</p>
+
+<h3>Combien de semaines pouvez&#8209;vous recevoir&nbsp;?</h3>
+
+<p>Vous pouvez recevoir des prestations régulières pour une durée de&nbsp;:</p>
+
+<p>✅ 14 à 45 semaines</p>
+
+<p>La durée dépend de&nbsp;:</p>
+<ul>
+  <li>votre taux de chômage régional, et</li>
+  <li>votre nombre d'heures assurables accumulées au cours des 52 dernières semaines (ou depuis votre dernière demande, selon la période la plus courte).</li>
+</ul>
+
+<p>La table complète officielle des semaines payables se trouve ici&nbsp;:<br>
+<a href="https://www.canada.ca/fr/services/prestations/ae/assurance-emploi-reguliere/montant-prestation.html">👉 Montant que vous pourriez recevoir – tableau des semaines</a></p>
+
+<h3>Supplément pour familles à faible revenu</h3>
+
+<p>Si votre revenu familial net est de 25&nbsp;921&nbsp;$ ou moins, que vous avez des enfants et que vous recevez l'Allocation canadienne pour enfants, vous pourriez recevoir un supplément au revenu familial.</p>
+
+<p>Ce supplément peut porter votre taux jusqu'à 80&nbsp;% de votre rémunération assurable moyenne.</p>
+
+<p>(Source&nbsp;: même page officielle ci&#8209;dessus.)</p>
+
+<h3>Exemple simplifié</h3>
+
+<p>⚠️ Ce qui suit est une explication basée sur la formule officielle — votre montant réel dépendra des données de votre demande.</p>
+
+<p>Si&nbsp;:</p>
+<ul>
+  <li>votre moyenne des meilleures semaines = 1&nbsp;000&nbsp;$</li>
+  <li>taux applicable = 55&nbsp;%</li>
+</ul>
+
+<p>Votre prestation serait&nbsp;:</p>
+
+<p>1&nbsp;000&nbsp;$ × 55&nbsp;% = 550&nbsp;$ par semaine</p>
+
+<p>(Sous réserve du plafond de 729&nbsp;$.)</p>
+
+<h3>Outils utiles</h3>
+
+<ul>
+  <li>📊 Estimateur officiel de prestations AE&nbsp;: accessible à partir de la page&nbsp;: <a href="https://www.canada.ca/fr/services/prestations/ae/assurance-emploi-reguliere/montant-prestation.html">👉 Montant que vous pourriez recevoir – AE régulière</a></li>
+  <li>👤 Vous pouvez vérifier vos heures assurables et l'état de votre demande via <a href="https://www.canada.ca/fr/emploi-developpement-social/services/mon-dossier.html">Mon dossier Service Canada</a>.</li>
+</ul>
+
+<h3>Prochaine étape</h3>
+
+<p>Si vous souhaitez une estimation personnalisée, indiquez&nbsp;:</p>
+<ul>
+  <li>✅ votre région (ville ou code postal)</li>
+  <li>✅ votre nombre total d'heures assurables</li>
+  <li>✅ votre revenu approximatif pendant vos meilleures semaines</li>
+</ul>
+
+<p>Je pourrai alors vous montrer comment la formule officielle s'appliquerait à votre situation.</p>
           </div>
         </div>
       </div>
