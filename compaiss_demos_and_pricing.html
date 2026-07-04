@@ -640,75 +640,173 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
         <div class="full-response-toggle">
           <button class="toggle-btn" onclick="toggleResponse(this)"><span class="arrow">&#9660;</span> View full governed response</button>
           <div class="full-response-body">
-            <p>Below is a complete, structured explanation of the current EI benefit rate formula, how weekly amounts are calculated, the 2026 maximum insurable earnings, how regional unemployment affects duration (not rate), special rules (Family Supplement, special benefits), step-by-step calculation examples, and planning considerations. All information is based exclusively on official Government of Canada sources.</p>
-            <h4>1️⃣ The Core EI Benefit Rate (Set by Law)</h4>
-            <p>Under the Employment Insurance Act, regular EI benefits are calculated at 55% of your average insurable weekly earnings, up to a maximum amount.<br>
-            (Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">Government of Canada — EI maternity and parental benefits: Benefit amount</a>)<br>
-            This 55% rate is fixed in legislation and does not change by region.</p>
-            <h4>2️⃣ Maximum Insurable Earnings — 2026</h4>
-            <p>For 2026, the Government of Canada has set:<br>
-            ✅ Maximum Insurable Earnings: $63,200<br>
-            (Source: <a href="https://www.canada.ca/en/employment-social-development/programs/ei/ei-list/ei-employers/premium-reduction-program/2026-maximum-insurable-earnings.html">Government of Canada — 2026 Maximum Insurable Earnings</a>)<br>
-            EI only insures earnings up to $63,200 per year. Even if you earn more, EI calculations stop at that cap.</p>
-            <p>📌 Maximum Weekly Benefit:<br>
-            $63,200 ÷ 52 weeks = $1,215.38/week<br>
-            55% of $1,215.38 = $668.46/week<br>
-            ✅ Maximum weekly EI benefit in 2026: approximately $668</p>
-            <h4>3️⃣ How EI Calculates Your Weekly Payment</h4>
-            <p>EI uses your best weeks of earnings. The Government of Canada explains: <em>"We calculate your benefit amount using your best (highest paid) weeks of earnings during your qualifying period."</em><br>
-            (Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
-            <p>Step 1 — Identify your qualifying period: usually the 52 weeks before your claim starts.<br>
-            Step 2 — Determine number of "best weeks" based on your region's unemployment rate (higher unemployment → fewer weeks required).<br>
-            Step 3 — Average those best weeks: add up insurable earnings from required best weeks, divide by number of weeks used.<br>
-            Step 4 — Apply 55%: multiply average weekly earnings × 55%.<br>
-            Step 5 — Apply maximum cap: if result exceeds ~$668/week, your payment is capped.</p>
-            <h4>4️⃣ Example Calculations</h4>
-            <p>Example 1 — Worker earning $1,000/week:<br>
-            55% of $1,000 = $550/week ✅ Weekly EI = $550</p>
-            <p>Example 2 — Worker earning $1,500/week:<br>
-            Maximum insurable weekly earnings = ~$1,215<br>
-            55% of that = ~$668 ✅ Weekly EI = $668</p>
-            <h4>5️⃣ How Regional Unemployment Affects EI</h4>
-            <p>Regional unemployment does NOT change the 55% rate. It affects:</p>
-            <ul>
-              <li>✅ A. Number of hours required to qualify — higher unemployment → fewer hours required</li>
-              <li>✅ B. Number of best weeks used — higher unemployment → fewer weeks averaged → may increase benefit</li>
-              <li>✅ C. Duration of benefits — higher unemployment → more weeks payable</li>
-            </ul>
-            <p>📌 Many people believe unemployment rate changes the percentage paid. It does not. The rate is always 55%, except in special cases below.</p>
-            <h4>6️⃣ Family Supplement (Low-Income Families)</h4>
-            <p>If you have children, receive the Canada Child Benefit, and have low family income, you may receive a Family Supplement which can increase your benefit rate to up to 80% of your average insurable earnings.<br>
-            (Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)<br>
-            This applies automatically if CRA information confirms eligibility.</p>
-            <h4>7️⃣ Special EI Benefits (Different Rate Options)</h4>
-            <p>"The standard benefit rate is 55% of your average insurable weekly earnings." (Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits: Benefit amount</a>)</p>
-            <table>
-              <thead><tr><th>Type</th><th>Rate</th><th>Duration</th></tr></thead>
-              <tbody>
-                <tr><td>Standard</td><td>55%</td><td>Up to 40 weeks (one parent max 35)</td></tr>
-                <tr><td>Extended</td><td>33%</td><td>Up to 69 weeks (one parent max 61)</td></tr>
-              </tbody>
-            </table>
-            <p>If you choose extended (33%), the lower rate applies for the entire claim and cannot be changed later.</p>
-            <h4>8️⃣ Where to Apply or Manage Your Claim</h4>
-            <ul>
-              <li>✅ Apply: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/apply.html">Apply for EI maternity and parental benefits</a></li>
-              <li>✅ After you apply / manage claim: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/after-applying.html">After applying</a></li>
-              <li>✅ Caregiving EI claims: <a href="https://www.canada.ca/en/services/benefits/ei/caregiving/after-applying.html">After applying – Caregiving</a></li>
-              <li>General EI program overview: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental.html">EI Maternity and Parental Benefits</a></li>
-            </ul>
-            <h4>🔎 Summary Table — 2026 EI Rates</h4>
-            <table>
-              <thead><tr><th>Item</th><th>2026 Value</th></tr></thead>
-              <tbody>
-                <tr><td>Basic EI rate</td><td>55%</td></tr>
-                <tr><td>Extended parental rate</td><td>33%</td></tr>
-                <tr><td>Maximum insurable earnings</td><td>$63,200</td></tr>
-                <tr><td>Maximum weekly benefit</td><td>~$668</td></tr>
-                <tr><td>Low-income family supplement</td><td>Up to 80%</td></tr>
-              </tbody>
-            </table>
-            <p>📞 Service Canada Contact: 1‑800‑206‑7218 | TTY: 1‑800‑529‑3742 | Monday to Friday, 8:30 a.m. to 4:30 p.m. (local time)</p>
+<p>Employment Insurance benefit rates in 2026 are based on a percentage of your insurable earnings, up to a maximum amount. The exact weekly benefit is generally 55% of your average insurable weekly earnings. The unemployment rate in your region does <strong>not</strong> change the 55% rate itself; instead, it affects how your average earnings are calculated through the variable best-weeks rule and how long benefits may be payable.</p>
+
+<p>Below is a clear breakdown using the current 2026 figures.</p>
+
+<h4>✅ Current EI Weekly Benefit Rates</h4>
+
+<p>According to the official <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html">EI Regular Benefits – How much you could receive</a> page:</p>
+
+<ul>
+  <li>✅ Basic benefit rate: <strong>55%</strong> of your average insurable weekly earnings</li>
+  <li>✅ Maximum yearly insurable earnings: <strong>$68,900</strong></li>
+  <li>✅ Maximum weekly EI benefit: <strong>$729</strong></li>
+</ul>
+
+<p>This means that no matter how high your earnings were, you cannot receive more than <strong>$729 per week</strong> for standard-rate EI benefits in 2026.</p>
+
+<h4>🧮 How EI Weekly Benefits Are Calculated</h4>
+
+<p>The weekly amount is calculated using your <strong>"best weeks"</strong> of earnings during your qualifying period.</p>
+
+<h4>Step 1 — Determine Your Best Weeks</h4>
+
+<p>The number of best weeks used depends on the unemployment rate in your region at the time you apply.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Regional Unemployment Rate</th>
+      <th>Best Weeks Used</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>6% or less</td>
+      <td>22 weeks</td>
+    </tr>
+    <tr>
+      <td>8.1% to 9%</td>
+      <td>19 weeks</td>
+    </tr>
+    <tr>
+      <td>11.1% to 12%</td>
+      <td>16 weeks</td>
+    </tr>
+    <tr>
+      <td>13.1% or more</td>
+      <td>14 weeks</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html">EI Regular Benefits – How much you could receive</a></p>
+
+<p>Your regional unemployment rate determines how many weeks of earnings are averaged.</p>
+
+<h4>Step 2 — Calculate Average Weekly Earnings</h4>
+
+<p>Service Canada will:</p>
+
+<ul>
+  <li>Add your total insurable earnings for the required number of best weeks</li>
+  <li>Divide that total by the number of best weeks</li>
+</ul>
+
+<p>This gives your average insurable weekly earnings.</p>
+
+<p>Insurable earnings generally include:</p>
+
+<ul>
+  <li>Wages</li>
+  <li>Tips</li>
+  <li>Bonuses</li>
+  <li>Commissions</li>
+</ul>
+
+<p>(Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html">EI Regular Benefits – How much you could receive</a>)</p>
+
+<h4>Step 3 — Apply the 55% Benefit Rate</h4>
+
+<p>Service Canada multiplies your average weekly earnings by <strong>55%</strong>.</p>
+
+<p><strong>Example:</strong></p>
+
+<p>If your best 20 weeks total <strong>$20,000</strong>:</p>
+
+<p>
+$20,000 ÷ 20 weeks = $1,000 average weekly earnings<br>
+$1,000 × 55% = <strong>$550 per week</strong>
+</p>
+
+<p>If your result exceeds <strong>$729</strong>, your weekly benefit is capped at <strong>$729</strong>.</p>
+
+<h4>📊 Maximum Weekly Benefit</h4>
+
+<p>As of January&nbsp;1,&nbsp;2026:</p>
+
+<ul>
+  <li>✅ Maximum yearly insurable earnings: <strong>$68,900</strong></li>
+  <li>✅ Maximum weekly EI benefit: <strong>$729</strong></li>
+</ul>
+
+<p>Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit/benefit-amount.html">EI Regular Benefits – How much you could receive</a></p>
+
+<h4>⏳ How Long Can You Receive EI?</h4>
+
+<p>For regular benefits, you may receive <strong>14 to 45 weeks</strong> of EI.</p>
+
+<p>The number of weeks depends on:</p>
+
+<ul>
+  <li>✅ The unemployment rate in your region</li>
+  <li>✅ The number of insurable hours accumulated during your qualifying period</li>
+</ul>
+
+<p>Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit.html">EI Regular Benefits</a></p>
+
+<h4>👶 Special EI Benefits (Brief Overview)</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Benefit Type</th>
+      <th>Rate</th>
+      <th>Maximum Weekly Amount (2026)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Standard maternity, parental, sickness, compassionate care</td>
+      <td>55%</td>
+      <td>$729</td>
+    </tr>
+    <tr>
+      <td>Extended parental benefits</td>
+      <td>33%</td>
+      <td>$437</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Source: <a href="https://www.canada.ca/en/services/benefits/ei/ei-maternity-parental/benefit-amount.html">EI maternity and parental benefits – Benefit amount</a></p>
+
+<h4>🧾 Action Summary</h4>
+
+<p>To estimate your EI benefit:</p>
+
+<ul>
+  <li>✅ Identify your EI region based on where you live</li>
+  <li>✅ Check the regional unemployment rate</li>
+  <li>✅ Determine the required number of best weeks (14–22 depending on your region)</li>
+  <li>✅ Add your earnings from those weeks</li>
+  <li>✅ Divide by the required number of weeks</li>
+  <li>✅ Multiply by <strong>55%</strong> (or <strong>33%</strong> for extended parental benefits)</li>
+  <li>✅ Compare the result with the 2026 maximum weekly benefit of <strong>$729</strong></li>
+</ul>
+
+<p>You can also estimate your benefits using the official <a href="https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit.html">Employment Insurance Regular Benefits</a> information on Canada.ca before applying.</p>
+
+<p>If you'd like, tell me:</p>
+
+<ul>
+  <li>Your region</li>
+  <li>Your total earnings during your best weeks</li>
+  <li>The number of insurable hours you worked</li>
+</ul>
+
+<p>I can walk through a detailed example calculation with you.</p>
           </div>
         </div>
       </div>
