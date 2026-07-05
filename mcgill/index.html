@@ -637,19 +637,27 @@ function limitVerifiedSources() {
   padding-left: 8px !important;     /* Ensures list markers are never clipped */
 }
 
-/* Lists (merged fix + spacing rules) */
-#out ol,
+/* ✅ Answer container — lists (single consolidated block) */
 #out ul {
-  padding-left: 1.4em !important;   /* Enough space for iOS list markers */
-  margin-left: 0 !important;        /* Prevent negative browser margin */
+  list-style-type: disc;
+  padding-left: 1.4em;
+  margin-left: 0;
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out ol {
+  list-style-type: decimal;
+  padding-left: 1.4em;
+  margin-left: 0;
   margin-top: 0.3em;
   margin-bottom: 0.8em;
 }
 
 #out li {
-  padding-left: 2px;                /* Micro-indent for safety */
-  margin-bottom: 0.25em;
-  line-height: 1.4;
+  padding-left: 2px;
+  margin-bottom: 0.35em;
+  line-height: 1.6;
 }
 
 /* Paragraph spacing & readability */
