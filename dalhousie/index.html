@@ -151,7 +151,6 @@ a:visited {
   border-radius: 6px;
 }
   
-/* Output content box */
 #out {
   background-color: #ffffff !important;
   color: #000000 !important;
@@ -160,7 +159,7 @@ a:visited {
   padding: 18px;
   width: 93%;
   max-width: 540px;
-  margin-left: auto;      /* ✅ ALIGN WITH INPUT BOX */
+  margin-left: auto;
   margin-right: auto;
   display: block;
   overflow-y: auto;
@@ -169,6 +168,58 @@ a:visited {
   position: relative;
   transform: none;
   text-align: left;
+}
+
+/* ✅ Answer container — headings */
+#out h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #102f60;
+  margin-top: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+#out h3 {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #222;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+/* ✅ Answer container — lists */
+#out ul {
+  list-style-type: disc;
+  padding-left: 1.4em;
+  margin-left: 0;
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out ol {
+  list-style-type: decimal;
+  padding-left: 1.4em;
+  margin-left: 0;
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out li {
+  padding-left: 2px;
+  margin-bottom: 0.35em;
+  line-height: 1.6;
+}
+
+/* ✅ Answer container — paragraphs */
+#out p {
+  margin-top: 0.5em;
+  margin-bottom: 0.6em;
+  line-height: 1.65;
+}
+
+/* ✅ Answer container — strong */
+#out strong {
+  font-weight: 700;
 }
 
 #out:empty { display: none; }
