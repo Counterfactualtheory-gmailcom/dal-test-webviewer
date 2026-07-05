@@ -387,10 +387,6 @@ cleaned = cleaned
   .replace(/\[+COMPLETED+\]/gi, '')
   .replace(/\[+DONE+\]/gi, '')
   .trim();  
-  // 🚫 Remove accidental list markers (general safety)
-  cleaned = cleaned
-    .replace(/^[-*]\s+/gm, '')
-    .replace(/^•\s+/gm, '');
 
   // 🚫 Strip control tags
   cleaned = cleaned
