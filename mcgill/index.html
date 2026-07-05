@@ -389,14 +389,6 @@ function safeRender(md) {
   if (String(md).trim() === 'ready') return;
   let cleaned = String(md || '');
 
-// Only strip control tags — do NOT strip sources
-cleaned = cleaned
-  .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
-  .replace(/<+END\s*ANSWER[^>]*>+/gi, '')
-  .replace(/\[+COMPLETED+\]/gi, '')
-  .replace(/\[+DONE+\]/gi, '')
-  .trim();  
-
   // 🚫 Strip control tags
   cleaned = cleaned
     .replace(/<+START\s*ANSWER[^>]*>+/gi, '')
