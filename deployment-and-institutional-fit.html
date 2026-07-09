@@ -487,6 +487,112 @@ footer .footer-inner {
   letter-spacing: 0.04em;
 }
 
+.pricing-table,
+.roi-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:2rem 0;
+    font-family:system-ui,-apple-system,sans-serif;
+    font-size:.9rem;
+}
+
+.pricing-table th,
+.roi-table th{
+    background:rgba(240,196,76,.12);
+    color:var(--accent);
+    padding:.9rem;
+    text-align:left;
+    border:1px solid var(--border-soft);
+}
+
+.pricing-table td,
+.roi-table td{
+    padding:.9rem;
+    border:1px solid var(--border-soft);
+    vertical-align:top;
+}
+
+.pricing-table tr:last-child td,
+.roi-table tr:last-child td{
+    border-bottom:1px solid var(--border-soft);
+}
+
+.pricing-table tr.compaiss-row td{
+    background:rgba(240,196,76,.08);
+}
+
+.pricing-table tr.compaiss-row td:first-child{
+    color:var(--accent);
+    font-weight:700;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.2rem;
+    margin:2rem 0;
+}
+
+.card{
+    background:var(--bg-card);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1.4rem;
+}
+
+.card .card-icon{
+    font-size:1.5rem;
+    margin-bottom:.6rem;
+}
+
+.card h3{
+    margin:.2rem 0 .7rem;
+    color:var(--accent);
+    font-size:.92rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.card p{
+    margin:0;
+    max-width:none;
+}
+
+.cost-summary-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1rem;
+    margin:2rem 0;
+}
+
+.cost-item{
+    background:var(--bg-card);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1.2rem;
+    text-align:center;
+}
+
+.cost-item .ci-label{
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-muted);
+}
+
+.cost-item .ci-value{
+    margin-top:.45rem;
+    font-size:1.8rem;
+    color:var(--accent);
+    font-weight:700;
+}
+
+.cost-item .ci-sub{
+    margin-top:.35rem;
+    font-size:.78rem;
+    color:var(--text-muted);
+}
+     
 hr {
   border: none;
   border-top: 1px solid var(--border-soft);
