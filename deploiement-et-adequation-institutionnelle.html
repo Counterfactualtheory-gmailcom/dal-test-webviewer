@@ -1119,6 +1119,55 @@ Les changements prennent effet quelques minutes après leur enregistrement. Chaq
   gap: 12px;
 }
 
+/* ===========================================================
+   HEALTHCARE BENCHMARK CARDS
+   (matches the English page)
+   =========================================================== */
+
+.benchmark-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:1rem;
+}
+
+.benchmark-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1.1rem 1.2rem;
+    font-family:system-ui,-apple-system,sans-serif;
+}
+
+.benchmark-title{
+    font-size:.70rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.benchmark-value{
+    font-size:1.5rem;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:8px;
+    line-height:1.2;
+}
+
+.benchmark-description{
+    font-size:.82rem;
+    line-height:1.6;
+    color:var(--text-muted);
+}
+
+@media (max-width:700px){
+
+    .benchmark-grid{
+        grid-template-columns:1fr;
+    }
+       
 .roi-bm-col {
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border-soft);
