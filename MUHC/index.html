@@ -1,102 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+
 <title>MUHC COMPAiSS Pilot</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:'Source Sans 3',sans-serif;color:#222;background:#fff}
-.header{background:#003E9B;padding:20px 48px;display:flex;justify-content:space-between;align-items:center}
-.header img{height:82px;width:auto;display:block}
-.tag{color:#eef;font-style:italic;text-align:right;font-size:.8rem;line-height:1.5}
-.red{height:5px;background:#EE3124}
-main{max-width:1280px;margin:auto;padding:34px}
-.badge{display:inline-block;padding:10px 18px;border-radius:999px;background:#eef4ff;border:1px solid #d4dff5;color:#003E9B;font-weight:700}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin:36px 0 18px}
-.hero h1{font:600 3.6rem 'EB Garamond',serif;color:#003E9B;line-height:1.15;text-align:center;margin:0}
-.hero em{font-style:italic;font-weight:400}
-.rule{width:60px;height:4px;background:#EE3124;margin:24px auto}
-.leads{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin:20px 0 45px}
-.leads p{font-size:1.15rem;line-height:1.8;text-align:center;margin:0}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.card{border:1px solid #d9e2f1;border-radius:12px;background:#fff;overflow:hidden}
-.cardhead{padding:16px 20px;border-top:4px solid #003E9B;font-weight:700;color:#003E9B;text-align:center}
-.twocol{display:grid;grid-template-columns:1fr 1fr}
-.col{padding:18px;border-right:1px solid #e5e5e5}
-.col:last-child{border-right:none}
-.col p{line-height:1.75;margin:0}
-.notice{margin:42px auto 0;max-width:980px;border:2px solid #EE3124;border-radius:12px;display:grid;grid-template-columns:1fr 1fr}
-.notice>div{padding:22px}
-.notice>div:first-child{border-right:1px solid #ddd}
-.notice h3{margin:0 0 12px;color:#EE3124}
-footer{margin-top:48px;border-top:1px solid #ddd;background:#fafbfd;padding:22px 40px;display:flex;justify-content:space-between;color:#003E9B}
-@media(max-width:900px){.hero,.leads,.cards,.notice,.twocol{grid-template-columns:1fr}.notice>div:first-child,.col{border-right:none}.header{flex-direction:column;gap:18px}.tag{text-align:center}}
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background:#ffffff;
+    overflow:hidden;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+img{
+    max-width:98vw;
+    max-height:98vh;
+    width:auto;
+    height:auto;
+    display:block;
+}
 </style>
+
 </head>
+
 <body>
-<header class="header">
-<img src="/assets/muhc-signature.png" alt="MUHC bilingual signature">
-<div class="tag">The Best Care for Life<br>Les meilleurs soins pour la vie</div>
-</header>
-<div class="red"></div>
 
-<main>
-<div style="text-align:center"><span class="badge">● MUHC COMPAiSS • PILOT COMING SOON</span></div>
+<img
+    src="/assets/muhc-coming-soon.png"
+    alt="MUHC COMPAiSS Pilot Coming Soon">
 
-<section class="hero">
-<div><h1>Answers About MUHC.<br><em>From MUHC.</em></h1></div>
-<div><h1>Des réponses sur le CUSM.<br><em>Par le CUSM.</em></h1></div>
-</section>
-
-<div class="rule"></div>
-
-<section class="leads">
-<p>MUHC COMPAiSS provides answers about hospitals, clinics, patient education, services, policies and visiting information using only MUHC‑authorized information sources.</p>
-<p>COMPAiSS répond aux questions concernant les hôpitaux, les cliniques, les ressources éducatives, les services, les politiques et les heures de visite exclusivement à partir de sources autorisées par le CUSM.</p>
-</section>
-
-<section class="cards">
-<div class="card">
-<div class="cardhead">GOVERNED &nbsp; | &nbsp; GOUVERNÉ</div>
-<div class="twocol">
-<div class="col"><p>Every answer is generated exclusively from MUHC‑authorized information sources.<br><br>If the source is not authorized, the answer does not appear.</p></div>
-<div class="col"><p>Chaque réponse provient exclusivement de sources autorisées par le CUSM.<br><br>Si la source n'est pas autorisée, la réponse n'est pas affichée.</p></div>
-</div></div>
-
-<div class="card">
-<div class="cardhead">MULTILINGUAL &nbsp; | &nbsp; MULTILINGUE</div>
-<div class="twocol">
-<div class="col"><p>Ask your question in English, French or many other languages. The same governance standards apply every time.</p></div>
-<div class="col"><p>Posez votre question en français, en anglais ou dans de nombreuses autres langues. Les mêmes normes de gouvernance s'appliquent.</p></div>
-</div></div>
-
-<div class="card">
-<div class="cardhead">PRIVATE BY DESIGN &nbsp; | &nbsp; CONFIDENTIALITÉ INTÉGRÉE</div>
-<div class="twocol">
-<div class="col"><p>COMPAiSS does not retain conversation history, build user profiles or use interactions to train AI models.</p></div>
-<div class="col"><p>COMPAiSS ne conserve aucun historique des conversations, ne crée aucun profil utilisateur et n'utilise pas les interactions pour entraîner des modèles d'IA.</p></div>
-</div></div>
-</section>
-
-<section class="notice">
-<div>
-<h3>MUHC PILOT</h3>
-<p>This pilot environment is currently being prepared for evaluation by the McGill University Health Centre (MUHC).</p>
-<p>If you received this link during a presentation or meeting, please check back shortly.</p>
-</div>
-<div>
-<h3>PROJET PILOTE DU CUSM</h3>
-<p>Cet environnement pilote est actuellement en préparation pour évaluation par le Centre universitaire de santé McGill (CUSM).</p>
-<p>Si vous avez reçu ce lien lors d'une présentation ou d'une réunion, veuillez revenir prochainement.</p>
-</div>
-</section>
-
-<footer>
-<div>MUHC Pilot • Projet pilote du CUSM</div>
-<div>Powered by <strong>COMPAiSS</strong></div>
-</footer>
-</main>
-</body></html>
+</body>
+</html>
