@@ -790,6 +790,81 @@ hr {
       <p><strong>What this means operationally:</strong> The institution controls exactly what the system knows and cites. During pilot deployments, a single authorized contact manages the list in coordination with COMPAiSS to ensure consistency and prevent errors. As the deployment matures, greenlist management transitions naturally to the institution's own designated staff.</p>
       <p>This is not a background technical process - it is a visible, auditable governance control that procurement officers, IT reviewers, and senior administrators can inspect, verify, and rely on.</p>
     </div>
+
+    <h3 style="color:var(--text-heading);font-size:1.3rem;margin:2.5rem 0 0.8rem;">Why Greenlists Scale Better Than They First Appear</h3>
+
+    <p>The most common objection to greenlist governance is that it will not hold up at scale. That objection gets the scaling problem backwards.</p>
+
+    <p>The question is not how many URLs a system can store. Modern software manages millions of records without difficulty. The real question is whether institutional ownership scales, and it already does, because every large institution has already solved this problem for everything except AI.</p>
+
+    <p>Universities distribute responsibility for admissions content to the Registrar, financial policy to Financial Aid, and academic requirements to each faculty. Hospitals distribute patient education content to Clinical Governance, medication information to Pharmacy, and infection control guidance to Infection Prevention. None of that ownership was created for COMPAiSS. It already exists, department by department, and has existed for years.</p>
+
+    <p>The greenlist does not build a new governance structure. It mirrors the one that already runs the institution. Every institution already knows who owns each policy. COMPAiSS simply asks the AI to respect those existing ownership decisions. As a deployment grows, from one faculty to an entire university, from one hospital to a regional health network, governance scales the same way it always has: by adding the next already-existing content owner to a list, not by re-engineering the system underneath them.</p>
+
+    <p>This points to the underlying trade COMPAiSS makes, and it is worth stating plainly. Conventional retrieval systems are built for ingestion convenience: point a crawler or connector at a document estate and let it index everything reachable. That convenience comes at a cost, nobody can say with confidence which of those documents were actually reviewed and approved for AI use, only that they were technically reachable. COMPAiSS makes the opposite trade. It gives up ingestion convenience in exchange for provenance control: knowing, for every source the AI can cite, exactly who authorized it and when. Greenlists do not create new governance work. They make existing governance work explicit, attributable, and auditable.</p>
+
+    <p>That distinction also changes what a governance failure looks like when it happens. In a conventional retrieval system, a governance failure, an outdated policy, a broken link, a document nobody meant to include, typically surfaces as an incorrect answer delivered to a user, discovered only after the fact. In a COMPAiSS deployment, the same underlying failure surfaces differently: as a missing answer flagged for correction, caught by the validation cycle before it ever reaches a user.</p>
+
+    <table class="pricing-table" style="margin:1.8rem 0;">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Conventional Retrieval</th>
+          <th>COMPAiSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Failure Mode</strong></td>
+          <td>An incorrect answer, delivered to a user</td>
+          <td>A missing answer, flagged for correction before delivery</td>
+        </tr>
+        <tr>
+          <td><strong>Detection</strong></td>
+          <td>After a user acts on it</td>
+          <td>During routine validation, before any user sees it</td>
+        </tr>
+        <tr>
+          <td><strong>Correction</strong></td>
+          <td>An incident, someone notices the answer was wrong</td>
+          <td>A dashboard alert, before the content is ever cited</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>This is the same failure, addressed at two different points. One architecture discovers it downstream, after harm. The other discovers it upstream, before generation.</p>
+
+    <div class="key-line">The greenlist is not merely a configuration file. It is the institution's documented authorization boundary for AI.</div>
+
+    <details style="margin: 2rem 0; font-family: system-ui, -apple-system, sans-serif;">
+    <summary style="cursor: pointer; padding: 1.1rem 1.3rem; background: rgba(240,196,76,0.08); border: 1px solid var(--border-accent); border-radius: var(--radius); font-size: 1.05rem; color: var(--accent); font-weight: 600; list-style: none;">Hard Questions About Greenlist Governance</summary>
+
+    <div style="padding: 1.8rem 0.2rem 0.5rem;">
+
+    <p style="color: var(--text-muted); font-size: 0.92rem; font-style: italic; margin-bottom: 1.6rem;">Direct answers to the objections procurement officers, IT security teams, and governance committees raise most often.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Does this scale past a few thousand sources?</h4>
+    <p>Scale comes from delegation, not from bigger software. A provincial health authority with sources spread across twelve hospitals does not need twelve times the governance effort of one hospital. It needs the same model, replicated across twelve clinical governance offices that already own that content today. Each site manages its own portion of the greenlist independently, using the same dashboard and audit cycle regardless of whether the list holds hundreds of entries or tens of thousands.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Who approves sources, and who audits those approvals?</h4>
+    <p>Every addition, removal, and modification to the greenlist is logged with a timestamp and attributed to the person who made it. That is the entire point: governance decisions become attributable instead of invisible. Today, in most institutions, an AI-relevant content decision is effectively made by whoever configures the crawler or connector, with no department sign-off and no record of that decision at all. A greenlist error is visible in the change history and correctable within minutes. The equivalent error in conventional retrieval typically surfaces only when a user receives a wrong answer, and the investigation that follows has to reconstruct who indexed it and why, after the fact.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">What does source validation actually involve, and what happens if it fails on a given night?</h4>
+    <p>Validation checks whether approved sources remain available and reachable. It does not require rebuilding knowledge stores or reprocessing institutional content, so ongoing operational overhead remains low even as deployments expand. If a validation run is missed or delayed, the greenlist simply continues operating on its last-confirmed state until the next cycle completes. Detection of a newly broken link is delayed, not the system's ability to operate safely within its existing authorized boundary.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Who has authority to modify the greenlist, versus who can only view it?</h4>
+    <p>During pilot deployments, a single authorized institutional contact typically manages the greenlist directly, in coordination with COMPAiSS, while initial scope is established. This is a pilot-stage practice, not an architectural constraint. The underlying platform supports role separation for institutions that require it: staff who can add, remove, or approve sources, and reviewers, procurement officers, legal counsel, auditors, who need visibility into the current list and its complete change history without modification rights. As a deployment matures, greenlist authority transitions to whatever internal approval structure the institution already uses to publish official content.</p>
+
+    <div style="margin: 1.4rem 0; padding: 1.2rem 1.5rem; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0;">
+    <p style="margin: 0; font-size: 1rem; color: var(--text-heading); font-weight: 500; max-width: none;">COMPAiSS does not create a new governance hierarchy. It attaches an audit trail to the one that already exists.</p>
+    </div>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Isn't a curated list just a smaller version of the same trust problem?</h4>
+    <p>A curated list is a smaller authorized evidence boundary, and that reduction is the governance improvement being claimed, not a restatement of the same problem at smaller scale. In conventional retrieval, the boundary is every document a crawler or connector can technically reach, whether or not anyone reviewed it for AI use. In a greenlist deployment, the boundary is exactly the set of sources a named institutional authority explicitly approved. That does not eliminate the underlying requirement that approved content be accurate and current, no architecture eliminates that. What it changes is whether a failure of that requirement is visible and attributable, or invisible until it reaches a user.</p>
+
+    </div>
+    </details>
+
   </div>
 
   <hr>
