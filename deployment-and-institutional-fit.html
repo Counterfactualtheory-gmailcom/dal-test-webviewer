@@ -558,6 +558,23 @@ footer .footer-inner {
     max-width:none;
 }
 
+.benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1rem;
+    margin:1.5rem 0;
+}
+
+.benefit-item{
+    background:var(--bg-card);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1rem 1.2rem;
+    font-family:system-ui,-apple-system,sans-serif;
+    font-size:.88rem;
+    line-height:1.5;
+}
+
 .cost-summary-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
