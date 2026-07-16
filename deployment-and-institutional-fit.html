@@ -2072,18 +2072,19 @@ hcCalc();
 </div>
 <script>
 (function(){
-  var ccPresets = {
+var ccPresets = {
     sc:       { calls:8000000, cost:8.33, aicost:0.02 },
     generic:  { calls:1000000, cost:6.00, aicost:0.02 },
-    muni:     { calls:300000,  cost:5.50, aicost:0.02 }
+    muni:     { calls:300000,  cost:5.50, aicost:0.02 },
+    hospital: { calls:500000,  cost:8.00, aicost:0.02 }
   };
   var ccNames = {
     sc:'Service Canada', generic:'this call centre',
-    muni:'this municipality'
+    muni:'this municipality', hospital:'this hospital'
   };
   var ccTitleNames = {
     sc:'Service Canada', generic:'Generic call centre',
-    muni:'Municipality'
+    muni:'Municipality', hospital:'Hospital'
   };
   var ccCurrent = 'sc';
 
