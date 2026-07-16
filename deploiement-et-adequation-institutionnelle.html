@@ -781,10 +781,85 @@ hr {
       </div>
     </div>
 
-    <div class="highlight-block">
+<div class="highlight-block">
       <p><strong>Ce que cela signifie en pratique :</strong> L'institution contrôle exactement ce que le système sait et cite. Lors des déploiements pilotes, une seule personne-ressource autorisée gère la liste en coordination avec COMPAiSS pour assurer la cohérence et prévenir les erreurs. À mesure que le déploiement évolue, la gestion de la liste verte est naturellement transférée au personnel désigné par l'institution.</p>
       <p>Il ne s'agit pas d'un processus technique en arrière-plan - c'est un contrôle de gouvernance visible et vérifiable que les responsables des achats, les réviseurs informatiques et les administrateurs peuvent inspecter, vérifier et sur lequel ils peuvent s'appuyer.</p>
     </div>
+
+    <h3 style="color:var(--text-heading);font-size:1.3rem;margin:2.5rem 0 0.8rem;">Pourquoi la liste verte est plus évolutive qu'il n'y paraît</h3>
+
+    <p>L'objection la plus fréquente à la gouvernance par liste verte est qu'elle ne tiendrait pas à grande échelle. Cette objection inverse le véritable problème d'évolutivité.</p>
+
+    <p>La question n'est pas combien d'URL un système peut stocker. Les logiciels modernes gèrent des millions d'enregistrements sans difficulté. La vraie question est de savoir si la propriété institutionnelle est évolutive, et elle l'est déjà, parce que chaque grande institution a déjà résolu ce problème pour tout, sauf pour l'IA.</p>
+
+    <p>Les universités répartissent la responsabilité du contenu d'admission au Bureau du registraire, des politiques financières à l'aide financière, et des exigences académiques à chaque faculté. Les hôpitaux répartissent le contenu d'éducation aux patients à la gouvernance clinique, l'information sur les médicaments à la pharmacie, et les directives de prévention des infections au service de prévention des infections. Rien de cette structure de propriété n'a été créé pour COMPAiSS. Elle existe déjà, département par département, depuis des années.</p>
+
+    <p>La liste verte ne construit pas une nouvelle structure de gouvernance. Elle reflète celle qui dirige déjà l'institution. Chaque institution sait déjà qui est responsable de chaque politique. COMPAiSS demande simplement à l'IA de respecter ces décisions de propriété existantes. À mesure qu'un déploiement s'étend, d'une faculté à une université entière, d'un hôpital à un réseau régional de santé, la gouvernance s'étend de la même façon qu'elle l'a toujours fait : en ajoutant le prochain responsable de contenu déjà existant à une liste, et non en réingénierant le système en dessous.</p>
+
+    <p>Cela met en évidence l'échange fondamental que fait COMPAiSS, et il vaut la peine de l'énoncer clairement. Les systèmes de récupération conventionnels sont conçus pour la commodité de l'ingestion : diriger un robot d'indexation ou un connecteur vers un ensemble de documents et le laisser indexer tout ce qui est accessible. Cette commodité a un coût : personne ne peut affirmer avec certitude quels documents ont réellement été révisés et approuvés pour un usage par IA, seulement qu'ils étaient techniquement accessibles. COMPAiSS fait le choix inverse. Il renonce à la commodité de l'ingestion en échange du contrôle de la provenance : savoir, pour chaque source que l'IA peut citer, exactement qui l'a autorisée et quand. La liste verte ne crée pas de nouveau travail de gouvernance. Elle rend explicite, attribuable et vérifiable un travail de gouvernance qui existait déjà.</p>
+
+    <p>Cette distinction change aussi à quoi ressemble un échec de gouvernance lorsqu'il se produit. Dans un système de récupération conventionnel, un échec de gouvernance, une politique périmée, un lien brisé, un document inclus par erreur, se manifeste généralement comme une réponse incorrecte livrée à un utilisateur, découverte seulement après coup. Dans un déploiement COMPAiSS, le même échec sous-jacent se manifeste différemment : comme une réponse manquante signalée pour correction, détectée par le cycle de validation avant même d'atteindre un utilisateur.</p>
+
+    <table class="pricing-table" style="margin:1.8rem 0;">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Récupération conventionnelle</th>
+          <th>COMPAiSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Mode d'échec</strong></td>
+          <td>Une réponse incorrecte, livrée à un utilisateur</td>
+          <td>Une réponse manquante, signalée pour correction avant livraison</td>
+        </tr>
+        <tr>
+          <td><strong>Détection</strong></td>
+          <td>Après qu'un utilisateur ait agi en fonction de celle-ci</td>
+          <td>Pendant la validation de routine, avant qu'un utilisateur ne la voie</td>
+        </tr>
+        <tr>
+          <td><strong>Correction</strong></td>
+          <td>Un incident, quelqu'un remarque que la réponse était incorrecte</td>
+          <td>Une alerte du tableau de bord, avant que le contenu ne soit cité</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Il s'agit du même échec, traité à deux moments différents. Une architecture le découvre en aval, après le préjudice. L'autre le découvre en amont, avant la génération.</p>
+
+    <div class="key-line">La liste verte n'est pas simplement un fichier de configuration. C'est la frontière d'autorisation documentée de l'institution pour l'IA.</div>
+
+    <details style="margin: 2rem 0; font-family: system-ui, -apple-system, sans-serif;">
+    <summary style="cursor: pointer; padding: 1.1rem 1.3rem; background: rgba(240,196,76,0.08); border: 1px solid var(--border-accent); border-radius: var(--radius); font-size: 1.05rem; color: var(--accent); font-weight: 600; list-style: none;">Questions difficiles sur la gouvernance de la liste verte</summary>
+
+    <div style="padding: 1.8rem 0.2rem 0.5rem;">
+
+    <p style="color: var(--text-muted); font-size: 0.92rem; font-style: italic; margin-bottom: 1.6rem;">Réponses directes aux objections que soulèvent le plus souvent les responsables des achats, les équipes de sécurité informatique et les comités de gouvernance.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Cela fonctionne-t-il au-delà de quelques milliers de sources?</h4>
+    <p>L'évolutivité vient de la délégation, pas d'un logiciel plus imposant. Une régie régionale de la santé dont les sources sont réparties dans douze hôpitaux n'a pas besoin de douze fois l'effort de gouvernance d'un seul hôpital. Elle a besoin du même modèle, répliqué à travers douze bureaux de gouvernance clinique qui possèdent déjà ce contenu aujourd'hui. Chaque site gère sa propre portion de la liste verte de façon indépendante, en utilisant le même tableau de bord et le même cycle d'audit, que la liste comporte des centaines d'entrées ou des dizaines de milliers.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Qui approuve les sources, et qui vérifie ces approbations?</h4>
+    <p>Chaque ajout, retrait et modification à la liste verte est consigné avec un horodatage et attribué à la personne qui l'a effectué. C'est tout l'intérêt : les décisions de gouvernance deviennent attribuables plutôt qu'invisibles. Aujourd'hui, dans la plupart des institutions, une décision de contenu pertinente pour l'IA est effectivement prise par la personne qui configure le robot d'indexation ou le connecteur, sans aucune approbation départementale et sans aucun registre de cette décision. Une erreur dans la liste verte est visible dans l'historique des modifications et corrigible en quelques minutes. L'erreur équivalente dans une récupération conventionnelle ne se manifeste généralement que lorsqu'un utilisateur reçoit une réponse erronée, et l'enquête qui s'ensuit doit reconstituer après coup qui a indexé le document et pourquoi.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Que fait exactement la validation des sources, et que se passe-t-il si elle échoue une nuit donnée?</h4>
+    <p>La validation vérifie si les sources approuvées demeurent disponibles et accessibles. Elle ne nécessite pas de reconstruire les entrepôts de connaissances ni de retraiter le contenu institutionnel, de sorte que la charge opérationnelle continue demeure faible même à mesure que les déploiements s'étendent. Si un cycle de validation est manqué ou retardé, la liste verte continue simplement de fonctionner selon son dernier état confirmé jusqu'au prochain cycle. La détection d'un lien nouvellement brisé est retardée, pas la capacité du système à fonctionner en toute sécurité dans sa frontière autorisée existante.</p>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Qui a le pouvoir de modifier la liste verte, par opposition à qui peut seulement la consulter?</h4>
+    <p>Lors des déploiements pilotes, une seule personne-ressource institutionnelle autorisée gère habituellement la liste verte directement, en coordination avec COMPAiSS, pendant que la portée initiale est établie. Il s'agit d'une pratique propre à la phase pilote, et non d'une contrainte architecturale. La plateforme sous-jacente prend en charge la séparation des rôles pour les institutions qui le requièrent : du personnel pouvant ajouter, retirer ou approuver des sources, et des réviseurs, responsables des achats, conseillers juridiques, auditeurs, qui n'ont besoin que de la visibilité sur la liste actuelle et son historique complet de modifications, sans droit de modification. À mesure qu'un déploiement mûrit, l'autorité sur la liste verte est transférée à la structure d'approbation interne que l'institution utilise déjà pour publier du contenu officiel.</p>
+
+    <div style="margin: 1.4rem 0; padding: 1.2rem 1.5rem; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0;">
+    <p style="margin: 0; font-size: 1rem; color: var(--text-heading); font-weight: 500; max-width: none;">COMPAiSS ne crée pas une nouvelle hiérarchie de gouvernance. Il rattache une piste d'audit à celle qui existe déjà.</p>
+    </div>
+
+    <h4 style="color: var(--text-heading); font-size: 1rem; margin: 1.6rem 0 0.5rem;">Une liste sélective n'est-elle pas simplement une version réduite du même problème de confiance?</h4>
+    <p>Une liste sélective est une frontière de preuves autorisées plus étroite, et cette réduction constitue précisément l'amélioration de gouvernance revendiquée, et non une reformulation du même problème à plus petite échelle. Dans une récupération conventionnelle, la frontière englobe tout document qu'un robot d'indexation ou un connecteur peut techniquement atteindre, qu'il ait été révisé ou non pour un usage par IA. Dans un déploiement à liste verte, la frontière correspond exactement à l'ensemble des sources qu'une autorité institutionnelle nommée a explicitement approuvées. Cela n'élimine pas l'exigence sous-jacente que le contenu approuvé soit exact et à jour, aucune architecture n'élimine cette exigence. Ce que cela change, c'est si un manquement à cette exigence est visible et attribuable, ou invisible jusqu'à ce qu'il atteigne un utilisateur.</p>
+
+    </div>
+    </details>
+
   </div>
 
   <hr>
