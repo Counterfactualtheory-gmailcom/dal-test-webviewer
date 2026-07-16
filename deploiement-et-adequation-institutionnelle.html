@@ -535,9 +535,26 @@ footer .footer-inner {
     padding:1.4rem;
 }
 
-.card .card-icon{
-    font-size:1.5rem;
-    margin-bottom:.6rem;
+.card p{
+    margin:0;
+    max-width:none;
+}
+
+.benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:1rem;
+    margin:1.5rem 0;
+}
+
+.benefit-item{
+    background:var(--bg-card);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius);
+    padding:1rem 1.2rem;
+    font-family:system-ui,-apple-system,sans-serif;
+    font-size:.88rem;
+    line-height:1.5;
 }
 
 .card h3{
