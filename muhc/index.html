@@ -423,8 +423,14 @@ function safeRender(md) {
 if (outEl.textContent.includes('Waiting for content')) {
   outEl.innerHTML = '';
 }
+
+const questionBlock = window.lastQuestion
+  ? `<div style="font-weight:700;margin-bottom:8px;">❓ ${window.lastQuestion}</div>`
+  : '';
+
 outEl.innerHTML +=
   (outEl.innerHTML ? '<div class="answer-divider"></div>' : '') +
+  questionBlock +
   final;
 
 /* -----------------------------------------------------------
