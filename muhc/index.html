@@ -378,8 +378,12 @@ followupText.addEventListener('input', () => {
   }
 });
     
-    let lastAnswer = "";
-    let lastSingleAnswer = "";
+let lastAnswer = "";
+let lastSingleAnswer = "";
+
+// DAL-style conversation tracking
+window.lastQuestion = "";
+window.lastUserQuestion = "";
 
     function debug(m) {
       if (!showDebug) return;
