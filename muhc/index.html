@@ -570,10 +570,10 @@ followupBtn.disabled=true;
       const res = await fetch('https://muhcbackendproduction-production.up.railway.app/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({
-        question: q,
-        previousQuestion: window.lastAnswerBackup || ""
-      })
+body: JSON.stringify({
+  question: q,
+  previousQuestion: window.lastUserQuestion || ""
+})
   });
 
     const data = await res.json();
