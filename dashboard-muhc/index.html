@@ -111,7 +111,7 @@
     <p>Greenlist Management Dashboard</p>
     <label>Institution</label>
     <select id="inst">
-      <option value="muhc">MUHC</option>
+      <option value="muhc" selected>MUHC</option>
     </select>
 <label>Password</label>
 <input id="gh-token" type="password" placeholder="Password">
@@ -126,7 +126,7 @@
     <div class="sidebar">
       <div class="sidebar-header">
         <div class="logo">&#10022; COMPAiSS</div>
-        <div class="institution-tag" id="inst-tag">McGill</div>
+        <div class="institution-tag" id="inst-tag">MUHC</div>
       </div>
 
       <div class="sidebar-bottom">
@@ -138,7 +138,7 @@
           You must still click Commit to apply.
         </p>
       </div>
-     
+
       <nav class="nav">
         <a class="active" onclick="showPanel('greenlist', this)">
           &#9776;&nbsp; Greenlist
@@ -235,7 +235,7 @@
 
 <script>
 let TOKEN        = '';
-let INSTITUTION  = 'mcgill';
+let INSTITUTION  = 'muhc';
 let sources      = [];
 let committed    = [];
 let fileSha      = '';
