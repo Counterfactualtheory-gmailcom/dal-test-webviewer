@@ -1046,7 +1046,7 @@ $1,000 × 55% = <strong>$550 per week</strong>
 <!-- GOVERNANCE GAP TABLE -->
 <div class="content-section" id="governance-gaps">
   <h2>Observed Governance Gaps — Ungoverned AI Responses</h2>
-  <p class="section-intro">Each row reflects an observable, reproducible issue across the five demonstrations above. Ordered by depth of failure — from surface issues to the structural condition that makes all of them unavoidable.</p>
+  <p class="section-intro">Each row reflects an observable, reproducible issue across the seven demonstrations above. Ordered by depth of failure — from surface issues to the structural condition that makes all of them unavoidable.</p>
 
   <style>
     .gt-table{width:100%;border-collapse:collapse;font-family:system-ui,-apple-system,sans-serif;font-size:0.82rem;margin:1.5rem 0;table-layout:fixed;}
@@ -1086,68 +1086,93 @@ $1,000 × 55% = <strong>$550 per week</strong>
         <td><span class="gt-evidence">Dal ungoverned uses dal.ca/campus_life/health-and-wellness — not the greenlist-verified path used by the governed response.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Source grounding</span><span class="gt-issue">Claims not anchored to authoritative documents</span></td>
         <td><span class="gt-consequence">Institution bears reputational and legal exposure for guidance it did not authorize and cannot verify. Response may accurately describe a process that has since been amended.</span></td>
-        <td><span class="gt-evidence">UCW answer describes a plausible process with no citation to Policy 5006 or Procedure 5006p.</span></td>
+        <td><span class="gt-evidence">UCW describes a plausible disciplinary process with no citation to Policy 5006 or Procedure 5006p. UCalgary introduces university procedures and consequences beyond the verified calendar provisions. MUHC introduces medication-interruption guidance that is not contained in the authorized hospital sources.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
-<tr class="gt-data">
-  <td><span class="gt-cat">Temporal currency</span><span class="gt-issue">Outdated official guidance presented alongside current methodology</span></td>
-  <td><span class="gt-consequence">The model acknowledges its figures are outdated, advises the user to verify them independently, then continues producing a detailed calculation using obsolete values. Although much of the methodology remains structurally correct, the financial thresholds, benefit amounts, and supporting guidance are no longer current, requiring the user to distinguish valid rules from outdated data.</span></td>
-  <td><span class="gt-evidence">Service Canada ungoverned explicitly labels its response as using "2024 rates" while the governed response retrieves the current 2026 EI limits, benefit amounts, calculation methodology, and official Government of Canada sources.</span></td>
-  <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
-</tr>
+
+      <tr class="gt-data">
+        <td><span class="gt-cat">Institutional procedure</span><span class="gt-issue">Unverified process presented as confirmed university practice</span></td>
+        <td><span class="gt-consequence">A student may rely on system behaviour, approval requirements, forms, fees, or administrative consequences that have not been verified from the institution’s authorized sources.</span></td>
+        <td><span class="gt-evidence">UCalgary ungoverned states that full-time status changes automatically after enough courses are added, describes a formal late Change of Course Registration process requiring instructor and faculty approval, suggests a late registration fee may apply, and adds claims about general fees, student aid, study-permit conditions, and PGWP eligibility. The governed response limits itself to verified course-load thresholds and add/swap rules and clearly identifies what the sources do not establish.</span></td>
+        <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
+      </tr>
+
+      <tr class="gt-data">
+        <td><span class="gt-cat">Clinical safety</span><span class="gt-issue">Apparent medication advice generated without authorized hospital evidence</span></td>
+        <td><span class="gt-consequence">A patient may interpret generalized medical guidance as advice for their own surgery and prescribed medication. Acting on unsupported anticoagulant instructions could create serious bleeding, clotting, or stroke risk. Advising the patient to contact a clinician does not remove the risk created by first supplying an apparent medication timetable or treatment pathway.</span></td>
+        <td><span class="gt-evidence">MUHC authorized material does not specify whether Eliquis should be stopped before knee surgery. The governed response declines to infer an answer and directs the patient to the surgical team or Pre-Op Clinic. The ungoverned response nevertheless states that Eliquis is often stopped, suggests a possible one-to-three-day interruption, and introduces kidney function, bleeding risk, clot history, surgery type, timing adjustments, and possible temporary alternatives. This appears to be clinical advice that could be dangerous if relied upon.</span></td>
+        <td style="text-align:center"><span class="gt-badge gt-critical">Critical</span></td>
+      </tr>
+
+      <tr class="gt-data">
+        <td><span class="gt-cat">Temporal currency</span><span class="gt-issue">Outdated official guidance presented alongside current methodology</span></td>
+        <td><span class="gt-consequence">The model acknowledges its figures are outdated, advises the user to verify them independently, then continues producing a detailed calculation using obsolete values. Although much of the methodology remains structurally correct, the financial thresholds, benefit amounts, and supporting guidance are no longer current, requiring the user to distinguish valid rules from outdated data.</span></td>
+        <td><span class="gt-evidence">Service Canada ungoverned explicitly labels its response as using "2024 rates" while the governed response retrieves the current 2026 EI limits, benefit amounts, calculation methodology, and official Government of Canada sources.</span></td>
+        <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
+      </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Specificity drift</span><span class="gt-issue">Generic patterns substituted for institution-specific facts</span></td>
-        <td><span class="gt-consequence">User may follow timelines or procedures that do not exist in institutional policy. Guidance resembles "typical university process" rather than authoritative institutional instruction.</span></td>
-        <td><span class="gt-evidence">UCW ungoverned states "few days to 1–2 weeks" — a figure not found in Policy 5006p.</span></td>
+        <td><span class="gt-consequence">User may follow timelines, procedures, eligibility consequences, or medication instructions that are not established by institutional policy or authorized evidence. Guidance resembles a plausible general pattern rather than verified institutional instruction.</span></td>
+        <td><span class="gt-evidence">UCW ungoverned states "few days to 1–2 weeks" — a figure not found in Policy 5006p. UCalgary moves from verified course-load thresholds to unverified late-registration procedures, fees, funding, and immigration consequences. MUHC moves from an appropriate instruction to contact the clinical team into a suggested one-to-three-day Eliquis interruption range.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Precision of claims</span><span class="gt-issue">Thresholds stated without citation</span></td>
         <td><span class="gt-consequence">Cannot be validated, audited, or defended if challenged. No audit trail exists between the response and any source document.</span></td>
         <td><span class="gt-evidence">McGill ungoverned states probation is triggered by TGPA below 2.00. Governed response confirms the actual trigger is CGPA between 1.50–1.99.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
-        <td><span class="gt-cat">Scope leakage</span><span class="gt-issue">External resources introduced without authorization</span></td>
-        <td><span class="gt-consequence">Institution loses control of what services and contacts are recommended to its students. Liability extends to resources the institution has not reviewed or approved.</span></td>
-        <td><span class="gt-evidence">Dal ungoverned introduces DSU Advocacy, Good2Talk, and 988 — none authorized by the Dalhousie deployment.</span></td>
+        <td><span class="gt-cat">Scope leakage</span><span class="gt-issue">External resources or guidance introduced without authorization</span></td>
+        <td><span class="gt-consequence">Institution loses control of what services, contacts, procedures, or advice are recommended. Liability and governance exposure extend to content the institution has not reviewed or approved.</span></td>
+        <td><span class="gt-evidence">Dal ungoverned introduces DSU Advocacy, Good2Talk, and 988 — none authorized by the Dalhousie deployment. UCalgary adds funding and immigration consequences beyond the verified institutional evidence. MUHC supplies general clinical guidance not authorized by the hospital deployment.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-medium">Medium</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Disclosure behaviour</span><span class="gt-issue">Uncertainty acknowledged, then overridden</span></td>
         <td><span class="gt-consequence">Model signals limits but proceeds anyway — the disclaimer does not protect the user. Confidence in the response is not warranted by what the model actually knows.</span></td>
-        <td><span class="gt-evidence">UCW ungoverned opens with "I don't have live access" then provides specific timelines as if authoritative.</span></td>
+        <td><span class="gt-evidence">UCW ungoverned opens with "I don't have live access" then provides specific timelines as if authoritative. MUHC says it cannot decide whether the patient should stop Eliquis, but then supplies a possible interruption range and individualized clinical factors.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Auditability</span><span class="gt-issue">No verifiable decision trail</span></td>
         <td><span class="gt-consequence">No record of how the answer was constructed or why sources were chosen. Response cannot be reviewed, reproduced, or defended in a compliance or governance context.</span></td>
-        <td><span class="gt-evidence">All ungoverned responses lack traceable source selection or authorization record.</span></td>
+        <td><span class="gt-evidence">All ungoverned responses lack traceable source selection or an institutional authorization record.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Reproducibility</span><span class="gt-issue">No deterministic output constraint</span></td>
-        <td><span class="gt-consequence">Same question submitted twice may yield materially different answers, links, or figures. No enforcement layer guarantees consistent sourcing across sessions.</span></td>
+        <td><span class="gt-consequence">The same question submitted twice may yield materially different answers, links, figures, procedures, or clinical suggestions. No enforcement layer guarantees consistent sourcing across sessions.</span></td>
         <td><span class="gt-evidence">All ungoverned responses — no constraint layer applied.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-data">
         <td><span class="gt-cat">Mandate enforcement</span><span class="gt-issue">No scope boundary applied</span></td>
-        <td><span class="gt-consequence">Model responds to any query regardless of institutional authorization. Guidance, contacts, and resources outside the deployment mandate are introduced without restriction.</span></td>
-        <td><span class="gt-evidence">All ungoverned responses introduce resources or guidance outside the authorized deployment scope.</span></td>
+        <td><span class="gt-consequence">Model responds regardless of whether its claims fall within institutional authorization. Guidance, contacts, procedures, consequences, and clinical information may be introduced without restriction.</span></td>
+        <td><span class="gt-evidence">Across the ungoverned demonstrations, the model generates claims, resources, procedures, consequences, or clinical guidance without first establishing that they fall within the institution’s authorized evidence boundary.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-high">High</span></td>
       </tr>
+
       <tr class="gt-critical-row">
         <td><span class="gt-cat">Pre-inference authorization <span class="gt-absent">(absent)</span></span><span class="gt-issue">No authorization check before generation</span></td>
         <td class="gt-td-consequence"><span class="gt-consequence">Content is generated without authorization — all downstream risks above are unavoidable and cannot be corrected post hoc. This is a structural condition, not an incidental failure.</span></td>
-        <td><span class="gt-evidence">All five ungoverned responses — no execution gate applied.</span></td>
+        <td><span class="gt-evidence">All seven ungoverned responses — no execution gate, institutional authorization check, controlled greenlist, or verified-evidence requirement applied before inference.</span></td>
         <td style="text-align:center"><span class="gt-badge gt-critical">Critical</span></td>
       </tr>
     </tbody>
   </table>
+
   <p class="gt-footer">All observations are derived from reproducible outputs shown above.</p>
 </div>
 
