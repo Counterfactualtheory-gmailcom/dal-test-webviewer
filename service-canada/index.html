@@ -24,26 +24,81 @@ gtag('config', 'G-JR7LJGK5PK', {
   
   <style>
 
-/* === Service Canada header (matches DAL / McGill) === */
+/* === SERVICE CANADA INSTITUTIONAL HEADER === */
+
 #header {
-  width: 100%;
+  width: 93%;
+  max-width: 540px;
+  margin: 24px auto 18px;
   text-align: center;
-  margin-top: 4px;     /* ↓ adjust THIS to move header down */
-  margin-bottom: 8px;  /* space before the input box */
 }
 
-#header .app-title {
+.institution-branding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.institution-logo {
+  display: block;
+  width: 245px;
+  max-width: 68%;
+  height: auto;
+  object-fit: contain;
+}
+
+.compaiss-name {
+  flex: 0 0 auto;
+  font-size: 20px;
+  line-height: 1;
   font-weight: 700;
-  font-size: 18px;
-  margin: 0;
+  color: #0f4079;
 }
 
 #header .app-subtitle {
-  font-size: 14px;
+  font-size: 18px;
   color: #0f4079;
-  margin: 2px 0 0 0;
+  font-weight: 700;
+  margin-top: 6px;
 }
 
+.header-languages {
+  font-size: 14px;
+  color: #555555;
+  margin-top: 6px;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.header-disclaimer {
+  font-size: 14px;
+  color: #555555;
+  margin: 8px auto 0;
+  text-align: center;
+  max-width: 480px;
+}
+
+@media (max-width: 600px) {
+  #header {
+    margin-top: 18px;
+  }
+
+  .institution-branding {
+    gap: 12px;
+  }
+
+  .institution-logo {
+    width: 215px;
+    max-width: 70%;
+  }
+
+  .compaiss-name {
+    font-size: 18px;
+  }
+}
     :root {
       --wrap: 900px;
       --pad: 16px;
