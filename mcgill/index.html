@@ -66,24 +66,69 @@ gtag('config', 'G-JR7LJGK5PK', {
     }
 
 #header {
-  width: 90%;
-  max-width: 480px;
-  margin: 12px auto 8px;
+  width: 93%;
+  max-width: 540px;
+  margin: 36px auto 24px;
   text-align: center;
 }
 
-.app-title {
+#header .app-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
   font-size: 20px;
-  font-weight: 600;
-  color: #ED1B2F; /* McGill red */
+  font-weight: 700;
+  color: #ED1B2F;
 }
 
-.app-subtitle {
-  font-size: 14px;
-  font-weight: 500;
+#header .app-title img {
+  display: block;
+  width: 220px;
+  max-width: 68%;
+  height: auto;
+  flex: 0 1 auto;
+}
+
+#header .app-title span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+#header .mcgill-title {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #ED1B2F;
+}
+
+#header .app-subtitle {
+  font-size: 18px;
+  font-weight: 700;
   color: #0055cc;
-  margin-top: 2px;
-  margin-bottom: 18px; /* ✅ space before textbox */
+  margin: 6px 0 0;
+}
+
+@media (max-width: 600px) {
+  #header .app-title {
+    gap: 10px;
+  }
+
+  #header .app-title img {
+    width: 180px;
+    max-width: 66%;
+  }
+
+  #header .app-title span {
+    font-size: 18px;
+  }
+
+  #header .mcgill-title {
+    font-size: 18px;
+  }
 }
     
   :root {
