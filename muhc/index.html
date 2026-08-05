@@ -66,24 +66,58 @@ gtag('config', 'G-JR7LJGK5PK', {
     }
 
 #header {
-  width: 90%;
-  max-width: 480px;
-  margin: 12px auto 8px;
+  width: 93%;
+  max-width: 620px;
+  margin: 36px auto 24px;
   text-align: center;
 }
 
-.app-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #003E9B; /* MUHC blue */
+#header .app-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  margin: 0;
 }
 
-.app-subtitle {
-  font-size: 14px;
-  font-weight: 500;
+#header .app-title img {
+  display: block;
+  width: 360px;
+  max-width: 74%;
+  height: auto;
+  flex: 0 1 auto;
+}
+
+#header .app-title span {
+  flex: 0 0 auto;
+  font-size: 20px;
+  font-weight: 700;
+  color: #003E9B;
+  white-space: nowrap;
+}
+
+#header .app-subtitle {
+  font-size: 18px;
+  font-weight: 700;
   color: #0055cc;
-  margin-top: 2px;
-  margin-bottom: 18px;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  #header .app-title {
+    gap: 10px;
+  }
+
+  #header .app-title img {
+    width: 275px;
+    max-width: 72%;
+    height: auto;
+  }
+
+  #header .app-title span {
+    font-size: 18px;
+  }
 }
 
   :root {
