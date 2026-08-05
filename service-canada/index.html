@@ -24,24 +24,59 @@ gtag('config', 'G-JR7LJGK5PK', {
   
   <style>
 
-/* === Service Canada header (matches DAL / McGill) === */
+/* === Service Canada header === */
 #header {
-  width: 100%;
+  width: 93%;
+  max-width: 520px;
+  margin: 36px auto 24px;
   text-align: center;
-  margin-top: 4px;     /* ↓ adjust THIS to move header down */
-  margin-bottom: 8px;  /* space before the input box */
 }
 
 #header .app-title {
-  font-weight: 700;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
   margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f4079;
+}
+
+#header .app-title img {
+  display: block;
+  width: 250px;
+  max-width: 70%;
+  height: auto;
+  flex: 0 1 auto;
+}
+
+#header .app-title span {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 #header .app-subtitle {
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 700;
   color: #0f4079;
-  margin: 2px 0 0 0;
+  margin: 8px 0 0;
+}
+
+@media (max-width: 600px) {
+  #header .app-title {
+    gap: 10px;
+  }
+
+  #header .app-title img {
+    width: 205px;
+    max-width: 68%;
+  }
+
+  #header .app-title span {
+    font-size: 18px;
+  }
 }
 
     :root {
