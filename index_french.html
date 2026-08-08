@@ -931,7 +931,28 @@ var failState = {
 </div>
 
 <p>La différence ne réside pas dans le fait que COMPAiSS récupère mieux. C'est que COMPAiSS détermine si l'inférence devrait se produire du tout, et s'arrête avant la génération lorsqu'elle ne devrait pas. Les systèmes RAG cherchent à améliorer ce que le modèle reçoit. COMPAiSS contrôle si le modèle fonctionne.</p>
-    <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système d'IA généraliste</h3>
+
+ <div class="highlight-block" style="margin-top:2rem;">
+  <p style="margin:0 0 0.45rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">
+    Nouveau document technique
+  </p>
+
+  <p style="margin:0 0 0.8rem;font-size:1rem;color:var(--text-heading);line-height:1.55;max-width:none;">
+    <strong>Gouvernance de l'IA à autorisation préalable : un cadre intersectoriel et une évaluation empirique des systèmes d'IA institutionnels</strong>
+  </p>
+
+  <p style="margin:0 0 0.9rem;font-size:0.93rem;color:var(--text-main);line-height:1.65;max-width:none;">
+    Ce document présente l'argument architectural complet qui sous-tend COMPAiSS. Il propose une taxonomie formelle des défaillances de connaissance, de gouvernance et d'exécution de l'IA; définit des invariants déterministes d'autorisation préalable à l'inférence; distingue les garanties architecturales des performances mesurées; et présente les résultats d'évaluations empiriques de gouvernance menées dans plusieurs déploiements réglementés en milieu universitaire et hospitalier.
+  </p>
+
+  <p style="margin:0;">
+    <a href="/beyond-hallucination-fr.html">
+      Lire <strong>Gouvernance de l'IA à autorisation préalable</strong> &rarr;
+    </a>
+  </p>
+</div>         
+       
+       <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2rem 0 0.6rem;font-family:system-ui,-apple-system,sans-serif;">Pas un système d'IA généraliste</h3>
     <p>Les systèmes d'IA généralistes sont conçus pour répondre à des questions sur n'importe quoi. Leur valeur réside dans la portée - la capacité de se déplacer librement entre domaines, établissements et juridictions sans frontières prédéfinies. COMPAiSS est intentionnellement construit pour la spécificité institutionnelle. Son but n'est pas d'approximer une réponse à partir de connaissances générales, mais de refléter uniquement ce qu'un établissement particulier a effectivement autorisé comme sa position officielle, sa politique ou ses directives - et seulement alors de permettre à l'IA de répondre à la question.</p>
     <p>En bref : l'IA généraliste optimise le nombre de questions auxquelles elle peut répondre. COMPAiSS optimise le moment où il est approprié de répondre à des questions sur votre établissement - et quand ce ne l'est pas.</p>
 
