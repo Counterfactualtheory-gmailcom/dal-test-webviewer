@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://compaiss.ca/beyond-hallucination.html" />
+<title>Authorization-First AI Governance: A Cross-Sector Framework and Empirical Evaluation -- COMPAiSS</title>
+<meta name="description" content="Not all hallucinations are equal. A governance-centered taxonomy separating knowledge, governance, and execution failures, and where an authorization-first, execution-gated architecture structurally precludes the highest-consequence classes." />
+<style>
+:root {
+  --wrap: 980px;
+  --pad: 32px;
+  --bg-page: #0c2d5a;
+  --bg-panel: #10386e;
+  --bg-panel-soft: rgba(16,56,110,0.55);
+  --bg-card: rgba(255,255,255,0.05);
+  --text-main: #c6cfdd;
+  --text-muted: #aeb9cc;
+  --text-heading: #ffffff;
+  --accent: #f0c44c;
+  --accent-soft: rgba(240,196,76,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-accent: rgba(240,196,76,0.3);
+  --link: #9cc9ff;
+  --link-visited: #c8e0ff;
+  --radius: 10px;
+  --green: #4caf82;
+  --green-soft: rgba(76,175,130,0.12);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited { color: var(--link-visited); }
+a:hover { opacity: .9; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px; top: 16px; width: auto; height: auto;
+  background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+}
+
+header { border-bottom: 1px solid var(--border-soft); }
+
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav .brand-text {
+  flex: 0 0 auto;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.nav li { text-align: center; }
+.nav li a { display: block; text-decoration: none; color: var(--text-muted); }
+.nav a:hover { color: var(--text-heading); }
+.nav a.active { color: var(--accent); }
+
+main {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+footer .footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 2.5rem var(--pad);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3rem;
+}
+
+.page-header .eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav {
+  margin-bottom: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav strong {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+@media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
+
+.section-nav li { margin: 0; }
+.section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+.section-nav a:hover { color: var(--text-heading); }
+
+.content-section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+.content-section h2 {
+  font-size: 1.7rem;
+  color: var(--text-heading);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-accent);
+  letter-spacing: 0.01em;
+}
+
+.content-section h3 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 2rem 0 0.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.content-section .section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.8rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.content-section p {
+  max-width: 70ch;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.content-section p.wide { max-width: none; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 3rem 0;
+}
+
+.highlight-block {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.highlight-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.highlight-block p:last-child { margin-bottom: 0; }
+
+.quote-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--link);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.2rem 1.6rem;
+  margin: 1.4rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.quote-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+  max-width: none;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.quote-block p:last-child { margin-bottom: 0; }
+
+.methodology-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.methodology-box .method-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.methodology-box p {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.methodology-box p:last-child { margin-bottom: 0; }
+
+.stage-block {
+  margin: 2rem 0;
+  padding: 1.6rem 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+}
+
+.stage-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stage-block h3 {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.stage-block p {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  margin: 0.6rem 0;
+  line-height: 1.7;
+}
+
+.stage-block .quote-block { margin: 1rem 0; }
+
+.finding-block {
+  margin: 1.4rem 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.finding-block .finding-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.finding-block p {
+  margin: 0 0 0.5rem;
+  font-size: 0.93rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.finding-block p:last-child { margin-bottom: 0; }
+
+.finding-block .finding-note {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.key-statement {
+  text-align: center;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+}
+
+.key-statement p {
+  font-size: 1.25rem;
+  color: var(--text-heading);
+  font-style: italic;
+  margin: 0;
+  max-width: none;
+  line-height: 1.5;
+}
+
+.verdict-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 700px) { .verdict-grid { grid-template-columns: 1fr; } }
+
+.verdict-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.verdict-card .vc-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.verdict-card h4 {
+  font-size: 1rem;
+  color: var(--text-heading);
+  margin: 0 0 0.6rem;
+}
+
+.verdict-card p {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.exchange-header {
+  padding: 1.2rem 1.8rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.exchange-header-copilot {
+  background: rgba(0, 120, 212, 0.1);
+  border: 1px solid rgba(0, 120, 212, 0.3);
+}
+
+.exchange-header-gemini {
+  background: rgba(66, 133, 244, 0.1);
+  border: 1px solid rgba(66, 133, 244, 0.3);
+}
+
+.exchange-header .eh-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.exchange-header-copilot .eh-label { color: #60a8e0; }
+.exchange-header-gemini .eh-label { color: #7baaf7; }
+
+.exchange-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  margin: 1.6rem 0;
+}
+
+.comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+.comp-table th {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.comp-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 0.5px solid var(--border-soft);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.comp-table tr:last-child td { border-bottom: none; }
+
+.comp-table td:first-child {
+  font-weight: 600;
+  color: var(--text-heading);
+  width: 22%;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+#backToTop:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.7rem; }
+  .nav ul { gap: 1rem; font-size: 0.75rem; }
+}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--surface,#f5f6f8);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.9rem 0;overflow-x:auto;font-size:0.95rem;line-height:1.55;color:var(--text,#1a1a1a);}
+.formula .lbl{display:block;font-family:system-ui,-apple-system,sans-serif;color:var(--text-muted);font-size:0.82rem;margin-top:0.45rem;line-height:1.4;}
+#appendix h3{margin-top:1.6rem;}
+</style>
+
+<style>
+.figure { margin: 2rem 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.figure figcaption {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.82rem; color: var(--text-muted); margin-top: 0.7rem; text-align: center;
+}
+.fam-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 1.6rem 0; }
+@media (max-width: 720px) { .fam-grid { grid-template-columns: 1fr; } }
+.fam-card {
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--radius); padding: 1rem 1.1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.fam-card h4 { margin: 0 0 .5rem; color: var(--text-heading); font-size: .98rem; }
+.fam-card ul { margin: .5rem 0 .8rem; padding-left: 1.1rem; }
+.fam-card li { font-size: .82rem; color: var(--text-muted); line-height: 1.5; margin: .15rem 0; }
+.fam-card .mech { font-size: .76rem; color: var(--text-muted); font-style: italic; }
+.chip {
+  display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: .22rem .5rem; border-radius: 999px; margin-bottom: .6rem;
+}
+.chip-preclude { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-accent); }
+.chip-reduce  { background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border-soft); }
+.chip-foreclose { background: var(--green-soft); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+.consequence-row {
+  display: flex; justify-content: space-between; font-family: system-ui, sans-serif;
+  font-size: .74rem; color: var(--text-muted); margin-top: .4rem; letter-spacing: .04em;
+}
+.defn-table td:first-child { width: 26%; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <nav class="nav" aria-label="Primary">
+    <a href="/index.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/why-ai-developed-this-way.html">Why AI Developed This Way</a></li>
+      <li><a href="/governance.html">AI Governance</a></li>
+      <li><a href="/ai-risk-assessment.html">AI Risk Assessment</a></li>
+      <li><a href="/compaiss_demos_and_pricing.html">Demos and Pricing</a></li>
+      <li><a href="/deployment-and-institutional-fit.html">Deployment and Fit</a></li>
+      <li><a href="/index_french.html">FR</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Architectural Position Paper &nbsp;·&nbsp; August 2026</div>
+    <h1>Authorization-First AI Governance: A Cross-Sector Framework and Empirical Evaluation of Institutional AI Systems</h1>
+    <p class="subtitle">Beyond hallucination: why authorization, not accuracy, is the binding constraint on institutional AI, and what four regulated deployments show.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>On this page</strong>
+    <ul>
+      <li><a href="#contribution">Contribution</a></li>
+      <li><a href="#scope">Scope &amp; evidentiary basis</a></li>
+      <li><a href="#evaluation">Relationship to evaluation</a></li>
+      <li><a href="#definitions">Operational definitions</a></li>
+      <li><a href="#problem">1. The institutional problem</a></li>
+      <li><a href="#classes">2. Three failure classes</a></li>
+      <li><a href="#locus">3. The locus of governance</a></li>
+      <li><a href="#retrieval">4. Retrieval vs authorization</a></li>
+      <li><a href="#taxonomy">5. The taxonomy</a></li>
+      <li><a href="#severity">6. Severity</a></li>
+      <li><a href="#example">7. Worked example</a></li>
+      <li><a href="#coupling">8. Citation-parse coupling</a></li>
+      <li><a href="#compare">9. Architecture comparison</a></li>
+        <li><a href="#methodology">10. Evaluating authorization-first governance</a></li>
+        <li><a href="#evidence">11. Evidence across four deployments</a></li>
+        <li><a href="#crosssector">12. The cross-sector pattern</a></li>
+        <li><a href="#implications">13. Implications for AI governance</a></li>
+      <li><a href="#boundary">14. Limitations and honest boundary</a></li>
+      <li><a href="#conclusion">15. Conclusion</a></li>
+        <li><a href="#appendix">Appendix A. Formal specification</a></li>
+    </ul>
+  </div>
+
+  <div class="content-section" id="contribution">
+    <p><em>Architectural position paper. This is an argument, not a neutral survey. It is not legal advice or a compliance certification. Claim-strength language (&ldquo;structurally precluded,&rdquo; &ldquo;conditional,&rdquo; &ldquo;reduced, not eliminated&rdquo;) is used deliberately.</em></p>
+    <p>The reason regulated institutions cannot safely deploy general-purpose AI is not primarily that such systems get facts wrong, but that they cannot distinguish between <em>having information</em> and <em>being authorized to communicate it in the institution&rsquo;s name</em>. This paper argues that &ldquo;hallucination&rdquo; bundles three failure classes with very different consequences (knowledge, governance, and execution failures) and that the highest-risk classes for institutions are the governance and execution failures, which conventional accuracy work and retrieval do not address.</p>
+    <p>Where existing hallucination taxonomies classify errors by epistemic correctness, this paper classifies AI failures by <strong>institutional governance consequence and architectural control point</strong>. It then describes how an authorization-first, execution-gated architecture is designed to preclude the highest-consequence classes by construction, reduce the middle class, and (candidly) leave the lowest-consequence class managed rather than solved. The taxonomy is the evidence for that argument, not the argument itself.</p>
+    <p>The novelty claimed here is not any single component. Execution gates, retrieval, and authorization checks each exist in some form already. The contribution is their combination into one governed pipeline: authorization before inference, a failure taxonomy organized by institutional consequence, an institution-agnostic evaluation methodology, and a shared scoring rubric. It is the integration of those four, not any one of them, that turns governance from an after-the-fact check into a property of the architecture.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="scope">
+    <h2>Scope and evidentiary basis</h2>
+    <p>This paper concerns <strong>regulated institutional deployments</strong> (universities, hospitals, and government services answering questions about their own policies and entitlements), not general-purpose assistants, for which different trade-offs apply. It assumes a deployment in which an institution designates approved sources and expects the system to answer <em>as the institution</em> only from those sources.</p>
+    <div class="methodology-box">
+      <span class="method-label">How to read the claims</span>
+      <p><strong>Architectural claims</strong> describe intended behavior by construction, derived from the execution-gate design and its patent applications (CIPO 3,299,174 / USPTO 19/455,963). They are claims about mechanism, not measured outcomes.</p>
+      <p><strong>The worked example (&sect;7)</strong> is a single observed interaction with an institutional deployment configuration, a case illustration, not controlled empirical evidence or a benchmark.</p>
+      <p><strong>Comparative claims</strong> about other architectures are analytical, reasoning from each design&rsquo;s control point, not head-to-head measurements.</p>
+      <p><strong>Evaluation evidence</strong> comes from a governance-oriented methodology applied across deployments, see <em>Relationship to evaluation</em> below, and is reported in full separately.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="evaluation">
+    <h2>Relationship to evaluation</h2>
+    <p>The architectural claims in this paper are not offered on design reasoning alone. COMPAiSS has been evaluated through a formal governance-oriented methodology, refined through successive versions and applied across multiple university and hospital deployments.</p>
+    <p>Unlike conventional chatbot benchmarks, the methodology does not evaluate factual accuracy alone. It examines governance preservation, authorization fidelity, evidence preservation, resistance to unauthorized generation, and execution-pipeline integrity, through predefined failure classes and execution-log analysis.</p>
+    <p>This paper does not stop at the conceptual case. Across four deployments in higher education and healthcare, 159 governance scenarios in all, the same architecture and the same methodology produced a consistent result: an aggregate governance-preservation rate of 97.5 percent, and, more tellingly, not one case in which a system invented an institutional position from general knowledge. Sections 10 through 13 set out the methodology, the full evidence, and what it does and does not establish.</p>
+    <p>Wider independent replication would strengthen this further, and the evaluations here are early-stage and single-evaluator. But a working methodology, a shared rubric, and a consistent cross-sector result are precisely the foundation regulated institutions have lacked: not another accuracy benchmark, but a way to test whether an AI system stays inside institutional authority. That foundation, more than any single score, is what this paper documents.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="definitions">
+    <h2>Operational definitions</h2>
+    <table class="comp-table defn-table">
+      <tbody>
+        <tr><td>Authorized source</td><td>A resource an institution has explicitly designated as one it will have an AI answer <em>from, in its name</em>. Authorization is an institutional act, independent of whether the resource is factually correct or public.</td></tr>
+        <tr><td>Greenlist</td><td>The maintained list of authorized source locations for a deployment. Its <em>integrity</em> has two parts: coverage (authorized, current material is present) and confinement (nothing from other institutions, jurisdictions, or superseded versions).</td></tr>
+        <tr><td>Parsed evidence</td><td>Source text the system has actually retrieved and read into working context for a query, distinct from a source merely ranked, linked, or cited.</td></tr>
+        <tr><td>Evidence threshold</td><td>The minimum quantity and relevance of parsed evidence required before an institutional answer may be generated. Below it, the system declines or narrows rather than bridging the gap.</td></tr>
+        <tr><td>Execution gate</td><td>The pre-inference decision point determining whether an institutional reasoning process may be instantiated <em>at all</em> for a query, based on authorization and evidence conditions.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="problem">
+    <h2>1. The institutional problem: why &ldquo;just use the general model&rdquo; fails</h2>
+    <p>Begin with the question institutions actually ask: <em>why can&rsquo;t we simply deploy the capable general-purpose AI we already have?</em> When a student asks about an academic-standing rule or a patient about an admission procedure, a general-purpose model draws not on that institution&rsquo;s approved material but on everything it has absorbed (other universities&rsquo; policies, other jurisdictions&rsquo; regulations, prior years&rsquo; rules) and blends them into an answer that sounds authoritative but may correspond to nothing the institution holds. This is not a defect to patch; it is how broad-training systems work.</p>
+    <p>The consequence is easy to state too strongly, so state it precisely: <strong>greater general capability alone does not solve institutional authorization, and may increase the breadth of potentially competing knowledge unless constrained by governance.</strong> A more powerful model reasons more fluently over whatever it has; it does not thereby gain the institution&rsquo;s permission to speak, nor knowledge of which source is the authorized one. As the companion hospital analysis puts it: <em>better reasoning does not guarantee better institutional authority.</em> Capability and authority are orthogonal, the crux of the paper.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="classes">
+    <h2>2. Three failure classes, and why they differ</h2>
+    <p>Treating &ldquo;hallucination&rdquo; as one phenomenon collapses three failures that share only a symptom. A <strong>knowledge failure</strong> misrepresents a fact (a property of <em>what</em> is generated). A <strong>governance failure</strong> claims institutional authority never established, the statement may be <em>true</em>; the failure is the unearned institutional voice (a property of <em>whose authority</em> is implied). An <strong>execution failure</strong> is the system generating an institutional answer <em>at all</em> when preconditions were absent (a property of <em>whether generation should have occurred</em>).</p>
+    <p>These three are not an arbitrary list; they are exhaustive. Any institutional AI failure must be a failure of one of three things: what the system knows, whose authority it claims, or whether it should have spoken at all. A wrong fact is a knowledge failure; a true statement made without institutional authority is a governance failure; an answer produced when the preconditions for answering were absent is an execution failure. There is no fourth place for such a failure to originate, which is why a taxonomy built on these three is derived rather than merely proposed.</p>
+    <p>Calling an execution failure a &ldquo;hallucination&rdquo; stretches the classical term; we use it broadly to mean a systemic failure producing ungrounded or unauthorized institutional output. Specifically, an execution failure is the <strong>unauthorized instantiation of an institutional reasoning process</strong>, whether or not the resulting text is accurate. A single test shows why the three deserve separation:</p>
+    <table class="comp-table">
+      <thead><tr><th>Failure class</th><th>Factually accurate?</th><th>Institutionally authorized?</th><th>What failed</th></tr></thead>
+      <tbody>
+        <tr><td>Knowledge</td><td>No</td><td>(irrelevant)</td><td>The content</td></tr>
+        <tr><td>Governance</td><td><em>Maybe, even yes</em></td><td>No</td><td>The claim to authority</td></tr>
+        <tr><td>Execution</td><td>(irrelevant)</td><td>No</td><td>The decision to answer at all</td></tr>
+      </tbody>
+    </table>
+    <p>The middle row is what conventional evaluation misses: a statement can be perfectly accurate and still be a serious institutional failure, because accuracy and authorization are independent. An architecture that optimizes only the first column cannot, even in principle, address the second and third.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="locus">
+    <h2>3. Where governance actually sits</h2>
+    <p>The decisive question is not <em>what</em> is generated but <em>where the control point lives</em>. Each existing institutional control governs a different object, and none governs the one that matters here.</p>
+    <table class="comp-table">
+      <thead><tr><th>Architecture / mechanism</th><th>Primary governed object</th><th>Enforcement point</th></tr></thead>
+      <tbody>
+        <tr><td>RBAC / ABAC / Zero Trust</td><td>Identity &amp; resource access</td><td>Network / data access</td></tr>
+        <tr><td>Guardrails &amp; output filters</td><td>Model output &amp; wording</td><td>Post-generation</td></tr>
+        <tr><td>Conventional RAG</td><td>Contextual grounding / retrieval</td><td>Mid-pipeline</td></tr>
+        <tr><td>Authorization-first (COMPAiSS)</td><td>The institutional reasoning process itself</td><td>Pre-inference gate</td></tr>
+      </tbody>
+    </table>
+    <p>COMPAiSS does not introduce a new model or a better retriever; it introduces a different <strong>architectural locus of governance</strong>. Access controls govern who may reach a resource; guardrails govern how output is worded; retrieval governs which documents are considered. None governs <em>whether an institutional reasoning process may be instantiated at all</em>. That is the object the execution gate governs, and why it reaches failures the other layers cannot.</p>
+    
+<div class="figure">
+<svg viewBox="0 0 720 430" role="img" aria-label="Diagram contrasting generation-first and authorization-first control points" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arw" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#aeb9cc"/>
+    </marker>
+  </defs>
+  <style>
+    .lbl{font-family:system-ui,-apple-system,sans-serif;font-size:14px;fill:#ffffff;font-weight:600}
+    .cap{font-family:system-ui,-apple-system,sans-serif;font-size:12px;fill:#aeb9cc}
+    .hdr{font-family:system-ui,-apple-system,sans-serif;font-size:12.5px;fill:#f0c44c;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .box{fill:rgba(255,255,255,0.05);stroke:rgba(255,255,255,0.14);rx:8}
+    .gate{fill:rgba(240,196,76,0.12);stroke:rgba(240,196,76,0.55)}
+    .pass{fill:rgba(76,175,130,0.12);stroke:rgba(76,175,130,0.55)}
+    .warn{fill:rgba(255,255,255,0.05);stroke:rgba(217,119,87,0.55)}
+    .conn{stroke:#aeb9cc;stroke-width:1.4;fill:none}
+  </style>
+
+  <line x1="360" y1="20" x2="360" y2="410" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+
+  <!-- LEFT: generation-first -->
+  <text x="40" y="34" class="hdr">Generation-first (traditional)</text>
+  <rect class="box" x="55" y="52"  width="230" height="44"/><text class="lbl" x="170" y="79" text-anchor="middle">Question</text>
+  <line class="conn" x1="170" y1="96" x2="170" y2="120" marker-end="url(#arw)"/>
+  <rect class="box" x="55" y="122" width="230" height="44"/><text class="lbl" x="170" y="149" text-anchor="middle">Inference (answer generated)</text>
+  <line class="conn" x1="170" y1="166" x2="170" y2="190" marker-end="url(#arw)"/>
+  <rect class="box warn" x="55" y="192" width="230" height="44" rx="8"/><text class="lbl" x="170" y="219" text-anchor="middle">Guardrails / output filter</text>
+  <text class="cap" x="170" y="270" text-anchor="middle">Governance applied after the</text>
+  <text class="cap" x="170" y="288" text-anchor="middle">answer already exists.</text>
+
+  <!-- RIGHT: authorization-first -->
+  <text x="400" y="34" class="hdr">Authorization-first (COMPAiSS)</text>
+  <rect class="box" x="435" y="52"  width="230" height="44"/><text class="lbl" x="550" y="79" text-anchor="middle">Question</text>
+  <line class="conn" x1="550" y1="96" x2="550" y2="116" marker-end="url(#arw)"/>
+  <rect class="box gate" x="435" y="118" width="230" height="44" rx="8"/><text class="lbl" x="550" y="145" text-anchor="middle">Authorization gate</text>
+  <line class="conn" x1="550" y1="162" x2="550" y2="182" marker-end="url(#arw)"/>
+  <rect class="box gate" x="435" y="184" width="230" height="44" rx="8"/><text class="lbl" x="550" y="211" text-anchor="middle">Evidence threshold</text>
+  <line class="conn" x1="550" y1="228" x2="550" y2="248" marker-end="url(#arw)"/>
+  <rect class="box pass" x="435" y="250" width="230" height="44" rx="8"/><text class="lbl" x="550" y="277" text-anchor="middle">Inference (only if authorized)</text>
+  <text class="cap" x="550" y="326" text-anchor="middle">Governance is a precondition</text>
+  <text class="cap" x="550" y="344" text-anchor="middle">of execution.</text>
+
+  <text class="cap" x="360" y="404" text-anchor="middle" style="fill:#c6cfdd">The control point moves from after generation to before it.</text>
+</svg>
+<figcaption>Figure 1. The architectural difference is not a better model or retriever but the location of the control point: generation-first systems decide to answer, then filter; authorization-first systems decide <em>whether</em> to answer before inference occurs.</figcaption>
+</div>
+
+    <p>Every mainstream generative system inherits one unexamined assumption: <strong>inference will always happen</strong>. By the time any governance check runs, the decision to answer has already been made; filtering can only contain what was always going to be produced. Moving that decision before inference makes answering conditional on authorization rather than a default.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="retrieval">
+    <h2>4. Why retrieval does not solve an authorization problem</h2>
+    <p>Because RAG is the most common institutional response, its strongest limitation deserves stating plainly. Retrieval and authorization answer different questions.</p>
+    <div class="key-statement">
+      <p>Retrieval asks: <em>which documents should be considered?</em><br>Authorization asks: <em>should an institutional reasoning process occur at all, and if so, only from what?</em></p>
+    </div>
+    <p>Conventional RAG improves grounding by conditioning generation on retrieved context, but it operates <em>inside</em> the always-generate assumption: it selects context, then answers, including when context is weak, partial, mixed-authority, or empty. A better retriever produces better <em>candidates</em>; it does not produce <em>authorization</em>, because those are different targets. This is why improving retrieval cannot solve an authorization problem.</p>
+    <div class="key-statement">
+      <p><strong>Architectural invariant.</strong> No institutional conclusion may be generated unless sufficient authorized evidence has first been established. Everything else in this paper is a consequence of enforcing that one rule before inference rather than after.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="taxonomy">
+    <h2>5. The taxonomy</h2>
+    <p>The failure modes group into four families by the mechanism that acts on them. The guarantee strength (the honest core of the paper) is highest exactly where institutional consequence is highest.</p>
+    
+<div class="figure">
+<div class="fam-grid">
+  <div class="fam-card">
+    <span class="chip chip-preclude">Structurally precluded*</span>
+    <h4>Governance failures</h4>
+    <ul><li>Unauthorized institutional position</li><li>Authority substitution</li><li>Cross-institution contamination</li></ul>
+    <div class="mech">Authorization gate + source confinement</div>
+  </div>
+  <div class="fam-card">
+    <span class="chip chip-preclude">Structurally precluded*</span>
+    <h4>Execution failures</h4>
+    <ul><li>Missing-evidence completion</li><li>Retrieval-gap generation</li><li>Empty-context response</li></ul>
+    <div class="mech">Evidence threshold + fail-safe refusal</div>
+  </div>
+  <div class="fam-card">
+    <span class="chip chip-reduce">Reduced, not eliminated</span>
+    <h4>Knowledge failures</h4>
+    <ul><li>Summarization &amp; translation</li><li>Numeric error</li><li>Omission of exceptions</li></ul>
+    <div class="mech">Smaller authorized evidence surface</div>
+  </div>
+  <div class="fam-card">
+    <span class="chip chip-foreclose">Largely foreclosed</span>
+    <h4>Fabrication</h4>
+    <ul><li>Invented facts</li><li>Invented citations / quotes</li><li>Fabricated references</li></ul>
+    <div class="mech">Grounding in real, retrieved sources</div>
+  </div>
+</div>
+<div class="consequence-row"><span>&#9664; Highest institutional consequence</span><span>Lowest incremental consequence &#9654;</span></div>
+<figcaption>Figure 2. Four failure families, ordered by institutional consequence. The strength of the architectural guarantee is highest exactly where consequence is highest (*conditional on greenlist integrity and gate configuration).</figcaption>
+</div>
+
+
+    <h3>Layer A: Governance failures</h3>
+    <p><strong>Mechanism:</strong> pre-inference authorization gate + source confinement. <strong>Guarantee:</strong> designed to structurally preclude, <em>conditional on greenlist integrity and correct gate configuration</em>, shifting residual risk from unmonitored model weights to auditable data governance.</p>
+    <table class="comp-table">
+      <thead><tr><th>Mode</th><th>Definition / example</th><th>Guarantee</th></tr></thead>
+      <tbody>
+        <tr><td>Unauthorized position</td><td>Asserts a policy the institution never adopted</td><td>Precluded*</td></tr>
+        <tr><td>Unauthorized truth</td><td>A <em>correct</em> statement never authorized for this institution/purpose</td><td>Precluded*, the gate tests authorization, not truth</td></tr>
+        <tr><td>Scope overreach</td><td>Answers outside mandate (legal, tax, medical advice)</td><td>Precluded*, no authorized source to draw from</td></tr>
+        <tr><td>Authority substitution</td><td>Supplies model knowledge where the institution has no answer</td><td>Precluded*, evidence confined to greenlist</td></tr>
+        <tr><td>Cross-institution contamination</td><td>Another body&rsquo;s or region&rsquo;s rule enters the answer</td><td>Precluded*, conditional on confinement</td></tr>
+        <tr><td>False institutional synthesis</td><td>Authorized facts combined into a conclusion never stated</td><td><strong>Constrained, not precluded</strong>, bounded input, residual overreach risk</td></tr>
+        <tr><td>Policy-version confusion</td><td>Superseded policy blends with current</td><td>Precluded*, conditional on version curation</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Layer B: Execution failures</h3>
+    <p><strong>Mechanism:</strong> evidence threshold + fail-safe refusal. <strong>Guarantee:</strong> designed to structurally preclude, <em>conditional on threshold calibration</em>.</p>
+    <table class="comp-table">
+      <thead><tr><th>Mode</th><th>Definition / example</th><th>Guarantee</th></tr></thead>
+      <tbody>
+        <tr><td>Missing-evidence completion</td><td>Relevant policy absent; model guesses</td><td>Precluded*, absence yields refusal</td></tr>
+        <tr><td>Retrieval-gap generation</td><td>Weak context; model bridges with filler</td><td>Precluded*, blocked below threshold</td></tr>
+        <tr><td>Empty-context response</td><td>Nothing useful retrieved; model answers anyway</td><td>Precluded*, generation blocked</td></tr>
+        <tr><td>Mixed-authority blending</td><td>Approved page, blog, forum merged into one voice</td><td>Precluded*, evidence confined to approved sources</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Layer C: Knowledge failures (within authorized generation)</h3>
+    <p><strong>Mechanism:</strong> reduced evidence surface (smaller, authorized, single-institution). <strong>Guarantee:</strong> materially reduced, <em>not eliminated</em>, requires empirical testing. Once the gate is cleared, the system is a language model reading a correct document, and such models still err: summarization, translation drift, numeric error, logical compression, citation misalignment, omission of exceptions, overconfidence, and premature ambiguity resolution. A cleaner evidence set reduces the opportunity for each, but none is architecturally foreclosed. Omission warrants emphasis: dropping a negative constraint can invert a policy&rsquo;s practical meaning while every sentence remains individually accurate.</p>
+
+    <h3>Layer D: Fabrication</h3>
+    <p><strong>Mechanism:</strong> grounding in retrieved authorized evidence. <strong>Guarantee:</strong> largely foreclosed, invented facts, citations, quotes, and references lose most of their oxygen when generation is grounded in a confined set of real documents. The residual is a model-level property the gate cannot drive to zero.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="severity">
+    <h2>6. Severity: not all failures carry equal consequence</h2>
+    <p>Organizing by mechanism answers <em>how</em> each failure is addressed; organizing by consequence answers <em>why it matters</em>.</p>
+    <table class="comp-table">
+      <thead><tr><th>Severity</th><th>Representative failures</th><th>Addressed by</th></tr></thead>
+      <tbody>
+        <tr><td>Catastrophic</td><td>Unauthorized position; unauthorized truth; scope overreach; authority substitution</td><td>Layer A: structurally precluded*</td></tr>
+        <tr><td>High</td><td>Cross-institution contamination; mixed-authority; missing-evidence &amp; empty-context</td><td>Layers A/B: structurally precluded*</td></tr>
+        <tr><td>Moderate</td><td>False synthesis; version confusion; retrieval-gap; omission</td><td>Constrained / conditional / reduced</td></tr>
+        <tr><td>Low</td><td>Numeric typo; citation misalignment; summarization slip</td><td>Reduced, not eliminated</td></tr>
+      </tbody>
+    </table>
+    <p>The severity gradient runs opposite to the elimination gradient: the architecture is designed to structurally preclude the highest-consequence failures and is candid that the lowest-consequence ones are only reduced, exactly the alignment a risk-averse institution wants.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="example">
+    <h2>7. Worked example: refusing to speak before the evidence exists</h2>
+    <p>A single observed interaction, offered as a case illustration rather than controlled evidence. Its value is that it exhibits four phenomena at once, a retrieval failure, a governance success, a controlled refusal, and a source-maintenance issue.</p>
+    <p>A user asked an institutional deployment: <em>&ldquo;Where is McGill&rsquo;s official Code of Student Conduct and Disciplinary Procedures, and who does it apply to?&rdquo;</em></p>
+    <p><strong>Retrieval failure.</strong> The system correctly ranked the governing document (the Secretariat&rsquo;s official Code) first, but the specific location it tried to read was a stale, dead link (a French-language mirror returning a 404), so the authoritative text never entered parsed evidence.</p>
+    <p><strong>Governance success and controlled refusal.</strong> A generation-first system would likely have answered anyway, reconstructing &ldquo;who the Code applies to&rdquo; from general knowledge, authority substitution yielding an unauthorized institutional position. The execution-gated system did not. It answered only from what it had parsed (a faculty-specific policy) and stated explicitly that it could not verify the Code&rsquo;s university-wide scope, directing the user to the official document. The answer was <em>incomplete</em>, but it was not a governance failure.</p>
+    <p><strong>Source maintenance and carve-out preservation.</strong> Once the stale entry was removed, the live Code parsed and the system answered fully, including the non-obvious carve-out that the Code does <strong>not</strong> apply to a student acting in the course of employment, where an employment regulation or collective agreement governs instead. That is precisely the negative constraint an omission failure drops; here it survived because it came from parsed authorized text.</p>
+    <p>The episode compresses the thesis: the architecture precluded the catastrophic governance failure <em>even under a retrieval fault</em>, and the residual issue (a dead link degrading completeness) was a data-integrity problem in an auditable greenlist, not an opaque generation problem. That is where a regulated institution wants its residual risk to live.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="coupling">
+    <h2>8. A named architectural rule: citation-parse coupling</h2>
+    <p>The example exposes a discipline worth naming, because its violation is a recognized RAG pathology, the <strong>&ldquo;ghost citation,&rdquo;</strong> where a system cites a source it never actually read.</p>
+    <div class="key-statement">
+      <p><strong>Citation-parse coupling:</strong> the system must not emit any citation that was not parsed into the active evidence for that answer.</p>
+    </div>
+    <p>Preservation-for-linking and use-as-evidence are separate operations; decoupling them reintroduces the <em>appearance</em> of authority without its substance. In implementation, the rule is enforced by binding the citation set to the parse set: a source becomes eligible for citation only after it has been successfully fetched and read into the answer&rsquo;s evidence context, so any authoritative source that must appear in the answer is force-parsed rather than merely linked, and a link that fails to parse is dropped from the citation list rather than surfaced. Treated as a hard constraint, this closes an entire avenue by which authority can be implied without being established.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="compare">
+    <h2>9. How architectures compare across the failure classes</h2>
+    <p>Consolidated into one analytical view (not benchmarked, see &sect; Scope):</p>
+    <table class="comp-table">
+      <thead><tr><th>Failure class</th><th>Vanilla LLM</th><th>Conventional RAG</th><th>Authorization-first (generic)</th><th>COMPAiSS</th></tr></thead>
+      <tbody>
+        <tr><td>Knowledge</td><td>High</td><td>Lower</td><td>Lower</td><td>Lower</td></tr>
+        <tr><td>Governance</td><td>High</td><td>High</td><td>Moderate</td><td>Structurally precluded*</td></tr>
+        <tr><td>Execution</td><td>High</td><td>Moderate</td><td>Moderate</td><td>Structurally precluded*</td></tr>
+        <tr><td>Cross-institution contamination</td><td>High</td><td>Moderate</td><td>Low</td><td>Structurally precluded*</td></tr>
+        <tr><td>Unauthorized truth</td><td>High</td><td>High</td><td>Moderate</td><td>Structurally precluded*</td></tr>
+      </tbody>
+    </table>
+    <p><em>*Precluded by construction, conditional on greenlist integrity and gate configuration.</em> The pattern the table makes visible: retrieval mainly helps the knowledge row and leaves governance and execution roughly where a vanilla model does, because those are not retrieval problems. Only moving the control point before inference changes those rows.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="methodology">
+    <h2>10. Evaluating authorization-first governance</h2>
+    <p>There are two distinct questions to ask of the architecture in Sections 1 through 9, and they call for two different kinds of evidence. The first is a design question: does the architecture logically produce the control point it claims, so that a defined failure pathway is closed under stated conditions? That is settled by construction, and Section 14 states it precisely. The second is an empirical question: does a real deployment behave consistently with that design? That is what evaluation tests.</p>
+    <p>If the theory is correct, it should make specific, falsifiable predictions about how these systems fail. Three follow directly: governance failures should cluster at corpus and scope boundaries rather than appear at random; unauthorized institutional positions drawn from general model knowledge should be rare to absent; and improvement should come chiefly from corpus and retrieval maintenance rather than from retraining the model. Sections 11 and 12 report what four deployments showed, and can be read as a test of whether those predictions held.</p>
+    <p>If authorization is the binding constraint, the obvious question is how to test whether a system actually honours it. Conventional AI benchmarks do not answer this. They score factual correctness, semantic similarity, retrieval quality, or user satisfaction. Each is a legitimate measure of language-model performance, and none of them measures the property an authorization-first system exists to preserve: that every institution-specific claim originates from evidence the institution authorized.</p>
+    <p>The evaluation methodology used here asks a different question of every answer. Not "was the answer correct," but "did each institution-specific claim come from an authorized source, and was it faithful to that source." Accuracy becomes one input to a governance judgment rather than the judgment itself.</p>
+    <div class="methodology-box">
+      <p>The framework scores five properties and sorts every failure into one of three classes.</p>
+      <p><strong>Governance Preservation Rate.</strong> The share of answers containing no unauthorized institutional claim. This is the master outcome.</p>
+      <p><strong>Constitutional Fidelity.</strong> Whether authorized claims preserve the source's numbers, conditions, and modality.</p>
+      <p><strong>Source Authority Fidelity.</strong> Whether each institutional claim traces to a source the institution authorized.</p>
+      <p><strong>Authorization Accuracy.</strong> Whether the pre-inference gate permitted and blocked the cases it should.</p>
+      <p><strong>Evidence Integrity.</strong> Whether what was cited is what was actually parsed and delivered.</p>
+    </div>
+    <p>The three failure classes carry very different consequences. <strong>Type A</strong> is a utility or coverage limitation: the system stays inside its authority and declines to fill a gap, so governance is preserved and the only cost is helpfulness. <strong>Type B</strong> is a governance violation: an institution-specific claim with no authorizing evidence, the highest-consequence failure and the one the architecture exists to prevent. <strong>Type C</strong> is architectural: authorized evidence was discovered but failed to reach inference, for example a source that was ranked but never parsed. Collapsing these into a single accuracy number, as conventional evaluation does, hides precisely the distinction a regulated institution cares about.</p>
+    <p>One property of the methodology matters as much as the metrics: it is institution-agnostic. The evaluation logic is identical across sectors. Only one component changes between a university and a hospital, the institutional authority hierarchy that defines what counts as an authorized source. That portability is what the next sections test.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="evidence">
+    <h2>11. Evidence across four deployments</h2>
+    <p>The same methodology has been applied, unchanged, to four independent institutional deployments across two regulated sectors: three universities and one hospital. Together they cover roughly one hundred sixty structured governance scenarios, forty per deployment as designed, of which 159 were answered and evaluated. Each deployment used its own authority hierarchy while sharing one evaluation framework. The results below come from single-evaluator rounds, and the limitations that bound them are stated after the table; they bound the strength of the numbers, not the significance of the pattern.</p>
+    <table class="comp-table">
+      <thead><tr><th>Deployment</th><th>Sector</th><th>Evaluated</th><th>Pass</th><th>Type A</th><th>Type B</th><th>Type C</th><th>GPR</th></tr></thead>
+      <tbody>
+        <tr><td>Dalhousie</td><td>Higher education</td><td>40</td><td>35</td><td>5</td><td>0</td><td>0</td><td>100%</td></tr>
+        <tr><td>McGill</td><td>Higher education</td><td>40</td><td>35</td><td>1</td><td>3</td><td>1</td><td>92.5%</td></tr>
+        <tr><td>University of Calgary</td><td>Higher education</td><td>39</td><td>37</td><td>2</td><td>0</td><td>0</td><td>100%</td></tr>
+        <tr><td>MUHC</td><td>Healthcare</td><td>40</td><td>39</td><td>0</td><td>1</td><td>0</td><td>97.5%</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>4 deployments</strong></td><td><strong>159</strong></td><td><strong>146</strong></td><td><strong>8</strong></td><td><strong>4</strong></td><td><strong>1</strong></td><td><strong>97.5%</strong></td></tr>
+      </tbody>
+    </table>
+    <p>Type A is a utility limit with governance preserved; Type B is a governance violation; Type C is an architectural failure. Governance Preservation Rate is the share of answers with no Type B. Dalhousie's five Type A findings were later reassessed toward zero confirmed on re-examination; they are shown here at their original, more conservative count, and none affects the governance result.</p>
+    <p><strong>Dalhousie (higher education).</strong> Across forty questions the deployment recorded no governance violations and no architectural failures. Every weakness was Type A, a coverage limit where the system declined rather than invented. The round also did what a good evaluation should: it surfaced a missing authorized page in the corpus during testing rather than concealing it. This was the proof of concept that the methodology itself was sound.</p>
+    <p><strong>McGill (higher education).</strong> Two rounds were run. An initial round recorded no governance violations and a single architectural failure. The later, fuller forty-question assessment, reported here because it is the more complete, recorded three Type B governance violations, one Type C, and one Type A, for a governance-preservation rate of 92.5 percent. All three governance violations shared one mechanism: an answer broadened faculty-specific evidence into an institution-wide claim. The Type C was a residence-handbook PDF that was authorized and discovered but failed to parse, and so never reached inference, the exact parse-to-inference dependency named in Section 8.</p>
+    <p><strong>University of Calgary (higher education).</strong> Of forty planned questions, thirty-nine answers were supplied and evaluated; one was not submitted. Across those thirty-nine, no governance violations and no architectural failures were found. The two Type A results traced to a single corpus-coverage gap about registration status after classes begin. Governance preservation was complete on the evaluated set.</p>
+    <p><strong>MUHC (healthcare).</strong> In the more recent single-round forty-question evaluation, produced after the deployment’s retrieval program was strengthened, thirty-nine responses passed and one was classified Type B, with no Type A or Type C failures, for a governance-preservation rate of 97.5 percent. The single governance violation was a precision-at-the-boundary problem: the answer generalized the meaning of “same-day admission” from an authorized Montreal Children’s Hospital pediatric day/ambulatory-surgery guide into a broader MUHC institutional claim that the source did not establish. This was a source-scope fidelity violation, not fabrication from general knowledge. The same evaluation recorded zero unauthorized-generation events across the ten Section 3 questions and 100 percent evidence-pipeline integrity across all five traced stages for the ten Section 4 questions. Section 2 authorization accuracy was 100 percent for the ten Permit cases tested, while Block-side gate behaviour was not exercised by that question set.</p>
+    <p><strong>In aggregate,</strong> across the 159 evaluated answers, 146 passed (91.8 percent), with 8 Type A utility limits (5.0 percent), 4 Type B governance violations (2.5 percent, an aggregate governance-preservation rate of 97.5 percent), and 1 Type C architectural failure (0.6 percent). The most important qualitative finding sits beneath those numbers: in none of the four governance violations did a system invent an institutional position out of general model knowledge. Every violation was an over-extension of a real authorized source beyond its scope, not a position drawn from general world knowledge. Where these systems fail, they fail by over-reaching from authorized material, not by fabricating from outside it.</p>
+    <p><strong>Limitations.</strong> These are provisional evaluations, not full validations, and the reports say so in their own words. Every round used a single evaluator, so inter-rater reliability is not established. Some rounds reconstructed ground truth after the run rather than freezing it beforehand. In the hospital round, the complete logs supported 100 percent authorization accuracy for the ten Permit cases tested and 100 percent evidence-pipeline integrity across the ten Section 4 questions, but the question set contained no expected-Block case, so Block-side gate discrimination was not exercised. The figures above should be read as a consistent, replicated signal across sectors, not as certification.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="crosssector">
+    <h2>12. The cross-sector pattern</h2>
+    <p>The significance of these four deployments is not any single score. It is that one architecture and one evaluation framework were applied without modification across higher education and healthcare, two sectors with entirely different authority structures, and produced a coherent and interpretable pattern.</p>
+    <p>That pattern has a clear shape. Governance preservation is strong, and often complete, wherever the authorized corpus has direct coverage of the question. Governance violations concentrate at two identifiable loci, and only those two. The first is over-broadening: a real authorized source applied beyond its scope, as when faculty-specific evidence was stretched to an institution-wide claim at McGill. The second is scope-assertion at a corpus gap: where no on-point authorized source existed, the hospital deployment sometimes named a specific institutional service or process without a source authorizing that claim. A related retrieval concern appeared once, where the most applicable authorized guide was discovered but never selected for parsing. Nowhere in the evaluated set did a deployment answer from general model knowledge in the institution's name; every failure was an over-assertion of institutional scope, not an invention from outside authorized material.</p>
+    <div class="key-statement">
+      <p>Governance preservation is not unconditional. It holds when two conditions hold: the authorized corpus covers the question, and retrieval selects the right authorized source. Where governance failed, one of those two conditions had failed first. That is the claim the evidence supports, and it is a stronger claim than uniform success, because it says where the architecture holds, where it breaks, and why.</p>
+    </div>
+    <p>This also locates the hospital's weaker result correctly. Its five violations were not evidence that authorization-first governance breaks down in healthcare. All five were the same pattern, an uncited assertion of institutional service scope, and all five fell where the corpus held no on-point authorized page. The remedy is squarely in institutional hands: add the missing authorized sources, and hold the gate to citing service scope rather than asserting it. The separately documented retrieval concern, an applicable guide discovered but not parsed, is a selection fix. None of this requires changing the governance architecture; the system stayed inside authorized material throughout, and where it erred it erred by asserting scope it could not cite, in exactly the places the corpus was thin.</p>
+    <p>This reframes what a governance failure is, and it is the point most relevant to the institutions this architecture serves. In an inference-first system an error is opaque: the model produced something wrong, and there is rarely a specific, auditable cause to remove so it cannot recur. In an authorization-first system every answer is traceable to the authorized evidence it used, or to a logged refusal, so a failure is not a black box. It is a labeled, located signal. A corpus-gap failure names a missing authorized source. A selection failure names a retrieval-ranking defect. An over-broadening failure names a scoping boundary that needs tightening. Each one is a work item, not a mystery.</p>
+    <p>That inverts the usual relationship between an institution and its AI errors. A corpus gap found in evaluation is not a liability to be hidden; it is the system telling the institution precisely which authorized source to add. This is exactly what happened in the first university deployment, where the evaluation surfaced a missing authorized page during testing and it was added to the greenlist. Seen this way, the remaining failures across all four deployments are inputs to greenlist and retrieval management rather than verdicts on the architecture. They are the kind of error a regulated institution can act on, and therefore the kind it can welcome, because the same auditability that produces the failure is what lets the institution close it.</p>
+    <div class="key-statement">
+      <p>An auditable failure that names its own cause is worth more to a regulated institution than a fluent answer that hides one. Because authorization-first systems fail in traceable, classifiable ways, their failures become a maintenance discipline, greenlist coverage, source confinement, and retrieval selection, rather than an irreducible and unexplained risk.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="implications">
+    <h2>13. Implications for AI governance</h2>
+    <p>Most current discussion of AI governance assumes governance means aligning, monitoring, or constraining increasingly capable general-purpose inference. That is governance applied after generation, to a model whose default is to produce an answer.</p>
+    <p>Authorization-first governance proposes a different location for the constraint. Rather than governing inference after the fact, it governs the conditions under which institution-specific inference is permitted to occur at all. Governance becomes a pre-generation constitutional constraint rather than a post-generation monitoring activity. Inference-first architectures begin with generation and try to bound its consequences; authorization-first architectures begin with institutional authority and permit inference only inside it. These are different governance philosophies, not competing implementations of the same one.</p>
+    <p>The practical consequence is a change in what institutions evaluate. The question is no longer only whether the AI produced accurate information. It is whether the institution itself remained constitutionally represented throughout every interaction, whether every claim made in its name was one it had authorized. That may be the distinction that ultimately separates general-purpose AI from institutional AI.</p>
+    <p>The evidence here is bounded, and the conclusion should be too. Four single-evaluator deployments across two sectors are enough to show that the approach is portable and that its failures are interpretable and located, not enough to call the paradigm proven. If the pattern holds across further independent, multi-evaluator evaluations and additional sectors, authorization-first governance is not one product architecture but an alternative paradigm for regulated institutional AI. This paper's claim is the narrower, evidence-backed one: across the deployments evaluated so far, the governance failures the architecture targets were confined to corpus coverage and source selection, and never took the form of institutional fabrication.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="boundary">
+    <h2>14. Limitations and honest boundary</h2>
+    <p>A word on what <strong>structurally precluded</strong> asserts, because the phrase is exact rather than rhetorical. The paper makes a claim of conditional impossibility, not a promise of universal reliability. Where the execution gate governs whether inference occurs, the evidence threshold is enforced, and source confinement holds, the corresponding unauthorized pathway is not merely unlikely, it is unavailable. A system that cannot generate without authorized evidence cannot complete a missing-evidence answer; a system that cannot cite what it never parsed cannot produce a ghost citation. That is a deterministic property of the control point, not a probabilistic guardrail. The bright line is pre-inference versus post-inference: the governance and execution pathways are closed by construction under the stated conditions, while ordinary model error after authorized inference begins, summarization, omission, or synthesis within authorized text, remains possible and is reserved below as reduced, not eliminated.</p>
+    <p><strong>Structurally precluded</strong> (Layers A/B), conditional on the stated dependencies: the system is designed so that it will not assert an institutional position with no authorizing source, substitute general knowledge for institutional authority, blend other institutions&rsquo; or years&rsquo; sources when confinement holds, or bridge a retrieval/evidence gap rather than decline.</p>
+    <p><strong>Conditional</strong>, real guarantees that depend on inputs the institution owns: greenlist integrity (coverage and confinement); gate calibration (neither reckless nor uselessly silent); and citation-parse coupling (cite only what was parsed).</p>
+    <p><strong>Not eliminated</strong> (Layers C/D), and the paper does not pretend otherwise: summarization, translation, numeric, compression, omission, alignment, and confidence errors within authorized generation, plus residual model-level fabrication, reduced by a cleaner evidence surface, managed empirically, not solved.</p>
+    <p>Framed carefully: the architecture is designed to <strong>structurally preclude the failure classes that carry disproportionate institutional exposure</strong>, and to <strong>shift residual risk from unmonitored model weights to auditable data governance.</strong> It does not make language models perfect, and does not claim to.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="conclusion">
+    <h2>15. Conclusion</h2>
+    <p>This paper began as a critique of a concept and ends as the outline of a paradigm. Hallucination, the accuracy-centred frame, cannot express the failure that matters most to a regulated institution: a fluent, confident claim made in the institution's name that the institution never authorized. Naming that failure, and building an architecture that makes that pathway structurally unavailable under defined conditions rather than merely statistically rarer, is the conceptual contribution. Testing that architecture with a methodology built to detect governance rather than accuracy, across four deployments in two sectors, is the empirical one.</p>
+    <p>For a consumer product, the governing metric is average factual accuracy. For a university, hospital, or government service, the governing question is different: <em>under what conditions is the system permitted to speak in our name, and can it do so without our authorization?</em> A system with high average accuracy that can nonetheless assert, in the institution&rsquo;s name, a position the institution never adopted presents an institutional-governance risk that an accuracy score does not capture. A system that is sometimes incomplete but cannot speak without authorization is a governable instrument.</p>
+    <div class="key-statement">
+      <p>The central claim is not that language models can be made perfect. It is that regulated institutions should not permit institutional AI reasoning to occur unless authorization and evidence requirements have first been satisfied. By moving that decision before inference, governance becomes a condition of execution rather than a constraint applied after generation has already begun.</p>
+    </div>
+    <p>Evaluation frameworks for regulated AI should follow suit, treating authorization fidelity, source confinement, and evidence traceability as first-class criteria alongside accuracy, because those, not benchmark scores, are the properties that map to institutional risk.</p>
+
+    <p>The contribution is therefore not a single product but a set of foundational principles: an authorization-first control point, an institution-agnostic methodology, and a shared rubric that regulated institutions have been asking for and have so far lacked. A working methodology, a common rubric, and a consistent result across four deployments in two regulated sectors are a strong early indication that the shift from accuracy to authorization is not only sound but buildable and measurable today, and potentially transformative for how institutional AI is governed. And because this architecture fails in traceable, classifiable ways, its errors are not opaque risks but specific, actionable inputs to greenlist and retrieval management, the kind of error a regulated institution can find, welcome, and close rather than fear.</p>
+
+    <div class="key-statement">
+      <p>Institutional AI is not governed by making models know more. It is governed by deciding when they are authorized to speak.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="appendix">
+    <h2>Appendix A. Formal specification of authorization-first architecture</h2>
+    <p>The core claims of this architecture are deterministic, and therefore admit a formal statement. This appendix separates three kinds of statement that are easily conflated: invariants that hold by construction under stated conditions, residual quality properties that the invariants deliberately do not cover, and metrics that are measured rather than guaranteed. The separation is the point of the appendix, because it marks exactly where the architectural guarantee ends and empirical performance begins. The expressions are intentionally simple; their value is precision, not mathematical depth. They are formal shorthand for the architecture as filed (CIPO 3,299,174; USPTO 19/455,963), not an independent or broader claim.</p>
+    <p><strong>Notation.</strong> <em>Q</em> a query; <em>I</em> the identified institution; <em>G(I)</em> the authorized greenlist (corpus) for <em>I</em>; <em>S(Q)</em> the retrieved sources; <em>E(Q)</em> the parsed evidence delivered for <em>Q</em>; <em>P(Q)</em> the parsed-evidence set; <em>C(Q)</em> the citations in the answer; <em>T</em> the evidence threshold; <em>A(Q)</em> the authorization state, in {0, 1}; <em>R(Q)</em> the generative inference runtime; &empty; no runtime.</p>
+
+    <h3>A.1 Deterministic invariants</h3>
+    <p>These hold by construction, conditional on the stated dependencies: greenlist coverage and confinement, gate calibration, and a correctly set threshold. These are pre-inference invariants: they govern whether, and from what, a runtime may instantiate, not what the runtime then says. Authorization and evidence sufficiency are two independent conditions, applied in sequence (the authorization gate first, then the evidence threshold), and each is separately necessary for a runtime to exist.</p>
+    <div class="formula">A(Q) = 1 &nbsp;iff&nbsp; the authoritative-domain authorization condition for I is satisfied &nbsp;;&nbsp; else 0<span class="lbl">Authorization state. The system-level execution-enablement condition, determined from the identified authoritative informational domains for the institution. It does not include evidence sufficiency, which is a separate and independently necessary condition below.</span></div>
+    <div class="formula">&forall;Q, &nbsp; &not;A(Q) &rArr; R(Q) = &empty;<span class="lbl">Runtime instantiation (core invariant). Absent authorization, no generative inference runtime is instantiated. This is the formal shorthand for the filed claim.</span></div>
+    <div class="formula">S(Q) &sube; G(I)<span class="lbl">Source confinement. No retrieved evidence originates outside the institution's authorized corpus.</span></div>
+    <div class="formula">|E(Q)| &lt; T &nbsp; &rArr; &nbsp; R(Q) = &empty;<span class="lbl">Evidence threshold. Independently of authorization, generation cannot instantiate below the evidence threshold.</span></div>
+    <div class="formula">R(Q) &ne; &empty; &nbsp;&rArr;&nbsp; A(Q) = 1 &nbsp;&and;&nbsp; |E(Q)| &ge; T<span class="lbl">Runtime existence requires both. A generative runtime exists only if authorization holds and evidence is sufficient; failure of either, independently, prevents inference.</span></div>
+    <div class="formula">C(Q) &sube; P(Q)<span class="lbl">Citation-parse coupling. Every citation is a member of the parsed set; a citation to unparsed material cannot be produced, so ghost citations are excluded by construction.</span></div>
+
+    <h3>A.2 Residual quality properties</h3>
+    <p>The invariants constrain confinement (E(Q) &sube; G(I)) and sufficiency (|E(Q)| &ge; T). They do not constrain whether the selected authorized evidence is the <em>right</em> authorized evidence for the specific claim. Three properties over the members of E(Q) remain quality problems rather than gate guarantees, and this is where the observed governance violations lived.</p>
+    <ul>
+      <li><strong>Source applicability.</strong> Whether the member of E(Q) used for a claim is the most directly applicable authorized source, not merely an authorized one. This is the MUHC source-scope concern: an authorized pediatric day/ambulatory-surgery guide did not establish the broader institutional meaning attributed to “same-day admission.”</li>
+      <li><strong>Scope fidelity.</strong> Whether a claim stays within the scope its cited source authorizes rather than extending it. This is the McGill over-broadening: faculty-scope evidence extended to an institution-wide claim.</li>
+      <li><strong>Selection quality.</strong> Whether retrieval ranked and delivered the correct member of E(Q) when several authorized candidates existed.</li>
+    </ul>
+    <div class="formula">A(Q) = 1 &nbsp;&and;&nbsp; |E(Q)| &ge; T &nbsp;&rArr;&nbsp; R(Q) may instantiate &nbsp;&nbsp;<span style="opacity:.6">but not</span>&nbsp;&nbsp; &forall;c &isin; output, &nbsp; scope(c) &sube; scope(source(c))<span class="lbl">Authorization together with sufficient evidence permits the runtime to instantiate; it does not entail that every claim c stays within the scope of its source. That entailment is a post-inference property, governed by corpus and retrieval maintenance, not by the gate.</span></div>
+    <p>Locating these outside the gate is deliberate. It shows the boundary of the guarantee rather than pretending the formalism covers everything, and it is why the residual failures are addressed through greenlist coverage and retrieval refinement rather than architectural change.</p>
+
+    <h3>A.3 Measured evaluation metrics</h3>
+    <p>These quantify how a deployed system behaves. They are outcomes, not invariants, and some cannot always be computed: formal claim-level fidelity depends on the evidence package supplied for a given evaluation round.</p>
+    <div class="formula">F = N<sub>authorized</sub> / N<sub>institutional</sub><span class="lbl">Constitutional Fidelity. The share of institutional claims supported by authorized evidence; F = 1 is perfect fidelity, observed rather than guaranteed.</span></div>
+    <div class="formula">GPR = ( Total &minus; Type&nbsp;B ) / Total &nbsp;, over evaluated answers<span class="lbl">Governance Preservation Rate. The share of answers with no Type B violation. Reported aggregate: 97.5 percent across 159 evaluated answers.</span></div>
+    <p>Related measured quantities (Authorization Accuracy, False Authorization Rate, Evidence Integrity) are computed where a frozen ground-truth record and corpus text permit.</p>
+    <p>The division across A.1, A.2, and A.3 is the whole purpose of the appendix. A.1 states what the architecture guarantees by construction; A.2 states, in the same vocabulary, exactly what it does not; A.3 states what was measured. A reader can therefore see the boundary of the guarantee rather than infer it.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="closing">
+    <p style="font-size: 0.9rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic; margin-top: 2rem;">
+      Grounding note: architectural claims reflect the COMPAiSS execution-gate design (pre-inference authorization, source confinement, evidence-threshold generation, stateless operation) as described in the project&rsquo;s public materials and patent applications. The worked example in &sect;7 is a single observed interaction with an institutional deployment configuration, presented as a case illustration rather than controlled empirical evidence. Comparative statements about other architectures are analytical, not measured benchmarks. This document is an architectural argument, not legal advice or a compliance certification.<br>
+      For procurement inquiries or institutional evaluation: <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
+    </p>
+  </div>
+
+</main>
+
+<button id="backToTop" aria-label="Back to top">&uarr;</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
+</body>
+</html>
