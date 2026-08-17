@@ -15,3 +15,9 @@ Disallow: /ucw
 Disallow: /ucw/
 Disallow: /tmu
 Disallow: /tmu/
+Disallow: /muhc
+Disallow: /muhc/
+Disallow: /ucalgary
+Disallow: /ucalgary/
+
+Sitemap: https://compaiss.ca/sitemap.xml
