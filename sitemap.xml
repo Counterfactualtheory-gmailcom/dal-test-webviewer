@@ -1,329 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://compaiss.ca/</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>1.0</priority>
-  </url>
+  <!-- ========================================================= -->
+  <!-- ENGLISH HTML PAGES                                        -->
+  <!-- ========================================================= -->
 
   <url>
-    <loc>https://compaiss.ca/index_french.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>1.0</priority>
+    <loc>https://compaiss.ca/</loc>
   </url>
 
   <url>
     <loc>https://compaiss.ca/governance.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://compaiss.ca/why-ai-developed-this-way.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://compaiss.ca/ai-risk-assessment.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/deployment-and-institutional-fit.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/architecture-investigation.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://compaiss.ca/compaiss_demos_and_pricing.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/deployment-and-institutional-fit.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/architecture-investigation.html</loc>
   </url>
 
   <url>
     <loc>https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://compaiss.ca/compaiss-regulatory-compliance-comparison.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/governance-fr.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/gouvernance-en-action.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/evaluation-des-risques-ia.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/deploiement-et-adequation-institutionnelle.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/investigation-architecturale.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/le_defi_de_la_generation_en_premier_compaiss.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/compaiss-comparaison-reglementaire.html</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss-white-paper-2026-v2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_livre_blanc_v5.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/final_report-hallucinations_by_design-v2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/rapport_final-hallucinations_par_conception-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/hallucination_rates-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/road_less_travelled_revised.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/la_voie_moins_empruntee.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/breaking_out_of_the_matrix_v3_2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/sortir_de_la_matrice_fr_3.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/institutional_ai_failures_in_practice.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/echecs_ia_institutionnels_en_pratique.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_institutional_positioning_styled.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_positionnement_institutionnel_styled.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/cost_savings_by_design_styled.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/economies_de_couts_par_conception_styled.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-en.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-02-en.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-02-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_cra_evaluation_report.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_cra_evaluation_report-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_policy_regulatory_alignment_report_2026.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_rapport_alignement_reglementaire_politique_2026.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_muhc_case_study_v22_FR.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_figure_2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/rag_figure_1.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/figure1_rag_standard_fr-v2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/figure2_compass_controlee_fr-v2.pdf</loc>
-    <lastmod>2026-07-27</lastmod>
-    <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://compaiss.ca/beyond-hallucination-final-v7.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <priority>0.9</priority>
+  </url>
+
+
+  <!-- ========================================================= -->
+  <!-- FRENCH HTML PAGES                                         -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://compaiss.ca/index_french.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/governance-fr.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/gouvernance-en-action.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/evaluation-des-risques-ia.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/deploiement-et-adequation-institutionnelle.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/investigation-architecturale.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/le_defi_de_la_generation_en_premier_compaiss.html</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/compaiss-comparaison-reglementaire.html</loc>
   </url>
 
   <url>
     <loc>https://compaiss.ca/beyond-hallucination-fr.html</loc>
-    <lastmod>2026-08-09</lastmod>
-    <priority>0.9</priority>
+  </url>
+
+
+  <!-- ========================================================= -->
+  <!-- ENGLISH SUBSTANTIVE PDF DOCUMENTS                          -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss-white-paper-2026-v2.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/final_report-hallucinations_by_design-v2.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/road_less_travelled_revised.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/breaking_out_of_the_matrix_v3_2.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/institutional_ai_failures_in_practice.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_institutional_positioning_styled.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/cost_savings_by_design_styled.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-en.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-02-en.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_cra_evaluation_report.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_policy_regulatory_alignment_report_2026.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf</loc>
+  </url>
+
+
+  <!-- ========================================================= -->
+  <!-- FRENCH SUBSTANTIVE PDF DOCUMENTS                           -->
+  <!-- ========================================================= -->
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_livre_blanc_v5.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/rapport_final-hallucinations_par_conception-fr.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/hallucination_rates-fr.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/la_voie_moins_empruntee.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/sortir_de_la_matrice_fr_3.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/echecs_ia_institutionnels_en_pratique.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_positionnement_institutionnel_styled.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/economies_de_couts_par_conception_styled.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-fr.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-02-fr.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_cra_evaluation_report-fr.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_rapport_alignement_reglementaire_politique_2026.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_muhc_case_study_v22_FR.pdf</loc>
+  </url>
+
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf</loc>
   </url>
 
 </urlset>
-
