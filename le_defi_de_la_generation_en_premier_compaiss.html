@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La question de la preuve institutionnelle — Paysage concurrentiel de COMPAiSS</title>
+<style>
+  :root {
+    --ink:#10131a; --muted:#4f5868; --faint:#808998; --canvas:#f5f7fa;
+    --surface:#fff; --border:#dfe4eb; --blue:#173cff; --blue-soft:#e9edff;
+    --navy:#10131a; --navy-copy:rgba(255,255,255,.82); --green:#0c6d51;
+    --green-soft:#e9f6f0; --sans:"Helvetica Neue",Arial,sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-font-smoothing:antialiased}
+  body{background:var(--canvas);color:var(--ink);font-family:var(--serif);line-height:1.72}
+  .page{max-width:940px;margin:0 auto;padding:4rem 2rem}
+  .masthead{border-bottom:2px solid var(--ink);margin-bottom:4rem;padding-bottom:2rem}
+  .eyebrow,.section-label,.tag,.meta,.footer,.source-list,th,.comparison td:first-child{font-family:var(--sans)}
+  .eyebrow,.section-label{color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .eyebrow{margin-bottom:.8rem}
+  h1{font-size:clamp(2.25rem,5vw,3.5rem);font-weight:400;letter-spacing:-.032em;line-height:1.09;margin-bottom:1.1rem;max-width:810px}
+  .subtitle{color:var(--muted);font-family:var(--sans);font-size:1.08rem;line-height:1.6;max-width:750px}
+  .meta{border-top:1px solid var(--border);color:var(--faint);font-size:.78rem;line-height:1.55;margin-top:1.45rem;padding-top:.82rem}
+  section{margin-bottom:4.25rem}
+  .section-label{border-bottom:1px solid var(--border);margin-bottom:1.45rem;padding-bottom:.55rem}
+  h2{font-size:clamp(1.55rem,3.4vw,2.25rem);font-weight:400;letter-spacing:-.02em;line-height:1.22;margin-bottom:1.15rem;max-width:810px}
+  h3{font-family:var(--sans);font-size:1rem;line-height:1.35}
+  p{font-size:1.03rem;margin-bottom:1rem;max-width:790px}
+  p:last-child{margin-bottom:0}
+  .dark{background:var(--navy);color:#fff;margin:0 0 4.25rem;padding:2.4rem 2.45rem}
+  .dark .section-label{border-bottom-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5)}
+  .dark h2{color:#fff}.dark p{color:var(--navy-copy)}
+  .company-list{display:flex;flex-direction:column;gap:1.25rem}
+  .company{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--border);padding:1.55rem 1.65rem}
+  .company:hover{border-left-color:var(--blue)}
+  .company-head{align-items:baseline;display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:.75rem}
+  .tag{color:var(--faint);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .company p{font-size:.97rem;max-width:780px}.company p+p{margin-top:.65rem}
+  .focus{background:var(--blue-soft);color:var(--blue);display:inline-block;font-family:var(--sans);font-size:.79rem;font-weight:600;line-height:1.4;margin-top:.2rem;padding:.48rem .7rem}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem}
+  .card{background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--border);padding:1.4rem 1.45rem}
+  .card:hover{border-top-color:var(--blue)}
+  .card-head{align-items:baseline;display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:.65rem}
+  .card p{color:var(--muted);font-size:.93rem;line-height:1.62;margin:0}
+  .callout{background:var(--blue-soft);border-left:3px solid var(--blue);margin:1.55rem 0;padding:1.35rem 1.55rem}
+  .callout h3{color:var(--blue);font-size:.75rem;letter-spacing:.1em;margin-bottom:.45rem;text-transform:uppercase}
+  .callout p{font-size:.97rem;margin:0}
+  .comparison-wrap{margin-top:1.5rem;overflow-x:auto}
+  table{background:var(--surface);border:1px solid var(--border);border-collapse:collapse;min-width:760px;width:100%}
+  th{background:#edf1f6;color:var(--muted);font-size:.68rem;font-weight:700;letter-spacing:.07em;line-height:1.35;padding:.82rem .86rem;text-align:left;text-transform:uppercase;vertical-align:top}
+  td{border-right:1px solid var(--border);border-top:1px solid var(--border);font-size:.87rem;line-height:1.5;padding:.92rem .86rem;vertical-align:top}
+  td:last-child,th:last-child{border-right:0}
+  .comparison td:first-child{color:var(--muted);font-size:.78rem;font-weight:700;width:18%}
+  .principles{background:var(--border);border:1px solid var(--border);display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:1.5rem}
+  .principle{background:var(--surface);padding:1.3rem 1.35rem}
+  .number{color:var(--blue);font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.1em;margin-bottom:.35rem}
+  .principle p{color:var(--muted);font-size:.92rem;line-height:1.58;margin-top:.45rem}
+  .industries{background:var(--border);border:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:1.5rem}
+  .industry{background:var(--surface);padding:1rem 1.1rem}.industry h3{font-size:.86rem;margin-bottom:.25rem}
+  .industry p{color:var(--faint);font-family:var(--sans);font-size:.78rem;line-height:1.45;margin:0}
+  .notice{background:var(--green-soft);border-left:3px solid var(--green);margin-top:1.55rem;padding:1.25rem 1.45rem}
+  .notice h3{color:var(--green);font-size:.74rem;letter-spacing:.1em;margin-bottom:.45rem;text-transform:uppercase}
+  .notice p{font-size:.94rem;margin:0}
+  .source-list{font-size:.8rem;line-height:1.65;margin-top:1.35rem}.source-list p{color:var(--muted);font-size:.8rem;max-width:none}.source-list ul{margin:.45rem 0 0 1.1rem}.source-list li{margin:.25rem 0}.source-list a{color:var(--blue);text-decoration:none}.source-list a:hover{text-decoration:underline}
+  footer{border-top:1px solid var(--border);color:var(--faint);font-size:.77rem;line-height:1.6;margin-top:3rem;padding-top:1rem}footer p+p{margin-top:.45rem}
+  @media(max-width:720px){.page{padding:2.25rem 1.2rem}.dark{margin-left:-1.2rem;margin-right:-1.2rem;padding:1.65rem 1.2rem}.grid,.principles{grid-template-columns:1fr}.industries{grid-template-columns:1fr 1fr}.company{padding:1.3rem 1.25rem}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="masthead">
+    <div class="eyebrow">COMPAiSS — Analyse du paysage concurrentiel</div>
+    <h1>La question de la preuve institutionnelle dans l'IA d'entreprise</h1>
+    <p class="subtitle">L'IA d'entreprise gouverne déjà les utilisateurs, les données, les agents, les charges de travail, les modèles et les extrants. COMPAiSS répond à une question institutionnelle distincte : les conseils présentés au nom d'une institution reposent-ils sur une base adéquate d'information que l'institution autorise et tient à jour?</p>
+    <div class="meta">Document de discussion public • Mis à jour en août 2026 • Les caractérisations concurrentielles s'appuient sur des documents publics sélectionnés, cités ci-dessous, et ne constituent pas une évaluation de chaque configuration de produit, intégration ou déploiement client. Ce document exclut délibérément les méthodes d'implémentation confidentielles, la portée des revendications de brevet et toute analyse juridique.</div>
+  </header>
+
+  <section>
+    <div class="section-label">1. Le problème de gouvernance</div>
+    <h2>Une IA fluide n'équivaut pas à des conseils institutionnels dignes de confiance.</h2>
+    <p>Pour une université, un organisme de service public, un fournisseur de soins de santé, une institution financière ou tout autre organisme réglementé, une réponse générée par l'IA peut être comprise comme un conseil venant de l'institution elle-même. La norme applicable est donc plus exigeante que la fluidité ou l'utilité générale. L'institution a besoin d'une base gérable pour ce conseil, d'une compréhension claire de l'information sur laquelle il repose, et d'une voie responsable lorsqu'un appui adéquat n'est pas disponible.</p>
+    <p>Ce besoin ne diminue en rien la valeur de la gouvernance de l'IA d'entreprise. Les systèmes d'identité, les plateformes de données, les couches de contrôle des agents, l'infrastructure infonuagique, les systèmes de récupération, les plateformes de modèles et les outils d'observabilité résolvent chacun des problèmes importants. Mais ils ne répondent pas tous à la même question institutionnelle.</p>
+  </section>
+
+  <section class="dark">
+    <div class="section-label">Proposition centrale</div>
+    <h2>La question n'est pas de savoir si l'IA peut être gouvernée en amont. Le marché démontre clairement qu'elle peut l'être.</h2>
+    <p>La récupération sensible aux permissions peut gouverner quelle information atteint un modèle. Les contrôles d'agents peuvent gouverner quels outils ou actions un agent peut utiliser. Les contrôles d'infrastructure peuvent admettre, rejeter, acheminer, mettre à l'échelle ou isoler des charges de travail informatiques. Les systèmes de surveillance peuvent évaluer la qualité, la sécurité et la conformité tout au long du cycle de vie de l'IA.</p>
+    <p>COMPAiSS se positionne autour d'un objet de gouvernance différent : déterminer si une institution dispose d'une information autorisée adéquate pour appuyer le conseil qu'elle s'apprête à présenter face à un besoin d'information particulier.</p>
+  </section>
+
+  <section>
+    <div class="section-label">2. Le paysage de l'IA d'entreprise</div>
+    <h2>Des plateformes reconnues offrent déjà une gouvernance sophistiquée — chacune avec un centre de gravité différent.</h2>
+    <p>Ce qui suit n'est pas une comparaison de façade. Ces exemples résument l'orientation principale de gouvernance décrite dans une documentation publique sélectionnée et expliquent, de façon précise, en quoi cette orientation diffère de l'approche de COMPAiSS centrée sur la preuve institutionnelle.</p>
+
+    <div class="company-list">
+      <article class="company">
+        <div class="company-head"><h3>Microsoft Copilot, Copilot Studio et Azure AI Foundry</h3><span class="tag">Gouvernance de l'IA d'entreprise, des agents et des services</span></div>
+        <p>Microsoft documente un vaste environnement de gouvernance pour Copilot et ses agents : contrôles d'identité et d'accès, politiques de prévention de la perte de données, résidence géographique des données, gouvernance du cycle de vie et de la publication des agents, contrôles d'accès, surveillance et contrôles de gestion. Microsoft Foundry documente aussi un acheminement de modèle en temps réel, sélectionnant un modèle de langue adapté à une invite selon un profil d'acheminement et des critères opérationnels comme la qualité, le coût et la performance.</p>
+        <p>Il s'agit là de contrôles substantiels sur la disponibilité de l'IA d'entreprise, le fonctionnement des agents, le traitement des données et la sélection du service de modèle. La documentation examinée met l'accent sur la gouvernance de l'environnement de l'IA et de ses services. COMPAiSS est conçu autour de la question institutionnelle plus étroite de savoir si une réponse offerte comme conseil institutionnel repose sur un appui adéquat dans l'information que l'institution autorise à cette fin.</p>
+        <span class="focus">Orientation principale de gouvernance : agents, contrôles d'entreprise, gestion des services d'IA et acheminement des modèles</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>IA générative AWS et RAG sensible aux permissions</h3><span class="tag">Autorisation des données avant l'invite</span></div>
+        <p>AWS documente des modèles d'autorisation pour les applications RAG où l'accès aux données d'une base de connaissances est vérifié à la source, de sorte que seul le contenu auquel le principal demandeur est autorisé à accéder est fourni à l'application d'IA générative. La documentation publique d'AWS décrit aussi des méthodes fondées sur les métadonnées et les permissions pour contrôler l'accès à l'information dans les environnements RAG.</p>
+        <p>Il s'agit d'une gouvernance en amont significative : elle protège les données sensibles et contrôle quel contenu récupéré peut entrer dans le contexte d'un modèle. Son contrôle documenté vise principalement le droit d'un utilisateur ou d'un principal à accéder aux données. COMPAiSS répond à une préoccupation distincte de service public : déterminer si un conseil institutionnel devrait être présenté comme pouvant être appuyé par de l'information autorisée par l'institution et pertinente au besoin de l'utilisateur.</p>
+        <span class="focus">Orientation principale de gouvernance : droit d'accès du principal et accès aux connaissances filtré par permissions</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>Palantir AIP</h3><span class="tag">Lignage des données, provenance et gouvernance opérationnelle</span></div>
+        <p>Palantir décrit une gouvernance intégrée à son environnement de données opérationnel, comprenant le lignage des données, la provenance, les transformations, les contrôles d'accès et de données sensibles, les pratiques de conservation et la documentation tout au long du cycle de vie de l'IA. Cela est particulièrement précieux pour les institutions qui doivent comprendre comment les données circulent dans des flux de travail opérationnels gouvernés.</p>
+        <p>Le lignage et la provenance aident une organisation à retracer l'historique des données et à en comprendre le contexte opérationnel. Le positionnement public de COMPAiSS est différent : il porte sur la base informationnelle des conseils destinés aux utilisateurs — soit la capacité de l'institution à appuyer ce que son service d'IA communique dans cette interaction.</p>
+        <span class="focus">Orientation principale de gouvernance : opérations de données fiables, provenance, lignage et responsabilisation des flux de travail</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>IBM watsonx.governance</h3><span class="tag">Gouvernance du cycle de vie, surveillance et évaluation</span></div>
+        <p>IBM documente watsonx.governance comme un produit de gouvernance du cycle de vie pour les actifs d'IA, comprenant les fiches signalétiques d'IA, les évaluations, la surveillance en temps réel, les traces d'exécution, les tableaux de bord, les alertes et la supervision des applications agentiques. IBM décrit aussi l'évaluation de mesures liées à l'IA générative et au RAG, dont la qualité, la fidélité et la pertinence des réponses.</p>
+        <p>Ces capacités aident les organisations à observer, évaluer, documenter et améliorer les systèmes d'IA en exploitation. Elles répondent à des questions cruciales sur la qualité, la conformité et le risque lié aux modèles. COMPAiSS ne se positionne pas comme une autre couche d'observabilité; il est conçu pour placer la preuve autorisée par l'institution au cœur de la décision de présenter, ou non, une réponse comme un conseil institutionnel.</p>
+        <span class="focus">Orientation principale de gouvernance : registres du cycle de vie de l'IA, évaluation de la qualité, surveillance en temps réel et flux de conformité</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>ServiceNow AI Control Tower</h3><span class="tag">Gouvernance des actifs, agents, actions et flux de travail liés à l'IA</span></div>
+        <p>ServiceNow documente les capacités d'AI Control Tower pour l'inventaire des actifs d'IA, les processus d'approbation, les rôles d'intendance, la surveillance et la gouvernance des actifs et des flux de travail d'IA. Sa documentation plus large sur la sécurité de l'IA agentique décrit des contrôles sur qui peut invoquer un agent, à quelles données il peut accéder, et comment les interactions sont surveillées; sa documentation de gouvernance porte aussi sur les approbations pour les modèles, les composantes liées aux agents et les flux de travail.</p>
+        <p>Ces contrôles sont directement pertinents lorsqu'un agent d'IA peut exécuter des actions de processus d'affaires ou interagir avec des systèmes d'entreprise. L'orientation de COMPAiSS est distincte : la base probante des conseils institutionnels, plutôt que l'autorisation pour un agent d'utiliser un outil, de modifier un flux de travail ou d'agir au sein d'un processus d'entreprise.</p>
+        <span class="focus">Orientation principale de gouvernance : actifs d'IA approuvés, permissions des agents, flux de travail et actions opérationnelles</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>Glean</h3><span class="tag">Récupération de connaissances d'entreprise sensible aux permissions</span></div>
+        <p>Glean documente un graphe de connaissances d'entreprise construit à partir d'information organisationnelle indexée et conçu pour respecter les permissions, règles d'inclusion et règles d'exclusion des systèmes sources. Sa valeur consiste à rendre découvrable de l'information d'entreprise dispersée tout en maintenant les contrôles d'accès associés aux systèmes sous-jacents.</p>
+        <p>Il s'agit là d'une capacité importante de recherche et d'accès aux connaissances d'entreprise. COMPAiSS est conçu pour une posture de service différente : non pas simplement aider un utilisateur à trouver ce à quoi il a accès, mais aider une institution à déterminer si elle dispose d'une base d'information autorisée adéquate pour offrir un conseil en son nom.</p>
+        <span class="focus">Orientation principale de gouvernance : découverte d'entreprise et accès aux connaissances respectant les permissions des sources</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>Cohere</h3><span class="tag">Récupération d'entreprise et déploiement souverain ou privé</span></div>
+        <p>Cohere offre des modèles d'entreprise et des outils de récupération, dont le reclassement pour la recherche et les flux RAG, ainsi que des options de déploiement telles que l'infonuagique privée, sur site et en environnement isolé (air-gapped). Ces offres répondent à des besoins de qualité de récupération, de confidentialité des données, d'isolement du traitement et de souveraineté des données.</p>
+        <p>Le déploiement souverain ou privé répond à la question de savoir où l'IA fonctionne et qui contrôle l'environnement de déploiement — une exigence importante pour de nombreuses institutions réglementées. COMPAiSS répond à une question complémentaire : comment une institution gouverne la base probante des conseils livrés par un service recourant à l'IA.</p>
+        <span class="focus">Orientation principale de gouvernance : qualité de la récupération, exploitation privée, résidence des données et contrôle du déploiement</span>
+      </article>
+
+      <article class="company">
+        <div class="company-head"><h3>Ada</h3><span class="tag">Automatisation autonome du service à la clientèle</span></div>
+        <p>Ada positionne sa plateforme autour de la création, du déploiement et de l'optimisation d'agents de service à la clientèle sur les canaux de clavardage, vocal, courriel et sociaux, en s'intégrant aux systèmes d'affaires pour résoudre les demandes des clients à grande échelle. Son problème central est l'automatisation du service et l'exécution efficace des interactions avec la clientèle.</p>
+        <p>Cela a une grande valeur pour un service à la clientèle à fort volume. COMPAiSS est destiné à des contextes où l'exigence centrale n'est pas seulement l'automatisation ou la résolution, mais une base institutionnellement responsable pour des conseils informationnels dans des milieux réglementés ou publiquement imputables.</p>
+        <span class="focus">Orientation principale de gouvernance : automatisation omnicanale du service à la clientèle et résolution opérationnelle</span>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">3. Le paysage technique plus large</div>
+    <h2>Toute technologie adjacente n'est pas un concurrent direct. Certaines démontrent simplement que le contrôle en amont existe déjà dans d'autres contextes techniques.</h2>
+    <p>Ces exemples comptent parce qu'ils évitent un faux dilemme binaire. Les environnements d'IA avancés peuvent contrôler l'accès, la conformité aux politiques, la création de charges de travail, le trafic des services d'IA et les opérations informatiques, avant ou pendant l'activité de l'IA. COMPAiSS ne revendique pas la propriété du contrôle en amont comme idée générale.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-head"><h3>Netskope AI Gateway et contrôles agentiques</h3><span class="tag">Trafic IA et accès des agents</span></div>
+        <p>Netskope documente des politiques d'AI Gateway qui contrôlent et surveillent le trafic lié à l'IA selon des critères comme le groupe de jetons, le fournisseur et le modèle d'IA, et l'activité. Ses contrôles publiés peuvent surveiller, bloquer ou remplacer le trafic; sa documentation sur la sécurité de l'IA et les contrôles agentiques décrit aussi des contrôles de politique pour les applications d'IA, les agents, les implémentations MCP et les communications en temps réel.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Contrôle d'admission Kubernetes et OpenShift</h3><span class="tag">Admission des charges de travail</span></div>
+        <p>Kubernetes documente des contrôleurs d'admission qui interceptent les requêtes API authentifiées et autorisées avant qu'une ressource ne soit persistée. Les contrôleurs peuvent valider, modifier ou rejeter les requêtes selon une politique. OpenShift applique des concepts de contrôle d'admission connexes dans les opérations de plateforme conteneurisée.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Moteur d'inférence IA/AA générique d'ABB</h3><span class="tag">Gestion dynamique de l'environnement d'exécution</span></div>
+        <p>La demande publiée d'ABB pour un moteur d'inférence générique décrit la réception d'un modèle et de données cibles, la détermination de la disponibilité d'un environnement d'exécution associé, ainsi que la cartographie, l'activation et la désactivation dynamiques des environnements d'exécution de modèles pendant l'inférence. Il s'agit d'un exemple de gestion technique de l'environnement d'exécution pour les charges de travail IA/AA.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Acheminement de modèles Microsoft Foundry</h3><span class="tag">Sélection du modèle selon l'invite</span></div>
+        <p>Microsoft documente Model Router comme un service déployable qui sélectionne un modèle de langue approprié pour une invite, en temps réel. Il s'agit d'un exemple de gestion des services de modèles : choisir parmi plusieurs modèles selon les caractéristiques de la tâche et une politique d'acheminement.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Filtrage par permission et par portée d'URI</h3><span class="tag">Limites du contenu récupéré</span></div>
+        <p>Dans les systèmes RAG et de recherche d'entreprise, les droits d'accès, les métadonnées, les portées de type URI, les préfixes et les attributs de politique peuvent servir à restreindre les sources ou éléments qu'un principal peut récupérer. Cela gouverne l'accès au contenu, y compris le contenu qui pourrait autrement être fourni comme contexte à un système d'IA.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Environnements d'IA privés et souverains</h3><span class="tag">Frontière du déploiement</span></div>
+        <p>Les options d'infonuagique privée, d'infonuagique privée virtuelle, sur site et en environnement isolé (air-gapped) peuvent garantir que le traitement de l'IA demeure dans un environnement technique et juridictionnel donné. Ces contrôles répondent à des besoins de confidentialité, de résidence des données, d'isolement et de contrôle institutionnel de l'environnement lui-même.</p>
+      </article>
+    </div>
+
+    <div class="callout">
+      <h3>La distinction ne tient pas uniquement au moment d'intervention</h3>
+      <p>Un filtre d'accès aux données, une vérification de permission d'agent, une règle d'admission de charge de travail, un routeur de modèle et un système de gestion d'environnement d'exécution peuvent tous intervenir avant, pendant ou autour de l'activité de l'IA. Leur objet et l'élément qu'ils gouvernent diffèrent. La question posée par COMPAiSS est de savoir si une institution dispose d'une information autorisée adéquate pour présenter une réponse comme un conseil institutionnel pouvant être appuyé — et non simplement si un utilisateur, une charge de travail, un agent, un modèle ou une ressource respecte une politique opérationnelle distincte.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">4. Des systèmes différents gouvernent des objets différents</div>
+    <h2>La différenciation concurrentielle devient plus claire lorsque l'objet de la gouvernance est explicite.</h2>
+    <div class="comparison-wrap">
+      <table class="comparison">
+        <thead>
+          <tr><th>Approche / exemple</th><th>Qu'est-ce qui est gouverné?</th><th>Qu'est-ce qui détermine habituellement la décision?</th><th>Résultat typique si la condition n'est pas remplie</th><th>Orientation vers la preuve institutionnelle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gestion des identités et des accès</td><td>Accès des utilisateurs ou des services</td><td>Identité, authentification, rôle, attributs, droit</td><td>L'accès est refusé ou restreint</td><td>Répond à la question de savoir si un principal peut accéder à une ressource; n'établit pas en soi si un conseil est institutionnellement appuyé</td></tr>
+          <tr><td>RAG sensible aux permissions<br>AWS et modèles connexes</td><td>Documents, dossiers ou fragments de contenu récupérés</td><td>Permissions de l'utilisateur, droits d'accès, métadonnées, politique de la source, portée d'URI ou de préfixe</td><td>Le contenu non autorisé est écarté de la récupération ou du contexte de l'invite</td><td>Protège l'accès à l'information et peut améliorer l'ancrage; son critère habituel est le droit d'accès aux données</td></tr>
+          <tr><td>Passerelle IA et sécurité des agents<br>Netskope, Microsoft, ServiceNow</td><td>Trafic des services d'IA, agents, outils, connecteurs et actions</td><td>Jeton, identité de l'utilisateur ou de l'agent, politique, fournisseur/modèle, activité, approbation ou règle de flux de travail</td><td>Le trafic, l'invocation, l'utilisation d'un outil ou l'action peuvent être permis, bloqués, restreints, surveillés ou escaladés</td><td>Gouverne la disponibilité et le comportement des services ou agents d'IA; ne constitue pas en soi une politique sur le caractère soutenable d'un conseil institutionnel</td></tr>
+          <tr><td>Gouvernance des données et lignage<br>Palantir</td><td>Origine des données, transformations, accès, conservation et usage dans les flux de travail</td><td>Politique de données, provenance, classification, lignage et contrôles opérationnels</td><td>Usage restreint, traçabilité, révision ou traitement gouverné du flux de travail</td><td>Fournit une responsabilisation cruciale quant à l'historique des données; la base probante publique d'une réponse institutionnelle relève d'une décision distincte de gouvernance de service</td></tr>
+          <tr><td>Observabilité et évaluation<br>IBM</td><td>Modèles, invites, agents, déploiements, extrants et signaux de risque</td><td>Mesures d'évaluation, seuils, état du cycle de vie, politique de surveillance</td><td>Mesures, alertes, registres, tableaux de bord ou flux de correction</td><td>Évalue la qualité et le risque dans l'exploitation de l'IA; COMPAiSS porte sur la question de savoir si un conseil devrait être considéré comme appuyé par de l'information autorisée par l'institution</td></tr>
+          <tr><td>Admission des charges de travail<br>Kubernetes / OpenShift</td><td>Objets conteneurisés, charges de travail et requêtes de déploiement</td><td>Configuration, politique de sécurité, politique de ressources et règles de grappe</td><td>La requête de charge de travail peut être modifiée ou rejetée</td><td>Contrôle de politique d'infrastructure, non une politique de preuve institutionnelle pour un conseil public</td></tr>
+          <tr><td>Opérations de modèles et d'environnement d'exécution<br>ABB, systèmes de service de modèles</td><td>Sélection du modèle, disponibilité de l'environnement d'exécution, activation, mise à l'échelle et environnement d'exécution</td><td>Compatibilité du modèle, disponibilité de l'environnement d'exécution, conditions de déploiement, capacité ou politique opérationnelle</td><td>Les ressources peuvent être provisionnées, activées, acheminées, mises à l'échelle ou gérées différemment</td><td>Contrôle technique des opérations de modèle, non une détermination qu'une institution dispose d'une information adéquate pour appuyer une réponse donnée</td></tr>
+          <tr><td>IA souveraine ou privée<br>Cohere et autres</td><td>Emplacement des données, environnement de déploiement et frontière du traitement</td><td>Confidentialité, résidence, isolement des locataires, sécurité, isolement et juridiction</td><td>Le traitement de l'IA est confiné à l'environnement choisi</td><td>Répond à la question de savoir où l'IA fonctionne et sous le contrôle de qui; complète, sans la remplacer, la gouvernance de la preuve institutionnelle</td></tr>
+          <tr><td>Récupération des connaissances d'entreprise<br>Glean</td><td>Découverte et accès à l'information organisationnelle</td><td>Indexation, permissions des sources, règles d'inclusion et d'exclusion, pertinence</td><td>Les connaissances accessibles pertinentes sont retournées ou écartées</td><td>Facilite la découverte et l'accès aux connaissances d'entreprise; COMPAiSS est orienté vers des conseils institutionnels imputables fondés sur de l'information autorisée</td></tr>
+          <tr><td>COMPAiSS</td><td>Conseils institutionnels livrés par un service recourant à l'IA</td><td>Adéquation et pertinence de l'information que l'institution autorise et tient à jour pour le contexte du service</td><td>Le conseil est appuyé par de l'information institutionnelle, ou le service offre une clarification transparente, un aiguillage, une absence de réponse ou une prochaine étape</td><td>Conçu précisément pour placer la preuve autorisée par l'institution et l'imputabilité des conseils au cœur de l'expérience utilisateur</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">5. Où se situe COMPAiSS</div>
+    <h2>COMPAiSS est une couche de preuve institutionnelle pour des conseils à haute imputabilité.</h2>
+    <p>COMPAiSS ne se positionne pas comme un remplacement des plateformes infonuagiques, des outils de recherche, des fournisseurs de modèles, des cadres d'agents, des produits de gouvernance des données ou des outils d'observabilité. Ces systèmes peuvent constituer des composantes importantes d'un environnement institutionnel d'IA responsable. COMPAiSS est conçu pour ajouter une posture de gouvernance au niveau du service, centrée sur la capacité de l'institution à appuyer le conseil offert à la personne qui pose la question.</p>
+
+    <div class="principles">
+      <article class="principle"><div class="number">01</div><h3>Frontières d'autorité gérées par l'institution</h3><p>L'institution détermine l'univers d'information à partir duquel ses conseils peuvent être appuyés, en cohérence avec ses politiques, son intendance de contenu et la conception de son service.</p></article>
+      <article class="principle"><div class="number">02</div><h3>Preuve institutionnelle pertinente à la requête</h3><p>L'objectif n'est pas simplement de récupérer de l'information, mais de relier le besoin d'information de l'utilisateur à du contenu institutionnel pertinent au conseil présenté.</p></article>
+      <article class="principle"><div class="number">03</div><h3>Gouvernance des réponses axée sur la preuve</h3><p>Le conseil est conçu pour demeurer relié à de l'information que l'institution reconnaît et tient à jour, plutôt que d'être présenté comme une connaissance autonome du modèle.</p></article>
+      <article class="principle"><div class="number">04</div><h3>Comportement gouverné en l'absence de réponse</h3><p>Lorsqu'un appui institutionnel adéquat n'est pas disponible ou n'est pas approprié, le service peut offrir une clarification transparente, un aiguillage, une escalade ou une prochaine étape, plutôt qu'une réponse présentée comme faisant autorité sans appui suffisant.</p></article>
+      <article class="principle"><div class="number">05</div><h3>Assistance institutionnelle vérifiable</h3><p>Les institutions ont besoin d'un registre gérable de la base informationnelle, du contexte de service et du traitement opérationnel de l'assistance offerte au moyen de l'IA.</p></article>
+      <article class="principle"><div class="number">06</div><h3>Intendance humaine et politique</h3><p>Les équipes institutionnelles demeurent responsables de la gouvernance des sources, de l'entretien du contenu, des voies d'escalade, des limites du service et de la révision humaine appropriée.</p></article>
+    </div>
+
+    <div class="notice">
+      <h3>Une affirmation concurrentielle prudente</h3>
+      <p>COMPAiSS n'affirme pas que les autres plateformes ne peuvent pas être configurées avec des permissions, des contrôles de récupération, des politiques, des flux de validation ou une supervision humaine. Sa différenciation tient à l'orientation de gouvernance du produit : l'information autorisée par l'institution comme fondement de la décision de présenter, ou non, une réponse comme un conseil institutionnel imputable.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">6. Pourquoi cette différence importe</div>
+    <h2>Les institutions réglementées et publiques ont besoin de plus qu'une réponse plausible.</h2>
+    <p>Un étudiant peut se fier à une réponse sur l'aide financière ou les exigences académiques. Un résident peut se fier à un conseil sur un service public. Un patient peut chercher de l'information approuvée ou une orientation dans le système de soins. Un client dans un contexte réglementé peut agir selon un conseil de politique ou de procédure. Dans chaque cas, la responsabilité de l'institution dépasse la seule question de savoir si un système d'IA est sécurisé, surveillé ou statistiquement utile.</p>
+    <p>L'institution a aussi besoin d'une base crédible et gérable pour offrir ce conseil — et d'une expérience utilisateur responsable lorsque l'information institutionnelle disponible n'appuie pas adéquatement une réponse. C'est cette lacune de gouvernance de service que COMPAiSS est conçu pour combler.</p>
+    <div class="industries">
+      <article class="industry"><h3>Enseignement supérieur</h3><p>Admissions, politiques, aide financière, règlements académiques et services aux étudiants</p></article>
+      <article class="industry"><h3>Services publics</h3><p>Programmes, information sur l'admissibilité, demandes, prestations et aiguillages</p></article>
+      <article class="industry"><h3>Santé</h3><p>Information approuvée, orientation dans le système de soins, conseils administratifs et coordination des services</p></article>
+      <article class="industry"><h3>Entreprise réglementée</h3><p>Assistance guidée par les politiques, information sensible en matière de conformité et prestation de services imputable</p></article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">7. Conclusion</div>
+    <h2>Une distinction précise est plus crédible qu'une distinction générale.</h2>
+    <p>L'IA d'entreprise comprend déjà des contrôles sophistiqués sur l'identité, les données, le contenu récupéré, le comportement des agents, le trafic de service, les charges de travail, la sélection des modèles, les opérations d'environnement d'exécution, la provenance, les environnements de déploiement et la qualité des extrants. Ces capacités sont importantes, et les déploiements institutionnels responsables en combineront souvent plusieurs.</p>
+    <p>COMPAiSS répond à une question institutionnelle plus étroite, mais lourde de conséquences : avant qu'un conseil soit considéré comme pouvant être appuyé au nom d'une institution, celle-ci dispose-t-elle d'une base adéquate dans l'information qu'elle autorise et tient à jour? En centrant son action sur cette question, COMPAiSS est conçu pour aider les institutions à offrir une assistance assistée par l'IA avec des preuves plus claires, des limites plus claires, et des prochaines étapes plus claires lorsqu'une réponse ne devrait pas être présentée comme faisant autorité.</p>
+
+    <div class="source-list">
+      <p><strong>Documents publics sélectionnés consultés</strong></p>
+      <ul>
+        <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-governance">Microsoft Copilot Studio — Security and governance</a></li>
+        <li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/copilot-control-system/management-controls">Microsoft Copilot Control System — Management controls</a></li>
+        <li><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/model-router">Microsoft Foundry — Model Router</a></li>
+        <li><a href="https://aws.amazon.com/blogs/security/implement-effective-data-authorization-mechanisms-to-secure-your-data-used-in-generative-ai-applications-part-2/">AWS Security Blog — Data authorization for generative AI applications</a></li>
+        <li><a href="https://www.palantir.com/docs/foundry/aip/ethics-governance">Palantir AIP — AI ethics and governance</a></li>
+        <li><a href="https://www.ibm.com/docs/en/watsonx/w-and-w/2.3.x?topic=cases-watsonxgovernance-use-case">IBM — watsonx.governance documentation</a></li>
+        <li><a href="https://www.servicenow.com/docs/r/zurich/intelligent-experiences/ai-control-tower/explore-approvals.html">ServiceNow — AI Control Tower approvals</a></li>
+        <li><a href="https://www.servicenow.com/docs/r/platform-security/now-assist-security.html">ServiceNow — Agentic AI security and governance</a></li>
+        <li><a href="https://docs.glean.com/security/knowledge-graph">Glean — Knowledge Graph security documentation</a></li>
+        <li><a href="https://cohere.com/private-deployments">Cohere — Private deployments</a></li>
+        <li><a href="https://www.ada.cx/platform">Ada — Enterprise AI customer-service platform</a></li>
+        <li><a href="https://docs.netskope.com/en/access-policies">Netskope — AI Gateway access policies</a></li>
+        <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">Kubernetes — Admission controllers</a></li>
+        <li><a href="https://patents.justia.com/patent/20250238692">ABB — Generic Inference Engine for AI/ML Models Compatible with Cloud, on Premises, and Edge Deployment</a></li>
+      </ul>
+      <p style="margin-top:.6rem">Les titres des documents sources ci-dessus sont conservés dans leur langue d'origine, puisqu'il s'agit de titres exacts de documents publiés en anglais.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© Counterfactual Theory Inc. COMPAiSS est une marque de commerce déposée. Tous droits réservés.</p>
+    <p>Ceci est un document public de positionnement concurrentiel, et non un avis juridique, une divulgation de brevet, un tableau de revendications ou une représentation des fonctionnalités non publiques des concurrents. Les caractéristiques, configurations, intégrations, modèles de déploiement et politiques de service institutionnelles des produits varient. Les organisations demeurent responsables de déterminer l'usage approprié de l'IA, la supervision, l'intendance des sources et la révision professionnelle appropriées dans leur environnement.</p>
+  </footer>
+</main>
+</body>
+</html>
