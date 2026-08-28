@@ -295,14 +295,26 @@ async function login() {
 
 async function loadGreenlist() {
   const cfg = currentConfig();
-  const url = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
-            + '/contents/' + cfg.path + '?ref=' + cfg.branch;
+  const metaUrl = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
+                + '/contents/' + cfg.path + '?ref=' + cfg.branch;
   try {
-    const res  = await ghFetch(url, 'GET');
-    if (!res.ok) return false;
-    const data = await res.json();
-    fileSha = data.sha;
-    const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
+    // 1) Get metadata (sha) -- works at any file size, content field ignored.
+    const metaRes = await ghFetch(metaUrl, 'GET');
+    if (!metaRes.ok) return false;
+    const metaData = await metaRes.json();
+    fileSha = metaData.sha;
+
+    // 2) Fetch the actual file body via the Git Blobs API instead of the
+    //    Contents API. Blobs support files up to 100MB and stay on
+    //    api.github.com, so the Authorization header works fine -- no CORS
+    //    preflight rejection like raw.githubusercontent.com has on private repos.
+    const blobUrl = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
+                  + '/git/blobs/' + fileSha;
+    const blobRes = await ghFetch(blobUrl, 'GET');
+    if (!blobRes.ok) return false;
+    const blobData = await blobRes.json();
+    const decoded = JSON.parse(atob(blobData.content.replace(/\n/g, '')));
+
     sources   = Array.isArray(decoded) ? decoded.slice() : [];
     committed = sources.slice();
     pendingChanges = false;
@@ -435,8 +447,7 @@ async function saveToGitHub() {
   try {
     showStatus('Verifying current file state...', 'amber');
 
-    // FIX 1 -- Always fetch fresh SHA immediately before commit
-    // Never rely on the SHA loaded at login -- it may be stale
+    // Always fetch fresh SHA immediately before commit (metadata call -- fine at any file size)
     var shaRes  = await ghFetch(apiUrl + '?ref=' + cfg.branch, 'GET');
     if (!shaRes.ok) {
       const shaErrText = await shaRes.text();
@@ -445,7 +456,7 @@ async function saveToGitHub() {
       return;
     }
     var shaData  = await shaRes.json();
-    var freshSha = shaData.sha;  // use this, not the stored fileSha
+    var freshSha = shaData.sha;
     console.log('Fresh SHA fetched:', freshSha);
 
     var ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
@@ -457,23 +468,19 @@ async function saveToGitHub() {
     var res = await ghFetch(apiUrl, 'PUT', {
       message: message,
       content: content,
-      sha: freshSha,   // FIX 1 -- fresh SHA, not fileSha
+      sha: freshSha,
       branch: cfg.branch
     });
 
     if (res.ok) {
       var data = await res.json();
-
-      // FIX 3 -- Log confirmed commit SHA and URL
       console.log('Commit successful. SHA:', data.commit.sha);
       console.log('Commit URL:', data.commit.html_url);
 
-      // FIX 4 -- Reload greenlist from GitHub so UI reflects actual state
       await loadGreenlist();
 
       showStatus('Committed to GitHub. Railway is redeploying -- change live in ~2 minutes.', 'green');
     } else {
-      // FIX 2 -- Use res.text() not res.json() so errors never fail silently
       const errText = await res.text();
       console.error('GitHub API error:', errText);
       showStatus('Commit failed. See browser console for details.', 'red');
@@ -492,7 +499,7 @@ async function revertGreenlist() {
     + 'You will still need to click Commit to GitHub to apply the revert.'
   )) return;
 
-  var cfg        = currentConfig();
+  var cfg = currentConfig();
   var commitsUrl = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
                  + '/commits?path=' + cfg.path + '&per_page=2';
   try {
@@ -504,12 +511,27 @@ async function revertGreenlist() {
       return;
     }
     // commits[0] = current, commits[1] = the one before -- correct rollback target
-    var prevSha  = commits[1].sha;
-    var fileUrl  = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
-                 + '/contents/' + cfg.path + '?ref=' + prevSha;
-    var fileRes  = await ghFetch(fileUrl, 'GET');
+    var prevCommitSha = commits[1].sha;
+
+    // Get the file's blob sha as it existed at that commit (metadata call,
+    // works at any file size), then fetch the blob body via the Git Blobs API.
+    var prevMetaUrl = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
+                     + '/contents/' + cfg.path + '?ref=' + prevCommitSha;
+    var prevMetaRes = await ghFetch(prevMetaUrl, 'GET');
+    if (!prevMetaRes.ok) {
+      showStatus('Could not load previous version from GitHub.', 'red');
+      return;
+    }
+    var prevMetaData = await prevMetaRes.json();
+    var prevBlobUrl = 'https://api.github.com/repos/' + cfg.repoOwner + '/' + cfg.repoName
+                     + '/git/blobs/' + prevMetaData.sha;
+    var fileRes = await ghFetch(prevBlobUrl, 'GET');
+    if (!fileRes.ok) {
+      showStatus('Could not load previous version from GitHub.', 'red');
+      return;
+    }
     var fileData = await fileRes.json();
-    var prev     = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
+    var prev = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
     sources        = Array.isArray(prev) ? prev.slice() : [];
     pendingChanges = true;
     renderStats();
