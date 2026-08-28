@@ -269,16 +269,38 @@ async function login() {
   }
 }
 
+/* =========================================================
+   FIX: GitHub's Contents API caps file "content" at 1MB.
+   greenlist_mcgill.json is 1.79MB, so the old code's
+   JSON.parse(atob(data.content...)) was parsing truncated/
+   missing data -> "SyntaxError: Unexpected EOF".
+
+   Fix: fetch the SHA from the Contents API (still small,
+   metadata-only) and fetch the actual file body from
+   raw.githubusercontent.com, which has no such size limit.
+   ========================================================= */
+
 async function loadGreenlist() {
   const glPath = GREENLIST_PATHS[INSTITUTION];
-  const url = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
-            + '/contents/' + glPath + '?ref=' + BRANCH;
+  const metaUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                + '/contents/' + glPath + '?ref=' + BRANCH;
+  const rawUrl  = 'https://raw.githubusercontent.com/' + REPO_OWNER + '/' + REPO_NAME
+                + '/' + BRANCH + '/' + glPath;
   try {
-    const res  = await ghFetch(url, 'GET');
-    if (!res.ok) return false;
-    const data = await res.json();
-    fileSha = data.sha;
-    const decoded = JSON.parse(atob(data.content.replace(/\n/g, '')));
+    // 1) Get the SHA (needed later for commits) from the Contents API metadata.
+    const metaRes = await ghFetch(metaUrl, 'GET');
+    if (!metaRes.ok) return false;
+    const metaData = await metaRes.json();
+    fileSha = metaData.sha;
+
+    // 2) Get the actual file body from raw.githubusercontent.com (no size cap).
+    //    Needs a cache-buster since raw.githubusercontent.com caches aggressively.
+    const rawRes = await fetch(rawUrl + '?t=' + Date.now(), {
+      headers: { 'Authorization': 'Bearer ' + TOKEN }
+    });
+    if (!rawRes.ok) return false;
+    const decoded = await rawRes.json();
+
     sources   = Array.isArray(decoded) ? decoded.slice() : [];
     committed = sources.slice();
     pendingChanges = false;
@@ -411,8 +433,7 @@ async function saveToGitHub() {
   try {
     showStatus('Verifying current file state...', 'amber');
 
-    // FIX 1 -- Always fetch fresh SHA immediately before commit
-    // Never rely on the SHA loaded at login -- it may be stale
+    // Always fetch fresh SHA immediately before commit (metadata call -- fine at any file size)
     var shaRes  = await ghFetch(apiUrl + '?ref=' + BRANCH, 'GET');
     if (!shaRes.ok) {
       const shaErrText = await shaRes.text();
@@ -421,7 +442,7 @@ async function saveToGitHub() {
       return;
     }
     var shaData  = await shaRes.json();
-    var freshSha = shaData.sha;  // use this, not the stored fileSha
+    var freshSha = shaData.sha;
     console.log('Fresh SHA fetched:', freshSha);
 
     var ts      = new Date().toISOString().slice(0, 16).replace('T', ' ');
@@ -433,23 +454,19 @@ async function saveToGitHub() {
     var res = await ghFetch(apiUrl, 'PUT', {
       message: message,
       content: content,
-      sha: freshSha,   // FIX 1 -- fresh SHA, not fileSha
+      sha: freshSha,
       branch: BRANCH
     });
 
     if (res.ok) {
       var data = await res.json();
-
-      // FIX 3 -- Log confirmed commit SHA and URL
       console.log('Commit successful. SHA:', data.commit.sha);
       console.log('Commit URL:', data.commit.html_url);
 
-      // FIX 4 -- Reload greenlist from GitHub so UI reflects actual state
       await loadGreenlist();
 
       showStatus('Committed to GitHub. Railway is redeploying -- change live in ~2 minutes.', 'green');
     } else {
-      // FIX 2 -- Use res.text() not res.json() so errors never fail silently
       const errText = await res.text();
       console.error('GitHub API error:', errText);
       showStatus('Commit failed. See browser console for details.', 'red');
@@ -480,12 +497,20 @@ async function revertGreenlist() {
       return;
     }
     // commits[0] = current, commits[1] = the one before -- correct rollback target
-    var prevSha  = commits[1].sha;
-    var fileUrl  = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
-                 + '/contents/' + glPath + '?ref=' + prevSha;
-    var fileRes  = await ghFetch(fileUrl, 'GET');
-    var fileData = await fileRes.json();
-    var prev     = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
+    var prevSha = commits[1].sha;
+
+    // FIX: use raw.githubusercontent.com with the commit SHA as ref,
+    // instead of the Contents API, to avoid the 1MB content cap.
+    var rawUrl = 'https://raw.githubusercontent.com/' + REPO_OWNER + '/' + REPO_NAME
+               + '/' + prevSha + '/' + glPath;
+    var fileRes = await fetch(rawUrl + '?t=' + Date.now(), {
+      headers: { 'Authorization': 'Bearer ' + TOKEN }
+    });
+    if (!fileRes.ok) {
+      showStatus('Could not load previous version from GitHub.', 'red');
+      return;
+    }
+    var prev = await fileRes.json();
     sources        = Array.isArray(prev) ? prev.slice() : [];
     pendingChanges = true;
     renderStats();
