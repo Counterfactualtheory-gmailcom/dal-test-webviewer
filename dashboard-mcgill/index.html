@@ -284,22 +284,23 @@ async function loadGreenlist() {
   const glPath = GREENLIST_PATHS[INSTITUTION];
   const metaUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
                 + '/contents/' + glPath + '?ref=' + BRANCH;
-  const rawUrl  = 'https://raw.githubusercontent.com/' + REPO_OWNER + '/' + REPO_NAME
-                + '/' + BRANCH + '/' + glPath;
   try {
-    // 1) Get the SHA (needed later for commits) from the Contents API metadata.
+    // 1) Get metadata (sha) -- this works at any file size, content field ignored.
     const metaRes = await ghFetch(metaUrl, 'GET');
     if (!metaRes.ok) return false;
     const metaData = await metaRes.json();
     fileSha = metaData.sha;
 
-    // 2) Get the actual file body from raw.githubusercontent.com (no size cap).
-    //    Needs a cache-buster since raw.githubusercontent.com caches aggressively.
-    const rawRes = await fetch(rawUrl + '?t=' + Date.now(), {
-      headers: { 'Authorization': 'Bearer ' + TOKEN }
-    });
-    if (!rawRes.ok) return false;
-    const decoded = await rawRes.json();
+    // 2) Fetch the actual file body via the Git Blobs API instead of the
+    //    Contents API. Blobs support files up to 100MB and stay on
+    //    api.github.com, so the Authorization header works fine -- no CORS
+    //    preflight rejection like raw.githubusercontent.com has on private repos.
+    const blobUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                  + '/git/blobs/' + fileSha;
+    const blobRes = await ghFetch(blobUrl, 'GET');
+    if (!blobRes.ok) return false;
+    const blobData = await blobRes.json();
+    const decoded = JSON.parse(atob(blobData.content.replace(/\n/g, '')));
 
     sources   = Array.isArray(decoded) ? decoded.slice() : [];
     committed = sources.slice();
@@ -497,20 +498,27 @@ async function revertGreenlist() {
       return;
     }
     // commits[0] = current, commits[1] = the one before -- correct rollback target
-    var prevSha = commits[1].sha;
+    var prevCommitSha = commits[1].sha;
 
-    // FIX: use raw.githubusercontent.com with the commit SHA as ref,
-    // instead of the Contents API, to avoid the 1MB content cap.
-    var rawUrl = 'https://raw.githubusercontent.com/' + REPO_OWNER + '/' + REPO_NAME
-               + '/' + prevSha + '/' + glPath;
-    var fileRes = await fetch(rawUrl + '?t=' + Date.now(), {
-      headers: { 'Authorization': 'Bearer ' + TOKEN }
-    });
+    // Get the file's blob sha as it existed at that commit (metadata call,
+    // works at any file size), then fetch the blob body via the Git Blobs API.
+    var prevMetaUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                     + '/contents/' + glPath + '?ref=' + prevCommitSha;
+    var prevMetaRes = await ghFetch(prevMetaUrl, 'GET');
+    if (!prevMetaRes.ok) {
+      showStatus('Could not load previous version from GitHub.', 'red');
+      return;
+    }
+    var prevMetaData = await prevMetaRes.json();
+    var prevBlobUrl = 'https://api.github.com/repos/' + REPO_OWNER + '/' + REPO_NAME
+                     + '/git/blobs/' + prevMetaData.sha;
+    var fileRes = await ghFetch(prevBlobUrl, 'GET');
     if (!fileRes.ok) {
       showStatus('Could not load previous version from GitHub.', 'red');
       return;
     }
-    var prev = await fileRes.json();
+    var fileData = await fileRes.json();
+    var prev = JSON.parse(atob(fileData.content.replace(/\n/g, '')));
     sources        = Array.isArray(prev) ? prev.slice() : [];
     pendingChanges = true;
     renderStats();
