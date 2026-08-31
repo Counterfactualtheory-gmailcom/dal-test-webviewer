@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+<head>
+<link href="https://compaiss.ca/overview-zh.html" rel="canonical"/>
+<link href="https://compaiss.ca/index.html" hreflang="en" rel="alternate"/>
+<link href="https://compaiss.ca/index_french.html" hreflang="fr" rel="alternate"/>
+<link href="https://compaiss.ca/overview-zh.html" hreflang="zh-Hans" rel="alternate"/>
+<link href="https://compaiss.ca/index.html" hreflang="x-default" rel="alternate"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="COMPAiSS 中文概览：面向大学、政府机构、医疗机构与受监管行业的机构级人工智能治理架构。核心理念——知识来源授权先于人工智能推理——确保人工智能只能依据机构预先审核并授权的知识来源生成回答。" name="description"/>
+<meta content="COMPAiSS 概览：知识来源授权先于人工智能推理" property="og:title"/>
+<meta content="面向机构决策者的中文导读：COMPAiSS 如何通过人工审核的机构级绿名单与执行门控生成架构，确保人工智能回答始终源自机构授权知识，而非通用训练数据。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://compaiss.ca/overview-zh.html" property="og:url"/>
+<meta content="zh_CN" property="og:locale"/>
+<meta content="https://compaiss.ca/assets/compaiss_logo-en.png" property="og:image"/>
+<link href="/favicon.ico" rel="icon" sizes="any"/>
+<link href="/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png"/>
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<title>COMPAiSS 概览：知识来源授权先于人工智能推理</title>
+<style>
+    :root {
+      --wrap: 980px;
+      --pad: 32px;
+      --bg-page: #0c2d5a;
+      --bg-panel: #10386e;
+      --bg-panel-soft: rgba(16,56,110,0.55);
+      --bg-card: rgba(255,255,255,0.05);
+      --text-main: #c6cfdd;
+      --text-muted: #aeb9cc;
+      --text-heading: #ffffff;
+      --accent: #f0c44c;
+      --accent-soft: rgba(240,196,76,0.12);
+      --border-soft: rgba(255,255,255,0.08);
+      --border-accent: rgba(240,196,76,0.3);
+      --link: #9cc9ff;
+      --link-visited: #c8e0ff;
+      --radius: 10px;
+      --green: #4caf82;
+      --green-soft: rgba(76,175,130,0.12);
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg-page);
+      color: var(--text-main);
+      font: 18px/1.75 'Georgia', 'Times New Roman', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: .95; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    .skip-link { position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; background: #000; color: #fff; padding: 8px 12px; z-index: 1000; }
+
+    header { border-bottom: 1px solid var(--border-soft); }
+
+    .nav {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav .brand-text {
+      flex: 0 0 auto;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-heading);
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: center;
+      gap: 1.6rem;
+      margin: 0; padding: 0;
+      font-size: 0.82rem;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      flex-wrap: wrap;
+    }
+
+    .nav li { text-align: center; }
+    .nav li a { display: block; text-decoration: none; color: var(--text-muted); }
+    .nav a:hover { color: var(--text-heading); }
+    .nav a.active { color: var(--accent); }
+    .nav li.lang-item a { font-weight: 600; letter-spacing: 0.04em; }
+
+    .nav-cta {
+      flex: 0 0 auto;
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: var(--accent);
+      color: #000 !important;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none !important;
+      border-radius: 5px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; color: #000 !important; }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      color: var(--text-heading);
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+
+    main { max-width: var(--wrap); margin: 0 auto; padding: var(--pad); }
+
+    footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+    footer .footer-inner {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 2.5rem var(--pad);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    .lang-switch { list-style: none; display: flex; gap: 0.6rem; margin: 0 0 1rem; padding: 0; font-size: 0.85rem; }
+    .lang-switch li::after { content: '|'; margin-left: 0.6rem; color: var(--border-soft); }
+    .lang-switch li:last-child::after { content: ''; }
+    .lang-switch a { color: var(--link); text-decoration: none; }
+    .lang-switch a:hover { color: var(--text-heading); }
+    .lang-switch .current { color: var(--accent); font-weight: 600; }
+
+    .page-header {
+      text-align: center;
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .eyebrow {
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .page-header .logo-wrap { margin-bottom: 1.6rem; }
+    .page-header .logo-wrap img { max-width: 420px; width: 100%; height: auto; display: inline-block; }
+
+    .top-lang-links {
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1.4rem;
+    }
+    .top-lang-links a { color: var(--link); text-decoration: none; margin: 0 0.3rem; }
+    .top-lang-links a:hover { color: var(--text-heading); }
+
+    .section-nav {
+      margin-bottom: 3rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-soft);
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    .section-nav strong {
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-nav ul {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
+    }
+
+    @media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
+
+    .section-nav li { margin: 0; }
+    .section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+    .section-nav a:hover { color: var(--text-heading); }
+
+    .content-section { margin-bottom: 4rem; padding-top: 1rem; }
+
+    .content-section h2 {
+      font-size: 1.6rem;
+      color: var(--text-heading);
+      margin: 0 0 0.5rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border-accent);
+      letter-spacing: 0.01em;
+    }
+
+    .content-section .section-intro {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.8rem;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-style: italic;
+    }
+
+    .content-section p { max-width: 42em; margin: 1em 0; font-size: 1rem; line-height: 1.85; }
+    .content-section ul { max-width: 42em; margin: 1em 0 1.6em 1.4em; }
+    .content-section li { margin: 0.55em 0; font-size: 1rem; line-height: 1.75; }
+
+    .term {
+      color: var(--text-heading);
+      font-weight: 600;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    .card .card-icon { font-size: 1.4rem; margin-bottom: 0.7rem; }
+
+    .card h3 {
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin: 0 0 0.6rem;
+    }
+
+    .card p { font-size: 0.92rem; color: var(--text-main); margin: 0; line-height: 1.75; max-width: none; }
+
+    .highlight-block {
+      background: var(--accent-soft);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+
+    .highlight-block p { margin: 0 0 0.6rem; font-size: 1rem; color: var(--text-main); max-width: none; line-height: 1.8; }
+    .highlight-block p:last-child { margin-bottom: 0; }
+    .highlight-block.quote p { font-size: 1.1rem; color: var(--text-heading); font-style: italic; }
+
+    hr { border: none; border-top: 1px solid var(--border-soft); margin: 3rem 0; }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem 2rem;
+      margin: 1.4rem 0;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+    @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    .benefit-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+
+    .benefit-item::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: 0.85rem;
+      margin: 1.6rem 0;
+    }
+
+    .comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+    .comp-table th {
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+    }
+
+    .comp-table td {
+      padding: 0.7rem 0.9rem;
+      border-bottom: 0.5px solid var(--border-soft);
+      color: var(--text-main);
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .comp-table tr.compaiss-row td {
+      background: var(--accent-soft);
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .comp-table tr.compaiss-row td:first-child { border-left: 3px solid var(--accent); }
+
+    #backToTop {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--accent);
+      color: #000;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+
+    #backToTop:hover { opacity: 0.9; }
+
+    @media (max-width: 700px) {
+      .page-header .logo-wrap img { max-width: 280px; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: #0e2f5c;
+        border-top: 1px solid var(--border-soft);
+        border-bottom: 1px solid var(--border-soft);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 0.5rem 0;
+        z-index: 100;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      }
+      .nav ul.nav-open { display: flex; }
+      .nav li { width: 100%; text-align: left; }
+      .nav li a { padding: 0.75rem var(--pad); font-size: 0.9rem; border-bottom: 1px solid var(--border-soft); }
+      .nav li:last-child a { border-bottom: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳转到正文内容</a>
+<header>
+<nav aria-label="主导航" class="nav" style="position:relative;">
+<a class="brand-text" href="https://compaiss.ca/index.html">COMPAiSS</a>
+<button aria-expanded="false" aria-label="打开菜单" class="nav-toggle" id="navToggle">☰</button>
+<ul id="navMenu">
+<li><a href="https://compaiss.ca/why-ai-developed-this-way.html">为何人工智能会如此发展</a></li>
+<li><a href="https://compaiss.ca/governance.html">人工智能治理</a></li>
+<li><a href="https://compaiss.ca/ai-risk-assessment.html">人工智能风险评估</a></li>
+<li><a href="https://compaiss.ca/deployment-and-institutional-fit.html">部署与机构适配</a></li>
+<li class="lang-item"><a href="https://compaiss.ca/index.html">EN</a></li>
+<li class="lang-item"><a href="https://compaiss.ca/index_french.html">FR</a></li>
+<li class="lang-item"><a class="active" href="https://compaiss.ca/overview-zh.html">中文</a></li>
+</ul>
+</nav>
+</header>
+<main id="main">
+<div class="page-header">
+<div class="eyebrow">机构级人工智能治理架构 · 中文概览</div>
+<div class="logo-wrap">
+<img alt="COMPAiSS 标志 —— 专为必须保证准确性的环境设计，让人工智能不再凭空猜测" src="/assets/compaiss_logo-en.png"/>
+</div>
+<h1 style="font-size:1.55rem; line-height:1.6; max-width:720px; margin:0 auto; color:#ffffff; font-weight:400;">
+      COMPAiSS：知识来源授权先于人工智能推理
+    </h1>
+<p style="display:block; margin-top:1rem; font-size:0.95rem; color:#9cc9ff; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; max-width:640px; margin-left:auto; margin-right:auto;">
+      面向大学、政府机构、医疗机构及其他受监管机构决策者的架构导读。本页并非网站的逐页翻译，而是对 COMPAiSS 核心架构的准确、独立中文说明。
+    </p>
+<p class="top-lang-links">
+      查看 <a href="https://compaiss.ca/index.html">英文版网站（English）</a> ・ <a href="https://compaiss.ca/index_french.html">法文版网站（Français）</a>
+</p>
+</div>
+<div aria-label="页面导航" class="section-nav">
+<strong>本页导航</strong>
+<ul>
+<li><a href="#problem">生成优先型机构人工智能的问题</a></li>
+<li><a href="#authorization">核心理念：知识来源授权先于推理</a></li>
+<li><a href="#greenlist">人工审核的机构级绿名单</a></li>
+<li><a href="#egg">执行门控生成架构</a></li>
+<li><a href="#authority">机构权威性为何不同于事实准确性</a></li>
+<li><a href="#comparison">COMPAiSS 与通用人工智能、传统 RAG 的区别</a></li>
+<li><a href="#applications">应用场景</a></li>
+<li><a href="#auditability">可审计性、来源控制与多语言一致性</a></li>
+<li><a href="#contact">机构评估与合作邀请</a></li>
+</ul>
+</div>
+<!-- ============================================================ -->
+<!-- 1. THE PROBLEM                                                -->
+<!-- ============================================================ -->
+<div class="content-section" id="problem">
+<h2>生成优先型机构人工智能的问题</h2>
+<p class="section-intro">人工智能越强大，对受监管机构而言反而可能越不合适。</p>
+<p>当一名学生询问学籍认定政策、一名患者询问医院的入院流程，或一名公民询问自己是否符合某项福利资格时，通用人工智能系统并不会只依据该机构自身的政策或官方页面作答。它会调动其训练数据中数以十亿计的信息片段——其他大学的政策、其他司法辖区的法规、其他医院与政府部门的流程——并将这些内容糅合成一个听起来权威、但可能与该机构实际规定毫无关系的答案。</p>
+<p>这并非系统缺陷，而是这类系统的设计方式本身如此。训练数据越广泛，模型能力越强，来自错误机构、错误司法辖区或错误年份的信息混入答案的机会也就越多。对大学、医院、政府部门和行业监管机构而言，这种“噪音”不是使用上的不便，而是治理层面的失败。</p>
+<p>更强大的人工智能并不会减少此类错误，反而会让错误的表述更具说服力、更难以被发现。寄望于未来的模型自动解决这一问题并非一种可行策略，而是在放任风险持续累积。</p>
+<p>COMPAiSS 不依赖人工智能从海量训练数据中自行组织答案。相反，系统会首先判断问题是否能够完全依据该机构的授权知识来源得到回答，只有在这一判断通过之后，人工智能才被允许生成回应。如果问题无法由机构已批准的来源支持，人工智能不会尝试作答，而是将用户引导回机构自身的渠道。知识的世界浩瀚无边，而 COMPAiSS 只在属于该机构的范围内运作。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 2. CORE CONCEPT                                               -->
+<!-- ============================================================ -->
+<div class="content-section" id="authorization">
+<h2>核心理念：知识来源授权先于人工智能推理</h2>
+<p class="section-intro">COMPAiSS 架构的中心主张，是一个必须先于生成而被回答的问题。</p>
+<div class="highlight-block quote">
+<p>知识来源授权先于人工智能推理</p>
+</div>
+<p>这句话的含义是：在人工智能被允许针对某一机构的问题生成答案之前，支持该答案的具体知识来源必须已经获得该机构的正式授权。授权发生在推理之前，而不是在人工智能生成答案之后再对结果进行审查或过滤。如果没有任何已获授权的机构知识来源能够支持某个问题，人工智能推理过程根本不会启动。</p>
+<p style="max-width:42em; margin:1.4em 0; font-size:0.95rem; color:var(--text-muted); font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; line-height:1.75;">
+      需要特别说明的是：这里所说的“授权”，既不是指用户登录权限或密码访问，也不是网络安全意义上的访问控制，更不是知识产权许可意义上的授权。它不涉及“谁可以使用系统”，而是关于“人工智能可以依据哪些具体知识内容作答”。这是一种知识层面的授权机制，决定的是人工智能生成推理所依赖的信息边界，而不是用户身份或使用权限。
+    </p>
+<p>今天多数人工智能安全与幻觉治理研究关注的问题是：某个生成的答案是否基本正确。不同的方法尝试识别不确定性、检测幻觉，或识别超出范围的问题。COMPAiSS 关注的是一个不同的治理优先级：对受监管机构而言，“正确”与“具有机构权威性”并不是同一件事。一个答案可以措辞自信、事实准确，却仍然依据了用户以为并非该答案所依据的外部信息来源。信息的出处，与信息本身是否准确同样重要。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 3. GREENLIST                                                  -->
+<!-- ============================================================ -->
+<div class="content-section" id="greenlist">
+<h2>人工审核的机构级绿名单</h2>
+<p class="section-intro">绿名单（greenlist）是每一个 COMPAiSS 部署的治理基础。</p>
+<p><span class="term">绿名单（greenlist）</span>是特定机构的已批准来源列表——一份经过人工审核、明确列出人工智能可以依据哪些网页、政策文件与官方文档作答的清单。它精确界定了每一个 COMPAiSS 部署的“知识边界”：系统只能依据绿名单中的内容作答，而不能依据清单之外的任何信息。</p>
+<p>绿名单并非一次性设定后即固定不变的配置文件，而是需要持续维护的动态治理资产。机构保留对该清单的完全控制权，可随时新增、移除或更新已授权来源；系统会定期对绿名单中的每一个网址进行核查，识别失效链接、跳转变更或需要更新的页面，并将核查结果提交机构审阅。</p>
+<p>绿名单的治理责任通常沿用机构原有的内容归属结构，而不是重新建立一套体系：大学中，招生政策由注册主任办公室负责，财务政策由学生资助部门负责，各院系负责本院系的学术要求；医院中，患者教育材料由临床治理部门负责，用药信息由药剂部门负责。绿名单所做的，只是让人工智能尊重这些原本就存在的内容责任划分——它使原本就存在的治理工作变得清晰可见、可追溯到具体责任人，并可供审计。</p>
+<p>这与常规检索系统的做法形成对比。常规检索系统通常以“抓取便利性”为出发点：让爬虫或连接器尽可能索引所有可访问的文档，而没有人能确切说明这些文档中有多少真正经过审核、被批准用于人工智能问答，只知道它们在技术上可以被访问到。COMPAiSS 采取相反的取舍：放弃这种抓取上的便利性，换取来源上的可追溯性——机构可以明确掌握哪些来源已获批准，并持续审查、更新或移除这些来源。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 4. EXECUTION-GATED GENERATION                                 -->
+<!-- ============================================================ -->
+<div class="content-section" id="egg">
+<h2>执行门控生成架构</h2>
+<p class="section-intro">Execution-Gated Generation（执行门控生成，简称 EGG）——人工智能不会回答未获授权的问题。</p>
+<p>COMPAiSS 的核心是一种<span class="term">执行门控生成（Execution-Gated Generation）</span>架构。如果授权判断未通过，负责生成机构性回答的主推理模型不会执行，也不会占用主要的推理资源。通过控制人工智能推理是否发生这一步骤本身，COMPAiSS 从结构上强制执行机构的权威边界，而不是依赖生成之后的过滤或纠正。</p>
+<div class="benefits-grid">
+<div class="benefit-item">授权判断先于推理执行</div>
+<div class="benefit-item">未获授权的问题不会触发模型运行</div>
+<div class="benefit-item">拒答不消耗额外的推理算力</div>
+<div class="benefit-item">治理路径在生成任何输出之前即已存在</div>
+</div>
+<p>这与传统的检索增强生成（RAG）或“先生成、后管理风险”的思路不同。多数人工智能系统——包括 RAG——默认会针对每一个问题生成回答，再尝试通过免责声明、置信度评分、生成后过滤或人工复核来管理风险。COMPAiSS 提出的是一个不同的问题：在人工智能生成回答之前，首先判断这个问题是否属于该机构界定的范围之内，是否存在可支持答案的授权机构材料，以及生成一个答案是否负责任、是否站得住脚。只有当这些条件都满足时，人工智能才被允许作答。</p>
+<p>当问题明确属于某机构范围，且授权来源中存在可支持答案的权威信息时，COMPAiSS 会给出完全基于该机构授权材料的清晰答案——而不是从广泛而不相关的其他机构或司法辖区的信息中推断得出。当问题无法被授权来源支持时，系统不会靠猜测、泛化或“想办法显得有帮助”来填补空白，而是不生成回答。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 5. AUTHORITY VS ACCURACY                                      -->
+<!-- ============================================================ -->
+<div class="content-section" id="authority">
+<h2>机构权威性为何不同于一般事实准确性</h2>
+<p class="section-intro">一个“未经授权的真相”，与一个“被幻觉出的谎言”同样危险。</p>
+<div class="highlight-block">
+<p>一个答案可以措辞自信、事实上也完全准确，却仍然并非源自用户理应依赖的那个机构信息来源。这种情况下，信息的“出处”与信息的“准确性”同等重要——因为受监管机构对外提供的每一个答案，理应可以被追溯到该机构自己审核并认可的具体来源，而不是碰巧正确的外部信息。</p>
+</div>
+<p>举例而言，一段关于某项政策的说明，即便在事实层面完全属实，如果它实际上描述的是另一所大学、另一家医院或另一个司法辖区的规定，对提问者所在机构而言，它依然不具备机构权威性——因为它并不反映该机构自己的立场、政策或官方指引。COMPAiSS 的设计目标，并非提供一个“大体正确”的答案，而是确保每一个答案都完全源自该机构已授权的知识来源，从而建立起用户对答案来源的信任，而不仅仅是对答案表面正确性的信任。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 6. NOT RAG / NOT GENERAL-PURPOSE / NOT FAQ                    -->
+<!-- ============================================================ -->
+<div class="content-section" id="comparison">
+<h2>COMPAiSS 与通用人工智能、传统 RAG 的区别</h2>
+<p class="section-intro">三种常见的误解——以及 COMPAiSS 与三者在架构上的本质差异。</p>
+<h3 style="font-size:1.05rem; color:#ffffff; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; margin:1.8em 0 0.6em;">并非检索增强生成（RAG）</h3>
+<p>RAG 系统将人工智能模型与机构文档相连接，使其能够在生成答案前先检索相关材料。这相较于通用人工智能是一项真正的进步，但本质上仍是“生成优先”的系统：从用户提交问题到答案出现之间，系统会执行一连串概率性的人工智能推理步骤——理解问题意图、生成向量表示、检索候选内容、对片段重新排序、组装上下文——每一步都在决定语言模型最终将看到、或看不到哪些证据。到语言模型真正开始生成文字时，已经有多个人工智能推理环节预先决定了它所依据的信息范围。独立研究显示，即便在检索条件较为理想的情况下，RAG 系统的残余幻觉率仍可达约 6%；某些面向企业的法律类人工智能产品在实际测试中，幻觉率甚至达到 17% 至 33%。</p>
+<p>COMPAiSS 并不是一个“更好的 RAG 系统”，而是一种不同类型的系统——它会先问一个 RAG 从不会问的问题：人工智能是否应当被允许回答这个问题？RAG 致力于改善模型能看到什么；COMPAiSS 决定的是模型是否被允许运行。</p>
+<h3 style="font-size:1.05rem; color:#ffffff; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; margin:1.8em 0 0.6em;">并非通用人工智能系统</h3>
+<p>通用人工智能系统的设计目标是回答几乎任何问题，其价值在于能够自由跨越不同领域、不同机构、不同司法辖区，不受预先设定的边界限制。COMPAiSS 的设计方向恰恰相反——它专为特定机构而生，目标不是从通用知识中“近似”出一个答案，而是准确反映某一具体机构实际已授权的官方立场、政策或指引，并且只有在确认这一点之后才允许人工智能作答。简言之：通用人工智能追求“能回答多少”，COMPAiSS 追求的是“什么时候适合针对贵机构作答，什么时候不适合”。</p>
+<h3 style="font-size:1.05rem; color:#ffffff; font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif; margin:1.8em 0 0.6em;">并非 FAQ 机器人或脚本化聊天机器人</h3>
+<p>FAQ 系统建立在预设问题与固定答案之上，要求用户的提问必须落在预先设定的范围内，一旦问题超出这些限制，或需要结合语境与机构规则进行判断，系统便会失效。COMPAiSS 不依赖脚本，而是对每一个问题独立进行判断，从相关的机构授权信息中给出清晰、具体且贴合用户实际需求的回答。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 7. APPLICATIONS                                               -->
+<!-- ============================================================ -->
+<div class="content-section" id="applications">
+<h2>应用场景：大学、政府、医疗与受监管机构</h2>
+<p class="section-intro">在这些环境中，准确性没有商量的余地。</p>
+<p>大学、医院、政府部门与行业监管机构面临同样的挑战：相关信息确实存在，却分散在成百上千个网页与政策文件中，分别由不同部门管理，并按不同的时间表更新。COMPAiSS 面向的正是这些负有提供清晰、准确、具有权威性信息之责任的机构——在不产生超出机构自身授权范围之回答的前提下，以用户偏好的语言提供服务。</p>
+<div class="card-grid">
+<div class="card">
+<div class="card-icon">🎓</div>
+<h3>大学</h3>
+<p>大学发布关于招生、学籍认定、无障碍支持、经济资助与学生权利的政策。错误的回答可能歪曲官方政策，导致不当决定或申诉，并引发公平性与合规问题。</p>
+</div>
+<div class="card">
+<div class="card-icon">🏥</div>
+<h3>医院与医疗机构</h3>
+<p>医院在严格的临床、行政与监管约束下运作。不准确的信息可能误述患者权利或流程，造成合规风险，并削弱公众对医疗服务的信任。</p>
+</div>
+<div class="card">
+<div class="card-icon">🏛</div>
+<h3>政府服务部门</h3>
+<p>公共部门提供的信息关系到福利、资格条件、义务与服务获取。错误的指引可能延误或拒绝服务，造成法律风险，并损害公众信任。</p>
+</div>
+<div class="card">
+<div class="card-icon">⚖</div>
+<h3>行业监管机构</h3>
+<p>监管机构发布执业资格要求、纪律处分程序与专业标准。不准确的指引可能歪曲法定要求，使机构面临法律挑战。</p>
+</div>
+<div class="card">
+<div class="card-icon">🏫</div>
+<h3>学院与理工院校</h3>
+<p>学院发布结构化的专业要求、学历路径与招生标准。错误信息可能误导准学生，并引发正式投诉或申诉。</p>
+</div>
+<div class="card">
+<div class="card-icon">🏙</div>
+<h3>市政部门</h3>
+<p>市政部门发布许可流程、分区规划与执照规定。错误的指引可能造成法律责任、延误公共服务，并引发问责问题。</p>
+</div>
+</div>
+<p style="margin-top:2rem;">COMPAiSS 目前正在加拿大多个受监管机构环境中开展积极的试点部署，包括研究型大学与一个联邦公共服务场景，另有多个机构试点正在评估之中。</p>
+</div>
+<!-- ============================================================ -->
+<!-- 8. AUDITABILITY, SOURCE CONTROL, MULTILINGUAL CONSISTENCY     -->
+<!-- ============================================================ -->
+<div class="content-section" id="auditability">
+<h2>可审计性、来源控制与多语言一致性</h2>
+<p class="section-intro">面向机构采购、法务与治理审查的架构特性。</p>
+<p><span class="term">可审计性。</span>由于授权判断发生在人工智能生成回答之前，每一次交互都遵循一条有据可查、可复现的治理路径。机构自行决定哪些来源具有权威性，机构自行界定问题范围的边界，系统则从架构层面而非概率层面强制执行这两项决定。每一个回答都可以追溯到具体的机构授权来源。COMPAiSS 不依赖置信度评分或生成后过滤来建立授权，但仍采用生成后链接验证等纵深防御措施。这使 COMPAiSS 天然契合机构治理审查、伦理审查流程与政府采购框架的文档要求。</p>
+<p><span class="term">来源控制。</span>机构对绿名单拥有完全的可见性与控制权，可随时新增、移除或更新已授权来源，系统无法访问绿名单之外的任何页面或文档。绿名单会定期接受核查，识别失效链接、跳转变更或需要更新的内容，确保授权边界始终清晰、可靠、经得起治理审查的检验。当授权来源本身存在遗漏或过时之处时，COMPAiSS 会如实反映这一局限，而不是用泛化或臆测的内容去填补空白——这使内容缺口变得清晰可见、可被主动纠正，而不是被笼统的回答所掩盖。</p>
+<p><span class="term">多语言一致性。</span>COMPAiSS 在架构层面将“语言”与“含义”分离。当问题以非英语语言提交时，会先在授权判断框架之外完成一道预处理式的翻译步骤——翻译本身不检索文档、不解读政策、不应用机构规则。翻译完成之后，问题才会依据机构授权范围接受判断，只有在授权确认后，主推理模型才会开始工作；答案生成后再翻译回用户使用的语言呈现。这意味着，一名以中文、法语或阿拉伯语询问学籍政策的学生，得到的是与以英语提问完全相同的、经机构授权的答案——而不是因翻译差异或语料噪音而产生偏差的近似回答。对于负有多语言服务义务的机构而言，这种一致性并非细枝末节，而是“因架构设计而天然一致”与“仅在条件恰好吻合时才保持一致”之间的根本区别。</p>
+</div>
+<hr/>
+<!-- ============================================================ -->
+<!-- 9. INVITATION                                                 -->
+<!-- ============================================================ -->
+<div class="content-section" id="contact">
+<h2>机构评估与合作邀请</h2>
+<p class="section-intro">面向机构评估与技术合作伙伴的邀请。</p>
+<p>COMPAiSS 正在积极寻求机构评估合作伙伴与技术协作方。如果贵机构希望了解 COMPAiSS 是否适合本机构的治理需求，欢迎联系我们安排演示、讨论试点部署，或索取用于采购审查的治理文档。</p>
+<div class="highlight-block">
+<div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;">机构评估邀请</div>
+<p style="margin:0 0 1rem;font-size:0.95rem;color:#c6cfdd;max-width:60ch;">
+        COMPAiSS 现已开放机构评估申请。如需安排演示、讨论试点部署，或为采购审查索取治理文档，请通过以下方式联系：
+      </p>
+<a href="mailto:frank.harvey@compaiss.ca?subject=COMPAiSS%20Evaluation%20Request%20(Chinese%20Inquiry)" style="display:inline-block;padding:0.7rem 1.6rem;background:#f0c44c;color:#000;font-weight:600;font-size:0.92rem;border-radius:6px;text-decoration:none;letter-spacing:0.04em;font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;">
+        申请演示 →
+      </a>
+<p style="margin-top:1rem; font-size:0.85rem;">邮箱：<a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a></p>
+</div>
+<p style="font-size:0.9rem; color:var(--text-muted);">如需查阅完整的技术文档、治理白皮书与相关研究论文（英文及法文），请访问 <a href="https://compaiss.ca/index.html">COMPAiSS 英文网站</a> 或 <a href="https://compaiss.ca/index_french.html">法文网站</a>。</p>
+</div>
+</main>
+<footer>
+<div class="footer-inner">
+<ul class="lang-switch">
+<li><a href="https://compaiss.ca/index.html">English</a></li>
+<li><a href="https://compaiss.ca/index_french.html">Français</a></li>
+<li><span class="current">简体中文</span></li>
+</ul>
+<p>本页为 COMPAiSS 架构的独立中文概览，基于 COMPAiSS 英文与法文网站已公开发布的内容整理而成，并非网站的逐页翻译。</p>
+<p style="margin-top: 0.8rem;">
+      联系方式：<a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
+</p>
+</div>
+</footer>
+<button aria-label="返回顶部" id="backToTop">↑</button>
+<script>
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() {
+    backBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
+</script>
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', function () {
+    const isOpen = navMenu.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.textContent = isOpen ? '✕' : '☰';
+  });
+  navMenu.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      navMenu.classList.remove('nav-open');
+      navToggle.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>
