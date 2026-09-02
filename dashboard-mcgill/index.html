@@ -264,7 +264,7 @@ async function login() {
     return;
   }
 
-  const authRes = await fetch('/api/check-dashboard-token', {
+ const authRes = await fetch('https://compaiss-engine-v2-production-38f0.up.railway.app/api/check-dashboard-token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: TOKEN })
