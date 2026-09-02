@@ -282,7 +282,7 @@ async function login() {
     return;
   }
 
-  const authRes = await fetch('/api/check-dashboard-token', {
+  const authRes = await fetch('https://muhcbackendproduction-production.up.railway.app/api/check-dashboard-token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: TOKEN })
