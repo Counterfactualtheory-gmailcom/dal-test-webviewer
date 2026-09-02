@@ -256,6 +256,19 @@ async function login() {
     document.getElementById('login-err').textContent = 'A GitHub token is required.';
     return;
   }
+
+  const authRes = await fetch('/api/check-dashboard-token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: TOKEN })
+  });
+
+  if (!authRes.ok) {
+    document.getElementById('login-err').textContent =
+      'Invalid administrator credential.';
+    return;
+  }
+
   const ok = await loadGreenlist();
   if (ok) {
     document.getElementById('login').style.display = 'none';
