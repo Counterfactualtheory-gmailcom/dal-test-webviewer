@@ -1,0 +1,42 @@
+COMPAiSS INDEXING IMPROVEMENT DEPLOYMENT
+
+Production source reviewed:
+dal-test-webviewer-main-SEPTEMBER7.zip
+
+DEPLOYMENT
+
+1. Keep the September 7 production ZIP as the rollback copy.
+2. Upload the root-level HTML files and sitemap.xml from this package to the repository root, replacing files with exactly the same names.
+3. Upload the 23 PDFs inside this package's assets folder to the production assets folder, replacing files with exactly the same names.
+4. Do not delete or replace any other file or folder.
+5. After GitHub Pages finishes deploying, open https://compaiss.ca/sitemap.xml and confirm that it loads.
+6. Resubmit https://compaiss.ca/sitemap.xml in Google Search Console.
+7. Use URL Inspection to request indexing for the two French HTML pages and selected priority PDFs.
+
+SCOPE OF CHANGES
+
+- Standardized self-canonical and reciprocal en-CA, fr-CA and x-default annotations on the principal bilingual HTML pairs.
+- Corrected two canonical references that pointed to absent filenames.
+- Corrected the French research library link to the existing French positioning paper.
+- Added language attributes to the PDF links on both research-library pages.
+- Rebuilt sitemap.xml with reciprocal bilingual relationships for HTML pages and 17 PDF pairs.
+- Added accurate title, author, subject, keyword and en-CA or fr-CA metadata to the 23 HTTPS PDFs reported as Crawled, currently not indexed.
+- Excluded obsolete HTTP variants and exact duplicate URLs from sitemap indexing signals.
+
+VALIDATION COMPLETED
+
+- Sitemap XML is valid.
+- All replacement HTML files contain the intended canonical and language annotations.
+- All linked PDF asset filenames exist in the September 7 production archive.
+- Every replacement PDF retains the original page count.
+- All 180 PDF pages render pixel-for-pixel identically to the production originals.
+- No institutional, application, demonstration or dashboard folder is included.
+- robots.txt is not included and was not changed.
+
+ROLLBACK
+
+Restore any replaced file from dal-test-webviewer-main-SEPTEMBER7.zip using the same path and filename.
+
+IMPORTANT
+
+Google controls final indexing decisions. These changes correct and strengthen discovery, language, canonical and document metadata signals but cannot guarantee that Google will index every URL.
