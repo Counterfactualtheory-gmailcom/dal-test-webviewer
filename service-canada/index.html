@@ -24,66 +24,94 @@ gtag('config', 'G-JR7LJGK5PK', {
   
   <style>
 
-/* === Service Canada header === */
+/* === COMPAiSS Service Canada Demonstration header === */
 #header {
   width: 93%;
-  max-width: 520px;
-  margin: 36px auto 24px;
+  max-width: 540px;
+  margin: 30px auto 24px;
   text-align: center;
 }
 
-#header .app-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  width: 100%;
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f4079;
-}
-
-#header .app-title img {
+#header .compaiss-logo {
   display: block;
-  width: 330px;
-  max-width: 76%;
-  height: auto;
-  flex: 0 1 auto;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  border-radius: 18px;
 }
 
-#header .app-title span {
-  flex: 0 0 auto;
-  white-space: nowrap;
+#header .brand-name {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #d3080c;
 }
 
 #header .service-canada-title {
-  margin-top: 8px;
-  font-size: 20px;
+  margin-top: 5px;
+  font-size: 21px;
   line-height: 1.2;
-  font-weight: 700;
-  color: #d3080c;
+  font-weight: 750;
+  color: #111111;
+}
+
+#header .demo-label {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #d3080c;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
 }
 
 #header .app-subtitle {
   font-size: 18px;
   font-weight: 700;
   color: #0f4079;
-  margin: 6px 0 0;
+  margin: 10px 0 0;
+}
+
+#header .languages {
+  font-size: 14px;
+  color: #555555;
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+#header .source-description {
+  font-size: 13px;
+  color: #444444;
+  line-height: 1.45;
+  max-width: 500px;
+  margin: 10px auto 0;
+}
+
+#header .independent-notice {
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.4;
+  max-width: 500px;
+  margin: 7px auto 0;
 }
 
 @media (max-width: 600px) {
-  #header .app-title {
-    gap: 10px;
+  #header {
+    margin-top: 24px;
   }
 
-  #header .app-title img {
-    width: 245px;
-    max-width: 72%;
+  #header .compaiss-logo {
+    width: 82px;
+    height: 82px;
   }
 
-  #header .app-title span {
-    font-size: 18px;
+  #header .service-canada-title {
+    font-size: 19px;
   }
 }
 
