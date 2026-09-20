@@ -1,76 +1,152 @@
-# Microsoft 365 Copilot : ce que montrent les données probantes à ce jour
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<link rel="canonical" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html">
+<link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html">
+<link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html">
+<link rel="alternate" hreflang="x-default" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft 365 Copilot : ce que montrent les données probantes | Rapport de données probantes COMPAiSS</title>
+<style>
+  :root {
+    --ink:#10131a; --muted:#4f5868; --faint:#808998; --canvas:#f5f7fa;
+    --surface:#fff; --border:#dfe4eb; --blue:#173cff; --blue-soft:#e9edff;
+    --navy:#10131a; --navy-copy:rgba(255,255,255,.82); --green:#0c6d51;
+    --green-soft:#e9f6f0; --sans:"Helvetica Neue",Arial,sans-serif;
+    --serif:Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-font-smoothing:antialiased}
+  body{background:var(--canvas);color:var(--ink);font-family:var(--serif);line-height:1.72}
+  .page{max-width:940px;margin:0 auto;padding:4rem 2rem}
+  .masthead{border-bottom:2px solid var(--ink);margin-bottom:4rem;padding-bottom:2rem}
+  .eyebrow,.section-label,.tag,.meta,.footer,.source-list,th,.comparison td:first-child{font-family:var(--sans)}
+  .eyebrow,.section-label{color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .eyebrow{margin-bottom:.8rem}
+  h1{font-size:clamp(2.25rem,5vw,3.5rem);font-weight:400;letter-spacing:-.032em;line-height:1.09;margin-bottom:1.1rem;max-width:810px}
+  .subtitle{color:var(--muted);font-family:var(--sans);font-size:1.08rem;line-height:1.6;max-width:750px}
+  .meta{border-top:1px solid var(--border);color:var(--faint);font-size:.78rem;line-height:1.55;margin-top:1.45rem;padding-top:.82rem}
+  section{margin-bottom:4.25rem}
+  .section-label{border-bottom:1px solid var(--border);margin-bottom:1.45rem;padding-bottom:.55rem}
+  h2{font-size:clamp(1.55rem,3.4vw,2.25rem);font-weight:400;letter-spacing:-.02em;line-height:1.22;margin-bottom:1.15rem;max-width:810px}
+  h3{font-family:var(--sans);font-size:1rem;line-height:1.35}
+  p{font-size:1.03rem;margin-bottom:1rem;max-width:790px}
+  p:last-child{margin-bottom:0}
+  ul.plain{margin:1rem 0 1rem 1.3rem;max-width:790px}
+  ul.plain li{font-size:1.03rem;line-height:1.65;margin-bottom:.5rem}
+  .dark{background:var(--navy);color:#fff;margin:0 0 4.25rem;padding:2.4rem 2.45rem}
+  .dark .section-label{border-bottom-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5)}
+  .dark h2{color:#fff}.dark p{color:var(--navy-copy)}
+  .callout{background:var(--blue-soft);border-left:3px solid var(--blue);margin:1.55rem 0;padding:1.35rem 1.55rem}
+  .callout h3{color:var(--blue);font-size:.75rem;letter-spacing:.1em;margin-bottom:.45rem;text-transform:uppercase}
+  .callout p{font-size:.97rem;margin:0}
+  .notice{background:var(--green-soft);border-left:3px solid var(--green);margin:1.55rem 0;padding:1.25rem 1.45rem}
+  .notice h3{color:var(--green);font-size:.74rem;letter-spacing:.1em;margin-bottom:.45rem;text-transform:uppercase}
+  .notice p{font-size:.94rem;margin:0}
+  .source-list{font-size:.8rem;line-height:1.65;margin-top:1.35rem}.source-list p{color:var(--muted);font-size:.8rem;max-width:none}.source-list ul{margin:.45rem 0 0 1.1rem}.source-list li{margin:.25rem 0}.source-list a{color:var(--blue);text-decoration:none}.source-list a:hover{text-decoration:underline}
+  footer{border-top:1px solid var(--border);color:var(--faint);font-size:.77rem;line-height:1.6;margin-top:3rem;padding-top:1rem}footer p+p{margin-top:.45rem}
+  @media(max-width:720px){.page{padding:2.25rem 1.2rem}.dark{margin-left:-1.2rem;margin-right:-1.2rem;padding:1.65rem 1.2rem}}
+</style>
+</head>
+<body>
+<main class="page">
 
-## Un résumé en langage clair, destiné aux personnes des milieux de l'enseignement supérieur, du gouvernement et de la santé qui évaluent des assistants d'IA
+  <header class="masthead">
+    <div class="eyebrow">Rapport de données probantes COMPAiSS</div>
+    <h1>Microsoft 365 Copilot : ce que montrent les données probantes à ce jour</h1>
+    <p class="subtitle">Un résumé en langage clair pour les personnes des milieux de l'enseignement supérieur, du gouvernement et de la santé qui évaluent des assistants d'IA, fondé sur des projets pilotes publics, des sondages indépendants et des incidents de sécurité divulgués.</p>
+    <div class="meta">Rapport de données probantes public &bull; Mis à jour en septembre 2026 &bull; Il ne s'agit pas d'un audit technique, ni d'une affirmation selon laquelle Copilot serait dangereux à utiliser. Chaque constat ci-dessous est rattaché à sa source, à son contexte et à ses limites. Le comportement des produits et leur posture de sécurité évoluent dans le temps; les organisations devraient vérifier l'état actuel directement auprès de Microsoft avant de se fier à toute description contenue dans ce document.</div>
+  </header>
 
-Microsoft 365 Copilot est un assistant d'intelligence artificielle intégré à Word, Excel, PowerPoint, Outlook, Teams et SharePoint. De nombreux établissements y ont déjà accès dans le cadre de leur abonnement Microsoft 365, qu'ils l'aient officiellement déployé ou non. Ce résumé examine ce qui a réellement été documenté à son sujet, dans des projets pilotes publics, des sondages indépendants et des incidents de sécurité divulgués, et explique ce que ces données probantes démontrent, et ce qu'elles ne démontrent pas.
+  <section>
+    <h2>Ce qu'est Microsoft 365 Copilot, et ce que couvre ce rapport</h2>
+    <p>Microsoft 365 Copilot est un assistant d'intelligence artificielle intégré à Word, Excel, PowerPoint, Outlook, Teams et SharePoint. De nombreux établissements y ont déjà accès dans le cadre de leur abonnement Microsoft 365, qu'ils l'aient officiellement déployé ou non. Ce rapport examine ce qui a réellement été documenté à son sujet et explique ce que ces données probantes démontrent, et ce qu'elles ne démontrent pas.</p>
+    <div class="notice">
+      <h3>Une précision sur la portée</h3>
+      <p>Microsoft vend plus d'un produit sous le nom Copilot : un clavardeur public gratuit accessible à tous, et Microsoft 365 Copilot, la version rattachée au contenu propre d'une organisation. Ce rapport porte sur le second, celui que les établissements déploient réellement. Quelques études de recherche largement citées au sujet de « Copilot » portent en fait sur le clavardeur public gratuit; elles sont exclues d'ici puisqu'elles décrivent un produit différent. Voir la précision à la fin de ce rapport pour savoir ce qui a été exclu et pourquoi.</p>
+    </div>
+  </section>
 
-Il ne s'agit pas d'un audit technique, ni d'une affirmation selon laquelle Copilot serait dangereux à utiliser. C'est un résumé de constats précis, datés et documentés publiquement, chacun rattaché à sa source, à son contexte et à ses limites. Lorsque la documentation de Microsoft décrit une mesure de protection réelle, cela est également indiqué. L'objectif est de donner au lecteur non spécialisé un portrait exact, et non alarmiste.
+  <section>
+    <div class="section-label">1. Hallucinations</div>
+    <h2>Dans un projet pilote gouvernemental réel, un utilisateur sur cinq a remarqué de l'information inventée</h2>
+    <p>Le ministère britannique des Affaires et du Commerce (Department for Business and Trade) a mené un projet pilote de trois mois avec Microsoft 365 Copilot auprès de 1 000 employés, d'octobre à décembre 2024, suivi d'un sondage réalisé jusqu'en mars 2025. Parmi les 300 employés ayant répondu :</p>
+    <ul class="plain">
+      <li><strong>22 % ont dit avoir personnellement remarqué que Copilot présentait de l'information fausse ou trompeuse comme s'il s'agissait d'un fait.</strong></li>
+      <li>43 % ont dit n'avoir rien remarqué de tel.</li>
+      <li>Les 33 % restants n'étaient pas certains ou n'ont pas répondu à la question.</li>
+    </ul>
+    <p>Ces chiffres reposent sur ce que les gens se souviennent d'avoir remarqué, et non sur une vérification indépendante de chaque réponse produite par Copilot; le taux réel est donc probablement un peu plus élevé (on ne remarque pas toutes les erreurs). Le rapport du ministère lui-même reste mesuré à ce sujet : il conclut que les réponses de Copilot sont « majoritairement exactes, mais des hallucinations surviennent, et un contrôle de la qualité devrait être effectué pour chaque réponse produite ». Une comparaison distincte, beaucoup plus restreinte (trois utilisateurs de Copilot comparés à trois non-utilisateurs sur les mêmes tâches), a révélé que les utilisateurs de Copilot obtenaient des résultats inférieurs à une tâche d'analyse de données dans Excel et à une tâche dans PowerPoint; le ministère précise lui-même que cette comparaison portait sur un trop petit nombre de personnes pour en tirer des conclusions fermes à elle seule.</p>
+    <p><a href="https://assets.publishing.service.gov.uk/media/68adbe409e1cebdd2c96a19d/dbt-microsoft-365-copilot-evaluation.pdf" target="_blank" rel="noopener">Lire l'évaluation complète du DBT (PDF, en anglais)</a></p>
+  </section>
 
-**Une précision sur la portée.** Microsoft vend plus d'un produit sous le nom Copilot : un clavardeur public gratuit accessible à tous, et Microsoft 365 Copilot, la version rattachée aux propres documents Word, Excel, Outlook, Teams et SharePoint d'un établissement. Ce résumé porte sur le second, celui que les établissements déploient réellement. Quelques études de recherche largement citées au sujet de « Copilot » portent en fait sur le clavardeur public gratuit, qui puise dans le Web ouvert plutôt que dans les documents propres à un établissement; ces études sont exclues d'ici puisqu'elles ne décrivent pas le produit visé par ce résumé.
+  <section>
+    <div class="section-label">2. Partage excessif d'information</div>
+    <h2>Copilot peut révéler plus d'information qu'une personne ne le devrait, en raison de la façon dont il détermine ce qu'il est autorisé à lire</h2>
+    <p>Copilot répond à une question en puisant dans les courriels, documents et messages de clavardage que la personne qui pose la question a déjà techniquement le droit d'ouvrir, selon les paramètres d'accès Microsoft 365 déjà en place dans l'organisation. La documentation de Microsoft confirme que cette vérification est effectuée avant que Copilot ne génère une réponse : « Copilot n'accède pas aux données auxquelles l'utilisateur n'a pas accès. »</p>
+    <p>Il s'agit d'une mesure de protection réelle, mais plus limitée qu'il n'y paraît. Elle vérifie si une personne est techniquement autorisée à ouvrir un fichier, et non si ce fichier constitue une réponse officielle et approuvée par l'établissement, ni si l'information qu'il contient est à jour ou exacte. Dans bien des organisations, des partages de fichiers trop largement accessibles et de vieux documents partagés de façon informelle se trouvent à l'intérieur de cette limite d'accès, et Copilot ne fait pas de distinction entre ces documents et la politique officielle.</p>
 
----
+    <div class="callout">
+      <h3>Ce qu'a révélé un sondage sectoriel de 2026</h3>
+      <p>Dans un sondage mené auprès de 279 responsables de la sécurité et des TI de Microsoft 365, 66 % ont affirmé que leur organisation avait retardé ou annulé un déploiement de Copilot précisément par crainte qu'il ne révèle de l'information interne confidentielle, et 73 % ont dit être déjà préoccupés par le fait que l'IA révélait de l'information confidentielle quelque part dans leur organisation. Il s'agit d'un sondage mené par un fournisseur et fondé sur des opinions autodéclarées, non d'une mesure de l'exposition réelle des données dans l'ensemble des organisations, mais il reflète une préoccupation partagée par une grande proportion des responsables sondés.</p>
+    </div>
 
-## 1. Dans un projet pilote gouvernemental réel, un utilisateur sur cinq a remarqué de l'information inventée
+    <p>Une analyse distincte de plus de 550 millions de fichiers réalisée par Concentric AI a révélé qu'en moyenne, 16 % des fichiers essentiels aux activités d'une organisation étaient partagés plus largement qu'ils ne devraient l'être, soit environ 802 000 fichiers à risque par organisation étudiée.</p>
+    <p>Microsoft dispose bel et bien d'un mécanisme permettant de transférer l'étiquette de confidentialité d'un document vers le nouveau contenu que Copilot en tire, mais selon sa propre documentation, ce mécanisme ne fonctionne actuellement que dans Word, PowerPoint et Outlook, pour du contenu produit directement à partir d'un seul fichier source clairement étiqueté. Il ne couvre pas les réponses de Copilot Chat qui combinent plusieurs documents à la fois, exactement la faille mise au jour par un incident réel.</p>
 
-Le ministère britannique des Affaires et du Commerce (Department for Business and Trade) a mené un projet pilote de trois mois avec Microsoft 365 Copilot auprès de 1 000 employés, d'octobre à décembre 2024, suivi d'un sondage réalisé jusqu'en mars 2025. Parmi les 300 employés ayant répondu à ce sondage :
+    <div class="callout">
+      <h3>Un incident confirmé, pas une hypothèse</h3>
+      <p>À la fin janvier 2026, Microsoft a confirmé que la fonction de clavardage de Copilot pouvait lire et résumer des courriels marqués confidentiels se trouvant dans les dossiers Brouillons et Éléments envoyés d'un utilisateur, une situation que l'étiquette de confidentialité était censée empêcher. Microsoft a affirmé que ses « contrôles d'accès et politiques de protection des données étaient demeurés intacts » au niveau de la plateforme, mais que le comportement observé « ne correspondait pas à l'expérience Copilot prévue »; un correctif a été déployé partout dans le monde d'ici le 20 février 2026.</p>
+    </div>
+  </section>
 
-- **22 % ont dit avoir personnellement remarqué que Copilot présentait de l'information fausse ou trompeuse comme s'il s'agissait d'un fait.**
-- 43 % ont dit n'avoir rien remarqué de tel.
-- Les 33 % restants n'étaient pas certains ou n'ont pas répondu à la question.
+  <section>
+    <div class="section-label">3. Injection d'invite</div>
+    <h2>Des attaquants externes ont trouvé trois façons distinctes de tromper Copilot pour qu'il révèle des données, en l'espace d'environ un an</h2>
+    <p>L'expression « injection d'invite » (<em>prompt injection</em>) désigne le fait de dissimuler des instructions destinées à l'IA à l'intérieur d'un contenu qu'elle s'apprête à lire, par exemple un courriel, de sorte que lorsque l'IA traite ce contenu, elle suit les instructions cachées au lieu de simplement le résumer. Trois attaques de ce type visant les produits Copilot de Microsoft ont été divulguées publiquement et corrigées en l'espace d'environ douze mois.</p>
+    <ul class="plain">
+      <li><strong>EchoLeak (juin 2025).</strong> Une équipe de recherche en sécurité, Aim Labs, a découvert qu'un courriel spécialement conçu, sans lien à cliquer ni action requise de la part du destinataire, pouvait amener Copilot à transmettre discrètement des données privées provenant du contenu Teams et SharePoint de cette personne à un attaquant. Microsoft a évalué la gravité de cette faille à 9,3 sur 10 et l'a corrigée.</li>
+      <li><strong>Une faille de Copilot Studio (début 2026)</strong> a permis à des attaquants d'utiliser la même technique d'instructions cachées contre l'outil que les organisations utilisent pour créer leurs propres agents de clavardage fondés sur Copilot.</li>
+      <li><strong>SearchLeak (juin 2026).</strong> Des chercheurs de Varonis ont trouvé une façon d'enchaîner une attaque par instructions cachées avec deux autres failles techniques, de sorte qu'un simple clic sur un lien pouvait amener Copilot à transmettre des courriels, des fichiers, des codes d'accès à usage unique et des liens de réinitialisation de mot de passe. Microsoft a qualifié cette faille de critique et l'a corrigée sur ses propres serveurs, de sorte qu'aucune action n'était requise de la part des clients.</li>
+    </ul>
+    <p>Trois incidents distincts et confirmés de ce type en l'espace d'environ un an, chacun corrigé après coup, donnent à penser qu'il s'agit d'un point faible récurrent dans la conception de Copilot, et non d'une seule erreur maintenant corrigée pour de bon.</p>
+  </section>
 
-Ces chiffres reposent sur ce que les gens se souviennent d'avoir remarqué, et non sur une vérification indépendante de chaque réponse produite par Copilot; le taux réel est donc probablement un peu plus élevé (on ne remarque pas toutes les erreurs). Le rapport du ministère lui-même reste mesuré à ce sujet : il conclut que les réponses de Copilot sont « majoritairement exactes, mais des hallucinations surviennent, et un contrôle de la qualité devrait être effectué pour chaque réponse produite ». Dans une comparaison distincte, beaucoup plus restreinte, portant sur des tâches précises (trois utilisateurs de Copilot comparés à trois non-utilisateurs), les utilisateurs de Copilot ont obtenu des résultats nettement inférieurs à une tâche d'analyse de données dans Excel et à une tâche dans PowerPoint que les personnes effectuant la même tâche sans l'outil. Le ministère précise lui-même que cette comparaison particulière portait sur un trop petit nombre de personnes pour en tirer des conclusions fermes à elle seule, et la présente uniquement à titre d'information complémentaire.
+  <section class="dark">
+    <div class="section-label">Ce que ces données probantes démontrent</div>
+    <h2>De véritables mesures de protection, et une question plus limitée que ce que les établissements présument souvent</h2>
+    <p>Microsoft a intégré à Copilot de véritables mesures de protection : il vérifie si une personne est techniquement autorisée à voir un fichier avant d'utiliser ce fichier pour répondre à une question, et dans certaines de ses applications, il peut transférer l'étiquette de confidentialité d'un document vers ce que Copilot en tire. Ces contrôles existent et sont documentés.</p>
+    <p>Ce que les données probantes présentées ci-dessus démontrent, c'est que ces contrôles répondent à une question plus limitée que ce que les établissements présument souvent. Ils vérifient qui est autorisé à voir un fichier. Ils ne vérifient pas si ce fichier constitue la réponse approuvée et à jour de l'établissement à la question posée, et ils n'ont pas, jusqu'à présent, réussi de façon fiable à empêcher des attaquants externes de contourner entièrement les vérifications d'accès au moyen d'instructions cachées. C'est pourquoi un projet pilote gouvernemental a révélé que des utilisateurs remarquaient de l'information inventée, pourquoi des responsables de la sécurité d'une majorité d'organisations sondées ont mis en pause leur déploiement par crainte d'exposition, et pourquoi trois attaques distinctes ont réussi en l'espace d'environ un an malgré les contrôles déjà en place chez Microsoft.</p>
+    <p>Il s'agit d'une différence de conception qu'il vaut la peine de comprendre, et non d'une affirmation selon laquelle COMPAiSS produirait de meilleures réponses dans tous les cas; cela nécessiterait des essais comparatifs directs pour être établi. COMPAiSS repose sur une question différente de « cette personne est-elle autorisée à voir ce fichier ». Avant de répondre, il vérifie si la question précise posée est une question que l'établissement l'a autorisé à traiter, et si la réponse peut être retracée jusqu'à une source que l'établissement a spécifiquement approuvée à cette fin. S'il ne peut confirmer ces deux conditions, il s'abstient de répondre plutôt que de générer une réponse à partir de tout ce qu'il peut techniquement récupérer.</p>
+  </section>
 
-[Lire l'évaluation complète du DBT (PDF, en anglais)](https://assets.publishing.service.gov.uk/media/68adbe409e1cebdd2c96a19d/dbt-microsoft-365-copilot-evaluation.pdf)
+  <section>
+    <div class="section-label">Sources</div>
+    <div class="source-list">
+      <ul>
+        <li><a href="https://assets.publishing.service.gov.uk/media/68adbe409e1cebdd2c96a19d/dbt-microsoft-365-copilot-evaluation.pdf" target="_blank" rel="noopener">Department for Business and Trade (Royaume-Uni), The Evaluation of the M365 Copilot Pilot</a> (en anglais), août 2025</li>
+        <li><a href="https://www.coreview.com/resource/coreview-state-of-microsoft-365-snapshot" target="_blank" rel="noopener">CoreView, State of Microsoft 365 Security 2026</a> (en anglais), sondage mené auprès de 279 responsables de la sécurité et des TI de Microsoft 365</li>
+        <li><a href="https://concentric.ai/too-much-access-microsoft-copilot-data-risks-explained/" target="_blank" rel="noopener">Concentric AI, analyse du Data Risk Report</a> (en anglais), plus de 550 millions de documents analysés</li>
+        <li><a href="https://cybernews.com/security/microsoft-copilot-confidential-email-data-leak/" target="_blank" rel="noopener">Cybernews, Copilot was spying on confidential emails, Microsoft rushes to ship worldwide fix</a> (en anglais), février 2026</li>
+        <li><a href="https://arxiv.org/abs/2509.10540" target="_blank" rel="noopener">Reddy et Gujral (Aim Labs), arXiv:2509.10540</a> (en anglais), l'étude de cas EchoLeak, CVE-2025-32711</li>
+        <li><a href="https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html" target="_blank" rel="noopener">The Hacker News, Zero-Click AI Vulnerability Exposes Microsoft 365 Copilot Data</a> (en anglais), juin 2025</li>
+        <li><a href="https://venturebeat.com/security/microsoft-salesforce-copilot-agentforce-prompt-injection-cve-agent-remediation-playbook" target="_blank" rel="noopener">VentureBeat, Microsoft patched a Copilot Studio prompt injection</a> (en anglais), à propos du CVE-2026-21520</li>
+        <li><a href="https://www.varonis.com/blog/searchleak" target="_blank" rel="noopener">Varonis Threat Labs, SearchLeak</a> (en anglais), juin 2026, à propos du CVE-2026-42824</li>
+        <li><a href="https://thehackernews.com/2026/06/one-click-microsoft-365-copilot-flaw.html" target="_blank" rel="noopener">The Hacker News, One-Click Microsoft 365 Copilot Flaw</a> (en anglais), juin 2026</li>
+        <li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-architecture" target="_blank" rel="noopener">Microsoft, Microsoft 365 Copilot architecture: what data Copilot can access and when</a> (en anglais)</li>
+        <li><a href="https://learn.microsoft.com/en-us/purview/ai-m365-copilot" target="_blank" rel="noopener">Microsoft, Sensitivity labels and Microsoft 365 Copilot</a> (en anglais)</li>
+        <li><a href="https://learn.microsoft.com/en-us/purview/dlp-microsoft365-copilot-location-learn-about" target="_blank" rel="noopener">Microsoft, Data loss prevention for Microsoft 365 Copilot</a> (en anglais)</li>
+      </ul>
+      <p style="margin-top:1.1rem"><strong>Une précision sur ce qui a été exclu.</strong> Deux études fréquemment citées, une évaluation de JMIR AI sur l'exactitude des citations concernant des questions relatives aux suppléments alimentaires et une étude comparative du Canadian Journal of Ophthalmology, ne sont pas incluses ici. Après vérification de leur méthodologie, on constate que les deux ont testé le clavardeur public gratuit de Microsoft plutôt que Microsoft 365 Copilot; il s'agit donc de données probantes sur un produit différent, qui n'ont pas leur place dans un résumé portant spécifiquement sur la version d'entreprise déployée par les établissements. Une série de statistiques sur les freins à l'adoption, attribuées à un sondage Gartner de 2025, ont également été retirées : le document original de Gartner n'est pas accessible publiquement, et les chiffres précis n'ont pu être confirmés directement, seulement par l'entremise d'articles secondaires, ce qui ne satisfaisait pas le seuil d'inclusion retenu ici.</p>
+    </div>
+  </section>
 
----
+  <footer>
+    <p>&copy; Counterfactual Theory Inc. COMPAiSS est une marque déposée. Tous droits réservés.</p>
+    <p>Il s'agit d'un résumé public de données probantes, compilé à partir d'études tierces nommées, de sondages, d'avis de sécurité divulgués et de la documentation de Microsoft elle-même, chacun cité au moment où il est utilisé. Ce document ne constitue pas un avis juridique, un audit de sécurité, ni un appui ou un dénigrement d'un produit quelconque. Le comportement des produits, leur posture de sécurité et leurs contrôles de gouvernance évoluent dans le temps; les organisations devraient vérifier l'état actuel directement auprès du fournisseur avant de se fier à toute description contenue dans ce document.</p>
+  </footer>
 
-## 2. Copilot peut révéler plus d'information qu'une personne ne le devrait, en raison de la façon dont il détermine ce qu'il est autorisé à lire
-
-Copilot répond à une question en puisant dans les courriels, documents et messages de clavardage que la personne qui pose la question a déjà techniquement le droit d'ouvrir, selon les paramètres d'accès Microsoft 365 déjà en place dans l'organisation. La documentation de Microsoft confirme que cette vérification est effectuée avant que Copilot ne génère une réponse : « Copilot n'accède pas aux données auxquelles l'utilisateur n'a pas accès. »
-
-Il s'agit d'une mesure de protection réelle, mais plus limitée qu'il n'y paraît. Elle vérifie si une personne est techniquement autorisée à ouvrir un fichier, et non si ce fichier constitue une réponse officielle et approuvée par l'établissement, ni si l'information qu'il contient est à jour ou exacte. Dans bien des organisations, des partages de fichiers trop largement accessibles et de vieux documents partagés de façon informelle se trouvent à l'intérieur de cette limite d'accès. Copilot ne fait pas de distinction entre ces documents et la politique officielle de l'établissement.
-
-- **Dans un sondage mené auprès de 279 responsables de la sécurité et des TI de Microsoft 365, 66 % ont affirmé que leur organisation avait retardé ou annulé un déploiement de Copilot précisément par crainte qu'il ne révèle de l'information interne confidentielle.** 73 % ont dit être déjà préoccupés par le fait que l'IA révélait de l'information confidentielle quelque part dans leur organisation. Il s'agit d'un sondage mené par un fournisseur et fondé sur des opinions autodéclarées, et non d'une mesure de l'exposition réelle des données dans l'ensemble des organisations, mais il reflète une préoccupation partagée par une grande proportion des responsables de la sécurité sondés. [CoreView, State of Microsoft 365 Security 2026](https://www.coreview.com/resource/coreview-state-of-microsoft-365-snapshot) (en anglais)
-- **Une analyse distincte de plus de 550 millions de fichiers réalisée par Concentric AI a révélé qu'en moyenne, 16 % des fichiers essentiels aux activités d'une organisation étaient partagés plus largement qu'ils ne devraient l'être**, soit environ 802 000 fichiers à risque par organisation étudiée. [Concentric AI, Data Risk Report](https://concentric.ai/too-much-access-microsoft-copilot-data-risks-explained/) (en anglais)
-- Microsoft dispose bel et bien d'un mécanisme permettant de transférer l'étiquette de confidentialité d'un document vers le nouveau contenu que Copilot en tire, mais selon la documentation de Microsoft elle-même, ce mécanisme ne fonctionne actuellement que dans Word, PowerPoint et Outlook, pour du contenu produit directement à partir d'un seul fichier source clairement étiqueté. [Microsoft, étiquettes de sensibilité et Copilot](https://learn.microsoft.com/en-us/purview/ai-m365-copilot) (en anglais) Ce mécanisme ne couvre pas les réponses de Copilot Chat qui combinent plusieurs documents à la fois, ce qui est exactement la faille mise au jour par un incident réel : à la fin janvier 2026, Microsoft a confirmé que la fonction de clavardage de Copilot pouvait lire et résumer des courriels marqués confidentiels se trouvant dans les dossiers Brouillons et Éléments envoyés d'un utilisateur, une situation que l'étiquette de confidentialité était censée empêcher. Microsoft a affirmé que ses « contrôles d'accès et politiques de protection des données étaient demeurés intacts » au niveau de la plateforme, mais que le comportement observé « ne correspondait pas à l'expérience Copilot prévue »; un correctif a été déployé partout dans le monde d'ici le 20 février 2026. [Cybernews, février 2026](https://cybernews.com/security/microsoft-copilot-confidential-email-data-leak/) (en anglais)
-
----
-
-## 3. Des attaquants externes ont trouvé trois façons distinctes de tromper Copilot pour qu'il révèle des données, en l'espace d'environ un an
-
-L'expression « injection d'invite » (*prompt injection*) désigne le fait de dissimuler des instructions destinées à l'IA à l'intérieur d'un contenu qu'elle s'apprête à lire, par exemple un courriel, de sorte que lorsque l'IA traite ce contenu, elle suit les instructions cachées au lieu de simplement le résumer. Trois attaques de ce type visant les produits Copilot de Microsoft ont été divulguées publiquement et corrigées en l'espace d'environ douze mois :
-
-- **EchoLeak (juin 2025).** Une équipe de recherche en sécurité, Aim Labs, a découvert qu'un courriel spécialement conçu, sans lien à cliquer ni action requise de la part du destinataire, pouvait amener Copilot à transmettre discrètement des données privées provenant du contenu Teams et SharePoint de cette personne à un attaquant. Microsoft a évalué la gravité de cette faille à 9,3 sur 10 et l'a corrigée. [The Hacker News](https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html) (en anglais)
-- **Une faille de Copilot Studio (début 2026)** a permis à des attaquants d'utiliser la même technique d'instructions cachées contre l'outil que les organisations utilisent pour créer leurs propres agents de clavardage fondés sur Copilot. [VentureBeat](https://venturebeat.com/security/microsoft-salesforce-copilot-agentforce-prompt-injection-cve-agent-remediation-playbook) (en anglais)
-- **SearchLeak (juin 2026).** Des chercheurs de Varonis ont trouvé une façon d'enchaîner une attaque par instructions cachées avec deux autres failles techniques, de sorte qu'un simple clic sur un lien pouvait amener Copilot à transmettre des courriels, des fichiers, des codes d'accès à usage unique et des liens de réinitialisation de mot de passe. Microsoft a qualifié cette faille de critique et l'a corrigée sur ses propres serveurs, de sorte qu'aucune action n'était requise de la part des clients. [Varonis](https://www.varonis.com/blog/searchleak) (en anglais)
-
-Trois incidents distincts et confirmés de ce type en l'espace d'environ un an, chacun corrigé après coup, donnent à penser qu'il s'agit d'un point faible récurrent dans la conception de Copilot, et non d'une seule erreur maintenant corrigée pour de bon.
-
----
-
-## Ce que ces données probantes démontrent
-
-Microsoft a intégré à Copilot de véritables mesures de protection : il vérifie si une personne est techniquement autorisée à voir un fichier avant d'utiliser ce fichier pour répondre à une question, et dans certaines de ses applications, il peut transférer l'étiquette de confidentialité d'un document vers ce que Copilot en tire. Ces contrôles existent et sont documentés.
-
-Ce que les données probantes présentées ci-dessus démontrent, c'est que ces contrôles répondent à une question plus limitée que ce que les établissements présument souvent. Ils vérifient *qui est autorisé à voir un fichier*. Ils ne vérifient pas *si ce fichier constitue la réponse approuvée et à jour de l'établissement à la question posée*, et ils n'ont pas, jusqu'à présent, réussi de façon fiable à empêcher des attaquants externes de contourner entièrement les vérifications d'accès au moyen d'instructions cachées. C'est pourquoi un projet pilote gouvernemental a révélé que des utilisateurs remarquaient de l'information inventée, pourquoi des responsables de la sécurité d'une majorité d'organisations sondées ont mis en pause leur déploiement par crainte d'exposition, et pourquoi trois attaques distinctes ont réussi en l'espace d'environ un an malgré les contrôles déjà en place chez Microsoft.
-
-Il s'agit d'une différence de conception qu'il vaut la peine de comprendre, et non d'une affirmation selon laquelle COMPAiSS produirait de meilleures réponses dans tous les cas; cela nécessiterait des essais comparatifs directs pour être établi. COMPAiSS repose sur une question différente de « cette personne est-elle autorisée à voir ce fichier ». Avant de répondre, il vérifie si la question précise posée est une question que l'établissement l'a autorisé à traiter, et si la réponse peut être retracée jusqu'à une source que l'établissement a spécifiquement approuvée à cette fin. S'il ne peut confirmer ces deux conditions, il s'abstient de répondre plutôt que de générer une réponse à partir de tout ce qu'il peut techniquement récupérer.
-
----
-
-## Sources
-
-- Department for Business and Trade (Royaume-Uni), [The Evaluation of the M365 Copilot Pilot](https://assets.publishing.service.gov.uk/media/68adbe409e1cebdd2c96a19d/dbt-microsoft-365-copilot-evaluation.pdf) (PDF, en anglais), août 2025
-- CoreView, [State of Microsoft 365 Security 2026](https://www.coreview.com/resource/coreview-state-of-microsoft-365-snapshot) (en anglais), sondage mené auprès de 279 responsables de la sécurité et des TI de Microsoft 365
-- Concentric AI, [analyse du Data Risk Report](https://concentric.ai/too-much-access-microsoft-copilot-data-risks-explained/) (en anglais), plus de 550 millions de documents analysés
-- Cybernews, [Copilot was spying on confidential emails, Microsoft rushes to ship worldwide fix](https://cybernews.com/security/microsoft-copilot-confidential-email-data-leak/) (en anglais), février 2026
-- Reddy et Gujral (Aim Labs), [arXiv:2509.10540](https://arxiv.org/abs/2509.10540) (en anglais), l'étude de cas EchoLeak (CVE-2025-32711)
-- The Hacker News, [Zero-Click AI Vulnerability Exposes Microsoft 365 Copilot Data](https://thehackernews.com/2025/06/zero-click-ai-vulnerability-exposes.html) (en anglais), juin 2025
-- VentureBeat, [Microsoft patched a Copilot Studio prompt injection](https://venturebeat.com/security/microsoft-salesforce-copilot-agentforce-prompt-injection-cve-agent-remediation-playbook) (en anglais), à propos du CVE-2026-21520
-- Varonis Threat Labs, [SearchLeak](https://www.varonis.com/blog/searchleak) (en anglais), juin 2026, à propos du CVE-2026-42824
-- The Hacker News, [One-Click Microsoft 365 Copilot Flaw](https://thehackernews.com/2026/06/one-click-microsoft-365-copilot-flaw.html) (en anglais), juin 2026
-- Microsoft, [Microsoft 365 Copilot architecture: what data Copilot can access and when](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-architecture) (en anglais)
-- Microsoft, [Sensitivity labels and Microsoft 365 Copilot](https://learn.microsoft.com/en-us/purview/ai-m365-copilot) (en anglais)
-- Microsoft, [Data loss prevention for Microsoft 365 Copilot](https://learn.microsoft.com/en-us/purview/dlp-microsoft365-copilot-location-learn-about) (en anglais)
-
-**Une précision sur ce qui a été exclu.** Deux études fréquemment citées, une évaluation de JMIR AI sur l'exactitude des citations concernant des questions relatives aux suppléments alimentaires, et une étude comparative du Canadian Journal of Ophthalmology, ne sont pas incluses ici. Après vérification de leur méthodologie, on constate que les deux ont testé le clavardeur public gratuit de Microsoft plutôt que Microsoft 365 Copilot; il s'agit donc de données probantes sur un produit différent, qui n'ont pas leur place dans un résumé portant spécifiquement sur la version d'entreprise déployée par les établissements. Une série de statistiques sur les freins à l'adoption, attribuées à un sondage Gartner de 2025, ont également été retirées : le document original de Gartner n'est pas accessible publiquement, et les chiffres précis n'ont pu être confirmés directement, seulement par l'entremise d'articles secondaires, ce qui ne satisfaisait pas le seuil d'inclusion retenu ici.
+</main>
+</body>
+</html>
