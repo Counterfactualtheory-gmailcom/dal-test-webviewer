@@ -79,7 +79,7 @@
     <div class="eyebrow">COMPAiSS — Competitive Landscape Analysis</div>
     <h1>The institutional-evidence question in enterprise AI</h1>
     <p class="subtitle">Enterprise AI already governs users, data, agents, workloads, models, and outputs. COMPAiSS is designed for a distinct institutional question: whether guidance presented on an institution’s behalf has an adequate basis in information the institution authorizes and maintains.</p>
-    <div class="meta">Public discussion paper • Updated August 2026 • Competitive characterizations are based on selected public materials cited below and are not assessments of every product configuration, integration, or customer deployment. This paper intentionally omits confidential implementation methods, patent claim scope, and legal analysis.</div>
+    <div class="meta">Public discussion paper • Updated September 2026 • Competitive characterizations are based on selected public materials cited below and are not assessments of every product configuration, integration, or customer deployment. This paper intentionally omits confidential implementation methods, patent claim scope, and legal analysis.</div>
   </header>
 
   <section>
@@ -199,7 +199,43 @@
   </section>
 
   <section>
-    <div class="section-label">4. Different systems govern different objects</div>
+    <div class="section-label">4. Emerging alternatives to vector RAG</div>
+    <h2>Newer architectures reduce specific errors. They do not change what question is being optimized.</h2>
+    <p>As institutions have grown more cautious about vector-only retrieval-augmented generation, several more advanced architectures have moved into production or active research, each aimed at a particular class of RAG failure. It is worth naming them plainly: they represent real, verifiable progress on a real problem, and that progress clarifies, rather than undermines, the distinction COMPAiSS is built around.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-head"><h3>GraphRAG</h3><span class="tag">Graph-structured retrieval</span></div>
+        <p>Microsoft Research published GraphRAG, an approach that builds a knowledge graph from a source corpus and uses community-level summaries to answer broad, multi-document questions that vector-similarity search alone often misses. Microsoft’s own published description reports improved comprehensiveness on certain query types compared with baseline retrieval.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Neuro-symbolic AI</h3><span class="tag">Neural interpretation + rule-based logic</span></div>
+        <p>Neuro-symbolic systems pair a language model, used to interpret natural-language input, with a separate, deterministic rules or logic engine that enforces a fixed set of constraints. Research groups including IBM Research have published toolkits and architectures in this space, applying it to reasoning tasks where an incorrect answer needs to be structurally prevented rather than merely made less probable.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Native ultra-long context</h3><span class="tag">Bypassing retrieval chunking</span></div>
+        <p>Some model providers, including Google’s Gemini models, now offer context windows large enough to process an entire document set directly, without a separate retrieval step selecting fragments. This removes one source of retrieval error, but does not remove the finding, replicated across independent studies, that models use information placed in the middle of a long context less reliably than information near the beginning or end.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Multi-agent self-correction</h3><span class="tag">Adversarial critique loops</span></div>
+        <p>Rather than a single generate-and-return pipeline, some systems route a draft answer through additional model instances tasked with critiquing or debating it before it is returned. Published research on multi-agent debate among language models reports improved factuality and reasoning on certain benchmark tasks, alongside the added latency and inference cost of running several model passes per query.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Parametric model editing</h3><span class="tag">Rewriting a model’s internal weights</span></div>
+        <p>Research techniques such as ROME and MEMIT modify a small, targeted set of a model’s internal weights to change specific facts it has memorized, without retraining the model from scratch. This is presently a research-stage technique for updating what a model has stored internally, not a mechanism institutions currently deploy in production to govern which sources support a given answer.</p>
+      </article>
+    </div>
+
+    <div class="callout">
+      <h3>A theoretical result worth naming</h3>
+      <p>Independent theoretical computer science research has also formalized why generation-based hallucination cannot be eliminated by scale alone. A 2024 analysis by Xu, Jain, and Kankanhalli shows, using a computability-theory argument, that no model of this general type can learn to compute every computable function without error—meaning some ground-truth queries will always produce fabricated output from a purely generative model. This is a theoretical limitation on generation, not an argument for any single alternative architecture; it applies to the generation step common to RAG, GraphRAG, and most of the approaches above.</p>
+    </div>
+
+    <p>None of the five approaches above changes what question is being optimized. Each improves some dimension of factual plausibility: better retrieval structure, better rule enforcement, better use of available context, better error-catching, or a more current internal fact base. But factual plausibility and institutional authorization are not the same test. A GraphRAG system that correctly and fluently synthesizes an answer from sources outside an institution’s approved materials, or a multi-agent loop that reaches confident consensus on a response, can still produce guidance the institution never approved for that specific use. COMPAiSS’s governing question—whether a given answer can be traced to information the institution has specifically authorized for that purpose—sits outside what any of these architectures are designed to test.</p>
+  </section>
+
+  <section>
+    <div class="section-label">5. Different systems govern different objects</div>
     <h2>Competitive differentiation becomes clearer when the governance object is explicit.</h2>
     <div class="comparison-wrap">
       <table class="comparison">
@@ -216,6 +252,7 @@
           <tr><td>Runtime and model operations<br>ABB, model-serving systems</td><td>Model selection, runtime availability, activation, scaling, and execution environment</td><td>Model compatibility, runtime availability, deployment conditions, capacity, or operational policy</td><td>Resources may be provisioned, activated, routed, scaled, or managed differently</td><td>Technical model-operation control, not a determination that an institution has adequate information to stand behind a particular answer</td></tr>
           <tr><td>Sovereign/private AI<br>Cohere and others</td><td>Data location, deployment environment, and processing boundary</td><td>Privacy, residency, tenancy, security, isolation, and jurisdiction</td><td>AI processing is contained within a chosen environment</td><td>Addresses where AI operates and under whose control; complements but does not replace institutional evidence governance</td></tr>
           <tr><td>Enterprise knowledge retrieval<br>Glean</td><td>Organizational information discovery and access</td><td>Indexing, source permissions, inclusion/exclusion rules, relevance</td><td>Relevant accessible knowledge is returned or withheld</td><td>Supports finding and accessing enterprise knowledge; COMPAiSS is oriented to accountable institutional guidance from authorized information</td></tr>
+          <tr><td>Emerging accuracy-optimized architectures<br>GraphRAG, neuro-symbolic AI, long-context, multi-agent debate, model editing</td><td>Factual quality and reasoning reliability of the generated answer</td><td>Retrieval structure, rule enforcement, context usage, cross-agent critique, or internal fact currency</td><td>The answer may be more comprehensive, more consistent, or more current, but is not thereby confirmed as institutionally authorized</td><td>Optimizes for factual plausibility; does not test whether the answer is traceable to institution-authorized sources for the specific use</td></tr>
           <tr><td>COMPAiSS</td><td>Institutional guidance delivered through an AI-enabled service</td><td>Adequacy and relevance of information the institution authorizes and maintains for the service context</td><td>Guidance is supported by institutional information, or the service provides a transparent clarification, referral, non-answer, or next step</td><td>Designed specifically to make institution-authorized evidence and accountable guidance central to the user experience</td></tr>
         </tbody>
       </table>
@@ -223,7 +260,7 @@
   </section>
 
   <section>
-    <div class="section-label">5. Where COMPAiSS fits</div>
+    <div class="section-label">6. Where COMPAiSS fits</div>
     <h2>COMPAiSS is an institutional-evidence layer for high-accountability guidance.</h2>
     <p>COMPAiSS is not positioned as a replacement for cloud platforms, search tools, model providers, agent frameworks, data-governance products, or observability tools. Those systems can be important parts of a responsible institutional AI environment. COMPAiSS is designed to add a service-level governance posture centered on whether the institution can support the guidance being provided to the person asking.</p>
 
@@ -243,7 +280,7 @@
   </section>
 
   <section>
-    <div class="section-label">6. Why the difference matters</div>
+    <div class="section-label">7. Why the difference matters</div>
     <h2>Regulated and public institutions need more than a plausible answer.</h2>
     <p>A student may rely on an answer about financial aid or academic requirements. A resident may rely on guidance about a public service. A patient may seek approved information or care navigation. A client in a regulated setting may act on policy or process guidance. In each case, the institution’s responsibility includes more than whether an AI system is secure, monitored, or statistically useful.</p>
     <p>The institution also needs a credible, maintainable basis for offering the guidance—and a responsible user experience when the available institutional information does not adequately support an answer. This is the service-governance gap COMPAiSS is designed to address.</p>
@@ -256,7 +293,7 @@
   </section>
 
   <section>
-    <div class="section-label">7. Conclusion</div>
+    <div class="section-label">8. Conclusion</div>
     <h2>A precise distinction is more credible than a sweeping one.</h2>
     <p>Enterprise AI already includes sophisticated controls over identity, data, retrieved content, agent behavior, service traffic, workloads, model selection, runtime operations, provenance, deployment environments, and output quality. Those capabilities matter, and responsible institutional deployments will often use several of them together.</p>
     <p>COMPAiSS addresses a narrower but consequential institutional question: before guidance is treated as supportable on an institution’s behalf, does the institution have an adequate basis in information it authorizes and maintains? By centering that question, COMPAiSS is designed to help institutions provide AI-assisted guidance with clearer evidence, clearer boundaries, and clearer next steps when an answer should not be presented as authoritative.</p>
@@ -278,6 +315,14 @@
         <li><a href="https://docs.netskope.com/en/access-policies">Netskope — AI Gateway access policies</a></li>
         <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">Kubernetes — Admission controllers</a></li>
         <li><a href="https://patents.justia.com/patent/20250238692">ABB — Generic Inference Engine for AI/ML Models Compatible with Cloud, on Premises, and Edge Deployment</a></li>
+        <li><a href="https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/">Microsoft Research — GraphRAG: Unlocking LLM discovery on narrative private data</a></li>
+        <li><a href="https://research.ibm.com/projects/neuro-vector-symbolic-architecture">IBM Research — Neuro-Vector-Symbolic Architecture</a></li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/long-context">Google AI for Developers — Gemini API long-context documentation</a></li>
+        <li><a href="https://arxiv.org/abs/2307.03172">Liu et al., Lost in the Middle: How Language Models Use Long Contexts</a>, arXiv:2307.03172</li>
+        <li><a href="https://arxiv.org/abs/2305.14325">Du, Li, Torralba, Tenenbaum, and Mordatch, Improving Factuality and Reasoning in Language Models through Multiagent Debate</a>, arXiv:2305.14325</li>
+        <li><a href="https://arxiv.org/abs/2202.05262">Meng et al., Locating and Editing Factual Associations in GPT (ROME)</a>, NeurIPS 2022, arXiv:2202.05262</li>
+        <li><a href="https://arxiv.org/abs/2210.07229">Meng et al., Mass-Editing Memory in a Transformer (MEMIT)</a>, ICLR 2023, arXiv:2210.07229</li>
+        <li><a href="https://arxiv.org/abs/2401.11817">Xu, Jain, and Kankanhalli, Hallucination is Inevitable: An Innate Limitation of Large Language Models</a>, arXiv:2401.11817</li>
       </ul>
     </div>
   </section>

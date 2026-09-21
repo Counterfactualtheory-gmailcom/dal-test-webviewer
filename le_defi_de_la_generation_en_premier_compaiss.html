@@ -79,7 +79,7 @@
     <div class="eyebrow">COMPAiSS — Analyse du paysage concurrentiel</div>
     <h1>La question de la preuve institutionnelle dans l'IA d'entreprise</h1>
     <p class="subtitle">L'IA d'entreprise gouverne déjà les utilisateurs, les données, les agents, les charges de travail, les modèles et les extrants. COMPAiSS répond à une question institutionnelle distincte : les conseils présentés au nom d'une institution reposent-ils sur une base adéquate d'information que l'institution autorise et tient à jour?</p>
-    <div class="meta">Document de discussion public • Mis à jour en août 2026 • Les caractérisations concurrentielles s'appuient sur des documents publics sélectionnés, cités ci-dessous, et ne constituent pas une évaluation de chaque configuration de produit, intégration ou déploiement client. Ce document exclut délibérément les méthodes d'implémentation confidentielles, la portée des revendications de brevet et toute analyse juridique.</div>
+    <div class="meta">Document de discussion public • Mis à jour en septembre 2026 • Les caractérisations concurrentielles s'appuient sur des documents publics sélectionnés, cités ci-dessous, et ne constituent pas une évaluation de chaque configuration de produit, intégration ou déploiement client. Ce document exclut délibérément les méthodes d'implémentation confidentielles, la portée des revendications de brevet et toute analyse juridique.</div>
   </header>
 
   <section>
@@ -199,7 +199,43 @@
   </section>
 
   <section>
-    <div class="section-label">4. Des systèmes différents gouvernent des objets différents</div>
+    <div class="section-label">4. Les alternatives émergentes au RAG vectoriel</div>
+    <h2>Les nouvelles architectures réduisent des erreurs précises. Elles ne changent pas la question à laquelle le système cherche à optimiser sa réponse.</h2>
+    <p>À mesure que les institutions sont devenues plus prudentes à l'égard de la génération augmentée par récupération (RAG) fondée uniquement sur la similarité vectorielle, plusieurs architectures plus avancées sont passées en production ou font l'objet de recherches actives, chacune visant une catégorie précise de défaillance du RAG. Il vaut la peine de les nommer clairement, car elles représentent des progrès réels et vérifiables sur un problème réel, et parce que ces progrès clarifient, plutôt qu'ils n'affaiblissent, la distinction sur laquelle repose COMPAiSS.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-head"><h3>GraphRAG</h3><span class="tag">Récupération structurée en graphe</span></div>
+        <p>Microsoft Research a publié GraphRAG, une approche qui construit un graphe de connaissances à partir d'un corpus source et utilise des résumés au niveau des communautés du graphe pour répondre à des questions vastes et multidocuments que la seule recherche par similarité vectorielle manque souvent. La description publiée par Microsoft elle-même fait état d'une meilleure exhaustivité sur certains types de requêtes, comparativement à la récupération de référence.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>IA neuro-symbolique</h3><span class="tag">Interprétation neuronale + logique fondée sur des règles</span></div>
+        <p>Les systèmes neuro-symboliques associent un modèle de langue, utilisé pour interpréter l'énoncé en langage naturel, à un moteur de règles ou de logique distinct et déterministe qui applique un ensemble fixe de contraintes. Des groupes de recherche, dont IBM Research, ont publié des trousses d'outils et des architectures dans ce domaine, les appliquant à des tâches de raisonnement où une réponse erronée doit être empêchée de façon structurelle plutôt que simplement rendue moins probable.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Fenêtres de contexte natives ultra-longues</h3><span class="tag">Contourner le découpage propre à la récupération</span></div>
+        <p>Certains fournisseurs de modèles, dont les modèles Gemini de Google, offrent désormais des fenêtres de contexte assez vastes pour traiter directement un ensemble complet de documents, sans étape de récupération distincte pour en sélectionner des fragments. Cela élimine une source d'erreur de récupération, mais n'élimine pas le constat, reproduit par plusieurs études indépendantes, selon lequel les modèles utilisent l'information placée au milieu d'un long contexte de façon moins fiable que l'information située près du début ou de la fin.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Autocorrection multi-agents</h3><span class="tag">Boucles de critique contradictoire</span></div>
+        <p>Plutôt qu'un simple pipeline de génération et de remise de la réponse, certains systèmes font passer une ébauche de réponse par d'autres instances de modèles chargées de la critiquer ou d'en débattre avant qu'elle ne soit remise à l'utilisateur. Des recherches publiées sur le débat multi-agents entre modèles de langue font état d'une amélioration de la factualité et du raisonnement sur certaines tâches de référence, au prix d'une latence et d'un coût d'inférence accrus liés à l'exécution de plusieurs passages de modèle par requête.</p>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>Modification paramétrique du modèle</h3><span class="tag">Réécriture des poids internes du modèle</span></div>
+        <p>Des techniques de recherche telles que ROME et MEMIT modifient un ensemble restreint et ciblé des poids internes d'un modèle afin de changer des faits précis qu'il a mémorisés, sans le réentraîner au complet. Il s'agit à ce jour d'une technique au stade de la recherche pour mettre à jour ce qu'un modèle a mémorisé en interne, et non d'un mécanisme que les institutions déploient actuellement en production pour gouverner quelles sources appuient une réponse donnée.</p>
+      </article>
+    </div>
+
+    <div class="callout">
+      <h3>Un résultat théorique à mentionner</h3>
+      <p>Des travaux indépendants en informatique théorique ont également formalisé pourquoi l'hallucination liée à la génération ne peut être éliminée par la seule mise à l'échelle. Une analyse de 2024 par Xu, Jain et Kankanhalli démontre, à l'aide d'un argument fondé sur la théorie de la calculabilité, qu'aucun modèle de ce type général ne peut apprendre à calculer sans erreur toutes les fonctions calculables — ce qui signifie que certaines requêtes à réponse vraie continueront toujours de produire, à partir d'un modèle purement génératif, une réponse fabriquée. Il s'agit d'une limite théorique portant sur la génération, et non d'un argument en faveur d'une architecture de remplacement en particulier; elle s'applique à l'étape de génération commune au RAG, à GraphRAG et à la plupart des approches ci-dessus.</p>
+    </div>
+
+    <p>Aucune des cinq approches ci-dessus ne change la question à laquelle le système cherche à répondre au mieux. Chacune améliore une dimension de la plausibilité factuelle : une meilleure structure de récupération, une meilleure application de règles, un meilleur usage du contexte disponible, un meilleur repérage des erreurs, ou une base de faits internes plus à jour. Mais la plausibilité factuelle et l'autorisation institutionnelle ne sont pas le même test. Un système GraphRAG qui synthétise correctement et avec fluidité une réponse à partir de sources extérieures aux documents approuvés par une institution, ou une boucle multi-agents qui parvient à un consensus assuré sur une réponse, peuvent tout de même produire un conseil que l'institution n'a jamais autorisé pour cet usage précis. La question qui gouverne COMPAiSS — à savoir si une réponse donnée peut être retracée jusqu'à de l'information que l'institution a spécifiquement autorisée à cette fin — se situe en dehors de ce que ces architectures sont conçues pour vérifier.</p>
+  </section>
+
+  <section>
+    <div class="section-label">5. Des systèmes différents gouvernent des objets différents</div>
     <h2>La différenciation concurrentielle devient plus claire lorsque l'objet de la gouvernance est explicite.</h2>
     <div class="comparison-wrap">
       <table class="comparison">
@@ -216,6 +252,7 @@
           <tr><td>Opérations de modèles et d'environnement d'exécution<br>ABB, systèmes de service de modèles</td><td>Sélection du modèle, disponibilité de l'environnement d'exécution, activation, mise à l'échelle et environnement d'exécution</td><td>Compatibilité du modèle, disponibilité de l'environnement d'exécution, conditions de déploiement, capacité ou politique opérationnelle</td><td>Les ressources peuvent être provisionnées, activées, acheminées, mises à l'échelle ou gérées différemment</td><td>Contrôle technique des opérations de modèle, non une détermination qu'une institution dispose d'une information adéquate pour appuyer une réponse donnée</td></tr>
           <tr><td>IA souveraine ou privée<br>Cohere et autres</td><td>Emplacement des données, environnement de déploiement et frontière du traitement</td><td>Confidentialité, résidence, isolement des locataires, sécurité, isolement et juridiction</td><td>Le traitement de l'IA est confiné à l'environnement choisi</td><td>Répond à la question de savoir où l'IA fonctionne et sous le contrôle de qui; complète, sans la remplacer, la gouvernance de la preuve institutionnelle</td></tr>
           <tr><td>Récupération des connaissances d'entreprise<br>Glean</td><td>Découverte et accès à l'information organisationnelle</td><td>Indexation, permissions des sources, règles d'inclusion et d'exclusion, pertinence</td><td>Les connaissances accessibles pertinentes sont retournées ou écartées</td><td>Facilite la découverte et l'accès aux connaissances d'entreprise; COMPAiSS est orienté vers des conseils institutionnels imputables fondés sur de l'information autorisée</td></tr>
+          <tr><td>Architectures émergentes optimisées pour l'exactitude<br>GraphRAG, IA neuro-symbolique, contexte long, débat multi-agents, modification de modèle</td><td>Qualité factuelle et fiabilité du raisonnement de la réponse générée</td><td>Structure de récupération, application de règles, usage du contexte, critique inter-agents, ou fraîcheur des faits internes</td><td>La réponse peut être plus exhaustive, plus cohérente ou plus à jour, sans que cela confirme pour autant qu'elle est autorisée par l'institution</td><td>Optimise la plausibilité factuelle; ne vérifie pas si la réponse peut être retracée jusqu'à des sources autorisées par l'institution pour cet usage précis</td></tr>
           <tr><td>COMPAiSS</td><td>Conseils institutionnels livrés par un service recourant à l'IA</td><td>Adéquation et pertinence de l'information que l'institution autorise et tient à jour pour le contexte du service</td><td>Le conseil est appuyé par de l'information institutionnelle, ou le service offre une clarification transparente, un aiguillage, une absence de réponse ou une prochaine étape</td><td>Conçu précisément pour placer la preuve autorisée par l'institution et l'imputabilité des conseils au cœur de l'expérience utilisateur</td></tr>
         </tbody>
       </table>
@@ -223,7 +260,7 @@
   </section>
 
   <section>
-    <div class="section-label">5. Où se situe COMPAiSS</div>
+    <div class="section-label">6. Où se situe COMPAiSS</div>
     <h2>COMPAiSS est une couche de preuve institutionnelle pour des conseils à haute imputabilité.</h2>
     <p>COMPAiSS ne se positionne pas comme un remplacement des plateformes infonuagiques, des outils de recherche, des fournisseurs de modèles, des cadres d'agents, des produits de gouvernance des données ou des outils d'observabilité. Ces systèmes peuvent constituer des composantes importantes d'un environnement institutionnel d'IA responsable. COMPAiSS est conçu pour ajouter une posture de gouvernance au niveau du service, centrée sur la capacité de l'institution à appuyer le conseil offert à la personne qui pose la question.</p>
 
@@ -243,7 +280,7 @@
   </section>
 
   <section>
-    <div class="section-label">6. Pourquoi cette différence importe</div>
+    <div class="section-label">7. Pourquoi cette différence importe</div>
     <h2>Les institutions réglementées et publiques ont besoin de plus qu'une réponse plausible.</h2>
     <p>Un étudiant peut se fier à une réponse sur l'aide financière ou les exigences académiques. Un résident peut se fier à un conseil sur un service public. Un patient peut chercher de l'information approuvée ou une orientation dans le système de soins. Un client dans un contexte réglementé peut agir selon un conseil de politique ou de procédure. Dans chaque cas, la responsabilité de l'institution dépasse la seule question de savoir si un système d'IA est sécurisé, surveillé ou statistiquement utile.</p>
     <p>L'institution a aussi besoin d'une base crédible et gérable pour offrir ce conseil — et d'une expérience utilisateur responsable lorsque l'information institutionnelle disponible n'appuie pas adéquatement une réponse. C'est cette lacune de gouvernance de service que COMPAiSS est conçu pour combler.</p>
@@ -256,7 +293,7 @@
   </section>
 
   <section>
-    <div class="section-label">7. Conclusion</div>
+    <div class="section-label">8. Conclusion</div>
     <h2>Une distinction précise est plus crédible qu'une distinction générale.</h2>
     <p>L'IA d'entreprise comprend déjà des contrôles sophistiqués sur l'identité, les données, le contenu récupéré, le comportement des agents, le trafic de service, les charges de travail, la sélection des modèles, les opérations d'environnement d'exécution, la provenance, les environnements de déploiement et la qualité des extrants. Ces capacités sont importantes, et les déploiements institutionnels responsables en combineront souvent plusieurs.</p>
     <p>COMPAiSS répond à une question institutionnelle plus étroite, mais lourde de conséquences : avant qu'un conseil soit considéré comme pouvant être appuyé au nom d'une institution, celle-ci dispose-t-elle d'une base adéquate dans l'information qu'elle autorise et tient à jour? En centrant son action sur cette question, COMPAiSS est conçu pour aider les institutions à offrir une assistance assistée par l'IA avec des preuves plus claires, des limites plus claires, et des prochaines étapes plus claires lorsqu'une réponse ne devrait pas être présentée comme faisant autorité.</p>
@@ -278,6 +315,14 @@
         <li><a href="https://docs.netskope.com/en/access-policies">Netskope — AI Gateway access policies</a></li>
         <li><a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/">Kubernetes — Admission controllers</a></li>
         <li><a href="https://patents.justia.com/patent/20250238692">ABB — Generic Inference Engine for AI/ML Models Compatible with Cloud, on Premises, and Edge Deployment</a></li>
+        <li><a href="https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/">Microsoft Research — GraphRAG: Unlocking LLM discovery on narrative private data</a></li>
+        <li><a href="https://research.ibm.com/projects/neuro-vector-symbolic-architecture">IBM Research — Neuro-Vector-Symbolic Architecture</a></li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/long-context">Google AI for Developers — Gemini API long-context documentation</a></li>
+        <li><a href="https://arxiv.org/abs/2307.03172">Liu et al., Lost in the Middle: How Language Models Use Long Contexts</a>, arXiv:2307.03172</li>
+        <li><a href="https://arxiv.org/abs/2305.14325">Du, Li, Torralba, Tenenbaum et Mordatch, Improving Factuality and Reasoning in Language Models through Multiagent Debate</a>, arXiv:2305.14325</li>
+        <li><a href="https://arxiv.org/abs/2202.05262">Meng et al., Locating and Editing Factual Associations in GPT (ROME)</a>, NeurIPS 2022, arXiv:2202.05262</li>
+        <li><a href="https://arxiv.org/abs/2210.07229">Meng et al., Mass-Editing Memory in a Transformer (MEMIT)</a>, ICLR 2023, arXiv:2210.07229</li>
+        <li><a href="https://arxiv.org/abs/2401.11817">Xu, Jain et Kankanhalli, Hallucination is Inevitable: An Innate Limitation of Large Language Models</a>, arXiv:2401.11817</li>
       </ul>
       <p style="margin-top:.6rem">Les titres des documents sources ci-dessus sont conservés dans leur langue d'origine, puisqu'il s'agit de titres exacts de documents publiés en anglais.</p>
     </div>
