@@ -142,7 +142,6 @@
   </url>
 
   <url>
-  <url>
     <loc>https://compaiss.ca/microsoft-365-copilot-residual-concerns.html</loc>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html"/>
@@ -156,6 +155,7 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
   </url>
 
+  <url>
     <loc>https://compaiss.ca/research-and-publications.html</loc>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/research-and-publications.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/recherche-et-publications.html"/>
