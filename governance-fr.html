@@ -597,14 +597,21 @@ header {
   <!-- MODELE IA -->
   <div class="gov-section" id="model">
     <h2>Modèle IA et mises à jour</h2>
-    <p class="section-intro">Quel IA propulse COMPAiSS et comment les décisions de modèle sont prises.</p>
+    <p class="section-intro">Quels modèles d'IA propulsent COMPAiSS, le rôle de chacun et la façon dont les décisions de modèle sont prises.</p>
 
-    <p>COMPAiSS est agnostique par rapport aux modèles, mais s'appuie actuellement - et délibérément - sur un modèle fermé. L'architecture de gouvernance - les règles, la barrière, la liste des sources approuvées - se situe entièrement à l'extérieur du modèle IA. Cela signifie que les institutions ne dépendent jamais d'un seul fournisseur.</p>
+    <p>COMPAiSS est agnostique par rapport aux modèles, par conception. L'architecture de gouvernance - les règles, la barrière d'exécution, la liste des sources approuvées - se situe entièrement à l'extérieur des modèles d'IA. Les modèles peuvent être changés, ou attribués à chaque tâche, sans modifier une seule règle de gouvernance, et les institutions ne dépendent jamais d'un seul fournisseur.</p>
 
-    <p>COMPAiSS utilise actuellement <strong>GPT-5.2-latest d'OpenAI</strong> comme moteur IA. Ce modèle a été sélectionné sur la base de tests comparatifs directs effectués par rapport aux autres options disponibles. Il obtient constamment les meilleurs résultats selon les critères les plus importants pour les déploiements institutionnels réglementés : exactitude, utilité, ton et fiabilité des liens sources dans les réponses.</p>
+    <p>Plutôt que de confier toutes les tâches à un seul modèle, COMPAiSS attribue chaque étape de son traitement au modèle le mieux adapté. La configuration actuelle utilise la famille <strong>GPT-5.6</strong> d'OpenAI :</p>
 
-    <p>La désignation "latest" signifie qu'OpenAI améliore continuellement ce modèle en arrière-plan. Le déploiement COMPAiSS d'une institution bénéficie automatiquement de ces améliorations - sans mises à jour, sans interruption de service et sans intervention requise.</p>
+    <ul>
+      <li><strong>Planification de la recherche et classement des sources - GPT-5.6 Sol.</strong> Le modèle de raisonnement phare d'OpenAI interprète chaque question, la développe en requêtes de recherche précises et classe par pertinence les pages candidates de la liste des sources approuvées de l'établissement. Lorsqu'un déploiement privilégie la rapidité et le coût, le classement peut être confié à GPT-5.6 Terra.</li>
+      <li><strong>Rédaction des réponses encadrées - GPT-5.6 Luna.</strong> Ce n'est qu'une fois la réponse autorisée par la barrière d'exécution qu'un modèle rapide et économique la rédige, uniquement à partir de contenu autorisé préalablement analysé. Comme le travail de raisonnement exigeant - trouver et classer les bonnes sources - est déjà accompli, l'étape de rédaction exige rapidité et précision, et non le modèle le plus imposant.</li>
+      <li><strong>Traitement des langues.</strong> Une étape de traduction dédiée (GPT-5.5) normalise les questions posées dans d'autres langues avant l'autorisation, puis rend les réponses dans la langue de l'usager.</li>
+    </ul>
 
+    <p>Cette répartition place le raisonnement le plus poussé là où l'exactitude se joue - dans le repérage des bonnes sources autorisées - tout en gardant les réponses rapides et abordables à l'échelle d'un établissement. Chaque reçu de conformité consigne le modèle utilisé pour la réponse.</p>
+
+    <p>COMPAiSS utilise des versions de modèles précises plutôt que des versions qui se mettent à jour automatiquement, de sorte que le comportement des modèles ne change pas à l'insu de l'établissement. Un changement de modèle n'est effectué qu'après des tests selon les cinq critères ci-dessous, et les établissements sont avisés avant tout changement important de version. Des options hébergées au Canada sont aussi offertes : Azure OpenAI dans la région Canada Est de Microsoft, et les modèles Cohere Command hébergés sur une infrastructure canadienne.</p>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">📊</div>
