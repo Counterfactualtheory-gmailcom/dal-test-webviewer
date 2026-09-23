@@ -171,7 +171,16 @@
 
   <url>
     <loc>https://compaiss.ca/criticisms-and-responses-v9.html</loc>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/au-dela-de-lexactitude.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
+  </url>
 
+  <url>
+    <loc>https://compaiss.ca/au-dela-de-lexactitude.html</loc>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/au-dela-de-lexactitude.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
   </url>
 
   <url>
