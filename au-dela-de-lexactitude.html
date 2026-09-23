@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://compaiss.ca/au-dela-de-lexactitude.html">
+<link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/criticisms-and-responses-v9.html">
+<link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/au-dela-de-lexactitude.html">
+<link rel="alternate" hreflang="x-default" href="https://compaiss.ca/criticisms-and-responses-v9.html">
+<title>Au-delà de l'exactitude : l'IA axée sur la gouvernance pour les institutions réglementées -- COMPAiSS</title>
+<meta name="description" content="Comment les institutions réglementées devraient évaluer l'IA axée sur la gouvernance : le problème d'adoption institutionnelle, les conclusions des examens indépendants de COMPAiSS, les données probantes à ce jour et le programme de recherche à venir." />
+<style>
+:root {
+  --wrap: 980px;
+  --pad: 32px;
+  --bg-page: #0c2d5a;
+  --bg-panel: #10386e;
+  --bg-panel-soft: rgba(16,56,110,0.55);
+  --bg-card: rgba(255,255,255,0.05);
+  --text-main: #c6cfdd;
+  --text-muted: #aeb9cc;
+  --text-heading: #ffffff;
+  --accent: #f0c44c;
+  --accent-soft: rgba(240,196,76,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --border-accent: rgba(240,196,76,0.3);
+  --link: #9cc9ff;
+  --link-visited: #c8e0ff;
+  --radius: 10px;
+  --green: #4caf82;
+  --green-soft: rgba(76,175,130,0.12);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font: 18px/1.65 'Georgia', 'Times New Roman', serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:visited { color: var(--link-visited); }
+a:hover { opacity: .9; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.skip-link {
+  position: absolute; left: -999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus {
+  left: 16px; top: 16px; width: auto; height: auto;
+  background: #000; color: #fff; padding: 8px 12px; z-index: 1000;
+}
+
+header { border-bottom: 1px solid var(--border-soft); }
+
+.nav {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 18px var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav .brand-text {
+  flex: 0 0 auto;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-heading);
+  font-family: system-ui, -apple-system, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.82rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.nav li { text-align: center; }
+.nav li a { display: block; text-decoration: none; color: var(--text-muted); }
+.nav a:hover { color: var(--text-heading); }
+.nav a.active { color: var(--accent); }
+
+main {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: var(--pad);
+}
+
+footer { border-top: 1px solid var(--border-soft); margin-top: 5rem; }
+footer .footer-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 2.5rem var(--pad);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.page-header {
+  text-align: center;
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3rem;
+}
+
+.page-header .eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav {
+  margin-bottom: 3rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.section-nav strong {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+}
+
+@media (max-width: 600px) { .section-nav ul { grid-template-columns: 1fr; } }
+
+.section-nav li { margin: 0; }
+.section-nav a { text-decoration: none; color: var(--link); font-size: 0.92rem; }
+.section-nav a:hover { color: var(--text-heading); }
+
+.content-section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+.content-section h2 {
+  font-size: 1.7rem;
+  color: var(--text-heading);
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border-accent);
+  letter-spacing: 0.01em;
+}
+
+.content-section h3 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin: 2rem 0 0.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.content-section .section-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.8rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: italic;
+}
+
+.content-section p {
+  max-width: 70ch;
+  margin: 1em 0;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.content-section p.wide { max-width: none; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 3rem 0;
+}
+
+.highlight-block {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.highlight-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.highlight-block p:last-child { margin-bottom: 0; }
+
+.quote-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--link);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.2rem 1.6rem;
+  margin: 1.4rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.quote-block p {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-heading);
+  max-width: none;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.quote-block p:last-child { margin-bottom: 0; }
+
+.methodology-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  margin: 1.8rem 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.methodology-box .method-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.methodology-box p {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.methodology-box p:last-child { margin-bottom: 0; }
+
+.stage-block {
+  margin: 2rem 0;
+  padding: 1.6rem 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+}
+
+.stage-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.stage-block h3 {
+  font-size: 1.1rem;
+  color: var(--text-heading);
+  margin: 0 0 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.stage-block p {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  max-width: none;
+  margin: 0.6rem 0;
+  line-height: 1.7;
+}
+
+.stage-block .quote-block { margin: 1rem 0; }
+
+.finding-block {
+  margin: 1.4rem 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.finding-block .finding-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.finding-block p {
+  margin: 0 0 0.5rem;
+  font-size: 0.93rem;
+  color: var(--text-main);
+  max-width: none;
+  line-height: 1.65;
+}
+
+.finding-block p:last-child { margin-bottom: 0; }
+
+.finding-block .finding-note {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.key-statement {
+  text-align: center;
+  padding: 2.5rem;
+  margin: 3rem 0;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius);
+}
+
+.key-statement p {
+  font-size: 1.25rem;
+  color: var(--text-heading);
+  font-style: italic;
+  margin: 0;
+  max-width: none;
+  line-height: 1.5;
+}
+
+.verdict-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 700px) { .verdict-grid { grid-template-columns: 1fr; } }
+
+.verdict-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.verdict-card .vc-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.verdict-card h4 {
+  font-size: 1rem;
+  color: var(--text-heading);
+  margin: 0 0 0.6rem;
+}
+
+.verdict-card p {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.exchange-header {
+  padding: 1.2rem 1.8rem;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.exchange-header-copilot {
+  background: rgba(0, 120, 212, 0.1);
+  border: 1px solid rgba(0, 120, 212, 0.3);
+}
+
+.exchange-header-gemini {
+  background: rgba(66, 133, 244, 0.1);
+  border: 1px solid rgba(66, 133, 244, 0.3);
+}
+
+.exchange-header .eh-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.exchange-header-copilot .eh-label { color: #60a8e0; }
+.exchange-header-gemini .eh-label { color: #7baaf7; }
+
+.exchange-header p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: none;
+  line-height: 1.6;
+}
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  margin: 1.6rem 0;
+}
+
+.comp-table thead tr { border-bottom: 1px solid var(--border-accent); }
+
+.comp-table th {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.comp-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 0.5px solid var(--border-soft);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.comp-table tr:last-child td { border-bottom: none; }
+
+.comp-table td:first-child {
+  font-weight: 600;
+  color: var(--text-heading);
+  width: 22%;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+#backToTop:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+  .page-header h1 { font-size: 1.7rem; }
+  .nav ul { gap: 1rem; font-size: 0.75rem; }
+}
+.formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--surface,#f5f6f8);border-left:3px solid var(--accent);padding:0.75rem 1rem;margin:0.9rem 0;overflow-x:auto;font-size:0.95rem;line-height:1.55;color:var(--text,#1a1a1a);}
+.formula .lbl{display:block;font-family:system-ui,-apple-system,sans-serif;color:var(--text-muted);font-size:0.82rem;margin-top:0.45rem;line-height:1.4;}
+#appendix h3{margin-top:1.6rem;}
+</style>
+
+<style>
+.figure { margin: 2rem 0; }
+.figure svg { width: 100%; height: auto; display: block; }
+.figure figcaption {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.82rem; color: var(--text-muted); margin-top: 0.7rem; text-align: center;
+}
+.fam-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 1.6rem 0; }
+@media (max-width: 720px) { .fam-grid { grid-template-columns: 1fr; } }
+.fam-card {
+  background: var(--bg-card); border: 1px solid var(--border-soft);
+  border-radius: var(--radius); padding: 1rem 1.1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+.fam-card h4 { margin: 0 0 .5rem; color: var(--text-heading); font-size: .98rem; }
+.fam-card ul { margin: .5rem 0 .8rem; padding-left: 1.1rem; }
+.fam-card li { font-size: .82rem; color: var(--text-muted); line-height: 1.5; margin: .15rem 0; }
+.fam-card .mech { font-size: .76rem; color: var(--text-muted); font-style: italic; }
+.chip {
+  display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: .22rem .5rem; border-radius: 999px; margin-bottom: .6rem;
+}
+.chip-preclude { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--border-accent); }
+.chip-reduce  { background: rgba(255,255,255,0.06); color: var(--text-muted); border: 1px solid var(--border-soft); }
+.chip-foreclose { background: var(--green-soft); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
+.consequence-row {
+  display: flex; justify-content: space-between; font-family: system-ui, sans-serif;
+  font-size: .74rem; color: var(--text-muted); margin-top: .4rem; letter-spacing: .04em;
+}
+.defn-table td:first-child { width: 26%; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Passer au contenu</a>
+<header>
+  <nav class="nav" aria-label="Principale">
+    <a href="/index_french.html" class="brand-text">COMPAiSS</a>
+    <ul>
+      <li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a évolué ainsi</a></li>
+      <li><a href="/governance-fr.html">Gouvernance IA</a></li>
+      <li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
+      <li><a href="/gouvernance-en-action.html">Démonstrations et évaluations</a></li>
+      <li><a href="/deploiement-et-adequation-institutionnelle.html">Déploiement et adéquation</a></li>
+      <li><a href="/criticisms-and-responses-v9.html">EN</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <div class="page-header">
+    <div class="eyebrow">Données probantes et évaluation &nbsp;·&nbsp; Septembre 2026</div>
+    <h1>Au-delà de l'exactitude : l'IA axée sur la gouvernance pour les institutions réglementées</h1>
+    <p class="subtitle">Ce que la littérature sur la gouvernance établit au sujet du problème d'adoption institutionnelle, la réponse qu'y apporte COMPAiSS, les conclusions des examens indépendants de l'architecture et les données probantes qui l'appuient.</p>
+  </div>
+
+  <div class="section-nav">
+    <strong>Sur cette page</strong>
+    <ul>
+      <li><a href="#summary">Sommaire</a></li>
+      <li><a href="#problem">Le problème institutionnel documenté par la littérature</a></li>
+      <li><a href="#taxonomy">L'asymétrie des conséquences et la taxonomie des défaillances</a></li>
+      <li><a href="#answered">Idées reçues et conclusions des examens</a></li>
+      <li><a href="#evidence">Les données probantes à ce jour</a></li>
+      <li><a href="#scope">Ce que garantit l'architecture</a></li>
+      <li><a href="#standard">Le même test pour toutes les architectures</a></li>
+      <li><a href="#questions">Questions posées par les institutions</a></li>
+      <li><a href="#program">Le programme de recherche</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
+      <li><a href="#references">Références</a></li>
+    </ul>
+  </div>
+
+  <div class="content-section" id="summary">
+    <p>COMPAiSS ne cherche pas d'abord à répondre aux questions avec plus d'exactitude que la génération augmentée par récupération (RAG) ou qu'un modèle de pointe. Il s'attaque à l'un des principaux obstacles de gouvernance qui ont freiné l'adoption de l'IA générative dans les institutions réglementées : hôpitaux, universités, gouvernements et organismes publics. Une littérature croissante sur la gouvernance reconnaît, de façon indépendante, que la gouvernance institutionnelle, l'incertitude réglementaire, la reddition de comptes, l'auditabilité, la protection de la vie privée et la préparation organisationnelle déterminent en grande partie si ces institutions déploient l'IA. Lorsque les institutions ont hésité, ce n'est généralement pas parce que les systèmes généralistes ne produisent pas de réponses utiles. C'est parce que le déploiement institutionnel exige ce que la capacité générale ne fournit pas : l'assurance que le système ne s'exprime qu'avec l'autorité que l'institution lui a accordée, avec une provenance, une reddition de comptes et un registre vérifiable.</p>
+    <p>C'est le problème pour lequel l'architecture a été conçue, et celui que sa méthodologie d'évaluation a été conçue pour mesurer. Les bancs d'essai conventionnels demandent si une réponse était exacte, complète ou préférée. La méthodologie de COMPAiSS pose les questions que se posent les institutions réglementées avant de faire confiance à un raisonnement propre à l'institution : l'autorité institutionnelle a-t-elle été préservée? Chaque affirmation propre à l'institution provenait-elle de données autorisées? L'inférence ne s'est-elle produite que lorsque les données autorisées étaient suffisantes? Le raisonnement institutionnel non autorisé a-t-il été empêché? Le résultat est-il vérifiable? Les deux ensembles de questions sont légitimes. Ils mesurent des choses différentes.</p>
+    <p>Trois examens contradictoires du corpus public de COMPAiSS, menés séparément par trois modèles d'IA de pointe, ont convergé vers une conclusion claire : l'idée architecturale centrale tient. Aucun n'a retenu l'argument voulant que COMPAiSS ne soit qu'une récupération ordinaire sous un nouveau vocabulaire. Chacun a conclu que faire de la suffisance des données autorisées par l'institution une condition préalable à toute inférence propre à l'institution constitue une approche de gouvernance réelle et substantiellement différente.</p>
+    <p>Les données probantes qui appuient l'architecture sont stratifiées. Elles commencent par une littérature externe sur la gouvernance, indépendante de COMPAiSS, qui documente que le déploiement en milieu réglementé dépend de la préparation en matière de gouvernance plutôt que de la seule exactitude des modèles. Elles se poursuivent avec la théorie architecturale axée sur la gouvernance, le raisonnement comparatif expliquant pourquoi l'autorisation avant l'inférence diffère d'une conception axée sur l'inférence, et un ensemble de données empiriques comparatives : mesures inter-modèles des taux d'hallucination et d'erreur, comparaisons contrôlées avec et sans barrière d'exécution, comparaison dans un organisme public, tests de résistance contradictoires et quatre évaluations de déploiements institutionnels. La validation externe indépendante constitue la prochaine étape de ce programme, et les institutions sont invitées à y participer.</p>
+    <div class="key-statement">
+      <p>La contribution centrale est l'architecture de gouvernance axée sur l'autorisation elle-même : une IA institutionnelle qui détermine si une inférence propre à l'institution peut avoir lieu, plutôt que de chercher à améliorer la probabilité d'une réponse exacte une fois la génération amorcée.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="problem">
+    <h2>Le problème institutionnel documenté par la littérature</h2>
+    <p>COMPAiSS répond à un problème qui existe indépendamment de lui, et c'est la littérature sur la gouvernance, et non COMPAiSS, qui définit ce problème. Le point de départ est une correction empirique. Les institutions réglementées n'ont pas rejeté l'IA, et il serait inexact de l'affirmer. Ce que montrent les données est plus précis et plus utile : l'adoption est réelle mais prudente, inégale, concentrée dans des usages à faibles conséquences et fortement conditionnée par la préparation en matière de gouvernance plutôt que par la seule capacité des modèles.</p>
+    <p>Les ordres de grandeur sont instructifs. Une analyse nationale des données de l'American Hospital Association a révélé qu'environ 18,7 % des hôpitaux des États-Unis avaient adopté au moins une forme d'IA, et que seulement 3,82 % étaient classés comme grands adoptants, l'adoption étant concentrée dans les flux de travail, la prévision de la demande et la dotation en personnel plutôt que dans les décisions cliniques à fortes conséquences (Bin et coll., 2024). Des données gouvernementales et d'enquête plus récentes montrent que l'adoption continue de progresser tout en demeurant inégale, plus faible dans les hôpitaux petits, ruraux, indépendants et d'accès critique, et toujours confrontée à des questions non résolues de performance réelle et de valeur démontrée (ONC, 2026). L'IA générative est plus inégale encore : la documentation clinique ambiante est l'usage le plus largement déployé, tandis que la synthèse de dossiers, la mobilisation des patients et les applications diagnostiques demeurent largement au stade de projet pilote, et l'immaturité des outils figure régulièrement parmi les principaux obstacles (Poon et coll., 2025).</p>
+    <p>Deux conclusions en découlent, et toutes deux concernent directement la façon dont tout système d'IA institutionnel devrait être jugé. Premièrement, les obstacles ne tiennent pas principalement à l'exactitude des modèles. Une revue systématique des obstacles à la mise en œuvre de l'IA les regroupe en catégories éthiques, technologiques, de responsabilité et de réglementation, de main-d'œuvre, sociales et de sécurité des patients, les préoccupations technologiques et éthiques étant les plus fréquentes et l'exactitude n'étant qu'un élément parmi d'autres (Ahmed et coll., 2023). La littérature sur la mise en œuvre y ajoute la protection de la vie privée, l'interopérabilité, l'intégration aux flux de travail, la confiance professionnelle, l'explicabilité, la reddition de comptes, la responsabilité, la dérive et la surveillance après déploiement (Hassan et coll., 2024). Deuxièmement, déploiement et gouvernance ne sont pas la même chose. Une étude de cas dans un hôpital canadien a observé un établissement qui exploitait déjà cinq produits d'IA de fournisseurs sans disposer d'une structure de gouvernance formelle, ses pratiques étant décrites comme essentiellement ponctuelles jusqu'à la création d'un comité centralisé et d'une surveillance du cycle de vie (Kim et coll., 2025). Les orientations internationales convergent vers les mêmes exigences : les orientations de l'Organisation mondiale de la Santé sur l'éthique et la gouvernance de l'IA en santé et le cadre de gestion des risques liés à l'IA du NIST mettent tous deux au premier plan la provenance, la reddition de comptes, la validation, la surveillance et la supervision humaine comme conditions d'un déploiement responsable (OMS, 2021; NIST, 2023).</p>
+    <p>Cette littérature accomplit le travail le plus important du document, et elle le fait avant même que COMPAiSS ne soit mentionné. Elle établit que les institutions réglementées font face à des exigences de gouvernance que les bancs d'essai conventionnels axés sur l'exactitude n'ont jamais été conçus pour mesurer, mais que les institutions exigent couramment avant de faire confiance à un raisonnement propre à l'institution. Un construit d'évaluation axé sur la gouvernance est donc légitime indépendamment de COMPAiSS. La chaîne va dans un seul sens : les institutions définissent les exigences de gouvernance; ces exigences impliquent des critères d'évaluation que les bancs d'essai d'exactitude ne saisissent pas; une méthodologie axée sur la gouvernance en découle. Le besoin d'un tel construit est motivé de façon indépendante par la littérature institutionnelle. COMPAiSS en propose une opérationnalisation, soit une architecture et une grille d'évaluation, dont la fiabilité, la validité, l'exhaustivité et l'utilité comparative demeurent soumises à une évaluation indépendante. La littérature confirme l'importance de mesurer la gouvernance; elle ne certifie pas la méthodologie de COMPAiSS comme la façon correcte, complète ou unique de la mesurer. Le secteur de la santé fournit la version la mieux documentée de ce problème; le problème ne se limite pas à la santé, mais la santé illustre, avec un rare niveau de détail empirique, en quoi le déploiement institutionnel en milieu réglementé diffère de l'adoption de logiciels grand public ou d'entreprise.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="taxonomy">
+    <h2>L'asymétrie des conséquences et l'importance de la taxonomie des défaillances</h2>
+    <p>La même littérature explique pourquoi la taxonomie des défaillances de COMPAiSS n'est pas une préférence interne, mais le reflet de la façon dont les institutions assument réellement le risque. Les institutions réglementées se soucient non seulement de savoir si une réponse est erronée, mais aussi de la manière dont elle l'est et de ce qui en découle. Les trois catégories correspondent à cette asymétrie. Une défaillance de type A produit une utilité réduite tout en préservant l'autorité institutionnelle : le système refuse de répondre ou répond de façon incomplète, ce qui constitue un coût d'utilisabilité et non un manquement à la gouvernance. Une défaillance de type C est un défaut traçable du pipeline qui laisse la gouvernance intacte : des données autorisées ont été repérées, mais n'ont pas été transmises. Une défaillance de type B est celle que les institutions doivent le plus prévenir : un contenu propre à l'institution, non autorisé, sur lequel un usager pourrait agir, qu'il s'agisse d'un traitement, d'une règle d'admissibilité, d'une échéance, d'une obligation juridique ou d'une prestation, présenté au nom de l'institution sans données qui l'autorisent. L'accent que met la littérature sur l'adoption sur la sécurité, la reddition de comptes, la responsabilité et la responsabilité institutionnelle porte, en fait, sur la zone du type B (Ahmed et coll., 2023; OMS, 2021; NIST, 2023).</p>
+    <p>Cela recadre aussi la question de l'hallucination. L'affirmation n'est pas que l'architecture n'hallucine jamais. Elle est que l'exécution axée sur l'autorisation est conçue pour exclure structurellement certaines catégories de défaillances aux conséquences institutionnelles disproportionnées, pour réduire la probabilité d'autres défaillances, pour laisser possibles des erreurs résiduelles du modèle une fois l'inférence amorcée, et pour ne rien changer aux défaillances liées à la qualité des sources, qu'aucune architecture ne résout automatiquement. Distinguer ces quatre éléments est plus honnête, et plus utile à une institution réglementée qui évalue sa responsabilité et la sécurité de ses usagers ou de ses patients, que n'importe quelle affirmation générale sur l'hallucination.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="answered">
+    <h2>Idées reçues et conclusions des examens</h2>
+    <p>Plusieurs objections couramment formulées à l'égard de l'IA axée sur la gouvernance ont été examinées par les évaluateurs à la lumière de l'ensemble du corpus, puis écartées.</p>
+    <table class="comp-table">
+      <thead><tr><th>Idée reçue</th><th>Conclusion des évaluateurs</th></tr></thead>
+      <tbody>
+        <tr><td>« Ce n'est que du RAG ordinaire sous une nouvelle terminologie »</td><td>Le RAG et COMPAiSS partagent certains composants, mais la question qui les gouverne diffère : le RAG se demande quelles données fournir au modèle; COMPAiSS se demande si les données autorisées permettent une inférence institutionnelle. Les évaluateurs y ont vu une distinction significative, et non un simple changement d'étiquette.</td></tr>
+        <tr><td>« Ce n'est qu'une liste blanche de sources »</td><td>La liste de sources n'est qu'un composant. L'architecture relie l'autorisation, la récupération et l'analyse des contenus, un seuil de suffisance des données, la barrière d'exécution, le refus encadré et la préservation des données probantes. La réduire à la liste revient à ignorer le mécanisme.</td></tr>
+        <tr><td>« Il n'y a pas de théorie cohérente; ce n'est que du marketing »</td><td>Les trois évaluateurs ont relevé une théorie architecturale cohérente, défendue dans l'ensemble du corpus. La cohérence conceptuelle a été confirmée.</td></tr>
+        <tr><td>« Le système prétend éliminer toute hallucination »</td><td>Le cadre actuel rejette cette lecture : il distingue les défaillances de connaissance, de gouvernance et d'exécution, et ne revendique une prévention structurelle que pour des catégories définies.</td></tr>
+        <tr><td>« La liste verte garantit que l'information de l'institution est exacte »</td><td>COMPAiSS ne fait pas cette affirmation. La provenance est garantie dans les conditions de l'architecture; l'exactitude d'une source autorisée ne l'est pas. Une politique autorisée mais périmée demeure périmée.</td></tr>
+        <tr><td>« Le système prétend assurer automatiquement la conformité juridique »</td><td>Les documents réglementaires présentent leur notation comme une analyse d'alignement, précisent qu'il n'existe pas de grille officielle et recommandent un examen juridique indépendant. Le corpus répond directement à cette objection.</td></tr>
+        <tr><td>« Il n'existe aucune donnée empirique »</td><td>Faux. Les données probantes vont bien au-delà de l'architecture : 159 réponses évaluées dans quatre déploiements, ainsi que des documents comparatifs, des mesures inter-modèles de l'hallucination, des comparaisons avec et sans barrière d'exécution, une comparaison dans un organisme public et une catégorisation des hallucinations résiduelles. La réplication indépendante constitue la prochaine étape de ce programme de données probantes.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="evidence">
+    <h2>Les données probantes à ce jour</h2>
+    <p>COMPAiSS a été évalué dans quatre déploiements institutionnels, dans deux secteurs, selon une méthodologie de gouvernance commune. Cette méthodologie classe chaque défaillance par type plutôt que de réduire les résultats à une seule note d'exactitude. Le type A est une limite de couverture : le système refuse plutôt que d'inventer, et la gouvernance est préservée. Le type B est une violation de gouvernance. Le type C est une défaillance architecturale : des données autorisées ont été repérées, mais ne se sont pas rendues jusqu'à l'inférence.</p>
+    <table class="comp-table">
+      <thead><tr><th>Déploiement</th><th>Secteur</th><th>Évaluées</th><th>Réussies</th><th>Type A</th><th>Type B</th><th>Type C</th><th>TPG</th></tr></thead>
+      <tbody>
+        <tr><td>Université Dalhousie</td><td>Enseignement supérieur</td><td>40</td><td>35</td><td>5</td><td>0</td><td>0</td><td>100 %</td></tr>
+        <tr><td>Université McGill</td><td>Enseignement supérieur</td><td>40</td><td>34</td><td>5</td><td>1</td><td>0</td><td>97,5 %</td></tr>
+        <tr><td>Université de Calgary</td><td>Enseignement supérieur</td><td>39</td><td>37</td><td>2</td><td>0</td><td>0</td><td>100 %</td></tr>
+        <tr><td>Centre universitaire de santé McGill</td><td>Santé</td><td>40</td><td>39</td><td>0</td><td>1</td><td>0</td><td>97,5 %</td></tr>
+        <tr><td><strong>Ensemble</strong></td><td>Deux secteurs</td><td><strong>159</strong></td><td><strong>145</strong></td><td><strong>12</strong></td><td><strong>2</strong></td><td><strong>0</strong></td><td><strong>98,7 %</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.9rem;color:var(--text-muted);">TPG (taux de préservation de la gouvernance) : proportion des réponses évaluées ne comportant aucune violation de gouvernance, regroupées pour l'ensemble des déploiements. Une question de l'Université de Calgary n'a pas été soumise; 159 des 160 éléments prévus ont donc été notés. Méthodologie complète et résultats par déploiement : <a href="/beyond-hallucination-fr.html">Au-delà de l'hallucination</a>.</p>
+    <p>La constatation la plus importante se trouve derrière les chiffres. Aucune des deux violations de gouvernance n'impliquait que le système invente une position institutionnelle à partir des connaissances générales du modèle. Toutes deux se sont produites à la frontière entre le contenu autorisé et l'affirmation qui en a été tirée, lorsqu'une réponse a légèrement étendu une source autorisée au-delà de ce qu'elle établissait. Toutes deux étaient traçables jusqu'à une source précise et corrigeables à cette source. Chaque résultat de type A a également été utile : il a repéré du contenu autorisé ne figurant pas encore dans la liste des sources, par exemple une page manquante, sans que le système y substitue des connaissances générales.</p>
+    <p>Les évaluations de déploiement sont complétées par d'autres sources de données probantes :</p>
+    <ul>
+      <li><strong>Tests de résistance de la gouvernance.</strong> Deux évaluations contradictoires ont mis l'architecture à l'épreuve dans des conditions de défaillance institutionnelle, notamment des politiques contradictoires, une autorité incertaine et un risque imminent pour la sécurité d'une personne étudiante. Aucune fuite générative ni aucune autorité fabriquée n'ont été observées. Lorsque l'autorité ne pouvait être établie à partir des sources autorisées, le système a renvoyé la question aux décideurs désignés. (<a href="/assets/compaiss-governance-stress-test-fr.pdf">Test de résistance 1</a>, <a href="/assets/compaiss-governance-stress-test-02-fr.pdf">test de résistance 2</a>)</li>
+      <li><strong>Évaluation comparative inter-systèmes.</strong> Lors de deux évaluations d'une même question réelle, notées selon douze critères pondérés de gouvernance institutionnelle, COMPAiSS a été le seul des quatre systèmes à n'avoir jamais reçu de pénalité pour hallucination ou incident de sécurité. (<a href="/gouvernance-en-action.html">Démonstrations et évaluations</a>)</li>
+      <li><strong>Comparaisons avec et sans barrière d'exécution.</strong> Des démonstrations en direct, réalisées dans les projets pilotes actifs, juxtaposent chaque réponse encadrée et la réponse que produit le même modèle sous-jacent sans barrière d'exécution, ce qui montre directement ce que la barrière empêche. (<a href="/gouvernance-en-action.html">Démonstrations en direct</a>)</li>
+    </ul>
+    <p>Le cadre d'évaluation est publié afin que les institutions puissent l'appliquer à leurs propres questions et comparer les résultats.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="scope">
+    <h2>Ce que garantit l'architecture</h2>
+    <p>Les institutions réglementées sont mieux servies par un énoncé précis de ce que fait une architecture, car c'est la précision qui rend une garantie vérifiable. Les garanties de COMPAiSS s'exercent à trois niveaux.</p>
+    <table class="comp-table">
+      <thead><tr><th>Niveau</th><th>Ce qui est visé</th><th>Comment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Empêché structurellement</strong></td><td>La génération propre à l'institution lorsque les données autorisées sont insuffisantes; les réponses hors de la portée définie par l'institution; le recours aux connaissances générales du modèle au lieu des sources institutionnelles</td><td>La barrière d'exécution avant l'inférence. Si l'autorisation échoue, le modèle de raisonnement institutionnel principal ne s'exécute pas. La règle est appliquée par l'architecture, et non par le modèle; elle ne dépend donc pas du bon comportement du modèle.</td></tr>
+        <tr><td><strong>Substantiellement réduit</strong></td><td>Les risques liés à la qualité de la génération à l'intérieur de la portée autorisée, comme une mauvaise lecture ou une extension indue d'une source autorisée</td><td>Le modèle ne reçoit que du contenu préalablement analysé et autorisé par l'institution, dans un contexte étroitement délimité, sous des contraintes d'instructions, et chaque lien cité est validé après la génération afin de confirmer qu'il appartient à l'ensemble des sources autorisées.</td></tr>
+        <tr><td><strong>Rendu visible et corrigeable</strong></td><td>L'actualité et l'exhaustivité du contenu autorisé de l'institution</td><td>Des audits de la liste verte, un tableau de bord de gouvernance avec historique des modifications attribuées et des reçus de conformité. Un contenu autorisé manquant se traduit par une réponse absente signalée pour correction, et non par une réponse erronée transmise à un usager.</td></tr>
+      </tbody>
+    </table>
+    <p>Cette répartition est délibérée. L'exactitude du contenu officiel d'une institution relève, et doit continuer de relever, de l'institution; aucun système d'IA ne peut rendre actuelle une politique périmée. Ce qu'apporte COMPAiSS, c'est qu'il ne parlera pas au nom de l'institution au-delà de ce contenu, et que chaque réponse peut être retracée jusqu'à la source autorisée précise dont elle provient.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="standard">
+    <h2>Le même test pour toutes les architectures</h2>
+    <p>La méthodologie de COMPAiSS définit la gouvernance comme le résultat visé, et elle s'applique également à tout système proposé pour un déploiement en milieu réglementé. Ses mesures sont les suivantes :</p>
+    <ul>
+      <li><strong>Taux de préservation de la gouvernance (TPG) :</strong> la proportion des réponses ne comportant aucune violation de gouvernance.</li>
+      <li><strong>Taux de couverture autorisée (TCA) :</strong> la proportion des questions autorisées et pouvant recevoir une réponse qui ont effectivement reçu une réponse fondée sur des données autorisées. Il est associé au TPG afin qu'une bonne gouvernance ne puisse jamais être obtenue simplement en refusant les questions difficiles.</li>
+      <li><strong>Fidélité constitutionnelle :</strong> les réponses respectent-elles la portée et les règles définies par l'institution?</li>
+      <li><strong>Fidélité à l'autorité des sources :</strong> les affirmations propres à l'institution proviennent-elles de sources autorisées?</li>
+      <li><strong>Exactitude de l'autorisation :</strong> le système détermine-t-il correctement quand l'inférence est permise et quand elle ne l'est pas?</li>
+    </ul>
+    <p>Dès lors que le succès se définit comme la préservation de l'autorité institutionnelle, la question n'est plus seulement de savoir si COMPAiSS peut égaler les systèmes de récupération d'entreprise sur le plan de l'exactitude. Elle est de savoir si les architectures axées sur l'inférence, y compris les systèmes de récupération les plus perfectionnés tenant compte des autorisations, peuvent atteindre la même norme de gouvernance lorsqu'on les évalue selon celle-ci. COMPAiSS invite précisément cette comparaison. La méthodologie lie COMPAiSS autant que tout comparateur, et elle est publiée afin que les institutions et les évaluateurs indépendants puissent l'appliquer.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="questions">
+    <h2>Questions posées par les institutions</h2>
+    <p>Voici les questions que les responsables de l'approvisionnement, les équipes de sécurité informatique et les comités de gouvernance posent le plus souvent lorsqu'ils évaluent COMPAiSS, accompagnées de réponses directes.</p>
+
+    <h3 id="qa-evaluation">Comment COMPAiSS a-t-il été évalué, et pouvons-nous vérifier les résultats nous-mêmes?</h3>
+    <p>COMPAiSS a été évalué dans quatre déploiements institutionnels, en enseignement supérieur et en santé, selon une méthodologie de gouvernance commune et publiée, avec un taux global de préservation de la gouvernance de 98,7 % sur 159 réponses évaluées (voir <a href="#evidence">Les données probantes à ce jour</a>). Les questions, les critères de notation et les définitions des défaillances sont publiés, de sorte que toute institution peut appliquer le même cadre à ses propres questions et comparer les résultats. Une évaluation indépendante réalisée par plusieurs évaluateurs constitue la prochaine étape du <a href="#program">programme de recherche</a>, et les institutions pilotes sont invitées à y participer.</p>
+
+    <h3 id="qa-rag">Comment COMPAiSS se compare-t-il aux systèmes de récupération d'entreprise (RAG)?</h3>
+    <p>Ils répondent à des questions différentes. Le RAG détermine quelles données fournir à un modèle qui générera une réponse de toute façon. COMPAiSS détermine si les données autorisées permettent une inférence propre à l'institution. La comparaison équitable porte donc sur des critères de gouvernance plutôt que sur l'exactitude générique, et COMPAiSS invite cette comparaison avec les systèmes d'entreprise les plus solides tenant compte des autorisations (voir <a href="#standard">Le même test pour toutes les architectures</a>). Une évaluation comparative directe de la gouvernance, dans des conditions identiques, fait partie du programme de recherche.</p>
+
+    <h3 id="qa-fidelity">Comment COMPAiSS assure-t-il la fidélité des réponses à leurs sources?</h3>
+    <p>Le modèle ne reçoit que du contenu préalablement analysé et autorisé par l'institution, dans un contexte étroitement délimité; il a pour consigne de répondre uniquement à partir de ce contenu, et chaque lien cité est validé après la génération par rapport à l'ensemble des sources autorisées. Dans les quatre évaluations de déploiement, aucune violation de gouvernance n'impliquait que le système invente une position institutionnelle à partir de connaissances générales; les deux violations enregistrées étaient de légères extensions d'une source autorisée, chacune traçable jusqu'à cette source et corrigeable à cet endroit. Un banc d'essai de fidélité à l'échelle des affirmations, qui vérifie chaque affirmation institutionnelle par rapport aux données citées, fait partie du programme de recherche.</p>
+
+    <h3 id="qa-sources">Que se passe-t-il lorsqu'une source approuvée est périmée ou manquante?</h3>
+    <p>COMPAiSS reflète ce que l'institution a autorisé; il ne le réinterprète pas et ne le complète pas. Un serveur d'audit spécialisé vérifie chaque source approuvée afin de repérer les liens brisés, les redirections et les pages déplacées, et chaque modification de la liste des sources est consignée et attribuée. Lorsque le contenu autorisé ne couvre pas une question, le résultat est une réponse absente signalée pour correction plutôt qu'une réponse erronée transmise à un usager; l'institution voit ainsi exactement où son contenu doit être mis à jour (voir <a href="#scope">Ce que garantit l'architecture</a>).</p>
+
+    <h3 id="qa-gate">Que garantit exactement la barrière d'exécution?</h3>
+    <p>La barrière applique une règle de façon déterministe : aucune inférence propre à l'institution n'a lieu si les conditions d'autorisation ne sont pas remplies. Cette règle est une propriété de l'architecture, et non du modèle; elle ne peut être contournée par la formulation, la reformulation ou la manipulation. À l'intérieur de la portée autorisée, les composants d'IA qui interprètent les questions et rédigent les réponses demeurent probabilistes; c'est pourquoi l'architecture ajoute un contexte délimité, des contraintes d'instructions et une validation des liens après la génération. La vérification automatisée de la règle de la barrière au moyen de traces d'exécution fait partie du programme de recherche.</p>
+
+    <h3 id="qa-security">Comment COMPAiSS gère-t-il les menaces à la sécurité, y compris celles visant les sources approuvées?</h3>
+    <p>Comme la barrière s'exécute avant le modèle, les requêtes hors portée et les tentatives de manipulation sont rejetées avant toute inférence. Les entrées sont limitées en longueur et filtrées, les requêtes sont soumises à une limitation de débit et la plateforme est protégée par Cloudflare. Restreindre les données à un ensemble de sources approuvées constitue en soi une mesure de sécurité, et les sources approuvées font l'objet d'audits continus. Un modèle de menaces formel couvrant la compromission des sources, l'injection indirecte et les redirections, ainsi qu'un test d'intrusion réalisé par un tiers, font partie du programme de recherche.</p>
+
+    <h3 id="qa-cost">Qu'est-ce qui explique les coûts d'exploitation moins élevés de COMPAiSS?</h3>
+    <p>Les requêtes qui échouent à l'autorisation n'atteignent jamais le modèle; elles n'entraînent donc que peu ou pas de coûts d'inférence, et l'architecture ne requiert ni base de données vectorielle, ni pipeline de plongements, ni gestion d'index. L'analyse des coûts publiée par COMPAiSS modélise les économies qui en résultent par rapport aux déploiements RAG d'entreprise typiques. Des comparaisons mesurées du coût total de possession, tirées de déploiements réels, font partie du programme de recherche.</p>
+
+    <h3 id="qa-scale">Comment COMPAiSS se déploie-t-il à grande échelle?</h3>
+    <p>La gouvernance s'étend par délégation : chaque service qui détient déjà du contenu institutionnel gère sa portion de la liste des sources approuvées au moyen du même tableau de bord et du même cycle d'audit. La validation des sources est une simple vérification d'état plutôt qu'une relecture des documents; même une liste d'environ 10 000 sources est auditée en quelques minutes. Des rapports sur la charge, la latence et la disponibilité, mesurées en production, font partie du programme de recherche.</p>
+
+    <h3 id="qa-novelty">L'architecture est-elle nouvelle?</h3>
+    <p>COMPAiSS s'inscrit dans un mouvement plus large visant à placer les contrôles en amont de la génération, et il nomme ouvertement les travaux connexes. Sa contribution est une combinaison précise : la suffisance des données autorisées par l'institution comme condition préalable à toute inférence propre à l'institution, appliquée par une barrière d'exécution. Cette combinaison fait l'objet de demandes de brevet au Canada et aux États-Unis, et une publication évaluée par les pairs fait partie du programme de recherche.</p>
+
+    <h3 id="qa-refusal">Un système ne pourrait-il pas obtenir de bons résultats en gouvernance simplement en refusant les questions difficiles?</h3>
+    <p>Non, et la méthodologie est conçue pour l'empêcher. Le taux de préservation de la gouvernance est associé à un taux de couverture autorisée, qui mesure combien de questions autorisées et pouvant recevoir une réponse ont effectivement reçu une réponse fondée sur des données autorisées. De bons résultats en gouvernance ne comptent qu'accompagnés d'une bonne couverture.</p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="program">
+    <h2>Le programme de recherche</h2>
+    <p>La prochaine étape du programme de données probantes de COMPAiSS vise à transformer un signal interne solide en une confirmation indépendante et mesurée. Aucune de ces étapes n'exige de modifier l'architecture. Les institutions participant aux projets pilotes sont invitées à y contribuer.</p>
+    <table class="comp-table">
+      <thead><tr><th>Étape</th><th>Ce qu'elle apportera</th></tr></thead>
+      <tbody>
+        <tr><td>Évaluation indépendante par plusieurs évaluateurs</td><td>Questions et réponses de référence figées, plusieurs évaluateurs à l'aveugle, fidélité interjuges, traces d'exécution complètes et définitions des défaillances préenregistrées, le tout mené par des parties indépendantes de COMPAiSS</td></tr>
+        <tr><td>Comparaison directe de la gouvernance</td><td>COMPAiSS et un système de récupération d'entreprise entièrement encadré et tenant compte des autorisations, évalués dans des conditions identiques selon les critères de gouvernance ci-dessus</td></tr>
+        <tr><td>Banc d'essai de fidélité des affirmations</td><td>Vérification indépendante de chaque affirmation institutionnelle par rapport aux données citées, avec une notation distincte du confinement aux sources et de la fidélité des affirmations</td></tr>
+        <tr><td>Rapport longitudinal sur l'exploitation des listes vertes</td><td>Taux de modification, taux de liens périmés, délais de correction et effort du personnel par tranche de mille sources, mesurés dans les déploiements actifs</td></tr>
+        <tr><td>Vérification automatisée de l'invariant</td><td>Traces d'exécution et tests automatisés démontrant qu'aucune génération propre à l'institution n'a lieu si les conditions d'autorisation ne sont pas remplies</td></tr>
+        <tr><td>Modèle de menaces formel et évaluation de sécurité externe</td><td>Couverture de la compromission des sources, des contenus malveillants, de l'injection indirecte, des redirections et des attaques visant l'analyse des contenus, avec un test d'intrusion réalisé par un tiers</td></tr>
+        <tr><td>Coût total de possession mesuré</td><td>Consommation de jetons, taux d'autorisation et coûts d'hébergement et de personnel observés, comparés à des déploiements de référence mesurés</td></tr>
+        <tr><td>Rapports sur la charge et la fiabilité</td><td>Débit, percentiles de latence, disponibilité et rapport de niveau de service opérationnel sous charge mesurée</td></tr>
+        <tr><td>Publication évaluée par les pairs</td><td>Examen scientifique externe de l'architecture et de la méthodologie</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="conclusion">
+    <h2>Conclusion</h2>
+    <p>COMPAiSS se comprend le mieux non pas comme une tentative de répondre aux questions avec plus d'exactitude que la génération augmentée par récupération ou qu'un modèle de pointe, mais comme une réponse à un obstacle de gouvernance que la recherche indépendante reconnaît comme une contrainte centrale à l'adoption de l'IA générative dans les institutions réglementées. Sa méthodologie mesure la préservation de l'autorité institutionnelle plutôt que l'exactitude des réponses. Les examens ont confirmé la proposition centrale : l'IA institutionnelle devrait encadrer le pouvoir de produire une inférence propre à l'institution à partir d'un ensemble défini de données autorisées, plutôt que de simplement améliorer les chances d'obtenir une réponse exacte une fois la question posée.</p>
+    <p>Trois propositions en découlent. Premièrement, le caractère central de la gouvernance et de la préparation institutionnelle dans le déploiement de l'IA en milieu réglementé est établi par la littérature externe, indépendamment de COMPAiSS. Deuxièmement, COMPAiSS a été mis en œuvre dans plusieurs milieux institutionnels réglementés, évalué selon une méthodologie commune dont les résultats ont été communiqués de façon transparente, et il est appuyé par des données architecturales, comparatives et empiriques convergentes. Troisièmement, la question qui se pose désormais au domaine est de savoir quelles architectures répondent le mieux aux exigences de gouvernance auxquelles les institutions réglementées font réellement face, lorsque tous les systèmes sont évalués selon les mêmes critères de gouvernance.</p>
+    <div class="key-statement">
+      <p>Les données internes sont suffisamment solides pour justifier une confirmation indépendante rigoureuse, et c'est l'étape à laquelle COMPAiSS est parvenu. Les institutions qui évaluent l'IA pour des milieux réglementés peuvent appliquer le même test de gouvernance à tout système qu'elles envisagent, et COMPAiSS accueille favorablement cette comparaison.</p>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-muted); font-family: system-ui, -apple-system, sans-serif; font-style: italic; margin-top: 2rem;">
+      Note de synthèse : ce document s'appuie sur la littérature externe en matière de gouvernance et sur des examens contradictoires du corpus public de COMPAiSS menés séparément par trois modèles d'IA de pointe. Il s'agit d'une synthèse analytique; l'évaluation externe indépendante fait partie du programme de recherche décrit ci-dessus.<br>
+      Pour les demandes relatives à l'approvisionnement ou à l'évaluation institutionnelle : <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a>
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="content-section" id="references">
+    <h2>Références</h2>
+    <p style="font-size:0.9rem;color:var(--text-muted);">La littérature indépendante est citée pour établir le problème de gouvernance, les tendances d'adoption et les exigences institutionnelles. Les documents du projet COMPAiSS établissent uniquement ce que COMPAiSS affirme et décrit; leur confirmation indépendante fait l'objet du programme de recherche décrit ci-dessus. Les titres des publications sont présentés dans leur langue d'origine.</p>
+    <p><strong>Littérature universitaire et empirique indépendante.</strong> Ahmed, M. I., Spooner, B., Isherwood, J., Lane, M., Orrock, E., &amp; Dennison, A. (2023). A systematic review of the barriers to the implementation of artificial intelligence in healthcare. <em>Cureus, 15</em>(10), e46454. https://doi.org/10.7759/cureus.46454 &nbsp;&middot;&nbsp; Bin, R., et al. (2024). How are US hospitals adopting artificial intelligence? Early evidence from 2022. <em>Health Affairs Scholar, 2</em>(10), qxae123. https://doi.org/10.1093/haschl/qxae123 &nbsp;&middot;&nbsp; Poon, E. G., Lemak, C. H., Rojas, J. C., Guptill, J., &amp; Classen, D. (2025). Adoption of artificial intelligence in healthcare: Survey of health system priorities, successes, and challenges. <em>Journal of the American Medical Informatics Association, 32</em>(7), 1093 to 1100. https://doi.org/10.1093/jamia/ocaf065 &nbsp;&middot;&nbsp; Hassan, M., Borycki, E. M., &amp; Kushniruk, A. W. (2024). Barriers to and facilitators of artificial intelligence adoption in health care: Scoping review. <em>JMIR Human Factors, 11</em>, e48633. https://humanfactors.jmir.org/2024/1/e48633 &nbsp;&middot;&nbsp; Kim, J. Y., Hasan, A., Kueper, J., et al. (2025). Establishing organizational AI governance in healthcare: A case study in Canada. <em>npj Digital Medicine, 8</em>, 522. https://doi.org/10.1038/s41746-025-01909-3 &nbsp;&middot;&nbsp; Office of the National Coordinator for Health Information Technology. (2026). <em>Hospital trends in the use, evaluation, and governance of predictive AI, 2023 to 2024</em>. https://www.healthit.gov/data/data-briefs/hospital-trends-use-evaluation-and-governance-predictive-ai-2023-2024/</p>
+    <p><strong>Sources en matière de gouvernance, de réglementation et de normes.</strong> National Institute of Standards and Technology. (2023). <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em>. NIST AI 100-1. https://doi.org/10.6028/NIST.AI.100-1 &nbsp;&middot;&nbsp; National Institute of Standards and Technology. (2024). <em>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</em>. NIST AI 600-1. https://doi.org/10.6028/NIST.AI.600-1 &nbsp;&middot;&nbsp; World Health Organization. (2021). <em>Ethics and governance of artificial intelligence for health: WHO guidance</em>. https://www.who.int/publications/i/item/9789240029200 &nbsp;&middot;&nbsp; World Health Organization. (2023). <em>Regulatory considerations on artificial intelligence for health</em>. https://www.who.int/publications/i/item/9789240078871 &nbsp;&middot;&nbsp; Organisation for Economic Co-operation and Development. (2019, updated 2024). <em>OECD AI Principles</em>. https://oecd.ai/en/ai-principles &nbsp;&middot;&nbsp; UNESCO. (2021). <em>Recommendation on the ethics of artificial intelligence</em>. https://unesdoc.unesco.org/ark:/48223/pf0000381137</p>
+    <p><strong>Documents du projet COMPAiSS (affirmations et descriptions, et non validation indépendante).</strong> COMPAiSS. (2026a). <em>COMPAiSS</em>. https://compaiss.ca/index_french.html &nbsp;&middot;&nbsp; COMPAiSS. (2026b). <em>Pourquoi l'IA a évolué ainsi</em>. https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html &nbsp;&middot;&nbsp; COMPAiSS. (2026c). <em>Gouvernance de l'IA</em>. https://compaiss.ca/governance-fr.html &nbsp;&middot;&nbsp; COMPAiSS. (2026d). <em>Évaluation des risques et de la responsabilité liés à l'IA</em>. https://compaiss.ca/evaluation-des-risques-ia.html &nbsp;&middot;&nbsp; COMPAiSS. (2026e). <em>Démonstrations et évaluations</em>. https://compaiss.ca/gouvernance-en-action.html &nbsp;&middot;&nbsp; COMPAiSS. (2026f). <em>Déploiement et adéquation institutionnelle</em>. https://compaiss.ca/deploiement-et-adequation-institutionnelle.html &nbsp;&middot;&nbsp; COMPAiSS. (2026g). <em>Alignement de la gouvernance et cadre d'évaluation proposé</em>. https://compaiss.ca/compaiss-comparaison-reglementaire.html &nbsp;&middot;&nbsp; COMPAiSS. (2026h). <em>Au-delà de l'hallucination</em>. https://compaiss.ca/beyond-hallucination-fr.html</p>
+</div>
+
+<hr>
+
+<div class="content-section" id="appendix">
+  <h2>Annexe A. Vérification des références et validation bibliographique</h2>
+
+  <p>Avant la publication, les principales références citées dans ce document ont été vérifiées par rapport à leurs publications originales ou aux organismes émetteurs officiels. La vérification a porté sur les auteurs, le lieu de publication, l'année de publication et les identifiants de publication (DOI, PMID, ISBN ou numéro de publication officiel, selon le cas), et a confirmé que chaque source appuie les faits pour lesquels elle est citée.</p>
+
+  <h3>A. Littérature universitaire et empirique indépendante</h3>
+
+  <p>Les principales références universitaires et empiriques citées dans ce document ont été vérifiées par rapport à leurs publications originales, notamment :</p>
+
+  <ul>
+    <li>Ahmed et coll. (2023), <em>Cureus</em> – revue systématique des obstacles à la mise en œuvre de l'IA en santé.</li>
+    <li>Bin et coll. (2024), <em>Health Affairs Scholar</em> – analyse empirique de l'adoption de l'IA dans les hôpitaux des États-Unis.</li>
+    <li>Poon et coll. (2025), <em>Journal of the American Medical Informatics Association</em> – priorités, tendances d'adoption et obstacles à la mise en œuvre de l'IA dans les systèmes de santé.</li>
+    <li>Hassan et coll. (2024), <em>JMIR Human Factors</em> – obstacles et facteurs favorables à l'adoption de l'IA en santé.</li>
+    <li>Kim et coll. (2025), <em>npj Digital Medicine</em> – étude de cas canadienne sur la gouvernance organisationnelle de l'IA.</li>
+    <li>Office of the National Coordinator for Health Information Technology (2026) – tendances hospitalières en matière de gouvernance de l'IA prédictive.</li>
+  </ul>
+
+  <h3>B. Sources en matière de gouvernance, de réglementation et de normes</h3>
+
+  <p>Les documents de gouvernance et de normes cités dans ce document ont été vérifiés par rapport à leurs publications officielles, notamment :</p>
+
+  <ul>
+    <li>Cadre de gestion des risques liés à l'intelligence artificielle (AI RMF 1.0) du National Institute of Standards and Technology (NIST).</li>
+    <li>Profil de l'IA générative du NIST.</li>
+    <li>Orientations de l'Organisation mondiale de la Santé sur l'éthique et la gouvernance de l'IA en santé.</li>
+    <li>Orientations de l'Organisation mondiale de la Santé sur les considérations réglementaires relatives à l'IA en santé.</li>
+    <li>Principes de l'OCDE sur l'IA.</li>
+    <li>Recommandation de l'UNESCO sur l'éthique de l'intelligence artificielle.</li>
+  </ul>
+
+  <h3>C. Sources primaires de COMPAiSS</h3>
+
+  <p>Tous les documents du projet COMPAiSS cités dans ce document ont été vérifiés par rapport au site Web public actuel. Ces sources sont citées uniquement pour documenter l'architecture, la méthodologie, le cadre de gouvernance, le modèle de déploiement et les objectifs de conception déclarés de COMPAiSS. Elles ne sont pas présentées comme une validation empirique indépendante des affirmations abordées dans ce document.</p>
+
+  <h3>Résumé de la vérification</h3>
+
+  <p>Le processus de vérification des références a confirmé, s'il y a lieu :</p>
+
+  <ul>
+    <li>les auteurs;</li>
+    <li>le lieu de publication;</li>
+    <li>l'année de publication;</li>
+    <li>le DOI, le PMID, l'ISBN ou l'identifiant de publication officiel;</li>
+    <li>l'URL de publication officielle;</li>
+    <li>que la source citée appuie les faits pour lesquels elle est mentionnée.</li>
+  </ul>
+
+  <div class="highlight-block">
+    <p><strong>Note de transparence.</strong> Cette annexe documente un processus de vérification bibliographique visant à améliorer l'exactitude et la transparence des citations. Elle ne constitue pas une validation scientifique indépendante de l'architecture ou de la méthodologie de COMPAiSS, qui fait l'objet du programme de recherche décrit dans ce document.</p>
+  </div>
+
+</div>
+
+</main>
+
+<button id="backToTop" aria-label="Retour en haut">&uarr;</button>
+
+<script>
+  const backBtn = document.getElementById('backToTop');
+  function checkScroll() { backBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; }
+  window.addEventListener('scroll', checkScroll);
+  window.addEventListener('load', checkScroll);
+  backBtn.addEventListener('click', () => {
+    document.querySelector('.section-nav').scrollIntoView({ block: 'start' });
+    history.replaceState(null, null, window.location.pathname);
+  });
+</script>
+
+</body>
+</html>
