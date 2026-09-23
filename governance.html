@@ -633,14 +633,21 @@ header {
   <!-- AI MODEL -->
   <div class="gov-section" id="model">
     <h2>AI Model and Updates</h2>
-    <p class="section-intro">Which AI powers COMPAiSS, and how model decisions are made.</p>
+    <p class="section-intro">Which AI models power COMPAiSS, what each one does, and how model decisions are made.</p>
 
-    <p>COMPAiSS is model-agnostic by design, but currently - and deliberately - relies on a closed model. The governance architecture - the rules, the gate, the approved source list - sits entirely outside the AI model. This means institutions are never dependent on any single provider.</p>
+    <p>COMPAiSS is model-agnostic by design. The governance architecture - the rules, the execution gate, the approved source list - sits entirely outside the AI models. Models can be changed, or matched to each task, without changing a single governance rule, and institutions are never dependent on any single provider.</p>
 
-    <p>COMPAiSS currently uses <strong>GPT-5.2-latest by OpenAI</strong> as its AI engine. This model was selected based on direct comparative testing against available alternatives. It consistently performs best across the metrics that matter most for regulated institutional deployments: accuracy, helpfulness, tone, and the reliability of source links in responses.</p>
+    <p>Rather than asking one model to do everything, COMPAiSS assigns each stage of its pipeline to the model best suited to it. The current configuration uses OpenAI's <strong>GPT-5.6</strong> family:</p>
 
-    <p>The "latest" designation means OpenAI continuously improves this model in the background. An institution's COMPAiSS deployment benefits from those improvements automatically - with no updates, no downtime, and no action required.</p>
+    <ul>
+      <li><strong>Retrieval planning and source ranking - GPT-5.6 Sol.</strong> OpenAI's flagship reasoning model interprets each question, expands it into precise retrieval queries, and ranks candidate pages from the institution's approved source list by relevance. Where a deployment favours speed and cost, ranking can run on GPT-5.6 Terra.</li>
+      <li><strong>Governed answer generation - GPT-5.6 Luna.</strong> Only after the execution gate authorizes an answer does a fast, cost-efficient model compose it, from pre-parsed authorized content alone. Because the reasoning-intensive work of finding and ranking the right sources is already done, the answering step needs speed and precision, not the largest model.</li>
+      <li><strong>Language handling.</strong> A dedicated translation step (GPT-5.5) normalizes questions asked in other languages before authorization, and returns answers in the user's language.</li>
+    </ul>
 
+    <p>This division puts the most capable reasoning where accuracy is decided - in finding the right authorized sources - while keeping answers fast and affordable at institutional scale. Every compliance receipt records the model used for that answer.</p>
+
+    <p>COMPAiSS uses specific model versions rather than automatically updating ones, so model behaviour does not change silently. A model change is made only after testing against the five metrics below, and institutions are notified before any material change to model versions. Canadian-hosted options are also available: Azure OpenAI in Microsoft's Canada East region, and Cohere Command models hosted on Canadian infrastructure.</p>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">📊</div>
