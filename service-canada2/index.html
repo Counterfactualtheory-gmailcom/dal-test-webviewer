@@ -1,37 +1,125 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-JR7LJGK5PK', {
+  page_path: '/servicecan'
+});
+</script>
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Service Canada AI Assistant — Answer Viewer</title>
-
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>Service Canada Information Assistant - COMPAiSS Demonstration</title>
+  
+<meta name="robots" content="noindex, nofollow">
+  
   <style>
 
-/* === Service Canada header (matches DAL / McGill) === */
+/* === COMPAiSS Service Canada Demonstration header === */
 #header {
-  width: 100%;
+  width: 93%;
+  max-width: 540px;
+  margin: 30px auto 24px;
   text-align: center;
-  margin-top: 4px;     /* ↓ adjust THIS to move header down */
-  margin-bottom: 8px;  /* space before the input box */
 }
 
-#header .app-title {
-  font-weight: 700;
-  font-size: 18px;
+#header .compaiss-logo {
+  display: block;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  border-radius: 18px;
+}
+
+#header .brand-name {
   margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #d3080c;
+}
+
+#header .service-canada-title {
+  margin-top: 5px;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #111111;
+}
+
+#header .demo-label {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #d3080c;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
 }
 
 #header .app-subtitle {
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 700;
   color: #0f4079;
-  margin: 2px 0 0 0;
+  margin: 10px 0 0;
+}
+
+#header .languages {
+  font-size: 14px;
+  color: #555555;
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+#header .source-description {
+  font-size: 13px;
+  color: #444444;
+  line-height: 1.45;
+  max-width: 500px;
+  margin: 10px auto 0;
+}
+
+#header .independent-notice {
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.4;
+  max-width: 500px;
+  margin: 7px auto 0;
+}
+
+@media (max-width: 600px) {
+  #header {
+    margin-top: 24px;
+  }
+
+  #header .compaiss-logo {
+    width: 82px;
+    height: 82px;
+  }
+
+  #header .service-canada-title {
+    font-size: 19px;
+  }
 }
 
     :root {
       --wrap: 900px;
       --pad: 16px;
       --border: #cccccc;
-      --accent: #ff0000;           /* ✅ Service Canada red */
+      --accent: #ee0000;           /* ✅ Service Canada red */
       --text: #000000;
       --bg: #f2f2f2;               /* ✅ Light grey background */
       --bg-page: #f2f2f2;
@@ -80,27 +168,21 @@
 
 /* === Conversation answer divider === */
 .answer-divider {
-  margin: 40px 0;
-  padding-top: 20px;
-  border-top: 4px solid #c4c4c4;   /* ⬅ thicker line */
+  margin: 60px 0 40px;
   position: relative;
 }
 
 .answer-divider::after {
   content: "NEW ANSWER";
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  padding: 0 14px;
-
-  font-size: 14px;                /* ⬅ slightly larger */
-  font-weight: 700;               /* ⬅ bolder */
-  color: #666;
-
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  background: #0f4079;   /* Service Canada blue */
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
 }
     
 /* ✅ DAL / McGill parity — hide output until real content exists */
@@ -181,10 +263,10 @@
     
 /* --- Larger textarea (cleanest, safest) --- */
 #followup-text {
-  width: 100%;                /* fills followup-box width */
+  width: 100%;
   min-height: 170px;
-  padding: 14px;              /* ← increased from 10px */
-  font-size: 16px;            /* ← slightly larger */
+  padding: 14px;
+  font-size: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
@@ -194,12 +276,19 @@
   background-color: #f9f9f9;
   color: #000;
 }
+#followup-text::placeholder {
+  color: #595959;
+}
+#followup-text:focus {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
     
 #followup-btn, #copy-btn {
     margin-top: 8px;
     width: 100%;
     padding: 10px;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -236,24 +325,50 @@
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
-  <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+
 </head>
 
 <body>
-<div class="wrap">
+<main class="wrap" aria-label="COMPAiSS Service Canada Information Assistant demonstration">
+  
+<!-- COMPAiSS Service Canada Demonstration header -->
+<div id="header">
 
-  <!-- App header (matches DAL / McGill) -->
-  <div id="header" style="text-align:center; margin: 12px auto 14px;">
-    <div class="app-title" style="font-weight:700; font-size:18px;">
-      Service Canada AI Assistant 2
-    </div>
-    <div class="app-subtitle" style="font-size:14px; color:#0f4079;">
-      Write in any language
-    </div>
+  <img
+    class="compaiss-logo"
+    src="./compaiss-red-white.png"
+    alt="COMPAiSS compass logo"
+  >
+
+  <div class="brand-name">
+    COMPAiSS
   </div>
 
+  <div class="service-canada-title">
+    Service Canada Information Assistant
+  </div>
+
+  <div class="demo-label">
+    COMPAiSS DEMONSTRATION
+  </div>
+
+  <div class="app-subtitle">
+    🌐 Write in any language
+  </div>
+
+  <div class="languages">
+    Français · 普通话 · 廣東話 · ਪੰਜਾਬੀ · Español · Tagalog · العربية · Italiano · Português
+  </div>
+
+  <div class="source-description">
+    Powered exclusively by publicly available information from
+    <strong>Service Canada, Employment and Social Development Canada (ESDC),
+    and the Canada Revenue Agency (CRA).</strong>
+  </div>
+</div>
+
   <!-- Answer output -->
- <div id="out"></div>
+<div id="out" aria-live="polite" aria-atomic="true"></div>
 
   <!-- Follow-up input -->
   <div id="followup-box" style="margin-top: 12px;">
@@ -265,15 +380,15 @@
     <button id="followup-btn">Submit</button>
     <button id="copy-btn">Copy Last Answer</button>
 
-    <div id="loading">
-      Answer coming<span>.</span><span>.</span><span>.</span>
-    </div>
+<div id="loading" role="status" aria-live="polite">
+  Answer coming<span>.</span><span>.</span><span>.</span>
+</div>
   </div>
 
   <!-- Debug (optional) -->
   <div id="dbg" class="debug"></div>
 
-</div>
+</main>
 
   <script>
     marked.setOptions({ gfm:true, breaks:true, mangle:false, headerIds:false });
@@ -318,7 +433,7 @@ function safeRender(md){
 
   // ✅ Render cleaned Markdown
   const html = marked.parse(cleaned || '');
-  const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+ const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
 
   let linked = clean1;
   try {
@@ -341,9 +456,7 @@ lastSingleAnswer = clean2;
 if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
 
 const questionBlock = window.lastQuestion
-  ? `<div style="font-weight:700;margin-bottom:8px;">
-       <span style="color:#ff0000;">❓</span> ${window.lastQuestion}
-     </div>`
+  ? `<div style="font-weight:700;margin-bottom:8px;">❓ ${window.lastQuestion}</div>`
   : '';
 
 outEl.innerHTML +=
@@ -352,6 +465,21 @@ outEl.innerHTML +=
     : '') +
   questionBlock +
   clean2;
+
+// Hide decorative emoji from screen readers
+outEl.querySelectorAll('*').forEach(el => {
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3 && /\p{Emoji}/u.test(node.textContent)) {
+      const wrapped = node.textContent.replace(
+        /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu,
+        '<span aria-hidden="true">$1</span>'
+      );
+      const span = document.createElement('span');
+      span.innerHTML = wrapped;
+      node.replaceWith(span);
+    }
+  });
+});
   
   /* -----------------------------------------------------------
      DAL–McGill DOM REFRESH BLOCK — triggers reflow & wake-up
@@ -375,48 +503,6 @@ outEl.innerHTML +=
     a.rel = 'noopener';
   });
 }
-    let firstMessageReceived=false;let readyPingerId=null;
-
-// ✅ FIX: Align Service Canada render timing with McGill/DAL (prevents tag bleed)
-ThunkableWebviewerExtension.receiveMessage(function (msg) {
-  try {
-    // 🚫 IGNORE handshake / system messages
-    if (msg && typeof msg === "object" && !("payload" in msg)) return;
-
-    firstMessageReceived = true;
-    if (readyPingerId) {
-      clearInterval(readyPingerId);
-      readyPingerId = null;
-    }
-
-    setTimeout(() => {
-      const payload =
-        msg && typeof msg === "object" && "payload" in msg
-          ? msg.payload
-          : msg;
-
-      if (typeof payload !== "string") return; // 🔥 PREVENT [object Object]
-
-      safeRender(payload);
-    }, 50);
-
-  } catch (err) {
-    outEl.textContent = "Render error:" + err;
-  }
-});
-
-    function pingReady(){
-      try{ThunkableWebviewerExtension.postMessage('ready');}
-      catch(e){debug('postMessage error:'+e);}
-    }
-    window.addEventListener('DOMContentLoaded',()=>{
-      pingReady();
-      let tries=0;
-      readyPingerId=setInterval(()=>{
-        if(firstMessageReceived||tries>=10){clearInterval(readyPingerId);readyPingerId=null;return;}
-        pingReady();tries++;
-      },600);
-    });
 
     // ✅ Universal Copy handler
 copyBtn.onclick = () => {
@@ -469,10 +555,14 @@ copyBtn.onclick = () => {
       if (!q) return;
 window.lastUserQuestion = window.lastQuestion || "";
 window.lastQuestion = q;
-      loading.style.display = 'block';
-      followupBtn.disabled = true;
+      
+loading.style.display = 'block';
+loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+followupBtn.disabled = true;
+      
       try {
-const res = await fetch('https://compaiss-engine-v2-production-cab8.up.railway.app/ask', {
+//const res = await fetch('https://servicecanbackendproduction-production.up.railway.app/ask', {
+const res = await fetch('https://servicecanbackendproduction-service-canada-cohere-test.up.railway.app/ask', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -483,7 +573,7 @@ const res = await fetch('https://compaiss-engine-v2-production-cab8.up.railway.a
         const data = await res.json();
         safeRender(data.answer || '(no response)');
       } catch (err) {
-        safeRender('⚠️ Error sending follow-up: ' + err.message);
+        safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nFor direct assistance, contact Service Canada:\n\n**Telephone:** 1-800-622-6232\n\n**TTY:** 1-800-926-9105\n\n**Hours:** Monday to Friday, 8:30 am to 4:30 pm local time');
       }
       loading.style.display = 'none';
       followupBtn.disabled = false;
