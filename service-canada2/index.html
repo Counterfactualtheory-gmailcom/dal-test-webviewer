@@ -567,7 +567,8 @@ const res = await fetch('https://servicecanbackendproduction-service-canada-cohe
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
     question: q,
-    previousQuestion: window.lastUserQuestion || ""
+    previousQuestion: window.lastUserQuestion || "",
+    previousAnswer: lastAnswer
   })
 });
         const data = await res.json();
