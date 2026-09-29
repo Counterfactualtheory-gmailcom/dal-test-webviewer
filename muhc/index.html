@@ -630,6 +630,7 @@ body: JSON.stringify({
   });
 
     const data = await res.json();
+    lastAnswer = data.answer || "";
 
     // ✅ Remove temporary loading indicator before rendering
     const oldLoading = document.getElementById("loading-active");
