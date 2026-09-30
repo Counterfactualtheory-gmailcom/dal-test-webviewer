@@ -601,8 +601,7 @@ header {
 
     <p>COMPAiSS est agnostique par rapport aux modèles, par conception. L'architecture de gouvernance - les règles, la barrière d'exécution, la liste des sources approuvées - se situe entièrement à l'extérieur des modèles d'IA. Les modèles peuvent être changés, ou attribués à chaque tâche, sans modifier une seule règle de gouvernance, et les institutions ne dépendent jamais d'un seul fournisseur.</p>
 
-    <p>Plutôt que de confier toutes les tâches à un seul modèle, COMPAiSS attribue chaque étape de son traitement au modèle le mieux adapté. La configuration actuelle utilise la famille <strong>GPT-5.6</strong> d'OpenAI :</p>
-
+    <p>Plutôt que de confier toutes les tâches à un seul modèle, COMPAiSS attribue chaque étape de son traitement au modèle le mieux adapté. Les déploiements OpenAI actuels utilisent des modèles de la <strong>famille GPT-6</strong>, la sélection des modèles pouvant être configurée selon le déploiement :</p>
     <ul>
       <li><strong>Planification de la recherche et classement des sources - GPT-5.6 Sol.</strong> Le modèle de raisonnement phare d'OpenAI interprète chaque question, la développe en requêtes de recherche précises et classe par pertinence les pages candidates de la liste des sources approuvées de l'établissement. Lorsqu'un déploiement privilégie la rapidité et le coût, le classement peut être confié à GPT-5.6 Terra.</li>
       <li><strong>Rédaction des réponses encadrées - GPT-5.6 Luna.</strong> Ce n'est qu'une fois la réponse autorisée par la barrière d'exécution qu'un modèle rapide et économique la rédige, uniquement à partir de contenu autorisé préalablement analysé. Comme le travail de raisonnement exigeant - trouver et classer les bonnes sources - est déjà accompli, l'étape de rédaction exige rapidité et précision, et non le modèle le plus imposant.</li>
