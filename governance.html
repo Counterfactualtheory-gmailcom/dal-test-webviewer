@@ -637,8 +637,7 @@ header {
 
     <p>COMPAiSS is model-agnostic by design. The governance architecture - the rules, the execution gate, the approved source list - sits entirely outside the AI models. Models can be changed, or matched to each task, without changing a single governance rule, and institutions are never dependent on any single provider.</p>
 
-    <p>Rather than asking one model to do everything, COMPAiSS assigns each stage of its pipeline to the model best suited to it. The current configuration uses OpenAI's <strong>GPT-5.6</strong> family:</p>
-
+    <p>Rather than asking one model to do everything, COMPAiSS assigns each stage of its pipeline to the model best suited to it. Current OpenAI deployments use models from the <strong>GPT-6 family</strong>, with model selection configurable by deployment:</p>
     <ul>
       <li><strong>Retrieval planning and source ranking - GPT-5.6 Sol.</strong> OpenAI's flagship reasoning model interprets each question, expands it into precise retrieval queries, and ranks candidate pages from the institution's approved source list by relevance. Where a deployment favours speed and cost, ranking can run on GPT-5.6 Terra.</li>
       <li><strong>Governed answer generation - GPT-5.6 Luna.</strong> Only after the execution gate authorizes an answer does a fast, cost-efficient model compose it, from pre-parsed authorized content alone. Because the reasoning-intensive work of finding and ranking the right sources is already done, the answering step needs speed and precision, not the largest model.</li>
