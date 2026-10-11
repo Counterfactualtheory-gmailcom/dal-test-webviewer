@@ -312,6 +312,7 @@ a:visited {
 <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
 <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"></script>
+<script src="https://compaiss.ca/assets/compaiss-stream-client.js"></script> <!-- STREAMING -->
 
 </head>
 
@@ -674,26 +675,17 @@ followupBtn.onclick = async () => {
 
   try {
 
-    const res = await fetch(
-      'https://compaiss-engine-v2-uvic-production.up.railway.app/ask',
-      {
-        method: 'POST',
+    // STREAMING — shared platform client (falls back to plain JSON if it fails to load)
+    const ENDPOINT = 'https://compaiss-engine-v2-uvic-production.up.railway.app/ask';
+    const body = { question: q, previousQuestion: window.lastAnswerBackup || "" };
 
-        headers: {
-          'Content-Type':
-            'application/json'
-        },
-
-        body: JSON.stringify({
-          question: q,
-          previousQuestion:
-            window.lastAnswerBackup || ""
-        })
-      }
-    );
-
-    const data =
-      await res.json();
+    const data = window.CompaissStream
+      ? await CompaissStream.ask(ENDPOINT, body)
+      : await (await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })).json();
 
     safeRender(
       data.answer ||
