@@ -21,6 +21,8 @@
  *   growing in a temporary box inside #out (marked + DOMPurify, same as the
  *   page). The box is removed the moment the final answer arrives, so the
  *   page's own safeRender() still renders the final, fully sanitized answer.
+ * - Diagnostics: after a question, window.CompaissStreamLog shows when each
+ *   status and answer piece arrived (ms after Submit). Timing only, no content.
  */
 (function (global) {
   "use strict";
@@ -131,6 +133,14 @@
           box.setAttribute("data-compaiss-live", "1");
           out.setAttribute("aria-busy", "true"); // screen readers wait for the final answer
           out.appendChild(box);
+          // The answer box sits above the text box, while the page has scrolled
+          // down to the loading line. Bring the start of the new answer into view
+          // once, so the student watches it grow (it then grows downward).
+          try {
+            if (typeof box.scrollIntoView === "function") {
+              box.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          } catch (e) {}
         }
         text += piece;
         if (!pending) {
@@ -172,11 +182,17 @@
       });
 
       live = options.liveAnswer === false ? null : createLiveAnswer(body && body.question);
-      var data = await readResponse(res, onStatus, function (piece) {
+      var log = global.CompaissStreamLog = { startedAt: Date.now(), statuses: [], chunks: [], finalAt: null };
+      var data = await readResponse(res, function (text, d) {
+        log.statuses.push({ ms: Date.now() - log.startedAt, text: text });
+        onStatus(text, d);
+      }, function (piece) {
+        log.chunks.push({ ms: Date.now() - log.startedAt, chars: piece.length });
         if (live) live.add(piece);
         if (typeof options.onAnswerChunk === "function") options.onAnswerChunk(piece);
       });
 
+      log.finalAt = Date.now() - log.startedAt;
       if (!data || (data.error && !data.answer)) {
         throw new Error(String((data && (data.message || data.error)) || "No response"));
       }
