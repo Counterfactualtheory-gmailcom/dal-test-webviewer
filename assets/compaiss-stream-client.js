@@ -17,6 +17,10 @@
  * - Falls back to plain JSON when the server or a request guard replies
  *   normally (e.g. rate limit), and to a single read on older webviews.
  * - Throws on server errors so the page's existing fallback message shows.
+ * - Phase 2: if the server streams the answer (answer_chunk events), shows it
+ *   growing in a temporary box inside #out (marked + DOMPurify, same as the
+ *   page). The box is removed the moment the final answer arrives, so the
+ *   page's own safeRender() still renders the final, fully sanitized answer.
  */
 (function (global) {
   "use strict";
@@ -36,7 +40,7 @@
     }
   }
 
-  async function readResponse(res, onStatus) {
+  async function readResponse(res, onStatus, onChunk) {
     var ct = (res.headers && res.headers.get("content-type")) || "";
     if (ct.indexOf("text/event-stream") === -1) {
       return await res.json();
@@ -49,6 +53,8 @@
       if (!parsed) return;
       if (parsed.event === "status") {
         if (parsed.data && parsed.data.text && onStatus) onStatus(String(parsed.data.text), parsed.data);
+      } else if (parsed.event === "answer_chunk") {
+        if (parsed.data && typeof parsed.data.text === "string" && onChunk) onChunk(parsed.data.text);
       } else if (parsed.event === "answer" || parsed.event === "error") {
         finalData = parsed.data;
         if (parsed.event === "error" && finalData && !finalData.error) {
@@ -91,12 +97,63 @@
     return null;
   }
 
+  // Temporary live answer box (Phase 2). Rendered with the page's own
+  // marked + DOMPurify; never uses unsanitized HTML. Removed before the
+  // final answer is handed back to the page.
+  function createLiveAnswer(question) {
+    var doc = global.document;
+    var out = doc && doc.getElementById("out");
+    if (!out || !global.marked || !global.DOMPurify) return null;
+
+    var box = null;
+    var text = "\u2753 Question:\n" + String(question || "") + "\n\n";
+    var pending = false;
+    var hadContent = !!out.innerHTML.trim();
+
+    function render() {
+      pending = false;
+      if (!box) return;
+      var cleaned = text
+        .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
+        .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
+        .replace(/\[+COMPLETED+\]/gi, "")
+        .replace(/\[+DONE+\]/gi, "");
+      var html = global.DOMPurify.sanitize(global.marked.parse(cleaned), { ADD_ATTR: ["target", "rel"] });
+      box.innerHTML = (hadContent ? '<div class="answer-divider"></div>' : "") + html;
+      var links = box.querySelectorAll("a");
+      for (var i = 0; i < links.length; i++) { links[i].target = "_blank"; links[i].rel = "noopener"; }
+    }
+
+    return {
+      add: function (piece) {
+        if (!box) {
+          box = doc.createElement("div");
+          box.setAttribute("data-compaiss-live", "1");
+          out.setAttribute("aria-busy", "true"); // screen readers wait for the final answer
+          out.appendChild(box);
+        }
+        text += piece;
+        if (!pending) {
+          pending = true;
+          (global.requestAnimationFrame || function (f) { return setTimeout(f, 30); })(render);
+        }
+      },
+      remove: function () {
+        if (box && box.parentNode) box.parentNode.removeChild(box);
+        box = null;
+        out.removeAttribute("aria-busy");
+      }
+    };
+  }
+
   async function ask(url, body, options) {
     options = options || {};
     var doc = global.document;
     var el = options.statusEl || (doc && doc.getElementById("loading"));
     var label = findLabel(el);
     var original = label ? label.nodeValue : null;
+
+    var live = null;
 
     function onStatus(text, data) {
       if (label) label.nodeValue = text;
@@ -114,13 +171,18 @@
         signal: options.signal
       });
 
-      var data = await readResponse(res, onStatus);
+      live = options.liveAnswer === false ? null : createLiveAnswer(body && body.question);
+      var data = await readResponse(res, onStatus, function (piece) {
+        if (live) live.add(piece);
+        if (typeof options.onAnswerChunk === "function") options.onAnswerChunk(piece);
+      });
 
       if (!data || (data.error && !data.answer)) {
         throw new Error(String((data && (data.message || data.error)) || "No response"));
       }
       return data;
     } finally {
+      if (live) live.remove(); // final answer (or the page's error message) replaces it
       if (label && original !== null) label.nodeValue = original;
     }
   }
