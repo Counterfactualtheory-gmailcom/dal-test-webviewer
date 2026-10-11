@@ -203,5 +203,26 @@
     }
   }
 
-  global.CompaissStream = { ask: ask, readResponse: readResponse };
+  // Drop-in replacement for fetch() on pages that already do
+  //   const res = await fetch(URL, { method:'POST', body: JSON.stringify({...}) });
+  //   const data = await res.json();
+  // Pages change only "fetch(" to "(window.CompaissStream ? CompaissStream.fetch : fetch)(".
+  // Requests without a JSON object body fall straight through to normal fetch.
+  async function streamFetch(url, init) {
+    var body = null;
+    try { body = init && typeof init.body === "string" ? JSON.parse(init.body) : null; } catch (e) { body = null; }
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return fetch(url, init);
+    }
+    var data = await ask(url, body, { signal: init && init.signal });
+    return {
+      ok: true,
+      status: 200,
+      headers: { get: function () { return "application/json"; } },
+      json: async function () { return data; },
+      text: async function () { return JSON.stringify(data); }
+    };
+  }
+
+  global.CompaissStream = { ask: ask, fetch: streamFetch, readResponse: readResponse };
 })(typeof window !== "undefined" ? window : globalThis);
