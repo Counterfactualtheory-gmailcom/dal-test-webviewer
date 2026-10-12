@@ -18,7 +18,7 @@ gtag('config', 'G-JR7LJGK5PK', {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <title>Service Canada Information Assistant - COMPAiSS Demonstration</title>
+  <title>Service Canada Information Assistant - COMPAiSS COHERE Demonstration</title>
   
 <meta name="robots" content="noindex, nofollow">
   
@@ -567,7 +567,7 @@ gtag('config', 'G-JR7LJGK5PK', {
 
   <img
     class="compaiss-logo"
-    src="./compaiss-red-white.png"
+        src="./compaiss-red-white.png?v=2"
     alt="COMPAiSS compass logo"
   >
 
@@ -580,7 +580,7 @@ gtag('config', 'G-JR7LJGK5PK', {
   </div>
 
   <div class="demo-label">
-    COMPAiSS DEMONSTRATION
+    COHERE COMMAND A+ TEST
   </div>
 
   <div class="app-subtitle">
@@ -792,8 +792,8 @@ loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
 followupBtn.disabled = true;
       
       try {
-const res = await (window.CompaissStream && window.CompaissStream.fetch ? window.CompaissStream.fetch : fetch)( /* STREAMING */'https://servicecanbackendproduction-production.up.railway.app/ask', {
-//const res = await fetch('https://servicecanbackendproduction-service-canada-cohere-test.up.railway.app/ask', {
+//const res = await fetch('https://servicecanbackendproduction-production.up.railway.app/ask', {
+const res = await (window.CompaissStream && window.CompaissStream.fetch ? window.CompaissStream.fetch : fetch)( /* STREAMING */'https://servicecanbackendproduction-service-canada-cohere-test.up.railway.app/ask', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
