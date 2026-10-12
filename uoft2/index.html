@@ -19,7 +19,7 @@ gtag('config', 'G-JR7LJGK5PK', {
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<title>University of Toronto COMPAiSS Viewer</title>
+<title>University of Toronto COMPAiSS Viewer - COHERE Demonstration</title>
 
 <meta name="robots" content="noindex, nofollow">
 
@@ -439,6 +439,18 @@ td {
   }
 }
 
+#header .demo-label {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #d3080c;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+}
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -707,6 +719,10 @@ td {
 
   <div class="uoft-title">
     COMPAiSS Information Assistant
+  </div>
+
+  <div class="demo-label">
+    COHERE COMMAND A+ TEST
   </div>
 
   <div class="app-subtitle">
@@ -1330,7 +1346,7 @@ followupBtn.onclick =
 
 const res =
   await (window.CompaissStream && window.CompaissStream.fetch ? window.CompaissStream.fetch : fetch)( /* STREAMING */
-    'https://compaiss-engine-v2-production-03b9.up.railway.app/ask',
+    'https://compaiss-uoft-cohere-test.up.railway.app/ask',
     {
 
       method:
