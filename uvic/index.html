@@ -695,8 +695,12 @@ followupBtn.onclick = async () => {
   } catch(err) {
 
     safeRender(
-      '⚠️ The system is currently unable to complete your request. Please try again in a few minutes.\n\n' +
-      'If this is an urgent or emergency situation, please use the appropriate University of Victoria or community emergency services.'
+      '⚠️ We’re experiencing higher than normal volume. Please try again in a few minutes.\n\n' +
+      'In the meantime, these official UVic resources are available:\n\n' +
+      '- [UVic student services](https://www.uvic.ca/students/) — academic, financial and student-support resources.\n' +
+      '- [Course registration](https://www.uvic.ca/students/academics/register-for-courses/index.php) — registration instructions and assistance.\n' +
+      '- [Support options and emergency contacts](https://www.uvic.ca/students/student-life/crisis-emergency-supports/index.php).\n\n' +
+      '**For an emergency, call 911 first, then UVic Campus Security at 250-721-7599.**'
     );
   }
 
