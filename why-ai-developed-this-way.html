@@ -502,7 +502,7 @@ hr {
     <div class="eyebrow">The Structural Argument</div>
     <h1>Why AI Developed This Way -<br>And Why That Path Cannot Solve the Problem</h1>
     <p class="subtitle">
-      An examination of the foundational assumption built into every major AI system - and the independent research record confirming that no one has yet challenged it.
+      An examination of the foundational assumption built into every major AI system - and what an exploratory prior-art search found about whether anyone has challenged it.
     </p>
     <p class="road-ref">
       This page builds on the argument introduced in <a href="/assets/road_less_travelled_revised.pdf">The Road Less Travelled - Rethinking Generative AI Costs, Safety, and Trust in Regulated Institutions</a>, which explores why the standard AI paradigm produces structural costs and risks that regulated organizations cannot fully mitigate. The analysis below extends that argument to the technical record.
@@ -514,8 +514,8 @@ hr {
     <ul>
       <li><a href="#the-assumption">The Assumption No One Questioned</a></li>
       <li><a href="#what-the-field-built">What the Field Built on That Assumption</a></li>
-      <li><a href="#the-research">What Independent Research Found</a></li>
-      <li><a href="#ai-convergence">Four AI Systems, One Finding</a></li>
+      <li><a href="#the-research">What an Exploratory Prior-Art Search Found</a></li>
+      <li><a href="#ai-convergence">Four AI Systems, One Exploratory Finding</a></li>
       <li><a href="#what-changes">What Changes When You Move the Control Point</a></li>
       <li><a href="#the-implication">The Implication for Regulated Environments</a></li>
     </ul>
@@ -566,10 +566,10 @@ hr {
 
   <!-- SECTION 3 -->
   <div class="content-section" id="the-research">
-    <h2>What Independent Research Found</h2>
+    <h2>What an Exploratory Prior-Art Search Found</h2>
     <p class="section-intro">A four-stage prior art investigation across patents, peer-reviewed systems, and execution lifecycle descriptions.</p>
 
-    <p>To understand whether this architectural distinction was genuinely novel - or whether it had simply been overlooked in the existing literature - a structured prior art investigation was conducted across four escalating stages. The research examined USPTO, WIPO, and EPO patent databases alongside peer-reviewed systems architecture literature, with a specific focus on <em>execution ordering</em> and <em>runtime instantiation semantics</em>, not safety outcomes or policy claims.</p>
+    <p>To understand whether this architectural distinction was genuinely novel - or whether it had simply been overlooked in the existing literature - a structured prior art investigation was conducted across four escalating stages, using AI research tools (Perplexity) under COMPAiSS direction. It is an exploratory search, not a professional patentability or freedom-to-operate opinion. The research examined USPTO, WIPO, and EPO patent databases alongside peer-reviewed systems architecture literature, with a specific focus on <em>execution ordering</em> and <em>runtime instantiation semantics</em>, not safety outcomes or policy claims.</p>
 
     <p>The inquiry was deliberately adversarial. It was designed to find anything that might contradict the architectural claim - not to confirm it. Each stage tested a different angle: direct replication, nearest prior art, systematic absence across the hallucination patent corpus, and a final examiner-style stress test combining all three.</p>
 
@@ -696,12 +696,12 @@ Read the full paper (PDF) →
 
   <!-- SECTION 4 -->
   <div class="content-section" id="ai-convergence">
-    <h2>Four AI Systems, One Finding</h2>
-    <p class="section-intro">Independent cross-checks using adversarial prompting - each system tasked with finding evidence that would challenge the architectural claim.</p>
+    <h2>Four AI Systems, One Exploratory Finding</h2>
+    <p class="section-intro">Exploratory cross-checks using adversarial prompting - each system tasked with finding evidence that would challenge the architectural claim.</p>
 
-    <p>As an independent cross-check, the same structured question was put to four leading AI systems - Perplexity (with tool-grounded patent research), Claude, Gemini, and Copilot. Each was prompted independently, with different access to sources and no shared context, to act as a skeptical examiner specifically tasked with finding prior art that would challenge the architectural claim.</p>
+    <p>As an exploratory cross-check, COMPAiSS put the same structured question to four leading AI systems - Perplexity (with tool-grounded patent research), Claude, Gemini, and Copilot. Each was prompted in a separate session, with different access to sources and no shared context, to act as a skeptical examiner specifically tasked with finding prior art that would challenge the architectural claim.</p>
 
-    <p>All four converged on the same conclusion.</p>
+    <p>All four reached the same conclusion. These are AI model outputs from prompts COMPAiSS wrote; they are not independent expert review or evidence of novelty, and no person outside COMPAiSS has evaluated them.</p>
 
     <div class="model-grid">
       <div class="model-card">
@@ -711,7 +711,7 @@ Read the full paper (PDF) →
       </div>
       <div class="model-card">
         <div class="model-name">Claude</div>
-        <div class="model-verdict">Independently characterized existing systems as following an inference-first lifecycle. Explicitly distinguished gating access to a deployed inference service from conditioning the existence of an inference runtime. Examined AWS, Azure, Google, and academic systems separately.</div>
+        <div class="model-verdict">Characterized existing systems as following an inference-first lifecycle. Explicitly distinguished gating access to a deployed inference service from conditioning the existence of an inference runtime. Examined AWS, Azure, Google, and academic systems separately.</div>
         <div class="model-finding">"No prior art discloses conditioning inference runtime construction on authorization-derived scope. No academic work identified conditions inference existence on authorization."</div>
       </div>
       <div class="model-card">
@@ -726,9 +726,9 @@ Read the full paper (PDF) →
       </div>
     </div>
 
-    <p>The convergence across four independent systems - each prompted adversarially, each with access to different sources, each reasoning without access to the others' outputs - is significant. It is not that each system failed to find the prior art. It is that each system, examining the field from a different angle, identified the same structural assumption: inference-first architectures with post-generation control are universal in the existing art. The alternative - authorization as a prerequisite to inference existence - is not present.The findings are based on publicly documented systems and available literature - not a claim that no undiscovered system exists, but a consistent finding that the dominant architectural pattern, across every examined category, treats inference as a standing capability to be governed rather than a conditional state to be earned.</p>
+    <p>The agreement across four AI systems - each prompted adversarially, each with access to different sources, each reasoning without access to the others' outputs - is worth noting, but it illustrates the argument rather than validating it. It is not that each system failed to find the prior art. It is that each system, examining the field from a different angle, identified the same structural assumption: inference-first architectures with post-generation control are universal in the existing art. The alternative - authorization as a prerequisite to inference existence - was not found. The findings are based on publicly documented systems and available literature - not a claim that no undiscovered system exists, but a consistent finding that the dominant architectural pattern, across every examined category, treats inference as a standing capability to be governed rather than a conditional state to be earned.</p>
 
-    <p>This is what the research record shows: not that no one thought about AI safety, or hallucination prevention, or institutional governance. People have thought extensively about all of those things. The research shows that in addressing all of those problems, the field has not systematically treated the existence of inference itself as a control point. The assumption that it should always occur was simply never examined.</p>
+    <p>This is what the exploratory search suggests: not that no one thought about AI safety, or hallucination prevention, or institutional governance. People have thought extensively about all of those things. In the material reviewed, in addressing all of those problems, the field has not systematically treated the existence of inference itself as a control point. The assumption that it should always occur was rarely examined as a design choice.</p>
   </div>
 
   <hr>
@@ -807,7 +807,7 @@ Read the full paper (PDF) →
     <p>COMPAiSS - Patent Pending: CIPO 3,299,174 / USPTO 19/455,963</p>
 <div class="highlight-block" style="margin-top:2rem;">
   <p style="margin:0 0 0.4rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">Related Investigation</p>
-  <p style="margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">When Copilot analyzed the assumptions behind modern AI architectures, it converged on the same foundational distinction described on this page. That progression is documented in a structured analytical investigation.</p>
+  <p style="margin:0 0 0.6rem;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">When Copilot analyzed the assumptions behind modern AI architectures, it reached the same foundational distinction described on this page. That exploratory exchange is documented in a structured analytical investigation.</p>
   <p style="margin:0;font-size:0.95rem;max-width:none;"><a href="/architecture-investigation.html">Read the structured architectural investigation →</a></p>
 </div>    </p>
   </div>

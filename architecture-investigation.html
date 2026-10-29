@@ -11,8 +11,8 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-<title>Two AI Systems Analyze the Architectural Differences Between Themselves and COMPAiSS -- COMPAiSS</title>
-<meta name="description" content="Copilot and Gemini each analyzed the architectural differences between themselves and COMPAiSS in structured adversarial exchanges. Both converged on the same conclusion independently." />
+<title>Exploratory Analysis: Two AI Systems Analyze the Architectural Differences Between Themselves and COMPAiSS -- COMPAiSS</title>
+<meta name="description" content="Copilot and Gemini each analyzed the architectural differences between themselves and COMPAiSS in structured adversarial exchanges led by COMPAiSS. These are AI model outputs, not independent review." />
 <style>
 :root {
   --wrap: 980px;
@@ -560,7 +560,7 @@ hr {
       <li><a href="#methodology">How the Exchanges Were Conducted</a></li>
       <li><a href="#copilot-exchange">Exchange One: Copilot</a></li>
       <li><a href="#gemini-exchange">Exchange Two: Gemini</a></li>
-      <li><a href="#gpt">A Third Independent System</a></li>
+      <li><a href="#gpt">A Third AI System</a></li>
       <li><a href="#convergence">Why the Convergence Matters</a></li>
       <li><a href="#findings">Five Findings for Institutional AI</a></li>
       <li><a href="#procurement">What This Means for Procurement</a></li>
@@ -584,7 +584,9 @@ hr {
 
     <p>The conclusion was not that COMPAiSS is better than either system. It was that COMPAiSS and generation-first AI systems are not really comparable -- because they are built to solve different problems.</p>
 
-    <p>That finding, reached independently by two competing systems, is what this page documents.</p>
+    <p>That finding, reached separately by two competing systems in exchanges led by COMPAiSS, is what this page documents.</p>
+
+    <p><strong>About this page.</strong> This is an exploratory analysis, not validation. COMPAiSS framed the questions, challenged each system and chose the excerpts shown here. The responses are AI model outputs. They are not independent expert review, not statements by Microsoft, Google or OpenAI, and not evidence of novelty. Full transcripts are available on request.</p>
   </div>
 
   <hr>
@@ -595,9 +597,9 @@ hr {
 
     <div class="methodology-box">
       <span class="method-label">Methodology</span>
-      <p>Both exchanges used the same approach. Each system was asked to act as a skeptical architectural reviewer -- specifically tasked with finding objections, not confirming claims. Each was challenged at every stage and asked to revise its analysis as the conversation continued. Neither system was given the other's findings. All conclusions emerged from each system's own reasoning process.</p>
+      <p>Both exchanges used the same approach. Each system was asked to act as a skeptical architectural reviewer -- specifically tasked with finding objections, not confirming claims. Each was challenged at every stage and asked to revise its analysis as the conversation continued. Neither system was given the other's findings. Because COMPAiSS framed and steered each exchange, the conclusions are model outputs shaped by those prompts, not independent judgments.</p>
       <p>The goal was not to get two AI systems to say nice things about COMPAiSS. It was to see whether the architectural distinction would hold up under sustained critical pressure from systems that had every reason to resist it. Full transcripts of both exchanges are available on request.</p>
-      <p>This page was itself reviewed by multiple AI systems before publication and revised based on their feedback -- holding it to the same standard of scrutiny it describes.</p>
+      <p>AI systems were also used to review drafts of this page. That review was editorial; no person outside COMPAiSS has evaluated these exchanges.</p>
     </div>
   </div>
 
@@ -717,7 +719,7 @@ hr {
       <p>The correction was precise: the COMPAiSS pre-inference gate does not use semantic inference, vector similarity, embeddings, or any probabilistic classification. It performs a deterministic search across a pre-authorized set of institutional URLs to determine whether any of those sources contain content that can ground a response to the query.</p>
       <p>The gate asks one binary question: do authorized institutional sources exist that can support an answer? If the answer is no, the primary model does not run. There is no probability involved. There is no model at the gate level. It is a lookup against a bounded list.</p>
       <p>Gemini accepted this correction. Its epistemic circularity argument, as originally framed, collapsed. It then moved to a second line of objection: that any engineering team could replicate this property using standard tools, which means it is not architecturally novel.</p>
-      <p>The response to this was equally direct: the question is not whether the property could be replicated by someone who chose to build it this way. The question is whether any deployed system has actually built it this way. A prior art investigation conducted across international patent databases -- and independently verified by four AI systems -- found that no commercially deployed system treats unauthorized queries as non-generative states by default. Describing what would need to be done to replicate a property is itself evidence that existing systems do not have it.</p>
+      <p>The response to this was equally direct: the question is not whether the property could be replicated by someone who chose to build it this way. The question is whether any deployed system has actually built it this way. A prior art investigation conducted across international patent databases -- and cross-checked with four AI systems, an exploratory check rather than independent verification -- found no commercially deployed system that treats unauthorized queries as non-generative states by default. Describing what would need to be done to replicate a property is itself evidence that existing systems do not have it.</p>
       <div class="quote-block">
         <p>"Resolving that point immediately exposes a deeper, more challenging systemic tension. If the gate operates solely on structural properties and zero semantic understanding of the query, the architectural burden has not disappeared -- it has simply shifted downstream."</p>
       </div>
@@ -730,7 +732,7 @@ hr {
       <div class="quote-block">
         <p>"The primary model behaves like a conditional function: it only runs if the grounding set is not empty. If no authorized grounding material exists, the generative function never instantiates."</p>
       </div>
-      <p>It then independently produced a failure mode analysis -- without access to the Copilot exchange -- that arrived at the same distinction Copilot had reached through a different path:</p>
+      <p>It then produced a failure mode analysis -- without access to the Copilot exchange -- that arrived at the same distinction Copilot had reached through a different path:</p>
 
       <table class="comp-table">
         <thead>
@@ -774,7 +776,7 @@ hr {
 
   <!-- GPT -->
   <div class="content-section" id="gpt">
-    <h2>A Third Independent System</h2>
+    <h2>A Third AI System</h2>
     <p>The same architectural questions were put to GPT in a separate exchange. Its conclusion was consistent with both:</p>
     <div class="quote-block">
       <p>"COMPAiSS is not just a better guardrail system. It is the first system in this analysis that actually refuses to accept the core assumption every other system is built on."</p>
@@ -787,14 +789,14 @@ hr {
   <div class="content-section" id="convergence">
     <h2>Why the Convergence Matters</h2>
 
-    <p>Three AI systems -- Copilot (Microsoft), Gemini (Google), and GPT (OpenAI) -- each analyzed the same architectural claim independently, each starting from skepticism, each without access to the others' conclusions.</p>
+    <p>Three AI systems -- Copilot (Microsoft), Gemini (Google), and GPT (OpenAI) -- each analyzed the same architectural claim in a separate session, each prompted to start from skepticism, each without access to the others' conclusions.</p>
 
     <p>All three arrived at the same place. The failure mode distinction -- probabilistic and unbounded versus deterministic and correctable -- was not a conclusion any of them started with. It emerged from each system's own engagement with the evidence.</p>
 
-    <p>That is not the same as three systems agreeing on something obvious. These are products of direct competitors, each with reason to resist the claim. The convergence happened despite that, not because of it.</p>
+    <p>That is not the same as three systems agreeing on something obvious. These are products of direct competitors. Their agreement is still a set of model outputs from exchanges COMPAiSS framed, so it illustrates the argument rather than validating it.</p>
 
     <div class="highlight-block">
-      <p>One finding from the Gemini exchange deserves particular attention. Gemini independently identified that the COMPAiSS gate is invariant to prompt text. Because the primary model only runs when authorized grounding material exists in the institutional source list, there is no form of linguistic manipulation -- adversarial prompting, authority framing, persistent pressure -- that can cause the model to execute when the grounding material is absent. The safety property does not depend on the model resisting manipulation. It depends on the execution path not existing.</p>
+      <p>One finding from the Gemini exchange deserves particular attention. Gemini identified that the COMPAiSS gate is invariant to prompt text. Because the primary model only runs when authorized grounding material exists in the institutional source list, there is no form of linguistic manipulation -- adversarial prompting, authority framing, persistent pressure -- that can cause the model to execute when the grounding material is absent. The safety property does not depend on the model resisting manipulation. It depends on the execution path not existing.</p>
     </div>
   </div>
 
@@ -880,7 +882,7 @@ hr {
 
     <p>The most significant finding from these exchanges was not that one system outperformed another.</p>
 
-    <p>It was that three independent AI systems -- each a product of a different organization, each asked to push back, each unaware of the others' conclusions -- converged on the same finding: that moving the control point to before the model runs, rather than after it has produced an answer, creates a system with fundamentally different governance properties for regulated institutions.</p>
+    <p>It was that three AI systems -- each a product of a different organization, each asked to push back, each unaware of the others' conclusions -- converged on the same finding: that moving the control point to before the model runs, rather than after it has produced an answer, creates a system with fundamentally different governance properties for regulated institutions.</p>
 
     <p>Copilot and Gemini are optimized for breadth, flexibility, and usefulness across a wide range of tasks. They assume the model is always available and manage the risks that follow.</p>
 
