@@ -740,7 +740,7 @@ Read the full paper (PDF) →
 
     <p>The conventional question in AI system design is: <em>how do we improve the responses AI produces?</em> More retrieval, better filtering, stronger guardrails, more moderation. Each of these answers assumes the model will run and asks how to shape what comes out.</p>
 
-    <p>COMPAiSS asks a different question first: <em>under what conditions should this system be permitted to produce a response at all?</em> That question is answered before inference begins. If the answer is that no authoritative institutional basis exists for a response, the model does not run. There is no response to filter, no hallucination to catch, no refusal to generate. There is no response to evaluate, because no response was ever produced. The system enters a non-generative state and provides the user with the authoritative source directly.</p>
+    <p>COMPAiSS asks a different question first: <em>under what conditions should this system be permitted to produce a response at all?</em> That question is answered before inference begins. If the answer is that no authoritative institutional basis exists for a response, the answer model does not run. There is no response to filter, no hallucination to catch, no refusal to generate. There is no response to evaluate, because no response was ever produced. The system enters a non-generative state and provides the user with the authoritative source directly.</p>
 
     <p>To see what this looks like in practice, consider what happens when a user asks the McGill University deployment a question outside its institutional scope:</p>
 
@@ -756,7 +756,7 @@ Read the full paper (PDF) →
   </p>
 </div>
 
-<p>No inference ran. No generative model was consulted. The response above was produced by a deterministic redirect, not a language model. The system recognized the absence of institutional authority before any AI computation took place and returned a structured non-generative response. The query was handled at zero inference cost.</p>
+<p>No answer was generated. The answer model was never called. The response above was produced by a deterministic redirect, not a language model. The system recognized the absence of institutional authority before any answer could be written and returned a standard, non-generative response, at no answer-generation cost.</p>
     
     <p>This changes several things at once. It prevents the generation of answers beyond authorized institutional sources - not by catching fabricated responses after they have been produced, but by preventing the conditions under which those responses would be generated.</p>
 

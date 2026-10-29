@@ -637,11 +637,13 @@ header {
 
     <p>COMPAiSS is model-agnostic by design. The governance architecture - the rules, the execution gate, the approved source list - sits entirely outside the AI models. Models can be changed, or matched to each task, without changing a single governance rule, so institutions are not locked into a single provider.</p>
 
-    <p>Rather than asking one model to do everything, COMPAiSS assigns each stage of its pipeline to the model best suited to it. Current OpenAI deployments use models from the <strong>GPT-6 family</strong>, with model selection configurable by deployment:</p>
+    <p>Rather than asking one model to do everything, COMPAiSS assigns each step to the tool best suited to it, and keeps AI models out of the authorization decision itself. Current OpenAI deployments use models from the <strong>GPT-6 family</strong>, with model selection configurable by deployment. In order:</p>
     <ul>
-      <li><strong>Retrieval planning and source ranking - GPT-6 family.</strong> An OpenAI reasoning model interprets each question, expands it into precise retrieval queries, and ranks candidate pages from the institution's approved source list by relevance. Model selection can be configured by deployment to balance capability, speed, and cost.</li>      
-     <li><strong>Governed answer generation - GPT-6 family.</strong> Only after the execution gate authorizes an answer does a fast, cost-efficient model compose it, from pre-parsed authorized content alone. Because the reasoning-intensive work of finding and ranking the right sources is already done, the answering step needs speed and precision, not the largest model.</li>      
-     <li><strong>Language handling.</strong> A dedicated language-processing step normalizes questions asked in other languages before authorization and returns answers in the user's language.</li>    </ul>
+      <li><strong>Language handling.</strong> When a question is not in English, a dedicated language-processing step translates it so it can be checked against English-language sources. Answers are returned in the user's language.</li>
+      <li><strong>Search planning - GPT-6 family.</strong> A model rewrites the question into precise search queries. It is instructed not to answer the question; its output can only help find pages.</li>
+      <li><strong>Authorization - no AI model.</strong> Every page found is checked against the institution's approved source list. If no approved source is found and read, the question is not answered: depending on the institution's setting, the user receives a standard message (hard redirect, and the answer model never runs) or a brief reply pointing to related approved pages (soft redirect).</li>
+      <li><strong>Source ranking and governed answer generation - GPT-6 family.</strong> Only approved pages are ranked and read. A fast, cost-efficient model then composes the answer from that approved content alone. Because the work of finding and ranking the right sources is already done, the answering step needs speed and precision, not the largest model.</li>
+    </ul>
 
     <p>This division puts the most capable reasoning where accuracy is decided - in finding the right authorized sources - while keeping answers fast and affordable at institutional scale. Every compliance receipt records the model used for that answer.</p>
 

@@ -740,7 +740,7 @@ Lire l'article complet (PDF) →
 
     <p>La question conventionnelle dans la conception des systèmes d'IA est : <em>comment améliorer les réponses que l'IA produit?</em> Plus de récupération, un meilleur filtrage, des garde-fous plus solides, plus de modération. Chacune de ces réponses suppose que le modèle fonctionnera et demande comment façonner ce qui en sort.</p>
 
-    <p>COMPAiSS pose d'abord une question différente : <em>dans quelles conditions ce système devrait-il être autorisé à produire une réponse?</em> Cette question reçoit une réponse avant que l'inférence ne commence. Si la réponse est qu'il n'existe aucune base institutionnelle faisant autorité pour une réponse, le modèle ne fonctionne pas. Il n'y a pas de réponse à filtrer, pas d'hallucination à détecter, pas de refus à générer. Il n'y a pas de réponse à évaluer, parce qu'aucune réponse n'a jamais été produite. Le système entre dans un état non génératif et fournit directement à l'utilisateur la source faisant autorité.</p>
+    <p>COMPAiSS pose d'abord une question différente : <em>dans quelles conditions ce système devrait-il être autorisé à produire une réponse?</em> Cette question reçoit une réponse avant que l'inférence ne commence. Si la réponse est qu'il n'existe aucune base institutionnelle faisant autorité pour une réponse, le modèle de réponse ne fonctionne pas. Il n'y a pas de réponse à filtrer, pas d'hallucination à détecter, pas de refus à générer. Il n'y a pas de réponse à évaluer, parce qu'aucune réponse n'a jamais été produite. Le système entre dans un état non génératif et fournit directement à l'utilisateur la source faisant autorité.</p>
 
     <p>Pour illustrer concrètement ce fonctionnement, considérons ce qui se produit lorsqu’un utilisateur pose à la version de l’Université McGill une question en dehors de son périmètre institutionnel&nbsp;:</p>
 
@@ -756,7 +756,7 @@ Lire l'article complet (PDF) →
   </p>
 </div>
 
-<p>Aucune inférence n’a été exécutée. Aucun modèle génératif n’a été sollicité. La réponse ci-dessus a été produite par une redirection déterministe, et non par un modèle de langage. Le système a détecté l’absence d’autorité institutionnelle avant toute étape de calcul en intelligence artificielle et a retourné une réponse structurée non générative. La requête a été traitée sans aucun coût d’inférence.</p>
+<p>Aucune réponse n’a été générée. Le modèle de réponse n’a jamais été appelé. La réponse ci-dessus a été produite par une redirection déterministe, et non par un modèle de langage. Le système a détecté l’absence d’autorité institutionnelle avant qu’une réponse puisse être rédigée et a retourné une réponse standard non générative, sans coût de génération de réponse.</p>
     
     <p>Cela change plusieurs choses à la fois. Cela empêche la génération de réponses au-delà des sources institutionnelles autorisées — non pas en interceptant les réponses fabriquées après leur production, mais en prévenant les conditions dans lesquelles ces réponses seraient générées. Cela supprime entièrement le coût d'inférence pour les requêtes non autorisées. Cela rend la gouvernance vérifiable au niveau architectural, et non au niveau des sorties : chaque interaction suit un chemin déterministe et documenté à travers la décision d'autorisation avant tout calcul génératif.</p>
 
