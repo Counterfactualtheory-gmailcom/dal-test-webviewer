@@ -668,7 +668,7 @@ hr {
     <table class="comp-table">
       <thead><tr><th>Level</th><th>What it covers</th><th>How</th></tr></thead>
       <tbody>
-        <tr><td><strong>Prevented by architecture</strong></td><td>Institution-specific generation when authorized evidence is insufficient; answers outside the institution's defined scope; general model knowledge standing in for institutional sources</td><td>The pre-inference execution gate. If authorization fails, the institutional reasoning model does not run. The rule is enforced by the architecture rather than the model, so it cannot be prompted, reframed, or manipulated away.</td></tr>
+        <tr><td><strong>Prevented by architecture</strong></td><td>Institution-specific generation when authorized evidence is insufficient; answers outside the institution's defined scope; general model knowledge standing in for institutional sources</td><td>The pre-inference execution gate. If authorization fails, the institutional reasoning model does not run. The rule is enforced by the architecture rather than the model, so rewording or reframing a question does not change the authorization decision.</td></tr>
         <tr><td><strong>Constrained within scope</strong></td><td>How authorized sources are read and applied in answers</td><td>The model receives only pre-parsed, institution-authorized content in a tightly bounded context, under instruction-based constraints, and every cited link is validated against the authorized source set after generation.</td></tr>
         <tr><td><strong>Visible and correctable</strong></td><td>The currency and completeness of the institution's own authorized content</td><td>Greenlist audits, a governance dashboard with attributed change history, and compliance receipts. Missing authorized content surfaces as a flagged, correctable gap in coverage, never as an invented answer.</td></tr>
       </tbody>
@@ -680,7 +680,7 @@ hr {
 
   <div class="content-section" id="evidence">
     <h2>The evidence</h2>
-    <p>COMPAiSS has been evaluated against the governance standard across four institutional deployments in higher education and healthcare.</p>
+    <p>COMPAiSS has been evaluated against the governance standard across four institutional configurations built from public web pages in higher education and healthcare.</p>
     <table class="comp-table">
       <thead><tr><th>Deployment</th><th>Sector</th><th>Evaluated</th><th>Pass</th><th>Type A</th><th>Type B</th><th>Type C</th><th>GPR</th></tr></thead>
       <tbody>
@@ -723,7 +723,7 @@ hr {
     <h2>Questions institutions ask</h2>
 
     <h3 id="qa-evaluation">How has COMPAiSS been evaluated, and can we verify the results ourselves?</h3>
-    <p>COMPAiSS has been evaluated across four institutional deployments in higher education and healthcare under its published governance framework, with an aggregate Governance Preservation Rate of 98.7 percent across 159 evaluated answers (see <a href="#evidence">The evidence</a>). The questions, scoring criteria, and outcome definitions are published, so any institution can apply the same framework to its own questions, to COMPAiSS and to any other system it is considering.</p>
+    <p>COMPAiSS has been evaluated across four institutional configurations built from public web pages in higher education and healthcare under its published governance framework, with an aggregate Governance Preservation Rate of 98.7 percent across 159 evaluated answers, scored by AI models (GPT and Claude) rather than human evaluators (see <a href="#evidence">The evidence</a>). The questions, scoring criteria, and outcome definitions are published, so any institution can apply the same framework to its own questions, to COMPAiSS and to any other system it is considering.</p>
 
     <h3 id="qa-rag">How does COMPAiSS compare with enterprise retrieval (RAG) systems?</h3>
     <p>They are built to answer different questions. Retrieval systems improve what evidence reaches a model that will generate regardless. COMPAiSS governs whether institution-specific generation is authorized at all. For regulated use, the relevant comparison is the governance standard, and institutions should ask any retrieval-based vendor to demonstrate the same governance properties (see <a href="#standard">The governance standard</a>).</p>
@@ -735,10 +735,10 @@ hr {
     <p>COMPAiSS reflects what the institution has authorized; it does not reinterpret or supplement it. A purpose-built audit server checks every approved source for broken links, redirects, and moved pages, and every change to the source list is logged and attributed. When authorized content does not cover a question, COMPAiSS declines and flags the gap in coverage, so the institution sees exactly where to extend its content (see <a href="#scope">How COMPAiSS meets the standard</a>).</p>
 
     <h3 id="qa-gate">What exactly does the execution gate guarantee?</h3>
-    <p>Institution-specific inference does not occur unless authorization conditions are met. The rule is a property of the architecture rather than the model, so it cannot be prompted, reframed, or manipulated away. Within authorized scope, answers are further constrained by bounded context, instruction constraints, and link validation.</p>
+    <p>Institution-specific inference does not occur unless authorization conditions are met. The rule is a property of the architecture rather than the model, so rewording or reframing a question does not change the authorization decision. Within authorized scope, answers are further constrained by bounded context, instruction constraints, and link validation.</p>
 
     <h3 id="qa-security">How does COMPAiSS handle security threats?</h3>
-    <p>Because the gate runs before the model, out-of-scope and manipulative requests are rejected before any inference occurs, on the first attempt and every subsequent one. Inputs are length-capped and filtered, requests are rate-limited, and the platform is protected by Cloudflare. Confining evidence to an audited set of approved sources is itself a security control.</p>
+    <p>Because the gate runs before the model, out-of-scope requests are turned away before the answer-generation model runs, on the first attempt and every subsequent one; manipulation attempts within scope are mitigated by input handling and security testing. Inputs are length-capped and filtered, requests are rate-limited, and the platform is protected by Cloudflare. Confining evidence to an audited set of approved sources is itself a security control.</p>
 
     <h3 id="qa-cost">What drives COMPAiSS's lower operating costs?</h3>
     <p>Queries that fail authorization never reach the model, so they consume little or no inference cost, and the architecture requires no vector databases, embedding pipelines, or index management. COMPAiSS's published cost analysis models the resulting savings against typical enterprise retrieval deployments.</p>
@@ -771,7 +771,7 @@ hr {
   <div class="content-section" id="conclusion">
     <h2>Conclusion</h2>
     <p>Regulated institutions have been asked to judge AI by a single measure, accuracy, that was never designed for them. The institutional literature shows that what they actually require is authority, provenance, accountability, and auditability. COMPAiSS was built to meet those requirements by architecture, and its methodology measures them directly.</p>
-    <p>Three propositions follow. First, governance and institutional readiness are central to regulated AI deployment, as the external literature establishes independently of COMPAiSS. Second, authorization must come before accuracy: an institutional answer is acceptable only if the system was permitted to give it and every institutional claim comes from an authorized source. Third, any AI system proposed for regulated institutional use should be held to that standard. COMPAiSS meets it, with an aggregate Governance Preservation Rate of 98.7 percent across four institutional deployments.</p>
+    <p>Three propositions follow. First, governance and institutional readiness are central to regulated AI deployment, as the external literature establishes independently of COMPAiSS. Second, authorization must come before accuracy: an institutional answer is acceptable only if the system was permitted to give it and every institutional claim comes from an authorized source. Third, any AI system proposed for regulated institutional use should be held to that standard. COMPAiSS meets it, with an aggregate Governance Preservation Rate of 98.7 percent across four institutional configurations built from public web pages.</p>
     <div class="key-statement">
       <p>Accuracy tells an institution whether an answer is correct. Authorization tells it whether the answer is theirs. Regulated institutions need both, in that order.</p>
     </div>

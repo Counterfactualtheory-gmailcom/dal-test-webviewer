@@ -537,7 +537,7 @@ header {
       <div class="card">
         <div class="card-icon">🛡</div>
         <h3>Scripts intersites (XSS)</h3>
-        <p>Toutes les réponses sont nettoyées et mises en forme de façon sécurisée avant d'apparaître à l'écran. Les saisies des utilisateurs sont traitées uniquement comme du langage naturel - elles sont transmises à l'IA sous forme de texte et ne peuvent pas déclencher de commandes système, exécuter des scripts ni accéder à quelque infrastructure sous-jacente que ce soit.</p>
+        <p>Toutes les réponses sont nettoyées et mises en forme de façon sécurisée avant d'apparaître à l'écran. Les saisies des utilisateurs sont traitées uniquement comme du langage naturel - elles sont transmises à l'IA sous forme de texte et ne sont pas exécutées comme du code ou des commandes.</p>
       </div>
 
       <div class="card">
@@ -549,7 +549,7 @@ header {
       <div class="card">
         <div class="card-icon">🔒</div>
         <h3>Injection de commandes</h3>
-        <p>Puisque la barrière de gouvernance s'exécute avant l'IA, les utilisateurs ne peuvent pas tromper le système pour qu'il réponde en dehors de son périmètre autorisé. Les tentatives de manipulation des instructions de l'IA sont bloquées à la barrière avant d'atteindre le modèle.</p>
+        <p>Puisque la barrière de gouvernance tranche la question du périmètre avant l'exécution du modèle de réponse, reformuler une question ne la fait pas entrer dans le périmètre approuvé. Les tentatives de manipulation des instructions à l'intérieur du périmètre approuvé sont atténuées par le traitement des saisies et font partie des tests de sécurité continus.</p>
       </div>
 
       <div class="card">
@@ -560,7 +560,7 @@ header {
 
     </div>
 
-    <p>Ce résultat n'est pas un paramètre de configuration - c'est une propriété de l'architecture. La barrière s'exécute en premier. L'IA ne s'active que si la barrière valide la requête.</p>
+    <p>Le contrôle du périmètre est une propriété de l'architecture, et non un paramètre de configuration : la barrière s'exécute en premier, et le modèle de génération des réponses ne s'exécute que si la barrière valide la requête.</p>
   </div>
 
   <hr>
@@ -577,7 +577,7 @@ header {
     <ul class="verified-list">
       <li>
         <strong>Authentification unique (SSO)</strong>
-        <span>L'intégration SSO selon des protocoles standard compatibles avec Microsoft Azure Active Directory peut être prévue comme élément d'implémentation défini pour tout déploiement institutionnel. Cela permet de limiter l'accès aux utilisateurs authentifiés et d'afficher un contenu différent à différents groupes d'utilisateurs - par exemple, accès du personnel par rapport à l'accès public.</span>
+        <span>L'intégration SSO selon des protocoles standard compatibles avec Microsoft Entra ID (anciennement Azure Active Directory) peut être prévue comme élément d'implémentation défini pour tout déploiement institutionnel. Cela permet de limiter l'accès aux utilisateurs authentifiés et d'afficher un contenu différent à différents groupes d'utilisateurs - par exemple, accès du personnel par rapport à l'accès public.</span>
       </li>
       <li>
         <strong>Microsoft Teams</strong>
@@ -599,7 +599,7 @@ header {
     <h2>Modèle IA et mises à jour</h2>
     <p class="section-intro">Quels modèles d'IA propulsent COMPAiSS, le rôle de chacun et la façon dont les décisions de modèle sont prises.</p>
 
-    <p>COMPAiSS est agnostique par rapport aux modèles, par conception. L'architecture de gouvernance - les règles, la barrière d'exécution, la liste des sources approuvées - se situe entièrement à l'extérieur des modèles d'IA. Les modèles peuvent être changés, ou attribués à chaque tâche, sans modifier une seule règle de gouvernance, et les institutions ne dépendent jamais d'un seul fournisseur.</p>
+    <p>COMPAiSS est agnostique par rapport aux modèles, par conception. L'architecture de gouvernance - les règles, la barrière d'exécution, la liste des sources approuvées - se situe entièrement à l'extérieur des modèles d'IA. Les modèles peuvent être changés, ou attribués à chaque tâche, sans modifier une seule règle de gouvernance, de sorte que les institutions ne sont pas captives d'un seul fournisseur.</p>
 
     <p>Plutôt que de confier toutes les tâches à un seul modèle, COMPAiSS attribue chaque étape de son traitement au modèle le mieux adapté. Les déploiements OpenAI actuels utilisent des modèles de la <strong>famille GPT-6</strong>, la sélection des modèles pouvant être configurée selon le déploiement :</p>
     <ul>
@@ -620,7 +620,7 @@ header {
       <div class="card">
         <div class="card-icon">🔄</div>
         <h3>Aucun verrouillage</h3>
-        <p>Les modèles fermés comme GPT offrent le plafond de performance actuel le plus élevé, avec des mises à jour automatiques intégrées. Si un modèle à code ouvert fonctionnant sur une infrastructure canadienne atteint un jour le même niveau, COMPAiSS peut basculer sans modifier une seule règle de gouvernance.</p>
+        <p>Les modèles fermés comme GPT offrent actuellement la meilleure performance. Si un modèle à code ouvert fonctionnant sur une infrastructure canadienne atteint le même niveau, COMPAiSS peut basculer vers celui-ci sans modifier une seule règle de gouvernance.</p>
       </div>
     </div>
   </div>
@@ -636,12 +636,12 @@ header {
 
     <div class="case-block">
       <div class="case-label">L'affaire Tumbler Ridge - Gebala c. OpenAI, Cour suprême de la C.-B., 2026</div>
-      <p>Le 10 février 2026, un tireur a tué huit personnes à l'école secondaire de Tumbler Ridge en Colombie-Britannique, dans l'une des fusillades scolaires les plus meurtrières de l'histoire canadienne. Le tireur utilisait ChatGPT depuis des mois avant l'attaque - décrivant des scénarios de violence planifiée de façon répétée, sur deux comptes distincts après que le premier eut été banni. Les propres employés d'OpenAI avaient signalé l'activité comme indiquant un risque imminent de préjudice grave et avaient recommandé de contacter les forces de l'ordre canadiennes. Cette recommandation a été transmise à la direction et rejetée.</p>
+      <p>Le 10 février 2026, un tireur a tué huit personnes à l'école secondaire de Tumbler Ridge en Colombie-Britannique, dans l'une des fusillades scolaires les plus meurtrières de l'histoire canadienne. Selon la poursuite décrite ci-dessous, le tireur utilisait ChatGPT depuis des mois avant l'attaque - décrivant des scénarios de violence planifiée de façon répétée, sur deux comptes distincts après que le premier eut été banni - et des employés d'OpenAI avaient signalé l'activité comme un risque imminent et recommandé de contacter les forces de l'ordre canadiennes, recommandation qui, selon la poursuite, a été transmise à la direction et rejetée.</p>
       <p>La poursuite déposée devant la Cour suprême de la C.-B. (Gebala c. OpenAI, mars 2026) allègue qu'OpenAI avait une connaissance spécifique de la planification à long terme du tireur et n'a pris aucune mesure pour y donner suite. OpenAI a depuis reconnu que ses mesures de protection étaient insuffisantes à l'époque.</p>
       <p>Il ne s'agissait pas d'un échec de modération de contenu. Le système avait détecté le risque. L'échec résidait dans le fait que ChatGPT a engagé - de façon répétée, pendant des mois, sur deux itérations de compte - devenant ce que la poursuite décrit comme un "confident de confiance" qui fournissait des informations, construisait une relation et validait des conversations de planification comme des questions légitimes méritant des réponses.</p>
     </div>
 
-    <p>COMPAiSS est structurellement incapable de reproduire cet échec. La raison est architecturale, et non basée sur une politique.</p>
+    <p>COMPAiSS est conçu pour qu'un tel engagement soutenu ne puisse pas s'installer. La raison est architecturale, et non basée sur une politique.</p>
 
     <ul class="verified-list">
       <li>
@@ -649,8 +649,8 @@ header {
         <span>Une question sur la planification de violence ne correspond à aucune liste de sources approuvées d'une institution. La barrière de gouvernance la rejette avant que l'IA ne s'exécute. Le système renvoie une réponse standard hors périmètre et s'arrête. Aucun engagement, aucun rapport, aucune relation soutenue - par architecture, et non par politique de modération.</span>
       </li>
       <li>
-        <strong>La barrière ne peut pas être contournée par la persistance</strong>
-        <span>Contrairement à une IA à usage général qui peut être incitée, recadrée ou manipulée pour s'engager au fil du temps, la barrière COMPAiSS est déterministe. Les requêtes hors périmètre sont rejetées à la première tentative et à chaque tentative subséquente. Il n'y a pas de relation à construire parce qu'il n'y a pas d'engagement à soutenir.</span>
+        <strong>La persistance ne change pas la décision de la barrière</strong>
+        <span>Contrairement à une IA à usage général qui peut être incitée ou recadrée pour s'engager au fil du temps, la barrière COMPAiSS applique la même décision de périmètre à chaque tentative. Une question hors des sources approuvées est refusée la première fois et chaque fois par la suite; la reformuler n'aide que si la question relève réellement de ces sources. Il n'y a pas de relation à construire parce qu'il n'y a pas d'engagement ouvert à soutenir.</span>
       </li>
       <li>
         <strong>Les requêtes de crise personnelle sont traitées séparément</strong>
@@ -662,7 +662,7 @@ header {
       </li>
     </ul>
 
-    <p>La reproduction d'un scénario similaire à Tumbler Ridge est architecturalement interdite dans COMPAiSS. Non pas parce que le système détecte mieux la violence - mais parce que le système ne peut structurellement pas devenir l'outil de planification soutenu que l'IA à usage général peut devenir. Cette protection ne dépend pas d'une politique, d'une modération ou d'une révision humaine. C'est une propriété de la barrière.</p>
+    <p>COMPAiSS répond à un scénario de type Tumbler Ridge par son architecture : non pas parce qu'il détecte mieux la violence, mais parce qu'il n'est pas conçu pour soutenir un engagement ouvert en dehors du périmètre approuvé par l'établissement. Cette protection repose sur la barrière plutôt que sur la modération ou la révision humaine. Le routage des situations de crise est configuré et testé avec chaque établissement.</p>
 
   </div>
 
@@ -736,15 +736,15 @@ header {
   <ul class="verified-list">
     <li>
       <strong>Que se passe-t-il si une URL source devient inaccessible en cours de requête?</strong>
-      <span>COMPAiSS récupère le contenu au moment de la requête. Si une source est inaccessible, le système s'appuie sur les autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécurisée. Il ne peut pas fabriquer du contenu à partir d'une source qu'il ne peut pas atteindre - ce qui constitue un avantage de gouvernance par rapport aux systèmes RAG qui mettent en cache le contenu récupéré et peuvent servir du matériel périmé sans le signaler.</span>
+      <span>COMPAiSS récupère le contenu au moment de la requête. Si une source est inaccessible, le système s'appuie sur les autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécurisée. Il ne cite pas et n'utilise pas une source qu'il n'a pas pu récupérer - ce qui constitue un avantage de gouvernance par rapport aux systèmes RAG qui mettent en cache le contenu récupéré et peuvent servir du matériel périmé sans le signaler.</span>
     </li>
     <li>
       <strong>Comment cela interagit-il avec notre politique d'utilisation acceptable existante?</strong>
-      <span>COMPAiSS applique une frontière épistémique plus stricte que ce que la plupart des politiques d'utilisation acceptable institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres standard de politique d'utilisation acceptable. Pour les institutions disposant de dispositions spécifiques à l'IA dans leur politique d'utilisation acceptable, l'architecture à portail d'exécution fournit un chemin de conformité documenté et vérifiable que les systèmes à génération prioritaire ne peuvent pas égaler.</span>
+      <span>COMPAiSS applique une frontière épistémique plus stricte que ce que la plupart des politiques d'utilisation acceptable institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres standard de politique d'utilisation acceptable. Pour les institutions disposant de dispositions spécifiques à l'IA dans leur politique d'utilisation acceptable, l'architecture à portail d'exécution fournit un chemin de conformité documenté et vérifiable.</span>
     </li>
     <li>
       <strong>Qui est responsable si la réponse est incorrecte?</strong>
-      <span>COMPAiSS ne répond qu'à partir de sources que l'institution elle-même a désignées comme faisant autorité. Si ces sources contiennent une erreur, l'exposition à la responsabilité de l'institution n'est pas plus grande que si un membre du personnel avait lu la même page. Plus important encore, COMPAiSS élimine la catégorie des orientations institutionnelles fabriquées - là où une IA invente une politique qui n'existe pas - qui crée l'exposition à la responsabilité la plus sérieuse pour les institutions déployant une IA à génération prioritaire. Cette classe d'erreur est architecturalement impossible dans COMPAiSS.</span>
+      <span>La responsabilité relève des conseillers juridiques de chaque établissement. Ce que COMPAiSS change, c'est la provenance des réponses : il ne répond qu'à partir de sources que l'établissement a désignées comme faisant autorité et, lorsqu'une information ne peut être vérifiée dans ces sources, il le signale plutôt que de combler le vide. Il est conçu pour empêcher qu'une IA invente une politique inexistante et la présente comme un fait institutionnel. Des erreurs dans une source autorisée, ou dans la façon dont elle est résumée, demeurent possibles et sont traçables dans le registre de gouvernance.</span>
     </li>
   </ul>
 </div>
@@ -792,7 +792,7 @@ header {
     <h2>Transparence en temps réel</h2>
     <p class="section-intro">Des outils en direct qui rendent la gouvernance visible, et pas seulement documentée.</p>
 
- <p>COMPAiSS comprend trois outils de gouvernance en temps réel disponibles pour les administrateurs institutionnels et le personnel autorisé pendant le déploiement. Ces outils ne nécessitent aucun logiciel externe, aucun téléchargement de journaux ni aucune assistance IA pour fonctionner. Des exemples concrets du Delta de gouvernance en action, tirés de cinq déploiements institutionnels actifs, sont disponibles sur la page <a href="/gouvernance-en-action.html">Démonstrations et évaluations</a>. Chaque démonstration présente une réponse gouvernée réelle, accompagnée de la réponse non gouvernée que produit le même modèle d'IA sans le portail d'exécution COMPAiSS, rendant la différence de gouvernance directement visible.</p>    <div class="card-grid">
+ <p>COMPAiSS comprend trois outils de gouvernance en temps réel disponibles pour les administrateurs institutionnels et le personnel autorisé pendant le déploiement. Ces outils ne nécessitent aucun logiciel externe, aucun téléchargement de journaux ni aucune assistance IA pour fonctionner. Des exemples concrets du Delta de gouvernance en action, tirés de démonstrations de COMPAiSS construites à partir de pages institutionnelles publiques, sont disponibles sur la page <a href="/gouvernance-en-action.html">Démonstrations et évaluations</a>. Chaque démonstration présente une réponse gouvernée réelle, accompagnée de la réponse non gouvernée que produit le même modèle d'IA sans le portail d'exécution COMPAiSS, rendant la différence de gouvernance directement visible.</p>    <div class="card-grid">
       <div class="card">
         <div class="card-icon">🧾</div>
         <h3>Reçu de conformité</h3>

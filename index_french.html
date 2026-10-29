@@ -672,16 +672,16 @@ var failState = {
 <h2>Pourquoi les institutions choisissent COMPAiSS – Architecture à gouvernance d'abord</h2>
 <p class="section-intro">Huit résultats qu'aucun système d'IA fondé sur une architecture à génération d'abord ne peut atteindre.</p>
       <div class="benefits-grid">
-      <div class="benefit-item">Élimine les réponses IA institutionnelles non autorisées</div>
-      <div class="benefit-item">Réduit le risque de gouvernance de l'IA de façon structurelle, et non probabiliste</div>
-      <div class="benefit-item">Réduit les coûts de déploiement de 70 à 85 % par rapport au RAG d'entreprise</div>
-      <div class="benefit-item">Répond correctement dans n'importe quelle langue - le sens est gouverné avant la traduction</div>
-      <div class="benefit-item">Déploiement en jours, non en mois - aucune intégration TI requise pour démarrer</div>
+      <div class="benefit-item">Bloque la génération de réponse lorsqu'aucune source autorisée n'appuie la question</div>
+      <div class="benefit-item">Place la décision de gouvernance avant la génération de la réponse</div>
+      <div class="benefit-item">Évite l'appel de génération de réponse lorsque l'autorisation échoue</div>
+      <div class="benefit-item">Applique les mêmes exigences de preuve dans toutes les langues</div>
+      <div class="benefit-item">Évaluation en quelques jours, production en deux à trois semaines - aucune intégration TI requise pour démarrer</div>
       <div class="benefit-item">Produit une piste d'audit complète pour l'approvisionnement</div>
       <div class="benefit-item">L'établissement contrôle quelles sources font autorité</div>
-      <div class="benefit-item">L'établissement contrôle la portée - l'IA ne peut pas répondre en dehors de celle-ci</div>
+      <div class="benefit-item">L'établissement contrôle la portée - les questions hors portée sont redirigées, sans réponse générée</div>
     </div>
-    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Chacune de ces propriétés est architecturale - ce n'est pas un paramètre de politique, ni une option de configuration, ni un contrôle de tableau de bord. Ce sont des propriétés structurelles du modèle d'inférence à exécution contrôlée qui ne peuvent pas être désactivées accidentellement.</p>
+    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Chacune de ces propriétés est architecturale - ce n'est pas un paramètre de politique, ni une option de configuration, ni un contrôle de tableau de bord. Ce sont des propriétés structurelles du modèle d'inférence à exécution contrôlée, et non des paramètres qu'un utilisateur peut modifier.</p>
   </div>
 
   <hr>
@@ -699,7 +699,7 @@ var failState = {
     <p>L'architecture de la liste verte et d'analyse ne fait pas que contrôler la portée - elle contrôle ce que le modèle reçoit comme environnement épistémique. Lorsque le modèle reçoit du contenu uniquement de pages et de documents institutionnels pré-analysés et autorisés, la surface d'erreur d'interprétation est considérablement plus petite que dans un système RAG raisonnant sur un corpus vaste et non structuré.</p>
 
     <div class="highlight-block">
-      <p>L'affirmation précise : COMPAiSS élimine par conception les hallucinations liées à la violation de portée, et réduit considérablement les risques de qualité de génération dans la portée autorisée, grâce à une analyse structurée et à des contextes d'inférence strictement délimités.</p>
+      <p>L'affirmation précise : COMPAiSS est conçu pour exclure les hallucinations liées à la violation de portée, sous réserve de l'intégrité de la liste verte et de la configuration de la barrière, et réduit considérablement les risques de qualité de génération dans la portée autorisée, grâce à une analyse structurée et à des contextes d'inférence strictement délimités.</p>
       <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf">Comparaison architecturale - RAG vs COMPAiSS (PDF)</a></p>
     </div>
 
@@ -852,7 +852,7 @@ var failState = {
     </div>
   </div>
 
-  <div id="competitor-table" style="margin:2rem 0; padding:1.4rem 1.6rem; background:var(--accent-soft); border:1px solid var(--border-accent); border-radius:var(--radius); font-family:system-ui,-apple-system,sans-serif;">
+  <div style="margin:2rem 0; padding:1.4rem 1.6rem; background:var(--accent-soft); border:1px solid var(--border-accent); border-radius:var(--radius); font-family:system-ui,-apple-system,sans-serif;">
     <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:0.7rem;">Analyse du paysage concurrentiel</div>
     <p style="font-size:0.95rem;color:var(--text-main);line-height:1.65;margin:0 0 0.9rem;max-width:72ch;">Découvrez en quoi COMPAiSS se distingue de toutes les grandes plateformes d'IA, et pourquoi cette différence est déterminante pour les institutions réglementées.</p>
     <a href="/le_defi_de_la_generation_en_premier_compaiss.html" style="display:inline-block;padding:0.55rem 1.2rem;background:var(--accent);color:#000;font-weight:700;font-size:0.85rem;border-radius:5px;text-decoration:none;letter-spacing:0.04em;">Lire l'analyse du paysage concurrentiel &rarr;</a>
@@ -878,7 +878,7 @@ var failState = {
     <p>Lorsqu'une question est posée, le système détermine d'abord si la question s'inscrit dans la portée définie d'un établissement, si des sources autorisées et approuvées par l'établissement existent pour étayer une réponse, et si produire une réponse serait responsable et défendable. Le modèle d'IA n'est autorisé à fournir une réponse que lorsque ces conditions sont remplies.</p>
     <p>Cela signifie que COMPAiSS ne s'appuie pas sur des clauses de non-responsabilité, des scores de confiance, le filtrage post-réponse ou la révision humaine pour adapter la conformité après qu'une réponse a déjà été produite. Les questions non étayées ou hors portée sont empêchées de déclencher l'exécution du modèle institutionnel principal dès le départ.</p>
     <p>Lorsqu'une question est clairement spécifique à l'établissement et que des informations faisant autorité existent dans les sources approuvées, COMPAiSS produit une réponse claire fondée exclusivement sur les sources autorisées de cet établissement - non inférée à partir du vaste univers d'organisations ou de juridictions sans lien. Lorsqu'une question ne peut pas être étayée, le système ne suppose pas, ne généralise pas, ne comble pas les lacunes et n'improvise pas simplement pour être « utile ».</p>
-    <p>En déplaçant la prise de décision en amont de la production de réponses par l'IA, COMPAiSS élimine le besoin de nombreux contrôles correctifs coûteux requis par les systèmes d'IA génératifs par défaut et élimine par conception une catégorie majeure d'hallucinations institutionnelles non autorisées.</p>
+    <p>En déplaçant la prise de décision en amont de la production de réponses par l'IA, COMPAiSS élimine le besoin de nombreux contrôles correctifs coûteux requis par les systèmes d'IA génératifs par défaut et est conçu pour prévenir une catégorie majeure d'hallucinations institutionnelles non autorisées.</p>
   </div>
 
   <hr>
@@ -1022,11 +1022,11 @@ var failState = {
 
   <div class="content-section" id="cost-savings">
     <h2>Économies par conception</h2>
-    <p class="section-intro">La différence de coût entre COMPAiSS et l'IA d'entreprise conventionnelle est structurelle, pas marginale.</p>
-    <p>Pour les établissements gérant environ 100 000 requêtes assistées par IA annuellement, les déploiements RAG conventionnels engendrent généralement des coûts d'exploitation annuels totaux entre 90 000 $ et 200 000 $, attribuables à trois facteurs de coût cumulatifs : le gaspillage d'inférence, l'infrastructure RAG persistante et la gouvernance compensatoire. Un déploiement COMPAiSS traitant la même charge de travail fonctionne à environ 15 000 $ à 30 000 $ par année - parce que les trois facteurs de coût sont éliminés par architecture, pas gérés après coup.</p>
-    <p>Les questions qui débordent de la portée de l'établissement ne reçoivent jamais de réponse comme s'il s'agissait de questions institutionnelles. Chaque établissement choisit comment elles sont traitées. Avec une redirection stricte, le modèle principal ne s'exécute pas du tout : l'utilisateur reçoit un court message indiquant que la question ne concerne pas l'établissement, sans aucun coût de calcul. Avec une redirection souple, le modèle s'exécute uniquement pour relier la question aux pages institutionnelles pertinentes. À la question « Pourquoi le ciel est-il bleu? », par exemple, il n'explique pas la physique; il dirige l'utilisateur vers les pages de la Faculté des sciences et des départements concernés.</p>
+    <p class="section-intro">D'où vient la différence de coût.</p>
+    <p>Comme la barrière tranche avant l'exécution du modèle de génération des réponses, les questions hors de la portée de l'établissement n'entraînent pas le coût de génération d'une réponse, et la gouvernance ne repose pas sur une vaste couche de filtrage après coup. Un scénario de coûts illustratif est présenté dans le document Économies par conception ci-dessous; ses chiffres sont en cours de rapprochement avec l'architecture déployée avant qu'un montant d'économies soit indiqué ici.</p>
+    <p>Les questions qui débordent de la portée de l'établissement ne reçoivent jamais de réponse comme s'il s'agissait de questions institutionnelles. Chaque établissement choisit comment elles sont traitées. Avec une redirection stricte, le modèle principal ne s'exécute pas du tout : l'utilisateur reçoit un court message indiquant que la question ne concerne pas l'établissement, sans frais de génération de réponse. Avec une redirection souple, le modèle s'exécute uniquement pour relier la question aux pages institutionnelles pertinentes. À la question « Pourquoi le ciel est-il bleu? », par exemple, il n'explique pas la physique; il dirige l'utilisateur vers les pages de la Faculté des sciences et des départements concernés.</p>
 <p>La fréquence de ces situations dépend du déploiement. Les services ciblés, comme un bureau du registraire universitaire, reçoivent généralement surtout des questions pertinentes, tandis que les services publics plus larges en reçoivent davantage qui débordent de leur portée.</p>    
-       <p>Un coût inférieur n'implique pas une précision inférieure. Les hallucinations nécessitent une inférence active. En empêchant l'inférence pour les requêtes non autorisées, COMPAiSS supprime les conditions structurelles dans lesquelles la fabrication se produit - non pas comme un filtre en aval, mais comme une propriété architecturale.</p>
+       <p>Un coût inférieur n'implique pas une précision inférieure. Une réponse qui n'est jamais générée ne peut contenir de fabrication : bloquer les questions non autorisées avant l'exécution du modèle de réponse supprime donc cette voie d'erreur - comme propriété architecturale plutôt que comme filtre en aval.</p>
     <div class="highlight-block">
       <p><strong><a href="/assets/economies_de_couts_par_conception_styled.pdf">Economies par conception - Analyse comparative des coûts (PDF)</a></strong></p>
     </div>
@@ -1122,7 +1122,7 @@ var failState = {
   <div class="content-section" id="explore">
     <h2>Explorer cette architecture</h2>
     <p class="section-intro">Déploiements actifs dans des environnements institutionnels canadiens.</p>
-    <p>COMPAiSS est actuellement en phase de tests pilotes bêta actifs dans cinq environnements institutionnels canadiens, notamment des universités à forte intensité de recherche et un contexte de service public fédéral, avec deux pilotes institutionnels supplémentaires actuellement en cours d'examen.</p>
+    <p>Des démonstrations de COMPAiSS, construites à partir des pages Web publiques des établissements, sont offertes pour l'Université Dalhousie, l'Université McGill, l'Université de Calgary, l'Université de Victoria, l'Université de Toronto, University Canada West, l'Université métropolitaine de Toronto, le Centre universitaire de santé McGill et Service Canada. COMPAiSS est en cours de déploiement à l'Université Dalhousie, et des projets pilotes sont à l'étude à l'Université McGill, à l'Université de Calgary et à l'Université de Victoria. Service Canada, University Canada West et l'Université métropolitaine de Toronto ont testé leurs démonstrations.</p>
     <p>Un environnement de démonstration de service public à l'échelle fédérale a également été développé pour valider l'inférence à exécution contrôlée dans des contextes de services aux citoyens à volume élevé, reflétant des environnements organisationnels qui gèrent des dizaines de millions d'interactions citoyennes annuellement par téléphone, en personne et par voie numérique.</p>
     <p>Le système a été façonné par une expérience directe de gouvernance institutionnelle et est actuellement évalué dans les domaines des services aux étudiants et du registrariat ou la précision des politiques et l'autorité institutionnelle sont essentielles.</p>
 <p><strong>Pour une évaluation institutionnelle ou des demandes de partenariat technologique :</strong> <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a></p>
@@ -1194,7 +1194,7 @@ var failState = {
 </li>
 
       <li><a href="/assets/la_voie_moins_empruntee.pdf">La voie moins empruntée - Repenser les coûts, la sécurité et la confiance liés à l'IA générative dans les environnements réglementés</a> - Approfondit les arguments structurels et les coûts associés aux mécanismes de contrôle post-générationnels.</li>
-      <li><a href="/assets/sortir_de_la_matrice_fr_3.pdf">Sortir de la matrice - Une nouvelle opportunité pour les cabinets-conseils en IA avec des clients d'industries réglementées</a> - Livre blanc destiné aux cabinets-conseils, présentant l'argument empirique en faveur de l'inférence à exécution contrôlée comme alternative architecturale aux systèmes d'IA génératifs par défaut, avec des déploiements actifs à Service Canada, à l'Université Dalhousie et à l'Université McGill.</li>
+      <li><a href="/assets/sortir_de_la_matrice_fr_3.pdf">Sortir de la matrice - Une nouvelle opportunité pour les cabinets-conseils en IA avec des clients d'industries réglementées</a> - Livre blanc destiné aux cabinets-conseils, présentant l'argument empirique en faveur de l'inférence à exécution contrôlée comme alternative architecturale aux systèmes d'IA génératifs par défaut, avec des démonstrations pour Service Canada, l'Université Dalhousie et l'Université McGill.</li>
       <li><strong><a href="/assets/compaiss_livre_blanc_v5.pdf">Inférence à exécution conditionnelle : une solution architecturale aux hallucinations de l'IA en contexte institutionnel réglementé</a></strong> - Livre blanc de Frank P. Harvey, Ph. D. Décrit l'architecture, l'art antérieur, les performances empiriques et l'application aux environnements réglementés.</li>
 <li><a href="/assets/compaiss_positionnement_institutionnel_styled.pdf">IA institutionnelle à autorisation contrôlée dans les environnements réglementés</a> - Expose l'argument structurel sous-tendant COMPAiSS ainsi que les limites des systèmes d'IA génératifs par défaut.</li>
 
@@ -1223,7 +1223,8 @@ var failState = {
 <p class="section-intro">Construit à partir d'une expérience directe en gouvernance institutionnelle.</p>
 <p>COMPAiSS a été développé par Frank Harvey, professeur de relations internationales et conseiller principal à l'Université Dalhousie. Au cours de sa carrière, Harvey a occupé des postes de direction dans l'enseignement supérieur canadien (notamment président par intérim, recteur et vice-recteur académique, doyen et directeur de département), ce qui lui a donné une expérience directe au niveau institutionnel des obligations de gouvernance, de responsabilité et de conformité que les environnements réglementés imposent réellement aux systèmes d'information.</p>
 <p>COMPAiSS a été construit dans cette perspective. Non pas comme une solution technologique à la recherche d'un problème, mais comme une réponse architecturale à un échec structurel qu'Harvey a observé directement : des établissements déploient des systèmes d'IA génératifs par défaut dans des environnements où cette architecture ne peut pas satisfaire leurs obligations.</p>
-<p>L'architecture et le développement ont été menés par Harvey. L'ingénierie backend, l'intégration API et l'infrastructure de déploiement ont été construites avec des outils de développement assistés par l'IA — principalement GPT, Claude, Gemini, Copilot et Perplexity — sous la supervision architecturale directe de Harvey. Le système est en production active et a été testé sur des milliers de requêtes réelles d'utilisateurs dans des contextes étudiants, professoraux et administratifs, dans des environnements institutionnels multilingues.</p>
+<p>L'architecture et le développement ont été menés par Harvey. L'ingénierie backend, l'intégration API et l'infrastructure de déploiement ont été construites avec des outils de développement assistés par l'IA — principalement GPT, Claude, Gemini, Copilot et Perplexity — sous la supervision architecturale directe de Harvey. Le système est en cours de déploiement à l'Université Dalhousie et a été testé sur des milliers de requêtes réelles d'utilisateurs dans des contextes étudiants, professoraux et administratifs, dans des environnements institutionnels multilingues.</p>
+<p><strong>Divulgation.</strong> Frank Harvey est professeur et conseiller principal à l'Université Dalhousie. Dalhousie déploie COMPAiSS et figure dans des évaluations et publications de COMPAiSS; il n'existe aucune autre relation entre Dalhousie et COMPAiSS; ces documents doivent être lus en tenant compte de cette relation.</p>
 <p>COMPAiSS recherche activement des partenaires d'évaluation institutionnelle et des collaborateurs technologiques.</p>  </div>
 
        <div style="font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:#f0c44c;margin-bottom:0.7rem;font-weight:600;">Demander une évaluation</div>

@@ -932,7 +932,7 @@ hr {
         <div class="hybrid-name">Couche d'intelligence gouvernée</div>
         <ul>
           <li>Répond avec exactitude aux questions complexes de politique</li>
-          <li>Élimine la variation d'un conseiller à l'autre</li>
+          <li>Réduit la variation d'un conseiller à l'autre</li>
           <li>Gère les cas limites et les règles conditionnelles</li>
           <li>Active les connaissances institutionnelles internes</li>
           <li>Génère des réponses prêtes à l'emploi, conformes aux politiques</li>
@@ -1046,7 +1046,7 @@ hr {
     <thead><tr><th>Capacité</th><th>Statut</th></tr></thead>
     <tbody>
       <tr><td>Déploiement commercial</td><td>Actif</td></tr>
-      <tr><td>Projets pilotes institutionnels</td><td>Actifs</td></tr>
+      <tr><td>Projets pilotes institutionnels</td><td>À l'étude (McGill, Université de Calgary, Université de Victoria)</td></tr>
       <tr><td>Trousse HECVAT</td><td>Complète</td></tr>
       <tr><td>Documentation de gouvernance IA</td><td>Complète</td></tr>
       <tr><td>Documentation de confidentialité</td><td>Complète</td></tr>
@@ -1373,9 +1373,9 @@ hr {
         <div class="roi-card-sub">valeur annuelle estimée</div>
       </div>
       <div class="roi-card roi-highlight">
-        <div class="roi-card-label">Rendement net annuel</div>
+        <div class="roi-card-label">Avantage net annuel (estimé)</div>
         <div class="roi-card-value" id="r-roi-fr">50 000 $</div>
-        <div class="roi-card-sub" id="r-multiple-fr">Rendement de 3,5x sur l'investissement</div>
+        <div class="roi-card-sub" id="r-multiple-fr">RCI net de 250 %; ratio avantages-coûts de 3,5x</div>
       </div>
     </div>
 
@@ -1418,12 +1418,13 @@ function roiCalcFr() {
   var diverted = Math.round(queries * div / 100);
   var saved = Math.round(diverted * cost);
   var net = saved - license;
-  var multiple = saved > 0 ? (saved / license).toFixed(1).replace('.', ',') : '0';
+  var multiple = license > 0 ? (saved / license).toFixed(1).replace('.', ',') : null;
+  var netRoi = license > 0 ? Math.round(net / license * 100) : null;
   document.getElementById('r-diverted-fr').textContent = diverted.toLocaleString('fr-CA');
   document.getElementById('r-saved-fr').textContent = saved.toLocaleString('fr-CA') + ' $';
-  document.getElementById('r-roi-fr').textContent = net >= 0 ? Math.round(net).toLocaleString('fr-CA') + ' $' : 'Seuil de rentabilité';
+  document.getElementById('r-roi-fr').textContent = Math.round(net).toLocaleString('fr-CA') + ' $';
   document.getElementById('r-roi-fr').style.color = net >= 0 ? '#4caf82' : 'var(--text-muted)';
-  document.getElementById('r-multiple-fr').textContent = net >= 0 ? 'Rendement de ' + multiple + 'x sur l’investissement' : 'Augmentez le taux d’adoption pour améliorer le rendement';
+  document.getElementById('r-multiple-fr').textContent = netRoi === null ? 'RCI non défini pour une licence sans frais' : 'RCI net de ' + netRoi + ' %; ratio avantages-coûts de ' + multiple + 'x';
 }
 roiCalcFr();
 </script>
@@ -1625,7 +1626,7 @@ roiCalcFr();
         </div>
         <div class="benchmark-card">
           <div class="benchmark-title">DÉPLOIEMENT GOUVERNEMENTAL RÉEL</div>
-          <div class="benchmark-value">RCI de 4,81&times;</div>
+          <div class="benchmark-value">Ratio de coûts de 4,64&times;</div>
           <div class="benchmark-description">Comté de Bernalillo, NM : interactions traitées par l’IA à 0,99 $ c. 4,59 $ pour celles traitées par des humains, mesurées sur un déploiement réel de 18 mois.</div>
         </div>
         <div class="benchmark-card">
@@ -1737,7 +1738,7 @@ hcCalc();
 
 <div class="content-section" id="roi-callcentre">
 <h2>Retour sur investissement — Centres d’appel et secteur public</h2>
-<p class="section-intro">Modélisé sur la bêta en direct de Service Canada. Ajustez les curseurs selon votre centre d’appel pour estimer vos économies annuelles.</p>
+<p class="section-intro">Modélisé sur la démonstration en direct de Service Canada. Ajustez les curseurs selon votre centre d’appel pour estimer vos économies annuelles.</p>
 <style>
     .cc-deployment-badge {
       display: inline-block;
@@ -1874,7 +1875,7 @@ hcCalc();
     .cc-benchmark-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
   </style>
 
-  <div class="cc-deployment-badge">&#9679; Bêta en direct — compaiss.ca/service-canada</div>
+  <div class="cc-deployment-badge">&#9679; Démonstration en direct — compaiss.ca/service-canada</div>
      
 <div class="cc-preset-row">
     <span class="cc-preset-label">Charger un profil :</span>
@@ -1949,7 +1950,7 @@ hcCalc();
   </div>
 
   <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-family:system-ui,-apple-system,sans-serif;">
-    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">Au coût d'interaction confirmé de 0,02 $ — contre 8,33 $ par appel traité par un agent — COMPAiSS offre une réduction des coûts de 416× par interaction. Dévier 30 % du volume total d'appels de Service Canada permet d'économiser environ 19,94 M$ annuellement, tandis que les agents demeurent entièrement disponibles pour les cas complexes, les appels et les interactions sensibles avec les clients.</p>
+    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">À un coût de traitement IA estimé à 0,02 $ par interaction — contre 8,33 $ par appel traité par un agent — le coût marginal par interaction déviée est environ 416 fois moins élevé. Dévier 30 % du volume total d'appels de Service Canada permet d'économiser environ 19,94 M$ annuellement, tandis que les agents demeurent entièrement disponibles pour les cas complexes, les appels et les interactions sensibles avec les clients.</p>
   </div>
 
   <div style="margin-top:2rem;font-family:system-ui,-apple-system,sans-serif;">
@@ -1958,7 +1959,7 @@ hcCalc();
       <div class="cc-benchmark-card">
         <div class="cc-benchmark-title">Coût par appel traité par un agent</div>
         <div class="cc-benchmark-value">6 $ – 12 $ CAD</div>
-        <div class="cc-benchmark-desc">Les centres d'appel fédéraux et provinciaux affichent généralement un coût de 7 $ à 10 $ par interaction chargé ; Service Canada confirmé à 8,33 $ (2023–24).</div>
+        <div class="cc-benchmark-desc">Les centres d'appel fédéraux et provinciaux affichent généralement un coût de 7 $ à 10 $ par interaction chargé ; donnée de Service Canada : 8,33 $ (2023–24).</div>
       </div>
       <div class="cc-benchmark-card">
         <div class="cc-benchmark-title">Volume d'appels annuel</div>
@@ -1973,7 +1974,7 @@ hcCalc();
     </div>
   </div>
 
-<p class="cc-roi-note">Données Service Canada : environ 8 M d'appels annuels (AE, RPC, SV et autres programmes) à environ 8,33 $ par interaction traitée par un agent (chiffres 2023–24). Coût d'interaction COMPAiSS confirmé à 0,02 $. Les projections d'économies supposent que COMPAiSS traite les appels qui auraient autrement été pris en charge par des agents — les cas complexes, les appels et les interactions sensibles demeurent avec le personnel qualifié. Tous les chiffres sont des estimations à des fins de planification.</p>
+<p class="cc-roi-note">Données Service Canada : environ 8 M d'appels annuels (AE, RPC, SV et autres programmes) à environ 8,33 $ par interaction traitée par un agent (chiffres 2023–24). Coût de traitement IA de COMPAiSS estimé à 0,02 $ par interaction. Les projections d'économies supposent que COMPAiSS traite les appels qui auraient autrement été pris en charge par des agents — les cas complexes, les appels et les interactions sensibles demeurent avec le personnel qualifié. Tous les chiffres sont des estimations à des fins de planification.</p>
 
 </div>
 
@@ -2038,7 +2039,7 @@ hcCalc();
   significative. Cela signifie également que sur 7 851 questions d'essai, entre
   235 et 471 réponses contenaient des erreurs - transmises à des Canadiens
   cherchant de l'aide sur l'AE, le RPC, les comptes fiscaux et le statut
-  d'immigration. Extrapolé au volume confirmé de Service Canada d'environ
+  d'immigration. Extrapolé au volume de Service Canada d'environ
   8 millions d'interactions annuelles, un taux d'erreur résiduel de 3 à 6 pour
   cent représente entre 240 000 et 480 000 réponses incorrectes par année.
   La mention de mise en garde constitue la couche de gouvernance pour ces
@@ -2141,9 +2142,9 @@ var ccNames = {
 
     var name = ccNames[ccCurrent] || 'ce déploiement';
     document.getElementById('cc-highlight').textContent =
-      'Au coût d\'interaction confirmé de '+ccFmtCost(aicost)+
-      ' — contre '+ccFmtCost(cost)+' par appel traité par un agent — COMPAiSS offre une réduction des coûts de '+
-      ratio.toLocaleString('fr-CA')+'× par interaction. Dévier 30 % du volume total d\'appels de '+
+      'À un coût de traitement IA estimé à '+ccFmtCost(aicost)+
+      ' par interaction — contre '+ccFmtCost(cost)+' par appel traité par un agent — le coût marginal par interaction déviée est environ '+
+      ratio.toLocaleString('fr-CA')+' fois moins élevé. Dévier 30 % du volume total d\'appels de '+
       name+' permet d\'économiser environ '+ccFmt(s30)+' annuellement, tandis que les agents demeurent entièrement disponibles pour les cas complexes, les appels et les interactions sensibles avec les clients.';
   };
 

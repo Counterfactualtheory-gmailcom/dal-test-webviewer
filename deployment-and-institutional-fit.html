@@ -756,7 +756,7 @@ hr {
   <!-- SECTION 3 -->
   <div class="content-section" id="no-burden">
     <h2>No Enterprise Integration Burden</h2>
-    <p class="section-intro">The cost and complexity that typically accompany enterprise AI adoption are eliminated by architecture.</p>
+    <p class="section-intro">Much of the cost and complexity that typically accompany enterprise AI adoption is avoided by architecture.</p>
 
     <p>Large-scale RAG deployments and Copilot-style enterprise AI systems carry a common set of infrastructure requirements that drive cost and implementation timelines. COMPAiSS does not.</p>
 
@@ -937,7 +937,7 @@ hr {
         <div class="hybrid-name">Governed Intelligence Layer</div>
         <ul>
           <li>Answers complex policy questions accurately</li>
-          <li>Eliminates advisor-to-advisor variation</li>
+          <li>Reduces advisor-to-advisor variation</li>
           <li>Handles edge cases and conditional rules</li>
           <li>Activates internal institutional knowledge</li>
           <li>Generates ready-to-use, policy-aligned responses</li>
@@ -1061,8 +1061,8 @@ hr {
   <table class="pricing-table" style="margin-bottom: 2rem;">
     <thead><tr><th>Capability</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td>Commercial deployment</td><td>Active</td></tr>
-      <tr><td>Institutional pilots</td><td>Active</td></tr>
+      <tr><td>Commercial deployment</td><td>In progress (Dalhousie University)</td></tr>
+      <tr><td>Institutional pilots</td><td>Under review (McGill, University of Calgary, University of Victoria)</td></tr>
       <tr><td>HECVAT package</td><td>Complete</td></tr>
       <tr><td>AI governance documentation</td><td>Complete</td></tr>
       <tr><td>Privacy documentation</td><td>Complete</td></tr>
@@ -1366,9 +1366,9 @@ hr {
         <div class="roi-card-sub">estimated annual value</div>
       </div>
       <div class="roi-card roi-highlight">
-        <div class="roi-card-label">Net annual return</div>
+        <div class="roi-card-label">Net annual benefit (estimated)</div>
         <div class="roi-card-value" id="r-roi">$50,000</div>
-        <div class="roi-card-sub" id="r-multiple">3.5x return on investment</div>
+        <div class="roi-card-sub" id="r-multiple">250% net ROI; 3.5x benefit-to-cost ratio</div>
       </div>
     </div>
 
@@ -1446,17 +1446,17 @@ function roiCalc() {
   var diverted = Math.round(queries * div / 100);
   var saved    = Math.round(diverted * cost);
   var net      = saved - license;
-  var multiple = saved > 0 ? (saved / license).toFixed(1) : '0';
+  var multiple = license > 0 ? (saved / license).toFixed(1) : null;
+  var netRoi   = license > 0 ? Math.round(net / license * 100) : null;
 
   document.getElementById('r-diverted').textContent = diverted.toLocaleString('en-CA');
   document.getElementById('r-saved').textContent    = '$' + saved.toLocaleString('en-CA');
-document.getElementById('r-roi').textContent      = net >= 0
-    ? '$' + Math.round(net).toLocaleString('en-CA')
-    : 'Cost-neutral';
+document.getElementById('r-roi').textContent      =
+    (net < 0 ? '-$' : '$') + Math.abs(Math.round(net)).toLocaleString('en-CA');
   document.getElementById('r-roi').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
-document.getElementById('r-multiple').textContent = net >= 0
-    ? multiple + 'x return on investment'
-    : 'Increase adoption rate to improve return';
+document.getElementById('r-multiple').textContent = netRoi === null
+    ? 'ROI undefined for a zero licence cost'
+    : netRoi + '% net ROI; ' + multiple + 'x benefit-to-cost ratio';
 }
 roiCalc();
 </script>
@@ -1653,7 +1653,7 @@ roiCalc();
         </div>
         <div class="benchmark-card">
           <div class="benchmark-title">REAL GOVERNMENT DEPLOYMENT</div>
-          <div class="benchmark-value">4.81&times; ROI</div>
+          <div class="benchmark-value">4.64&times; cost ratio</div>
           <div class="benchmark-description">Bernalillo County, NM: AI-handled interactions at $0.99 vs. $4.59 for human-handled, measured over an actual 18-month deployment.</div>
         </div>
         <div class="benchmark-card">
@@ -1762,7 +1762,7 @@ hcCalc();
 
 <div class="content-section" id="roi-callcentre">
   <h2>Return on Investment - Call Centre &amp; Public Sector</h2>
-  <p class="section-intro">Modelled on the live Service Canada beta. Adjust the sliders to match your call centre and see your estimated annual savings.</p>
+  <p class="section-intro">Modelled on the live Service Canada demonstration. Adjust the sliders to match your call centre and see your estimated annual savings.</p>
      
   <style>
     .cc-deployment-badge {
@@ -1900,7 +1900,7 @@ hcCalc();
     .cc-benchmark-desc { font-size: 0.82rem; line-height: 1.6; color: var(--text-muted); }
   </style>
 
-  <div class="cc-deployment-badge">&#9679; Live beta — compaiss.ca/service-canada</div>
+  <div class="cc-deployment-badge">&#9679; Live demonstration — compaiss.ca/service-canada</div>
 
   <div class="cc-preset-row">
     <span class="cc-preset-label">Load a profile:</span>
@@ -1975,7 +1975,7 @@ hcCalc();
   </div>
 
   <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-family:system-ui,-apple-system,sans-serif;">
-    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At Service Canada's confirmed interaction cost of $0.02 — versus $8.33 per staffed call — COMPAiSS delivers a 416× cost reduction per interaction. Deflecting 30% of total calls saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
+    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At an estimated COMPAiSS AI processing cost of $0.02 per interaction — versus $8.33 per staffed call — the marginal cost per deflected interaction is about 416× lower. Deflecting 30% of total calls saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
   </div>
 
   <div style="margin-top:2rem;font-family:system-ui,-apple-system,sans-serif;">
@@ -1984,7 +1984,7 @@ hcCalc();
       <div class="cc-benchmark-card">
         <div class="cc-benchmark-title">Cost per staffed call</div>
         <div class="cc-benchmark-value">$6 – $12 CAD</div>
-        <div class="cc-benchmark-desc">Federal and provincial call centres typically run $7–$10 per interaction fully loaded; Service Canada confirmed at $8.33 (2023–24).</div>
+        <div class="cc-benchmark-desc">Federal and provincial call centres typically run $7–$10 per interaction fully loaded; Service Canada figure: $8.33 (2023–24).</div>
       </div>
       <div class="cc-benchmark-card">
         <div class="cc-benchmark-title">Annual call volume</div>
@@ -1999,7 +1999,7 @@ hcCalc();
     </div>
   </div>
 
-<p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS interaction cost confirmed at $0.02. Savings projections assume COMPAiSS handles calls that would otherwise be answered by staff — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
+<p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS AI processing cost estimated at $0.02 per interaction. Savings projections assume COMPAiSS handles calls that would otherwise be answered by staff — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
 
 <div class="highlight-block" style="margin-top:2rem;">
   <h3>Government AI Evaluation: CRA GenAI Chatbot vs COMPAiSS</h3>
@@ -2061,7 +2061,7 @@ hcCalc();
   <p>A 94 to 96 percent accuracy rate is a genuine achievement. It also means
   that across 7,851 trial questions, between 235 and 471 responses contained
   errors - delivered to Canadians seeking help with EI, CPP, tax accounts,
-  and immigration status. Scaled to Service Canada's confirmed volume of
+  and immigration status. Scaled to Service Canada's volume of
   approximately 8 million annual interactions, a 3 to 6 percent residual
   error rate represents between 240,000 and 480,000 incorrect responses
   per year. The disclaimer is the governance layer for those errors.
@@ -2161,9 +2161,9 @@ var ccPresets = {
 
     var name = ccNames[ccCurrent] || 'this deployment';
     document.getElementById('cc-highlight').textContent =
-      'At a confirmed interaction cost of $'+aicost.toFixed(2)+
-      ' — versus $'+cost.toFixed(2)+' per staffed call — COMPAiSS delivers a '+
-      ratio.toLocaleString('en-CA')+'× cost reduction per interaction. Deflecting 30% of total calls from '+
+      'At an estimated AI processing cost of $'+aicost.toFixed(2)+
+      ' per interaction — versus $'+cost.toFixed(2)+' per staffed call — the marginal cost per deflected interaction is about '+
+      ratio.toLocaleString('en-CA')+'× lower. Deflecting 30% of total calls from '+
       name+' saves an estimated '+ccFmt(s30)+' annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.';
   };
 

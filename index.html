@@ -718,17 +718,17 @@ var failState = {
     <h2>Why Institutions Choose COMPAiSS - Governance-First</h2>
     <p class="section-intro">Eight outcomes that no Generation-First AI system can match by architecture.</p>
     <div class="benefits-grid">
-      <div class="benefit-item">Eliminates unauthorized institutional AI responses</div>
+      <div class="benefit-item">Blocks answer generation when no authorized source supports the question</div>
       <div class="benefit-item">Identifies when information cannot be verified from authorized sources.</div>
-      <div class="benefit-item">Reduces AI governance risk structurally, not probabilistically</div>
-      <div class="benefit-item">Reduces deployment cost by 70–85% versus enterprise RAG</div>
-      <div class="benefit-item">Answers correctly in any language - meaning governed before translation</div>
-      <div class="benefit-item">Deploys in days, not months - no IT integration required to start</div>
+      <div class="benefit-item">Moves the governance decision before the answer is generated</div>
+      <div class="benefit-item">Avoids the answer-generation call when authorization fails</div>
+      <div class="benefit-item">Applies the same evidence requirements in every language</div>
+      <div class="benefit-item">Evaluation in days, production in two to three weeks - no IT integration required to start</div>
       <div class="benefit-item">Produces a complete, auditable procurement trail</div>
       <div class="benefit-item">Institution controls which sources are authoritative</div>
-      <div class="benefit-item">Institution controls scope - the AI cannot answer outside it</div>
+      <div class="benefit-item">Institution controls scope - out-of-scope questions are redirected, not answered</div>
     </div>
-    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Each of these properties is architectural - not a policy setting, not a configuration option, not a dashboard control. They are structural properties of the execution-gated generation model that cannot be accidentally disabled.</p>
+    <p style="margin-top:1.4rem; font-size:0.9rem; color:var(--text-muted); font-family:system-ui,-apple-system,sans-serif; font-style:italic;">Each of these properties is architectural - not a policy setting, not a configuration option, not a dashboard control. They are structural properties of the execution-gated generation model, not settings a user can change.</p>
   </div>
 
   <hr>
@@ -746,7 +746,7 @@ var failState = {
     <p>The greenlist and parsing architecture do more than control scope - they control what the model receives as its epistemic environment. When the model receives content only from pre-parsed, institutionally authorized pages and documents, the surface area for misinterpretation is dramatically smaller than in a RAG system reasoning over a broad, unstructured corpus.</p>
 
     <div class="highlight-block">
-      <p>The precise claim: COMPAiSS eliminates scope-violation hallucinations by design, and materially reduces generation-quality risks within authorized scope through structured parsing and tightly bounded inference contexts.</p>
+      <p>The precise claim: COMPAiSS is designed to preclude scope-violation hallucinations, conditional on greenlist integrity and gate configuration, and materially reduces generation-quality risks within authorized scope through structured parsing and tightly bounded inference contexts.</p>
       <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_vs_rag_tables_1_2-v2.pdf">View Comparison Table (PDF)</a></p>
     </div>
 
@@ -898,7 +898,7 @@ var failState = {
     </div>
   </div>
 
-<div id="competitor-table" style="margin:2rem 0; padding:1.4rem 1.6rem; background:var(--accent-soft); border:1px solid var(--border-accent); border-radius:var(--radius); font-family:system-ui,-apple-system,sans-serif;">
+<div style="margin:2rem 0; padding:1.4rem 1.6rem; background:var(--accent-soft); border:1px solid var(--border-accent); border-radius:var(--radius); font-family:system-ui,-apple-system,sans-serif;">
   <div style="font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:0.7rem;">Competitive Landscape Analysis</div>
   <p style="font-size:0.95rem;color:var(--text-main);line-height:1.65;margin:0 0 0.9rem;max-width:72ch;">See how COMPAiSS differs from every major AI platform — and why that difference matters for regulated institutions.</p>
   <a href="/the_generation_first_challenge-competitive-landscape.html" style="display:inline-block;padding:0.55rem 1.2rem;background:var(--accent);color:#000;font-weight:700;font-size:0.85rem;border-radius:5px;text-decoration:none;letter-spacing:0.04em;">Read the competitive landscape analysis &rarr;</a>
@@ -924,7 +924,7 @@ var failState = {
     <p>When a question is asked, the system first determines whether the question falls within an institution's defined scope, whether authoritative, institution-approved material exists to support an answer, and whether producing an answer would be responsible and defensible. The AI model is only allowed to provide an answer when those conditions are met.</p>
     <p>This means COMPAiSS does not rely on disclaimers, confidence scores, post-answer filtering, or human review to retrofit compliance after an answer has already been produced. Unsupported or out-of-scope questions are prevented from triggering primary institutional model execution in the first place.</p>
     <p>When a question is clearly institution-specific and authoritative information exists within approved sources, COMPAiSS produces a clear answer grounded exclusively in that institution's authorized materials - not inferred from the broader universe of unrelated organizations or jurisdictions. When a question cannot be supported, the system does not guess, generalize, fill gaps, or improvise simply to be "helpful".</p>
-    <p>By shifting decision-making ahead of AI generation, COMPAiSS removes the need for many of the costly corrective controls required by generation-first AI systems and eliminates a major class of unauthorized institutional hallucinations by design.</p>
+    <p>By shifting decision-making ahead of AI generation, COMPAiSS removes the need for many of the costly corrective controls required by generation-first AI systems and is designed to prevent a major class of unauthorized institutional hallucinations.</p>
   </div>
 
   <hr>
@@ -1083,11 +1083,11 @@ var failState = {
 
   <div class="content-section" id="cost-savings">
     <h2>Cost Savings by Design</h2>
-    <p class="section-intro">The cost difference between COMPAiSS and conventional enterprise AI is structural, not marginal.</p>
-    <p>For institutions managing approximately 100,000 AI-assisted queries annually, conventional RAG deployments typically incur total annual operating costs between $90,000 and $200,000, driven by three compounding cost drivers: inference waste, persistent RAG infrastructure, and compensatory governance. A COMPAiSS deployment addressing the same workload operates at approximately $15,000 to $30,000 per year - because all three of those cost drivers are eliminated by architecture, not managed after the fact.</p>
-    <p>Questions that fall outside the institution's scope are never answered as if they were institutional questions. Each institution chooses how they are handled. With a hard redirect, the main model does not run at all: the user receives a short message explaining that the question does not relate to the institution, at zero compute cost. With a soft redirect, the model runs only to connect the question to relevant institutional pages. Asked "Why is the sky blue?", for example, it does not explain the physics; it points the user to the Faculty of Science and related department pages.</p>
+    <p class="section-intro">Where the cost difference comes from.</p>
+    <p>Because the gate decides before the answer-generation model runs, questions outside the institution's scope do not incur the cost of generating an answer, and governance does not depend on a large layer of after-the-fact filtering. An illustrative cost scenario is set out in the Cost Savings by Design paper below; its figures are being reconciled with the deployed architecture before a savings figure is stated here.</p>
+    <p>Questions that fall outside the institution's scope are never answered as if they were institutional questions. Each institution chooses how they are handled. With a hard redirect, the main model does not run at all: the user receives a short message explaining that the question does not relate to the institution, with no answer-generation charge. With a soft redirect, the model runs only to connect the question to relevant institutional pages. Asked "Why is the sky blue?", for example, it does not explain the physics; it points the user to the Faculty of Science and related department pages.</p>
 <p>How often this happens depends on the deployment. Focused services such as a university registrar typically receive mostly relevant questions, while broad public-facing services receive more that fall outside scope.</p>    
-       <p>Lower cost does not imply lower accuracy. Hallucinations require active inference. By preventing inference for unauthorized queries, COMPAiSS removes the structural conditions under which fabrication occurs - not as a downstream filter, but as an architectural property.</p>
+       <p>Lower cost does not mean lower accuracy. An answer that is never generated cannot contain a fabrication, so blocking unauthorized questions before the answer model runs removes that failure path - as an architectural property rather than a downstream filter.</p>
     <div class="highlight-block">
       <p><strong><a href="/assets/cost_savings_by_design_styled.pdf">Cost Savings by Design - Comparative Cost Analysis (PDF)</a></strong></p>
     </div>
@@ -1184,7 +1184,7 @@ var failState = {
   <div class="content-section" id="explore">
     <h2>Explore This Architecture</h2>
     <p class="section-intro">Active deployments across Canadian institutional environments.</p>
-    <p>COMPAiSS is currently in active beta testing pilot deployments across five Canadian institutional environments, including research-intensive universities and a federal public service context, with two additional institutional pilots currently under review.</p>
+    <p>COMPAiSS demonstrations, built from public institutional web pages, are available for Dalhousie University, McGill University, the University of Calgary, the University of Victoria, the University of Toronto, University Canada West, Toronto Metropolitan University, the McGill University Health Centre and Service Canada. COMPAiSS is being deployed at Dalhousie University, and pilots are under review at McGill University, the University of Calgary and the University of Victoria. Service Canada, University Canada West and Toronto Metropolitan University have tested their demonstrations.</p>
     <p>A federal-scale public service demonstration environment has also been developed to validate execution-gated generation in high-volume constituent service contexts, reflecting organizational environments that manage tens of millions of citizen interactions annually across telephone, in-person, and digital channels.</p>
     <p>The system has been shaped through direct institutional governance experience and is currently being evaluated in registrarial and student services domains where policy accuracy and institutional authority are critical.</p>
     <p><strong>For institutional evaluation or technology partnership inquiries:</strong> <a href="mailto:frank.harvey@compaiss.ca">frank.harvey@compaiss.ca</a></p>
@@ -1258,7 +1258,7 @@ var failState = {
   </li>
          
       <li><a href="/assets/road_less_travelled_revised.pdf">The Road Less Travelled - Rethinking Generative AI Costs, Safety, and Trust in Regulated Institutions</a> - Expands on the structural arguments and associated costs of post-generation controls.</li>
-      <li><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients</a> - White paper directed at major consulting firms, presenting the empirical case for execution-gated generation as an architectural alternative to generation-first AI governance, with active deployment evidence from Service Canada, Dalhousie University, and McGill University.</li>
+      <li><a href="/assets/breaking_out_of_the_matrix_v3_2.pdf">Breaking Out of the Matrix - A New Opportunity for AI Consulting Firms with Regulated Industry Clients</a> - White paper directed at major consulting firms, presenting the empirical case for execution-gated generation as an architectural alternative to generation-first AI governance, with demonstration evidence from Service Canada, Dalhousie University, and McGill University.</li>
       <li><a href="/assets/compaiss-white-paper-2026-v2.pdf">COMPAiSS White Paper - Execution-Gated AI for Regulated Institutional Environments</a> - Foundational overview of the COMPAiSS architecture, execution-gated generation model, multilingual authorization framework, governance controls, institutional deployment strategy, and structural contrast with generation-first AI systems.</li>
       <li><a href="/assets/compaiss_institutional_positioning_styled.pdf">Authorization-Controlled Institutional AI in Regulated Environments</a> - Outlines the structural argument behind COMPAiSS and the limitations of generation-first systems.</li>
       <li><a href="/assets/final_report-hallucinations_by_design-v2.pdf">Hallucinations by Design - A Cross-Model Assessment of How Major AI Consulting Firms Advise Clients to Manage Generative AI Errors</a> - Structured cross-model consensus analysis of AI consulting firm approaches to hallucination management.</li>
@@ -1282,7 +1282,8 @@ var failState = {
     <p class="section-intro">Built from direct institutional governance experience.</p>
     <p>COMPAiSS was developed by Frank Harvey, Professor of International Relations and Senior Advisor at Dalhousie University. Over the course of his career Harvey has held senior leadership roles (including acting President, Provost and Vice-President Academic, Dean, and Department Chair) giving him direct, institutional-level experience with the governance, accountability, and compliance obligations that regulated environments actually impose on information systems.</p>
     <p>COMPAiSS was built from that vantage point. Not as a technology solution looking for a problem, but as an architectural response to a structural failure Harvey observed directly: institutions deploying generation-first AI in environments where that architecture cannot meet their obligations.</p>
-    <p>Architecture and development were led by Harvey. Backend engineering, API integration, and deployment infrastructure were built with AI-assisted development tools, primarily GPT, Claude, Gemini, Copilot and Perplexity under Harvey's direct architectural oversight. The system is in active production and has been tested against thousands of real user queries across student, faculty, and administrative use cases in multilingual institutional environments.</p>
+    <p>Architecture and development were led by Harvey. Backend engineering, API integration, and deployment infrastructure were built with AI-assisted development tools, primarily GPT, Claude, Gemini, Copilot and Perplexity under Harvey's direct architectural oversight. The system is being deployed at Dalhousie University and has been tested against thousands of real user queries across student, faculty, and administrative use cases in multilingual institutional environments.</p>
+    <p><strong>Disclosure.</strong> Frank Harvey is Professor and Senior Advisor at Dalhousie University. Dalhousie is deploying COMPAiSS and appears in COMPAiSS evaluations and publications; there is no other relationship between Dalhousie and COMPAiSS, so those materials should be read with that relationship in mind.</p>
     <p>COMPAiSS is actively seeking institutional evaluation partners and technology collaborators.</p>
   </div>
 

@@ -648,7 +648,7 @@ gtag('config', 'G-JR7LJGK5PK');
       <div class="card">
         <div class="card-icon">👤</div>
         <h3>Développeur et partie responsable</h3>
-        <p>Frank Harvey, Fondateur et chef de la direction, COMPAiSS Inc. COMPAiSS Inc. détient la propriété intellectuelle et les demandes de brevet.</p>
+        <p>Frank Harvey, fondateur et chef de la direction, détient la propriété intellectuelle et les demandes de brevet par l'intermédiaire de sa société, COMPAiSS Inc.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚖</div>
@@ -658,12 +658,12 @@ gtag('config', 'G-JR7LJGK5PK');
       <div class="card">
         <div class="card-icon">🚀</div>
         <h3>Statut de déploiement</h3>
-        <p>Projets pilotes bêta actifs dans cinq environnements institutionnels canadiens, notamment des universités de recherche intensive et un contexte de service public fédéral. Deux projets pilotes supplémentaires en cours d'examen institutionnel.</p>
+        <p>Des démonstrations de COMPAiSS, construites à partir des pages Web publiques des établissements, sont offertes pour l'Université Dalhousie, l'Université McGill, l'Université de Calgary, l'Université de Victoria, l'Université de Toronto, University Canada West, l'Université métropolitaine de Toronto, le Centre universitaire de santé McGill et Service Canada. COMPAiSS est en cours de déploiement à l'Université Dalhousie, et des projets pilotes sont à l'étude à l'Université McGill, à l'Université de Calgary et à l'Université de Victoria. Service Canada, University Canada West et l'Université métropolitaine de Toronto ont testé leurs démonstrations.</p>
       </div>
       <div class="card">
         <div class="card-icon">🤖</div>
         <h3>Moteur d'IA</h3>
-        <p>API d'inférence OpenAI — API standard sans ajustement fin. Aucune donnée institutionnelle n'entre dans quelque pipeline d'entraînement de modèle que ce soit.</p>
+        <p>Le fournisseur et la région d'inférence IA sont configurés pour chaque déploiement et consignés pour chaque réponse. Les options comprennent OpenAI, Azure OpenAI (région Canada Est) et les modèles Cohere sur une infrastructure canadienne. API d'inférence standard sans ajustement fin; aucune donnée institutionnelle n'entre dans un pipeline d'entraînement.</p>
       </div>
     </div>
 
@@ -682,10 +682,10 @@ gtag('config', 'G-JR7LJGK5PK');
 
     <div class="test-result">
       <div class="test-label">Constat de classification</div>
-      <p><strong>Niveau I — Impact faible ou nul</strong> en vertu de la Directive sur la prise de décisions automatisée du Canada. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions d'évaluation pertinentes. Cette classification s'applique à tous les déploiements institutionnels actuels.</p>
+      <p><strong>Niveau I — Impact faible ou nul</strong> en vertu de la Directive sur la prise de décisions automatisée du Canada, selon l'évaluation de la plateforme réalisée par COMPAiSS. Chaque établissement devrait confirmer la classification pour son propre déploiement.</p>
     </div>
 
-    <p>La classification de Niveau I est étayée par quatre constats indépendants, chacun plaçant indépendamment le système au niveau d'impact le plus bas :</p>
+    <p>La classification autoévaluée de Niveau I repose sur quatre constats :</p>
 
     <ul class="verified-list">
       <li>
@@ -702,13 +702,13 @@ gtag('config', 'G-JR7LJGK5PK');
       </li>
       <li>
         <strong>Le portail d'exécution pré-inférence empêche la génération de réponses au-delà des sources institutionnelles autorisées</strong>
-        <span>La validation des sources et l'application du périmètre ont lieu avant que l'IA ne génère toute réponse. COMPAiSS ne génère pas de réponses au-delà des sources institutionnelles autorisées, ne peut pas citer des sources non autorisées et ne peut pas produire de contenu hors de l'ensemble de sources institutionnelles autorisées.</span>
+        <span>La validation des sources et l'application du périmètre ont lieu avant l'exécution du modèle de génération des réponses. COMPAiSS ne génère pas de réponse institutionnelle lorsqu'aucune source autorisée ne l'appuie, et ne cite que des sources qu'il a analysées. Des erreurs dans la génération autorisée, comme des omissions ou des lectures erronées d'une source autorisée, demeurent possibles et sont suivies par évaluation.</span>
       </li>
     </ul>
 
     <div class="finding-block">
       <div class="finding-label">Applicabilité du cadre</div>
-      <p>Bien que la Directive sur la prise de décisions automatisée soit un instrument du gouvernement du Canada, les dimensions de risque qu'elle évalue — autorité décisionnelle, traitement des données personnelles, réversibilité et contrôles d'exactitude — s'appliquent directement à l'examen de gouvernance de l'IA dans les contextes de l'enseignement supérieur, de la santé et du secteur public. COMPAiSS obtient le niveau de risque le plus bas sur toutes les dimensions, quel que soit le cadre institutionnel appliqué.</p>
+      <p>Bien que la Directive sur la prise de décisions automatisée soit un instrument du gouvernement du Canada, les dimensions de risque qu'elle évalue — autorité décisionnelle, traitement des données personnelles, réversibilité et contrôles d'exactitude — s'appliquent directement à l'examen de gouvernance de l'IA dans les contextes de l'enseignement supérieur, de la santé et du secteur public. Chaque établissement devrait confirmer la classification du système selon le cadre qu'il applique.</p>
     </div>
   </div>
 
@@ -766,11 +766,11 @@ gtag('config', 'G-JR7LJGK5PK');
     <ul class="verified-list">
       <li>
         <strong>Portail d'exécution pré-inférence</strong>
-        <span>Chaque requête est validée par rapport à la liste de sources autorisées de l'institution avant toute génération par l'IA. Les requêtes hors périmètre sont rejetées au portail. Le modèle d'IA ne s'exécute que lorsque les conditions d'autorisation sont satisfaites. Cette contrainte est architecturale — elle ne peut être contournée par une invite, une reformulation ou une manipulation.</span>
+        <span>Chaque requête est validée par rapport à la liste de sources autorisées de l'institution avant toute génération de réponse. Les requêtes hors périmètre sont rejetées au portail. Le modèle de génération des réponses ne s'exécute que lorsque les conditions d'autorisation sont satisfaites. Cette contrainte est architecturale : reformuler une question ne change pas la décision de périmètre du portail.</span>
       </li>
 <li>
         <strong>Gouvernance de la liste de sources autorisées (liste verte)</strong>
-        <span>L'institution conserve la pleine autorité pour examiner, approuver et modifier la liste de sources autorisées à tout moment. COMPAiSS ne peut accéder à aucune page, document ou source qui ne figure pas sur la liste approuvée. Chaque réponse est traçable jusqu'à des sources autorisées spécifiques. Voir <a href="/deploiement-et-adequation-institutionnelle.html#greenlist-control">Contrôle de la liste verte, tableau de bord et audit continu des sources</a> pour comprendre comment cela s'étend à travers les départements et sert de preuve documentaire institutionnelle pour les achats et les audits.</span>
+        <span>L'institution conserve la pleine autorité pour examiner, approuver et modifier la liste de sources autorisées à tout moment. COMPAiSS ne tire ses réponses que des pages de la liste approuvée, et chaque réponse cite les sources autorisées utilisées. Voir <a href="/deploiement-et-adequation-institutionnelle.html#greenlist-control">Contrôle de la liste verte, tableau de bord et audit continu des sources</a> pour comprendre comment cela s'étend à travers les départements et sert de preuve documentaire institutionnelle pour les achats et les audits.</span>
       </li>
       <li>
         <strong>Piste d'audit et journalisation</strong>
@@ -786,7 +786,7 @@ gtag('config', 'G-JR7LJGK5PK');
       </li>
       <li>
         <strong>Aucun apprentissage continu à partir des interactions des utilisateurs</strong>
-        <span>Le système n'apprend pas des requêtes individuelles des utilisateurs. Aucune donnée d'interaction n'est réinjectée dans quelque modèle que ce soit. Le modèle d'IA s'améliore uniquement lorsqu'OpenAI met à jour ses modèles sous-jacents — un processus entièrement externe aux données et interactions institutionnelles.</span>
+        <span>Le système n'apprend pas des requêtes individuelles des utilisateurs. Aucune donnée d'interaction n'est réinjectée dans quelque modèle que ce soit. Les versions de modèle ne sont changées qu'après des tests, et les établissements sont avisés des changements importants. Aucune donnée institutionnelle ne sert à l'entraînement des modèles.</span>
       </li>
     </ul>
   </div>
@@ -798,7 +798,7 @@ gtag('config', 'G-JR7LJGK5PK');
     <h2>Registre des risques</h2>
     <p class="section-intro">Risques identifiés par catégorie avec les mesures d'atténuation architecturales et opérationnelles.</p>
 
-    <p>Aucun risque éthique, financier, lié à la vie privée ou juridique susceptible d'entraver le déploiement institutionnel n'a été identifié. Les risques suivants ont été identifiés et atténués :</p>
+    <p>Les risques identifiés et leurs mesures d'atténuation sont présentés ci-dessous.</p>
 
     <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Risques techniques</h3>
     <ul class="risk-list">
@@ -812,7 +812,7 @@ gtag('config', 'G-JR7LJGK5PK');
       </li>
       <li>
         <strong>URL source indisponible au moment d'une requête</strong>
-        <span>Atténuation : Si une source est inaccessible au moment d'une requête, le système puise dans d'autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécuritaire orientant l'utilisateur vers le personnel institutionnel. Il ne peut pas fabriquer de contenu à partir d'une source qu'il ne peut pas atteindre.</span>
+        <span>Atténuation : Si une source est inaccessible au moment d'une requête, le système puise dans d'autres sources autorisées qui ont répondu, ou retourne une réponse d'échec sécuritaire orientant l'utilisateur vers le personnel institutionnel. Il ne cite pas et n'utilise pas une source qu'il n'a pas pu récupérer.</span>
       </li>
     </ul>
 
@@ -820,11 +820,11 @@ gtag('config', 'G-JR7LJGK5PK');
     <ul class="risk-list">
       <li>
         <strong>Dépassement du périmètre au-delà du contenu autorisé</strong>
-        <span>Atténuation : Architecturale — le portail d'exécution pré-inférence ne peut pas être contourné au niveau de l'utilisateur. Les requêtes hors périmètre sont rejetées dès la première tentative et à chaque tentative subséquente, quelle que soit leur formulation ou reformulation.</span>
+        <span>Atténuation : Architecturale — le portail d'exécution pré-inférence ne peut pas être contourné au niveau de l'utilisateur. Une question hors des sources approuvées est refusée à chaque tentative; la reformuler n'aide que si elle relève réellement de ces sources.</span>
       </li>
       <li>
         <strong>Manipulation adversariale des invites</strong>
-        <span>Atténuation : Le filtrage des saisies bloque les saisies excessivement longues, le texte indésirable et les tentatives d'invites adversariales avant qu'elles n'atteignent le portail. Le portail lui-même applique les limites du périmètre de façon déterministe. Les tentatives de manipulation des instructions de l'IA sont bloquées avant d'atteindre le modèle.</span>
+        <span>Atténuation : Le filtrage des saisies bloque les saisies excessivement longues, le texte indésirable et les tentatives d'invites adversariales avant qu'elles n'atteignent le portail. Une fois ses intrants fixés, le portail autorise ou bloque l'appel de génération de façon déterministe. Les tentatives de manipulation des instructions à l'intérieur du périmètre approuvé sont atténuées par le traitement des saisies et font partie des tests de sécurité continus.</span>
       </li>
     </ul>
 
@@ -844,13 +844,13 @@ gtag('config', 'G-JR7LJGK5PK');
     <ul class="risk-list">
       <li>
         <strong>Préoccupations du public ou de l'institution concernant le déploiement de l'IA</strong>
-        <span>Atténuation : L'architecture axée sur la gouvernance, la traçabilité complète, l'approche de confidentialité par conception sans état et le portail d'exécution pré-inférence qui élimine structurellement toutes les sources standard d'hallucination répondent directement aux préoccupations qui génèrent un examen institutionnel. Le système est conçu pour être auditable et défendable dès la phase conceptuelle.</span>
+        <span>Atténuation : L'architecture axée sur la gouvernance, la traçabilité complète, l'approche de confidentialité par conception sans état et le portail d'exécution pré-inférence, qui empêche les réponses sans source autorisée, répondent directement aux préoccupations qui génèrent un examen institutionnel. Le système est conçu pour être auditable et défendable dès la phase conceptuelle.</span>
       </li>
     </ul>
 
     <div class="test-result">
       <div class="test-label">Constat de l'évaluation des risques</div>
-      <p>Tous les risques identifiés sont atténués au niveau architectural — non pas uniquement par une surveillance post-déploiement ou des contrôles de politique. Cela signifie que les mesures d'atténuation sont des propriétés structurelles du système qui ne peuvent pas être désactivées accidentellement ou modifiées par configuration.</p>
+      <p>Les principales mesures d'atténuation sont architecturales plutôt que fondées uniquement sur la surveillance post-déploiement ou des contrôles de politique. Elles sont complétées par l'entretien de la liste verte, le contrôle de la configuration et des tests continus.</p>
     </div>
   </div>
 
@@ -874,7 +874,7 @@ gtag('config', 'G-JR7LJGK5PK');
       </li>
       <li>
         <strong>Traitement des requêtes en situation de crise</strong>
-        <span>Lorsqu'une requête contient un langage associé à une détresse personnelle ou à une crise, le système retourne une réponse institutionnelle préapprouvée orientant l'utilisateur vers les ressources de soutien appropriées — services de counseling, sécurité du campus ou contacts d'urgence — tels que configurés par l'institution en conformité avec ses propres politiques d'obligation de diligence. Le modèle d'IA ne traite pas le contenu de crise.</span>
+        <span>Lorsqu'une requête contient un langage associé à une détresse personnelle ou à une crise, le système retourne une réponse institutionnelle préapprouvée orientant l'utilisateur vers les ressources de soutien appropriées — services de counseling, sécurité du campus ou contacts d'urgence — tels que configurés par l'institution en conformité avec ses propres politiques d'obligation de diligence. Le modèle de génération des réponses ne traite pas le contenu de crise une fois le langage de crise détecté; la détection est configurée et testée avec chaque établissement.</span>
       </li>
       <li>
         <strong>Responsabilité du développeur</strong>
@@ -898,7 +898,7 @@ gtag('config', 'G-JR7LJGK5PK');
       <div class="card">
         <div class="card-icon">📋</div>
         <h3>Évaluation de l'impact algorithmique</h3>
-        <p>Une EIA complète a été préparée et soumise pour examen fédéral. La documentation EIA propre à chaque institution est disponible pour tout déploiement institutionnel réglementé sur demande.</p>
+        <p>Une évaluation de l'incidence algorithmique a été préparée et soumise à un comité d'examen d'Emploi et Développement social Canada (EDSC). La documentation EIA propre à chaque institution est disponible pour tout déploiement institutionnel réglementé sur demande.</p>
       </div>
       <div class="card">
         <div class="card-icon">🔒</div>
@@ -907,8 +907,8 @@ gtag('config', 'G-JR7LJGK5PK');
       </div>
       <div class="card">
         <div class="card-icon">⚖</div>
-        <h3>Architecture protégée par brevet</h3>
-        <p>Le portail d'exécution pré-inférence fait l'objet de demandes de brevet au Canada (OPIC 3 299 174) et aux États-Unis (USPTO 19/455 963). La distinction architecturale est formellement documentée et défendable.</p>
+        <h3>Architecture en instance de brevet</h3>
+        <p>Le portail d'exécution pré-inférence fait l'objet de demandes de brevet en instance au Canada (OPIC 3 299 174) et aux États-Unis (USPTO 19/455 963).</p>
       </div>
       <div class="card">
         <div class="card-icon">🍁</div>
@@ -929,12 +929,12 @@ gtag('config', 'G-JR7LJGK5PK');
 
     <div class="finding-block" style="margin-top: 2.5rem;">
       <div class="finding-label">Compatibilité avec la politique d'utilisation acceptable</div>
-      <p>COMPAiSS applique une limite épistémique plus stricte que ce que la plupart des PUA institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres PUA standard. Pour les institutions disposant de dispositions PUA spécifiques à l'IA, l'architecture à exécution contrôlée fournit un parcours de conformité documenté et auditable que les systèmes axés sur la génération ne peuvent pas égaler.</p>
+      <p>COMPAiSS applique une limite épistémique plus stricte que ce que la plupart des PUA institutionnelles exigent. Parce que le système ne répond qu'aux requêtes relevant du périmètre approuvé par l'institution, et parce que toutes les réponses sont traçables jusqu'à des sources autorisées spécifiques, COMPAiSS est compatible par conception avec les cadres PUA standard. Pour les institutions disposant de dispositions PUA spécifiques à l'IA, l'architecture à exécution contrôlée fournit un parcours de conformité documenté et auditable.</p>
     </div>
 
     <div class="finding-block">
       <div class="finding-label">Cadre de responsabilité civile</div>
-      <p>COMPAiSS répond exclusivement à partir de sources que l'institution elle-même a désignées comme faisant autorité. Si ces sources contiennent une erreur, l'exposition en responsabilité civile de l'institution n'est pas plus grande que si un membre du personnel lisait la même page. Plus important encore, COMPAiSS élimine la catégorie de directives institutionnelles fabriquées — où une IA invente une politique qui n'existe pas — qui crée l'exposition en responsabilité civile la plus grave pour les institutions déployant une IA axée sur la génération. Cette classe d'erreur est architecturalement impossible dans COMPAiSS.</p>
+      <p>La responsabilité relève des conseillers juridiques de chaque établissement. Ce que COMPAiSS change, c'est la provenance des réponses : il ne répond qu'à partir de sources que l'établissement a désignées comme faisant autorité et, lorsqu'une information ne peut être vérifiée dans ces sources, il le signale plutôt que de combler le vide. Il est conçu pour empêcher qu'une IA invente une politique inexistante et la présente comme un fait institutionnel. Des erreurs dans une source autorisée, ou dans la façon dont elle est résumée, demeurent possibles et sont traçables dans le registre de gouvernance.</p>
     </div>
   </div>
 
@@ -1021,7 +1021,7 @@ gtag('config', 'G-JR7LJGK5PK');
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Le modèle s&rsquo;exécute en premier, la gouvernance s&rsquo;applique ensuite</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les résultats hallucinés sont détectés après la génération</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Taux de faux négatifs adversariaux de 2 à 5 pour cent</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les filtres de sortie peuvent laisser passer des cas adversariaux</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Coût total en jetons engagé même pour les refus</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> La piste d&rsquo;audit débute après la production d&rsquo;une réponse non autorisée</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">✗</span> Les coûts de gouvernance augmentent avec les capacités du modèle</div>

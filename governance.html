@@ -573,7 +573,7 @@ header {
       <div class="card">
         <div class="card-icon">🛡</div>
         <h3>Cross-Site Scripting (XSS)</h3>
-        <p>All responses are sanitized and formatted safely before they appear on screen. User input is processed as natural language only - it is passed to the AI as text and cannot trigger system commands, execute scripts, or access any underlying infrastructure.</p>
+        <p>All responses are sanitized and formatted safely before they appear on screen. User input is processed as natural language only - it is passed to the AI as text and is not executed as code or commands.</p>
       </div>
 
       <div class="card">
@@ -585,18 +585,18 @@ header {
       <div class="card">
         <div class="card-icon">🔒</div>
         <h3>Prompt Injection</h3>
-        <p>Because the governance gate runs before the AI, users cannot trick the system into responding outside its approved scope. Attempts to manipulate the AI's instructions are blocked at the gate before they reach the model.</p>
+        <p>Because the governance gate decides scope before the answer model runs, rewording a question does not move it inside the approved scope. Attempts to manipulate instructions within approved scope are mitigated by input handling and are part of ongoing security testing.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">📏</div>
-        <h3>Query Rate Limiting</h3>
+        <h3>Query Length Limit</h3>
         <p>Queries are limited to 300 words. This prevents misuse of the system for purposes outside its intended scope and keeps responses focused on the question being asked.</p>
       </div>
 
     </div>
 
-    <p>This result is not a configuration setting - it is a property of the architecture. The gate runs first. The AI only runs if the gate passes the query.</p>
+    <p>Scope enforcement is a property of the architecture, not a configuration setting: the gate runs first, and the answer-generation model runs only if the gate passes the query.</p>
   </div>
 
   <hr>
@@ -613,7 +613,7 @@ header {
     <ul class="verified-list">
       <li>
         <strong>Single Sign-On (SSO)</strong>
-        <span>SSO integration using standard protocols compatible with Microsoft Azure Active Directory can be scoped as a defined implementation item for any institutional deployment. This allows access to be restricted to authenticated users, and different content to be surfaced to different user groups - for example, staff versus public-facing access.</span>
+        <span>SSO integration using standard protocols compatible with Microsoft Entra ID (formerly Azure Active Directory) can be scoped as a defined implementation item for any institutional deployment. This allows access to be restricted to authenticated users, and different content to be surfaced to different user groups - for example, staff versus public-facing access.</span>
       </li>
       <li>
         <strong>Microsoft Teams</strong>
@@ -635,7 +635,7 @@ header {
     <h2>AI Model and Updates</h2>
     <p class="section-intro">Which AI models power COMPAiSS, what each one does, and how model decisions are made.</p>
 
-    <p>COMPAiSS is model-agnostic by design. The governance architecture - the rules, the execution gate, the approved source list - sits entirely outside the AI models. Models can be changed, or matched to each task, without changing a single governance rule, and institutions are never dependent on any single provider.</p>
+    <p>COMPAiSS is model-agnostic by design. The governance architecture - the rules, the execution gate, the approved source list - sits entirely outside the AI models. Models can be changed, or matched to each task, without changing a single governance rule, so institutions are not locked into a single provider.</p>
 
     <p>Rather than asking one model to do everything, COMPAiSS assigns each stage of its pipeline to the model best suited to it. Current OpenAI deployments use models from the <strong>GPT-6 family</strong>, with model selection configurable by deployment:</p>
     <ul>
@@ -655,7 +655,7 @@ header {
       <div class="card">
         <div class="card-icon">🔄</div>
         <h3>No Lock-In</h3>
-        <p>Closed models like GPT offer the highest current performance ceiling with automatic updates built in. If an open-source model running on Canadian infrastructure ever reaches the same standard, COMPAiSS can switch without changing a single governance rule.</p>
+        <p>Closed models like GPT currently offer the strongest performance. If an open-source model running on Canadian infrastructure reaches the same standard, COMPAiSS can switch to it without changing a single governance rule.</p>
       </div>
     </div>
   </div>
@@ -671,12 +671,12 @@ header {
 
     <div class="case-block">
       <div class="case-label">The Tumbler Ridge Case - Gebala v. OpenAI, B.C. Supreme Court, 2026</div>
-      <p>On February 10, 2026, a shooter killed eight people at Tumbler Ridge Secondary School in British Columbia, in one of the deadliest school shootings in Canadian history. The shooter had been using ChatGPT for months leading up to the attack - describing violent planning scenarios repeatedly, across two separate accounts after the first was banned. OpenAI's own employees flagged the activity as indicating imminent risk of serious harm and recommended that Canadian law enforcement be contacted. That recommendation was escalated to leadership and rejected.</p>
+      <p>On February 10, 2026, a shooter killed eight people at Tumbler Ridge Secondary School in British Columbia, in one of the deadliest school shootings in Canadian history. According to the lawsuit described below, the shooter had used ChatGPT for months before the attack - describing violent planning scenarios repeatedly, across two separate accounts after the first was banned - and OpenAI employees flagged the activity as an imminent risk and recommended contacting Canadian law enforcement, a recommendation the lawsuit says was escalated to leadership and rejected.</p>
       <p>The lawsuit filed in B.C. Supreme Court (Gebala v. OpenAI, March 2026) alleges OpenAI had specific knowledge of the shooter's long-range planning and took no steps to act on it. OpenAI has since acknowledged its safeguards at the time were insufficient.</p>
       <p>The failure was not a content moderation failure. The system detected the risk. The failure was that ChatGPT engaged - repeatedly, over months, across two account iterations - becoming what the lawsuit describes as a "trusted confidante" that provided information, built rapport, and validated planning conversations as legitimate questions deserving answers.</p>
     </div>
 
-    <p>COMPAiSS is structurally incapable of replicating this failure. The reason is architectural, not policy-based.</p>
+    <p>COMPAiSS is designed so that this kind of sustained engagement cannot develop. The reason is architectural, not policy-based.</p>
 
     <ul class="verified-list">
       <li>
@@ -684,8 +684,8 @@ header {
         <span>A query about planning violence does not match any institution's approved source list. The governance gate rejects it before the AI runs. The system returns a standard out-of-scope response and stops. No engagement, no rapport, no sustained relationship - by architecture, not by moderation policy.</span>
       </li>
       <li>
-        <strong>The gate cannot be bypassed by persistence</strong>
-        <span>Unlike a general-purpose AI that can be prompted, reframed, or manipulated into engagement over time, the COMPAiSS gate is deterministic. Out-of-scope queries are rejected on the first attempt and every subsequent attempt. There is no relationship to build because there is no engagement to sustain.</span>
+        <strong>Persistence does not change the gate's decision</strong>
+        <span>Unlike a general-purpose AI that can be prompted or reframed into engagement over time, the COMPAiSS gate applies the same scope decision on every attempt. A question outside the approved sources is turned away the first time and each time after; rephrasing helps only if the question genuinely falls within those sources. There is no relationship to build because there is no open-ended engagement to sustain.</span>
       </li>
       <li>
         <strong>Personal crisis queries are handled separately</strong>
@@ -697,7 +697,7 @@ header {
       </li>
     </ul>
 
-    <p>The replication of a Tumbler Ridge scenario is architecturally prohibited in COMPAiSS. Not because the system detects violence better - but because the system structurally cannot become the sustained planning tool that general-purpose AI can become. That protection does not depend on policy, moderation, or human review. It is a property of the gate.</p>
+    <p>COMPAiSS addresses a Tumbler Ridge-type scenario through architecture: not because it detects violence better, but because it is not built to sustain open-ended engagement outside the institution's approved scope. That protection rests on the gate rather than on moderation or human review. Crisis routing is configured and tested with each institution.</p>
 
   </div>
 
@@ -776,15 +776,15 @@ header {
   <ul class="verified-list">
     <li>
       <strong>What happens when a source URL goes down mid-query?</strong>
-      <span>COMPAiSS fetches content at query time. If a source is unreachable, the system draws from other authorized sources that did respond, or returns a safe failure response. It cannot fabricate content from a source it cannot reach - which is a governance advantage over RAG systems that cache retrieved content and can serve stale material without flagging it.</span>
+      <span>COMPAiSS fetches content at query time. If a source is unreachable, the system draws from other authorized sources that did respond, or returns a safe failure response. It does not cite or draw on a source it could not retrieve - which is a governance advantage over RAG systems that cache retrieved content and can serve stale material without flagging it.</span>
     </li>
     <li>
       <strong>How does this interact with our existing Acceptable Use Policy?</strong>
-      <span>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path that generation-first systems cannot match.</span>
+      <span>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path.</span>
     </li>
     <li>
       <strong>Who is liable if the answer is wrong?</strong>
-      <span>COMPAiSS answers only from sources the institution itself has designated as authoritative. If those sources contain an error, the institution's liability exposure is no greater than if a staff member read from the same page. More importantly, COMPAiSS eliminates the category of fabricated institutional guidance - where an AI confidently invents policy that does not exist and presents it as institutional fact. COMPAiSS explicitly identifies information that cannot be verified from authorized sources. Reliance on out-of-scope information is virtually eliminated through COMPAiSS’s pre-inference authorization architecture.</span>
+      <span>Liability is a question for each institution's own counsel. What COMPAiSS changes is where answers come from: it answers only from sources the institution has designated as authoritative, and when information cannot be verified from those sources it says so rather than filling the gap. It is designed to prevent the failure where an AI invents policy that does not exist and presents it as institutional fact. Errors in an authorized source, or in how an authorized source is summarized, remain possible, and are traceable through the governance record.</span>
     </li>
   </ul>
 </div>
@@ -832,7 +832,7 @@ header {
     <h2>Real-Time Governance Transparency</h2>
     <p class="section-intro">Live tools that make governance visible, not just documented.</p>
 
-<p>COMPAiSS includes three real-time governance tools available to institutional administrators and authorized staff during deployment. These tools do not require external software, log downloads, or AI assistance to operate. Live examples of the Governance Delta in action, drawn from five active institutional deployments, are available on the <a href="/compaiss_demos_and_pricing.html">COMPAiSS Demos & Benchmarking</a> page. Each demonstration shows a real governed response paired with the ungoverned output the same AI model produces without the COMPAiSS execution gate, making the governance difference directly visible.</p>    <div class="card-grid">
+<p>COMPAiSS includes three real-time governance tools available to institutional administrators and authorized staff during deployment. These tools do not require external software, log downloads, or AI assistance to operate. Live examples of the Governance Delta in action, drawn from COMPAiSS demonstrations built on public institutional pages, are available on the <a href="/compaiss_demos_and_pricing.html">COMPAiSS Demos & Benchmarking</a> page. Each demonstration shows a real governed response paired with the ungoverned output the same AI model produces without the COMPAiSS execution gate, making the governance difference directly visible.</p>    <div class="card-grid">
       <div class="card">
         <div class="card-icon">🧾</div>
         <h3>Compliance Receipt</h3>
