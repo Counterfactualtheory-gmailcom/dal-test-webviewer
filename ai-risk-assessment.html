@@ -644,7 +644,7 @@ header {
       <div class="card">
         <div class="card-icon">👤</div>
         <h3>Developer and Accountable Party</h3>
-        <p>Frank Harvey, Founder and CEO COMPAiSS Inc., holds the intellectual property and patent applications.</p>
+        <p>Frank Harvey, Founder and CEO, holds the intellectual property and patent applications through his company, COMPAiSS Inc.</p>
       </div>
       <div class="card">
         <div class="card-icon">⚖</div>
@@ -654,12 +654,12 @@ header {
       <div class="card">
         <div class="card-icon">🚀</div>
         <h3>Deployment Status</h3>
-        <p>Active beta pilots across five Canadian institutional environments, including research-intensive universities and a federal public service context. Two additional pilots under institutional review.</p>
+        <p>COMPAiSS demonstrations, built from public institutional web pages, are available for Dalhousie University, McGill University, the University of Calgary, the University of Victoria, the University of Toronto, University Canada West, Toronto Metropolitan University, the McGill University Health Centre and Service Canada. COMPAiSS is being deployed at Dalhousie University, and pilots are under review at McGill University, the University of Calgary and the University of Victoria. Service Canada, University Canada West and Toronto Metropolitan University have tested their demonstrations.</p>
       </div>
       <div class="card">
         <div class="card-icon">🤖</div>
         <h3>AI Engine</h3>
-        <p>Azure OpenAI Service - Canada East region. Standard inference API without fine-tuning. No institutional data enters any training pipeline at any stage.</p>
+        <p>AI inference provider and region are configured per deployment and recorded for each answer. Options include OpenAI, Azure OpenAI (Canada East region) and Cohere models on Canadian infrastructure. Standard inference APIs without fine-tuning; no institutional data enters any training pipeline.</p>
       </div>
     </div>
 
@@ -678,10 +678,10 @@ header {
 
     <div class="test-result">
       <div class="test-label">Classification Finding</div>
-      <p><strong>Level I - Little to No Impact</strong> under Canada's Directive on Automated Decision-Making. COMPAiSS scores at the lowest risk level on every relevant assessment dimension. This classification applies to all current institutional deployments.</p>
+      <p><strong>Level I - Little to No Impact</strong> under Canada's Directive on Automated Decision-Making, based on COMPAiSS's own assessment of the platform. Each institution should confirm the classification for its own deployment.</p>
     </div>
 
-    <p>The Level I classification is supported by four independent findings, each of which independently places the system at the lowest impact level:</p>
+    <p>The self-assessed Level I classification rests on four findings:</p>
 
     <ul class="verified-list">
       <li>
@@ -697,14 +697,14 @@ header {
         <span>The system provides information only. No action is taken on the user's behalf. A user who receives an unhelpful or incorrect response retains full ability to contact institutional staff directly through existing channels at any time. No rights, benefits, or entitlements are affected by the system's output.</span>
       </li>
       <li>
-        <strong>The pre-inference execution gate eliminates the primary unauthorized institutional hallucination risk category.</strong>
-        <span>Source validation and scope enforcement occur before the AI generates any response. COMPAiSS does not generate answers beyond authorized institutional sources, cannot cite unauthorized sources, and cannot produce content outside the authorized institutional source set.</span>
+        <strong>The pre-inference execution gate is designed to prevent unauthorized institutional answers.</strong>
+        <span>Source validation and scope enforcement occur before the answer-generation model runs. COMPAiSS does not generate an institutional answer when no authorized source supports it, and it cites only sources it has parsed. Errors within authorized generation, such as omissions or misreadings of an authorized source, remain possible and are tracked through evaluation.</span>
       </li>
     </ul>
 
     <div class="finding-block">
       <div class="finding-label">Framework Applicability</div>
-      <p>While the Directive on Automated Decision-Making is a Government of Canada instrument, the risk dimensions it assesses - decision authority, personal data handling, reversibility, and accuracy controls - are directly applicable to institutional AI governance review in higher education, healthcare, and public sector contexts. COMPAiSS scores at the lowest risk level on all dimensions regardless of which institutional framework is applied.</p>
+      <p>While the Directive on Automated Decision-Making is a Government of Canada instrument, the risk dimensions it assesses - decision authority, personal data handling, reversibility, and accuracy controls - are directly applicable to institutional AI governance review in higher education, healthcare, and public sector contexts. Each institution should confirm how the system classifies under the framework it applies.</p>
     </div>
   </div>
 
@@ -757,16 +757,16 @@ header {
     <h2>Architecture Accountability</h2>
     <p class="section-intro">How the system enforces scope, maintains audit trails, and supports institutional oversight.</p>
 
-    <p>COMPAiSS is built on an execution-gated inference architecture. Authorization and scope validation occur before any AI generation takes place. If no authorized institutional source exists for a query, the AI model does not execute. This is the core architectural accountability property - and it is not a configuration setting that can be overridden at the user level.</p>
+    <p>COMPAiSS is built on an execution-gated inference architecture. Authorization and scope validation occur before any AI generation takes place. If no authorized institutional source exists for a query, the answer-generation model does not run. This is the core architectural accountability property - and it is not a configuration setting that can be overridden at the user level.</p>
 
     <ul class="verified-list">
       <li>
         <strong>Pre-inference execution gate</strong>
-        <span>Every query is validated against the institution's authorized source list before any AI generation occurs. Out-of-scope queries are rejected at the gate. The AI model only runs when authorization conditions are satisfied. This constraint is architectural - it cannot be prompted, reframed, or manipulated away.</span>
+        <span>Every query is validated against the institution's authorized source list before any AI generation occurs. Out-of-scope queries are rejected at the gate. The answer-generation model runs only when authorization conditions are satisfied. This constraint is architectural: rewording a question does not change the gate's scope decision.</span>
       </li>
 <li>
         <strong>Authorized source list (greenlist) governance</strong>
-        <span>The institution retains full authority to review, approve, and modify the authorized source list at any time. COMPAiSS cannot access any page, document, or source that is not on the approved list. Every response is traceable to specific authorized sources. See <a href="/deployment-and-institutional-fit.html#greenlist-control">Greenlist Control, Authorization Governance, and Ongoing Source Auditing</a> for how this scales across departments and functions as institutional documentary evidence for procurement and audit review.</span>
+        <span>The institution retains full authority to review, approve, and modify the authorized source list at any time. COMPAiSS draws answers only from pages on the approved list, and each response cites the authorized sources it used. See <a href="/deployment-and-institutional-fit.html#greenlist-control">Greenlist Control, Authorization Governance, and Ongoing Source Auditing</a> for how this scales across departments and functions as institutional documentary evidence for procurement and audit review.</span>
       </li>
       <li>
         <strong>Audit trail and logging</strong>
@@ -781,7 +781,7 @@ header {
         <span>A purpose-built audit server checks every URL in an institution's authorized source list against the live web on a regular maintenance cycle, classifying each entry as active, redirected, broken, or unreachable. Broken or moved URLs are remediated and the corrected list is deployed automatically through the version-controlled repository. See <a href="/governance.html#greenlist-maintenance">Greenlist Integrity and Maintenance</a> for the full audit process.</span>      </li>
       <li>
         <strong>No continuous learning from user interactions</strong>
-        <span>The system does not learn from individual user queries. No interaction data is fed back into any model. The AI model improves only as Microsoft updates the Azure OpenAI models - a process entirely external to institutional data and interactions, with no institutional data used for model training.</span>
+        <span>The system does not learn from individual user queries. No interaction data is fed back into any model. Model versions are changed only after testing, and institutions are notified of material changes. No institutional data is used for model training.</span>
       </li>
     </ul>
   </div>
@@ -793,7 +793,7 @@ header {
     <h2>Risk Register</h2>
     <p class="section-intro">Identified risks by category with architectural and operational mitigations.</p>
 
-    <p>No ethical, financial, privacy, or legal risks have been identified that would impede institutional deployment. The following risks have been identified and mitigated:</p>
+    <p>Identified risks and their mitigations are listed below.</p>
 
     <h3 style="color: var(--text-heading); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2rem 0 0.8rem;">Technical Risks</h3>
     <ul class="risk-list">
@@ -807,7 +807,7 @@ header {
       </li>
       <li>
         <strong>Source URL unavailable at query time</strong>
-        <span>Mitigation: If a source is unreachable at the moment of a query, the system draws from other authorized sources that did respond, or returns a safe failure response directing the user to institutional staff. It cannot fabricate content from a source it cannot reach.</span>
+        <span>Mitigation: If a source is unreachable at the moment of a query, the system draws from other authorized sources that did respond, or returns a safe failure response directing the user to institutional staff. It does not cite or draw on a source it could not retrieve.</span>
       </li>
     </ul>
 
@@ -815,11 +815,11 @@ header {
     <ul class="risk-list">
       <li>
         <strong>Scope creep beyond authorized content</strong>
-        <span>Mitigation: Architectural - the pre-inference execution gate cannot be overridden at the user level. Out-of-scope queries are rejected on the first attempt and every subsequent attempt regardless of how they are phrased or reframed.</span>
+        <span>Mitigation: Architectural - the pre-inference execution gate cannot be overridden at the user level. A question outside the approved sources is turned away on every attempt; rephrasing helps only if the question genuinely falls within those sources.</span>
       </li>
       <li>
         <strong>Adversarial prompt manipulation</strong>
-        <span>Mitigation: Input filtering blocks excessively long inputs, garbage text, and adversarial prompt attempts before they reach the gate. The gate itself enforces scope boundaries deterministically. Attempts to manipulate the AI's instructions are blocked before they reach the model.</span>
+        <span>Mitigation: Input filtering blocks excessively long inputs, garbage text, and adversarial prompt attempts before they reach the gate. Once the gate's inputs are fixed, it permits or blocks the answer-generation call deterministically. Instruction-manipulation attempts within approved scope are mitigated by input handling and are part of ongoing security testing.</span>
       </li>
     </ul>
 
@@ -839,13 +839,13 @@ header {
     <ul class="risk-list">
       <li>
         <strong>Public or institutional concerns about AI deployment</strong>
-        <span>Mitigation: The governance-first architecture, full auditability, stateless privacy-by-design approach, and pre-inference execution gate that structurally eliminates all standard hallucination sources directly address the concerns that generate institutional scrutiny. The system is designed to be auditable and defensible from the concept stage.</span>
+        <span>Mitigation: The governance-first architecture, full auditability, stateless privacy-by-design approach, and pre-inference execution gate, which prevents answers without authorized sources, directly address the concerns that generate institutional scrutiny. The system is designed to be auditable and defensible from the concept stage.</span>
       </li>
     </ul>
 
     <div class="test-result">
       <div class="test-label">Risk Assessment Finding</div>
-      <p>All identified risks are mitigated at the architectural level - not through post-deployment monitoring or policy controls alone. This means mitigations are structural properties of the system that cannot be accidentally disabled or configured away.</p>
+      <p>The principal mitigations are architectural rather than relying on post-deployment monitoring or policy controls alone. They are complemented by greenlist maintenance, configuration control and ongoing testing.</p>
     </div>
   </div>
 
@@ -869,7 +869,7 @@ header {
       </li>
       <li>
         <strong>Crisis query handling</strong>
-        <span>When a query contains language associated with personal distress or crisis, the system returns a pre-approved institutional response directing the user to appropriate support resources - counselling services, campus security, or emergency contacts - as configured by the institution in alignment with its own duty-of-care policies. The AI model does not engage with crisis content.</span>
+        <span>When a query contains language associated with personal distress or crisis, the system returns a pre-approved institutional response directing the user to appropriate support resources - counselling services, campus security, or emergency contacts - as configured by the institution in alignment with its own duty-of-care policies. The answer-generation model does not engage with crisis content once crisis language is detected; detection is configured and tested with each institution.</span>
       </li>
       <li>
         <strong>Developer accountability</strong>
@@ -893,7 +893,7 @@ header {
       <div class="card">
         <div class="card-icon">📋</div>
         <h3>Algorithmic Impact Assessment</h3>
-        <p>A complete AIA has been prepared and submitted for federal review. Institution-specific AIA documentation is available for any regulated institutional deployment on request.</p>
+        <p>An Algorithmic Impact Assessment has been prepared and submitted to an Employment and Social Development Canada (ESDC) review committee. Institution-specific AIA documentation is available for any regulated institutional deployment on request.</p>
       </div>
       <div class="card">
         <div class="card-icon">🔒</div>
@@ -902,8 +902,8 @@ header {
       </div>
       <div class="card">
         <div class="card-icon">⚖</div>
-        <h3>Patent-Protected Architecture</h3>
-        <p>The pre-inference execution gate is the subject of patent applications in Canada (CIPO 3,299,174) and the United States (USPTO 19/455,963). The architectural distinction is formally documented and defensible.</p>
+        <h3>Patent-Pending Architecture</h3>
+        <p>The pre-inference execution gate is the subject of pending patent applications in Canada (CIPO 3,299,174) and the United States (USPTO 19/455,963).</p>
       </div>
       <div class="card">
         <div class="card-icon">🍁</div>
@@ -924,12 +924,12 @@ header {
 
     <div class="finding-block" style="margin-top: 2.5rem;">
       <div class="finding-label">Acceptable Use Policy Compatibility</div>
-      <p>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path that generation-first systems cannot match.</p>
+      <p>COMPAiSS enforces a stricter epistemic boundary than most institutional AUPs require. Because the system only responds to queries within institution-approved scope, and because all responses are traceable to specific authorized sources, COMPAiSS is compatible with standard AUP frameworks by design. For institutions with AI-specific AUP provisions, the execution-gated architecture provides a documented, auditable compliance path.</p>
     </div>
 
     <div class="finding-block">
       <div class="finding-label">Liability Framework</div>
-      <p>COMPAiSS answers only from sources the institution itself has designated as authoritative. If those sources contain an error, the institution's liability exposure is no greater than if a staff member read from the same page. More importantly, COMPAiSS eliminates the category of fabricated institutional guidance - where an AI invents policy that does not exist - that creates the most serious liability exposure for institutions deploying generation-first AI. That class of error is architecturally impossible in COMPAiSS.</p>
+      <p>Liability is a question for each institution's own counsel. What COMPAiSS changes is where answers come from: it answers only from sources the institution has designated as authoritative, and when information cannot be verified from those sources it says so rather than filling the gap. It is designed to prevent the failure where an AI invents policy that does not exist and presents it as institutional fact. Errors in an authorized source, or in how an authorized source is summarized, remain possible, and are traceable through the governance record.</p>
     </div>
   </div>
 
@@ -1007,7 +1007,7 @@ header {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem 2rem;">
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Model runs first, governance applied after</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Hallucinated outputs caught post-generation</div>
-        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> 2 to 5 percent adversarial false negative rate</div>
+        <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Output filters can miss adversarial cases</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Full token cost consumed even for refusals</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Audit trail begins after unauthorized output exists</div>
         <div style="font-size:0.88rem;color:var(--text-main);line-height:1.6;display:flex;align-items:baseline;gap:0.5rem;"><span style="color:#e05555;font-weight:700;flex-shrink:0;">&#x2717;</span> Governance costs scale as model capability increases</div>
