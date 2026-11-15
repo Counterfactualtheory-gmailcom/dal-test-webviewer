@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-JR7LJGK5PK', {
+  page_path: '/servicecan-embed-test'
+});
+</script>
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <title>Service Canada Assistant - EMBEDDINGS TEST - COMPAiSS</title>
+  
+<meta name="robots" content="noindex, nofollow">
+  
+  <style>
+
+/* === COMPAiSS Service Canada Demonstration header === */
+#header {
+  width: 93%;
+  max-width: 540px;
+  margin: 30px auto 24px;
+  text-align: center;
+}
+
+#header .compaiss-logo {
+  display: block;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  border-radius: 18px;
+}
+
+#header .brand-name {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #d3080c;
+}
+
+#header .service-canada-title {
+  margin-top: 5px;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 750;
+  color: #111111;
+}
+
+#header .demo-label {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #d3080c;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+}
+
+#header .app-subtitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f4079;
+  margin: 10px 0 0;
+}
+
+#header .languages {
+  font-size: 14px;
+  color: #555555;
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+#header .source-description {
+  font-size: 13px;
+  color: #444444;
+  line-height: 1.45;
+  max-width: 500px;
+  margin: 10px auto 0;
+}
+
+#header .independent-notice {
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.4;
+  max-width: 500px;
+  margin: 7px auto 0;
+}
+
+@media (max-width: 600px) {
+  #header {
+    margin-top: 24px;
+  }
+
+  #header .compaiss-logo {
+    width: 82px;
+    height: 82px;
+  }
+
+  #header .service-canada-title {
+    font-size: 19px;
+  }
+}
+
+    :root {
+      --wrap: 900px;
+      --pad: 16px;
+      --border: #cccccc;
+      --accent: #ee0000;           /* ✅ Service Canada red */
+      --text: #000000;
+      --bg: #f2f2f2;               /* ✅ Light grey background */
+      --bg-page: #f2f2f2;
+      --muted: #555555;
+      --link: #0f4079;             /* ✅ Matching “Write in any language” blue */
+      --link-visited: #002f5c;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-page);
+      color: var(--text);
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+    .wrap {
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: var(--pad);
+    }
+
+/* --- Center answer output box (same as McGill) --- */
+#out {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+
+  border: 2px solid #ff0000;          /* 🇨🇦 Service Canada red */
+  border-radius: 12px;
+  padding: 18px;
+
+  width: 93%;
+  max-width: 540px;                   /* same as DAL */
+  margin-left: auto;
+  margin-right: auto;
+
+  display: block;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.25); /* red glow */
+  position: relative;
+  transform: none;
+  text-align: left;
+}
+
+/* === Conversation answer divider === */
+.answer-divider {
+  margin: 60px 0 40px;
+  position: relative;
+}
+
+.answer-divider::after {
+  content: "NEW ANSWER";
+  display: block;
+  text-align: center;
+  background: #0f4079;   /* Service Canada blue */
+  color: #ffffff;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
+}
+    
+/* ✅ DAL / McGill parity — hide output until real content exists */
+#out:empty {
+  display: none;
+}
+    
+    a {
+      word-break: break-word;
+      text-decoration: underline;
+      color: var(--link);
+    }
+    a:visited { color: var(--link-visited); }
+    a:hover, a:focus { opacity: 0.9; }
+
+    #out, #out *:not(a) { color: var(--text) !important; }
+    #out a { color: var(--link) !important; }
+    #out a:visited { color: var(--link-visited) !important; }
+    #out, #out * { background: transparent !important; }
+    #out blockquote { color: var(--muted) !important; }
+    #out table th, #out table td { border-color: var(--border) !important; }
+
+/* 🔥 FIX FOR iOS CUT-OFF DESCENDERS (g, y, p, j, q, emoji, bullets) */
+#out * {
+  line-height: 1.4 !important;
+  padding-bottom: 2px !important;
+}
+    
+    pre, code { white-space: pre-wrap; word-break: break-word; }
+    blockquote {
+      margin: 0 0 1em 0;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0.5em 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      vertical-align: top;
+    }
+    h1, h2, h3 {
+      margin-top: 1.2em;
+      color: var(--accent);
+    }
+    .muted { opacity: 0.9; color: var(--muted); }
+    .debug {
+      font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      margin-top: 8px;
+      color: var(--accent);
+      display: none;
+    }
+
+#followup-box {
+  position: relative;
+
+  width: 93%;
+  max-width: 480px;
+  margin-top: 12px;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 12px;
+
+  background: #ffffff;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 6px rgba(255, 0, 0, 0.2);
+
+  box-sizing: border-box;
+}
+    
+/* --- Larger textarea (cleanest, safest) --- */
+#followup-text {
+  width: 100%;
+  min-height: 170px;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: none;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  color: #000;
+}
+#followup-text::placeholder {
+  color: #595959;
+}
+#followup-text:focus {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+    
+#followup-btn, #copy-btn {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+    font-size: 17px;
+    position: relative;    /* ensure no floating */
+    left: 0;               /* FIX: reset accidental shifting */
+    margin-left: 0;        /* FIX: ensure full centering */
+}
+
+    #copy-btn {
+      background: #0f4079;  /* ✅ Blue for bilingual “Write in any language” continuity */
+      color: #fff;
+    }
+    #copy-btn:hover, #followup-btn:hover { opacity: 0.9; }
+
+    /* 🔹 Animated dots */
+    #loading {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    #loading span { animation: blink 1.4s infinite both; }
+    #loading span:nth-child(2) { animation-delay: 0.2s; }
+    #loading span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink { 0%,80%,100% { opacity: 0; } 40% { opacity: 1; } }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<!-- STREAMING: client included directly in the page -->
+<script>
+/**
+ * compaiss-stream-client.js
+ * COMPAiSS Platform — shared browser client for Phase 1 live status streaming
+ *
+ * One call replaces fetch(...) + res.json() in any institution frontend:
+ *
+ *   const data = await CompaissStream.ask(ENDPOINT, { question, previousQuestion });
+ *   safeRender(data.answer || '(no response)');
+ *
+ * - Sends { stream: true } so the server streams status events.
+ * - Shows each status in the existing #loading element by replacing only its
+ *   text label ("Answer coming"); the animated dots are left untouched.
+ *   Status text is set with nodeValue/textContent, never innerHTML.
+ * - Returns the final payload exactly as the server produced it (the same
+ *   object res.json() used to return), so the existing safeRender() path is
+ *   unchanged. Partial answers are never rendered.
+ * - Falls back to plain JSON when the server or a request guard replies
+ *   normally (e.g. rate limit), and to a single read on older webviews.
+ * - Throws on server errors so the page's existing fallback message shows.
+ * - Phase 2: if the server streams the answer (answer_chunk events), shows it
+ *   growing in a temporary box inside #out (marked + DOMPurify, same as the
+ *   page). The box is removed the moment the final answer arrives, so the
+ *   page's own safeRender() still renders the final, fully sanitized answer.
+ * - Diagnostics: after a question, window.CompaissStreamLog shows when each
+ *   status and answer piece arrived (ms after Submit). Timing only, no content.
+ */
+(function (global) {
+  "use strict";
+
+  function parseBlock(block) {
+    var evt = "message";
+    var data = "";
+    block.split(/\r?\n/).forEach(function (line) {
+      if (line.indexOf("event:") === 0) evt = line.slice(6).trim();
+      else if (line.indexOf("data:") === 0) data += line.slice(5).trim();
+    });
+    if (!data) return null;
+    try {
+      return { event: evt, data: JSON.parse(data) };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function readResponse(res, onStatus, onChunk) {
+    var ct = (res.headers && res.headers.get("content-type")) || "";
+    if (ct.indexOf("text/event-stream") === -1) {
+      return await res.json();
+    }
+
+    var finalData = null;
+
+    function handle(block) {
+      var parsed = parseBlock(block);
+      if (!parsed) return;
+      if (parsed.event === "status") {
+        if (parsed.data && parsed.data.text && onStatus) onStatus(String(parsed.data.text), parsed.data);
+      } else if (parsed.event === "answer_chunk") {
+        if (parsed.data && typeof parsed.data.text === "string" && onChunk) onChunk(parsed.data.text);
+      } else if (parsed.event === "answer" || parsed.event === "error") {
+        finalData = parsed.data;
+        if (parsed.event === "error" && finalData && !finalData.error) {
+          finalData.error = "Server error";
+        }
+      }
+    }
+
+    if (res.body && typeof res.body.getReader === "function" && typeof TextDecoder !== "undefined") {
+      var reader = res.body.getReader();
+      var decoder = new TextDecoder();
+      var buf = "";
+      while (true) {
+        var chunk = await reader.read();
+        if (chunk.done) break;
+        buf += decoder.decode(chunk.value, { stream: true });
+        var idx;
+        while ((idx = buf.search(/\r?\n\r?\n/)) !== -1) {
+          handle(buf.slice(0, idx));
+          buf = buf.slice(idx).replace(/^\r?\n\r?\n/, "");
+        }
+      }
+      buf += decoder.decode();
+      if (buf.trim()) handle(buf);
+    } else {
+      // Older webviews: statuses arrive together at the end, answer still works.
+      (await res.text()).split(/\r?\n\r?\n/).forEach(handle);
+    }
+
+    return finalData || { error: "Stream ended without an answer" };
+  }
+
+  // Finds the "Answer coming" text label inside the loading element.
+  function findLabel(el) {
+    if (!el) return null;
+    for (var i = 0; i < el.childNodes.length; i++) {
+      var n = el.childNodes[i];
+      if (n.nodeType === 3 && n.nodeValue.trim()) return n;
+    }
+    return null;
+  }
+
+  // Temporary live answer box (Phase 2). Rendered with the page's own
+  // marked + DOMPurify; never uses unsanitized HTML. Removed before the
+  // final answer is handed back to the page.
+  function createLiveAnswer(question) {
+    var doc = global.document;
+    var out = doc && doc.getElementById("out");
+    if (!out || !global.marked || !global.DOMPurify) return null;
+
+    var box = null;
+    var text = "\u2753 Question:\n" + String(question || "") + "\n\n";
+    var pending = false;
+    var hadContent = !!out.innerHTML.trim();
+
+    function render() {
+      pending = false;
+      if (!box) return;
+      var cleaned = text
+        .replace(/<+START\s*ANSWER[^>]*>+/gi, "")
+        .replace(/<+END\s*ANSWER[^>]*>+/gi, "")
+        .replace(/\[+COMPLETED+\]/gi, "")
+        .replace(/\[+DONE+\]/gi, "");
+      var html = global.DOMPurify.sanitize(global.marked.parse(cleaned), { ADD_ATTR: ["target", "rel"] });
+      box.innerHTML = (hadContent ? '<div class="answer-divider"></div>' : "") + html;
+      var links = box.querySelectorAll("a");
+      for (var i = 0; i < links.length; i++) { links[i].target = "_blank"; links[i].rel = "noopener"; }
+    }
+
+    return {
+      add: function (piece) {
+        if (!box) {
+          box = doc.createElement("div");
+          box.setAttribute("data-compaiss-live", "1");
+          out.setAttribute("aria-busy", "true"); // screen readers wait for the final answer
+          out.appendChild(box);
+          // The answer box sits above the text box, while the page has scrolled
+          // down to the loading line. Bring the start of the new answer into view
+          // once, so the student watches it grow (it then grows downward).
+          try {
+            if (typeof box.scrollIntoView === "function") {
+              box.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          } catch (e) {}
+        }
+        text += piece;
+        if (!pending) {
+          pending = true;
+          (global.requestAnimationFrame || function (f) { return setTimeout(f, 30); })(render);
+        }
+      },
+      remove: function () {
+        if (box && box.parentNode) box.parentNode.removeChild(box);
+        box = null;
+        out.removeAttribute("aria-busy");
+      }
+    };
+  }
+
+  async function ask(url, body, options) {
+    options = options || {};
+    var doc = global.document;
+    var el = options.statusEl || (doc && doc.getElementById("loading"));
+    var label = findLabel(el);
+    var original = label ? label.nodeValue : null;
+
+    var live = null;
+
+    function onStatus(text, data) {
+      if (label) label.nodeValue = text;
+      if (typeof options.onStatus === "function") options.onStatus(text, data);
+    }
+
+    try {
+      var res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "text/event-stream"
+        },
+        body: JSON.stringify(Object.assign({}, body || {}, { stream: true })),
+        signal: options.signal
+      });
+
+      live = options.liveAnswer === false ? null : createLiveAnswer(body && body.question);
+      var log = global.CompaissStreamLog = { startedAt: Date.now(), statuses: [], chunks: [], finalAt: null };
+      var data = await readResponse(res, function (text, d) {
+        log.statuses.push({ ms: Date.now() - log.startedAt, text: text });
+        onStatus(text, d);
+      }, function (piece) {
+        log.chunks.push({ ms: Date.now() - log.startedAt, chars: piece.length });
+        if (live) live.add(piece);
+        if (typeof options.onAnswerChunk === "function") options.onAnswerChunk(piece);
+      });
+
+      log.finalAt = Date.now() - log.startedAt;
+      if (!data || (data.error && !data.answer)) {
+        throw new Error(String((data && (data.message || data.error)) || "No response"));
+      }
+      return data;
+    } finally {
+      if (live) live.remove(); // final answer (or the page's error message) replaces it
+      if (label && original !== null) label.nodeValue = original;
+    }
+  }
+
+  // Drop-in replacement for fetch() on pages that already do
+  //   const res = await fetch(URL, { method:'POST', body: JSON.stringify({...}) });
+  //   const data = await res.json();
+  // Pages change only "fetch(" to "(window.CompaissStream ? CompaissStream.fetch : fetch)(".
+  // Requests without a JSON object body fall straight through to normal fetch.
+  async function streamFetch(url, init) {
+    var body = null;
+    try { body = init && typeof init.body === "string" ? JSON.parse(init.body) : null; } catch (e) { body = null; }
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return fetch(url, init);
+    }
+    var data = await ask(url, body, { signal: init && init.signal });
+    return {
+      ok: true,
+      status: 200,
+      headers: { get: function () { return "application/json"; } },
+      json: async function () { return data; },
+      text: async function () { return JSON.stringify(data); }
+    };
+  }
+
+  global.CompaissStream = { ask: ask, fetch: streamFetch, readResponse: readResponse };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/linkifyjs@4.1.3/dist/linkify-html.min.js"></script>
+
+</head>
+
+<body>
+<main class="wrap" aria-label="COMPAiSS Service Canada Information Assistant embeddings test">
+  
+<!-- COMPAiSS Service Canada Demonstration header -->
+<div id="header">
+
+  <img
+    class="compaiss-logo"
+    src="./compaiss-red-white.png"
+    alt="COMPAiSS compass logo"
+  >
+
+  <div class="brand-name">
+    COMPAiSS
+  </div>
+
+  <div class="service-canada-title">
+    Service Canada Information Assistant
+  </div>
+
+  <div class="demo-label" style="background:#0f4079;">
+    EMBEDDINGS TEST · NOT PRODUCTION
+  </div>
+
+  <div class="app-subtitle">
+    🌐 Write in any language
+  </div>
+
+  <div class="languages">
+    Français · 普通话 · 廣東話 · ਪੰਜਾਬੀ · Español · Tagalog · العربية · Italiano · Português
+  </div>
+
+  <div class="source-description">
+    Powered exclusively by publicly available information from
+    <strong>Service Canada, Employment and Social Development Canada (ESDC),
+    and the Canada Revenue Agency (CRA).</strong>
+  </div>
+</div>
+
+  <!-- Answer output -->
+<div id="out" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Follow-up input -->
+  <div id="followup-box" style="margin-top: 12px;">
+    <textarea
+      id="followup-text"
+      placeholder="Tap & type your Service Canada question, issue, or concern here..."
+    ></textarea>
+
+    <button id="followup-btn">Submit</button>
+    <button id="copy-btn">Copy Last Answer</button>
+
+<div id="loading" role="status" aria-live="polite">
+  Answer coming<span>.</span><span>.</span><span>.</span>
+</div>
+  </div>
+
+  <!-- Debug (optional) -->
+  <div id="dbg" class="debug"></div>
+
+</main>
+
+  <script>
+    marked.setOptions({ gfm:true, breaks:true, mangle:false, headerIds:false });
+    const outEl=document.getElementById('out');
+    const dbgEl=document.getElementById('dbg');
+    const showDebug=/[?&]debug=1\b/.test(location.search);
+    const followupBtn=document.getElementById('followup-btn');
+    const followupText=document.getElementById('followup-text');
+    const copyBtn=document.getElementById('copy-btn');
+
+const isMobile =
+  /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (copyBtn) {
+  copyBtn.style.display = isMobile ? 'block' : 'none';
+}
+    
+    const loading=document.getElementById('loading');
+    let linkHandlerAttached=false;
+    let lastAnswer="";
+    let lastSingleAnswer = "";
+    window.lastQuestion = "";
+
+    function debug(m){if(!showDebug)return;dbgEl.style.display='block';dbgEl.textContent+=(dbgEl.textContent?'\n':'')+m;}
+
+function safeRender(md){
+  if (String(md).trim() === 'ready') return;
+  const raw = String(md || '');
+
+  // ✅ Strip control tags from scaffolded answers
+  const cleaned = raw
+
+ // 🔥 REMOVE internal link-control directives (SC-only bug)
+  .replace(/^OPEN_IN_BROWSER::.*$/gmi, '')
+  .replace(/^OPEN_LINK::.*$/gmi, '')
+    
+    .replace(/<+START\s*ANSWER[^>]*>+/gi, '')   // <<START ANSWER>> and variants
+    .replace(/<+END\s*ANSWER[^>]*>+/gi, '')     // <<END ANSWER>> and variants
+    .replace(/\[+COMPLETED+\]/gi, '')           // [COMPLETED]
+    .replace(/\[+DONE+\]/gi, '')                // [DONE]
+    .trim();
+
+  // ✅ Render cleaned Markdown
+  const html = marked.parse(cleaned || '');
+ const clean1 = DOMPurify.sanitize(html, { ADD_ATTR: ['target','rel'] });
+
+  let linked = clean1;
+  try {
+    if (typeof linkifyHtml === 'function') {
+      linked = linkifyHtml(clean1, {
+        defaultProtocol: 'https',
+        nl2br: false,
+        validate: { url: (v) => /^https?:\/\//i.test(v) },
+        attributes: { rel: 'noopener', target: '_blank' }
+      });
+    }
+  } catch (e) {
+    debug('linkify error:' + e);
+  }
+
+const clean2 = DOMPurify.sanitize(linked, { ADD_ATTR: ['target','rel'] });
+lastSingleAnswer = clean2;
+
+// Append into the output box
+if (outEl.textContent.includes('Waiting for content')) outEl.innerHTML = '';
+
+const questionBlock = window.lastQuestion
+  ? `<div style="font-weight:700;margin-bottom:8px;">❓ ${window.lastQuestion}</div>`
+  : '';
+
+outEl.innerHTML +=
+  (outEl.innerHTML
+    ? '<div class="answer-divider"></div>'
+    : '') +
+  questionBlock +
+  clean2;
+
+// Hide decorative emoji from screen readers
+outEl.querySelectorAll('*').forEach(el => {
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3 && /\p{Emoji}/u.test(node.textContent)) {
+      const wrapped = node.textContent.replace(
+        /(\p{Emoji_Presentation}|\p{Extended_Pictographic})/gu,
+        '<span aria-hidden="true">$1</span>'
+      );
+      const span = document.createElement('span');
+      span.innerHTML = wrapped;
+      node.replaceWith(span);
+    }
+  });
+});
+  
+  /* -----------------------------------------------------------
+     DAL–McGill DOM REFRESH BLOCK — triggers reflow & wake-up
+  ----------------------------------------------------------- */
+  function removeEmptyBullets() {
+    const lists = document.querySelectorAll("ul, ol");
+    lists.forEach(list => {
+      const items = list.querySelectorAll("li");
+      items.forEach(li => {
+        if (!li.textContent.trim()) li.remove();
+      });
+      if (!list.textContent.trim()) list.remove();
+    });
+  }
+  removeEmptyBullets();
+  /* ----------------------------------------------------------- */
+  
+  // ✅ Normalize all links
+  outEl.querySelectorAll('a').forEach(a => {
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+}
+
+    // ✅ Universal Copy handler
+copyBtn.onclick = () => {
+  const html = (lastSingleAnswer || "").trim();
+  if (!html) {
+    alert("No response yet to copy.");
+    return;
+  }
+
+  // Create temporary DOM parser
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = html;
+
+  // Convert <a> tags → Markdown [label](url)
+  tempDiv.querySelectorAll("a[href]").forEach(a => {
+    const label = a.textContent.trim();
+    const url = a.href.trim();
+    const md = `[${label}](${url})`;
+    a.replaceWith(document.createTextNode(md));
+  });
+
+  // Extract readable text without any HTML tags
+  const text = tempDiv.innerText
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  try {
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+    });
+  } catch (err) {
+    // iOS fallback
+    const t = document.createElement("textarea");
+    t.value = text;
+    t.style.position = "fixed";
+    t.style.opacity = "0";
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => (copyBtn.textContent = "Copy Last Answer"), 1500);
+  }
+};
+    
+    followupBtn.onclick = async () => {
+      const q = followupText.value.trim();
+      if (!q) return;
+window.lastUserQuestion = window.lastQuestion || "";
+window.lastQuestion = q;
+      
+loading.style.display = 'block';
+loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+followupBtn.disabled = true;
+      
+      try {
+// TEST BACKEND (servicecan-embeddings branch). Production line kept below, commented out.
+const res = await (window.CompaissStream && window.CompaissStream.fetch ? window.CompaissStream.fetch : fetch)( /* STREAMING */'https://servicecanbackendproduction-servicecan-embeddings-test.up.railway.app/ask', {
+//const res = await (window.CompaissStream && window.CompaissStream.fetch ? window.CompaissStream.fetch : fetch)( /* STREAMING */'https://servicecanbackendproduction-production.up.railway.app/ask', {
+//const res = await fetch('https://servicecanbackendproduction-service-canada-cohere-test.up.railway.app/ask', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    question: q,
+    previousQuestion: window.lastUserQuestion || "",
+    previousAnswer: lastAnswer
+  })
+});
+        const data = await res.json();
+        lastAnswer = data.answer || "";
+        safeRender(data.answer || '(no response)');
+      } catch (err) {
+        safeRender('⚠️ The system is experiencing a high volume of submissions — please try again in a few minutes.\n\nFor direct assistance, contact Service Canada:\n\n**Telephone:** 1-800-622-6232\n\n**TTY:** 1-800-926-9105\n\n**Hours:** Monday to Friday, 8:30 am to 4:30 pm local time');
+      }
+      loading.style.display = 'none';
+      followupBtn.disabled = false;
+      followupText.value = '';
+    };
+
+</script>
+
+<!-- ===========================================
+     IN-APP OVERLAY BROWSER FOR SERVICE CANADA
+     =========================================== -->
+<style>
+#sc-browser-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 99999;
+  display: none;
+}
+
+#sc-browser-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+
+<!-- === COMPAiSS PREMIUM FORMATTING — CSS ONLY (SAFE FOR ALL APPS) === -->
+<style>
+
+/* --- FIX: Prevent iOS clipping of numbered lists and bullets --- */
+#out {
+  padding-left: 8px !important;     /* Ensures list markers are never clipped */
+}
+
+/* Lists (merged fix + spacing rules) */
+#out ol,
+#out ul {
+  padding-left: 1.4em !important;   /* Enough space for iOS list markers */
+  margin-left: 0 !important;        /* Prevent negative browser margin */
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+}
+
+#out li {
+  padding-left: 2px;                /* Micro-indent for safety */
+  margin-bottom: 0.25em;
+  line-height: 1.4;
+}
+
+/* Paragraph spacing & readability */
+#out p {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  line-height: 1.45;
+}
+
+/* Clean branded hyperlinks */
+#out a {
+color: #0645AD;   /* standard web blue */
+  text-decoration: underline;
+  font-weight: 500;
+}
+#out a:hover {
+  opacity: 0.85;
+}
+
+/* Elegant blockquotes for policy quotations */
+#out blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-left: 0;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  color: #555;
+  font-style: italic;
+}
+  
+</style>
+
+</body>
+</html>
