@@ -488,8 +488,398 @@ footer {
     transition: none !important;
   }
 }
+
+  .research-list .pub-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.55rem;
+  }
+  .research-list .pub-meta a { font-size: inherit; }
 </style>
 
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "name": "COMPAiSS Research & Publications",
+ "numberOfItems": 23,
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "item": {
+    "@type": "Article",
+    "name": "Why AI Developed This Way</a></li> <li><a href=\"/governance.html\">AI Governance</a></li> <li><a href=\"/ai-risk-assessment.html\">AI Risk Assessment</a></li> <li><a href=\"/compaiss_demos_and_pricing.html\">COMPAiSS Demos & Benchmarking</a></li> <li><a href=\"/deployment-and-institutional-fit.html\">Deployment and Institutional Fit</a></li> <li><a href=\"/index_french.html\">FR</a></li> </ul> </nav> </header> <main id=\"main\"> <!-- ============================================================ --> <!-- HEADER --> <!-- ============================================================ --> <div class=\"page-header\"> <div class=\"eyebrow\"> COMPAiSS Research Library </div> <h1> Research & Publications </h1> <p> Research on authorization-first AI governance, execution-gated generation, institutional evidence, hallucination risk, enterprise RAG, regulatory alignment, empirical evaluation, and the design of governed AI systems for regulated institutions. </p> </div> <!-- ============================================================ --> <!-- INTRODUCTION --> <!-- ============================================================ --> <div class=\"intro\"> <p> COMPAiSS research examines a central question for regulated institutions: <strong>how should artificial intelligence operate when the authority to provide an answer matters as much as the factual plausibility of the answer itself?</strong> </p> <p> The research program examines the architectural, empirical, regulatory, operational, and economic implications of governing institutional AI before primary inference occurs rather than relying primarily on controls applied during or after generation. </p> <p> This library consolidates COMPAiSS research published in both HTML and PDF formats, including major research papers, architectural analyses, empirical evaluations, governance reports, regulatory assessments, technical figures, and supporting research materials. </p> <div class=\"highlight\"> <p> <strong>Research focus:</strong> COMPAiSS distinguishes factual correctness from institutional authority. Its research asks not only whether an AI system can produce a plausible answer, but whether the institution has authorized the evidence and conditions under which that answer may be generated. </p> </div> </div> <!-- ============================================================ --> <!-- NAVIGATION --> <!-- ============================================================ --> <nav class=\"section-nav\" aria-label=\"Research library sections\"> <strong>Browse Research</strong> <ul> <li><a href=\"#major-research\">Major Research Papers & Analyses</a></li> <li><a href=\"#architecture\">Architecture & Governance</a></li> <li><a href=\"#rag\">COMPAiSS, RAG & Generation-First AI</a></li> <li><a href=\"#hallucinations\">Hallucinations & Institutional AI Failure</a></li> <li><a href=\"#evaluation\">Governance Testing & Evaluation</a></li> <li><a href=\"#regulatory\">Regulatory & Policy Alignment</a></li> <li><a href=\"#cost\">Cost, Deployment & Strategy</a></li> <li><a href=\"#white-papers\">White Papers</a></li> </ul> </nav> <!-- ============================================================ --> <!-- MAJOR HTML RESEARCH --> <!-- ============================================================ --> <section class=\"category\" id=\"major-research\"> <h2>Major Research Papers & Analyses</h2> <p class=\"category-intro\"> Long-form research and comparative analyses available directly in HTML. </p> <ul class=\"research-list\"> <li class=\"featured\"> <a href=\"/beyond-hallucination-final-v7.html\"> Authorization-First AI Governance: A Cross-Sector Framework and Empirical Evaluation of Institutional AI Systems",
+    "url": "https://compaiss.ca/why-ai-developed-this-way.html",
+    "description": "Comprehensive architectural and empirical analysis of authorization-first institutional AI, including a formal governance taxonomy, deterministic authorization framework, execution-gated generation model, architectural invariants, failure classification, and empirical evaluation across regulated institutional deployments.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "item": {
+    "@type": "Article",
+    "name": "Beyond Accuracy: Governance-First AI for Regulated Institutions",
+    "url": "https://compaiss.ca/criticisms-and-responses-v9.html",
+    "description": "Synthesis of the evidence for authorization-first institutional AI: the governance problem documented in the literature, results across four institutional configurations built from public web pages (AI-scored), what the architecture guarantees, a common governance test for any AI system, and answers to the questions institutions ask most.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "item": {
+    "@type": "Article",
+    "name": "The Institutional-Evidence Question in Enterprise AI — Competitive Landscape Analysis",
+    "url": "https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html",
+    "description": "Comparative analysis of COMPAiSS and major enterprise AI approaches, including enterprise RAG, permission-aware retrieval, agent governance, data governance, workload admission, runtime management, sovereign AI, and enterprise knowledge systems.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
+    "@type": "Article",
+    "name": "Regulatory Compliance Comparison",
+    "url": "https://compaiss.ca/compaiss-regulatory-compliance-comparison.html",
+    "description": "Comparative assessment of enterprise AI architectures against emerging Canadian and European expectations for authorization, explainability, traceability, accountability, institutional control, and AI governance.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "item": {
+    "@type": "Article",
+    "name": "Architectural Investigation",
+    "url": "https://compaiss.ca/architecture-investigation.html",
+    "description": "Investigation of the structural differences between conventional generation-first AI systems and COMPAiSS execution-gated generation, including the implications of moving authorization ahead of primary institutional inference. Exploratory: based on AI model responses in exchanges led by COMPAiSS, not independent review.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 6,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS Research Positioning Paper: Execution-Gated Inference Architecture",
+    "url": "https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf",
+    "description": "Maps the growing family of AI architectures that build governance into the execution pipeline, organized by when control is applied (during training, before inference, during or after generation) and what is authorized (values, content, dialogue, actions or evidence). It compares COMPAiSS with constitutional training, safeguard classifiers, runtime guardrails and capability-based designs such as CaMeL, and sets out the five properties that distinguish it: evidence authorized before inference, the institution as the authorizing party, inference confined to that evidence, fail-closed refusal, and per-claim traceability.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-10"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 7,
+   "item": {
+    "@type": "Report",
+    "name": "Authorization-Controlled Institutional AI in Regulated Environments",
+    "url": "https://compaiss.ca/assets/compaiss_institutional_positioning_styled.pdf",
+    "description": "A short positioning paper for institutional decision-makers. It compares the three approaches on the market (scripted FAQ chatbots, generation-first AI, and authorization-controlled inference) and explains why the first two fall short for institutions whose published rules carry regulatory authority. It then describes how COMPAiSS keeps responses within institutionally defined boundaries, so the AI cannot misstate published policy, invent procedural details, or interpret requirements beyond their established meaning.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-02"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 8,
+   "item": {
+    "@type": "Report",
+    "name": "The Road Less Travelled — Rethinking Generative AI Costs, Safety, and Trust in Regulated Institutions",
+    "url": "https://compaiss.ca/assets/road_less_travelled_revised.pdf",
+    "description": "An accessible essay on why regulated organizations may need a different kind of AI system rather than more guardrails on standard tools. Using two metaphors (the “AI Matrix” of unexamined design assumptions, and the road less travelled), it traces how those assumptions create ongoing costs, risks and oversight burdens. It argues that execution-gated inference lets institutions start from their obligations: the institution defines the scope, and the AI operates inside it.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 9,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS vs. RAG — Comparative Architecture Tables",
+    "url": "https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2.pdf",
+    "description": "Side-by-side comparison of retrieval-augmented generation and COMPAiSS across retrieval, authorization, evidence, inference, governance, and failure handling.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 10,
+   "item": {
+    "@type": "Report",
+    "name": "Figure 1 — Standard Retrieval-Augmented Generation Architecture",
+    "url": "https://compaiss.ca/assets/rag_figure_1.pdf",
+    "description": "Technical figure illustrating a conventional generation-first RAG pipeline in which retrieval identifies evidence for model inference.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 11,
+   "item": {
+    "@type": "Report",
+    "name": "Figure 2 — COMPAiSS Execution-Gated Generation Architecture",
+    "url": "https://compaiss.ca/assets/compaiss_figure_2.pdf",
+    "description": "Technical figure illustrating authorization, source validation, parsing, and evidence requirements before primary institutional generation is permitted.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 12,
+   "item": {
+    "@type": "Report",
+    "name": "Hallucination Rates in Contemporary AI Systems, 2023–2025",
+    "url": "https://compaiss.ca/assets/hallucination_rates_in_contemporary_ai_Systems-2023-2025.pdf",
+    "description": "An evidence brief compiling hallucination and error rates from peer-reviewed studies, official benchmarks and institutional research reports, with every source verified. Highlights include 50–83% adversarial hallucination rates in a clinical vignette study, 17–34% in legal research tools marketed as “hallucination-free”, and 22–94% across 26 frontier models on a 2026 factuality benchmark. Its central conclusion: hallucination is a persistent property of inference-first systems, not a temporary limitation that better models will remove.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-06"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 13,
+   "item": {
+    "@type": "Report",
+    "name": "Institutional AI Failures in Practice",
+    "url": "https://compaiss.ca/assets/institutional_ai_failures_in_practice.pdf",
+    "description": "Five publicly reported cases in which general-purpose AI deployments in universities and other regulated settings ran into accuracy, governance or accountability problems, beginning with faculty opposition to California State University’s renewed system-wide ChatGPT Edu contract. Each case is drawn from independent reporting. Together, the paper argues, they show a pattern rooted in generation-first architecture: problems that disclaimers, monitoring and after-the-fact filtering cannot fully resolve.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-05"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 14,
+   "item": {
+    "@type": "Report",
+    "name": "Hallucinations by Design: A Cross-Model Assessment of How Major AI Consulting Firms Advise Clients to Manage Generative AI Errors",
+    "url": "https://compaiss.ca/assets/final_report-hallucinations_by_design-v2.pdf",
+    "description": "An exploratory analysis in which four AI models (GPT, Perplexity, Copilot and Gemini) each assessed, from public documentation, how Deloitte, PwC, KPMG and Microsoft conceptualize and control AI hallucination. The four assessments were compared side by side, and the report presents only the conclusions on which they converged. Based on AI model outputs, not independent review.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 15,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS Governance Stress Test",
+    "url": "https://compaiss.ca/assets/compaiss-governance-stress-test-en.pdf",
+    "description": "A technical case study of an adversarial test that combined a direct policy contradiction, ambiguity about who holds authority, and an imminent student-safety risk in a single prompt. Under sustained pressure to confirm an administrative override that did not exist in its authorized sources, COMPAiSS refused to invent the authority and routed the decision to documented decision-makers. Result: no observed generative leakage, no fabricated authority, no undocumented override. Conducted by COMPAiSS.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 16,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS Governance Stress Test 02",
+    "url": "https://compaiss.ca/assets/compaiss-governance-stress-test-02-en.pdf",
+    "description": "Tests whether an AI system will accept a user’s incorrect institutional premise. A student facing a hearing asked for second-offence penalties under Dalhousie’s Student Code of Conduct, which does not govern academic offences. COMPAiSS identified and corrected the governing framework before answering. Microsoft Copilot, Perplexity and Google Gemini, when shown the error, acknowledged that they had accepted the wrong framework; their admissions are reproduced verbatim. Conducted by COMPAiSS.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 17,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS CRA Evaluation Report",
+    "url": "https://compaiss.ca/assets/compaiss_cra_evaluation_report.pdf",
+    "description": "A structured 12-question comparison of the Canada Revenue Agency’s public GenAI chatbot on Canada.ca and COMPAiSS. Both systems received identical questions in real time; responses were recorded verbatim and scored against an eight-criterion rubric. Findings include temporal awareness: the CRA chatbot cited filing deadlines that had already passed, while COMPAiSS oriented its answers to the current filing cycle. Published by COMPAiSS.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-06-08"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 18,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS at MUHC: Authorization-First AI for Regulated Healthcare Information Governance",
+    "url": "https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf",
+    "description": "A case study using the McGill University Health Centre (MUHC) as a worked example of a growing problem: patients increasingly get health information from general-purpose AI, separated from the source responsible for its accuracy and updating. It reviews evidence of that shift, compares general AI assistants, the hospital’s own search and FAQ tools, and COMPAiSS on real patient questions, and examines how an authorization-first assistant answers only when hospital-approved evidence supports it and otherwise redirects.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-11-11"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 19,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS Healthcare Governance: Executive Brief",
+    "url": "https://compaiss.ca/assets/compaiss_muhc_executive_brief.pdf",
+    "description": "A short brief for hospital leadership summarizing the MUHC case study’s five findings: patient traffic is shifting toward AI; general AI assistants gave specific medication advice not drawn from MUHC sources; disabling COMPAiSS’s controls produced unsupported clinical detail; the hospital’s own search and FAQ tools cannot handle multi-part patient questions; and governed AI answered specifically from approved sources while redirecting the rest.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-11-12"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 20,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS Policy and Regulatory Alignment Report 2026",
+    "url": "https://compaiss.ca/assets/compaiss_policy_regulatory_alignment_report_2026.pdf",
+    "description": "Assesses execution-gated inference against Canada’s Voluntary Code of Conduct on advanced generative AI (ISED, 2023), Canada’s National AI Strategy, AI for All (2026), the NIST AI Risk Management Framework, and Zero Trust Architecture. Its central claim is not that gating eliminates AI risk, but that a deterministic authorization step before the model runs changes the risk profile, reducing exposure to hallucination, prompt injection and unauthorized policy interpretation, and makes the system structurally easier to audit.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-06"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 21,
+   "item": {
+    "@type": "Report",
+    "name": "Cost Savings by Design — Comparative Cost Analysis",
+    "url": "https://compaiss.ca/assets/cost_savings_by_design_styled.pdf",
+    "description": "An operating-cost analysis for an institution handling about 100,000 AI-assisted queries a year. It estimates $80,000–$185,000 annually for conventional enterprise AI against roughly $12,000–$33,000 for COMPAiSS, and attributes the difference to architecture: the model runs only when an authorized institutional answer exists, so no compute is spent on unsupported or refused requests. Estimates rest on the assumptions stated in the paper and exclude non-AI infrastructure and change-management costs.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 22,
+   "item": {
+    "@type": "Report",
+    "name": "Breaking Out of the Matrix — A New Opportunity for AI Consulting Firms with Regulated Industry Clients",
+    "url": "https://compaiss.ca/assets/breaking_out_of_the_matrix_v3_2.pdf",
+    "description": "A white paper addressed to the consulting firms that advise regulated institutions on AI. Drawing on an exploratory cross-model assessment of AI model outputs, it argues that leading firms work within a generation-first paradigm that treats hallucination as inevitable and manages it after the fact. It presents execution-gated inference as an alternative, claiming not perfection but errors of a kind institutions can govern, audit and stand behind.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-05"
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 23,
+   "item": {
+    "@type": "Report",
+    "name": "COMPAiSS White Paper — Execution-Gated Inference: A Structural Solution to AI Hallucination in Regulated Institutional Environments",
+    "url": "https://compaiss.ca/assets/compaiss-white-paper-2026-v2.pdf",
+    "description": "The core COMPAiSS white paper. It argues that hallucination persists under RAG, output filtering, confidence scoring and human review because all of them assume the model always runs and enforce safety afterward. It describes execution-gated inference, in which generation starts only after a pre-execution check confirms that verified institutional sources support an answer, and covers the architecture, its theoretical basis, empirical performance, relation to prior art, and applications in government, healthcare, legal services and higher education.",
+    "inLanguage": "en-CA",
+    "author": {
+     "@type": "Organization",
+     "name": "COMPAiSS Inc."
+    },
+    "encodingFormat": "application/pdf",
+    "datePublished": "2026-05"
+   }
+  }
+ ]
+}
+</script>
 </head>
 
 <body>
@@ -745,10 +1135,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Research positioning paper examining execution-gated inference as an
-        architectural alternative for institutional AI systems operating under
-        formal authority and governance constraints.
+        Maps the growing family of AI architectures that build governance into the execution pipeline, organized by when control is applied (during training, before inference, during or after generation) and what is authorized (values, content, dialogue, actions or evidence). It compares COMPAiSS with constitutional training, safeguard classifiers, runtime guardrails and capability-based designs such as CaMeL, and sets out the five properties that distinguish it: evidence authorized before inference, the institution as the authorizing party, inference confined to that evidence, fail-closed refusal, and per-claim traceability.
       </p>
+      <p class="pub-meta">7 pages &middot; July 2026, revised October 2026 &middot; <a href="/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -761,10 +1150,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Institutional positioning paper describing the structural limitations
-        of generation-first AI and the case for authorization before
-        institutional inference.
+        A short positioning paper for institutional decision-makers. It compares the three approaches on the market (scripted FAQ chatbots, generation-first AI, and authorization-controlled inference) and explains why the first two fall short for institutions whose published rules carry regulatory authority. It then describes how COMPAiSS keeps responses within institutionally defined boundaries, so the AI cannot misstate published policy, invent procedural details, or interpret requirements beyond their established meaning.
       </p>
+      <p class="pub-meta">6 pages &middot; February 2026 &middot; <a href="/assets/compaiss_positionnement_institutionnel_styled.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -778,10 +1166,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Examines an architectural path away from conventional generation-first
-        AI and its implications for trust, safety, governance, cost, and
-        institutional deployment.
+        An accessible essay on why regulated organizations may need a different kind of AI system rather than more guardrails on standard tools. Using two metaphors (the “AI Matrix” of unexamined design assumptions, and the road less travelled), it traces how those assumptions create ongoing costs, risks and oversight burdens. It argues that execution-gated inference lets institutions start from their obligations: the institution defines the scope, and the AI operates inside it.
       </p>
+      <p class="pub-meta">4 pages &middot; <a href="/assets/la_voie_moins_empruntee.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -821,6 +1208,7 @@ footer {
         across retrieval, authorization, evidence, inference, governance,
         and failure handling.
       </p>
+      <p class="pub-meta">Single-page figure &middot; <a href="/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -836,6 +1224,7 @@ footer {
         Technical figure illustrating a conventional generation-first RAG
         pipeline in which retrieval identifies evidence for model inference.
       </p>
+      <p class="pub-meta">Single-page figure &middot; <a href="/assets/figure1_rag_standard_fr-v2.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -852,6 +1241,7 @@ footer {
         parsing, and evidence requirements before primary institutional
         generation is permitted.
       </p>
+      <p class="pub-meta">Single-page figure &middot; <a href="/assets/figure2_compass_controlee_fr-v2.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -887,9 +1277,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Comparative review of empirical hallucination findings across major
-        AI systems and retrieval-augmented environments.
+        An evidence brief compiling hallucination and error rates from peer-reviewed studies, official benchmarks and institutional research reports, with every source verified. Highlights include 50–83% adversarial hallucination rates in a clinical vignette study, 17–34% in legal research tools marketed as “hallucination-free”, and 22–94% across 26 frontier models on a 2026 factuality benchmark. Its central conclusion: hallucination is a persistent property of inference-first systems, not a temporary limitation that better models will remove.
       </p>
+      <p class="pub-meta">7 pages &middot; Sources verified June 2026 &middot; <a href="/assets/hallucination_rates-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -902,11 +1292,20 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Examination of documented cases in which AI deployment in higher
-        education and other regulated environments produced material
-        institutional failures.
+        Five publicly reported cases in which general-purpose AI deployments in universities and other regulated settings ran into accuracy, governance or accountability problems, beginning with faculty opposition to California State University’s renewed system-wide ChatGPT Edu contract. Each case is drawn from independent reporting. Together, the paper argues, they show a pattern rooted in generation-first architecture: problems that disclaimers, monitoring and after-the-fact filtering cannot fully resolve.
       </p>
+      <p class="pub-meta">4 pages &middot; May 2026 &middot; <a href="/assets/echecs_ia_institutionnels_en_pratique.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
+    </li>
+    <li>
+      <a href="/assets/final_report-hallucinations_by_design-v2.pdf" lang="en-CA">
+        Hallucinations by Design: A Cross-Model Assessment of How Major AI Consulting Firms Advise Clients to Manage Generative AI Errors
+      </a>
+      <span class="format">PDF</span>
+      <p>
+        An exploratory analysis in which four AI models (GPT, Perplexity, Copilot and Gemini) each assessed, from public documentation, how Deloitte, PwC, KPMG and Microsoft conceptualize and control AI hallucination. The four assessments were compared side by side, and the report presents only the conclusions on which they converged. Based on AI model outputs, not independent review.
+      </p>
+      <p class="pub-meta">4 pages &middot; <a href="/assets/rapport_final-hallucinations_par_conception-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
     </li>
 
   </ul>
@@ -941,9 +1340,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Evaluation of authorization, evidence, scope, and governance behavior
-        under deliberately challenging institutional questions.
+        A technical case study of an adversarial test that combined a direct policy contradiction, ambiguity about who holds authority, and an imminent student-safety risk in a single prompt. Under sustained pressure to confirm an administrative override that did not exist in its authorized sources, COMPAiSS refused to invent the authority and routed the decision to documented decision-makers. Result: no observed generative leakage, no fabricated authority, no undocumented override. Conducted by COMPAiSS.
       </p>
+      <p class="pub-meta">5 pages &middot; <a href="/assets/compaiss-governance-stress-test-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -956,9 +1355,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Additional governance stress testing of execution-gated institutional
-        AI behavior, authorization controls, and safe failure handling.
+        Tests whether an AI system will accept a user’s incorrect institutional premise. A student facing a hearing asked for second-offence penalties under Dalhousie’s Student Code of Conduct, which does not govern academic offences. COMPAiSS identified and corrected the governing framework before answering. Microsoft Copilot, Perplexity and Google Gemini, when shown the error, acknowledged that they had accepted the wrong framework; their admissions are reproduced verbatim. Conducted by COMPAiSS.
       </p>
+      <p class="pub-meta">6 pages &middot; <a href="/assets/compaiss-governance-stress-test-02-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -971,10 +1370,30 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Structured evaluation report examining COMPAiSS performance against
-        institutional governance and reliability criteria.
+        A structured 12-question comparison of the Canada Revenue Agency’s public GenAI chatbot on Canada.ca and COMPAiSS. Both systems received identical questions in real time; responses were recorded verbatim and scored against an eight-criterion rubric. Findings include temporal awareness: the CRA chatbot cited filing deadlines that had already passed, while COMPAiSS oriented its answers to the current filing cycle. Published by COMPAiSS.
       </p>
+      <p class="pub-meta">22 pages &middot; Tested June 8, 2026 &middot; <a href="/assets/compaiss_cra_evaluation_report-fr.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
+    </li>
+    <li>
+      <a href="/assets/compaiss_healthcare_governance_case_study.pdf" lang="en-CA">
+        COMPAiSS at MUHC: Authorization-First AI for Regulated Healthcare Information Governance
+      </a>
+      <span class="format">PDF</span>
+      <p>
+        A case study using the McGill University Health Centre (MUHC) as a worked example of a growing problem: patients increasingly get health information from general-purpose AI, separated from the source responsible for its accuracy and updating. It reviews evidence of that shift, compares general AI assistants, the hospital’s own search and FAQ tools, and COMPAiSS on real patient questions, and examines how an authorization-first assistant answers only when hospital-approved evidence supports it and otherwise redirects.
+      </p>
+      <p class="pub-meta">23 pages &middot; July 2026, revised November 11, 2026 &middot; <a href="/assets/compaiss_muhc_case_study_v22_FR.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
+    </li>
+    <li>
+      <a href="/assets/compaiss_muhc_executive_brief.pdf" lang="en-CA">
+        COMPAiSS Healthcare Governance: Executive Brief
+      </a>
+      <span class="format">PDF</span>
+      <p>
+        A short brief for hospital leadership summarizing the MUHC case study’s five findings: patient traffic is shifting toward AI; general AI assistants gave specific medication advice not drawn from MUHC sources; disabling COMPAiSS’s controls produced unsupported clinical detail; the hospital’s own search and FAQ tools cannot handle multi-part patient questions; and governed AI answered specifically from approved sources while redirecting the rest.
+      </p>
+      <p class="pub-meta">6 pages &middot; November 12, 2026 &middot; <a href="/assets/compaiss_muhc_executive_brief_FR.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
     </li>
 
   </ul>
@@ -1009,10 +1428,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Analysis of COMPAiSS architecture against contemporary AI governance,
-        accountability, explainability, authorization, and regulatory
-        expectations.
+        Assesses execution-gated inference against Canada’s Voluntary Code of Conduct on advanced generative AI (ISED, 2023), Canada’s National AI Strategy, AI for All (2026), the NIST AI Risk Management Framework, and Zero Trust Architecture. Its central claim is not that gating eliminates AI risk, but that a deterministic authorization step before the model runs changes the risk profile, reducing exposure to hallucination, prompt injection and unauthorized policy interpretation, and makes the system structurally easier to audit.
       </p>
+      <p class="pub-meta">11 pages &middot; June 2026 &middot; <a href="/assets/compaiss_rapport_alignement_reglementaire_politique_2026.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -1048,10 +1466,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Analysis of infrastructure, inference, maintenance, and governance
-        cost differences between execution-gated institutional AI and
-        conventional enterprise generation-first deployments.
+        An operating-cost analysis for an institution handling about 100,000 AI-assisted queries a year. It estimates $80,000–$185,000 annually for conventional enterprise AI against roughly $12,000–$33,000 for COMPAiSS, and attributes the difference to architecture: the model runs only when an authorized institutional answer exists, so no compute is spent on unsupported or refused requests. Estimates rest on the assumptions stated in the paper and exclude non-AI infrastructure and change-management costs.
       </p>
+      <p class="pub-meta">4 pages &middot; <a href="/assets/economies_de_couts_par_conception_styled.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -1065,10 +1482,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Strategic analysis of execution-gated generation as an alternative
-        architecture for consulting firms and system integrators serving
-        regulated organizations.
+        A white paper addressed to the consulting firms that advise regulated institutions on AI. Drawing on an exploratory cross-model assessment of AI model outputs, it argues that leading firms work within a generation-first paradigm that treats hallucination as inevitable and manages it after the fact. It presents execution-gated inference as an alternative, claiming not perfection but errors of a kind institutions can govern, audit and stand behind.
       </p>
+      <p class="pub-meta">10 pages &middot; May 2026 &middot; <a href="/assets/sortir_de_la_matrice_fr_3.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 
@@ -1105,12 +1521,9 @@ footer {
       <span class="format">PDF</span>
 
       <p>
-        Foundational COMPAiSS white paper presenting execution-gated
-        inference as an architectural alternative to generation-first AI,
-        including its theoretical basis, governance model, empirical
-        performance, prior-art distinction, and application in regulated
-        institutional environments.
+        The core COMPAiSS white paper. It argues that hallucination persists under RAG, output filtering, confidence scoring and human review because all of them assume the model always runs and enforce safety afterward. It describes execution-gated inference, in which generation starts only after a pre-execution check confirms that verified institutional sources support an answer, and covers the architecture, its theoretical basis, empirical performance, relation to prior art, and applications in government, healthcare, legal services and higher education.
       </p>
+      <p class="pub-meta">17 pages &middot; May 2026 &middot; <a href="/assets/compaiss_livre_blanc_v5.pdf" hreflang="fr-CA" lang="fr">Version française</a></p>
 
     </li>
 

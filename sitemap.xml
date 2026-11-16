@@ -179,6 +179,7 @@
 
   <url>
     <loc>https://compaiss.ca/research-and-publications.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/research-and-publications.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/recherche-et-publications.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/research-and-publications.html"/>
@@ -186,6 +187,7 @@
 
   <url>
     <loc>https://compaiss.ca/recherche-et-publications.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/research-and-publications.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/recherche-et-publications.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/research-and-publications.html"/>
@@ -214,6 +216,7 @@
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss-white-paper-2026-v2.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss-white-paper-2026-v2.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_livre_blanc_v5.pdf"/>
   </url>
@@ -280,6 +283,7 @@
 
   <url>
     <loc>https://compaiss.ca/assets/echecs_ia_institutionnels_en_pratique.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/institutional_ai_failures_in_practice.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/echecs_ia_institutionnels_en_pratique.pdf"/>
   </url>
@@ -316,6 +320,7 @@
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-fr.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss-governance-stress-test-en.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss-governance-stress-test-fr.pdf"/>
   </url>
@@ -328,6 +333,7 @@
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss-governance-stress-test-02-fr.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss-governance-stress-test-02-en.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss-governance-stress-test-02-fr.pdf"/>
   </url>
@@ -358,12 +364,14 @@
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_muhc_case_study_v22_FR.pdf"/>
   </url>
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss_muhc_case_study_v22_FR.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_healthcare_governance_case_study.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_muhc_case_study_v22_FR.pdf"/>
   </url>
@@ -381,12 +389,14 @@
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf"/>
   </url>
 
   <url>
     <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf"/>
   </url>
