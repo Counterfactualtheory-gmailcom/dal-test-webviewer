@@ -9,6 +9,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Analyse COMPAiSS des données probantes sur Microsoft 365 Copilot : hallucinations, partage excessif d'information, injection d'invite, sécurité et gouvernance institutionnelle.">
 <title>Microsoft 365 Copilot : ce que montrent les données probantes | Rapport de données probantes COMPAiSS</title>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JR7LJGK5PK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JR7LJGK5PK');
+</script>
+<link href="/favicon.ico" rel="icon" sizes="any">
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="/apple-touch-icon.png" rel="apple-touch-icon">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Report",
+  "headline": "Microsoft 365 Copilot : ce que montrent les données probantes à ce jour",
+  "description": "Analyse COMPAiSS des données probantes sur Microsoft 365 Copilot : hallucinations, partage excessif d'information, injection d'invite, sécurité et gouvernance institutionnelle.",
+  "inLanguage": "fr-CA",
+  "dateModified": "2026-09",
+  "url": "https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html",
+  "author": {"@type": "Organization", "name": "COMPAiSS Inc.", "url": "https://compaiss.ca/"},
+  "publisher": {"@type": "Organization", "name": "COMPAiSS Inc.", "url": "https://compaiss.ca/"},
+  "workTranslation": {"@type": "Report", "url": "https://compaiss.ca/microsoft-365-copilot-residual-concerns.html", "inLanguage": "en-CA"}
+}
+</script>
 <style>
   :root {
     --ink:#10131a; --muted:#4f5868; --faint:#808998; --canvas:#f5f7fa;
@@ -47,17 +73,41 @@
   .notice p{font-size:.94rem;margin:0}
   .source-list{font-size:.8rem;line-height:1.65;margin-top:1.35rem}.source-list p{color:var(--muted);font-size:.8rem;max-width:none}.source-list ul{margin:.45rem 0 0 1.1rem}.source-list li{margin:.25rem 0}.source-list a{color:var(--blue);text-decoration:none}.source-list a:hover{text-decoration:underline}
   footer{border-top:1px solid var(--border);color:var(--faint);font-size:.77rem;line-height:1.6;margin-top:3rem;padding-top:1rem}footer p+p{margin-top:.45rem}
-  @media(max-width:720px){.page{padding:2.25rem 1.2rem}.dark{margin-left:-1.2rem;margin-right:-1.2rem;padding:1.65rem 1.2rem}}
+  .site-nav{background:var(--surface);border-bottom:1px solid var(--border);font-family:var(--sans)}
+  .site-nav .inner{max-width:940px;margin:0 auto;padding:1rem 2rem;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.6rem}
+  .site-nav .brand{color:var(--ink);font-weight:700;letter-spacing:.04em;text-decoration:none}
+  .site-nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.82rem}
+  .site-nav a{color:var(--muted);text-decoration:none}.site-nav a:hover{color:var(--blue)}
+  .byline{font-family:var(--sans);font-size:.82rem;color:var(--muted);margin-top:.9rem}
+  .byline a{color:var(--blue);text-decoration:none}
+  .skip-link{position:absolute;left:-999px}.skip-link:focus{left:16px;top:16px;background:#000;color:#fff;padding:8px 12px;z-index:1000}
+  @media(max-width:720px){.site-nav .inner{padding:1rem 1.2rem}.page{padding:2.25rem 1.2rem}.dark{margin-left:-1.2rem;margin-right:-1.2rem;padding:1.65rem 1.2rem}}
 </style>
 </head>
 <body>
-<main class="page">
+<a class="skip-link" href="#main">Passer au contenu</a>
+<header class="site-nav">
+<nav aria-label="Primary" class="inner">
+<a class="brand" href="/index_french.html">COMPAiSS</a>
+<ul>
+<li><a href="/pourquoi-lia-a-evolue-ainsi.html">Pourquoi l'IA a évolué ainsi</a></li>
+<li><a href="/governance-fr.html">Gouvernance IA</a></li>
+<li><a href="/evaluation-des-risques-ia.html">Évaluation des risques IA</a></li>
+<li><a href="/gouvernance-en-action.html">Démonstrations et analyses comparatives</a></li>
+<li><a href="/deploiement-et-adequation-institutionnelle.html">Déploiement et adéquation</a></li>
+<li><a href="/microsoft-365-copilot-residual-concerns.html" hreflang="en" lang="en">EN</a></li>
+</ul>
+</nav>
+</header>
+<main class="page" id="main">
 
   <header class="masthead">
     <div class="eyebrow">Rapport de données probantes COMPAiSS</div>
     <h1>Microsoft 365 Copilot : ce que montrent les données probantes à ce jour</h1>
     <p class="subtitle">Un résumé en langage clair pour les personnes des milieux de l'enseignement supérieur, du gouvernement et de la santé qui évaluent des assistants d'IA, fondé sur des projets pilotes publics, des sondages indépendants et des incidents de sécurité divulgués.</p>
     <div class="meta">Rapport de données probantes public &bull; Mis à jour en septembre 2026 &bull; Il ne s'agit pas d'un audit technique, ni d'une affirmation selon laquelle Copilot serait dangereux à utiliser. Chaque constat ci-dessous est rattaché à sa source, à son contexte et à ses limites. Le comportement des produits et leur posture de sécurité évoluent dans le temps; les organisations devraient vérifier l'état actuel directement auprès de Microsoft avant de se fier à toute description contenue dans ce document.</div>
+    <!-- Pour ajouter un auteur nommé : remplacer « COMPAiSS Inc. » ci-dessous (et dans le bloc JSON-LD « author ») par le nom et le titre de la personne. -->
+    <p class="byline">Rédigé par COMPAiSS Inc. &bull;<a href="/microsoft-365-copilot-residual-concerns.html" hreflang="en" lang="en">Read this report in English</a></p>
   </header>
 
   <section>
@@ -78,14 +128,14 @@
       <li>43 % ont dit n'avoir rien remarqué de tel.</li>
       <li>11 % n'étaient pas certains, et les autres n'ont pas répondu à la question.</li>
     </ul>
-    <p>Ces chiffres reposent sur ce que les gens se souviennent d'avoir remarqué, et non sur une vérification indépendante de chaque réponse produite par Copilot; le taux réel est donc probablement un peu plus élevé (on ne remarque pas toutes les erreurs). Le rapport du ministère lui-même reste mesuré à ce sujet : il conclut que les réponses de Copilot sont « majoritairement exactes, mais des hallucinations surviennent, et un contrôle de la qualité devrait être effectué pour chaque réponse produite ». Une comparaison distincte, beaucoup plus restreinte (trois utilisateurs de Copilot comparés à trois non-utilisateurs sur les mêmes tâches), a révélé que les utilisateurs de Copilot obtenaient des résultats inférieurs à une tâche d'analyse de données dans Excel et à une tâche dans PowerPoint; le ministère précise lui-même que cette comparaison portait sur un trop petit nombre de personnes pour en tirer des conclusions fermes à elle seule.</p>
+    <p>Ces chiffres reposent sur ce que les gens se souviennent d'avoir remarqué, et non sur une vérification indépendante de chaque réponse produite par Copilot; le taux réel est donc probablement un peu plus élevé (on ne remarque pas toutes les erreurs). Le rapport du ministère lui-même reste mesuré à ce sujet : il conclut que les réponses de Copilot sont « majoritairement exactes, mais des hallucinations surviennent, et un contrôle de la qualité devrait être effectué pour chaque réponse produite » (traduction libre). Une comparaison distincte, beaucoup plus restreinte (trois utilisateurs de Copilot comparés à trois non-utilisateurs sur les mêmes tâches), a révélé que les utilisateurs de Copilot obtenaient des résultats inférieurs à une tâche d'analyse de données dans Excel et à une tâche dans PowerPoint; le ministère précise lui-même que cette comparaison portait sur un trop petit nombre de personnes pour en tirer des conclusions fermes à elle seule.</p>
     <p><a href="https://assets.publishing.service.gov.uk/media/68adbe409e1cebdd2c96a19d/dbt-microsoft-365-copilot-evaluation.pdf" target="_blank" rel="noopener">Lire l'évaluation complète du DBT (PDF, en anglais)</a></p>
   </section>
 
   <section>
     <div class="section-label">2. Partage excessif d'information</div>
     <h2>Copilot peut révéler plus d'information qu'une personne ne le devrait, en raison de la façon dont il détermine ce qu'il est autorisé à lire</h2>
-    <p>Copilot répond à une question en puisant dans les courriels, documents et messages de clavardage que la personne qui pose la question a déjà techniquement le droit d'ouvrir, selon les paramètres d'accès Microsoft 365 déjà en place dans l'organisation. La documentation de Microsoft confirme que cette vérification est effectuée avant que Copilot ne génère une réponse : « Copilot n'accède pas aux données auxquelles l'utilisateur n'a pas accès. »</p>
+    <p>Copilot répond à une question en puisant dans les courriels, documents et messages de clavardage que la personne qui pose la question a déjà techniquement le droit d'ouvrir, selon les paramètres d'accès Microsoft 365 déjà en place dans l'organisation. La documentation de Microsoft confirme que cette vérification est effectuée avant que Copilot ne génère une réponse : « Copilot n'accède pas aux données auxquelles l'utilisateur n'a pas accès » (traduction libre).</p>
     <p>Il s'agit d'une mesure de protection réelle, mais plus limitée qu'il n'y paraît. Elle vérifie si une personne est techniquement autorisée à ouvrir un fichier, et non si ce fichier constitue une réponse officielle et approuvée par l'établissement, ni si l'information qu'il contient est à jour ou exacte. Dans bien des organisations, des partages de fichiers trop largement accessibles et de vieux documents partagés de façon informelle se trouvent à l'intérieur de cette limite d'accès, et Copilot ne fait pas de distinction entre ces documents et la politique officielle.</p>
 
     <div class="callout">
@@ -98,7 +148,7 @@
 
     <div class="callout">
       <h3>Un incident confirmé, pas une hypothèse</h3>
-      <p>À la fin janvier 2026, Microsoft a confirmé que la fonction de clavardage de Copilot pouvait lire et résumer des courriels marqués confidentiels se trouvant dans les dossiers Brouillons et Éléments envoyés d'un utilisateur, une situation que l'étiquette de confidentialité était censée empêcher. Microsoft a affirmé que ses « contrôles d'accès et politiques de protection des données étaient demeurés intacts » au niveau de la plateforme, mais que le comportement observé « ne correspondait pas à l'expérience Copilot prévue »; un correctif a été déployé partout dans le monde d'ici le 20 février 2026.</p>
+      <p>À la fin janvier 2026, Microsoft a confirmé que la fonction de clavardage de Copilot pouvait lire et résumer des courriels marqués confidentiels se trouvant dans les dossiers Brouillons et Éléments envoyés d'un utilisateur, une situation que l'étiquette de confidentialité était censée empêcher. Microsoft a affirmé que ses « contrôles d'accès et politiques de protection des données étaient demeurés intacts » au niveau de la plateforme, mais que le comportement observé « ne correspondait pas à l'expérience Copilot prévue » (traductions libres); un correctif a été déployé partout dans le monde d'ici le 20 février 2026.</p>
     </div>
   </section>
 
@@ -144,7 +194,7 @@
   </section>
 
 <footer>
-  <p><a href="https://compaiss.ca/governance-fr.html">En savoir plus sur l'approche de gouvernance de COMPAiSS</a></p>
+  <p><a href="/governance-fr.html">En savoir plus sur l'approche de gouvernance de COMPAiSS</a> &bull; <a href="/gouvernance-en-action.html">Voir les démonstrations et analyses comparatives</a> &bull; <a href="/microsoft-365-copilot-residual-concerns.html" hreflang="en" lang="en">English version</a></p>
   <p>&copy; 2026 COMPAiSS Inc. Tous droits réservés.</p>
   <p>Il s'agit d'un résumé public de données probantes, compilé à partir d'études tierces nommées, de sondages, d'avis de sécurité divulgués et de la documentation de Microsoft elle-même, chacun cité au moment où il est utilisé. Ce document ne constitue pas un avis juridique, un audit de sécurité, ni un appui ou un dénigrement d'un produit quelconque. Le comportement des produits, leur posture de sécurité et leurs contrôles de gouvernance évoluent dans le temps; les organisations devraient vérifier l'état actuel directement auprès du fournisseur avant de se fier à toute description contenue dans ce document.</p>
 </footer>
