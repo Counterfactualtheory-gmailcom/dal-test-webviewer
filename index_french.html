@@ -493,9 +493,9 @@ gtag('config', 'G-JR7LJGK5PK');
   <div style="display:grid; grid-template-columns:3fr 4fr 3fr; gap:1.2rem; align-items:stretch; margin-bottom:3rem;">
 
     <div class="hero-img-side" style="position:relative; border-radius:10px; overflow:hidden;">
-      <img src="/assets/rag-library.jpg" alt="Toute autre IA traite l'univers entier de la connaissance" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
+      <img src="/assets/rag-library.jpg" alt="L’IA standard traite l'univers entier de la connaissance" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
       <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(150,20,20,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
-      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">Toute autre IA</div>
+      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">IA standard</div>
     </div>
 
     <div class="hero-v2" style="margin:0; border:none; padding:2.5rem 1rem;">
@@ -525,7 +525,7 @@ gtag('config', 'G-JR7LJGK5PK');
       </div>
       <div class="hero-two-col">
         <div class="hero-side hside-bad">
-          <div class="hero-side-label">Toute autre IA</div>
+          <div class="hero-side-label">IA standard</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Le modèle s'exécute d'abord</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Le risque est géré après</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Hallucinations résiduelles fréquentes</div>
@@ -722,7 +722,7 @@ var failState = {
       <div class="card">
         <div class="card-icon">&#128196;</div>
         <h3>Figure 2 - Architecture COMPAiSS</h3>
-        <p>Montre la conception à exécution contrôlée de COMPAiSS, où l'autorisation et la validation de la portée se produisent avant toute inférence du modèle, et où les questions non étayées empêchent l'IA de s'exécuter.</p>
+        <p>Montre la conception à exécution contrôlée de COMPAiSS, où l'autorisation et la validation de la portée se produisent avant la génération de la réponse institutionnelle principale, et où les questions non étayées empêchent le modèle de réponse principal de s'exécuter.</p>
         <p style="margin-top: 0.8rem;"><a href="/assets/figure2_compass_controlee_fr-v2.pdf">Voir la Figure 2 (PDF)</a></p>
       </div>
     </div>
@@ -947,7 +947,7 @@ var failState = {
   </tbody>
 </table>
 
-<p>Chaque étape de ce pipeline repose sur une inférence probabiliste par l'IA. Les améliorations apportées aux incorporations, aux algorithmes de récupération ou aux modèles de classement peuvent améliorer des prédictions individuelles, mais elles n'éliminent pas la dépendance fondamentale à l'égard de l'estimation statistique apprise. Au moment où le modèle de langage commence à générer une réponse, plusieurs modèles d'IA ont déjà déterminé quelles données probantes il verra — et ne verra pas. L'architecture demeure donc fondamentalement axée sur la génération en premier lieu : la récupération identifie ce qui est probablement le plus pertinent, et le modèle de langage génère à partir de ces données probantes probabilistes.</p>
+<p>La récupération et le reclassement estiment généralement la pertinence, et la pertinence à elle seule n'établit ni l'autorisation institutionnelle ni l'appui à une affirmation précise. Les améliorations apportées aux incorporations, aux algorithmes de récupération ou aux modèles de classement peuvent améliorer des prédictions individuelles, mais elles n'éliminent pas la dépendance fondamentale à l'égard de l'estimation statistique apprise. Au moment où le modèle de langage commence à générer une réponse, plusieurs modèles d'IA ont déjà déterminé quelles données probantes il verra — et ne verra pas. L'architecture demeure donc fondamentalement axée sur la génération en premier lieu : la récupération identifie ce qui est probablement le plus pertinent, et le modèle de langage génère à partir de ces données probantes probabilistes.</p>
 <p>Les évaluations indépendantes des principaux systèmes juridiques d'entreprise et de génération augmentée par récupération continuent de documenter des erreurs résiduelles d'hallucination et d'exactitude, malgré des architectures de récupération sophistiquées. Il ne s'agit pas de défaillances d'implémentation. Ce sont des conséquences prévisibles d'une architecture axée sur la génération en premier lieu, fonctionnant sous incertitude de récupération.</p>
 
 <div class="highlight-block">

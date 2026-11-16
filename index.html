@@ -530,7 +530,7 @@ gtag('config', 'G-JR7LJGK5PK');
       <img src="/assets/rag-library.jpg" alt="RAG processes the entire universe of knowledge" style="width:100%; height:100%; object-fit:cover; display:block; filter:brightness(0.7);">
       <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(150,20,20,0.4) 0%, rgba(0,0,0,0.55) 100%);"></div>
          
-      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">Every other AI</div>
+      <div style="position:absolute; top:1rem; left:0; right:0; text-align:center; font-family:system-ui,-apple-system,sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#ff7070;">Standard AI</div>
      </div>
 
    <div class="hero-v2" style="margin:0; border:none; padding:2.5rem 1rem;">
@@ -560,7 +560,7 @@ gtag('config', 'G-JR7LJGK5PK');
       </div>
       <div class="hero-two-col">
         <div class="hero-side hside-bad">
-          <div class="hero-side-label">Every other AI</div>
+          <div class="hero-side-label">Standard AI</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Model runs first</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Risk managed after</div>
           <div class="hero-side-item"><span class="hmk">✗</span> Residual hallucinations common</div>
@@ -762,7 +762,7 @@ var failState = {
       <div class="card">
         <div class="card-icon">📄</div>
         <h3>Figure 2 - COMPAiSS Architecture</h3>
-        <p>Shows COMPAiSS's execution-gated design, where authorization and scope validation occur before any model inference, and unsupported questions prevent the AI from running at all.</p>
+        <p>Shows COMPAiSS's execution-gated design, where authorization and scope validation occur before primary institutional answer generation, and unsupported questions prevent the primary answer model from running.</p>
         <p style="margin-top: 0.8rem;"><a href="/assets/compaiss_figure_2.pdf">View Figure 2 (PDF)</a></p>
       </div>
     </div>
@@ -989,7 +989,7 @@ var failState = {
   </tbody>
 </table>
 
-<p>Every stage in this pipeline relies on probabilistic AI inference. Improvements to embeddings, retrieval algorithms, or ranking models can improve individual predictions, but they do not eliminate the underlying dependence on learned statistical estimation. By the time the language model begins generating an answer, multiple AI models have already determined what evidence it will — and will not — see. The architecture therefore remains fundamentally generation-first: retrieval identifies what is probably most relevant, and the language model generates from that probabilistic evidence.</p>
+<p>Retrieval and reranking commonly estimate relevance, and relevance alone does not establish institutional authorization or support for a particular claim. Improvements to embeddings, retrieval algorithms, or ranking models can improve individual predictions, but they do not eliminate the underlying dependence on learned statistical estimation. By the time the language model begins generating an answer, multiple AI models have already determined what evidence it will — and will not — see. The architecture therefore remains fundamentally generation-first: retrieval identifies what is probably most relevant, and the language model generates from that probabilistic evidence.</p>
 <p>Independent evaluations of leading enterprise legal and retrieval-augmented AI systems continue to document residual hallucination and accuracy errors despite sophisticated retrieval architectures. These are not implementation failures. They are predictable consequences of generation-first architecture operating under retrieval uncertainty.</p>
 
 <div class="highlight-block">
