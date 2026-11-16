@@ -345,6 +345,17 @@
   </url>
 
   <url>
+    <loc>https://compaiss.ca/assets/compaiss_muhc_executive_brief.pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_muhc_executive_brief.pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_muhc_executive_brief_FR.pdf"/>
+  </url>
+  <url>
+    <loc>https://compaiss.ca/assets/compaiss_muhc_executive_brief_FR.pdf</loc>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_muhc_executive_brief.pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_muhc_executive_brief_FR.pdf"/>
+  </url>
+
+  <url>
     <loc>https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf</loc>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture.pdf"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf"/>
@@ -392,4 +403,3 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/figure2_compass_controlee_fr-v2.pdf"/>
   </url>
 </urlset>
-
