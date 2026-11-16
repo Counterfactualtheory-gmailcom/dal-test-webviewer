@@ -3,6 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://compaiss.ca/</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/index_french.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/"/>
@@ -10,6 +11,7 @@
 
   <url>
     <loc>https://compaiss.ca/index_french.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/index_french.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/"/>
@@ -17,6 +19,7 @@
 
   <url>
     <loc>https://compaiss.ca/governance.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/governance.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/governance-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/governance.html"/>
@@ -24,6 +27,7 @@
 
   <url>
     <loc>https://compaiss.ca/governance-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/governance.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/governance-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/governance.html"/>
@@ -31,6 +35,7 @@
 
   <url>
     <loc>https://compaiss.ca/why-ai-developed-this-way.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/why-ai-developed-this-way.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/why-ai-developed-this-way.html"/>
@@ -38,6 +43,7 @@
 
   <url>
     <loc>https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/why-ai-developed-this-way.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/pourquoi-lia-a-evolue-ainsi.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/why-ai-developed-this-way.html"/>
@@ -45,6 +51,7 @@
 
   <url>
     <loc>https://compaiss.ca/ai-risk-assessment.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/ai-risk-assessment.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/evaluation-des-risques-ia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/ai-risk-assessment.html"/>
@@ -52,6 +59,7 @@
 
   <url>
     <loc>https://compaiss.ca/evaluation-des-risques-ia.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/ai-risk-assessment.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/evaluation-des-risques-ia.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/ai-risk-assessment.html"/>
@@ -59,6 +67,7 @@
 
   <url>
     <loc>https://compaiss.ca/compaiss_demos_and_pricing.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/compaiss_demos_and_pricing.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/gouvernance-en-action.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/compaiss_demos_and_pricing.html"/>
@@ -66,6 +75,7 @@
 
   <url>
     <loc>https://compaiss.ca/gouvernance-en-action.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/compaiss_demos_and_pricing.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/gouvernance-en-action.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/compaiss_demos_and_pricing.html"/>
@@ -73,6 +83,7 @@
 
   <url>
     <loc>https://compaiss.ca/deployment-and-institutional-fit.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/deployment-and-institutional-fit.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/deploiement-et-adequation-institutionnelle.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/deployment-and-institutional-fit.html"/>
@@ -80,6 +91,7 @@
 
   <url>
     <loc>https://compaiss.ca/deploiement-et-adequation-institutionnelle.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/deployment-and-institutional-fit.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/deploiement-et-adequation-institutionnelle.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/deployment-and-institutional-fit.html"/>
@@ -87,6 +99,7 @@
 
   <url>
     <loc>https://compaiss.ca/architecture-investigation.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/architecture-investigation.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/investigation-architecturale.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/architecture-investigation.html"/>
@@ -94,6 +107,7 @@
 
   <url>
     <loc>https://compaiss.ca/investigation-architecturale.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/architecture-investigation.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/investigation-architecturale.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/architecture-investigation.html"/>
@@ -101,6 +115,7 @@
 
   <url>
     <loc>https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/le_defi_de_la_generation_en_premier_compaiss.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html"/>
@@ -108,6 +123,7 @@
 
   <url>
     <loc>https://compaiss.ca/le_defi_de_la_generation_en_premier_compaiss.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/le_defi_de_la_generation_en_premier_compaiss.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/the_generation_first_challenge-competitive-landscape.html"/>
@@ -115,6 +131,7 @@
 
   <url>
     <loc>https://compaiss.ca/compaiss-regulatory-compliance-comparison.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/compaiss-regulatory-compliance-comparison.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/compaiss-comparaison-reglementaire.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/compaiss-regulatory-compliance-comparison.html"/>
@@ -122,6 +139,7 @@
 
   <url>
     <loc>https://compaiss.ca/compaiss-comparaison-reglementaire.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/compaiss-regulatory-compliance-comparison.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/compaiss-comparaison-reglementaire.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/compaiss-regulatory-compliance-comparison.html"/>
@@ -129,6 +147,7 @@
 
   <url>
     <loc>https://compaiss.ca/beyond-hallucination-final-v7.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/beyond-hallucination-final-v7.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/beyond-hallucination-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/beyond-hallucination-final-v7.html"/>
@@ -136,6 +155,7 @@
 
   <url>
     <loc>https://compaiss.ca/beyond-hallucination-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/beyond-hallucination-final-v7.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/beyond-hallucination-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/beyond-hallucination-final-v7.html"/>
@@ -143,6 +163,7 @@
 
   <url>
     <loc>https://compaiss.ca/microsoft-365-copilot-residual-concerns.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
@@ -150,6 +171,7 @@
 
   <url>
     <loc>https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns-fr.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/microsoft-365-copilot-residual-concerns.html"/>
@@ -171,6 +193,7 @@
 
   <url>
     <loc>https://compaiss.ca/criticisms-and-responses-v9.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/au-dela-de-lexactitude.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
@@ -178,6 +201,7 @@
 
   <url>
     <loc>https://compaiss.ca/au-dela-de-lexactitude.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/au-dela-de-lexactitude.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://compaiss.ca/criticisms-and-responses-v9.html"/>
@@ -367,39 +391,4 @@
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_research_positioning_paper_execution-gated-inference_architecture-fr.pdf"/>
   </url>
 
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf"/>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/compaiss_vs_rag_tables_1_2-v2-fr.pdf"/>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/rag_figure_1.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/rag_figure_1.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/figure1_rag_standard_fr-v2.pdf"/>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/figure1_rag_standard_fr-v2.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/rag_figure_1.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/figure1_rag_standard_fr-v2.pdf"/>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/compaiss_figure_2.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_figure_2.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/figure2_compass_controlee_fr-v2.pdf"/>
-  </url>
-
-  <url>
-    <loc>https://compaiss.ca/assets/figure2_compass_controlee_fr-v2.pdf</loc>
-    <xhtml:link rel="alternate" hreflang="en-CA" href="https://compaiss.ca/assets/compaiss_figure_2.pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://compaiss.ca/assets/figure2_compass_controlee_fr-v2.pdf"/>
-  </url>
 </urlset>
