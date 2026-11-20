@@ -1,4 +1,5 @@
 User-agent: *
+# Deployments
 Disallow: /dalhousie
 Disallow: /dalhousie/
 Disallow: /dalhousie2
@@ -11,6 +12,8 @@ Disallow: /service-canada
 Disallow: /service-canada/
 Disallow: /service-canada2
 Disallow: /service-canada2/
+Disallow: /service-canada3-embedtest
+Disallow: /service-canada3-embedtest/
 Disallow: /ucw
 Disallow: /ucw/
 Disallow: /tmu
@@ -25,5 +28,18 @@ Disallow: /uvic2
 Disallow: /uvic2/
 Disallow: /uoft
 Disallow: /uoft/
+Disallow: /uoft2
+Disallow: /uoft2/
+# Greenlist dashboards
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /dashboard-mcgill
+Disallow: /dashboard-mcgill/
+Disallow: /dashboard-muhc
+Disallow: /dashboard-muhc/
+Disallow: /dashboard-ucalgary
+Disallow: /dashboard-ucalgary/
+Disallow: /dashboard-uvic
+Disallow: /dashboard-uvic/
 
 Sitemap: https://compaiss.ca/sitemap.xml
