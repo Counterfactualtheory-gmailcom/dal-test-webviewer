@@ -948,6 +948,7 @@ var failState = {
 </table>
 
 <p>La récupération et le reclassement estiment généralement la pertinence, et la pertinence à elle seule n'établit ni l'autorisation institutionnelle ni l'appui à une affirmation précise. Les améliorations apportées aux incorporations, aux algorithmes de récupération ou aux modèles de classement peuvent améliorer des prédictions individuelles, mais elles n'éliminent pas la dépendance fondamentale à l'égard de l'estimation statistique apprise. Au moment où le modèle de langage commence à générer une réponse, plusieurs modèles d'IA ont déjà déterminé quelles données probantes il verra — et ne verra pas. L'architecture demeure donc fondamentalement axée sur la génération en premier lieu : la récupération identifie ce qui est probablement le plus pertinent, et le modèle de langage génère à partir de ces données probantes probabilistes.</p>
+<p>COMPAiSS utilise plusieurs de ces mêmes techniques pour trouver les données probantes : la formulation des requêtes, un index des sources approuvées interrogé par mots-clés et par le sens, et le reclassement sémantique. La différence tient à leur position. Dans COMPAiSS, elles n'opèrent qu'à l'intérieur de la frontière autorisée, et avant le portail : chaque candidat doit figurer sur la liste approuvée par l'institution, et son contenu doit être lu et vérifié, avant que le modèle de réponse puisse s'exécuter. Une erreur de récupération peut rendre une réponse moins complète. Elle ne peut pas introduire une source non approuvée.</p>
 <p>Les évaluations indépendantes des principaux systèmes juridiques d'entreprise et de génération augmentée par récupération continuent de documenter des erreurs résiduelles d'hallucination et d'exactitude, malgré des architectures de récupération sophistiquées. Il ne s'agit pas de défaillances d'implémentation. Ce sont des conséquences prévisibles d'une architecture axée sur la génération en premier lieu, fonctionnant sous incertitude de récupération.</p>
 
 <div class="highlight-block">
@@ -991,7 +992,7 @@ var failState = {
 
 </div>
 
-<p>La différence ne réside pas dans le fait que COMPAiSS récupère mieux. C'est que COMPAiSS détermine si l'inférence devrait se produire du tout, et s'arrête avant la génération lorsqu'elle ne devrait pas. Les systèmes RAG cherchent à améliorer ce que le modèle reçoit. COMPAiSS contrôle si le modèle fonctionne.</p>
+<p>COMPAiSS récupère efficacement à l'intérieur de sa frontière autorisée, mais là n'est pas la différence déterminante. La différence déterminante, c'est que COMPAiSS détermine si l'inférence devrait se produire du tout, et s'arrête avant la génération lorsqu'elle ne devrait pas. Les systèmes RAG cherchent à améliorer ce que le modèle reçoit. COMPAiSS contrôle si le modèle fonctionne.</p>
 
  <div class="highlight-block" style="margin-top:2rem;">
   <p style="margin:0 0 0.45rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">

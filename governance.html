@@ -762,7 +762,11 @@ header {
     </li>
     <li>
       <strong>GitHub-integrated deployment</strong>
-      <span>Greenlist updates are committed directly to the institution's deployment repository. Railway auto-deploys on commit, meaning a corrected greenlist is live within minutes of the patch being applied - with no downtime and a full version history preserved in Git.</span>
+      <span>Greenlist updates are committed directly to the institution's deployment repository. The deployment redeploys automatically on commit (client deployments run on Canadian infrastructure), meaning a corrected greenlist is live within minutes of the patch being applied - with no downtime and a full version history preserved in Git.</span>
+    </li>
+    <li>
+      <strong>Approved-source index and meaning search</strong>
+      <span>After greenlist changes, an automated build pipeline refreshes the approved-source index and meaning search from the approved URLs only. Each build is fingerprinted: if the meaning-search data does not match the current index, meaning search switches off rather than serving results from a mismatched build. Every search result is re-checked against the live greenlist, so a source removed from the list cannot be used even before the next rebuild.</span>
     </li>
   </ul>
 

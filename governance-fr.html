@@ -723,7 +723,11 @@ header {
     </li>
     <li>
       <strong>Déploiement intégré à GitHub</strong>
-      <span>Les mises à jour de la liste verte sont soumises directement au dépôt de déploiement de l'institution. Railway effectue un déploiement automatique à chaque soumission, ce qui signifie qu'une liste verte corrigée est en ligne en quelques minutes après l'application du correctif - sans interruption de service et avec un historique de versions complet conservé dans Git.</span>
+      <span>Les mises à jour de la liste verte sont soumises directement au dépôt de déploiement de l'institution. Le déploiement se met à jour automatiquement à chaque soumission (les déploiements clients fonctionnent sur une infrastructure canadienne), ce qui signifie qu'une liste verte corrigée est en ligne en quelques minutes après l'application du correctif - sans interruption de service et avec un historique de versions complet conservé dans Git.</span>
+    </li>
+    <li>
+      <strong>Index des sources approuvées et recherche par le sens</strong>
+      <span>Après des modifications de la liste verte, un pipeline de construction automatisé actualise l'index des sources approuvées et la recherche par le sens à partir des seules URL approuvées. Chaque construction porte une empreinte : si les données de recherche par le sens ne correspondent pas à l'index actuel, la recherche par le sens se désactive plutôt que de fournir des résultats issus d'une construction non concordante. Chaque résultat de recherche est revérifié par rapport à la liste verte en vigueur, de sorte qu'une source retirée de la liste ne peut plus être utilisée, même avant la prochaine reconstruction.</span>
     </li>
   </ul>
   <p>Les audits de la liste verte sont effectués selon un cycle de maintenance régulier et chaque fois que des modifications connues de l'infrastructure web institutionnelle se sont produites - par exemple, à la suite d'une refonte du site web ou d'une restructuration d'unité. Le résultat de l'audit fait autorité : les URL confirmées actives sont conservées, et les URL confirmées inactives sont supprimées ou remplacées par des successeurs vérifiés.</p>

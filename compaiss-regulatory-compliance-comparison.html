@@ -606,6 +606,8 @@
         <div class="arch-col-label">Authorization-First Architecture (COMPAiSS)</div>
         <div class="arch-step"><span class="step-badge badge-std">1</span> Question received</div>
         <div class="arch-arrow">↓</div>
+        <div class="arch-step"><span class="step-badge badge-std">FIND</span> Question building and search of the approved-source index (keyword, meaning, reranking)</div>
+        <div class="arch-arrow">↓</div>
         <div class="arch-step"><span class="step-badge badge-gate">GATE</span> Authorization check against greenlist</div>
         <div class="arch-arrow">↓</div>
         <div class="arch-step"><span class="step-badge badge-gate">GATE</span> Source validation - does evidence exist?</div>
@@ -1293,7 +1295,7 @@
       </div>
     </div>
 
-    <p class="cost-note">Cost estimates are illustrative deployment scenarios based on typical institutional deployments at approximately 100,000 annual queries. Conventional RAG figures reflect inference costs, vector database hosting, observability tooling, human review staffing, and compliance program overhead. COMPAiSS figures reflect inference costs for authorized queries only (approximately 60% of total queries, since unauthorized queries do not incur primary model inference costs), greenlist maintenance, and compliance receipt storage. Actual costs vary significantly by institution size, query volume, hosting environment, existing infrastructure, and governance requirements. These figures should be treated as directional indicators, not procurement-ready estimates. Detailed cost modelling for specific institutional contexts is available on request.</p>
+    <p class="cost-note">Cost estimates are illustrative deployment scenarios based on typical institutional deployments at approximately 100,000 annual queries. Conventional RAG figures reflect inference costs, vector database hosting, observability tooling, human review staffing, and compliance program overhead. COMPAiSS figures reflect inference costs for authorized queries only (approximately 60% of total queries, since unauthorized queries do not incur primary model inference costs), greenlist maintenance, approved-source index and meaning-search builds, and compliance receipt storage. Actual costs vary significantly by institution size, query volume, hosting environment, existing infrastructure, and governance requirements. These figures should be treated as directional indicators, not procurement-ready estimates. Detailed cost modelling for specific institutional contexts is available on request.</p>
   </div>
 
   <hr>

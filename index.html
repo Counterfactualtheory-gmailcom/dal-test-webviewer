@@ -990,6 +990,7 @@ var failState = {
 </table>
 
 <p>Retrieval and reranking commonly estimate relevance, and relevance alone does not establish institutional authorization or support for a particular claim. Improvements to embeddings, retrieval algorithms, or ranking models can improve individual predictions, but they do not eliminate the underlying dependence on learned statistical estimation. By the time the language model begins generating an answer, multiple AI models have already determined what evidence it will — and will not — see. The architecture therefore remains fundamentally generation-first: retrieval identifies what is probably most relevant, and the language model generates from that probabilistic evidence.</p>
+<p>COMPAiSS uses several of these same techniques to find evidence: question building, an index of approved sources searched by keyword and by meaning, and semantic reranking. The difference is where they sit. In COMPAiSS they operate only inside the authorized boundary, and before the gate: every candidate must be on the institution's approved list, and its content read and verified, before the answer model can run. A retrieval error can make an answer less complete. It cannot bring in an unapproved source.</p>
 <p>Independent evaluations of leading enterprise legal and retrieval-augmented AI systems continue to document residual hallucination and accuracy errors despite sophisticated retrieval architectures. These are not implementation failures. They are predictable consequences of generation-first architecture operating under retrieval uncertainty.</p>
 
 <div class="highlight-block">
@@ -1045,7 +1046,7 @@ var failState = {
 
 </div>
 
-<p>The difference is not that COMPAiSS retrieves better. It is that COMPAiSS determines whether inference should occur at all, and stops before generation when it should not. RAG systems try to improve what the model receives. COMPAiSS controls whether the model runs.</p>
+<p>COMPAiSS retrieves well within its authorized boundary, but that is not the defining difference. The defining difference is that COMPAiSS determines whether inference should occur at all, and stops before generation when it should not. RAG systems try to improve what the model receives. COMPAiSS controls whether the model runs.</p>
 
 <div class="highlight-block" style="margin-top:2rem;">
   <p style="margin:0 0 0.45rem;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);font-weight:700;font-family:system-ui,-apple-system,sans-serif;">
