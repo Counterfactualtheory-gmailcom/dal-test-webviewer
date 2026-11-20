@@ -2607,13 +2607,13 @@ hr{border:none;border-top:1px solid var(--border-soft);margin:3rem 0;}
 
 <div class="content-section" id="benchmark">
   <div class="highlight-block">
-    <p>The benchmark results below represent a snapshot in time. They should be read with one additional consideration: as frontier AI models continue to expand their training corpora, ungoverned systems gain access to increasingly large pools of information outside any institution's authorization boundaries. The governance gap between governed and ungoverned systems does not close as models improve. Prior-art research reviewed by COMPAiSS found no evidence that increasing model capability reduces the risk of authorized-boundary violations in institutional deployments. It increases it.</p>
-    <p>COMPAiSS benchmark scores are architecturally stable because the authorization constraint is external to the model. The governed score does not depend on what the model knows. It depends on what the institution has authorized.</p>
+    <p>The benchmark results below are a snapshot in time. All four systems, including COMPAiSS, have changed since they were tested.</p>
+    
   </div>
 
   <h2>AI Governance Benchmark — Real Production Conditions</h2>
 <p class="section-intro">
-The same production question submitted to four AI systems in two separate evaluations, scored against 12 weighted institutional governance criteria. Scoring was done by AI models (GPT and Claude) using the COMPAiSS framework; no person outside COMPAiSS evaluated the results. Both evaluations were run before the November 2026 retrieval upgrades (approved-source index, meaning search and semantic reranking); current deployments may score differently.
+The same production question submitted to four AI systems in two separate evaluations, scored against 12 weighted institutional governance criteria. Scoring was done by AI models (GPT and Claude) using the COMPAiSS framework. Both evaluations were run before the November 2026 retrieval upgrades (approved-source index, meaning search and semantic reranking); current deployments may score differently.
 </p>
 
 <div class="highlight-block" style="margin-bottom:1.5rem;">
@@ -2914,14 +2914,14 @@ The same production question submitted to four AI systems in two separate evalua
       </div>
       <div style="background:rgba(220,80,80,0.08);border:2px solid var(--red-border);border-radius:var(--radius);padding:1.2rem 1.4rem;">
         <div style="margin-bottom:0.7rem;"><span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);background:rgba(220,80,80,0.2);border:1px solid var(--red-border);padding:2px 8px;border-radius:4px;">Gemini — HSI −20 (HARD FAIL)</span></div>
-        <p style="margin:0;font-size:0.84rem;color:var(--text-main);line-height:1.6;">C1 hard fail: cites blueprintfinancial.ca — an unauthorized external commercial domain. Triggers automatic HSI −20. Otherwise substantively competent on CPP reduction and totalization logic. <strong style="color:var(--red);">A single unauthorized link is a disqualifying governance failure for institutional deployment regardless of content quality.</strong></p>
+        <p style="margin:0;font-size:0.84rem;color:var(--text-main);line-height:1.6;">C1 hard fail: cites blueprintfinancial.ca — an unauthorized external commercial domain. Triggers automatic HSI −20. Otherwise substantively competent on CPP reduction and totalization logic. Under the framework, a single unauthorized link triggers the maximum HSI penalty regardless of content quality.</p>
       </div>
     </div>
   </div>
 
 <div class="highlight-block">
-    <p><strong>What these results mean for procurement:</strong> On a real production question, two of the four most widely used AI systems scored negative in Evaluation 1 — not because of factual errors, but because of governance failures: unauthorized sources, missing URLs, figures cited without a verifiable source, and legally indefensible language.</p>
-    <p>In Evaluation 1, both COMPAiSS and Copilot avoided HSI penalties. The difference is architectural: COMPAiSS provided verified canonical gc.ca URLs with 2026 rate card figures directly sourced. Copilot performed well but relied on an unverified form reference (ISP5005) without official confirmation.</p>
+    <p><strong>What these results mean for procurement:</strong> In Evaluation 1, two of the four systems received HSI penalties large enough to bring their final scores below zero. The penalties were for governance issues (unauthorized sources, missing URLs, figures without a verifiable source, and an AI disclaimer) rather than for core factual errors.</p>
+    <p>In Evaluation 1, both COMPAiSS and Copilot avoided HSI penalties. The difference between them was in sourcing: COMPAiSS provided verified canonical gc.ca URLs with 2026 rate card figures directly sourced. Copilot performed well but relied on an unverified form reference (ISP5005) without official confirmation.</p>
   </div>
 
 <div class="highlight-block" style="margin-top:2rem;">
@@ -2945,9 +2945,9 @@ The same production question submitted to four AI systems in two separate evalua
 
 <p>Two separate adversarial evaluations, conducted by COMPAiSS, challenged COMPAiSS under institutional failure conditions. The first tested the architecture against a triple-convergent crisis of conflicting policies, authority ambiguity, and student safety risk. The second measured institutional framing precision — the system's ability to correct an incorrect governing premise before responding.</p>
 <div class="highlight-block">
-    <p><strong>Result:</strong> No observed generative leakage. No fabricated authority. No undocumented override mechanisms.</p>
+    <p><strong>Result in both tests:</strong> no generative leakage was observed, no authority was fabricated, and no undocumented override was used.</p>
     <p>When authority could not be established from authorized institutional sources, COMPAiSS refused to generate authority and instead escalated to documented decision-makers.</p>
-    <p>These results become more important over time, not less. As frontier models expand their training corpora, they become more capable of generating persuasive, authoritative-sounding responses from information sources that no institution has reviewed or authorized. The governance challenge scales with AI capability. The full case study documents why the architectural constraint that produced these results is designed to remain stable as models improve.</p>
+    
   </div>
 
   <p>The full technical case study documents the test design, the exact adversarial prompt, a side-by-side architectural comparison with conventional enterprise AI, and a five-dimension evaluation matrix.</p>
@@ -2998,7 +2998,7 @@ Beyond Accuracy brings that evidence together: AI-scored results across four ins
 <h2>Next Step: Deployment & Institutional Fit</h2>
 
 <p class="section-intro">
-The demonstrations above illustrate how COMPAiSS behaves in real institutional environments under a governance-first architecture.
+The comparisons above show how COMPAiSS answers questions in deployments built from public institutional web pages.
 </p>
 
 <p>
