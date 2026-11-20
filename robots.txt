@@ -19,5 +19,11 @@ Disallow: /muhc
 Disallow: /muhc/
 Disallow: /ucalgary
 Disallow: /ucalgary/
+Disallow: /uvic
+Disallow: /uvic/
+Disallow: /uvic2
+Disallow: /uvic2/
+Disallow: /uoft
+Disallow: /uoft/
 
 Sitemap: https://compaiss.ca/sitemap.xml
