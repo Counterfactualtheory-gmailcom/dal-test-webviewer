@@ -16,13 +16,6 @@ gtag('js', new Date());
 gtag('config', 'G-JR7LJGK5PK');
 </script>
 
-<!-- ✅ ADD ADSENSE RIGHT HERE -->
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4686202821245413"
-
-     crossorigin="anonymous"></script>
-
-
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -692,7 +685,7 @@ hr {
       <li><a href="#approval">Low-Risk Evaluation and Approval</a></li>
       <li><a href="#pricing">Higher Education Institutional Pricing</a></li>
       <li><a href="#procurement-readiness">Procurement &amp; Security Readiness</a></li>
-      <li><a href="#competitor-comparison">Competitive Comparison</a></li>
+      <li><a href="#competitor-comparison">Deployment Model Comparison</a></li>
       <li><a href="#roi">Return on Investment</a></li>
       <li><a href="#healthcare">Healthcare &amp; Hospital Systems</a></li>
      <!-- <li><a href="#callcentre-pricing">Call Centre &amp; Government Pricing</a></li> -->   
@@ -708,7 +701,7 @@ hr {
 
     <p>There is no integration project to build. COMPAiSS builds its own index of the approved sources automatically, from the greenlist alone, without staff involvement. No access to internal records is required. No IT project resourcing or system changes are needed before a deployment can begin.</p>
 
-    <p>Deployment can be completed in days. An institution can evaluate COMPAiSS against its own live questions, using its own publicly available content, without any dependency on internal systems or approvals from technology teams.</p>
+    <p>Deployment can be completed in days. An institution can evaluate COMPAiSS against its own live questions, using its own publicly available content, without any dependency on internal systems or a technology project.</p>
 
     <p>This distinguishes two phases of deployment. Initial evaluation and pilot access, where an institution begins testing COMPAiSS against its own questions, can be completed in days. Full production deployment, including greenlist scoping, staff pilot review, and institutional sign-off, is typically completed within 2-3 weeks of contract execution (see Higher Education Institutional Pricing below).</p>
 
@@ -781,7 +774,7 @@ hr {
       <div class="card">
         <div class="card-icon">&#8594;</div>
         <h3>The Result</h3>
-        <p>Lower implementation risk. Faster path to evaluation. Cost structure that scales without requiring major infrastructure investment. A system that can be discontinued at any time without consequence.</p>
+        <p>Lower implementation risk. Faster path to evaluation. Cost structure that scales without requiring major infrastructure investment. A system that can be discontinued without technical consequence.</p>
       </div>
     </div>
 
@@ -842,7 +835,7 @@ hr {
 
     <p>This points to the underlying trade COMPAiSS makes, and it is worth stating plainly. Conventional retrieval systems are built for ingestion convenience: point a crawler or connector at a document estate and let it index everything reachable. That convenience comes at a cost, nobody can say with confidence which of those documents were actually reviewed and approved for AI use, only that they were technically reachable. COMPAiSS makes the opposite trade. It gives up ingestion convenience in exchange for provenance control: its index contains only sources on the greenlist, and for every source the AI can cite, the institution knows exactly who authorized it and when. Greenlists do not create new governance work. They make existing governance work explicit, attributable, and auditable.</p>
 
-    <p>That distinction also changes what a governance failure looks like when it happens. In a conventional retrieval system, a governance failure, an outdated policy, a broken link, a document nobody meant to include, typically surfaces as an incorrect answer delivered to a user, discovered only after the fact. In a COMPAiSS deployment, the same underlying failure surfaces differently: as a missing answer flagged for correction, caught by the validation cycle before it ever reaches a user.</p>
+    <p>That distinction also changes what a governance failure looks like when it happens. In a conventional retrieval system, a document nobody approved, an out-of-scope page or a stale link typically surfaces as an incorrect answer delivered to a user, discovered only after the fact. In a COMPAiSS deployment, unapproved sources are excluded through pre-inference authorization checks. When authorized evidence is insufficient, COMPAiSS withholds unsupported answers or restricts its response to the scope supported by authorized evidence, and additional output safeguards reinforce these upstream governance controls. The same underlying failure surfaces as a missing answer flagged for correction, not an unauthorized one delivered to a user.</p>
 
     <table class="pricing-table" style="margin:1.8rem 0;">
       <thead>
@@ -854,14 +847,14 @@ hr {
       </thead>
       <tbody>
         <tr>
-          <td><strong>Failure Mode</strong></td>
-          <td>An incorrect answer, delivered to a user</td>
-          <td>A missing answer, flagged for correction before delivery</td>
+          <td><strong>Failure Mode</strong><br><span style="font-weight:400;font-size:0.85em;">Unapproved or out-of-scope source</span></td>
+          <td>An answer drawn from that source, delivered to a user</td>
+          <td>Excluded by pre-inference authorization; a missing answer, flagged for correction</td>
         </tr>
         <tr>
           <td><strong>Detection</strong></td>
           <td>After a user acts on it</td>
-          <td>During routine validation, before any user sees it</td>
+          <td>At pre-inference authorization and in routine validation, before any answer is generated</td>
         </tr>
         <tr>
           <td><strong>Correction</strong></td>
@@ -935,6 +928,7 @@ hr {
 
     <p>RAG and COMPAiSS address different problems under different circumstances. RAG improves generation quality by connecting the model to relevant documents before a response is produced. It is a meaningful improvement over ungrounded AI, but residual hallucination rates remain a documented challenge even under optimal conditions. For institutions where those residual risks are acceptable, RAG is a reasonable architecture. For institutions where they are not, a different approach is required.</p>
     <p>COMPAiSS addresses the authorization problem first, and solves retrieval within it. When an institution already knows which sources are authoritative and the scope of permitted responses must be bounded, the relevant question is not only which content is most relevant to retrieve. It is whether the system is permitted to generate a response at all. COMPAiSS uses modern retrieval of its own, an index of approved sources with keyword and meaning search, but retrieval only proposes evidence: authorization, enforced before inference, decides whether it may be used. For institutions evaluating AI for the first time, this provides a complete governance architecture without the enterprise infrastructure overhead typical of RAG deployments. For institutions that have already invested in RAG for other purposes, COMPAiSS addresses a different and complementary requirement.</p>
+    <div class="key-line">Pre-inference authorization is the enforcement of institutional source authorization and evidence sufficiency requirements before an LLM is permitted to generate a substantive answer. AI-assisted translation, search, retrieval and reranking support evidence discovery within this architecture. They do not replace or override the authorization controls governing answer inference.</div>
     <p>In both cases, COMPAiSS operates alongside existing CRM and workflow systems rather than replacing them. Existing systems handle process, communication, and record management. COMPAiSS handles governed intelligence: accurate, policy-aligned, institutionally authorized answers.</p>
     <div class="hybrid-grid">
       <div class="hybrid-col">
@@ -976,9 +970,9 @@ hr {
     <h2>Low-Risk Evaluation and Approval</h2>
     <p class="section-intro">A system designed to be tried before it is committed to.</p>
 
-    <p>COMPAiSS can be deployed independently, evaluated safely, and discontinued at any time without impacting existing systems. No existing workflows are disrupted. No data is touched. No architecture is modified.</p>
+    <p>COMPAiSS can be deployed independently, evaluated safely, and discontinued without impacting existing systems. No existing workflows are disrupted. No data is touched. No architecture is modified.</p>
 
-    <p>Because it operates without system integration and typically falls below standard procurement thresholds for enterprise software, it can be assessed quickly - without extended implementation cycles, IT project approvals, or operational risk.</p>
+    <p>Because it operates without system integration, and its licence is modest relative to enterprise AI platforms, it can often be assessed through standard institutional purchasing processes - without extended implementation cycles, IT project approvals, or operational risk.</p>
 
     <p>An evaluation can begin with a curated set of high-impact policy and admissions content, then expand over time as confidence grows - adding internal documents, additional policy areas, or workflow integration at the institution's pace and under the institution's control.</p>
 
@@ -1021,14 +1015,14 @@ hr {
   </div>
 
   <h2>Higher Education Scoped Deployment Pricing</h2>
-  <p class="section-intro">Transparent, all-inclusive licensing for a focused Student Affairs &amp; Services deployment.</p>
+  <p class="section-intro">Transparent, all-inclusive licensing for a focused Student Affairs &amp; Services deployment. All prices are in Canadian dollars (CAD).</p>
   <p>COMPAiSS is offered as an institutional platform license. All infrastructure, AI processing, governance oversight, monitoring, and reporting are included within the annual license fee. Institutions do not manage or pay for underlying components separately.</p>
   <p>The pricing below illustrates a focused Student Affairs &amp; Services deployment at a medium-size university of approximately 5,000-8,000 students, projected at approximately 12,000 annual sessions. It does not represent a university-wide deployment. Pricing for other institutions is based on the participating service areas, authorized source scope, projected usage, and governance requirements rather than total institutional enrolment alone.</p>
 <div class="cost-summary-grid">
     <div class="cost-item"><div class="ci-label">Institutional Pilot</div><div class="ci-value">$2,000</div><div class="ci-sub">Configured within 2 weeks and fully credited toward Year 1</div></div>
     <div class="cost-item"><div class="ci-label">Annual License (Y1)</div><div class="ci-value">$20,000</div><div class="ci-sub">Total Year 1 cost, including pilot and implementation</div></div>
     <div class="cost-item"><div class="ci-label">Annual License (Y2)</div><div class="ci-value">$16,000</div><div class="ci-sub">All-inclusive annual renewal</div></div>
-    <div class="cost-item"><div class="ci-label">Annual License (Y3)</div><div class="ci-value">$18,000</div><div class="ci-sub">Expanded capacity and projected demand growth</div></div>
+    <div class="cost-item"><div class="ci-label">Annual License (Y3)</div><div class="ci-value">$18,000</div><div class="ci-sub">Renewal plus expanded capacity for projected demand growth</div></div>
     <div class="cost-item"><div class="ci-label">Production Deployment</div><div class="ci-value">2-3 wks</div><div class="ci-sub">From contract execution</div></div>
   </div>
   <div class="highlight-block">
@@ -1111,10 +1105,10 @@ hr {
   <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2.2rem 0 0.8rem;font-family:system-ui,-apple-system,sans-serif;">Enterprise Security Controls</h3>
 
   <div class="benefits-grid">
-    <div class="benefit-item">Canadian-only infrastructure</div>
+    <div class="benefit-item">Canadian data residency for hosting and AI inference</div>
     <div class="benefit-item">Azure OpenAI Canada East inference</div>
     <div class="benefit-item">Fly.io Toronto hosting</div>
-    <div class="benefit-item">Cloudflare security services</div>
+    <div class="benefit-item">Cloudflare traffic protection (global edge network)</div>
     <div class="benefit-item">TLS 1.2+ encryption in transit</div>
     <div class="benefit-item">AES-256 encryption at rest</div>
     <div class="benefit-item">Role-Based Access Control (RBAC)</div>
@@ -1127,6 +1121,13 @@ hr {
     <div class="benefit-item">Disaster recovery procedures, 24-hour RPO target</div>
     <div class="benefit-item">Annual governance reviews</div>
     <div class="benefit-item">Operational audit logging</div>
+    <div class="benefit-item">Execution-level diagnostic records</div>
+  </div>
+
+  <div class="highlight-block" style="margin-top: 2.2rem;">
+    <p style="font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 0.8rem; font-family: system-ui, -apple-system, sans-serif;">Execution-Level Auditability</p>
+    <p>COMPAiSS maintains execution-level diagnostic records that document source authorization, retrieval, evidence assessment, answer inference decisions and governance enforcement. These records support independent evaluation, reproducible benchmarking, operational monitoring and institutional assurance.</p>
+    <p style="margin-bottom: 0;">Institutions can examine how each governance decision was made, not only the final answer.</p>
   </div>
 
   <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2.2rem 0 0.8rem;font-family:system-ui,-apple-system,sans-serif;">Framework Alignment</h3>
@@ -1180,51 +1181,64 @@ hr {
 
 <hr>
 
-<!-- COMPETITOR COMPARISON -->
+<!-- DEPLOYMENT MODEL COMPARISON -->
 <div class="content-section" id="competitor-comparison">
-  <h2>Competitive Comparison - Higher Education</h2>
-  <p class="section-intro">Annual licensing costs for comparable AI assistant platforms deployed in higher education. Figures exclude implementation, onboarding, and governance configuration - which typically add 15-30% to first-year total cost of ownership for competing solutions.</p>
+  <h2>Deployment Model Comparison - Higher Education</h2>
+  <p class="section-intro">What each approach to institutional AI requires before it can answer a student's question.</p>
+
+  <p>Institutions evaluating AI assistants are choosing between deployment models as much as between vendors. Each model carries different infrastructure, integration and governance requirements, and those requirements drive total cost of ownership and time to production as much as the licence fee does. The comparison below describes the typical requirements of each model; individual products vary.</p>
+
   <table class="pricing-table">
-    <thead><tr><th>Platform</th><th>Small University</th><th>Medium University</th><th>Large University</th><th>Pricing Model</th></tr></thead>
+    <thead><tr><th>Requirement</th><th>Enterprise RAG build</th><th>CRM-embedded AI</th><th>SaaS chatbot</th><th>COMPAiSS (scoped deployment)</th></tr></thead>
     <tbody>
-      <tr><td>Bolt AI Assistants</td><td>$30K-$50K</td><td>$50K-$80K</td><td>$80K-$110K</td><td>Annual subscription</td></tr>
-      <tr><td>Capacity AI</td><td>$30K-$55K</td><td>$55K-$85K</td><td>$85K-$120K</td><td>Usage + platform fee</td></tr>
-      <tr><td>Coveo AI</td><td>$40K-$70K</td><td>$70K-$100K</td><td>$100K-$140K</td><td>Enterprise contract</td></tr>
-      <tr><td>Intercom (Education)</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$150K</td><td>Usage + seats</td></tr>
-      <tr><td>Ivy.ai</td><td>$45K-$75K</td><td>$75K-$110K</td><td>$110K-$145K</td><td>Annual subscription</td></tr>
-      <tr><td>Mainstay (AdmitHub)</td><td>$35K-$60K</td><td>$60K-$95K</td><td>$95K-$135K</td><td>Annual subscription</td></tr>
-      <tr><td>Ocelot</td><td>$20K-$40K</td><td>$40K-$65K</td><td>$65K-$90K</td><td>Annual subscription</td></tr>
-      <tr><td>Verge AI</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$120K</td><td>Enterprise contract</td></tr>
-      <tr><td>Zendesk Answer Bot</td><td>$25K-$45K</td><td>$45K-$75K</td><td>$75K-$105K</td><td>Per-agent pricing</td></tr>
-      <tr class="compaiss-row">
-  <td>COMPAiSS<br>(Scoped Deployment)</td>
-  <td>—</td>
-  <td style="min-width:175px; line-height:1.65;">
-    <strong style="display:block; white-space:nowrap;">Pilot: $2,000</strong>
-    <strong style="display:block; margin-top:8px;">Total</strong>
-    <strong style="display:block; white-space:nowrap;">Y1: $20,000</strong>
-    <strong style="display:block; white-space:nowrap;">Y2: $16,000</strong>
-    <strong style="display:block; white-space:nowrap;">Y3: $18,000</strong>
-  </td>
-  <td>—</td>
-  <td>
-    Focused governance-first deployment — pilot credited toward Year 1,
-    implementation, six-month review, all-inclusive
-  </td>
-</tr> 
+      <tr><td><strong>Integration with internal systems</strong></td><td>Connectors and synchronization pipelines</td><td>Operates inside the CRM data layer</td><td>Usually limited to a website embed</td><td>None. Embedded by iframe</td></tr>
+      <tr><td><strong>Search and indexing infrastructure</strong></td><td>Procured and managed separately</td><td>Provided by the CRM or vendor</td><td>Vendor-managed</td><td>Included, built automatically from the greenlist</td></tr>
+      <tr><td><strong>Institutional IT project</strong></td><td>Yes</td><td>Usually</td><td>Light</td><td>None for standard public-source deployments</td></tr>
+      <tr><td><strong>Typical time to production</strong></td><td>Months</td><td>Weeks to months</td><td>Weeks</td><td>2-3 weeks from contract execution</td></tr>
+      <tr><td><strong>What defines the answerable sources</strong></td><td>Whatever connectors and crawlers can reach</td><td>CRM records and knowledge-base content</td><td>Website crawl, sometimes curated</td><td>An institution-approved greenlist, enforced through pre-inference authorization</td></tr>
+      <tr><td><strong>When evidence is insufficient</strong></td><td>Depends on configuration</td><td>Depends on configuration</td><td>Depends on configuration</td><td>Evidence sufficiency assessed before answer inference; governed refusal or qualified response</td></tr>
+      <tr><td><strong>Auditability of governance decisions</strong></td><td>Varies by implementation</td><td>Varies by implementation</td><td>Varies by implementation</td><td>Execution-level diagnostic records of authorization, evidence and refusal decisions</td></tr>
+      <tr class="compaiss-row"><td><strong>Pricing model</strong></td><td>Infrastructure, services and licences, typically custom-quoted</td><td>Add-on to the CRM licence, typically custom-quoted</td><td>Subscription, seats or per-resolution fees, often custom-quoted</td><td>Published, all-inclusive annual licence (CAD)</td></tr>
     </tbody>
   </table>
-<div style="margin-top:1.2rem;padding:0.8rem 1.4rem;background:rgba(255,255,255,0.03);border:1px solid var(--border-soft);border-radius:8px;font-family:system-ui,-apple-system,sans-serif;font-size:0.72rem;font-weight:400;color:#ffffff;font-style:italic;line-height:1.6;max-width:none;zoom:0.75;">
-  <p style="margin:0 0 0.4rem;max-width:none;">1. Competitor pricing reflects publicly available market estimates and analyst benchmarks. All vendors use custom quote-based models; figures represent typical institutional ranges for a medium-size university deployment.</p>
-  <p style="margin:0 0 0.4rem;max-width:none;">2. COMPAiSS pricing illustrates a focused Student Affairs & Services deployment within a medium-size institution of approximately 5,000–8,000 full-time equivalent students and approximately 12,000 projected annual sessions. It does not represent a university-wide deployment.</p>
-  <p style="margin:0 0 0.4rem;max-width:none;">3. COMPAiSS pricing is determined by deployment scope, including participating service areas, authorized sources, projected session volume, and governance requirements. A large university implementing COMPAiSS within one defined service area may therefore have a lower cost than a smaller institution selecting a broader deployment.</p>
-  <p style="margin:0;max-width:none;">4. Platforms in this comparison fall into two architectural categories: FAQ-based systems that match queries to pre-authored answer libraries, and inference-first chatbots that generate responses from underlying AI models without a prior authorization layer. COMPAiSS operates in neither category. Its execution gate means inference does not occur until pre-generation authorization is satisfied — a structural distinction from all identified competitors, which uniformly treat governance as a post-generation filter or content restriction layer.</p>
-</div>
-</div>  <div class="card-grid" style="margin-top:2rem;">
-    <div class="card"><div class="card-icon">&#127959;</div><h3>Pre-inference governance</h3><p>Source validation and scope enforcement occur before AI generation. No competitor operates at this architectural layer. Every platform above applies filtering after inference - meaning hallucinated content is produced first and suppressed second.</p></div>
-    <div class="card"><div class="card-icon">&#128268;</div><h3>Minimal IT integration</h3><p>Embeds directly within the institution's existing website. Optional SSO requires a single app registration in Azure AD - no server installations, database migrations, or infrastructure changes required.</p></div>
-    <div class="card"><div class="card-icon">&#128203;</div><h3>Procurement-ready</h3><p>Pre-inference authorization means every interaction follows a documented, reproducible governance path. Compatible with AI governance panel requirements, AIA frameworks, and government procurement standards.</p></div>
+
+  <div class="key-line">Retrieval identifies potentially relevant evidence. COMPAiSS determines whether that evidence is authorized and sufficient to permit an answer, before substantive answer inference occurs.</div>
+
+  <div class="highlight-block">
+    <p><strong>Predictable, published pricing.</strong> Most vendors in this market price by custom quote, and several charge per seat or per automated resolution, so costs rise with usage in ways that are difficult to forecast. COMPAiSS publishes its price: CAD $20,000 for Year 1 of a scoped deployment, including implementation, infrastructure, AI processing, greenlist maintenance and governance reviews. There are no seat licences and no per-resolution charges, and usage within the projected band is fully included (see the Usage &amp; Growth Framework above).</p>
   </div>
+
+  <!-- OPTIONAL: PUBLISHED REFERENCE POINTS
+       Verify each figure against its primary source and confirm it is current, then remove these comment markers.
+  <div style="margin-top:1.2rem;padding:0.9rem 1.4rem;background:rgba(255,255,255,0.03);border:1px solid var(--border-soft);border-radius:8px;font-family:system-ui,-apple-system,sans-serif;font-size:0.82rem;color:var(--text-muted);line-height:1.6;">
+    <p style="margin:0 0 0.5rem;max-width:none;"><strong style="color:var(--text-heading);">Published market reference points</strong> (vendor list prices and public procurement records; currencies and scopes differ and are not directly comparable)</p>
+    <ul style="margin:0 0 0 1.2rem;">
+      <li>Element451: plans listed from USD $20,000 per year, priced by enrolment and support tier (<a href="https://element451.com/pricing" target="_blank" rel="noopener">source</a>)</li>
+      <li>Intercom: USD $0.99 per Fin AI outcome, plus seat licences (<a href="https://www.intercom.com/pricing" target="_blank" rel="noopener">source</a>)</li>
+      <li>Zendesk: agent seat licences plus per-automated-resolution charges (<a href="https://www.zendesk.com/pricing/" target="_blank" rel="noopener">source</a>)</li>
+      <li>CUNY Baruch College RFQ for an Ivy.ai subscription (15,000-20,000 FTE, 9 departments): estimated contract value USD $50,000-$150,000 (<a href="https://www.highergov.com/sl/contract-opportunity/ny-rfq2526011-ivy-ai-chatbot-subscription-54981539/" target="_blank" rel="noopener">source</a>)</li>
+    </ul>
+  </div>
+  -->
+
+  <h3 style="color:var(--text-heading);font-size:1.1rem;margin:2.2rem 0 0.8rem;font-family:system-ui,-apple-system,sans-serif;">Questions to Ask Any Vendor</h3>
+  <ul>
+    <li>Is source authorization enforced before an answer is generated, or applied as a filter afterward?</li>
+    <li>Who decides which sources the system may use, and is every change to that decision logged and attributable?</li>
+    <li>What does the system do when the authorized sources do not support an answer?</li>
+    <li>Can each answer be traced to the specific approved source it relied on?</li>
+    <li>Can the institution independently verify that unauthorized evidence was excluded before substantive answer inference?</li>
+    <li>Can the vendor provide execution-level diagnostic records demonstrating how authorization, evidence sufficiency and refusal decisions were made?</li>
+    <li>What integration, infrastructure and internal staff time are required before go-live, and afterward?</li>
+    <li>Which costs sit outside the licence: implementation, seats, per-resolution fees, hosting or overage?</li>
+  </ul>
+
+  <div class="card-grid" style="margin-top:2rem;">
+    <div class="card"><div class="card-icon">&#127959;</div><h3>Pre-inference authorization</h3><p>Source authorization and evidence sufficiency are enforced before the model is permitted to generate a substantive answer. If authorized evidence cannot support an answer, none is generated from outside it.</p></div>
+    <div class="card"><div class="card-icon">&#128268;</div><h3>Minimal IT integration</h3><p>Embeds directly within the institution's existing website. Optional SSO requires a single app registration in Azure AD - no server installations, database migrations, or infrastructure changes required.</p></div>
+    <div class="card"><div class="card-icon">&#128203;</div><h3>Procurement-ready</h3><p>Every interaction follows a documented, reproducible governance path, designed to support AI governance panel reviews, algorithmic impact assessments and public-sector procurement requirements.</p></div>
+  </div>
+</div>
 </div>
 <hr>
 <!-- ROI -->
@@ -1355,39 +1369,52 @@ hr {
 
   <div class="roi-calc">
     <div class="roi-slider-row">
-      <label>Annual student inquiries handled by staff <span id="lbl-queries">25,000</span></label>
+      <label>Annual student inquiries handled by staff in participating units <span id="lbl-queries">25,000</span></label>
       <input type="range" min="5000" max="100000" step="5000" value="25000" oninput="roiCalc()" id="sl-queries">
     </div>
     <div class="roi-slider-row">
-      <label>Fully loaded staff cost per inquiry (CAD) <span id="lbl-cost">$8</span></label>
-      <input type="range" min="3" max="20" step="1" value="8" oninput="roiCalc()" id="sl-cost">
+      <label>Fully loaded staff cost per inquiry (CAD) <span id="lbl-cost">$6</span></label>
+      <input type="range" min="3" max="20" step="1" value="6" oninput="roiCalc()" id="sl-cost">
     </div>
     <div class="roi-slider-row">
-      <label>Estimated query diversion rate <span id="lbl-div">35%</span></label>
-      <input type="range" min="10" max="60" step="5" value="35" oninput="roiCalc()" id="sl-div">
+      <label>Successful inquiry diversion rate <span id="lbl-div">30%</span></label>
+      <input type="range" min="5" max="60" step="5" value="30" oninput="roiCalc()" id="sl-div">
     </div>
     <div class="roi-slider-row">
-      <label>Annual COMPAiSS license cost (CAD) <span id="lbl-license">$20,000</span></label>
+      <label>Annual COMPAiSS licence (CAD) <span id="lbl-license">$20,000</span></label>
       <input type="range" min="10000" max="90000" step="5000" value="20000" oninput="roiCalc()" id="sl-license">
     </div>
+    <div class="roi-slider-row">
+      <label>Additional institutional oversight costs, if applicable (CAD/yr) <span id="lbl-internal">$0</span></label>
+      <input type="range" min="0" max="15000" step="1000" value="0" oninput="roiCalc()" id="sl-internal">
+    </div>
 
-    <div class="roi-results">
+    <div class="roi-results" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));">
       <div class="roi-card">
-        <div class="roi-card-label">Queries diverted</div>
-        <div class="roi-card-value" id="r-diverted">8,750</div>
+        <div class="roi-card-label">Inquiries diverted</div>
+        <div class="roi-card-value" id="r-diverted">7,500</div>
         <div class="roi-card-sub">per year</div>
       </div>
       <div class="roi-card">
-        <div class="roi-card-label">Staff time recovered</div>
-        <div class="roi-card-value" id="r-saved">$70,000</div>
+        <div class="roi-card-label">Staff capacity recovered</div>
+        <div class="roi-card-value" id="r-saved">$45,000</div>
         <div class="roi-card-sub">estimated annual value</div>
       </div>
       <div class="roi-card roi-highlight">
-        <div class="roi-card-label">Net annual benefit (estimated)</div>
-        <div class="roi-card-value" id="r-roi">$50,000</div>
-        <div class="roi-card-sub" id="r-multiple">250% net ROI; 3.5x benefit-to-cost ratio</div>
+        <div class="roi-card-label">Net annual capacity value</div>
+        <div class="roi-card-value" id="r-roi">$25,000</div>
+        <div class="roi-card-sub" id="r-multiple">125% net ROI; 2.25x benefit-to-cost ratio</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-label">Break-even diversion rate</div>
+        <div class="roi-card-value" id="r-breakeven">13.3%</div>
+        <div class="roi-card-sub" id="r-breakeven-sub">3,334 diverted inquiries a year</div>
       </div>
     </div>
+
+    <div class="key-line" id="r-be-line">Under these illustrative assumptions, successfully diverting approximately 13.3% of existing staff inquiries recovers staff capacity equivalent in value to the annual COMPAiSS licence.</div>
+
+    <p class="roi-note">Adjust the assumptions to reflect your institution. A diverted inquiry is a staff contact that no longer occurs because a COMPAiSS session answered the question; one session may cover several questions, and the priced deployment includes approximately 12,000 sessions a year. Recovered staff capacity represents time that can be redirected to complex inquiries rather than a direct cash saving.</p>
 
 <div class="roi-benchmark">
   <h3>Industry reference benchmarks — Canadian universities</h3>
@@ -1395,51 +1422,26 @@ hr {
   <div class="benchmark-grid">
 
     <div class="benchmark-card">
-      <div class="benchmark-title">
-        STAFF COST PER INQUIRY
-      </div>
-
-      <div class="benchmark-value">
-        $5 – $9 CAD
-      </div>
-
+      <div class="benchmark-title">STAFF COST PER INQUIRY</div>
+      <div class="benchmark-value">$4 – $7 CAD</div>
       <div class="benchmark-description">
-        Based on 8 to 12 routine inquiries per hour,
-        at a fully loaded salary of $55,000 to
-        $70,000 CAD per year.
+        Based on 8 to 12 routine inquiries per productive hour, with about 65% of paid time spent on inquiries, at a fully loaded cost of $55,000 to $70,000 CAD per year.
       </div>
     </div>
 
     <div class="benchmark-card">
-      <div class="benchmark-title">
-        ANNUAL INQUIRY VOLUME
-      </div>
-
-      <div class="benchmark-value">
-        8,000 – 40,000
-      </div>
-
-<div class="benchmark-description">
-        8,000 to 15,000 for smaller institutions;
-        20,000 to 40,000 for medium-size universities.
-        The University of Toronto Registrar reported handling over 120,000
-        student inquiries in 2024 across admissions, financial aid, fees,
-        and transcripts.
+      <div class="benchmark-title">ANNUAL INQUIRY VOLUME</div>
+      <div class="benchmark-value">8,000 – 40,000</div>
+      <div class="benchmark-description">
+        8,000 to 15,000 for smaller institutions; 20,000 to 40,000 for medium-size universities, across all student-service units. A scoped deployment covers only the participating units.
       </div>
     </div>
 
     <div class="benchmark-card">
-      <div class="benchmark-title">
-        QUERY DIVERSION RATE
-      </div>
-
-      <div class="benchmark-value">
-        25% – 55%
-      </div>
-
+      <div class="benchmark-title">INQUIRY DIVERSION RATE</div>
+      <div class="benchmark-value">25% – 55%</div>
       <div class="benchmark-description">
-        25 to 35% in early deployments;
-        40 to 55% at deployment maturity.
+        Indicative ranges: 25 to 35% in early deployments; 40 to 55% at maturity. Actual rates should be measured during the pilot.
       </div>
     </div>
 
@@ -1454,26 +1456,39 @@ function roiCalc() {
   var cost     = parseInt(document.getElementById('sl-cost').value);
   var div      = parseInt(document.getElementById('sl-div').value);
   var license  = parseInt(document.getElementById('sl-license').value);
+  var internal = parseInt(document.getElementById('sl-internal').value);
 
-  document.getElementById('lbl-queries').textContent = queries.toLocaleString('en-CA');
-  document.getElementById('lbl-cost').textContent    = '$' + cost;
-  document.getElementById('lbl-div').textContent     = div + '%';
-  document.getElementById('lbl-license').textContent = '$' + license.toLocaleString('en-CA');
+  document.getElementById('lbl-queries').textContent  = queries.toLocaleString('en-CA');
+  document.getElementById('lbl-cost').textContent     = '$' + cost;
+  document.getElementById('lbl-div').textContent      = div + '%';
+  document.getElementById('lbl-license').textContent  = '$' + license.toLocaleString('en-CA');
+  document.getElementById('lbl-internal').textContent = '$' + internal.toLocaleString('en-CA');
 
   var diverted = Math.round(queries * div / 100);
-  var saved    = Math.round(diverted * cost);
-  var net      = saved - license;
-  var multiple = license > 0 ? (saved / license).toFixed(1) : null;
-  var netRoi   = license > 0 ? Math.round(net / license * 100) : null;
+  var saved    = diverted * cost;
+  var total    = license + internal;
+  var net      = saved - total;
+  var bcr      = total > 0 ? (saved / total).toFixed(2) : null;
+  var netRoi   = total > 0 ? Math.round(net / total * 100) : null;
+  var bePct    = (queries * cost) > 0 ? total / (queries * cost) * 100 : null;
+  var beInq    = cost > 0 ? Math.ceil(total / cost) : null;
 
   document.getElementById('r-diverted').textContent = diverted.toLocaleString('en-CA');
   document.getElementById('r-saved').textContent    = '$' + saved.toLocaleString('en-CA');
-document.getElementById('r-roi').textContent      =
+  document.getElementById('r-roi').textContent      =
     (net < 0 ? '-$' : '$') + Math.abs(Math.round(net)).toLocaleString('en-CA');
   document.getElementById('r-roi').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
-document.getElementById('r-multiple').textContent = netRoi === null
-    ? 'ROI undefined for a zero licence cost'
-    : netRoi + '% net ROI; ' + multiple + 'x benefit-to-cost ratio';
+  document.getElementById('r-multiple').textContent = netRoi === null
+    ? 'ROI undefined for a zero cost'
+    : netRoi + '% net ROI; ' + bcr + 'x benefit-to-cost ratio';
+  document.getElementById('r-breakeven').textContent = bePct === null ? '-' :
+    (bePct > 100 ? '>100%' : bePct.toFixed(1) + '%');
+  document.getElementById('r-breakeven-sub').textContent = beInq === null ? '' :
+    beInq.toLocaleString('en-CA') + ' diverted inquiries a year';
+  document.getElementById('r-be-line').textContent = bePct === null ? '' : (bePct > 100
+    ? 'Under these illustrative assumptions, the licence exceeds the value of all staff inquiries entered.'
+    : 'Under these illustrative assumptions, successfully diverting approximately ' + bePct.toFixed(1) +
+      '% of existing staff inquiries recovers staff capacity equivalent in value to the annual COMPAiSS licence.');
 }
 roiCalc();
 </script>
@@ -1640,12 +1655,16 @@ roiCalc();
       <input type="range" min="3" max="15" step="0.25" value="8" oninput="hcCalc()" id="hc-cost">
     </div>
     <div class="roi-slider-row">
-      <label>COMPAiSS cost per interaction (CAD) <span id="hc-lbl-aicost">$0.02</span></label>
+      <label>COMPAiSS AI processing cost per interaction (CAD, included in licence) <span id="hc-lbl-aicost">$0.02</span></label>
       <input type="range" min="0.01" max="0.20" step="0.01" value="0.02" oninput="hcCalc()" id="hc-aicost">
     </div>
     <div class="roi-slider-row">
-      <label>Estimated deflection rate <span id="hc-lbl-div">25%</span></label>
-      <input type="range" min="10" max="60" step="5" value="25" oninput="hcCalc()" id="hc-div">
+      <label>Estimated deflection rate (calls replaced by a governed answer) <span id="hc-lbl-div">25%</span></label>
+      <input type="range" min="5" max="60" step="5" value="25" oninput="hcCalc()" id="hc-div">
+    </div>
+    <div class="roi-slider-row">
+      <label>Annual COMPAiSS licence (CAD, illustrative; scoped by assessment) <span id="hc-lbl-lic">$100,000</span></label>
+      <input type="range" min="25000" max="500000" step="5000" value="100000" oninput="hcCalc()" id="hc-lic">
     </div>
 
     <div class="roi-results">
@@ -1655,14 +1674,14 @@ roiCalc();
         <div class="roi-card-sub">per year</div>
       </div>
       <div class="roi-card">
-        <div class="roi-card-label">Savings per interaction</div>
-        <div class="roi-card-value" id="hc-r-saving">$7.98</div>
-        <div class="roi-card-sub">staffed cost minus AI cost</div>
+        <div class="roi-card-label">Cost per interaction</div>
+        <div class="roi-card-value" id="hc-r-unit">$8.00 vs $0.02</div>
+        <div class="roi-card-sub">staffed call vs AI processing</div>
       </div>
       <div class="roi-card roi-highlight">
-        <div class="roi-card-label">Estimated annual savings</div>
-        <div class="roi-card-value" id="hc-r-saved">$997,500</div>
-        <div class="roi-card-sub" id="hc-r-ratio">400× cost reduction per interaction</div>
+        <div class="roi-card-label">Net annual value (estimated)</div>
+        <div class="roi-card-value" id="hc-r-net">$900,000</div>
+        <div class="roi-card-sub" id="hc-r-ratio">after licence; 10.0x benefit-to-cost ratio</div>
       </div>
     </div>
 
@@ -1671,11 +1690,13 @@ roiCalc();
       <div class="benchmark-grid">
         <div class="benchmark-card">
           <div class="benchmark-title">ASSISTED VS. SELF-SERVICE COST</div>
-          <div class="benchmark-value">$8–12 vs. $0.10–0.25</div>
-          <div class="benchmark-description">Gartner: live/assisted contact channels average $8–12 CAD per interaction; self-service interactions run $0.10–0.25.</div>
+          <!-- TODO: confirm the specific Gartner report and figures before publishing. -->
+          <div class="benchmark-value">~US$8 vs. ~US$0.10</div>
+          <div class="benchmark-description">Widely cited Gartner estimate of average cost per live-channel contact versus per self-service contact, in US dollars.</div>
         </div>
         <div class="benchmark-card">
           <div class="benchmark-title">REAL GOVERNMENT DEPLOYMENT</div>
+          <!-- TODO: add a link to the primary source for the Bernalillo County figures. -->
           <div class="benchmark-value">4.64&times; cost ratio</div>
           <div class="benchmark-description">Bernalillo County, NM: AI-handled interactions at $0.99 vs. $4.59 for human-handled, measured over an actual 18-month deployment.</div>
         </div>
@@ -1687,7 +1708,7 @@ roiCalc();
       </div>
     </div>
 
-    <p class="roi-note">This calculator estimates operational impact based on call-centre activity, not website traffic. Website traffic is a governance-exposure signal (see Governance Impact above), not a direct input to this dollar estimate, the two measure different things and are kept separate deliberately. All figures are estimates for planning purposes; final figures are established through a scoped assessment.</p>
+    <p class="roi-note">This calculator estimates operational impact based on call-centre activity, not website traffic. A deflected call is one that would otherwise have been placed and is resolved by a governed answer instead; website visits that would never have become calls are not counted. AI processing within the contracted usage band is included in the licence, and usage above the band is reviewed as described in the Usage &amp; Growth Framework. The licence default is illustrative, because healthcare licences are scoped by assessment. Website traffic is a governance-exposure signal (see Governance Impact above), not a direct input to this dollar estimate. All figures are estimates for planning purposes; final figures are established through a scoped assessment.</p>
   </div>
 </div>
 
@@ -1697,21 +1718,27 @@ function hcCalc() {
   var cost   = parseFloat(document.getElementById('hc-cost').value);
   var aicost = parseFloat(document.getElementById('hc-aicost').value);
   var div    = parseInt(document.getElementById('hc-div').value);
+  var lic    = parseInt(document.getElementById('hc-lic').value);
 
   document.getElementById('hc-lbl-calls').textContent  = calls.toLocaleString('en-CA');
   document.getElementById('hc-lbl-cost').textContent   = '$' + cost.toFixed(2);
   document.getElementById('hc-lbl-aicost').textContent = '$' + aicost.toFixed(2);
   document.getElementById('hc-lbl-div').textContent    = div + '%';
+  document.getElementById('hc-lbl-lic').textContent    = '$' + lic.toLocaleString('en-CA');
 
-  var saving   = cost - aicost;
-  var ratio    = Math.round(cost / aicost);
   var diverted = Math.round(calls * div / 100);
-  var saved    = Math.round(diverted * saving);
+  var gross    = diverted * cost;
+  var net      = gross - lic;
+  var bcr      = lic > 0 ? (gross / lic).toFixed(1) : null;
 
   document.getElementById('hc-r-diverted').textContent = diverted.toLocaleString('en-CA');
-  document.getElementById('hc-r-saving').textContent   = '$' + saving.toFixed(2);
-  document.getElementById('hc-r-saved').textContent    = '$' + saved.toLocaleString('en-CA');
-  document.getElementById('hc-r-ratio').textContent    = ratio.toLocaleString('en-CA') + '× cost reduction per interaction';
+  document.getElementById('hc-r-unit').textContent     = '$' + cost.toFixed(2) + ' vs $' + aicost.toFixed(2);
+  document.getElementById('hc-r-net').textContent      =
+    (net < 0 ? '-$' : '$') + Math.abs(Math.round(net)).toLocaleString('en-CA');
+  document.getElementById('hc-r-net').style.color      = net >= 0 ? '#4caf82' : 'var(--text-muted)';
+  document.getElementById('hc-r-ratio').textContent    = bcr === null
+    ? 'after licence'
+    : 'after licence; ' + bcr + 'x benefit-to-cost ratio';
 }
 hcCalc();
 </script>
@@ -1924,6 +1951,7 @@ hcCalc();
   </style>
 
   <div class="cc-deployment-badge">&#9679; Live demonstration — compaiss.ca/service-canada</div>
+  <p class="cc-adopt-note" style="margin:-0.6rem 0 1.4rem;">Independent demonstration built on publicly available Service Canada information. COMPAiSS is not affiliated with or endorsed by Service Canada or the Government of Canada.</p>
 
   <div class="cc-preset-row">
     <span class="cc-preset-label">Load a profile:</span>
@@ -1939,7 +1967,7 @@ hcCalc();
     </div>
     <div class="cc-slider-row">
       <label>Cost per staffed call (CAD) <span id="cc-lbl-cost">$8.33</span></label>
-      <input type="range" id="cc-cost" min="1" max="30" step="0.25" value="8.33" oninput="ccCalc()">
+      <input type="range" id="cc-cost" min="1" max="30" step="0.01" value="8.33" oninput="ccCalc()">
     </div>
     <div class="cc-slider-row">
       <label>COMPAiSS cost per interaction (CAD) <span id="cc-lbl-aicost">$0.02</span></label>
@@ -1959,9 +1987,9 @@ hcCalc();
       <div class="cc-card-sub">staffed cost minus AI cost</div>
     </div>
     <div class="cc-card cc-highlight">
-      <div class="cc-card-label">Annual savings at 30% deflection</div>
+      <div class="cc-card-label">Staffed cost avoided at 30% deflection</div>
       <div class="cc-card-value" id="cc-r-30">$19.94M</div>
-      <div class="cc-card-sub" id="cc-r-ratio">416× cost reduction</div>
+      <div class="cc-card-sub" id="cc-r-ratio">net of AI processing, before licence</div>
     </div>
   </div>
 
@@ -1993,12 +2021,12 @@ hcCalc();
 
   <div class="cc-bar-section">
     <div class="cc-bar-section-title" id="cc-adopt-title">Annual savings by deflection rate — Service Canada</div>
-    <p class="cc-adopt-note">Each row shows annual savings if that percentage of total calls is handled by COMPAiSS instead of staff.</p>
+    <p class="cc-adopt-note">Each row shows the staffed-call cost avoided each year, net of AI processing and before the COMPAiSS licence, if that percentage of total calls is handled by COMPAiSS instead of staff.</p>
     <div class="cc-adopt-rows" id="cc-adopt-rows"></div>
   </div>
 
   <div style="margin-top:1.5rem;padding:1.4rem 1.6rem;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;font-family:system-ui,-apple-system,sans-serif;">
-    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At an estimated COMPAiSS AI processing cost of $0.02 per interaction — versus $8.33 per staffed call — the marginal cost per deflected interaction is about 416× lower. Deflecting 30% of total calls saves an estimated $19.94M annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
+    <p id="cc-highlight" style="margin:0;font-size:0.95rem;color:var(--text-main);max-width:none;line-height:1.65;">At an estimated AI processing cost of $0.02 per interaction, versus $8.33 per staffed call, deflecting 30% of total calls avoids an estimated $19.94M in staffed-call costs annually before the COMPAiSS licence, while staff remain fully available for complex cases, appeals, and sensitive client interactions.</p>
   </div>
 
   <div style="margin-top:2rem;font-family:system-ui,-apple-system,sans-serif;">
@@ -2022,7 +2050,7 @@ hcCalc();
     </div>
   </div>
 
-<p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS AI processing cost estimated at $0.02 per interaction. Savings projections assume COMPAiSS handles calls that would otherwise be answered by staff — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
+<p class="cc-roi-note">Service Canada defaults: ~8M annual calls across EI, CPP, OAS and other programs at ~$8.33 per staffed interaction (2023–24 figures). COMPAiSS AI processing cost estimated at $0.02 per interaction. Figures exclude the COMPAiSS licence, which is scoped by assessment for public-sector deployments; net savings equal these figures minus the licence. Savings projections assume COMPAiSS handles calls that would otherwise be answered by staff — complex cases, appeals, and sensitive interactions remain with trained staff. All figures are estimates for planning purposes.</p>
 
 <div class="highlight-block" style="margin-top:2rem;">
   <h3>Government AI Evaluation: CRA GenAI Chatbot vs COMPAiSS</h3>
@@ -2081,17 +2109,15 @@ hcCalc();
   accuracy rates of 94 to 96.7 percent sourcing answers exclusively from
   Government of Canada websites. Every response carried the disclaimer:
   "AI can make mistakes, always check your answer."</p>
-  <p>A 94 to 96 percent accuracy rate is a genuine achievement. It also means
-  that across 7,851 trial questions, between 235 and 471 responses contained
-  errors - delivered to Canadians seeking help with EI, CPP, tax accounts,
-  and immigration status. Scaled to Service Canada's volume of
-  approximately 8 million annual interactions, a 3 to 6 percent residual
-  error rate represents between 240,000 and 480,000 incorrect responses
-  per year. The disclaimer is the governance layer for those errors.
-  COMPAiSS addresses the same challenge differently: the pre-inference
-  authorization gate prevents generation from occurring when verified
-  evidence is unavailable, rather than disclosing after the fact that
-  generation may have been incorrect.</p>
+  <p>A 94 to 96.7 percent accuracy rate is a genuine achievement for an
+  enterprise-scale trial. Applied to the 7,851 trial questions, those rates
+  imply roughly 259 to 471 answers that were not rated accurate, on questions
+  about EI, CPP, tax accounts and immigration status. At public-service volumes, residual error is a
+  governance question as well as an accuracy question. COMPAiSS addresses it
+  architecturally: its pre-inference authorization gate prevents answer
+  inference when verified evidence from authorized sources is unavailable,
+  rather than disclosing after the fact that a generated answer may be
+  incorrect.</p>
   <p><a href="https://blog.canada.ca/2025/12/17/ai-answers.html"
   target="_blank" rel="noopener">Read the Government of Canada AI Answers
   trial results</a></p>
@@ -2152,7 +2178,7 @@ var ccPresets = {
     document.getElementById('cc-r-calls').textContent  = ccFmtNum(calls);
     document.getElementById('cc-r-saving').textContent = '$'+saving.toFixed(2);
     document.getElementById('cc-r-30').textContent     = ccFmt(s30);
-    document.getElementById('cc-r-ratio').textContent  = ratio.toLocaleString('en-CA')+'× cost reduction';
+    document.getElementById('cc-r-ratio').textContent  = 'net of AI processing, before licence';
 
     var aiPct = Math.max(0.4, (aicost/cost)*100);
     document.getElementById('cc-bar-staffed-lbl').textContent = '$'+cost.toFixed(2);
@@ -2185,9 +2211,8 @@ var ccPresets = {
     var name = ccNames[ccCurrent] || 'this deployment';
     document.getElementById('cc-highlight').textContent =
       'At an estimated AI processing cost of $'+aicost.toFixed(2)+
-      ' per interaction — versus $'+cost.toFixed(2)+' per staffed call — the marginal cost per deflected interaction is about '+
-      ratio.toLocaleString('en-CA')+'× lower. Deflecting 30% of total calls from '+
-      name+' saves an estimated '+ccFmt(s30)+' annually, while staff remain fully available for complex cases, appeals, and sensitive client interactions.';
+      ' per interaction, versus $'+cost.toFixed(2)+' per staffed call, deflecting 30% of total calls from '+
+      name+' avoids an estimated '+ccFmt(s30)+' in staffed-call costs annually before the COMPAiSS licence, while staff remain fully available for complex cases, appeals, and sensitive client interactions.';
   };
 
 ccCalc();
@@ -2232,4 +2257,3 @@ backBtn.addEventListener('click', () => {
 
 </body>
 </html>
-
