@@ -1652,10 +1652,7 @@ roiCalcFr();
       <label>Coût par appel traité par un agent (CAD) <span id="hc-lbl-cost">8,00 $</span></label>
       <input type="range" min="3" max="15" step="0.25" value="8" oninput="hcCalc()" id="hc-cost">
     </div>
-    <div class="roi-slider-row">
-      <label>Coût de traitement IA de COMPAiSS par interaction (CAD, inclus dans la licence) <span id="hc-lbl-aicost">0,02 $</span></label>
-      <input type="range" min="0.01" max="0.20" step="0.01" value="0.02" oninput="hcCalc()" id="hc-aicost">
-    </div>
+    <p class="roi-note" style="border-top:none;padding-top:0;margin:0 0 1.2rem;">Coût de traitement IA de COMPAiSS : environ 0,02 $ par interaction, inclus dans la licence.</p>
     <div class="roi-slider-row">
       <label>Taux de déviation estimé (appels remplacés par une réponse gouvernée) <span id="hc-lbl-div">25 %</span></label>
       <input type="range" min="5" max="60" step="5" value="25" oninput="hcCalc()" id="hc-div">
@@ -1714,14 +1711,13 @@ roiCalcFr();
 function hcCalc() {
   var calls  = parseInt(document.getElementById('hc-calls').value);
   var cost   = parseFloat(document.getElementById('hc-cost').value);
-  var aicost = parseFloat(document.getElementById('hc-aicost').value);
+  var aicost = 0.02;
   var div    = parseInt(document.getElementById('hc-div').value);
   var lic    = parseInt(document.getElementById('hc-lic').value);
   function money(n){ return n.toFixed(2).replace('.', ',') + ' $'; }
 
   document.getElementById('hc-lbl-calls').textContent  = calls.toLocaleString('fr-CA');
   document.getElementById('hc-lbl-cost').textContent   = money(cost);
-  document.getElementById('hc-lbl-aicost').textContent = money(aicost);
   document.getElementById('hc-lbl-div').textContent    = div + ' %';
   document.getElementById('hc-lbl-lic').textContent    = lic.toLocaleString('fr-CA') + ' $';
 
@@ -2104,18 +2100,19 @@ hcCalc();
   font-family:system-ui,-apple-system,sans-serif;">
   Réponses IA du gouvernement du Canada — Résultats des essais publiés
   </p>
-  <p>Le Bureau de l'expérience Canada.ca a publié en décembre 2025 les résultats
-  d'essais à l'échelle de l'entreprise menés auprès de l'EDSC, de l'ARC, d'IRCC
-  et de sept autres institutions fédérales. Sur 7 851 questions réparties en trois
-  essais, le système a atteint des taux d'exactitude de 94 à 96,7 pour cent, en
-  puisant exclusivement dans les sites Web du gouvernement du Canada. Chaque
-  réponse portait la mention : « L'IA peut faire des erreurs, vérifiez toujours
-  votre réponse. »</p>
-  <p>Un taux d'exactitude de 94 à 96,7 pour cent représente une réalisation
-  significative pour un essai à l'échelle de l'entreprise. Appliqués aux
-  7 851 questions d'essai, ces taux impliquent qu'environ 259 à 471 réponses
-  n'ont pas été jugées exactes, sur des questions concernant l'AE, le RPC, les
-  comptes fiscaux et le statut d'immigration. Aux volumes du service public,
+  <p>Le Bureau de l'expérience Canada.ca a publié les résultats d'essais
+  d'IA à l'échelle de l'entreprise menés auprès de l'EDSC, de l'ARC, d'IRCC
+  et de sept autres institutions fédérales (publication initiale en décembre
+  2025, mise à jour en juin 2026). Sur trois essais portant sur 7 851
+  questions, l'exactitude mesurée sur des échantillons évalués par des experts
+  est passée de 94 à 96,7 pour cent, les réponses provenant exclusivement des
+  sites Web du gouvernement du Canada. Chaque réponse portait la mention :
+  « L'IA peut faire des erreurs, vérifiez toujours votre réponse. »</p>
+  <p>Cette progression représente une réalisation significative pour un
+  essai à l'échelle de l'entreprise. Elle signifie également que, dans les
+  échantillons évalués, de 3,3 à 6 pour cent des réponses n'ont pas été
+  jugées exactes, sur des questions concernant l'AE, le RPC, les comptes
+  fiscaux et le statut d'immigration. Aux volumes du service public,
   l'erreur résiduelle est une question de gouvernance autant que d'exactitude.
   COMPAiSS y répond sur le plan architectural : sa porte d'autorisation
   pré-inférence empêche l'inférence de réponse lorsque des éléments probants

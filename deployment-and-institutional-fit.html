@@ -1654,10 +1654,7 @@ roiCalc();
       <label>Cost per staffed call (CAD) <span id="hc-lbl-cost">$8.00</span></label>
       <input type="range" min="3" max="15" step="0.25" value="8" oninput="hcCalc()" id="hc-cost">
     </div>
-    <div class="roi-slider-row">
-      <label>COMPAiSS AI processing cost per interaction (CAD, included in licence) <span id="hc-lbl-aicost">$0.02</span></label>
-      <input type="range" min="0.01" max="0.20" step="0.01" value="0.02" oninput="hcCalc()" id="hc-aicost">
-    </div>
+    <p class="roi-note" style="border-top:none;padding-top:0;margin:0 0 1.2rem;">COMPAiSS AI processing cost: about $0.02 per interaction, included in the licence.</p>
     <div class="roi-slider-row">
       <label>Estimated deflection rate (calls replaced by a governed answer) <span id="hc-lbl-div">25%</span></label>
       <input type="range" min="5" max="60" step="5" value="25" oninput="hcCalc()" id="hc-div">
@@ -1716,13 +1713,12 @@ roiCalc();
 function hcCalc() {
   var calls  = parseInt(document.getElementById('hc-calls').value);
   var cost   = parseFloat(document.getElementById('hc-cost').value);
-  var aicost = parseFloat(document.getElementById('hc-aicost').value);
+  var aicost = 0.02;
   var div    = parseInt(document.getElementById('hc-div').value);
   var lic    = parseInt(document.getElementById('hc-lic').value);
 
   document.getElementById('hc-lbl-calls').textContent  = calls.toLocaleString('en-CA');
   document.getElementById('hc-lbl-cost').textContent   = '$' + cost.toFixed(2);
-  document.getElementById('hc-lbl-aicost').textContent = '$' + aicost.toFixed(2);
   document.getElementById('hc-lbl-div').textContent    = div + '%';
   document.getElementById('hc-lbl-lic').textContent    = '$' + lic.toLocaleString('en-CA');
 
@@ -2103,16 +2099,17 @@ hcCalc();
   font-family:system-ui,-apple-system,sans-serif;">
   Government of Canada AI Answers — Published Trial Results
   </p>
-  <p>The Canada.ca Experience Office published results in December 2025 from
+  <p>The Canada.ca Experience Office has published results from
   enterprise-scale AI trials across ESDC, CRA, IRCC, and seven other federal
-  institutions. Across 7,851 questions and three trials, the system achieved
-  accuracy rates of 94 to 96.7 percent sourcing answers exclusively from
+  institutions (first published December 2025, updated June 2026). Across
+  three trials covering 7,851 questions, accuracy in expert-evaluated samples
+  rose from 94 to 96.7 percent, with answers sourced exclusively from
   Government of Canada websites. Every response carried the disclaimer:
   "AI can make mistakes, always check your answer."</p>
-  <p>A 94 to 96.7 percent accuracy rate is a genuine achievement for an
-  enterprise-scale trial. Applied to the 7,851 trial questions, those rates
-  imply roughly 259 to 471 answers that were not rated accurate, on questions
-  about EI, CPP, tax accounts and immigration status. At public-service volumes, residual error is a
+  <p>That progression is a genuine achievement for an enterprise-scale
+  trial. It also means that, in the evaluated samples, between 3.3 and 6
+  percent of answers were not rated accurate, on questions about EI, CPP, tax
+  accounts and immigration status. At public-service volumes, residual error is a
   governance question as well as an accuracy question. COMPAiSS addresses it
   architecturally: its pre-inference authorization gate prevents answer
   inference when verified evidence from authorized sources is unavailable,
